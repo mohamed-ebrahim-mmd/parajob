@@ -11,6 +11,7 @@ import 'package:para_job/packages/route_manager/controller/routing_controller.da
 
 class OnboardingScreen extends StatelessWidget {
   final RoutingController routingController = Get.find();
+   final PageController controller = PageController();
 
   OnboardingScreen({super.key});
 
@@ -18,7 +19,7 @@ class OnboardingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView(
-        children: const [
+        children:  [
           OnboardingView1(),
           OnboardingView2(),
           OnboardingView3(),
