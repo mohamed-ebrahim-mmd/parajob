@@ -3,6 +3,8 @@
  ==================================================================
 */
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:para_job/packages/route_manager/controller/routing_controller.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/res/app_asset_paths.dart';
@@ -35,7 +37,7 @@ class OnboardingView3 extends StatelessWidget {
                 RichText(
                   textAlign: TextAlign.center,
                   text: TextSpan(
-                    text: 'View your approved jobs and sign the  ',
+                    text: 'View your approved jobs and sign \n the ',
                     style: TextStyle(
                       color: AppColors.pureWhite,
                       fontSize: context.wPct(4.5),
@@ -46,6 +48,7 @@ class OnboardingView3 extends StatelessWidget {
                         text: 'job contract',
                         style: TextStyle(color: AppColors.aquaTeal),
                       ),
+                      TextSpan(text: "."),
                     ],
                   ),
                 ),
@@ -67,7 +70,7 @@ class OnboardingView3 extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        // Handle skip action
+                        Get.find<RoutingController>().goAuthChoiceScreen();
                       },
                       child: Row(
                         children: [

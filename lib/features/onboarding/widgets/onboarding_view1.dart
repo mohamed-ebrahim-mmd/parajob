@@ -3,6 +3,8 @@
  ==================================================================
 */
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:para_job/packages/route_manager/controller/routing_controller.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/res/app_asset_paths.dart';
@@ -45,10 +47,10 @@ class OnboardingView1 extends StatelessWidget {
                     ),
                     children: [
                       TextSpan(
-                        text: ' perfect job ',
+                        text: ' perfect job',
                         style: TextStyle(color: AppColors.aquaTeal),
                       ),
-                      TextSpan(text: 'for you'),
+                      TextSpan(text: ' for \n you.'),
                     ],
                   ),
                 ),
@@ -70,7 +72,7 @@ class OnboardingView1 extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () {
-                        // Handle skip action
+                        Get.find<RoutingController>().goAuthChoiceScreen();
                       },
                       child: Row(
                         children: [
