@@ -37,22 +37,16 @@ class AppTheme {
 
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: ButtonStyle(
-          side:
-           WidgetStateProperty.all(
-            BorderSide(color: AppColors.pureWhite, width: 1.5),
-          ),
-          shape:
-           WidgetStateProperty.all(
+          side: WidgetStateProperty.all(BorderSide(color: AppColors.pureWhite)),
+          shape: WidgetStateProperty.all(
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(
-                context.wPct(4),
-              ), 
+              borderRadius: BorderRadius.circular(context.wPct(4)),
             ),
           ),
           minimumSize: WidgetStateProperty.all(
-             Size(context.w, context.hPct(8)),
+            Size(context.w, context.hPct(8)),
           ),
-         
+
           padding: WidgetStateProperty.all(
             EdgeInsets.symmetric(horizontal: context.wPct(9)),
           ),
@@ -65,34 +59,70 @@ class AppTheme {
           ),
         ),
       ),
-      
-      /*
+      inputDecorationTheme: InputDecorationTheme(
+        // Border styling
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: AppColors.pureWhite,
+            // width:context.wPct(4),
+          ),
+          borderRadius: BorderRadius.circular(context.wPct(4)),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: AppColors.aquaTeal,
+            // width: 1.5,
+          ),
+          borderRadius: BorderRadius.circular(context.wPct(4)),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: AppColors.coralRed,
+            // width: 1.5
+          ),
+        ),
+        // Padding inside the field
+        contentPadding: EdgeInsets.symmetric(
+          horizontal: context.wPct(5),
+          vertical: context.hPct(2),
+        ),
+
+        // Text style inside the input
+        hintStyle: TextStyle(
+          color: AppColors.softWhite70, // Hint text
+          fontSize: context.wPct(4.8),
+          fontWeight: FontWeight.w500,
+        ),
+        labelStyle: TextStyle(
+          color: AppColors.pureWhite,
+          fontSize: context.wPct(4.8),
+          fontWeight: FontWeight.w500,
+        ),
+      ),
+
+   
       filledButtonTheme: FilledButtonThemeData(
         style: ButtonStyle(
           elevation: WidgetStateProperty.all(0),
           shape: WidgetStateProperty.all(
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(
-                context.wPct(7),
-              ), // Optional: rounded corners
+              borderRadius: BorderRadius.circular(context.wPct(4)),
             ),
           ),
-          fixedSize: WidgetStateProperty.all(
-            Size.fromHeight(context.hPct(7)),
-          ), // Replace 56 with your height
-          padding: WidgetStateProperty.all(
-            EdgeInsets.symmetric(horizontal: context.wPct(9)),
+         minimumSize: WidgetStateProperty.all(
+            Size(context.w, context.hPct(8)),
           ),
 
           foregroundColor: WidgetStateProperty.all(
-            AppColors.crystalClear,
+            AppColors.pureWhite,
           ), // Text/Icon color
-          textStyle: WidgetStateProperty.all(
-            TextStyle(fontSize: context.wPct(4.8), fontWeight: FontWeight.bold),
+         textStyle: WidgetStateProperty.all(
+            TextStyle(fontSize: context.wPct(4.8), fontWeight: FontWeight.w500,color: AppColors.pureWhite),
           ),
+          
         ),
       ),
-*/
+
     );
   }
 }

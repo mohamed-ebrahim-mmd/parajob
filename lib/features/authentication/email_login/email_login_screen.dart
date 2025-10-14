@@ -3,6 +3,8 @@
  ==================================================================
 */
 import 'package:flutter/material.dart';
+import 'package:para_job/packages/themeing/app_colors.dart';
+import 'package:para_job/packages/themeing/media_query_values.dart';
 
 class EmailLoginScreen extends StatelessWidget {
   const EmailLoginScreen({super.key});
@@ -10,11 +12,82 @@ class EmailLoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Email Login Screen')),
-      body: const Center(
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: context.wPct(8)),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              context.hBox(15),
+              Text(
+                'Welcome back',
+                style: TextStyle(
+                  color: AppColors.pureWhite,
+                  fontSize: context.wPct(8.5),
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              context.hBox(6),
+              TextField(
+                decoration: InputDecoration(hintText: "Enter your Email"),
+              ),
+              context.hBox(1.5),
+              TextField(
+                decoration: InputDecoration(hintText: "Enter your Password"),
+              ),
+              context.hBox(1.5),
+              Align(
+                alignment: Alignment.topRight,
+                child: GestureDetector(
+                  child: Text(
+                    "Forgot Password?",
+                    style: TextStyle(
+                      color: AppColors.pureWhite,
+                      fontSize: context.wPct(4.2),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      bottomSheet: Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: context.wPct(8),
+          vertical: context.hPct(7),
+        ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[Text('Email Login Screen')],
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            FilledButton(onPressed: () {}, child: Text("Sign in")),
+            context.hBox(4),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "don't have an account?",
+                  style: TextStyle(
+                    color: AppColors.pureWhite,
+                    fontSize: context.wPct(4.2),
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                context.wBox(2),
+                GestureDetector(
+                  child: Text(
+                    "sign up",
+                    style: TextStyle(
+                      decoration: TextDecoration.underline,
+                      color: AppColors.pureWhite,
+                      fontSize: context.wPct(4.2),
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );
