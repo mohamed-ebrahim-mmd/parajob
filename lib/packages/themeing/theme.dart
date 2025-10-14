@@ -34,6 +34,38 @@ class AppTheme {
           color: AppColors.pureWhite, // Subtext colo, // Subtext color
         ),
       ),
+
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: ButtonStyle(
+          side:
+           WidgetStateProperty.all(
+            BorderSide(color: AppColors.pureWhite, width: 1.5),
+          ),
+          shape:
+           WidgetStateProperty.all(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(
+                context.wPct(4),
+              ), 
+            ),
+          ),
+          minimumSize: WidgetStateProperty.all(
+             Size(context.w, context.hPct(8)),
+          ),
+         
+          padding: WidgetStateProperty.all(
+            EdgeInsets.symmetric(horizontal: context.wPct(9)),
+          ),
+
+          foregroundColor: WidgetStateProperty.all(
+            AppColors.pureWhite,
+          ), // Text/Icon color
+          textStyle: WidgetStateProperty.all(
+            TextStyle(fontSize: context.wPct(4.8), fontWeight: FontWeight.bold),
+          ),
+        ),
+      ),
+      
       /*
       filledButtonTheme: FilledButtonThemeData(
         style: ButtonStyle(
