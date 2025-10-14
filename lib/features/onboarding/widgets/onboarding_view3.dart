@@ -3,10 +3,7 @@
  ==================================================================
 */
 import 'package:flutter/material.dart';
-import 'package:para_job/packages/themeing/app_colors.dart';
-import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/res/app_asset_paths.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnboardingView3 extends StatelessWidget {
   const OnboardingView3({super.key});
@@ -20,90 +17,21 @@ class OnboardingView3 extends StatelessWidget {
           AppAssetPaths.onboardingScreenBackground3,
           fit: BoxFit.cover,
         ),
-
-
-         
-        Positioned(
-          bottom: context.hPct(10),
-          left: 0,
-          right: 0,
+        Align(
+          alignment: Alignment.bottomCenter,
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: context.wPct(8)),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                // --- Onboarding Text ---
-                RichText(
-                  textAlign: TextAlign.center,
-                  text: TextSpan(
-                    text: 'View your approved jobs and sign the  ',
-                    style: TextStyle(
-                      color: AppColors.pureWhite,
-                      fontSize: context.wPct(4.5),
-                      fontWeight: FontWeight.w600,
-                    ),
-                    children: [
-                      TextSpan(
-                        text: 'job contract',
-                        style: TextStyle(color: AppColors.aquaTeal),
-                      ),
-                     
-                    ],
-                  ),
-                ),
-
-                context.hBox(4),
-
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    AnimatedSmoothIndicator(
-                      activeIndex: 2,
-                      count: 3,
-                      effect: ExpandingDotsEffect(
-                        dotHeight: 8,
-                        dotWidth: 8,
-                        activeDotColor: AppColors.aquaTeal,
-                        dotColor: Colors.white,
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        // Handle skip action
-                      },
-                      child: Row(
-                        children: [
-                          Text("skip",style: TextStyle(
-                            fontSize: context.wPct(4),
-                          ), ),
-                          context.wBox(1),
-                          Icon(Icons.double_arrow_rounded, size:context.wPct(4) ,),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+            padding: const EdgeInsets.all(32.0),
+            child: Text(
+              'Let’s get started!',
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 22,
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ),
         ),
-    
-        // Align(
-        //   alignment: Alignment.bottomCenter,
-        //   child: Padding(
-        //     padding: const EdgeInsets.all(32.0),
-        //     child: Text(
-        //       'Let’s get started!',
-        //       textAlign: TextAlign.center,
-        //       style: const TextStyle(
-        //         color: Colors.white,
-        //         fontSize: 22,
-        //         fontWeight: FontWeight.w600,
-        //       ),
-        //     ),
-        //   ),
-        // ),
       ],
     );
   }

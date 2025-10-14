@@ -14,16 +14,16 @@ class RoutingController extends GetxController {
   ); // Default to onboarding screen
 
   // Method to set the navigation state to login screen from the onboarding
-  Future<void> goLoginScreen() async {
-    _navigationState.val = Routes.login;
-    await Get.offAllNamed(Routes.login); // Navigate back to LoginScreen
+  Future<void> goAuthChoiceScreen() async {
+    _navigationState.val = Routes.authChoice;
+    await Get.offAllNamed(Routes.authChoice); // Navigate back to LoginScreen
   }
 
   // Method to set the navigation state to login screen
   Future<void> logOut() async {
     Get.find<UserController>().clearUser();
-    _navigationState.val = Routes.login;
-    await Get.offAllNamed(Routes.login);
+    _navigationState.val = Routes.authChoice;
+    await Get.offAllNamed(Routes.authChoice);
   }
 
   // Method to set the navigation state to home screen as a logged-in user
