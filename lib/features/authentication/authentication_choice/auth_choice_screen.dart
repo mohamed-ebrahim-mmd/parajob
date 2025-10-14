@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
+import 'package:para_job/packages/route_manager/controller/routing_controller.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/res/app_asset_paths.dart';
@@ -61,36 +62,34 @@ class AuthChoiceScreen extends StatelessWidget {
                 context.hBox(3),
 
                 // button to sign in with email
-               
-                   OutlinedButton(
-                    onPressed: () {
-                      Get.toNamed(
-                        "${Routes.authChoice}${Routes.emailLoginScreen}",
-                      );
-                    },
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.email_outlined,
-                          size: context.wPct(6),
+                OutlinedButton(
+                  onPressed: () {
+                    Get.toNamed(
+                      "${Routes.authChoice}${Routes.emailLoginScreen}",
+                    );
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.email_outlined,
+                        size: context.wPct(6),
 
-                          color: AppColors.pureWhite,
-                        ),
-                        context.wBox(3),
-                        Text('Continue with Email'),
-                      ],
-                    ),
+                        color: AppColors.pureWhite,
+                      ),
+                      context.wBox(3),
+                      Text('Continue with Email'),
+                    ],
                   ),
-              
+                ),
+
                 context.hBox(2.5),
                 //text
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      'By Continuing, you agree to ParaJob\t'
-                      ,
+                      'By Continuing, you agree to ParaJob\t',
                       style: TextStyle(
                         color: AppColors.pureWhite,
                         fontSize: context.wPct(3.3),
@@ -147,7 +146,9 @@ class AuthChoiceScreen extends StatelessWidget {
 
                 // continue as guest
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Get.find<RoutingController>().goHomeAsGuest();
+                  },
                   child: Column(
                     children: [
                       SvgPicture.asset(
@@ -175,7 +176,7 @@ class AuthChoiceScreen extends StatelessWidget {
           Positioned(
             bottom: context.hPct(4),
             left: context.wPct(8),
-           // right: context.wPct(8),
+            // right: context.wPct(8),
             child: GestureDetector(
               onTap: () {
                 // Get.toNamed(Routes.supportScreen);
