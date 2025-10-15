@@ -34,6 +34,12 @@ class AppTheme {
           color: AppColors.pureWhite, // Subtext colo, // Subtext color
         ),
       ),
+       appBarTheme: const AppBarTheme(
+      iconTheme: IconThemeData(
+        color: AppColors.pureWhite,
+        size: 26,
+      ),
+    ),
 
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: ButtonStyle(

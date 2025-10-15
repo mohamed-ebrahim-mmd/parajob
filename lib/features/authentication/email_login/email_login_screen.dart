@@ -3,6 +3,9 @@
  ==================================================================
 */
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
@@ -12,6 +15,8 @@ class EmailLoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
+
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: context.wPct(8)),
         child: SingleChildScrollView(
@@ -39,6 +44,9 @@ class EmailLoginScreen extends StatelessWidget {
               Align(
                 alignment: Alignment.topRight,
                 child: GestureDetector(
+                  onTap: () { Get.toNamed(
+                      "${Routes.forgotPassword}",
+                    );},
                   child: Text(
                     "Forgot Password?",
                     style: TextStyle(
@@ -52,6 +60,15 @@ class EmailLoginScreen extends StatelessWidget {
           ),
         ),
       ),
+     
+     
+     
+     
+     
+     
+     
+     
+     
       bottomSheet: Padding(
         padding: EdgeInsets.symmetric(
           horizontal: context.wPct(8),
@@ -90,6 +107,9 @@ class EmailLoginScreen extends StatelessWidget {
           ],
         ),
       ),
+   
+   
+   
     );
   }
 }
