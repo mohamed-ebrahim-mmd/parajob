@@ -22,6 +22,7 @@ class AppColors {
   static const Color pureWhite = Color(0xFFFFFFFF);
   static const Color softWhite70 = Color(0xB3FFFFFF); // white at 70% opacity
   static const Color lightGray = Color(0xffB4B4B4);
+  static const Color grayButton = Color(0xff9C9C9C);
 
   // Alert / Error
   static const Color coralRed = Color(0xFFFF4D4D);
