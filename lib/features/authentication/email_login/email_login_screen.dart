@@ -111,6 +111,10 @@ class EmailLoginScreen extends StatelessWidget {
           ],
         ),
       ),
+   
+   
+   
+   
     );
   }
 }

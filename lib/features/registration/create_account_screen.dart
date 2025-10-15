@@ -3,12 +3,198 @@
  ==================================================================
 */
 import 'package:flutter/material.dart';
+import 'package:para_job/packages/themeing/app_colors.dart';
+import 'package:para_job/packages/themeing/media_query_values.dart';
+import 'package:para_job/packages/ui_component/date_packer.dart';
+import 'package:para_job/packages/ui_component/drop_down_button.dart';
+import 'package:para_job/packages/ui_component/stepper/stepper.dart';
 
 class CreateAccountScreen extends StatelessWidget {
   const CreateAccountScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: Text('Create Account Screen')));
+    return Scaffold(
+      appBar: AppBar(
+        surfaceTintColor: Colors.transparent,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+      ),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: context.wPct(5)),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              StepperRow(currentStep: -1),
+              Align(
+                alignment: AlignmentGeometry.bottomRight,
+                child: Text("0%"),
+              ),
+
+              context.hBox(4),
+              Text(
+                'Create a new account',
+                style: TextStyle(
+                  color: AppColors.pureWhite,
+                  fontSize: context.wPct(8.5),
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              context.hBox(6),
+              Text(
+                'Main Information',
+
+                style: TextStyle(
+                  color: AppColors.pureWhite,
+                  fontSize: context.wPct(5),
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              context.hBox(2.5),
+              // Input fields
+              //Full Name TF
+              TextField(
+                decoration: InputDecoration(hintText: "Enter your Full Name"),
+                keyboardType: TextInputType.name,
+                textInputAction: TextInputAction.next,
+              ),
+              context.hBox(1.5),
+              // Date of Birth TF
+              DatePickerField(hintText: "Enter your Date of Birth"),
+              context.hBox(1.5),
+
+              TextField(
+                decoration: InputDecoration(
+                  hintText: "Enter your phone Number",
+                ),
+                keyboardType: TextInputType.phone,
+                textInputAction: TextInputAction.next,
+              ),
+              context.hBox(1.5),
+              // Email Address TF
+              TextField(
+                decoration: InputDecoration(hintText: "Enter your Email"),
+                keyboardType: TextInputType.emailAddress,
+                textInputAction: TextInputAction.next,
+              ),
+              context.hBox(1.5),
+
+              TextField(
+                decoration: InputDecoration(hintText: "Enter your id number"),
+                keyboardType: TextInputType.number,
+                textInputAction: TextInputAction.next,
+              ),
+              context.hBox(1.5),
+              DropDownButton(
+                options: ["male","female"],
+                label: "Choose your gender",
+              ),
+              context.hBox(2.5),
+              Text(
+                'Location Information',
+
+                style: TextStyle(
+                  color: AppColors.pureWhite,
+                  fontSize: context.wPct(5),
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              context.hBox(2.5),
+              DropDownButton(
+                options: ["male","female"],
+                label: "Choose your city",
+              ),
+              context.hBox(1.5),
+              DropDownButton(
+                options: ["male","female"],
+                label: "Choose your area",
+              ),
+              context.hBox(2.5),
+
+              FilledButton(onPressed: () {}, child: Text("Continue")),
+              context.hBox(5),
+              GestureDetector(
+                child: Text(
+                  "contact us",
+                  style: TextStyle(
+                    color: AppColors.aquaTeal,
+                    fontSize: context.wPct(4.2),
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+                            context.hBox(2),
+
+            ],
+          ),
+        ),
+      ),
+
+      // bottomNavigationBar: Padding(
+      //   padding: EdgeInsets.symmetric(
+      //     horizontal: context.wPct(5),
+      //     vertical: context.hPct(0.5),
+      //   ),
+      //   child: Column(
+      //     mainAxisSize: MainAxisSize.min,
+      //     crossAxisAlignment: CrossAxisAlignment.start,
+      //     children: [
+      //       FilledButton(onPressed: () {}, child: Text("Continue")),
+      //       context.hBox(4),
+      //         Text(
+      //             "don't have an account?",
+      //             style: TextStyle(
+      //               color: AppColors.pureWhite,
+      //               fontSize: context.wPct(4.2),
+      //               fontWeight: FontWeight.w500,
+      //             ),
+      //           ),
+      //     ],
+      //   ),
+      // ),
+    );
   }
+}
+
+final genderMenuEntries = <DropdownMenuEntry<String>>[
+  const DropdownMenuEntry(value: 'male', label: 'Male',
+  style: 
+  ButtonStyle(
+    backgroundColor: WidgetStatePropertyAll(Color.fromARGB(255, 103, 173, 156)),
+    shape: WidgetStatePropertyAll(
+      RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(8)),
+      ),
+    ),
+   padding: WidgetStatePropertyAll(EdgeInsets.symmetric(horizontal: 22)),
+   // maximumSize: const WidgetStatePropertyAll(Size(20, 50))
+  ),
+  ),
+  const DropdownMenuEntry(value: 'female', label: 'Female'),
+];
+final cityMenuEntries = <DropdownMenuEntry<String>>[
+  const DropdownMenuEntry(value: 'eg', label: 'Egypt'),
+  const DropdownMenuEntry(value: 'usa', label: 'USA'),
+];
+final areaMenuEntries = <DropdownMenuEntry<String>>[
+  const DropdownMenuEntry(value: 'a1', label: 'Area 1'),
+  const DropdownMenuEntry(value: 'a2', label: 'Area 2'),
+];
+
+
+ButtonStyle buttonStyle(){
+  return ButtonStyle(
+    backgroundColor: WidgetStatePropertyAll(Color.fromARGB(255, 103, 173, 156)),
+    shape: WidgetStatePropertyAll(
+      RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(8)),
+      ),
+    ),
+   padding: WidgetStatePropertyAll(EdgeInsets.symmetric(horizontal: 22)),
+  );
 }
