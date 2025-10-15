@@ -12,17 +12,19 @@ import 'package:para_job/features/authentication/set_new_password/set_new_passwo
 import 'package:para_job/features/main_navigator/main_navigator_screen.dart';
 import 'package:para_job/features/onboarding/onboarding_screen.dart';
 import 'package:para_job/features/registration/create_account_screen.dart';
+import 'package:para_job/features/search_job/search_job_screen.dart';
 
 class Routes {
   static const String onboarding = '/onboarding';
   static const String forgotPasswordOTP = '/forgot-password-otp';
   static const String setNewPassword = '/set-new-password';
   static const String authChoice = '/auth-choice';
-  static const String mainNavigator = '/';
+  static const String mainNavigator = '/main-navigator';
   static const String emailLoginScreen = '/email-login';
   static const String forgotPassword = '/forgot-password';
   static const String createAccount = '/create-account';
   static const String info = '/info';
+  static const String searchJob = '/search-job';
 }
 
 class AppPages {
@@ -52,6 +54,13 @@ class AppPages {
       ],
     ),
     GetPage(name: Routes.createAccount, page: () => CreateAccountScreen()),
-    GetPage(name: Routes.mainNavigator, page: () => MainNavigatorScreen()),
+    GetPage(
+      name: Routes.mainNavigator,
+      page: () => MainNavigatorScreen(),
+      children: [
+        /// screens that's under the home tab
+        GetPage(name: Routes.searchJob, page: () => SearchJobScreen()),
+      ],
+    ),
   ];
 }

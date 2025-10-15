@@ -34,12 +34,9 @@ class AppTheme {
           color: AppColors.pureWhite, // Subtext colo, // Subtext color
         ),
       ),
-       appBarTheme: const AppBarTheme(
-      iconTheme: IconThemeData(
-        color: AppColors.pureWhite,
-        size: 26,
+      appBarTheme: const AppBarTheme(
+        iconTheme: IconThemeData(color: AppColors.pureWhite, size: 26),
       ),
-    ),
 
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: ButtonStyle(
@@ -67,6 +64,8 @@ class AppTheme {
       ),
       inputDecorationTheme: InputDecorationTheme(
         // Border styling
+        suffixIconColor: AppColors.softWhite70,
+        prefixIconColor: AppColors.softWhite70,
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
             color: AppColors.pureWhite,
@@ -106,7 +105,6 @@ class AppTheme {
         ),
       ),
 
-   
       filledButtonTheme: FilledButtonThemeData(
         style: ButtonStyle(
           elevation: WidgetStateProperty.all(0),
@@ -115,20 +113,22 @@ class AppTheme {
               borderRadius: BorderRadius.circular(context.wPct(4)),
             ),
           ),
-         minimumSize: WidgetStateProperty.all(
+          minimumSize: WidgetStateProperty.all(
             Size(context.w, context.hPct(8)),
           ),
 
           foregroundColor: WidgetStateProperty.all(
             AppColors.pureWhite,
           ), // Text/Icon color
-         textStyle: WidgetStateProperty.all(
-            TextStyle(fontSize: context.wPct(4.8), fontWeight: FontWeight.w500,color: AppColors.pureWhite),
+          textStyle: WidgetStateProperty.all(
+            TextStyle(
+              fontSize: context.wPct(4.8),
+              fontWeight: FontWeight.w500,
+              color: AppColors.pureWhite,
+            ),
           ),
-          
         ),
       ),
-
     );
   }
 }

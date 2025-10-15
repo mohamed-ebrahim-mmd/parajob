@@ -4,6 +4,8 @@
 */
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:para_job/packages/route_manager/controller/routes.dart';
+import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
 
@@ -37,6 +39,25 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               context.hBox(2),
+              TextField(
+                readOnly: true, // 👈 user can't type
+                onTap: () {
+                  Get.toNamed("${Routes.mainNavigator}${Routes.searchJob}");
+                },
+                decoration: InputDecoration(
+                  hintText: 'Search jobs, companies..',
+                  prefixIcon: const Icon(Icons.search),
+                  suffixIcon: const Icon(Icons.tune),
+                  filled: false,
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: AppColors.softWhite70,
+                      // width:context.wPct(4),
+                    ),
+                    borderRadius: BorderRadius.circular(context.wPct(4)),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
