@@ -24,10 +24,8 @@ class ParaJobApp extends StatelessWidget {
       theme: AppTheme.getTheme(context),
       themeMode: ThemeMode.dark,
       title: 'Para Job',
-      initialRoute:Routes.authChoice,
-      //routingController.getInitialRoute(),
-      //Routes.authChoice,
-     
+      initialRoute: routingController.getInitialRoute(),
+
       // Set initial route based on stored state
       getPages: AppPages.pages,
     );
