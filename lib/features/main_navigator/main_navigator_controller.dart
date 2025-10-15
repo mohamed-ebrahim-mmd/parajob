@@ -21,7 +21,7 @@ class MainNavigatorController extends GetxController {
 
   // Pages for each destination
   final List<Widget> pages = [
-    const HomeScreen(),
+    HomeScreen(),
     const JobsScreen(),
     const NotificationsScreen(),
     const ProfileScreen(),
