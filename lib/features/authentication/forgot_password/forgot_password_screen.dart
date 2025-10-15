@@ -3,7 +3,8 @@
  ==================================================================
 */
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
+import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
@@ -11,20 +12,22 @@ class ForgotPasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar( leading: IconButton(
-    icon: const Icon(Icons.arrow_back_ios_new), // Or your custom icon
-    onPressed: () {
-      Navigator.of(context).pop(); // Handle back action
-    },
-  ),),
-    
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new), // Or your custom icon
+          onPressed: () {
+            Navigator.of(context).pop(); // Handle back action
+          },
+        ),
+      ),
+
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: context.wPct(8)),
+        padding: EdgeInsets.symmetric(horizontal: context.wPct(5)),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              context.hBox(6),
+              context.hBox(2),
               Text(
                 'Forgot Password',
                 style: TextStyle(
@@ -34,37 +37,39 @@ class ForgotPasswordScreen extends StatelessWidget {
                 ),
               ),
               context.hBox(0.5),
-                Text(
-                'please enter your phone number to receive your verification OTP',
+              Text(
+                'please enter your phone number to receive\n your verification OTP',
                 style: TextStyle(
                   color: AppColors.pureWhite,
                   fontSize: context.wPct(3.5),
                   fontWeight: FontWeight.w500,
                 ),
               ),
-             
+
               context.hBox(5),
               TextField(
-                decoration: InputDecoration(hintText: "Enter your phone number",),
+                decoration: InputDecoration(
+                  hintText: "Enter your phone number",
+                ),
                 keyboardType: TextInputType.phone,
               ),
-             
             ],
           ),
         ),
       ),
-     
-     
-     
-     
-      bottomSheet: Padding(
+
+      bottomNavigationBar: Padding(
         padding: EdgeInsets.symmetric(
-          horizontal: context.wPct(8),
-          vertical: context.hPct(10),
+          horizontal: context.wPct(5),
+          vertical: context.hPct(12),
         ),
-        child: FilledButton(onPressed: () {}, child: Text("Send")),
+        child: FilledButton(
+          onPressed: () {
+            Get.toNamed("${Routes.forgotPassword}${Routes.forgotPasswordOTP}");
+          },
+          child: Text("Send"),
+        ),
       ),
-   
     );
   }
 }
