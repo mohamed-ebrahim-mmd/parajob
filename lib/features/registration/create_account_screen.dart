@@ -4,12 +4,11 @@
 */
 import 'package:flutter/material.dart';
 
-class RegisterScreen extends StatelessWidget {
+class CreateAccountScreen extends StatelessWidget {
+  const CreateAccountScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Register')),
-      body: Center(child: Text('Register Screen')),
-    );
+    return Scaffold(body: Center(child: Text('Create Account Screen')));
   }
 }

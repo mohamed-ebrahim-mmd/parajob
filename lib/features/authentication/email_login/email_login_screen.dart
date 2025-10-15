@@ -54,7 +54,7 @@ class EmailLoginScreen extends StatelessWidget {
                 alignment: Alignment.topRight,
                 child: GestureDetector(
                   onTap: () {
-                    Get.toNamed("${Routes.forgotPassword}");
+                    Get.toNamed(Routes.forgotPassword);
                   },
                   child: Text(
                     "Forgot Password?",
@@ -93,6 +93,9 @@ class EmailLoginScreen extends StatelessWidget {
                 ),
                 context.wBox(2),
                 GestureDetector(
+                  onTap: () {
+                    Get.toNamed(Routes.createAccount);
+                  },
                   child: Text(
                     "sign up",
                     style: TextStyle(
