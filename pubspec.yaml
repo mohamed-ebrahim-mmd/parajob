@@ -17,12 +17,19 @@ dependencies:
   flutter_svg: ^2.2.1
   pinput: ^5.0.2
   timer_button: ^2.3.3
+  dio: ^5.9.0
+  retrofit: ^4.7.3
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
+  retrofit_generator: ^10.0.6
+  build_runner: ^2.9.0
+
+
+
 flutter:
   uses-material-design: true
   assets:

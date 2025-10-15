@@ -9,7 +9,7 @@ import 'package:para_job/features/Notifications/notifications_screen.dart';
 import 'package:para_job/features/home/home_screen.dart';
 import 'package:para_job/features/jobs/jobs_screen.dart';
 import 'package:para_job/features/profile/profile_screen.dart';
-import 'package:para_job/packages/ui_component/auth_required_dialog.dart';
+import 'package:para_job/packages/ui_components/auth_required_dialog.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
 
 class MainNavigatorController extends GetxController {
