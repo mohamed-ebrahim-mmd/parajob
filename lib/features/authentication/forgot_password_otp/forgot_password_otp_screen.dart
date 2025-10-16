@@ -17,7 +17,7 @@ class ForgotPasswordOtpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final pinTheme = PinTheme(
-      width: context.wPct(6),
+      width: context.wPct(16),
       height: context.hPct(8),
       textStyle: TextStyle(
         fontSize: context.wPct(16),

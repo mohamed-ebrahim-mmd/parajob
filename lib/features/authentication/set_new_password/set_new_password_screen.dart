@@ -69,6 +69,8 @@ class SetNewPasswordScreen extends StatelessWidget {
           child: Text("Confirm"),
         ),
       ),
+   
+   
     );
   }
 }

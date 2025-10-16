@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
+import 'package:para_job/packages/ui_component/stepper/stepper.dart';
 import 'package:pinput/pinput.dart';
 import 'package:timer_button/timer_button.dart';
 
@@ -11,7 +15,7 @@ class CreateAccountOtpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final pinTheme = PinTheme(
-      width: context.wPct(6),
+      width: context.wPct(16),
       height: context.hPct(8),
       textStyle: TextStyle(
         fontSize: context.wPct(6),
@@ -25,7 +29,7 @@ class CreateAccountOtpScreen extends StatelessWidget {
       ),
     );
     return Scaffold(
-          appBar: AppBar(
+      appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new),
           onPressed: () {
@@ -40,6 +44,13 @@ class CreateAccountOtpScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               context.hBox(2),
+              StepperRow(currentStep: -1),
+              Align(
+                alignment: AlignmentGeometry.bottomRight,
+                child: Text("0%"),
+              ),
+              context.hBox(2),
+
               Text(
                 'Verify your number',
                 style: TextStyle(
@@ -96,9 +107,9 @@ class CreateAccountOtpScreen extends StatelessWidget {
           children: [
             FilledButton(
               onPressed: () {
-                // Get.toNamed(
-                //   "${Routes.forgotPassword}${Routes.forgotPasswordOTP}${Routes.setNewPassword}",
-                // );
+                Get.toNamed(
+                  "${Routes.createAccount}${Routes.createAccountOTP}${Routes.CreateAccountSetPass}",
+                );
               },
               child: Text("Verify"),
             ),
@@ -122,20 +133,24 @@ class CreateAccountOtpScreen extends StatelessWidget {
                 // code to execute
               },
             ),
-              context.hBox(5),
-              GestureDetector(
-                child: Text(
-                  "contact us",
-                  style: TextStyle(
-                    color: AppColors.aquaTeal,
-                    fontSize: context.wPct(4.2),
-                    fontWeight: FontWeight.w500,
-                  ),
+            context.hBox(5),
+            GestureDetector(
+              child: Text(
+                "contact us",
+                style: TextStyle(
+                  color: AppColors.aquaTeal,
+                  fontSize: context.wPct(4.2),
+                  fontWeight: FontWeight.w500,
                 ),
               ),
+            ),
           ],
         ),
       ),
+   
+   
+   
+   
     );
   }
 }
