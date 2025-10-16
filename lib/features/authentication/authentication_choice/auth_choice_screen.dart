@@ -85,8 +85,8 @@ class AuthChoiceScreen extends StatelessWidget {
 
                 context.hBox(2.5),
                 //text
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                Wrap(
+                  //mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
                       'By Continuing, you agree to ParaJob\t',

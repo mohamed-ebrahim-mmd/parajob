@@ -104,7 +104,6 @@ class AppTheme {
           fontWeight: FontWeight.w500,
         ),
       ),
-
       filledButtonTheme: FilledButtonThemeData(
         style: ButtonStyle(
           elevation: WidgetStateProperty.all(0),

@@ -4,13 +4,19 @@
 */
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:para_job/features/home/home_controller.dart';
+import 'package:para_job/features/home/widgets/hot_jobs_mini_list.dart';
+import 'package:para_job/packages/api_client/src/service/api_call_state_enum.dart'
+    show ApiCallState;
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
+import 'package:para_job/packages/ui_components/error_screen.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
 
 class HomeScreen extends StatelessWidget {
   final user = Get.find<UserController>().user;
+  final controller = Get.put(HomeController());
   HomeScreen({super.key});
 
   @override
@@ -58,6 +64,31 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
               ),
+              context.hBox(2),
+              Obx(() {
+                switch (controller.homeCallState.value) {
+                  case ApiCallState.loading:
+                    return Container(
+                      alignment: Alignment.center,
+                      height: context.hPct(60),
+                      child: CircularProgressIndicator(),
+                    );
+                  case ApiCallState.success:
+                    final hotJobsList = controller.homeData!.data.first.hotJobs;
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+
+                      children: [HotJobsMiniList(jobs: hotJobsList)],
+                    );
+                  case ApiCallState.failure:
+                    return ErrorScreen(
+                      height: context.hPct(60),
+                      onPressed: () {
+                        controller.fetchHomeJobs();
+                      },
+                    );
+                }
+              }),
             ],
           ),
         ),
