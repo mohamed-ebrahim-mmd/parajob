@@ -57,16 +57,14 @@ class FrontNationalIdScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
                 text: TextSpan(
                   text: 'Scan the',
-                  //  _selectedImage == null ? 'Scan the' : 'Selected the',
-                  style: TextStyle(
-                    color: AppColors.pureWhite,
+                     style: TextStyle(
+                    color: AppColors.softWhite70,
                     fontSize: context.wPct(4),
                     fontWeight: FontWeight.w500,
                   ),
                   children: [
                     TextSpan(
                       text: " front",
-                      //_selectedImage == null ? ' front' : ' new front',
                       style: TextStyle(color: AppColors.aquaTeal),
                     ),
                     TextSpan(text: ' of the ID'),
