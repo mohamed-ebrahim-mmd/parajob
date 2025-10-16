@@ -4,12 +4,15 @@
 */
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:para_job/features/authentication/email_login/email_login_controller.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
 class EmailLoginScreen extends StatelessWidget {
-  const EmailLoginScreen({super.key});
+  final controller = Get.put(EmailLoginController());
+
+  EmailLoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -38,17 +41,29 @@ class EmailLoginScreen extends StatelessWidget {
                 ),
               ),
               context.hBox(6),
-              TextField(
-                decoration: InputDecoration(hintText: "Enter your Email"),
-                keyboardType: TextInputType.emailAddress,
-                textInputAction: TextInputAction.next,
-              ),
+              Obx(() {
+                return TextField(
+                  controller: controller.emailController,
+                  decoration: InputDecoration(
+                    hintText: "Enter your Email",
+                    errorText: controller.emailError.value,
+                  ),
+                  keyboardType: TextInputType.emailAddress,
+                  textInputAction: TextInputAction.next,
+                );
+              }),
               context.hBox(1.5),
-              TextField(
-                decoration: InputDecoration(hintText: "Enter your Password"),
-                obscureText: true,
-                textInputAction: TextInputAction.done,
-              ),
+              Obx(() {
+                return TextField(
+                  controller: controller.passwordController,
+                  decoration: InputDecoration(
+                    hintText: "Enter your Password",
+                    errorText: controller.passwordError.value,
+                  ),
+                  obscureText: true,
+                  textInputAction: TextInputAction.done,
+                );
+              }),
               context.hBox(1.5),
               Align(
                 alignment: Alignment.topRight,
@@ -78,7 +93,12 @@ class EmailLoginScreen extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            FilledButton(onPressed: () {}, child: Text("Sign in")),
+            FilledButton(
+              onPressed: () {
+                controller.login();
+              },
+              child: Text("Sign in"),
+            ),
             context.hBox(4),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

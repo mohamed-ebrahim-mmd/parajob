@@ -85,6 +85,14 @@ class AppTheme {
             color: AppColors.coralRed,
             // width: 1.5
           ),
+          borderRadius: BorderRadius.circular(context.wPct(4)),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: AppColors.coralRed,
+            // width: 1.5
+          ),
+          borderRadius: BorderRadius.circular(context.wPct(4)),
         ),
         // Padding inside the field
         contentPadding: EdgeInsets.symmetric(
@@ -98,10 +106,9 @@ class AppTheme {
           fontSize: context.wPct(4.8),
           fontWeight: FontWeight.w500,
         ),
-        labelStyle: TextStyle(
-          color: AppColors.pureWhite,
-          fontSize: context.wPct(4.8),
-          fontWeight: FontWeight.w500,
+        errorStyle: TextStyle(
+          color: AppColors.coralRed, // Hint text
+          fontSize: context.wPct(3),
         ),
       ),
       filledButtonTheme: FilledButtonThemeData(

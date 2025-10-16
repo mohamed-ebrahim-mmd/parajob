@@ -4,6 +4,7 @@
 */
 
 import 'package:get/get.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:para_job/features/authentication/authentication_choice/auth_choice_screen.dart';
 import 'package:para_job/features/authentication/email_login/email_login_screen.dart';
 import 'package:para_job/features/authentication/forgot_password/forgot_password_screen.dart';
@@ -13,6 +14,7 @@ import 'package:para_job/features/main_navigator/main_navigator_screen.dart';
 import 'package:para_job/features/onboarding/onboarding_screen.dart';
 import 'package:para_job/features/registration/create_account_screen.dart';
 import 'package:para_job/features/search_job/search_job_screen.dart';
+import 'package:para_job/packages/ui_components/app_loader.dart';
 
 class Routes {
   static const String onboarding = '/onboarding';
@@ -34,7 +36,16 @@ class AppPages {
       name: Routes.authChoice,
       page: () => AuthChoiceScreen(),
       children: [
-        GetPage(name: Routes.emailLoginScreen, page: () => EmailLoginScreen()),
+        GetPage(
+          name: Routes.emailLoginScreen,
+          page: () => LoaderOverlay(
+            child: EmailLoginScreen(),
+            overlayWidgetBuilder: (_) {
+              //ignored progress for the moment
+              return AppLoader();
+            },
+          ),
+        ),
       ],
     ),
     GetPage(
