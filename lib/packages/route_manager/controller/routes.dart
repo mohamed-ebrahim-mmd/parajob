@@ -15,6 +15,8 @@ import 'package:para_job/features/registration/back_national_id/back_national_id
 import 'package:para_job/features/registration/create_account/create_account_screen.dart';
 import 'package:para_job/features/registration/create_account_otp/create_account_otp_screen.dart';
 import 'package:para_job/features/registration/create_account_set_pass/create_account_set_pass.dart';
+import 'package:para_job/features/registration/education_info/education_info_screen.dart';
+import 'package:para_job/features/registration/education_pic/education_pic_screen.dart';
 import 'package:para_job/features/registration/front_national_id/front_national_id_screen.dart';
 import 'package:para_job/features/registration/picture_with_id/picture_with_id_screen.dart';
 
@@ -32,8 +34,9 @@ class Routes {
   static const String createAccountSetPass = '/create-account-set-pass';
   static const String createAccountFrontID = '/create-account-front-id';
   static const String createAccountBackID = '/create-account-back-id';
-  static const String createAccountPicWithID='/create-account-picwithid';
-
+  static const String createAccountPicWithID = '/create-account-picwithid';
+  static const String educationInfo = '/education-info';
+  static const String educationPic = '/education-pic';
 }
 
 class AppPages {
@@ -82,16 +85,28 @@ class AppPages {
                       name: Routes.createAccountBackID,
                       page: () => BackNationalIdScreen(),
                       children: [
-                         GetPage(
-                      name: Routes.createAccountPicWithID,
-                      page: () => PictureWithIdScreen(),
-                     // children: []
-                    ),
-                      ]
+                        GetPage(
+                          name: Routes.createAccountPicWithID,
+                          page: () => PictureWithIdScreen(),
+                          children: [
+                            GetPage(
+                              name: Routes.educationInfo,
+                              page: () => EducationInfoScreen(),
+                              children: [
+                                GetPage(
+                                  name: Routes.educationPic,
+                                  page: () => EducationPicScreen(),
+                                  children: [],
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                   ],
                 ),
-              ]
+              ],
             ),
           ],
         ),
