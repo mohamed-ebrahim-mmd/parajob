@@ -135,66 +135,6 @@ class CreateAccountScreen extends StatelessWidget {
         ),
       ),
 
-      // bottomNavigationBar: Padding(
-      //   padding: EdgeInsets.symmetric(
-      //     horizontal: context.wPct(5),
-      //     vertical: context.hPct(0.5),
-      //   ),
-      //   child: Column(
-      //     mainAxisSize: MainAxisSize.min,
-      //     crossAxisAlignment: CrossAxisAlignment.start,
-      //     children: [
-      //       FilledButton(onPressed: () {}, child: Text("Continue")),
-      //       context.hBox(4),
-      //         Text(
-      //             "don't have an account?",
-      //             style: TextStyle(
-      //               color: AppColors.pureWhite,
-      //               fontSize: context.wPct(4.2),
-      //               fontWeight: FontWeight.w500,
-      //             ),
-      //           ),
-      //     ],
-      //   ),
-      // ),
     );
   }
-}
-
-final genderMenuEntries = <DropdownMenuEntry<String>>[
-  const DropdownMenuEntry(value: 'male', label: 'Male',
-  style: 
-  ButtonStyle(
-    backgroundColor: WidgetStatePropertyAll(Color.fromARGB(255, 103, 173, 156)),
-    shape: WidgetStatePropertyAll(
-      RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(8)),
-      ),
-    ),
-   padding: WidgetStatePropertyAll(EdgeInsets.symmetric(horizontal: 22)),
-   // maximumSize: const WidgetStatePropertyAll(Size(20, 50))
-  ),
-  ),
-  const DropdownMenuEntry(value: 'female', label: 'Female'),
-];
-final cityMenuEntries = <DropdownMenuEntry<String>>[
-  const DropdownMenuEntry(value: 'eg', label: 'Egypt'),
-  const DropdownMenuEntry(value: 'usa', label: 'USA'),
-];
-final areaMenuEntries = <DropdownMenuEntry<String>>[
-  const DropdownMenuEntry(value: 'a1', label: 'Area 1'),
-  const DropdownMenuEntry(value: 'a2', label: 'Area 2'),
-];
-
-
-ButtonStyle buttonStyle(){
-  return ButtonStyle(
-    backgroundColor: WidgetStatePropertyAll(Color.fromARGB(255, 103, 173, 156)),
-    shape: WidgetStatePropertyAll(
-      RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(8)),
-      ),
-    ),
-   padding: WidgetStatePropertyAll(EdgeInsets.symmetric(horizontal: 22)),
-  );
 }
