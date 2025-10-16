@@ -5,12 +5,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
+import 'package:pinput/pinput.dart';
 
 import 'app_colors.dart';
 
 class AppTheme {
   static Color shimmerBaseColor = Colors.grey.shade300;
   static Color shimmerHighlightColor = Colors.grey.shade100;
+
 
   static ThemeData getTheme(BuildContext context) {
     return ThemeData(
@@ -129,6 +131,25 @@ class AppTheme {
         ),
       ),
 
+    );
+  }
+
+
+
+    static PinTheme pinTheme(BuildContext context) {
+    return PinTheme(
+      width: context.wPct(16),
+      height: context.hPct(8),
+      textStyle: TextStyle(
+        fontSize: context.wPct(6),
+        color: AppColors.pureWhite,
+        fontWeight: FontWeight.bold,
+      ),
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(color: AppColors.pureWhite, width: 2),
+        ),
+      ),
     );
   }
 }

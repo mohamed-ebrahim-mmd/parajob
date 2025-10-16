@@ -31,7 +31,7 @@ class StepperRow extends StatelessWidget {
       5,
       (index) => Expanded(
         child: Stepper(
-          stepColor: index == currentStep
+          stepColor: index+1 <= currentStep
               ? AppColors.aquaTeal // active step
               : AppColors.pureWhite, // inactive step
         ),

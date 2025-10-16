@@ -4,6 +4,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
+import 'package:para_job/packages/themeing/theme.dart';
 import 'package:para_job/packages/ui_component/stepper/stepper.dart';
 import 'package:pinput/pinput.dart';
 import 'package:timer_button/timer_button.dart';
@@ -14,20 +15,7 @@ class CreateAccountOtpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final pinTheme = PinTheme(
-      width: context.wPct(16),
-      height: context.hPct(8),
-      textStyle: TextStyle(
-        fontSize: context.wPct(6),
-        color: AppColors.pureWhite,
-        fontWeight: FontWeight.bold,
-      ),
-      decoration: BoxDecoration(
-        border: Border(
-          bottom: BorderSide(color: AppColors.pureWhite, width: 2),
-        ),
-      ),
-    );
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -74,8 +62,8 @@ class CreateAccountOtpScreen extends StatelessWidget {
                 child: Pinput(
                   controller: _pinController,
                   length: 5,
-                  defaultPinTheme: pinTheme,
-                  focusedPinTheme: pinTheme.copyWith(
+                  defaultPinTheme: AppTheme.pinTheme(context),
+                  focusedPinTheme: AppTheme.pinTheme(context).copyWith(
                     decoration: const BoxDecoration(
                       border: Border(
                         bottom: BorderSide(color: AppColors.aquaTeal, width: 3),
@@ -108,7 +96,7 @@ class CreateAccountOtpScreen extends StatelessWidget {
             FilledButton(
               onPressed: () {
                 Get.toNamed(
-                  "${Routes.createAccount}${Routes.createAccountOTP}${Routes.CreateAccountSetPass}",
+                  "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}",
                 );
               },
               child: Text("Verify"),

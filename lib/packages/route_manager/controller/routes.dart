@@ -11,9 +11,11 @@ import 'package:para_job/features/authentication/forgot_password_otp/forgot_pass
 import 'package:para_job/features/authentication/set_new_password/set_new_password_screen.dart';
 import 'package:para_job/features/main_navigator/main_navigator_screen.dart';
 import 'package:para_job/features/onboarding/onboarding_screen.dart';
+import 'package:para_job/features/registration/back_national_id/back_national_id_screen.dart';
 import 'package:para_job/features/registration/create_account/create_account_screen.dart';
 import 'package:para_job/features/registration/create_account_otp/create_account_otp_screen.dart';
 import 'package:para_job/features/registration/create_account_set_pass/create_account_set_pass.dart';
+import 'package:para_job/features/registration/front_national_id/front_national_id_screen.dart';
 
 class Routes {
   static const String onboarding = '/onboarding';
@@ -26,7 +28,10 @@ class Routes {
   static const String createAccount = '/create-account';
   static const String info = '/info';
   static const String createAccountOTP = '/create-account-otp';
-  static const String CreateAccountSetPass = '/create-account-set-pass';
+  static const String createAccountSetPass = '/create-account-set-pass';
+  static const String createAccountFrontID = '/create-account-front-id';
+  static const String createAccountBackID = '/create-account-back-id';
+
 }
 
 class AppPages {
@@ -64,8 +69,20 @@ class AppPages {
           page: () => CreateAccountOtpScreen(),
           children: [
             GetPage(
-              name: Routes.CreateAccountSetPass,
+              name: Routes.createAccountSetPass,
               page: () => CreateAccountSetPass(),
+              children: [
+                GetPage(
+                  name: Routes.createAccountFrontID,
+                  page: () => FrontNationalIdScreen(),
+                  children: [
+                    GetPage(
+                      name: Routes.createAccountBackID,
+                      page: () => BackNationalIdScreen(),
+                    ),
+                  ],
+                ),
+              ]
             ),
           ],
         ),

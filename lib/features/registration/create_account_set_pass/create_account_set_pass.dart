@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/packages/ui_component/stepper/stepper.dart';
@@ -9,7 +12,7 @@ class CreateAccountSetPass extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: AppBar(
+      appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new),
           onPressed: () {
@@ -17,14 +20,14 @@ class CreateAccountSetPass extends StatelessWidget {
           },
         ),
       ),
-      
+
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: context.wPct(5)),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-             context.hBox(2),
+              context.hBox(2),
               StepperRow(currentStep: -1),
               Align(
                 alignment: AlignmentGeometry.bottomRight,
@@ -61,7 +64,6 @@ class CreateAccountSetPass extends StatelessWidget {
         ),
       ),
 
-      
       bottomNavigationBar: Padding(
         padding: EdgeInsets.symmetric(
           horizontal: context.wPct(5),
@@ -71,14 +73,15 @@ class CreateAccountSetPass extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-           FilledButton(
+            FilledButton(
               onPressed: () {
-                // Get.toNamed("${Routes.forgotPassword}${Routes.forgotPasswordOTP}");
+                Get.toNamed(
+                  "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}",
+                );
               },
               child: Text("Confirm"),
             ),
-          
-           
+
             context.hBox(5),
             GestureDetector(
               child: Text(
@@ -93,38 +96,6 @@ class CreateAccountSetPass extends StatelessWidget {
           ],
         ),
       ),
-   
-   
-
-
-      // bottomNavigationBar: Padding(
-      //   padding: EdgeInsets.symmetric(
-      //     horizontal: context.wPct(5),
-      //     vertical: context.hPct(12),
-      //   ),
-      //   child: Column(
-      //     children: [
-      //       FilledButton(
-      //         onPressed: () {
-      //           // Get.toNamed("${Routes.forgotPassword}${Routes.forgotPasswordOTP}");
-      //         },
-      //         child: Text("Confirm"),
-      //       ),
-      //        context.hBox(5),
-      //       GestureDetector(
-      //         child: Text(
-      //           "contact us",
-      //           style: TextStyle(
-      //             color: AppColors.aquaTeal,
-      //             fontSize: context.wPct(4.2),
-      //             fontWeight: FontWeight.w500,
-      //           ),
-      //         ),)
-      //     ],
-      //   ),
-      // ),
-   
-   
     );
   }
 }

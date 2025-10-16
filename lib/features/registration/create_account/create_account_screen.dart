@@ -33,7 +33,7 @@ class CreateAccountScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              StepperRow(currentStep: -1),
+              StepperRow(currentStep: 0),
               Align(
                 alignment: AlignmentGeometry.bottomRight,
                 child: Text("0%"),
