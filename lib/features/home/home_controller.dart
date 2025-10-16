@@ -6,13 +6,13 @@ import 'package:get/get.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
 
 class HomeController extends GetxController {
-  var homeCallState = ApiCallState.failure.obs;
+  var homeCallState = ApiCallState.loading.obs;
   HomeResponse? homeData;
 
   @override
   void onInit() {
     super.onInit();
-    //  fetchHomeJobs();
+    fetchHomeJobs();
   }
 
   Future<void> fetchHomeJobs() async {
