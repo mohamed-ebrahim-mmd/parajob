@@ -21,23 +21,34 @@ final  Color stepColor;
 
 class StepperRow extends StatelessWidget {
   final int currentStep ; 
-  const StepperRow({super.key,required this.currentStep});
+  const StepperRow({super.key,required this.currentStep, required this.stepPercentage,});
+  final  String stepPercentage;
+
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children:   List.generate(
-      5,
-      (index) => Expanded(
-        child: Stepper(
-          stepColor: index+1 <= currentStep
-              ? AppColors.aquaTeal // active step
-              : AppColors.pureWhite, // inactive step
+    return Column(
+      children: [
+        Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children:   List.generate(
+          5,
+          (index) => Expanded(
+            child: Stepper(
+              stepColor: index+1 <= currentStep
+                  ? AppColors.aquaTeal // active step
+                  : AppColors.pureWhite, // inactive step
+            ),
+          ),
         ),
-      ),
-    ),
-  );
+          ),
+
+             Align(
+                alignment: AlignmentGeometry.bottomRight,
+                child: Text(stepPercentage),
+              ),
+      ],
+    );
   }
 }
 

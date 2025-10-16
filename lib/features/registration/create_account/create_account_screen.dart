@@ -33,12 +33,9 @@ class CreateAccountScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              StepperRow(currentStep: 0),
-              Align(
-                alignment: AlignmentGeometry.bottomRight,
-                child: Text("0%"),
-              ),
+              StepperRow(currentStep: 0, stepPercentage: "0%"),
 
+            
               context.hBox(4),
               Text(
                 'Create a new account',
@@ -94,7 +91,7 @@ class CreateAccountScreen extends StatelessWidget {
               ),
               context.hBox(1.5),
               DropDownButton(
-                options: ["male","female"],
+                options: ["male", "female"],
                 label: "Choose your gender",
               ),
               context.hBox(2.5),
@@ -109,19 +106,24 @@ class CreateAccountScreen extends StatelessWidget {
               ),
               context.hBox(2.5),
               DropDownButton(
-                options: ["male","female"],
+                options: ["male", "female"],
                 label: "Choose your city",
               ),
               context.hBox(1.5),
               DropDownButton(
-                options: ["male","female"],
+                options: ["male", "female"],
                 label: "Choose your area",
               ),
               context.hBox(2.5),
 
-              FilledButton(onPressed: () {
-                Get.toNamed( "${Routes.createAccount}${Routes.createAccountOTP}");
-              }, child: Text("Continue")),
+              FilledButton(
+                onPressed: () {
+                  Get.toNamed(
+                    "${Routes.createAccount}${Routes.createAccountOTP}",
+                  );
+                },
+                child: Text("Continue"),
+              ),
               context.hBox(5),
               GestureDetector(
                 child: Text(
@@ -133,13 +135,11 @@ class CreateAccountScreen extends StatelessWidget {
                   ),
                 ),
               ),
-                            context.hBox(2),
-
+              context.hBox(2),
             ],
           ),
         ),
       ),
-
     );
   }
 }

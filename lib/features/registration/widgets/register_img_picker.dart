@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
-import 'package:para_job/res/app_asset_paths.dart';
 //import 'package:para_job/packages/constants/app_asset_paths.dart';
 
 class IDImagePicker extends StatefulWidget {

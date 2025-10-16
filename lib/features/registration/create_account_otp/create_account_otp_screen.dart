@@ -15,7 +15,6 @@ class CreateAccountOtpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -32,11 +31,8 @@ class CreateAccountOtpScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               context.hBox(2),
-              StepperRow(currentStep: -1),
-              Align(
-                alignment: AlignmentGeometry.bottomRight,
-                child: Text("0%"),
-              ),
+              StepperRow(currentStep: 0, stepPercentage: "0%"),
+
               context.hBox(2),
 
               Text(
@@ -135,10 +131,6 @@ class CreateAccountOtpScreen extends StatelessWidget {
           ],
         ),
       ),
-   
-   
-   
-   
     );
   }
 }

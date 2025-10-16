@@ -26,8 +26,8 @@ class BackNationalIdScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             context.hBox(2),
-            StepperRow(currentStep: 1),
-            Align(alignment: AlignmentGeometry.bottomRight, child: Text("20%")),
+            StepperRow(currentStep: 1, stepPercentage: "20%"),
+            //  Align(alignment: AlignmentGeometry.bottomRight, child: Text("20%")),
             context.hBox(2),
             Text(
               'National ID Scan',
@@ -71,9 +71,9 @@ class BackNationalIdScreen extends StatelessWidget {
                 ),
               ),
             ),
-             context.hBox(2),
+            context.hBox(2),
             RegisterNote(note: "Make sure your surroundings are well-lit."),
-             context.hBox(2),
+            context.hBox(2),
             RegisterNote(
               note:
                   "Make sure the photo is inside the frame and \ndetails are easy to read",
@@ -82,7 +82,7 @@ class BackNationalIdScreen extends StatelessWidget {
         ),
       ),
 
-            bottomNavigationBar: Padding(
+      bottomNavigationBar: Padding(
         padding: EdgeInsets.symmetric(
           horizontal: context.wPct(5),
           vertical: context.hPct(5),

@@ -29,8 +29,8 @@ class FrontNationalIdScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             context.hBox(2),
-            StepperRow(currentStep: 1),
-            Align(alignment: AlignmentGeometry.bottomRight, child: Text("20%")),
+            StepperRow(currentStep: 1,stepPercentage: "20%",),
+           
             context.hBox(2),
             Text(
               'National ID Scan',

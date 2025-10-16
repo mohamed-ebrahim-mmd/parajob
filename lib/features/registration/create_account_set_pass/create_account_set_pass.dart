@@ -28,11 +28,8 @@ class CreateAccountSetPass extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               context.hBox(2),
-              StepperRow(currentStep: -1),
-              Align(
-                alignment: AlignmentGeometry.bottomRight,
-                child: Text("0%"),
-              ),
+              StepperRow(currentStep: 0, stepPercentage: "0%"),
+
               context.hBox(2),
               Text(
                 'Set New Password',
@@ -45,7 +42,7 @@ class CreateAccountSetPass extends StatelessWidget {
               context.hBox(6),
               TextField(
                 decoration: InputDecoration(
-                  hintText: "Enter your new password",
+                  hintText: "Enter password",
                 ),
                 keyboardType: TextInputType.visiblePassword,
                 obscureText: true,
@@ -54,7 +51,7 @@ class CreateAccountSetPass extends StatelessWidget {
               context.hBox(1.5),
               TextField(
                 decoration: InputDecoration(
-                  hintText: "Confirm your new Password",
+                  hintText: "Re-enter",
                 ),
                 obscureText: true,
                 textInputAction: TextInputAction.done,
