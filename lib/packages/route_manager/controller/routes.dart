@@ -11,7 +11,8 @@ import 'package:para_job/features/authentication/forgot_password_otp/forgot_pass
 import 'package:para_job/features/authentication/set_new_password/set_new_password_screen.dart';
 import 'package:para_job/features/main_navigator/main_navigator_screen.dart';
 import 'package:para_job/features/onboarding/onboarding_screen.dart';
-import 'package:para_job/features/registration/create_account_screen.dart';
+import 'package:para_job/features/registration/create_account/create_account_screen.dart';
+import 'package:para_job/features/registration/create_account_otp/create_account_otp_screen.dart';
 
 class Routes {
   static const String onboarding = '/onboarding';
@@ -23,6 +24,7 @@ class Routes {
   static const String forgotPassword = '/forgot-password';
   static const String createAccount = '/create-account';
   static const String info = '/info';
+  static const String createAccountOTP = '/create-account-otp';
 
 }
 
@@ -52,7 +54,13 @@ class AppPages {
         ),
       ],
     ),
-    GetPage(name: Routes.createAccount, page: () => CreateAccountScreen()),
+     GetPage(
+      name: Routes.createAccount,
+      page: () => CreateAccountScreen(),
+      children: [
+        GetPage(name: Routes.createAccountOTP, page: () => CreateAccountOtpScreen()),
+      ],
+    ),
     GetPage(name: Routes.mainNavigator, page: () => MainNavigatorScreen()),
   ];
 }

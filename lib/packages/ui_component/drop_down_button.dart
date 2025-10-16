@@ -41,7 +41,14 @@ class _DropDownButtonState extends State<DropDownButton> {
         fontSize: context.wPct(4.8),
         fontWeight: FontWeight.w500,
       ),
+      alignmentOffset: const Offset(0, 0),
+
       trailingIcon: const Icon(Icons.arrow_drop_down),
+      menuStyle: MenuStyle(
+        shape: WidgetStateProperty.all(
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(context.wPct(2))),
+        ),
+      ),
 
       dropdownMenuEntries: widget.options.map((option) {
         final bool isSelected = _selectedValue == option;
@@ -49,25 +56,30 @@ class _DropDownButtonState extends State<DropDownButton> {
         return DropdownMenuEntry(
           value: option,
           label: option,
-          style: ButtonStyle(
-            backgroundColor: WidgetStatePropertyAll(
-              isSelected
-                  ? AppColors.aquaTeal.withOpacity(0.9)
-                  : Colors.transparent,
-            ),
-            shape: const WidgetStatePropertyAll(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(8)),
+          labelWidget: Material(
+            color: Colors.transparent,
+            surfaceTintColor: Colors.transparent,
+            child: Container(
+              margin: const EdgeInsets.symmetric(
+                vertical: 4,
+              ), // <-- space between buttons
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              decoration: BoxDecoration(
+                color: isSelected
+                    ? AppColors.aquaTeal.withOpacity(0.9)
+                    : AppColors.grayButton.withOpacity(0.9),
+                borderRadius: BorderRadius.circular(8),
               ),
-            ),
-            padding: const WidgetStatePropertyAll(
-              EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+              child: Text(
+                option,
+                style: TextStyle(
+                  color: isSelected ? Colors.white : Colors.black,
+                ),
+              ),
             ),
           ),
         );
       }).toList(),
-
-      alignmentOffset: const Offset(0, 10),
 
       onSelected: (value) {
         setState(() {

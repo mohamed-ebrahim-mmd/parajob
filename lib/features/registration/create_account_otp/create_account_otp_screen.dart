@@ -1,17 +1,11 @@
-/*
- Mohamed Ebrahim | mohamed7ebrahim7@gmail.com | 2025-10-15 10:32 AM
- ==================================================================
-*/
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:pinput/pinput.dart';
 import 'package:timer_button/timer_button.dart';
 
-class ForgotPasswordOtpScreen extends StatelessWidget {
-  ForgotPasswordOtpScreen({Key? key}) : super(key: key);
+class CreateAccountOtpScreen extends StatelessWidget {
+  CreateAccountOtpScreen({super.key});
   final _pinController = TextEditingController();
 
   @override
@@ -20,7 +14,7 @@ class ForgotPasswordOtpScreen extends StatelessWidget {
       width: context.wPct(6),
       height: context.hPct(8),
       textStyle: TextStyle(
-        fontSize: context.wPct(16),
+        fontSize: context.wPct(6),
         color: AppColors.pureWhite,
         fontWeight: FontWeight.bold,
       ),
@@ -31,7 +25,7 @@ class ForgotPasswordOtpScreen extends StatelessWidget {
       ),
     );
     return Scaffold(
-      appBar: AppBar(
+          appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new),
           onPressed: () {
@@ -39,7 +33,6 @@ class ForgotPasswordOtpScreen extends StatelessWidget {
           },
         ),
       ),
-
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: context.wPct(5)),
         child: SingleChildScrollView(
@@ -95,16 +88,17 @@ class ForgotPasswordOtpScreen extends StatelessWidget {
       bottomNavigationBar: Padding(
         padding: EdgeInsets.symmetric(
           horizontal: context.wPct(5),
-          vertical: context.hPct(7),
+          vertical: context.hPct(2.8),
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
             FilledButton(
               onPressed: () {
-                Get.toNamed(
-                  "${Routes.forgotPassword}${Routes.forgotPasswordOTP}${Routes.setNewPassword}",
-                );
+                // Get.toNamed(
+                //   "${Routes.forgotPassword}${Routes.forgotPasswordOTP}${Routes.setNewPassword}",
+                // );
               },
               child: Text("Verify"),
             ),
@@ -128,11 +122,20 @@ class ForgotPasswordOtpScreen extends StatelessWidget {
                 // code to execute
               },
             ),
+              context.hBox(5),
+              GestureDetector(
+                child: Text(
+                  "contact us",
+                  style: TextStyle(
+                    color: AppColors.aquaTeal,
+                    fontSize: context.wPct(4.2),
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
           ],
         ),
       ),
-  
-  
     );
   }
 }

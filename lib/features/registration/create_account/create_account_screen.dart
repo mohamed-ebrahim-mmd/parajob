@@ -3,6 +3,9 @@
  ==================================================================
 */
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/packages/ui_component/date_packer.dart';
@@ -116,7 +119,9 @@ class CreateAccountScreen extends StatelessWidget {
               ),
               context.hBox(2.5),
 
-              FilledButton(onPressed: () {}, child: Text("Continue")),
+              FilledButton(onPressed: () {
+                Get.toNamed( "${Routes.createAccount}${Routes.createAccountOTP}");
+              }, child: Text("Continue")),
               context.hBox(5),
               GestureDetector(
                 child: Text(
