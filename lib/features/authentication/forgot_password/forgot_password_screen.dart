@@ -4,11 +4,13 @@
 */
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:para_job/packages/route_manager/controller/routes.dart';
+import 'package:para_job/features/authentication/forgot_password/forgot_password_controller.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
+  final controller = Get.put(ForgotPasswordController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,12 +49,16 @@ class ForgotPasswordScreen extends StatelessWidget {
               ),
 
               context.hBox(5),
-              TextField(
-                decoration: InputDecoration(
-                  hintText: "Enter your phone number",
-                ),
-                keyboardType: TextInputType.phone,
-              ),
+              Obx(() {
+                return TextField(
+                  controller: controller.phoneController,
+                  decoration: InputDecoration(
+                    errorText: controller.phoneError.value,
+                    hintText: "Enter your phone number",
+                  ),
+                  keyboardType: TextInputType.phone,
+                );
+              }),
             ],
           ),
         ),
@@ -64,9 +70,7 @@ class ForgotPasswordScreen extends StatelessWidget {
           vertical: context.hPct(12),
         ),
         child: FilledButton(
-          onPressed: () {
-            Get.toNamed("${Routes.forgotPassword}${Routes.forgotPasswordOTP}");
-          },
+          onPressed: controller.forgotPassword,
           child: Text("Send"),
         ),
       ),

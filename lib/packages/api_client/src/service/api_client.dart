@@ -16,4 +16,7 @@ abstract class ApiClient {
   Future<LoginWithMailResponse> loginWithMail(
     @Body() LoginWithMailRequest request,
   );
+
+  @POST("/api/send/otp")
+  Future<SendOtpResponse> sendOtp(@Body() SendOtpRequest request);
 }

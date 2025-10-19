@@ -43,6 +43,21 @@ String? validatePostalCode(String postalCode) {
   return null; // No error, postal code is valid
 }
 
+String? validateEgyptianPhone(String phone) {
+  final trimmedPhone = phone.trim();
+
+  if (trimmedPhone.isEmpty) {
+    return 'Phone number cannot be empty';
+  }
+
+  // Check both shape and length together
+  if (!(trimmedPhone.startsWith('01') && trimmedPhone.length == 11)) {
+    return 'Phone number must be 11 digits (e.g. 01*********)';
+  }
+
+  return null; // ✅ valid
+}
+
 String? validateName(String name) {
   final trimmedName = name.trim();
 

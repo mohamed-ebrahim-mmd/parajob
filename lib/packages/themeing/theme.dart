@@ -13,7 +13,6 @@ class AppTheme {
   static Color shimmerBaseColor = Colors.grey.shade300;
   static Color shimmerHighlightColor = Colors.grey.shade100;
 
-
   static ThemeData getTheme(BuildContext context) {
     return ThemeData(
       useMaterial3: true,
@@ -89,6 +88,7 @@ class AppTheme {
           ),
           borderRadius: BorderRadius.circular(context.wPct(4)),
         ),
+        errorMaxLines: 2,
         focusedErrorBorder: OutlineInputBorder(
           borderSide: BorderSide(
             color: AppColors.coralRed,
@@ -140,9 +140,7 @@ class AppTheme {
     );
   }
 
-
-
-    static PinTheme pinTheme(BuildContext context) {
+  static PinTheme pinTheme(BuildContext context) {
     return PinTheme(
       width: context.wPct(16),
       height: context.hPct(8),
@@ -159,4 +157,3 @@ class AppTheme {
     );
   }
 }
-

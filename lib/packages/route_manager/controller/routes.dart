@@ -64,7 +64,13 @@ class AppPages {
     ),
     GetPage(
       name: Routes.forgotPassword,
-      page: () => ForgotPasswordScreen(),
+      page: () => LoaderOverlay(
+        child: ForgotPasswordScreen(),
+        overlayWidgetBuilder: (_) {
+          //ignored progress for the moment
+          return AppLoader();
+        },
+      ),
       children: [
         GetPage(
           name: Routes.forgotPasswordOTP,
