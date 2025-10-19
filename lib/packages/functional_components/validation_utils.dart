@@ -43,6 +43,19 @@ String? validatePostalCode(String postalCode) {
   return null; // No error, postal code is valid
 }
 
+/// ✅ OTP Validation
+String? validatePin(String pin) {
+  final trimmed = pin.trim();
+
+  if (trimmed.isEmpty) {
+    return 'OTP cannot be empty';
+  } else if (trimmed.length != 5) {
+    return 'OTP must be exactly 5 digits';
+  }
+
+  return null;
+}
+
 String? validateEgyptianPhone(String phone) {
   final trimmedPhone = phone.trim();
 

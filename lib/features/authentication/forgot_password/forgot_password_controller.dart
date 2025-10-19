@@ -6,6 +6,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
+import 'package:para_job/features/authentication/forgot_password_otp/forgot_password_otp_controller.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
 import 'package:para_job/packages/functional_components/validation_utils.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
@@ -38,6 +39,8 @@ class ForgotPasswordController extends GetxController {
 
       if (response.isSuccess ?? false) {
         showSnackBarSuccess('Success', response.details?.message ?? '');
+        //pass the phone number to the otp screen
+        Get.put(ForgotPasswordOtpController(phoneNumber: phoneController.text));
         Get.toNamed("${Routes.forgotPassword}${Routes.forgotPasswordOTP}");
       } else {
         showSnackBarError(

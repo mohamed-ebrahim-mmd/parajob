@@ -4,6 +4,7 @@
 */
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:para_job/features/authentication/forgot_password_otp/forgot_password_otp_controller.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
@@ -13,114 +14,117 @@ import 'package:timer_button/timer_button.dart';
 
 class ForgotPasswordOtpScreen extends StatelessWidget {
   ForgotPasswordOtpScreen({Key? key}) : super(key: key);
-  final _pinController = TextEditingController();
+  final controller = Get.find<ForgotPasswordOtpController>();
 
   @override
   Widget build(BuildContext context) {
-
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        if (!didPop) {
+          controller.closeAndDispose();
+        }
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back_ios_new),
+            onPressed: controller.closeAndDispose,
+          ),
         ),
-      ),
 
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: context.wPct(5)),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              context.hBox(2),
-              Text(
-                'Verify your number',
-                style: TextStyle(
-                  color: AppColors.pureWhite,
-                  fontSize: context.wPct(8.5),
-                  fontWeight: FontWeight.w600,
+        body: Padding(
+          padding: EdgeInsets.symmetric(horizontal: context.wPct(5)),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                context.hBox(2),
+                Text(
+                  'Verify your number',
+                  style: TextStyle(
+                    color: AppColors.pureWhite,
+                    fontSize: context.wPct(8.5),
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
-              ),
-              context.hBox(0.5),
-              Text(
-                'check your messages to find the  OTP',
-                style: TextStyle(
-                  color: AppColors.softWhite70,
-                  fontSize: context.wPct(3.5),
-                  fontWeight: FontWeight.w500,
+                context.hBox(0.5),
+                Text(
+                  'check your messages to find the  OTP',
+                  style: TextStyle(
+                    color: AppColors.softWhite70,
+                    fontSize: context.wPct(3.5),
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
-              ),
 
-              context.hBox(5),
-              Center(
-                child: Pinput(
-                  controller: _pinController,
-                  length: 5,
-                  defaultPinTheme: AppTheme.pinTheme(context),
-                  focusedPinTheme: AppTheme.pinTheme(context).copyWith(
-                    decoration: const BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(color: AppColors.aquaTeal, width: 3),
+                context.hBox(5),
+                Center(
+                  child: Pinput(
+                    controller: controller.pinController,
+                    length: 5,
+                    defaultPinTheme: AppTheme.pinTheme(context),
+                    focusedPinTheme: AppTheme.pinTheme(context).copyWith(
+                      decoration: const BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(
+                            color: AppColors.aquaTeal,
+                            width: 3,
+                          ),
+                        ),
                       ),
                     ),
+                    validator: (value) {
+                      if (value != '12345') return 'Invalid code';
+                      return null;
+                    },
+                    onCompleted: (pin) {
+                      debugPrint('Completed: $pin');
+                    },
                   ),
-                  validator: (value) {
-                    if (value != '12345') return 'Invalid code';
-                    return null;
-                  },
-                  onCompleted: (pin) {
-                    debugPrint('Completed: $pin');
-                  },
                 ),
+              ],
+            ),
+          ),
+        ),
+
+        bottomNavigationBar: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: context.wPct(5),
+            vertical: context.hPct(7),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              FilledButton(
+                onPressed: () {
+                  Get.toNamed(
+                    "${Routes.forgotPassword}${Routes.forgotPasswordOTP}${Routes.setNewPassword}",
+                  );
+                },
+                child: Text("Verify"),
+              ),
+              context.hBox(4),
+              TimerButton(
+                label: "Send again",
+                timeOutInSeconds: 5,
+                buttonType: ButtonType.outlinedButton,
+                activeTextStyle: TextStyle(
+                  color: AppColors.pureWhite,
+                  fontSize: context.wPct(4.2),
+                ),
+                disabledTextStyle: TextStyle(
+                  color: AppColors.grayButton,
+                  fontSize: context.wPct(4.2),
+                ),
+                color: AppColors.pureWhite,
+                disabledColor: AppColors.grayButton,
+                onPressed: () {},
               ),
             ],
           ),
         ),
       ),
-
-      bottomNavigationBar: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: context.wPct(5),
-          vertical: context.hPct(7),
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            FilledButton(
-              onPressed: () {
-                Get.toNamed(
-                  "${Routes.forgotPassword}${Routes.forgotPasswordOTP}${Routes.setNewPassword}",
-                );
-              },
-              child: Text("Verify"),
-            ),
-            context.hBox(4),
-            TimerButton(
-              label: "Send again",
-              timeOutInSeconds: 5,
-              buttonType: ButtonType.outlinedButton,
-              activeTextStyle: TextStyle(
-                color: AppColors.pureWhite,
-                fontSize: context.wPct(4.2),
-              ),
-              disabledTextStyle: TextStyle(
-                color: AppColors.grayButton,
-                fontSize: context.wPct(4.2),
-              ),
-              color: AppColors.pureWhite,
-              disabledColor: AppColors.grayButton,
-
-              onPressed: () {
-                // code to execute
-              },
-            ),
-          ],
-        ),
-      ),
-  
-  
     );
   }
 }
