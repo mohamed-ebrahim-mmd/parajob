@@ -119,7 +119,7 @@ class CreateAccountScreen extends StatelessWidget {
                     "${Routes.createAccount}${Routes.createAccountOTP}",
                   );
                 },
-                child: Text("Confirm"),
+                child: Text("Continue"),
               ),
 
               context.hBox(5),

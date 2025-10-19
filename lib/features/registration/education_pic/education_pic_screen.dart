@@ -87,7 +87,7 @@ class EducationPicScreen extends StatelessWidget {
             //       "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}${Routes.createAccountBackID}${Routes.createAccountPicWithID}",
             //     );
           },
-          child: Text("Continue"),
+          child: Text("Confirm"),
         ),
       ),
     );

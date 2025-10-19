@@ -71,7 +71,7 @@ class CreateAccountSetPass extends StatelessWidget {
                   "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}",
                 );
               },
-              child: Text("Confirm"),
+              child: Text("Continue"),
             ),
 
             context.hBox(5),
