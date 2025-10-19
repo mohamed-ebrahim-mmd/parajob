@@ -5,6 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/home/home_controller.dart';
+import 'package:para_job/features/home/widgets/flexible_jobs_mini_list.dart';
 import 'package:para_job/features/home/widgets/hot_jobs_mini_list.dart';
 import 'package:para_job/packages/api_client/src/service/api_call_state_enum.dart'
     show ApiCallState;
@@ -75,10 +76,16 @@ class HomeScreen extends StatelessWidget {
                     );
                   case ApiCallState.success:
                     final hotJobsList = controller.homeData!.data.first.hotJobs;
+                    final flexibleJobsList =
+                        controller.homeData!.data.first.flexibleJobs;
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
 
-                      children: [HotJobsMiniList(jobs: hotJobsList)],
+                      children: [
+                        HotJobsMiniList(jobs: hotJobsList),
+                        context.hBox(2),
+                        FlexibleJobsMiniList(jobs: flexibleJobsList),
+                      ],
                     );
                   case ApiCallState.failure:
                     return ErrorScreen(
