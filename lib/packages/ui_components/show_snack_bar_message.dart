@@ -92,6 +92,15 @@ void showSnackBarError(String title, String message) {
   );
 }
 
+void showSnackBarApiError() {
+  showSnackBarMessage(
+    mainText: "Something Went Wrong",
+    subText: 'Please check your connection and try again.',
+    icon: Icons.error_outline_rounded,
+    color: AppColors.coralRed,
+  );
+}
+
 void showSnackBarSuccess(String title, String message) {
   showSnackBarMessage(
     mainText: title,

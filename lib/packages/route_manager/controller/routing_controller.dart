@@ -4,6 +4,8 @@
 */
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:para_job/packages/api_client/src/models/responses/user.dart'
+    show User;
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
 
@@ -21,14 +23,14 @@ class RoutingController extends GetxController {
 
   // Method to set the navigation state to login screen
   Future<void> logOut() async {
-    Get.find<UserController>().clearUser();
+    await Get.find<UserController>().clearUser();
     _navigationState.val = Routes.authChoice;
     await Get.offAllNamed(Routes.authChoice);
   }
 
   // Method to set the navigation state to home screen as a logged-in user
   Future<void> goHomeAsUser(User user) async {
-    Get.find<UserController>().updateUser(user);
+    await Get.find<UserController>().updateUser(user);
     _navigationState.val = Routes.mainNavigator;
     await Get.offAllNamed(Routes.mainNavigator); // Navigate back to LoginScreen
   }

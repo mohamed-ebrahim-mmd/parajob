@@ -4,6 +4,8 @@
 */
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:para_job/packages/api_client/src/models/responses/user.dart'
+    show User;
 
 class UserController extends GetxController {
   /// Storage instance for persisting user data.
@@ -39,30 +41,8 @@ class UserController extends GetxController {
   }
 
   /// Clears user data and logs out.
-  void clearUser() {
+  Future<void> clearUser() async {
     _user.value = null;
-    _storage.remove('user'); // Remove from storage
+    await _storage.remove('user'); // Remove from storage
   }
-}
-
-/// **User Model**
-class User {
-  final String name;
-  final String id;
-  final String token;
-
-  User({this.name = '', this.id = '', this.token = ''});
-
-  /// Converts `User` object to JSON.
-  Map<String, dynamic> toJson() => {'name': name, 'id': id, 'token': token};
-
-  /// Creates `User` object from JSON.
-  factory User.fromJson(Map<String, dynamic> json) => User(
-    name: json['name'] ?? '',
-    id: json['id'] ?? '',
-    token: json['token'] ?? '',
-  );
-
-  @override
-  String toString() => 'User(name: $name, id: $id, token: $token)';
 }

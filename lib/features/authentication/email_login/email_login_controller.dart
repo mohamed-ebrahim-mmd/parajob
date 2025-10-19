@@ -6,7 +6,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
+import 'package:para_job/packages/api_client/api_client.dart';
 import 'package:para_job/packages/functional_components/validation_utils.dart';
+import 'package:para_job/packages/route_manager/controller/routing_controller.dart';
 import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
 
 class EmailLoginController extends GetxController {
@@ -35,32 +37,37 @@ class EmailLoginController extends GetxController {
 
     try {
       Get.context!.loaderOverlay.show();
-      /*
-      final loginResponse = await apiClient.login(
-        LoginRequest(
+      final loginResponse = await apiClient.loginWithMail(
+        LoginWithMailRequest(
           email: emailController.text,
           password: passwordController.text,
         ),
       ); // Get posts by user ID
-*/
-      await Future.delayed(const Duration(seconds: 2), () {});
 
-      if (false) {
-        /// if the request is success and the emil is verified
-        if (true) {
-          /*    showSnackbarSuccess("success".tr,
-              isEng ? loginResponse.message : loginResponse.messageAr);*/
-          showSnackBarSuccess("got to home screen".tr, "home");
+      if (loginResponse.isSuccess ?? false) {
+        final user = loginResponse.data!.user;
+        // if user is not approved go to the approval screen
+        if (!(user?.isApproved ?? false)) {
+          showSnackBarSuccess(
+            "Failed",
+            "user is not approved go to the approval screen",
+          );
         }
-        /// if the request is success but the email is not verified
-        else {
-          showSnackBarError("email is not verfied ", "falied");
+        // if user not completed go to the complete profile screen
+        else if (!(user?.isCompleted ?? true)) {
+          //todo change the false to true it was just used for allow because we want to test
+          showSnackBarError(
+            "Failed",
+            " user not completed go to the complete profile screen",
+          );
+        } else {
+          Get.find<RoutingController>().goHomeAsUser(user!);
         }
       } else {
-        showSnackBarError("failed".tr, "falied");
+        showSnackBarError("Failed", "${loginResponse.details?.message} ");
       }
     } catch (e) {
-      showSnackBarError("failed".tr, "");
+      showSnackBarApiError();
     } finally {
       Get.context!.loaderOverlay.hide();
     }

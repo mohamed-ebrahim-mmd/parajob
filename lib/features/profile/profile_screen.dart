@@ -3,15 +3,25 @@
  ==================================================================
 */
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:para_job/packages/route_manager/controller/routing_controller.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: [Text('Profile Screen')],
+      children: [
+        Text('Profile Screen'),
+        ElevatedButton(
+          onPressed: () {
+            Get.find<RoutingController>().logOut();
+          },
+          child: Text('Log Out'),
+        ),
+      ],
     );
   }
 }
