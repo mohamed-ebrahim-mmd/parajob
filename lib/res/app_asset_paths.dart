@@ -36,4 +36,9 @@ abstract final class AppAssetPaths {
 
   ///  ForgetPassword Icon
   static const backBtnIcon = "assets/icons/back_btn_icon.svg";
+
+  ///  Registration 
+  static const nationalID="assets/images/national_id.png";
+  static const checkIcon="assets/icons/check.svg";
+  static const userWithID="assets/images/user_with_id.png";
 }

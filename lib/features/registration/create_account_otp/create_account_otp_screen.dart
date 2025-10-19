@@ -1,23 +1,20 @@
-/*
- Mohamed Ebrahim | mohamed7ebrahim7@gmail.com | 2025-10-15 10:32 AM
- ==================================================================
-*/
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/packages/themeing/theme.dart';
+import 'package:para_job/packages/ui_component/stepper/stepper.dart';
 import 'package:pinput/pinput.dart';
 import 'package:timer_button/timer_button.dart';
 
-class ForgotPasswordOtpScreen extends StatelessWidget {
-  ForgotPasswordOtpScreen({Key? key}) : super(key: key);
+class CreateAccountOtpScreen extends StatelessWidget {
+  CreateAccountOtpScreen({super.key});
   final _pinController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -27,7 +24,6 @@ class ForgotPasswordOtpScreen extends StatelessWidget {
           },
         ),
       ),
-
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: context.wPct(5)),
         child: SingleChildScrollView(
@@ -35,6 +31,10 @@ class ForgotPasswordOtpScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               context.hBox(2),
+              StepperRow(currentStep: 0, stepPercentage: "0%"),
+
+              context.hBox(2),
+
               Text(
                 'Verify your number',
                 style: TextStyle(
@@ -83,15 +83,16 @@ class ForgotPasswordOtpScreen extends StatelessWidget {
       bottomNavigationBar: Padding(
         padding: EdgeInsets.symmetric(
           horizontal: context.wPct(5),
-          vertical: context.hPct(7),
+          vertical: context.hPct(2.8),
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
             FilledButton(
               onPressed: () {
                 Get.toNamed(
-                  "${Routes.forgotPassword}${Routes.forgotPasswordOTP}${Routes.setNewPassword}",
+                  "${Routes.createAccount}${Routes.mainInfo}${Routes.createAccountOTP}${Routes.createAccountSetPass}",
                 );
               },
               child: Text("Verify"),
@@ -116,11 +117,20 @@ class ForgotPasswordOtpScreen extends StatelessWidget {
                 // code to execute
               },
             ),
+            context.hBox(5),
+            GestureDetector(
+              child: Text(
+                "contact us",
+                style: TextStyle(
+                  color: AppColors.aquaTeal,
+                  fontSize: context.wPct(4.2),
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
           ],
         ),
       ),
-  
-  
     );
   }
 }
