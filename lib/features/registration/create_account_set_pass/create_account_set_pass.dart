@@ -28,7 +28,7 @@ class CreateAccountSetPass extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               context.hBox(2),
-              StepperRow(currentStep: 0, stepPercentage: "0%"),
+              StepperRow(currentStep: 1, stepPercentage: "20%"),
 
               context.hBox(2),
               Text(
@@ -73,7 +73,7 @@ class CreateAccountSetPass extends StatelessWidget {
             FilledButton(
               onPressed: () {
                 Get.toNamed(
-                  "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}",
+                  "${Routes.createAccount}${Routes.mainInfo}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}",
                 );
               },
               child: Text("Confirm"),
@@ -93,6 +93,8 @@ class CreateAccountSetPass extends StatelessWidget {
           ],
         ),
       ),
+   
+   
     );
   }
 }

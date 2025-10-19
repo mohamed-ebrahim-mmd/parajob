@@ -53,6 +53,7 @@ class EducationPicScreen extends StatelessWidget {
 
             context.hBox(6),
             IDImagePicker(
+              isEducation: true,
               imagePath: AppAssetPaths.nationalID,
               text: Text("Note :\nYou can scan any other document that proves \nyou’re a university student.",  
                   style: TextStyle(

@@ -30,7 +30,7 @@ class PictureWithIdScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             context.hBox(2),
-            StepperRow(currentStep: 1, stepPercentage: "20%"),
+            StepperRow(currentStep: 2,stepPercentage: "40%",),
             context.hBox(2),
             Text(
               'National ID Scan',
@@ -80,7 +80,7 @@ class PictureWithIdScreen extends StatelessWidget {
         child: FilledButton(
           onPressed: () {
              Get.toNamed(
-                  "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}${Routes.createAccountBackID}${Routes.createAccountPicWithID}${Routes.educationInfo}",
+                  "${Routes.createAccount}${Routes.mainInfo}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}${Routes.createAccountBackID}${Routes.createAccountPicWithID}${Routes.educationInfo}",
                 );
           },
           child: Text("Confirm"),

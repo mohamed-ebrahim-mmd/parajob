@@ -16,7 +16,7 @@ class BackNationalIdScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
 
-      
+
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new),
@@ -31,8 +31,7 @@ class BackNationalIdScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             context.hBox(2),
-            StepperRow(currentStep: 1, stepPercentage: "20%"),
-            //  Align(alignment: AlignmentGeometry.bottomRight, child: Text("20%")),
+            StepperRow(currentStep: 2,stepPercentage: "40%",),
             context.hBox(2),
             Text(
               'National ID Scan',
@@ -93,7 +92,7 @@ class BackNationalIdScreen extends StatelessWidget {
         child: FilledButton(
           onPressed: () {
              Get.toNamed(
-                  "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}${Routes.createAccountBackID}${Routes.createAccountPicWithID}",
+                  "${Routes.createAccount}${Routes.mainInfo}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}${Routes.createAccountBackID}${Routes.createAccountPicWithID}",
                 );
           },
           child: Text("Confirm"),
