@@ -41,4 +41,5 @@ abstract final class AppAssetPaths {
   static const nationalID="assets/images/national_id.png";
   static const checkIcon="assets/icons/check.svg";
   static const userWithID="assets/images/user_with_id.png";
+  static const cvUploadImg="assets/images/upload.png";
 }

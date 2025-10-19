@@ -14,8 +14,10 @@ import 'package:para_job/features/main_navigator/main_navigator_screen.dart';
 import 'package:para_job/features/onboarding/onboarding_screen.dart';
 import 'package:para_job/features/registration/back_national_id/back_national_id_screen.dart';
 import 'package:para_job/features/registration/create_account/create_account_screen.dart';
+import 'package:para_job/features/registration/create_account_cv/create_account_cv_screen.dart';
 import 'package:para_job/features/registration/create_account_otp/create_account_otp_screen.dart';
 import 'package:para_job/features/registration/create_account_set_pass/create_account_set_pass.dart';
+import 'package:para_job/features/registration/create_account_skills/create_account_skills_screen.dart';
 import 'package:para_job/features/registration/education_info/education_info_screen.dart';
 import 'package:para_job/features/registration/education_pic/education_pic_screen.dart';
 import 'package:para_job/features/registration/front_national_id/front_national_id_screen.dart';
@@ -41,6 +43,8 @@ class Routes {
   static const String educationInfo = '/education-info';
   static const String educationPic = '/education-pic';
   static const String searchJob = '/search-job';
+  static const String create_account_skills = '/create-account-skills';
+  static const String create_account_cv = '/create-account-cv';
 }
 
 class AppPages {
@@ -109,7 +113,18 @@ class AppPages {
                                 GetPage(
                                   name: Routes.educationPic,
                                   page: () => EducationPicScreen(),
-                                  children: [],
+                                  children: [
+                                    GetPage(
+                                      name: Routes.create_account_skills,
+                                      page: () => CreateAccountSkillsScreen(),
+                                      children: [
+                                        GetPage(
+                                          name: Routes.create_account_cv,
+                                          page: () => CreateAccountCvScreen(),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
