@@ -78,7 +78,7 @@ class EducationInfoScreen extends StatelessWidget {
                   "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}${Routes.createAccountBackID}${Routes.createAccountPicWithID}${Routes.educationInfo}${Routes.educationPic}",
                 );
               },
-              child: Text("Confirm"),
+              child: Text("Continue"),
             ),
 
             context.hBox(5),

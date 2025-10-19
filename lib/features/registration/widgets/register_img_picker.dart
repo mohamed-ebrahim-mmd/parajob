@@ -6,9 +6,10 @@ import 'package:para_job/packages/themeing/media_query_values.dart';
 //import 'package:para_job/packages/constants/app_asset_paths.dart';
 
 class IDImagePicker extends StatefulWidget {
-  const IDImagePicker({super.key, required this.imagePath, required this.text});
+  const IDImagePicker({super.key, required this.imagePath, required this.text, this.isEducation = false});
   final String imagePath;
   final Widget text;
+  final bool isEducation;
 
   @override
   State<IDImagePicker> createState() => _IDImagePickerState();
@@ -40,7 +41,7 @@ class _IDImagePickerState extends State<IDImagePicker> {
     return GestureDetector(
       onTap: _pickImage,
       child: Container(
-        padding: EdgeInsets.all(context.wPct(5)),
+        padding: EdgeInsets.all(context.wPct(4)),
         width: context.w,
         decoration: BoxDecoration(
           border: Border.all(color: AppColors.pureWhite),
@@ -48,30 +49,46 @@ class _IDImagePickerState extends State<IDImagePicker> {
         ),
         child: Column(
           children: [
-            _selectedImage != null
-                ? ClipRRect(
-                    borderRadius: BorderRadius.circular(context.wPct(2)),
-                    child: Image.file(
-                      _selectedImage!,
-                      width: context.wPct(60),
-                      height: context.hPct(18),
-                      fit: BoxFit.cover,
-                    ),
-                  )
-                : Image.asset(
-                    widget.imagePath,
-                    width: context.wPct(60),
-                    height: context.hPct(18),
-                    fit: BoxFit.contain,
-                  ),
-
-            context.hBox(0.5),
-            widget.text
-
+            ..._buildContent(context),
         
           ],
         ),
       ),
     );
   }
+  List<Widget> _buildContent(BuildContext context) {
+  final imageWidget = _selectedImage != null
+      ? ClipRRect(
+          borderRadius: BorderRadius.circular(context.wPct(2)),
+          child: Image.file(
+            _selectedImage!,
+            width: context.wPct(60),
+            height: context.hPct(18),
+            fit: BoxFit.cover,
+          ),
+        )
+      : Image.asset(
+          widget.imagePath,
+          width: context.wPct(60),
+          height: context.hPct(18),
+          fit: BoxFit.contain,
+        );
+
+  final textWidget = widget.text;
+  final spacer = context.hBox(0.5);
+
+  if (widget.isEducation) {
+        return [textWidget, spacer, imageWidget];
+
+   
+  } else {    return [imageWidget, spacer, textWidget];
+
+   
+  }
 }
+
+}
+
+
+
+
