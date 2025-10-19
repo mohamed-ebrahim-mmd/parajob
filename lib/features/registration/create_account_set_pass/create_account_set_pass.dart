@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+import 'package:para_job/features/registration/widgets/stepper.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
-import 'package:para_job/packages/ui_component/stepper/stepper.dart';
 
 class CreateAccountSetPass extends StatelessWidget {
   const CreateAccountSetPass({super.key});
@@ -41,18 +40,14 @@ class CreateAccountSetPass extends StatelessWidget {
               ),
               context.hBox(6),
               TextField(
-                decoration: InputDecoration(
-                  hintText: "Enter password",
-                ),
+                decoration: InputDecoration(hintText: "Enter password"),
                 keyboardType: TextInputType.visiblePassword,
                 obscureText: true,
                 textInputAction: TextInputAction.next,
               ),
               context.hBox(1.5),
               TextField(
-                decoration: InputDecoration(
-                  hintText: "Re-enter",
-                ),
+                decoration: InputDecoration(hintText: "Re-enter"),
                 obscureText: true,
                 textInputAction: TextInputAction.done,
               ),
@@ -73,7 +68,7 @@ class CreateAccountSetPass extends StatelessWidget {
             FilledButton(
               onPressed: () {
                 Get.toNamed(
-                  "${Routes.createAccount}${Routes.mainInfo}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}",
+                  "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}",
                 );
               },
               child: Text("Confirm"),
@@ -93,8 +88,6 @@ class CreateAccountSetPass extends StatelessWidget {
           ],
         ),
       ),
-   
-   
     );
   }
 }

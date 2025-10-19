@@ -12,9 +12,6 @@ import 'package:para_job/features/authentication/forgot_password_otp/forgot_pass
 import 'package:para_job/features/authentication/set_new_password/set_new_password_screen.dart';
 import 'package:para_job/features/main_navigator/main_navigator_screen.dart';
 import 'package:para_job/features/onboarding/onboarding_screen.dart';
-import 'package:para_job/features/registration/create_account_screen.dart';
-import 'package:para_job/features/search_job/search_job_screen.dart';
-import 'package:para_job/packages/ui_components/app_loader.dart';
 import 'package:para_job/features/registration/back_national_id/back_national_id_screen.dart';
 import 'package:para_job/features/registration/create_account/create_account_screen.dart';
 import 'package:para_job/features/registration/create_account_otp/create_account_otp_screen.dart';
@@ -22,8 +19,9 @@ import 'package:para_job/features/registration/create_account_set_pass/create_ac
 import 'package:para_job/features/registration/education_info/education_info_screen.dart';
 import 'package:para_job/features/registration/education_pic/education_pic_screen.dart';
 import 'package:para_job/features/registration/front_national_id/front_national_id_screen.dart';
-import 'package:para_job/features/registration/main_info/main_info.dart';
 import 'package:para_job/features/registration/picture_with_id/picture_with_id_screen.dart';
+import 'package:para_job/features/search_job/search_job_screen.dart';
+import 'package:para_job/packages/ui_components/app_loader.dart';
 
 class Routes {
   static const String onboarding = '/onboarding';
@@ -39,10 +37,9 @@ class Routes {
   static const String createAccountSetPass = '/create-account-set-pass';
   static const String createAccountFrontID = '/create-account-front-id';
   static const String createAccountBackID = '/create-account-back-id';
-  static const String createAccountPicWithID = '/create-account-picwithid';
+  static const String createAccountPicWithID = '/create-account-pic-with-id';
   static const String educationInfo = '/education-info';
   static const String educationPic = '/education-pic';
-  static const String mainInfo = '/main-info';
   static const String searchJob = '/search-job';
 }
 
@@ -86,39 +83,33 @@ class AppPages {
       page: () => CreateAccountScreen(),
       children: [
         GetPage(
-          name: Routes.mainInfo,
-          page: () => MainInfo(),
+          name: Routes.createAccountOTP,
+          page: () => CreateAccountOtpScreen(),
           children: [
             GetPage(
-              name: Routes.createAccountOTP,
-              page: () => CreateAccountOtpScreen(),
+              name: Routes.createAccountSetPass,
+              page: () => CreateAccountSetPass(),
               children: [
                 GetPage(
-                  name: Routes.createAccountSetPass,
-                  page: () => CreateAccountSetPass(),
+                  name: Routes.createAccountFrontID,
+                  page: () => FrontNationalIdScreen(),
                   children: [
                     GetPage(
-                      name: Routes.createAccountFrontID,
-                      page: () => FrontNationalIdScreen(),
+                      name: Routes.createAccountBackID,
+                      page: () => BackNationalIdScreen(),
                       children: [
                         GetPage(
-                          name: Routes.createAccountBackID,
-                          page: () => BackNationalIdScreen(),
+                          name: Routes.createAccountPicWithID,
+                          page: () => PictureWithIdScreen(),
                           children: [
                             GetPage(
-                              name: Routes.createAccountPicWithID,
-                              page: () => PictureWithIdScreen(),
+                              name: Routes.educationInfo,
+                              page: () => EducationInfoScreen(),
                               children: [
                                 GetPage(
-                                  name: Routes.educationInfo,
-                                  page: () => EducationInfoScreen(),
-                                  children: [
-                                    GetPage(
-                                      name: Routes.educationPic,
-                                      page: () => EducationPicScreen(),
-                                      children: [],
-                                    ),
-                                  ],
+                                  name: Routes.educationPic,
+                                  page: () => EducationPicScreen(),
+                                  children: [],
                                 ),
                               ],
                             ),

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+import 'package:para_job/features/registration/widgets/stepper.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/packages/themeing/theme.dart';
-import 'package:para_job/packages/ui_component/stepper/stepper.dart';
 import 'package:pinput/pinput.dart';
 import 'package:timer_button/timer_button.dart';
 
@@ -92,7 +91,7 @@ class CreateAccountOtpScreen extends StatelessWidget {
             FilledButton(
               onPressed: () {
                 Get.toNamed(
-                  "${Routes.createAccount}${Routes.mainInfo}${Routes.createAccountOTP}${Routes.createAccountSetPass}",
+                  "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}",
                 );
               },
               child: Text("Verify"),

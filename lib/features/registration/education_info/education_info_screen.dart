@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+import 'package:para_job/features/registration/widgets/stepper.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
-import 'package:para_job/packages/ui_component/date_packer.dart';
-import 'package:para_job/packages/ui_component/drop_down_button.dart';
-import 'package:para_job/packages/ui_component/stepper/stepper.dart';
+import 'package:para_job/packages/ui_components/date_packer.dart';
+import 'package:para_job/packages/ui_components/drop_down_button.dart';
 
 class EducationInfoScreen extends StatelessWidget {
   const EducationInfoScreen({super.key});
@@ -56,14 +55,12 @@ class EducationInfoScreen extends StatelessWidget {
                 keyboardType: TextInputType.text,
                 textInputAction: TextInputAction.done,
               ),
-
             ],
           ),
         ),
       ),
 
-
-            bottomNavigationBar: Padding(
+      bottomNavigationBar: Padding(
         padding: EdgeInsets.symmetric(
           horizontal: context.wPct(5),
           vertical: context.hPct(2.8),
@@ -75,7 +72,7 @@ class EducationInfoScreen extends StatelessWidget {
             FilledButton(
               onPressed: () {
                 Get.toNamed(
-                  "${Routes.createAccount}${Routes.mainInfo}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}${Routes.createAccountBackID}${Routes.createAccountPicWithID}${Routes.educationInfo}${Routes.educationPic}",
+                  "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}${Routes.createAccountBackID}${Routes.createAccountPicWithID}${Routes.educationInfo}${Routes.educationPic}",
                 );
               },
               child: Text("Continue"),

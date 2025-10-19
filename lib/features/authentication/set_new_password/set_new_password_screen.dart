@@ -29,7 +29,7 @@ class SetNewPasswordScreen extends StatelessWidget {
             children: [
               context.hBox(2),
               Text(
-                'Set New Password',
+                'Set password',
                 style: TextStyle(
                   color: AppColors.pureWhite,
                   fontSize: context.wPct(8.5),
@@ -69,8 +69,6 @@ class SetNewPasswordScreen extends StatelessWidget {
           child: Text("Confirm"),
         ),
       ),
-   
-   
     );
   }
 }

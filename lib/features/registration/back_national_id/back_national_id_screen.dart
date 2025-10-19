@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:para_job/features/registration/widgets/register_img_picker.dart';
 import 'package:para_job/features/registration/widgets/registration_note.dart';
+import 'package:para_job/features/registration/widgets/stepper.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
-import 'package:para_job/packages/ui_component/stepper/stepper.dart';
 import 'package:para_job/res/app_asset_paths.dart';
 
 class BackNationalIdScreen extends StatelessWidget {
@@ -15,8 +14,6 @@ class BackNationalIdScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new),
@@ -31,7 +28,7 @@ class BackNationalIdScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             context.hBox(2),
-            StepperRow(currentStep: 2,stepPercentage: "40%",),
+            StepperRow(currentStep: 2, stepPercentage: "40%"),
             context.hBox(2),
             Text(
               'National ID Scan',
@@ -91,20 +88,13 @@ class BackNationalIdScreen extends StatelessWidget {
         ),
         child: FilledButton(
           onPressed: () {
-             Get.toNamed(
-                  "${Routes.createAccount}${Routes.mainInfo}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}${Routes.createAccountBackID}${Routes.createAccountPicWithID}",
-                );
+            Get.toNamed(
+              "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}${Routes.createAccountBackID}${Routes.createAccountPicWithID}",
+            );
           },
           child: Text("Confirm"),
         ),
       ),
-    
-    
-    
     );
   }
-
-
-
-
 }
