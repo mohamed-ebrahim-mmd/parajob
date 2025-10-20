@@ -89,7 +89,7 @@ class EducationPicScreen extends StatelessWidget {
         child: FilledButton(
           onPressed: () {
              Get.toNamed(
-                  "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}${Routes.createAccountBackID}${Routes.createAccountPicWithID}${Routes.educationInfo}${Routes.educationPic}${Routes.create_account_skills}",
+                  "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}${Routes.createAccountBackID}${Routes.createAccountPicWithID}${Routes.educationInfo}${Routes.educationPic}${Routes.createAccountSkills}",
                 );
           },
           child: Text("Confirm"),

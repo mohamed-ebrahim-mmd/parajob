@@ -76,15 +76,38 @@ class HomeScreen extends StatelessWidget {
                     );
                   case ApiCallState.success:
                     final hotJobsList = controller.homeData!.data.first.hotJobs;
+                    final nonFlexableJobs =
+                        controller.homeData!.data.first.nonFlexibleJobs;
+
                     final flexibleJobsList =
                         controller.homeData!.data.first.flexibleJobs;
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
 
                       children: [
-                        HotJobsMiniList(jobs: hotJobsList),
+                        HotJobsMiniList(
+                          jobs: hotJobsList,
+                          onSeeAll: () {
+                            Get.toNamed("${Routes.mainNavigator}${Routes.hotJobs}",);
+                          },
+                        ),
                         context.hBox(2),
-                        FlexibleJobsMiniList(jobs: flexibleJobsList),
+                        JobsMiniList(
+                          jobs: flexibleJobsList,
+                          title: "Flexible Jobs",
+                           onSeeAll: () {
+                            Get.toNamed("${Routes.mainNavigator}${Routes.flexibleJobs}",);
+                          },
+                        ),
+                        context.hBox(2),
+                        JobsMiniList(
+                          jobs: nonFlexableJobs,
+                          title: "Non-Flexible Jobs",
+                           onSeeAll: () {
+                            Get.toNamed("${Routes.mainNavigator}${Routes.nonFlexibleJobs}",);
+                          },
+                        ),
+                        context.hBox(2),
                       ],
                     );
                   case ApiCallState.failure:

@@ -222,5 +222,7 @@ class HotJobCard extends StatelessWidget {
         ],
       ),
     );
+
+
   }
 }

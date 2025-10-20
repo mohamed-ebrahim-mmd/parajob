@@ -63,7 +63,9 @@ class HotJobsMiniList extends StatelessWidget {
               itemCount: jobs.length,
               separatorBuilder: (_, __) => context.wBox(3),
               itemBuilder: (context, index) {
-                return HotJobCard(job: jobs[index]);
+                return 
+                //Text("data");
+               HotJobCard(job: jobs[index]);
               },
             ),
           ),

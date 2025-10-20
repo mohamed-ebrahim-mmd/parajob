@@ -29,7 +29,8 @@ class HomeController extends GetxController {
         homeData = response;
 
         homeCallState.value = ApiCallState.success;
-      } else {
+      }
+      else {
         homeCallState.value = ApiCallState.failure;
       }
     } catch (e) {

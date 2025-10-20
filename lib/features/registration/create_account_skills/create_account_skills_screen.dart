@@ -81,7 +81,7 @@ class CreateAccountSkillsScreen extends StatelessWidget {
             FilledButton(
               onPressed: () {
                 Get.toNamed(
-                  "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}${Routes.createAccountBackID}${Routes.createAccountPicWithID}${Routes.educationInfo}${Routes.educationPic}${Routes.create_account_skills}${Routes.create_account_cv}",
+                  "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}${Routes.createAccountBackID}${Routes.createAccountPicWithID}${Routes.educationInfo}${Routes.educationPic}${Routes.createAccountSkills}${Routes.createAccountCv}",
                 );
               },
               child: Text("Continue"),
