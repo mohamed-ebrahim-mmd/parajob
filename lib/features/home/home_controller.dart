@@ -2,6 +2,8 @@
  Mohamed Ebrahim | mohamed7ebrahim7@gmail.com | 2025-10-16 9:51 AM
  ==================================================================
 */
+import 'dart:developer';
+
 import 'package:get/get.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
 
@@ -22,6 +24,8 @@ class HomeController extends GetxController {
       final response = await apiClient.fetchHomeJobs();
 
       if (response.isSuccess) {
+        log("🟢 isSuccess");
+
         homeData = response;
 
         homeCallState.value = ApiCallState.success;
@@ -29,6 +33,7 @@ class HomeController extends GetxController {
         homeCallState.value = ApiCallState.failure;
       }
     } catch (e) {
+      log("🟢 ${e.toString()}");
       homeCallState.value = ApiCallState.failure;
     }
   }

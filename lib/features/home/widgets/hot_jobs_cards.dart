@@ -37,7 +37,7 @@ class HotJobCard extends StatelessWidget {
                   context.wPct(2),
                 ), // adjust corner roundness
                 child: Image.network(
-                  job.company.logo,
+                  job.company?.logo ?? "",
                   width: context.wPct(
                     12,
                   ), // same visual size as before (≈ diameter)
@@ -60,7 +60,7 @@ class HotJobCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      job.title,
+                      job.title ?? "",
                       maxLines: 1,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
@@ -68,7 +68,7 @@ class HotJobCard extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      job.company.name,
+                      job.company?.name ?? "",
                       maxLines: 1,
 
                       style: TextStyle(
@@ -87,13 +87,13 @@ class HotJobCard extends StatelessWidget {
             height: context.hPct(5), // small fixed height for chips
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
-              itemCount: job.skills.length,
+              itemCount: job.skills!.length,
               separatorBuilder: (_, __) => context.wBox(2),
               itemBuilder: (context, index) {
-                final skill = job.skills[index];
+                final skill = job.skills?[index];
                 return Chip(
                   label: Text(
-                    skill,
+                    skill!,
                     style: TextStyle(color: const Color(0xFF122A2B)),
                   ),
                   shape: RoundedRectangleBorder(
@@ -112,7 +112,7 @@ class HotJobCard extends StatelessWidget {
           context.hBox(1.5),
           // Description
           Text(
-            job.description,
+            job.description ?? "",
             maxLines: 4,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(

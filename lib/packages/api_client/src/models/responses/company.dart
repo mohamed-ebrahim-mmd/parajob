@@ -3,13 +3,13 @@
  ==================================================================
 */
 class Company {
-  final int id;
-  final String name;
-  final String logo;
+  final int? id;
+  final String? name;
+  final String? logo;
 
-  Company({required this.id, required this.name, required this.logo});
+  Company({this.id, this.name, this.logo});
 
-  factory Company.fromJson(Map<String, dynamic> json) {
-    return Company(id: json['id'], name: json['name'], logo: json['logo']);
+  factory Company.fromJson(Map<String, dynamic>? json) {
+    return Company(id: json?['id'], name: json?['name'], logo: json?['logo']);
   }
 }
