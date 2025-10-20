@@ -19,4 +19,7 @@ abstract class ApiClient {
 
   @POST("/api/send/otp")
   Future<SendOtpResponse> sendOtp(@Body() SendOtpRequest request);
+
+  @GET("/api/verify/otp")
+  Future<VerifyOtpResponse> verifyOtp(@Body() VerifyOtpRequest request);
 }
