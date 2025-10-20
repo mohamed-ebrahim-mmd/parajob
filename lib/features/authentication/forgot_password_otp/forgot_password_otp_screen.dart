@@ -5,7 +5,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/authentication/forgot_password_otp/forgot_password_otp_controller.dart';
-import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/packages/themeing/theme.dart';
@@ -74,14 +73,22 @@ class ForgotPasswordOtpScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    validator: (value) {
-                      if (value != '12345') return 'Invalid code';
-                      return null;
-                    },
-                    onCompleted: (pin) {
-                      debugPrint('Completed: $pin');
-                    },
                   ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                    left: context.wPct(2),
+                    top: context.hPct(1),
+                  ),
+                  child: Obx(() {
+                    return Text(
+                      controller.pinError.value ?? "",
+                      style: TextStyle(
+                        color: AppColors.coralRed, // Hint text
+                        fontSize: context.wPct(3),
+                      ),
+                    );
+                  }),
                 ),
               ],
             ),
@@ -98,9 +105,7 @@ class ForgotPasswordOtpScreen extends StatelessWidget {
             children: [
               FilledButton(
                 onPressed: () {
-                  Get.toNamed(
-                    "${Routes.forgotPassword}${Routes.forgotPasswordOTP}${Routes.setNewPassword}",
-                  );
+                  controller.verifyOtp();
                 },
                 child: Text("Verify"),
               ),

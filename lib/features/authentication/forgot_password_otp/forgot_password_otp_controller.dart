@@ -7,8 +7,10 @@ import 'package:flutter/cupertino.dart' show TextEditingController;
 import 'package:flutter/material.dart' show BuildContext;
 import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
+import 'package:para_job/features/authentication/set_new_password/set_new_password_controller.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
 import 'package:para_job/packages/functional_components/validation_utils.dart';
+import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
 
 class ForgotPasswordOtpController extends GetxController {
@@ -28,39 +30,39 @@ class ForgotPasswordOtpController extends GetxController {
     pinError.value = validatePin(pinController.text);
 
     if (pinError.value == null) {
-      // await verifyOtpRequest();
+      await verifyOtpRequest();
     }
   }
 
-  /*  /// ✅ API Call (to be implemented when backend endpoint is ready)
+  /// ✅ API Call (to be implemented when backend endpoint is ready)
   Future<void> verifyOtpRequest() async {
     try {
       Get.context!.loaderOverlay.show();
 
-      // TODO: Replace this with the actual API endpoint when available
-      // Example:
-      // final response = await apiClient.verifyOtp(VerifyOtpRequest(
-      //   phoneNumber: phoneNumber,
-      //   otp: pinController.text,
-      // ));
-
-      await Future.delayed(const Duration(seconds: 1)); // mock delay
-      showSnackBarSuccess(
-        "Success",
-        "OTP verified successfully for $phoneNumber",
+      final response = await apiClient.verifyOtp(
+        VerifyOtpRequest(
+          phoneNumber: phoneNumber,
+          otp: pinController.text.trim(),
+        ),
       );
 
-      // TODO: navigate to reset password or next step
+      if (response.isSuccess ?? false) {
+        showSnackBarSuccess('Success', response.details?.message ?? '');
+        Get.put(SetNewPasswordController(phoneNumber: phoneNumber));
+        Get.toNamed(
+          "${Routes.forgotPassword}${Routes.forgotPasswordOTP}${Routes.setNewPassword}",
+        );
+      } else {
+        showSnackBarError(
+          'Failed',
+          response.details?.message ?? 'Unknown error',
+        );
+      }
     } catch (e) {
-      showSnackBarError("Error", "Failed to verify OTP");
+      showSnackBarApiError();
     } finally {
       Get.context!.loaderOverlay.hide();
     }
-  }*/
-
-  void closeAndDispose() {
-    Get.back(); // Close the current screen
-    Get.delete<ForgotPasswordOtpController>(); // Dispose the controller
   }
 
   Future<void> resendForgotPasswordRequest(BuildContext context) async {
@@ -84,6 +86,11 @@ class ForgotPasswordOtpController extends GetxController {
     } finally {
       context.loaderOverlay.hide();
     }
+  }
+
+  void closeAndDispose() {
+    Get.back(); // Close the current screen
+    Get.delete<ForgotPasswordOtpController>(); // Dispose the controller
   }
 
   @override
