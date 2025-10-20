@@ -7,3 +7,11 @@ export './responses/job.dart';
 export './responses/login_with_mail_response.dart';
 export './responses/response_details.dart';
 export './responses/send_otp_response.dart';
+export './responses/city.dart';
+export './responses/department.dart';
+export './responses/job_details_response.dart';
+export './responses/job_data.dart';
+
+
+
+
