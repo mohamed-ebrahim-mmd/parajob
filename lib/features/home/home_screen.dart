@@ -5,8 +5,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/home/home_controller.dart';
-import 'package:para_job/features/home/widgets/flexible_jobs_mini_list.dart';
 import 'package:para_job/features/home/widgets/hot_jobs_mini_list.dart';
+import 'package:para_job/features/home/widgets/jobs_mini_list.dart';
 import 'package:para_job/packages/api_client/src/service/api_call_state_enum.dart'
     show ApiCallState;
 import 'package:para_job/packages/route_manager/controller/routes.dart';
@@ -88,23 +88,29 @@ class HomeScreen extends StatelessWidget {
                         HotJobsMiniList(
                           jobs: hotJobsList,
                           onSeeAll: () {
-                            Get.toNamed("${Routes.mainNavigator}${Routes.hotJobs}",);
+                            Get.toNamed(
+                              "${Routes.mainNavigator}${Routes.hotJobs}",
+                            );
                           },
                         ),
                         context.hBox(2),
                         JobsMiniList(
                           jobs: flexibleJobsList,
                           title: "Flexible Jobs",
-                           onSeeAll: () {
-                            Get.toNamed("${Routes.mainNavigator}${Routes.flexibleJobs}",);
+                          onSeeAll: () {
+                            Get.toNamed(
+                              "${Routes.mainNavigator}${Routes.flexibleJobs}",
+                            );
                           },
                         ),
                         context.hBox(2),
                         JobsMiniList(
                           jobs: nonFlexableJobs,
                           title: "Non-Flexible Jobs",
-                           onSeeAll: () {
-                            Get.toNamed("${Routes.mainNavigator}${Routes.nonFlexibleJobs}",);
+                          onSeeAll: () {
+                            Get.toNamed(
+                              "${Routes.mainNavigator}${Routes.nonFlexibleJobs}",
+                            );
                           },
                         ),
                         context.hBox(2),

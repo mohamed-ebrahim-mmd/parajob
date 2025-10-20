@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
-class FlexibleJobScreen extends StatelessWidget {
-  const FlexibleJobScreen({super.key});
+class NonFlexibleJobsScreen extends StatelessWidget {
+  const NonFlexibleJobsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,14 +24,16 @@ class FlexibleJobScreen extends StatelessWidget {
           children: [
             // Header Row
             Text(
-              "Flexible Jobs",
+              "Non-Flexible Jobs",
               style: TextStyle(
                 fontSize: context.wPct(4.5),
                 fontWeight: FontWeight.bold,
               ),
             ),
             context.hBox(2),
+
             // Vertical List of Job Cards
+
             // ListView.separated(
             //   scrollDirection: Axis.vertical,
             //   shrinkWrap: true,
@@ -49,3 +51,5 @@ class FlexibleJobScreen extends StatelessWidget {
     );
   }
 }
+
+//List<Job> jobs=[Job(title: "job1"),Job(title: "job2")];
