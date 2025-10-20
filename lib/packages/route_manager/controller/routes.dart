@@ -10,6 +10,9 @@ import 'package:para_job/features/authentication/email_login/email_login_screen.
 import 'package:para_job/features/authentication/forgot_password/forgot_password_screen.dart';
 import 'package:para_job/features/authentication/forgot_password_otp/forgot_password_otp_screen.dart';
 import 'package:para_job/features/authentication/set_new_password/set_new_password_screen.dart';
+import 'package:para_job/features/home/flexible_job_screen.dart';
+import 'package:para_job/features/home/hot_jobs_screen.dart';
+import 'package:para_job/features/home/non_flexible_job_screen.dart';
 import 'package:para_job/features/main_navigator/main_navigator_screen.dart';
 import 'package:para_job/features/onboarding/onboarding_screen.dart';
 import 'package:para_job/features/registration/back_national_id/back_national_id_screen.dart';
@@ -43,8 +46,13 @@ class Routes {
   static const String educationInfo = '/education-info';
   static const String educationPic = '/education-pic';
   static const String searchJob = '/search-job';
-  static const String create_account_skills = '/create-account-skills';
-  static const String create_account_cv = '/create-account-cv';
+  static const String createAccountSkills = '/create-account-skills';
+  static const String createAccountCv = '/create-account-cv';
+  static const String hotJobs = '/hot_job';
+  static const String flexibleJobs = '/flex_job';
+  static const String nonFlexibleJobs = '/non_flex_job';
+
+
 }
 
 class AppPages {
@@ -127,11 +135,11 @@ class AppPages {
                                   page: () => EducationPicScreen(),
                                   children: [
                                     GetPage(
-                                      name: Routes.create_account_skills,
+                                      name: Routes.createAccountSkills,
                                       page: () => CreateAccountSkillsScreen(),
                                       children: [
                                         GetPage(
-                                          name: Routes.create_account_cv,
+                                          name: Routes.createAccountCv,
                                           page: () => CreateAccountCvScreen(),
                                         ),
                                       ],
@@ -152,15 +160,20 @@ class AppPages {
         ),
       ],
     ),
-    GetPage(name: Routes.mainNavigator, page: () => MainNavigatorScreen()),
     GetPage(name: Routes.createAccount, page: () => CreateAccountScreen()),
     GetPage(
       name: Routes.mainNavigator,
       page: () => MainNavigatorScreen(),
       children: [
+       
         /// screens that's under the home tab
+         GetPage(name: Routes.hotJobs, page: () => HotJobsScreen(),),
+          GetPage(name: Routes.flexibleJobs, page: () => FlexibleJobScreen(),),
+           GetPage(name: Routes.nonFlexibleJobs, page: () => NonFlexibleJobScreen(),),
         GetPage(name: Routes.searchJob, page: () => SearchJobScreen()),
       ],
     ),
+
+    
   ];
 }

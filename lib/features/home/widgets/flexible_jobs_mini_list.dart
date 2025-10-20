@@ -3,19 +3,24 @@
  ==================================================================
 */
 import 'package:flutter/material.dart';
+import 'package:para_job/features/home/widgets/job_card.dart';
 import 'package:para_job/packages/api_client/src/models/responses/job.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
-class FlexibleJobsMiniList extends StatelessWidget {
+class JobsMiniList extends StatelessWidget {
   final List<Job> jobs;
   final VoidCallback? onSeeAll;
+  final String title;
 
-  const FlexibleJobsMiniList({super.key, required this.jobs, this.onSeeAll});
+  const JobsMiniList({super.key, required this.jobs, this.onSeeAll, required this.title});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return
+    
+    
+     Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -24,7 +29,7 @@ class FlexibleJobsMiniList extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "Flexible Jobs",
+              title,
               style: TextStyle(
                 fontSize: context.wPct(4.5),
                 fontWeight: FontWeight.bold,
@@ -43,7 +48,7 @@ class FlexibleJobsMiniList extends StatelessWidget {
           ],
         ),
         context.hBox(2),
-        // Horizontal List of Job Cards
+        // Vertical List of Job Cards
         ListView.separated(
           scrollDirection: Axis.vertical,
           shrinkWrap: true,
@@ -52,10 +57,14 @@ class FlexibleJobsMiniList extends StatelessWidget {
           itemCount: jobs.length,
           separatorBuilder: (_, __) => context.hBox(3),
           itemBuilder: (context, index) {
-            return Text('text');
+            final job =  jobs[index];
+            return JobCard(job: job);
           },
         ),
       ],
     );
+ 
+ 
+ 
   }
 }
