@@ -24,60 +24,62 @@ class BackNationalIdScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: context.wPct(5)),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            context.hBox(2),
-            StepperRow(currentStep: 2, stepPercentage: "40%"),
-            context.hBox(2),
-            Text(
-              'National ID Scan',
-              style: TextStyle(
-                color: AppColors.pureWhite,
-                fontSize: context.wPct(8.5),
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            context.hBox(0.5),
-            Text(
-              'Time to verify your identity',
-              style: TextStyle(
-                color: AppColors.softWhite70,
-                fontSize: context.wPct(3.5),
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-
-            context.hBox(6),
-            IDImagePicker(
-              imagePath: AppAssetPaths.nationalID,
-              text: RichText(
-                textAlign: TextAlign.center,
-                text: TextSpan(
-                  text: 'Scan the',
-                  style: TextStyle(
-                    color: AppColors.softWhite70,
-                    fontSize: context.wPct(4),
-                    fontWeight: FontWeight.w500,
-                  ),
-                  children: [
-                    TextSpan(
-                      text: " back",
-                      style: TextStyle(color: AppColors.aquaTeal),
-                    ),
-                    TextSpan(text: ' of the ID'),
-                  ],
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              context.hBox(2),
+              StepperRow(currentStep: 2, stepPercentage: "40%"),
+              context.hBox(2),
+              Text(
+                'National ID Scan',
+                style: TextStyle(
+                  color: AppColors.pureWhite,
+                  fontSize: context.wPct(8.5),
+                  fontWeight: FontWeight.w600,
                 ),
               ),
-            ),
-            context.hBox(2),
-            RegisterNote(note: "Make sure your surroundings are well-lit."),
-            context.hBox(2),
-            RegisterNote(
-              note:
-                  "Make sure the photo is inside the frame and \ndetails are easy to read",
-            ),
-          ],
+              context.hBox(0.5),
+              Text(
+                'Time to verify your identity',
+                style: TextStyle(
+                  color: AppColors.softWhite70,
+                  fontSize: context.wPct(3.5),
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+          
+              context.hBox(6),
+              IDImagePicker(
+                imagePath: AppAssetPaths.nationalID,
+                text: RichText(
+                  textAlign: TextAlign.center,
+                  text: TextSpan(
+                    text: 'Scan the',
+                    style: TextStyle(
+                      color: AppColors.softWhite70,
+                      fontSize: context.wPct(4),
+                      fontWeight: FontWeight.w500,
+                    ),
+                    children: [
+                      TextSpan(
+                        text: " back",
+                        style: TextStyle(color: AppColors.aquaTeal),
+                      ),
+                      TextSpan(text: ' of the ID'),
+                    ],
+                  ),
+                ),
+              ),
+              context.hBox(2),
+              RegisterNote(note: "Make sure your surroundings are well-lit."),
+              context.hBox(2),
+              RegisterNote(
+                note:
+                    "Make sure the photo is inside the frame and \ndetails are easy to read",
+              ),
+            ],
+          ),
         ),
       ),
 

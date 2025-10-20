@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:para_job/features/registration/widgets/register_img_picker.dart';
 import 'package:para_job/features/registration/widgets/registration_note.dart';
 import 'package:para_job/features/registration/widgets/stepper.dart';
+import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/res/app_asset_paths.dart';
@@ -22,7 +25,9 @@ class EducationPicScreen extends StatelessWidget {
           },
         ),
       ),
-      body: Padding(
+      body: 
+      
+      Padding(
         padding: EdgeInsets.symmetric(horizontal: context.wPct(5)),
         child: SingleChildScrollView(
           child: Column(
@@ -83,11 +88,11 @@ class EducationPicScreen extends StatelessWidget {
         ),
         child: FilledButton(
           onPressed: () {
-            //  Get.toNamed(
-            //       "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}${Routes.createAccountBackID}${Routes.createAccountPicWithID}",
-            //     );
+             Get.toNamed(
+                  "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}${Routes.createAccountBackID}${Routes.createAccountPicWithID}${Routes.educationInfo}${Routes.educationPic}${Routes.create_account_skills}",
+                );
           },
-          child: Text("Continue"),
+          child: Text("Confirm"),
         ),
       ),
     );

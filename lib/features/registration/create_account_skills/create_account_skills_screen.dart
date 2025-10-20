@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:para_job/features/registration/widgets/skill_item.dart';
 import 'package:para_job/features/registration/widgets/stepper.dart';
-import 'package:para_job/packages/route_manager/controller/routes.dart';
-import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
+import 'package:para_job/packages/ui_components/drop_down_button.dart';
 
-class CreateAccountSetPass extends StatelessWidget {
-  const CreateAccountSetPass({super.key});
+import '../../../packages/route_manager/controller/routes.dart';
+import '../../../packages/themeing/app_colors.dart';
+
+class CreateAccountSkillsScreen extends StatelessWidget {
+  const CreateAccountSkillsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        surfaceTintColor: Colors.transparent,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new),
           onPressed: () {
@@ -27,11 +31,11 @@ class CreateAccountSetPass extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               context.hBox(2),
-              StepperRow(currentStep: 1, stepPercentage: "20%"),
+              StepperRow(currentStep: 4, stepPercentage: "80%"),
 
               context.hBox(2),
               Text(
-                'Set New Password',
+                'Add skills',
                 style: TextStyle(
                   color: AppColors.pureWhite,
                   fontSize: context.wPct(8.5),
@@ -39,17 +43,26 @@ class CreateAccountSetPass extends StatelessWidget {
                 ),
               ),
               context.hBox(6),
-              TextField(
-                decoration: InputDecoration(hintText: "Enter password"),
-                keyboardType: TextInputType.visiblePassword,
-                obscureText: true,
-                textInputAction: TextInputAction.next,
+            
+
+               DropDownButton(
+                options: ["skill1", "skill2"],
+                label: "Enter your skills",
               ),
-              context.hBox(1.5),
-              TextField(
-                decoration: InputDecoration(hintText: "Re-enter"),
-                obscureText: true,
-                textInputAction: TextInputAction.done,
+              context.hBox(3),
+
+              Row(
+                children: [
+                  Flexible(
+                    child: Wrap(
+                      spacing: context.wPct(3),
+                      runSpacing: context.wPct(3),
+                      children: skills
+                          .map((skill) => SkillItem(skill: skill))
+                          .toList(),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
@@ -68,7 +81,7 @@ class CreateAccountSetPass extends StatelessWidget {
             FilledButton(
               onPressed: () {
                 Get.toNamed(
-                  "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}",
+                  "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}${Routes.createAccountBackID}${Routes.createAccountPicWithID}${Routes.educationInfo}${Routes.educationPic}${Routes.create_account_skills}${Routes.create_account_cv}",
                 );
               },
               child: Text("Continue"),
@@ -88,8 +101,8 @@ class CreateAccountSetPass extends StatelessWidget {
           ],
         ),
       ),
-   
-   
     );
   }
 }
+
+List<String> skills = ["Plumbing", "Electrical Work", "Carpentry", "Painting"];

@@ -15,6 +15,7 @@ class AppColors {
 
   // Accent tones
   static const Color aquaTeal = Color(0xFF00CBB8);
+static const Color aquaTeal8 = Color(0x1400CBB8);
   static const Color oceanBlue = Color(0xFF00638E);
 
   // Neutral tones
