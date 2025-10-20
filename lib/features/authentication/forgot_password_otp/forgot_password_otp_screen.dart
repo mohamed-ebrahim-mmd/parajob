@@ -107,7 +107,7 @@ class ForgotPasswordOtpScreen extends StatelessWidget {
               context.hBox(4),
               TimerButton(
                 label: "Send again",
-                timeOutInSeconds: 5,
+                timeOutInSeconds: 59,
                 buttonType: ButtonType.outlinedButton,
                 activeTextStyle: TextStyle(
                   color: AppColors.pureWhite,
@@ -119,7 +119,9 @@ class ForgotPasswordOtpScreen extends StatelessWidget {
                 ),
                 color: AppColors.pureWhite,
                 disabledColor: AppColors.grayButton,
-                onPressed: () {},
+                onPressed: () {
+                  controller.resendForgotPasswordRequest(context);
+                },
               ),
             ],
           ),

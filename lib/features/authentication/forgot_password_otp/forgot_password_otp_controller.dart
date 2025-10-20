@@ -4,8 +4,12 @@
 */
 
 import 'package:flutter/cupertino.dart' show TextEditingController;
+import 'package:flutter/material.dart' show BuildContext;
 import 'package:get/get.dart';
+import 'package:loader_overlay/loader_overlay.dart';
+import 'package:para_job/packages/api_client/api_client.dart';
 import 'package:para_job/packages/functional_components/validation_utils.dart';
+import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
 
 class ForgotPasswordOtpController extends GetxController {
   // The phone number passed from the previous screen
@@ -59,20 +63,16 @@ class ForgotPasswordOtpController extends GetxController {
     Get.delete<ForgotPasswordOtpController>(); // Dispose the controller
   }
 
-  /*
-  Future<void> sendForgotPasswordRequest() async {
+  Future<void> resendForgotPasswordRequest(BuildContext context) async {
     try {
-      Get.context!.loaderOverlay.show();
+      context.loaderOverlay.show();
 
       final response = await apiClient.sendOtp(
-        SendOtpRequest(phoneNumber: phoneController.text),
+        SendOtpRequest(phoneNumber: phoneNumber),
       );
 
       if (response.isSuccess ?? false) {
         showSnackBarSuccess('Success', response.details?.message ?? '');
-        //pass the phone number to the otp screen
-        Get.put(ForgotPasswordOtpController(phoneNumber: phoneController.text));
-        Get.toNamed("${Routes.forgotPassword}${Routes.forgotPasswordOTP}");
       } else {
         showSnackBarError(
           'Failed',
@@ -82,10 +82,9 @@ class ForgotPasswordOtpController extends GetxController {
     } catch (e) {
       showSnackBarApiError();
     } finally {
-      Get.context!.loaderOverlay.hide();
+      context.loaderOverlay.hide();
     }
   }
-*/
 
   @override
   void onClose() {
