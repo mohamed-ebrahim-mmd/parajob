@@ -79,7 +79,7 @@ class MainNavigatorScreen extends StatelessWidget {
                 selectedIcon: SvgPicture.asset(
                   AppAssetPaths.selectedJobsAppNavIcon,
                 ),
-                label: 'Favorites',
+                label: 'Jobs',
               ),
               NavigationDestination(
                 icon: SvgPicture.asset(
@@ -88,7 +88,7 @@ class MainNavigatorScreen extends StatelessWidget {
                 selectedIcon: SvgPicture.asset(
                   AppAssetPaths.selectedNotificationsAppNavIcon,
                 ),
-                label: 'Categories',
+                label: 'Notifications',
               ),
               NavigationDestination(
                 icon: Icon(Icons.person_outline, size: context.hPct(4)),

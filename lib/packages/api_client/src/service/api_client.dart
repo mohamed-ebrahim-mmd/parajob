@@ -18,6 +18,14 @@ abstract class ApiClient {
   @GET("/api/job/{id}")
   Future<JobDetailsResponse> fetchJobDetails(@Path("id") int id);
 
+  @GET("/api/user/jobs")
+  Future<MyJobsResponse> fetchMyJobs({
+    @Header('Authorization') required String token,
+    @Query('filter[status]') String? status,
+    @Query('page') int? page,
+    @Query('per_page') int? perPage,
+  });
+
   @POST("/api/user/login")
   Future<LoginWithMailResponse> loginWithMail(
     @Body() LoginWithMailRequest request,
