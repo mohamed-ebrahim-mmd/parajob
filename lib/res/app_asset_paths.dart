@@ -37,9 +37,17 @@ abstract final class AppAssetPaths {
   ///  ForgetPassword Icon
   static const backBtnIcon = "assets/icons/back_btn_icon.svg";
 
-  ///  Registration 
-  static const nationalID="assets/images/national_id.png";
-  static const checkIcon="assets/icons/check.svg";
-  static const userWithID="assets/images/user_with_id.png";
-  static const cvUploadImg="assets/images/upload.png";
+  ///  Registration
+  static const nationalID = "assets/images/national_id.png";
+  static const checkIcon = "assets/icons/check.svg";
+  static const userWithID = "assets/images/user_with_id.png";
+  static const cvUploadImg = "assets/images/upload.png";
+
+  ////////
+  //job details
+  static const clocks = "assets/icons/clock.svg";
+  static const location = "assets/icons/location.svg";
+  static const money = "assets/icons/money.svg";
+  static const calender = "assets/icons/calendar.svg";
+  static const company = "assets/icons/company.svg";
 }

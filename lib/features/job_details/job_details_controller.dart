@@ -1,13 +1,13 @@
-
 import 'dart:developer';
 
 import 'package:get/get.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
+
 class JobDetailsController extends GetxController {
   var jobDetailsCallState = ApiCallState.loading.obs;
   JobDetailsResponse? jobData;
   final int jobId;
-   JobDetailsController(this.jobId);
+  JobDetailsController(this.jobId);
 
   @override
   void onInit() {
@@ -27,8 +27,7 @@ class JobDetailsController extends GetxController {
         jobData = response;
 
         jobDetailsCallState.value = ApiCallState.success;
-      }
-      else {
+      } else {
         jobDetailsCallState.value = ApiCallState.failure;
       }
     } catch (e) {

@@ -68,7 +68,8 @@ class HotJobsMiniList extends StatelessWidget {
               itemBuilder: (context, index) {
                 var job =jobs[index];
                 return 
-               HotJobCard(job:job ,onTap: () {
+               HotJobCard(job:job ,onTap: (
+                   ) {
                 Get.toNamed(Routes.jobDetails,
                 arguments: job.id,
                 );

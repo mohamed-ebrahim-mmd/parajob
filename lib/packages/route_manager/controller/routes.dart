@@ -14,6 +14,7 @@ import 'package:para_job/features/home/flexible_jobs/flexible_jobs_screen.dart';
 import 'package:para_job/features/home/hot_jobs/hot_jobs_screen.dart';
 import 'package:para_job/features/home/non_flexible_jobs_screen/non_flexible_jobs_screen.dart';
 import 'package:para_job/features/home/search_job/search_job_screen.dart';
+import 'package:para_job/features/job_details/job_details_screen.dart';
 import 'package:para_job/features/main_navigator/main_navigator_screen.dart';
 import 'package:para_job/features/onboarding/onboarding_screen.dart';
 import 'package:para_job/features/registration/back_national_id/back_national_id_screen.dart';
@@ -169,6 +170,7 @@ class AppPages {
       ],
     ),
     GetPage(name: Routes.createAccount, page: () => CreateAccountScreen()),
+    GetPage(name: Routes.jobDetails, page: () => JobDetailsScreen()),
     GetPage(
       name: Routes.mainNavigator,
       page: () => MainNavigatorScreen(),

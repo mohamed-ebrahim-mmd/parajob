@@ -1,70 +1,185 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:para_job/features/job_details/job_details_controller.dart';
+import 'package:para_job/features/job_details/widgets/custom_container_job_detail.dart';
+import 'package:para_job/features/job_details/widgets/custom_image_shadow.dart';
+import 'package:para_job/features/job_details/widgets/job_content.dart'
+    show JobContent;
+import 'package:para_job/features/job_details/widgets/job_skill_item.dart';
 import 'package:para_job/packages/api_client/src/service/api_call_state_enum.dart';
+import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/packages/ui_components/error_screen.dart';
+import 'package:para_job/res/app_asset_paths.dart';
 
 class JobDetailsScreen extends StatelessWidget {
-    final job = Get.arguments as int;
-    late final controller = Get.put(JobDetailsController(job));
-    JobDetailsScreen({super.key,});
+  final jobId = Get.arguments as int;
+  late final controller = Get.put(JobDetailsController(jobId));
+  JobDetailsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      body:Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
+      body: Obx(() {
+        switch (controller.jobDetailsCallState.value) {
+          case ApiCallState.loading:
+            return Center(child: CircularProgressIndicator());
+          case ApiCallState.success:
+            final jobDetails = controller.jobData!.data;
 
+            return SingleChildScrollView(
+              child: Column(
+                //  crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
 
-              
-              Obx(() {
-
-             
-
-                
-                switch (controller.jobDetailsCallState.value) {
-                  case ApiCallState.loading:
-                    return Container(
-                      alignment: Alignment.center,
-                      height: context.hPct(60),
-                      child: CircularProgressIndicator(),
-                    );
-                  case ApiCallState.success:
-                    final jobDetails = controller.jobData!.data;
-                   
-                    return Column(
+                children: [
+                  CurvedImageWithShadow(
+                    imageUrl: jobDetails.logo,
+                    height: context.hPct(40),
+                    shadowColor: const Color(0xFF00CBB8),
+                    child: JobContent(
+                      jobDetails: jobDetails,
+                    ), // your aquaTeal color for soft tone
+                  ),
+                  context.hBox(4),
+                  Padding(
+                    padding: EdgeInsetsGeometry.symmetric(
+                      horizontal: context.wPct(4),
+                    ),
+                    //company
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-
                       children: [
-                      Text(jobDetails.title),
-                       Text(jobDetails.requirements),
-                       Text(jobDetails.type)
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: CustomContainerJobDetail(
+                                text: jobDetails.monthlySalary,
+                                iconPath: AppAssetPaths.money,
+                              ),
+                            ),
+                            context.wBox(5),
+                            Expanded(
+                              child: CustomContainerJobDetail(
+                                text: jobDetails.type,
+                                iconPath: AppAssetPaths.company,
+                              ),
+                            ),
+                          ],
+                        ),
+                        context.hBox(3),
+                        // time
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: CustomContainerJobDetail(
+                                text: jobDetails.startDate,
+                                iconPath: AppAssetPaths.calender,
+                              ),
+                            ),
+                            context.wBox(5),
+                            Expanded(
+                              child: CustomContainerJobDetail(
+                                text:
+                                    "${jobDetails.from ?? "-"} - ${jobDetails.to ?? "-"}",
+                                iconPath: AppAssetPaths.clocks,
+                              ),
+                            ),
+                          ],
+                        ),
+                        context.hBox(3),
+                        //location
+                        CustomContainerJobDetail(
+                          text: jobDetails.location,
+                          iconPath: AppAssetPaths.location,
+                        ),
+                        //description
+                        context.hBox(3),
+                        Text(
+                          'Description',
+                          style: TextStyle(
+                            color: AppColors.pureWhite,
+                            fontSize: context.wPct(5),
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        context.hBox(3),
+                        Text(
+                          jobDetails.description,
+                          style: TextStyle(
+                            color: AppColors.softWhite80,
+                            fontSize: context.wPct(4),
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+
+                        //requirements
+                        context.hBox(3),
+                        Text(
+                          'Requirements',
+                          style: TextStyle(
+                            color: AppColors.pureWhite,
+                            fontSize: context.wPct(5),
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        context.hBox(3),
+                        Text(
+                          jobDetails.requirements,
+                          style: TextStyle(
+                            color: AppColors.softWhite80,
+                            fontSize: context.wPct(4),
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                        // required skills
+                        context.hBox(3),
+                        Text(
+                          'Required Skills',
+                          style: TextStyle(
+                            color: AppColors.pureWhite,
+                            fontSize: context.wPct(5),
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        context.hBox(3),
+                        Wrap(
+                          spacing: context.wPct(3),
+                          runSpacing: context.wPct(3),
+                          children: jobDetails.skills
+                              .map((skill) => JobSkillItem(skill: skill))
+                              .toList(),
+                        ),
+
+                        context.hBox(4),
+                        FilledButton(
+                          onPressed: () {
+                            // Get.toNamed(
+                            //   "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}${Routes.createAccountBackID}${Routes.createAccountPicWithID}${Routes.educationInfo}${Routes.educationPic}${Routes.createAccountSkills}${Routes.createAccountCv}",
+                            // );
+                          },
+                          child: Text("Apply for this job"),
+                        ),
+                        context.hBox(4),
                       ],
-                    );
-                  case ApiCallState.failure:
-                    return ErrorScreen(
-                      height: context.hPct(60),
-                      onPressed: () {
-                        controller.fetchJobDetails(56);
-                      },
-                    );
-                }
-             
-             
-
-
-              }),
-           
-           
-           
-          
-        ],
-        
-      ) ,
+                    ),
+                  ),
+                ],
+              ),
+            );
+          case ApiCallState.failure:
+            return Center(
+              child: ErrorScreen(
+                height: context.hPct(60),
+                onPressed: () {
+                  controller.fetchJobDetails(jobId);
+                },
+              ),
+            );
+        }
+      }),
     );
   }
 }

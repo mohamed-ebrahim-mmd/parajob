@@ -1,0 +1,66 @@
+/*
+ Mohamed Ebrahim | mohamed7ebrahim7@gmail.com | 2025-10-21 4:03 PM
+ ==================================================================
+*/
+import 'package:flutter/material.dart';
+import 'package:para_job/packages/api_client/src/models/responses/job_data.dart'
+    show JobData;
+import 'package:para_job/packages/themeing/app_colors.dart';
+import 'package:para_job/packages/themeing/media_query_values.dart';
+
+class JobContent extends StatelessWidget {
+  const JobContent({super.key, required this.jobDetails});
+
+  final JobData jobDetails;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        context.hBox(4),
+        Row(
+          children: [
+            IconButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              icon: Icon(Icons.arrow_back_ios_new),
+            ),
+            const Spacer(),
+            IconButton(onPressed: () {}, icon: Icon(Icons.share)),
+            IconButton(onPressed: () {}, icon: Icon(Icons.more_vert)),
+          ],
+        ),
+        context.hBox(2),
+        Text(
+          jobDetails.title,
+          style: TextStyle(
+            color: AppColors.pureWhite,
+            fontSize: context.wPct(8),
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        context.hBox(2),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CircleAvatar(
+              radius: context.wPct(5),
+              backgroundImage: NetworkImage(jobDetails.company.logo ?? ""),
+            ),
+
+            context.wBox(2),
+            Text(
+              jobDetails.company.name ?? "",
+              style: TextStyle(
+                color: AppColors.pureWhite,
+                fontSize: context.wPct(4),
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}

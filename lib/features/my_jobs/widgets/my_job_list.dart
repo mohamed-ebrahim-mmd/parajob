@@ -49,8 +49,6 @@ class _MyJobsListState extends State<MyJobsList> {
 
   @override
   Widget build(BuildContext context) {
-    ;
-
     return PagingListener(
       controller: pagingController,
       builder: (context, state, fetchNextPage) {
