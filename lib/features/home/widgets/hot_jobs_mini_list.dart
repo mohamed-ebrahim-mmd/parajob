@@ -3,8 +3,11 @@
  ==================================================================
 */
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:para_job/features/home/widgets/hot_jobs_cards.dart';
 import 'package:para_job/packages/api_client/src/models/responses/job.dart';
+import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
@@ -63,9 +66,13 @@ class HotJobsMiniList extends StatelessWidget {
               itemCount: jobs.length,
               separatorBuilder: (_, __) => context.wBox(3),
               itemBuilder: (context, index) {
+                var job =jobs[index];
                 return 
-                //Text("data");
-               HotJobCard(job: jobs[index]);
+               HotJobCard(job:job ,onTap: () {
+                Get.toNamed(Routes.jobDetails,
+                arguments: job.id,
+                );
+               },);
               },
             ),
           ),

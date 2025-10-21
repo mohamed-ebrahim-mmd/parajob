@@ -12,6 +12,9 @@ abstract class ApiClient {
   @GET("/api/user/home")
   Future<HomeResponse> fetchHomeJobs();
 
+@GET("/api/job/{id}")
+Future<JobDetailsResponse> fetchJobDetails(@Path("id") int id);
+
   @POST("/api/user/login")
   Future<LoginWithMailResponse> loginWithMail(
     @Body() LoginWithMailRequest request,

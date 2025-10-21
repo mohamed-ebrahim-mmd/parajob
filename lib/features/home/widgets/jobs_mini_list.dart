@@ -3,8 +3,11 @@
  ==================================================================
 */
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:para_job/features/home/widgets/job_card.dart';
 import 'package:para_job/packages/api_client/src/models/responses/job.dart';
+import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
@@ -58,7 +61,14 @@ class JobsMiniList extends StatelessWidget {
           separatorBuilder: (_, __) => context.hBox(3),
           itemBuilder: (context, index) {
             final job =  jobs[index];
-            return JobCard(job: job);
+            return JobCard(job: job,
+            onTap: () {
+             Get.toNamed(Routes.jobDetails,
+              arguments: job.id,);
+
+            },
+            
+            );
           },
         ),
       ],

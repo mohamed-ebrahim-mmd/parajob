@@ -5,8 +5,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/home/home_controller.dart';
-import 'package:para_job/features/home/widgets/hot_jobs_mini_list.dart';
 import 'package:para_job/features/home/widgets/jobs_mini_list.dart';
+import 'package:para_job/features/home/widgets/hot_jobs_mini_list.dart';
 import 'package:para_job/packages/api_client/src/service/api_call_state_enum.dart'
     show ApiCallState;
 import 'package:para_job/packages/route_manager/controller/routes.dart';
@@ -125,6 +125,9 @@ class HomeScreen extends StatelessWidget {
                     );
                 }
               }),
+
+
+
             ],
           ),
         ),

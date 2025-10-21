@@ -14,6 +14,10 @@ import 'package:para_job/features/home/flexible_jobs/flexible_jobs_screen.dart';
 import 'package:para_job/features/home/hot_jobs/hot_jobs_screen.dart';
 import 'package:para_job/features/home/non_flexible_jobs_screen/non_flexible_jobs_screen.dart';
 import 'package:para_job/features/home/search_job/search_job_screen.dart';
+import 'package:para_job/features/home/flexible_job_screen.dart';
+import 'package:para_job/features/home/hot_jobs_screen.dart';
+import 'package:para_job/features/home/non_flexible_job_screen.dart';
+import 'package:para_job/features/job_details/job_details_screen.dart';
 import 'package:para_job/features/main_navigator/main_navigator_screen.dart';
 import 'package:para_job/features/onboarding/onboarding_screen.dart';
 import 'package:para_job/features/registration/back_national_id/back_national_id_screen.dart';
@@ -51,6 +55,7 @@ class Routes {
   static const String hotJobs = '/hot_job';
   static const String flexibleJobs = '/flex_job';
   static const String nonFlexibleJobs = '/non_flex_job';
+  static const String jobDetails = '/job_details';
 }
 
 class AppPages {
@@ -69,40 +74,26 @@ class AppPages {
               return AppLoader();
             },
           ),
+        ),
+      ],
+    ),
+    GetPage(
+      name: Routes.forgotPassword,
+      page: () => LoaderOverlay(
+        child: ForgotPasswordScreen(),
+        overlayWidgetBuilder: (_) {
+          //ignored progress for the moment
+          return AppLoader();
+        },
+      ),
+      children: [
+        GetPage(
+          name: Routes.forgotPasswordOTP,
+          page: () => ForgotPasswordOtpScreen(),
           children: [
             GetPage(
-              name: Routes.forgotPassword,
-              page: () => LoaderOverlay(
-                child: ForgotPasswordScreen(),
-                overlayWidgetBuilder: (_) {
-                  //ignored progress for the moment
-                  return AppLoader();
-                },
-              ),
-              children: [
-                GetPage(
-                  name: Routes.forgotPasswordOTP,
-                  page: () => LoaderOverlay(
-                    child: ForgotPasswordOtpScreen(),
-                    overlayWidgetBuilder: (_) {
-                      //ignored progress for the moment
-                      return AppLoader();
-                    },
-                  ),
-                  children: [
-                    GetPage(
-                      name: Routes.setNewPassword,
-                      page: () => LoaderOverlay(
-                        child: SetNewPasswordScreen(),
-                        overlayWidgetBuilder: (_) {
-                          //ignored progress for the moment
-                          return AppLoader();
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+              name: Routes.setNewPassword,
+              page: () => SetNewPasswordScreen(),
             ),
           ],
         ),
@@ -173,6 +164,12 @@ class AppPages {
       children: [
         /// screens that's under the home tab
         GetPage(name: Routes.hotJobs, page: () => HotJobsScreen()),
+        GetPage(name: Routes.flexibleJobs, page: () => FlexibleJobScreen()),
+        GetPage(
+          name: Routes.nonFlexibleJobs,
+          page: () => NonFlexibleJobScreen(),
+        ),
+        GetPage(name: Routes.hotJobs, page: () => HotJobsScreen()),
         GetPage(name: Routes.flexibleJobs, page: () => FlexibleJobsScreen()),
         GetPage(
           name: Routes.nonFlexibleJobs,
@@ -181,5 +178,7 @@ class AppPages {
         GetPage(name: Routes.searchJob, page: () => SearchJobScreen()),
       ],
     ),
+
+    
   ];
 }
