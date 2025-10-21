@@ -5,8 +5,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/home/home_controller.dart';
-import 'package:para_job/features/home/widgets/jobs_mini_list.dart';
 import 'package:para_job/features/home/widgets/hot_jobs_mini_list.dart';
+import 'package:para_job/features/home/widgets/jobs_mini_list.dart';
 import 'package:para_job/packages/api_client/src/service/api_call_state_enum.dart'
     show ApiCallState;
 import 'package:para_job/packages/route_manager/controller/routes.dart';
@@ -76,14 +76,13 @@ class HomeScreen extends StatelessWidget {
                     );
                   case ApiCallState.success:
                     final hotJobsList = controller.homeData!.data.first.hotJobs;
-                    final nonFlexableJobs =
+                    final nonFlexibleJobs =
                         controller.homeData!.data.first.nonFlexibleJobs;
 
                     final flexibleJobsList =
                         controller.homeData!.data.first.flexibleJobs;
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-
                       children: [
                         HotJobsMiniList(
                           jobs: hotJobsList,
@@ -105,7 +104,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                         context.hBox(2),
                         JobsMiniList(
-                          jobs: nonFlexableJobs,
+                          jobs: nonFlexibleJobs,
                           title: "Non-Flexible Jobs",
                           onSeeAll: () {
                             Get.toNamed(
@@ -125,9 +124,6 @@ class HomeScreen extends StatelessWidget {
                     );
                 }
               }),
-
-
-
             ],
           ),
         ),

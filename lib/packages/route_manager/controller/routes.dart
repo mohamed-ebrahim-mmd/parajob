@@ -14,10 +14,6 @@ import 'package:para_job/features/home/flexible_jobs/flexible_jobs_screen.dart';
 import 'package:para_job/features/home/hot_jobs/hot_jobs_screen.dart';
 import 'package:para_job/features/home/non_flexible_jobs_screen/non_flexible_jobs_screen.dart';
 import 'package:para_job/features/home/search_job/search_job_screen.dart';
-import 'package:para_job/features/home/flexible_job_screen.dart';
-import 'package:para_job/features/home/hot_jobs_screen.dart';
-import 'package:para_job/features/home/non_flexible_job_screen.dart';
-import 'package:para_job/features/job_details/job_details_screen.dart';
 import 'package:para_job/features/main_navigator/main_navigator_screen.dart';
 import 'package:para_job/features/onboarding/onboarding_screen.dart';
 import 'package:para_job/features/registration/back_national_id/back_national_id_screen.dart';
@@ -164,10 +160,10 @@ class AppPages {
       children: [
         /// screens that's under the home tab
         GetPage(name: Routes.hotJobs, page: () => HotJobsScreen()),
-        GetPage(name: Routes.flexibleJobs, page: () => FlexibleJobScreen()),
+        GetPage(name: Routes.flexibleJobs, page: () => FlexibleJobsScreen()),
         GetPage(
           name: Routes.nonFlexibleJobs,
-          page: () => NonFlexibleJobScreen(),
+          page: () => NonFlexibleJobsScreen(),
         ),
         GetPage(name: Routes.hotJobs, page: () => HotJobsScreen()),
         GetPage(name: Routes.flexibleJobs, page: () => FlexibleJobsScreen()),
@@ -178,7 +174,5 @@ class AppPages {
         GetPage(name: Routes.searchJob, page: () => SearchJobScreen()),
       ],
     ),
-
-    
   ];
 }
