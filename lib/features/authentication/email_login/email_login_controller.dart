@@ -61,7 +61,10 @@ class EmailLoginController extends GetxController {
             " user not completed go to the complete profile screen",
           );
         } else {
-          Get.find<RoutingController>().goHomeAsUser(user!);
+          Get.find<RoutingController>().goHomeAsUser(
+            user!,
+            "Bearer ${loginResponse.data!.token}",
+          );
         }
       } else {
         showSnackBarError("Failed", "${loginResponse.details?.message} ");

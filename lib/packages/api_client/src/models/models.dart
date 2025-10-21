@@ -6,6 +6,7 @@ export './requests/verify_otp_request.dart';
 export './responses/city.dart';
 export './responses/company.dart';
 export './responses/department.dart';
+export './responses/department_response.dart';
 export './responses/home_response.dart';
 export './responses/job.dart';
 export './responses/job_data.dart';
