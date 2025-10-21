@@ -22,4 +22,9 @@ abstract class ApiClient {
 
   @GET("/api/verify/otp")
   Future<VerifyOtpResponse> verifyOtp(@Body() VerifyOtpRequest request);
+
+  @POST("/api/reset/password")
+  Future<ResetPasswordResponse> resetPassword(
+    @Body() ResetPasswordRequest request,
+  );
 }

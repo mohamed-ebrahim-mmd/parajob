@@ -26,18 +26,18 @@ class ForgotPasswordOtpController extends GetxController {
   ForgotPasswordOtpController({required this.phoneNumber});
 
   /// ✅ Validate and proceed with verifying OTP
-  Future<void> verifyOtp() async {
+  Future<void> verifyOtp(BuildContext context) async {
     pinError.value = validatePin(pinController.text);
 
     if (pinError.value == null) {
-      await verifyOtpRequest();
+      await _verifyOtpRequest(context);
     }
   }
 
   /// ✅ API Call (to be implemented when backend endpoint is ready)
-  Future<void> verifyOtpRequest() async {
+  Future<void> _verifyOtpRequest(BuildContext context) async {
     try {
-      Get.context!.loaderOverlay.show();
+      context.loaderOverlay.show();
 
       final response = await apiClient.verifyOtp(
         VerifyOtpRequest(
@@ -50,7 +50,7 @@ class ForgotPasswordOtpController extends GetxController {
         showSnackBarSuccess('Success', response.details?.message ?? '');
         Get.put(SetNewPasswordController(phoneNumber: phoneNumber));
         Get.toNamed(
-          "${Routes.forgotPassword}${Routes.forgotPasswordOTP}${Routes.setNewPassword}",
+          "${Routes.authChoice}${Routes.emailLoginScreen}${Routes.forgotPassword}${Routes.forgotPasswordOTP}${Routes.setNewPassword}",
         );
       } else {
         showSnackBarError(
@@ -61,7 +61,7 @@ class ForgotPasswordOtpController extends GetxController {
     } catch (e) {
       showSnackBarApiError();
     } finally {
-      Get.context!.loaderOverlay.hide();
+      context.loaderOverlay.hide();
     }
   }
 

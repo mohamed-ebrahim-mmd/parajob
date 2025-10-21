@@ -69,32 +69,40 @@ class AppPages {
               return AppLoader();
             },
           ),
-        ),
-      ],
-    ),
-    GetPage(
-      name: Routes.forgotPassword,
-      page: () => LoaderOverlay(
-        child: ForgotPasswordScreen(),
-        overlayWidgetBuilder: (_) {
-          //ignored progress for the moment
-          return AppLoader();
-        },
-      ),
-      children: [
-        GetPage(
-          name: Routes.forgotPasswordOTP,
-          page: () => LoaderOverlay(
-            child: ForgotPasswordOtpScreen(),
-            overlayWidgetBuilder: (_) {
-              //ignored progress for the moment
-              return AppLoader();
-            },
-          ),
           children: [
             GetPage(
-              name: Routes.setNewPassword,
-              page: () => SetNewPasswordScreen(),
+              name: Routes.forgotPassword,
+              page: () => LoaderOverlay(
+                child: ForgotPasswordScreen(),
+                overlayWidgetBuilder: (_) {
+                  //ignored progress for the moment
+                  return AppLoader();
+                },
+              ),
+              children: [
+                GetPage(
+                  name: Routes.forgotPasswordOTP,
+                  page: () => LoaderOverlay(
+                    child: ForgotPasswordOtpScreen(),
+                    overlayWidgetBuilder: (_) {
+                      //ignored progress for the moment
+                      return AppLoader();
+                    },
+                  ),
+                  children: [
+                    GetPage(
+                      name: Routes.setNewPassword,
+                      page: () => LoaderOverlay(
+                        child: SetNewPasswordScreen(),
+                        overlayWidgetBuilder: (_) {
+                          //ignored progress for the moment
+                          return AppLoader();
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ],
         ),

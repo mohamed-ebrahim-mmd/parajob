@@ -3,6 +3,8 @@
  ==================================================================
 */
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
@@ -20,18 +22,18 @@ class ForgotPasswordController extends GetxController {
   var phoneError = RxnString(null);
 
   // Main method to trigger the process
-  Future<void> forgotPassword() async {
+  Future<void> forgotPassword(BuildContext context) async {
     phoneError.value = validateEgyptianPhone(phoneController.text);
 
     if (phoneError.value == null) {
-      await sendForgotPasswordRequest();
+      await sendForgotPasswordRequest(context);
     }
   }
 
   // Send the forgot password request to API
-  Future<void> sendForgotPasswordRequest() async {
+  Future<void> sendForgotPasswordRequest(BuildContext context) async {
     try {
-      Get.context!.loaderOverlay.show();
+      context.loaderOverlay.show();
 
       final response = await apiClient.sendOtp(
         SendOtpRequest(phoneNumber: phoneController.text),
@@ -41,7 +43,9 @@ class ForgotPasswordController extends GetxController {
         showSnackBarSuccess('Success', response.details?.message ?? '');
         //pass the phone number to the otp screen
         Get.put(ForgotPasswordOtpController(phoneNumber: phoneController.text));
-        Get.toNamed("${Routes.forgotPassword}${Routes.forgotPasswordOTP}");
+        Get.toNamed(
+          "${Routes.authChoice}${Routes.emailLoginScreen}${Routes.forgotPassword}${Routes.forgotPasswordOTP}",
+        );
       } else {
         showSnackBarError(
           'Failed',
@@ -49,9 +53,10 @@ class ForgotPasswordController extends GetxController {
         );
       }
     } catch (e) {
+      log("🔴 ${e.toString()}");
       showSnackBarApiError();
     } finally {
-      Get.context!.loaderOverlay.hide();
+      context.loaderOverlay.hide();
     }
   }
 

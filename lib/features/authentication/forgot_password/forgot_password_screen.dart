@@ -70,7 +70,7 @@ class ForgotPasswordScreen extends StatelessWidget {
           vertical: context.hPct(12),
         ),
         child: FilledButton(
-          onPressed: controller.forgotPassword,
+          onPressed: () => controller.forgotPassword(context),
           child: Text("Send"),
         ),
       ),

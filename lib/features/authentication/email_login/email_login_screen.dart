@@ -69,7 +69,9 @@ class EmailLoginScreen extends StatelessWidget {
                 alignment: Alignment.topRight,
                 child: GestureDetector(
                   onTap: () {
-                    Get.toNamed(Routes.forgotPassword);
+                    Get.toNamed(
+                      "${Routes.authChoice}${Routes.emailLoginScreen}${Routes.forgotPassword}",
+                    );
                   },
                   child: Text(
                     "Forgot Password?",
@@ -131,10 +133,6 @@ class EmailLoginScreen extends StatelessWidget {
           ],
         ),
       ),
-   
-   
-   
-   
     );
   }
 }

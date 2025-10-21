@@ -105,7 +105,7 @@ class ForgotPasswordOtpScreen extends StatelessWidget {
             children: [
               FilledButton(
                 onPressed: () {
-                  controller.verifyOtp();
+                  controller.verifyOtp(context);
                 },
                 child: Text("Verify"),
               ),

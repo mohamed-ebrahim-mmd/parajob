@@ -44,22 +44,30 @@ class SetNewPasswordScreen extends StatelessWidget {
                   ),
                 ),
                 context.hBox(6),
-                TextField(
-                  decoration: InputDecoration(
-                    hintText: "Enter your new password",
-                  ),
-                  keyboardType: TextInputType.visiblePassword,
-                  obscureText: true,
-                  textInputAction: TextInputAction.next,
-                ),
+                Obx(() {
+                  return TextField(
+                    controller: controller.passwordController,
+                    decoration: InputDecoration(
+                      hintText: "Enter your new password",
+                      errorText: controller.passwordError.value,
+                    ),
+                    keyboardType: TextInputType.visiblePassword,
+                    obscureText: true,
+                    textInputAction: TextInputAction.next,
+                  );
+                }),
                 context.hBox(1.5),
-                TextField(
-                  decoration: InputDecoration(
-                    hintText: "Confirm your new Password",
-                  ),
-                  obscureText: true,
-                  textInputAction: TextInputAction.done,
-                ),
+                Obx(() {
+                  return TextField(
+                    controller: controller.confirmPasswordController,
+                    decoration: InputDecoration(
+                      errorText: controller.confirmPasswordError.value,
+                      hintText: "Confirm your new Password",
+                    ),
+                    obscureText: true,
+                    textInputAction: TextInputAction.done,
+                  );
+                }),
               ],
             ),
           ),
@@ -71,6 +79,7 @@ class SetNewPasswordScreen extends StatelessWidget {
           ),
           child: FilledButton(
             onPressed: () {
+              controller.validateAndSubmit(context);
               // Get.toNamed("${Routes.forgotPassword}${Routes.forgotPasswordOTP}");
             },
             child: Text("Confirm"),
