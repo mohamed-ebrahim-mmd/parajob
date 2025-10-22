@@ -6,6 +6,7 @@ import 'package:para_job/features/home/widgets/department_chips.dart';
 import 'package:para_job/features/home/widgets/job_card.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
 import 'package:para_job/packages/api_client/src/enums/job_category_enum.dart';
+import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/packages/ui_components/error_screen.dart'
@@ -84,7 +85,15 @@ class JobsScreen extends StatelessWidget {
                                           padding: EdgeInsets.symmetric(
                                             vertical: context.hPct(1),
                                           ),
-                                          child: JobCard(job: item),
+                                          child: JobCard(
+                                            job: item,
+                                            onTap: () {
+                                              Get.toNamed(
+                                                Routes.jobDetails,
+                                                arguments: item.id,
+                                              );
+                                            },
+                                          ),
                                         ),
                                   ),
                                 ),
