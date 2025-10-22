@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:para_job/packages/api_client/src/models/responses/job.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 

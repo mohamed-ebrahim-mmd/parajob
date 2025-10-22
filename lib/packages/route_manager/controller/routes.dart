@@ -10,6 +10,7 @@ import 'package:para_job/features/authentication/email_login/email_login_screen.
 import 'package:para_job/features/authentication/forgot_password/forgot_password_screen.dart';
 import 'package:para_job/features/authentication/forgot_password_otp/forgot_password_otp_screen.dart';
 import 'package:para_job/features/authentication/set_new_password/set_new_password_screen.dart';
+import 'package:para_job/features/employer/employer_screen.dart';
 import 'package:para_job/features/home/flexible_jobs/flexible_jobs_screen.dart';
 import 'package:para_job/features/home/hot_jobs/hot_jobs_screen.dart';
 import 'package:para_job/features/home/non_flexible_jobs_screen/non_flexible_jobs_screen.dart';
@@ -52,6 +53,7 @@ class Routes {
   static const String hotJobs = '/hot_job';
   static const String flexibleJobs = '/flex_job';
   static const String nonFlexibleJobs = '/non_flex_job';
+  static const String employer = '/employer';
   static const String jobDetails = '/job_details';
 }
 
@@ -171,6 +173,7 @@ class AppPages {
     ),
     GetPage(name: Routes.createAccount, page: () => CreateAccountScreen()),
     GetPage(name: Routes.jobDetails, page: () => JobDetailsScreen()),
+    GetPage(name: Routes.employer, page: () => EmployerScreen()),
     GetPage(
       name: Routes.mainNavigator,
       page: () => MainNavigatorScreen(),

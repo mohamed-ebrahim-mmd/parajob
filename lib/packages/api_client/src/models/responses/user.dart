@@ -1,7 +1,3 @@
-/*
- Mohamed Ebrahim | mohamed7ebrahim7@gmail.com | 2025-10-19 9:42 AM
- ==================================================================
-*/
 class User {
   final int? id;
   final String? name;
