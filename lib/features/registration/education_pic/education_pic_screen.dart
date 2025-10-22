@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:para_job/features/registration/widgets/register_img_picker.dart';
 import 'package:para_job/features/registration/widgets/registration_note.dart';
 import 'package:para_job/features/registration/widgets/stepper.dart';

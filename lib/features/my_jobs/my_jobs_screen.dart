@@ -4,7 +4,7 @@ import 'package:para_job/packages/themeing/media_query_values.dart';
 import '../../packages/themeing/app_colors.dart';
 
 class MyJobsScreen extends StatelessWidget {
-  MyJobsScreen({super.key});
+  const MyJobsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

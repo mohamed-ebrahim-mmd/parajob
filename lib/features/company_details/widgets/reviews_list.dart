@@ -1,28 +1,20 @@
-/*
- Mohamed Ebrahim | mohamed7ebrahim7@gmail.com | 2025-10-16 10:52 AM
- ==================================================================
-*/
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:para_job/features/home/widgets/job_card.dart';
-import 'package:para_job/packages/api_client/src/models/responses/job.dart';
-import 'package:para_job/packages/route_manager/controller/routes.dart';
+import 'package:para_job/features/company_details/widgets/review_item.dart';
+
+import 'package:para_job/packages/api_client/src/models/models.dart';
+
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
-class JobsMiniList extends StatelessWidget {
-  final List<Job> jobs;
+class ReviewsList extends StatelessWidget {
+  final List<LatestReview> reviews;
   final VoidCallback? onSeeAll;
-  final String title;
 
-  const JobsMiniList({super.key, required this.jobs, this.onSeeAll, required this.title});
+  const ReviewsList({super.key, required this.reviews, this.onSeeAll});
 
   @override
   Widget build(BuildContext context) {
-    return
-    
-    
-     Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -31,7 +23,7 @@ class JobsMiniList extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              title,
+              "Reviews",
               style: TextStyle(
                 fontSize: context.wPct(4.5),
                 fontWeight: FontWeight.bold,
@@ -56,24 +48,20 @@ class JobsMiniList extends StatelessWidget {
           shrinkWrap: true,
           primary: false,
           physics: const NeverScrollableScrollPhysics(),
-          itemCount: jobs.length,
+          itemCount: reviews.length,
           separatorBuilder: (_, __) => context.hBox(3),
           itemBuilder: (context, index) {
-            final job =  jobs[index];
-            return JobCard(job: job,
-            onTap: () {
-             Get.toNamed(Routes.jobDetails,
-              arguments: job.id,);
-
-            },
-            
+            final review = reviews[index];
+            return ReviewItem(
+              latestReview: review,
+              // onTap: () {
+              //  Get.toNamed(Routes.jobDetails,
+              //   arguments: job.id,);
+              // },
             );
           },
         ),
       ],
     );
- 
- 
- 
   }
 }

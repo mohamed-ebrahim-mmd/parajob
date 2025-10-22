@@ -9,15 +9,17 @@ import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
 class JobContent extends StatelessWidget {
-  const JobContent({super.key, required this.jobDetails});
+  const JobContent({super.key, required this.jobDetails, this.onCompanyTap});
 
   final JobData jobDetails;
+  final VoidCallback? onCompanyTap;
+
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        context.hBox(4),
+        // context.hBox(4),
         Row(
           children: [
             IconButton(
@@ -31,7 +33,7 @@ class JobContent extends StatelessWidget {
             IconButton(onPressed: () {}, icon: Icon(Icons.more_vert)),
           ],
         ),
-        context.hBox(2),
+         context.hBox(2),
         Text(
           jobDetails.title,
           style: TextStyle(
@@ -50,16 +52,23 @@ class JobContent extends StatelessWidget {
             ),
 
             context.wBox(2),
-            Text(
-              jobDetails.company.name ?? "",
-              style: TextStyle(
-                color: AppColors.pureWhite,
-                fontSize: context.wPct(4),
-                fontWeight: FontWeight.w500,
+            GestureDetector(
+              onTap: onCompanyTap,
+             
+              child: Text(
+                jobDetails.company.name ?? "",
+                style: TextStyle(
+                  color: AppColors.pureWhite,
+                  fontSize: context.wPct(4),
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
           ],
         ),
+     
+     
+     
       ],
     );
   }

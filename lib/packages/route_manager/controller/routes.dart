@@ -10,7 +10,10 @@ import 'package:para_job/features/authentication/email_login/email_login_screen.
 import 'package:para_job/features/authentication/forgot_password/forgot_password_screen.dart';
 import 'package:para_job/features/authentication/forgot_password_otp/forgot_password_otp_screen.dart';
 import 'package:para_job/features/authentication/set_new_password/set_new_password_screen.dart';
-import 'package:para_job/features/home/jobs/jobs_screen.dart';
+import 'package:para_job/features/company_details/company_details_screen.dart';
+import 'package:para_job/features/home/flexible_jobs/flexible_jobs_screen.dart';
+import 'package:para_job/features/home/hot_jobs/hot_jobs_screen.dart';
+import 'package:para_job/features/home/non_flexible_jobs_screen/non_flexible_jobs_screen.dart';
 import 'package:para_job/features/home/search_job/search_job_screen.dart';
 import 'package:para_job/features/job_details/job_details_screen.dart';
 import 'package:para_job/features/main_navigator/main_navigator_screen.dart';
@@ -49,6 +52,7 @@ class Routes {
   static const String createAccountCv = '/create-account-cv';
   static const String jobs = '/jobs';
   static const String jobDetails = '/job_details';
+  static const String companyDetails = '/company_details';
 }
 
 class AppPages {
@@ -165,6 +169,8 @@ class AppPages {
         ),
       ],
     ),
+    //CompanyDetailsScreen
+    GetPage(name: Routes.companyDetails, page: () => CompanyDetailsScreen()),
     GetPage(name: Routes.createAccount, page: () => CreateAccountScreen()),
     GetPage(name: Routes.jobDetails, page: () => JobDetailsScreen()),
     GetPage(
