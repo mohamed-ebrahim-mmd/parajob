@@ -1,26 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
+import 'package:para_job/features/company_details/company_details_controller.dart';
 import 'package:para_job/features/company_details/widgets/active_job_list.dart';
-import 'package:para_job/features/company_details/widgets/curved_image.dart';
 import 'package:para_job/features/company_details/widgets/custom_container_company_details.dart';
 import 'package:para_job/features/company_details/widgets/custom_gradient_progress.dart';
 import 'package:para_job/features/company_details/widgets/reviews_list.dart';
-import 'package:para_job/packages/api_client/src/service/api_call_state_enum.dart';
-import 'package:para_job/features/company_details/company_details_controller.dart';
+import 'package:para_job/packages/api_client/src/enums/api_call_state_enum.dart'
+    show ApiCallState;
 import 'package:para_job/packages/themeing/app_colors.dart';
-import 'package:para_job/packages/ui_components/error_screen.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
+import 'package:para_job/packages/ui_components/curved_image.dart';
+import 'package:para_job/packages/ui_components/error_screen.dart';
 
 class CompanyDetailsScreen extends StatelessWidget {
-   CompanyDetailsScreen({super.key});
+  CompanyDetailsScreen({super.key});
 
-    final combId = Get.arguments as int;
+  final combId = Get.arguments as int;
   late final controller = Get.put(CompanyDetailsController(combId));
 
   @override
   Widget build(BuildContext context) {
-   // final controller = Get.put(CompanyDetailsController(2));
+    // final controller = Get.put(CompanyDetailsController(2));
 
     return Scaffold(
       body: Center(
@@ -35,21 +36,27 @@ class CompanyDetailsScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     // Company Logo
-                    if (company.logo != null)
-                      CurvedHeaderWithGlow(
-                        imageUrl: company.logo!,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children:  [
-                            IconButton(onPressed: () {
+                    CurvedHeaderWithGlow(
+                      imageUrl: company.logo!,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          IconButton(
+                            onPressed: () {
                               Get.back();
-                            }, icon:  Icon(Icons.arrow_back_ios_new, color: Colors.white),),
-                            IconButton(onPressed: (){}, icon:  Icon(Icons.more_vert, color: Colors.white),)
-                           
-                           
-                          ],
-                        ),
+                            },
+                            icon: Icon(
+                              Icons.arrow_back_ios_new,
+                              color: Colors.white,
+                            ),
+                          ),
+                          IconButton(
+                            onPressed: () {},
+                            icon: Icon(Icons.more_vert, color: Colors.white),
+                          ),
+                        ],
                       ),
+                    ),
                     Padding(
                       padding: EdgeInsets.symmetric(
                         horizontal: context.wPct(5),
@@ -75,7 +82,7 @@ class CompanyDetailsScreen extends StatelessWidget {
                           Text(
                             company.industry ?? "-",
                             style: TextStyle(
-                              color: AppColors.pureWhite.withOpacity(0.5),
+                              color: AppColors.softWhite70,
                               fontSize: context.wPct(5),
                               fontWeight: FontWeight.w700,
                             ),
@@ -100,7 +107,7 @@ class CompanyDetailsScreen extends StatelessWidget {
                                 itemBuilder: (context, index) =>
                                     Icon(Icons.star, color: AppColors.aquaTeal),
                                 itemCount: 5,
-                                itemSize: 30.0,
+                                itemSize: context.hPct(2),
                                 direction: Axis.horizontal,
                               ),
                             ],
@@ -211,6 +218,7 @@ class CompanyDetailsScreen extends StatelessWidget {
                           ),
 
                           ReviewsList(reviews: company.latestReviews ?? []),
+                          context.hBox(2),
                         ],
                       ),
                     ),
@@ -219,11 +227,12 @@ class CompanyDetailsScreen extends StatelessWidget {
               );
 
             case ApiCallState.failure:
-              return ErrorScreen(
-                height: context.hPct(60),
-                onPressed: () {
-                  controller.fetchCompDetails(1);
-                },
+              return Center(
+                child: ErrorScreen(
+                  onPressed: () {
+                    controller.fetchCompDetails(combId);
+                  },
+                ),
               );
           }
         }),
@@ -231,15 +240,3 @@ class CompanyDetailsScreen extends StatelessWidget {
     );
   }
 }
-
-//////////////////
-///
-///
-///
-///
-/////////////////////////////
-///////////////////////
-//////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////
-///

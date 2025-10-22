@@ -14,7 +14,6 @@ class JobContent extends StatelessWidget {
   final JobData jobDetails;
   final VoidCallback? onCompanyTap;
 
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -33,9 +32,11 @@ class JobContent extends StatelessWidget {
             IconButton(onPressed: () {}, icon: Icon(Icons.more_vert)),
           ],
         ),
-         context.hBox(2),
+        context.hBox(2),
         Text(
           jobDetails.title,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
           style: TextStyle(
             color: AppColors.pureWhite,
             fontSize: context.wPct(8),
@@ -43,19 +44,19 @@ class JobContent extends StatelessWidget {
           ),
         ),
         context.hBox(2),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CircleAvatar(
-              radius: context.wPct(5),
-              backgroundImage: NetworkImage(jobDetails.company.logo ?? ""),
-            ),
+        GestureDetector(
+          onTap: onCompanyTap,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CircleAvatar(
+                radius: context.wPct(5),
+                backgroundColor: AppColors.softWhite70,
+                backgroundImage: NetworkImage(jobDetails.company.logo ?? ""),
+              ),
 
-            context.wBox(2),
-            GestureDetector(
-              onTap: onCompanyTap,
-             
-              child: Text(
+              context.wBox(2),
+              Text(
                 jobDetails.company.name ?? "",
                 style: TextStyle(
                   color: AppColors.pureWhite,
@@ -63,12 +64,9 @@ class JobContent extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
-     
-     
-     
       ],
     );
   }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:para_job/packages/themeing/media_query_values.dart';
 
 class CurvedHeaderWithGlow extends StatelessWidget {
   final String imageUrl;
@@ -29,28 +28,15 @@ class CurvedHeaderWithGlow extends StatelessWidget {
             width: double.infinity,
             loadingBuilder: (context, child, loadingProgress) {
               if (loadingProgress == null) return child;
-              return Center(
-                child: CircularProgressIndicator(
-                  value: loadingProgress.expectedTotalBytes != null
-                      ? loadingProgress.cumulativeBytesLoaded /
-                            (loadingProgress.expectedTotalBytes ?? 1)
-                      : null,
-                ),
-              );
+              return Center(child: CircularProgressIndicator());
             },
-            errorBuilder: (context, error, stackTrace) =>Container(
-                       height: 250,
-            width: double.infinity,
-                      color: Colors.grey.shade300,
-                      child: const Icon(
-                        Icons.image_not_supported,
-                        color: Colors.grey,
-                      ),
-                    ),
-              //  Center(child: Icon(Icons.broken_image, color: Colors.grey)),
+            errorBuilder: (context, error, stackTrace) => Container(
+              height: 250,
+              width: double.infinity,
+              color: Colors.grey.shade300,
+            ),
+            //  Center(child: Icon(Icons.broken_image, color: Colors.grey)),
           ),
-
-  
         ),
 
         // --- Optional overlay for dark effect on image ---
@@ -63,8 +49,7 @@ class CurvedHeaderWithGlow extends StatelessWidget {
         SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-            child:child
-            
+            child: child,
           ),
         ),
       ],
