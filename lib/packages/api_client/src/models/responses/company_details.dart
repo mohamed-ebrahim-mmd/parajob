@@ -31,7 +31,7 @@ class CompanyData {
   final List<LatestReview>? latestReviews;
   final double? averageRating;
   final double? positiveReviewsPercentage;
-  final List<ActiveJob>? activeJobs;
+  final List<Job>? activeJobs;
   final String? accountStatus;
   final String? rejectionReason;
   final int? isBlocked;
@@ -70,8 +70,8 @@ class CompanyData {
             (json["positive_reviews_percentage"] as num?)?.toDouble(),
         activeJobs: json["active_jobs"] == null
             ? []
-            : List<ActiveJob>.from(
-                json["active_jobs"].map((x) => ActiveJob.fromJson(x))),
+            : List<Job>.from(
+                json["active_jobs"].map((x) => Job.fromJson(x))),
         accountStatus: json["account_status"],
         rejectionReason: json["rejection_reason"],
         isBlocked: json["is_blocked"],

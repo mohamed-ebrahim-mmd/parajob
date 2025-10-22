@@ -6,7 +6,7 @@ import '../../packages/api_client/src/enums/job_application_status.dart';
 import '../../packages/themeing/app_colors.dart';
 
 class MyJobsScreen extends StatelessWidget {
-  MyJobsScreen({super.key});
+  const MyJobsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -46,7 +46,8 @@ class HotJobCard extends StatelessWidget {
                     ), // same visual size as before (≈ diameter)
                     height: context.wPct(12),
                     fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) => Container(
+                    errorBuilder: (context, error, stackTrace) =>
+                     Container(
                       width: context.wPct(12),
                       height: context.wPct(12),
                       color: Colors.grey.shade300,

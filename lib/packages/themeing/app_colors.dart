@@ -29,6 +29,7 @@ class AppColors {
   static const Color softWhite80 = Color(0xCCFFFFFF);
 
   static const Color lightGray = Color(0xffB4B4B4);
+  static const Color lightGray2 = Color(0xffD9D9D9);
   static const Color grayButton = Color(0xff9C9C9C);
 
   static const Color darkCharcoal = Color(0xFF1E2428);

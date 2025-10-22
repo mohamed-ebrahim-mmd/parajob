@@ -15,6 +15,8 @@ class MainNavigatorScreen extends StatelessWidget {
   final MainNavigatorController controller = Get.put(MainNavigatorController());
   final isGuest = Get.find<UserController>().isGuest;
 
+   MainNavigatorScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Obx(() {

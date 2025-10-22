@@ -21,7 +21,6 @@ export './responses/send_otp_response.dart';
 export './responses/verify_otp_response.dart';
 export './responses/company_details.dart';
 export './responses/latest_review.dart';
-export './responses/active_job.dart';
 export './responses/job_combany.dart';
 
 

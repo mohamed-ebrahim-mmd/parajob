@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:para_job/features/company_details/widgets/curved_image.dart';
 import 'package:para_job/features/job_details/job_details_controller.dart';
 import 'package:para_job/features/job_details/widgets/custom_container_job_detail.dart';
-import 'package:para_job/features/job_details/widgets/custom_image_shadow.dart';
-import 'package:para_job/features/job_details/widgets/job_content.dart'
-    show JobContent;
+import 'package:para_job/features/job_details/widgets/job_content.dart';
 import 'package:para_job/features/job_details/widgets/job_skill_item.dart';
 import 'package:para_job/packages/api_client/src/service/api_call_state_enum.dart';
+import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/packages/ui_components/error_screen.dart';
@@ -33,14 +33,19 @@ class JobDetailsScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
 
                 children: [
-                  CurvedImageWithShadow(
+                  CurvedHeaderWithGlow(
                     imageUrl: jobDetails.logo,
-                    height: context.hPct(40),
-                    shadowColor: const Color(0xFF00CBB8),
                     child: JobContent(
                       jobDetails: jobDetails,
-                    ), // your aquaTeal color for soft tone
+                      onCompanyTap: () {
+                        Get.toNamed(
+                          Routes.companyDetails,
+                          arguments: jobDetails.company.id,
+                        );
+                      },
+                    ),
                   ),
+                  
                   context.hBox(4),
                   Padding(
                     padding: EdgeInsetsGeometry.symmetric(

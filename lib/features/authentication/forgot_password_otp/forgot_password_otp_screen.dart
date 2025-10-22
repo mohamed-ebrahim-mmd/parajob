@@ -12,7 +12,7 @@ import 'package:pinput/pinput.dart';
 import 'package:timer_button/timer_button.dart';
 
 class ForgotPasswordOtpScreen extends StatelessWidget {
-  ForgotPasswordOtpScreen({Key? key}) : super(key: key);
+  ForgotPasswordOtpScreen({super.key});
   final controller = Get.find<ForgotPasswordOtpController>();
 
   @override

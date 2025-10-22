@@ -1,107 +1,220 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
+import 'package:para_job/features/company_details/widgets/active_job_list.dart';
+import 'package:para_job/features/company_details/widgets/curved_image.dart';
+import 'package:para_job/features/company_details/widgets/custom_container_company_details.dart';
+import 'package:para_job/features/company_details/widgets/custom_gradient_progress.dart';
+import 'package:para_job/features/company_details/widgets/reviews_list.dart';
 import 'package:para_job/packages/api_client/src/service/api_call_state_enum.dart';
 import 'package:para_job/features/company_details/company_details_controller.dart';
+import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/ui_components/error_screen.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
 class CompanyDetailsScreen extends StatelessWidget {
-  const CompanyDetailsScreen({super.key});
+   CompanyDetailsScreen({super.key});
+
+    final combId = Get.arguments as int;
+  late final controller = Get.put(CompanyDetailsController(combId));
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(CompanyDetailsController(1));
+   // final controller = Get.put(CompanyDetailsController(2));
 
     return Scaffold(
       body: Center(
         child: Obx(() {
           switch (controller.companyDetailsCallState.value) {
             case ApiCallState.loading:
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
+              return const Center(child: CircularProgressIndicator());
 
             case ApiCallState.success:
               final company = controller.companyData!.data;
               return SingleChildScrollView(
-                child: Padding(
-                  padding: EdgeInsets.all(context.wPct(5)),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      // Company Logo
-                      if (company.logo != null)
-                        CircleAvatar(
-                          radius: context.wPct(20),
-                          backgroundImage: NetworkImage(company.logo!),
-                        ),
-
-                      SizedBox(height: context.hPct(3)),
-
-                      // Company Name
-                      Text(
-                        company.name ?? "Unknown Company",
-                        style: TextStyle(
-                          fontSize: context.wPct(6),
-                          fontWeight: FontWeight.bold,
+                child: Column(
+                  children: [
+                    // Company Logo
+                    if (company.logo != null)
+                      CurvedHeaderWithGlow(
+                        imageUrl: company.logo!,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children:  [
+                            IconButton(onPressed: () {
+                              Get.back();
+                            }, icon:  Icon(Icons.arrow_back_ios_new, color: Colors.white),),
+                            IconButton(onPressed: (){}, icon:  Icon(Icons.more_vert, color: Colors.white),)
+                           
+                           
+                          ],
                         ),
                       ),
-
-                      SizedBox(height: context.hPct(2)),
-
-                      // Industry
-                      Text(
-                        "Industry: ${company.industry ?? "-"}",
-                        style: TextStyle(
-                          fontSize: context.wPct(4),
-                          color: Colors.grey[700],
-                        ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: context.wPct(5),
                       ),
-
-                      SizedBox(height: context.hPct(4)),
-
-                      // Stats
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          _infoItem("Jobs", company.jobPostsCount?.toString() ?? "0"),
-                          _infoItem("Employees", company.employeesCount?.toString() ?? "0"),
-                          _infoItem("Reviews", company.reviewsCount?.toString() ?? "0"),
-                        ],
-                      ),
+                          SizedBox(height: context.hPct(3)),
 
-                      SizedBox(height: context.hPct(4)),
-
-                      // Active Jobs List
-                      if (company.activeJobs?.isNotEmpty ?? false) ...[
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            "Active Jobs",
+                          // Company Name
+                          Text(
+                            company.name ?? "Unknown Company",
                             style: TextStyle(
+                              color: AppColors.pureWhite,
                               fontSize: context.wPct(5),
-                              fontWeight: FontWeight.w600,
+                              fontWeight: FontWeight.w700,
                             ),
                           ),
-                        ),
-                        SizedBox(height: context.hPct(2)),
-                        Column(
-                          children: company.activeJobs!
-                              .map(
-                                (job) => Card(
-                                  margin: EdgeInsets.symmetric(vertical: 8),
-                                  child: ListTile(
-                                    title: Text(job.title ?? ""),
-                                    subtitle: Text(job.description ?? ""),
-                                    trailing: const Icon(Icons.arrow_forward_ios, size: 16),
+
+                          SizedBox(height: context.hPct(2)),
+
+                          // Industry
+                          Text(
+                            company.industry ?? "-",
+                            style: TextStyle(
+                              color: AppColors.pureWhite.withOpacity(0.5),
+                              fontSize: context.wPct(5),
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+
+                          SizedBox(height: context.hPct(4)),
+                          // rate
+                          Row(
+                            children: [
+                              Text(
+                                company.averageRating.toString(),
+                                style: TextStyle(
+                                  color: AppColors.aquaTeal,
+                                  fontSize: context.wPct(5),
+                                  fontWeight: FontWeight.w800,
+                                ),
+                              ),
+                              context.wBox(2),
+
+                              RatingBarIndicator(
+                                rating: company.averageRating ?? 0.0,
+                                itemBuilder: (context, index) =>
+                                    Icon(Icons.star, color: AppColors.aquaTeal),
+                                itemCount: 5,
+                                itemSize: 30.0,
+                                direction: Axis.horizontal,
+                              ),
+                            ],
+                          ),
+
+                          SizedBox(height: context.hPct(4)),
+
+                          // Stats
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: CustomContainerCompanyDetail(
+                                  value:
+                                      company.jobPostsCount?.toString() ?? "0",
+                                  title: "JOBS",
+                                ),
+                              ),
+                              context.wBox(2),
+                              Expanded(
+                                child: CustomContainerCompanyDetail(
+                                  value:
+                                      company.employeesCount?.toString() ?? "0",
+                                  title: "Employees",
+                                ),
+                              ),
+                              context.wBox(2),
+
+                              Expanded(
+                                child: CustomContainerCompanyDetail(
+                                  value:
+                                      company.reviewsCount?.toString() ?? "0",
+                                  title: "REVIEWS ",
+                                ),
+                              ),
+                            ],
+                          ),
+
+                          SizedBox(height: context.hPct(4)),
+                          // positive reviews
+                          Row(
+                            //  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Text(
+                                "Positive reviews",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: context.wPct(4),
+                                ),
+                                softWrap: true,
+                                overflow: TextOverflow.visible,
+                              ),
+                              context.wBox(2),
+                              Expanded(
+                                child: GradientProgressBar(
+                                  percentage:
+                                      company.positiveReviewsPercentage ?? 0.0,
+                                ),
+                              ),
+                              context.wBox(2),
+                              Text(
+                                "${company.positiveReviewsPercentage?.toString() ?? '0'}%",
+                                style: TextStyle(
+                                  color: AppColors.aquaTeal,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: context.wPct(3),
+                                ),
+                                softWrap: true,
+                                overflow: TextOverflow.visible,
+                              ),
+                            ],
+                          ),
+
+                          SizedBox(height: context.hPct(4)),
+
+                          // Active Jobs List
+
+                          // Header Row
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Active Jobs",
+                                style: TextStyle(
+                                  fontSize: context.wPct(4.5),
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () {},
+                                child: Text(
+                                  "See all",
+                                  style: TextStyle(
+                                    color: AppColors.softWhite70,
+                                    fontWeight: FontWeight.w500,
                                   ),
                                 ),
-                              )
-                              .toList(),
-                        ),
-                      ],
-                    ],
-                  ),
+                              ),
+                            ],
+                          ),
+                          context.hBox(2),
+
+                          SizedBox(
+                            height: context.hPct(23),
+                            child: ActiveJobList(
+                              jobs: company.activeJobs ?? [],
+                            ),
+                          ),
+
+                          ReviewsList(reviews: company.latestReviews ?? []),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
               );
 
@@ -117,20 +230,16 @@ class CompanyDetailsScreen extends StatelessWidget {
       ),
     );
   }
-
-  Widget _infoItem(String title, String value) {
-    return Column(
-      children: [
-        Text(
-          value,
-          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 4),
-        Text(
-          title,
-          style: const TextStyle(color: Colors.grey),
-        ),
-      ],
-    );
-  }
 }
+
+//////////////////
+///
+///
+///
+///
+/////////////////////////////
+///////////////////////
+//////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
+///
