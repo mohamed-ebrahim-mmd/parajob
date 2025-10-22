@@ -11,6 +11,7 @@ export './responses/home_response.dart';
 export './responses/job.dart';
 export './responses/job_data.dart';
 export './responses/job_details_response.dart';
+export './responses/job_list_response.dart';
 export './responses/login_with_mail_response.dart';
 export './responses/meta.dart';
 export './responses/my_job.dart';

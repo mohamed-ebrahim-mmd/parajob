@@ -18,6 +18,13 @@ abstract class ApiClient {
   @GET("/api/job/{id}")
   Future<JobDetailsResponse> fetchJobDetails(@Path("id") int id);
 
+  @GET("/api/job")
+  Future<JobListResponse> fetchJobs({
+    @Query("filter[category]") String? category,
+    @Query("filter[department_id]") int? departmentId,
+    @Query("page") int? page,
+  });
+
   @GET("/api/user/jobs")
   Future<MyJobsResponse> fetchMyJobs({
     @Header('Authorization') required String token,

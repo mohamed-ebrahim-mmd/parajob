@@ -6,7 +6,7 @@ import 'package:para_job/features/job_details/widgets/custom_image_shadow.dart';
 import 'package:para_job/features/job_details/widgets/job_content.dart'
     show JobContent;
 import 'package:para_job/features/job_details/widgets/job_skill_item.dart';
-import 'package:para_job/packages/api_client/src/service/api_call_state_enum.dart';
+import 'package:para_job/packages/api_client/src/enums/api_call_state_enum.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/packages/ui_components/error_screen.dart';
