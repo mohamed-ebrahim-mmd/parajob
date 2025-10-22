@@ -27,7 +27,7 @@ class ReviewItem extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  latestReview.id.toString(),
+                  latestReview.reviwer?.name?? "-",
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: context.wPct(4),

@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
-import 'package:para_job/features/company_details/company_details_controller.dart';
 import 'package:para_job/features/company_details/widgets/active_job_list.dart';
 import 'package:para_job/features/company_details/widgets/custom_container_company_details.dart';
 import 'package:para_job/features/company_details/widgets/custom_gradient_progress.dart';
 import 'package:para_job/features/company_details/widgets/reviews_list.dart';
-import 'package:para_job/packages/api_client/src/enums/api_call_state_enum.dart'
-    show ApiCallState;
+import 'package:para_job/packages/api_client/src/enums/api_call_state_enum.dart';
+import 'package:para_job/features/company_details/company_details_controller.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
-import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/packages/ui_components/curved_image.dart';
 import 'package:para_job/packages/ui_components/error_screen.dart';
+import 'package:para_job/packages/themeing/media_query_values.dart';
 
 class CompanyDetailsScreen extends StatelessWidget {
   CompanyDetailsScreen({super.key});
@@ -36,27 +35,28 @@ class CompanyDetailsScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     // Company Logo
-                    CurvedHeaderWithGlow(
-                      imageUrl: company.logo!,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          IconButton(
-                            onPressed: () {
-                              Get.back();
-                            },
-                            icon: Icon(
-                              Icons.arrow_back_ios_new,
-                              color: Colors.white,
+                    if (company.logo != null)
+                      CurvedHeaderWithGlow(
+                        imageUrl: company.logo!,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            IconButton(
+                              onPressed: () {
+                                Get.back();
+                              },
+                              icon: Icon(
+                                Icons.arrow_back_ios_new,
+                                color: Colors.white,
+                              ),
                             ),
-                          ),
-                          IconButton(
-                            onPressed: () {},
-                            icon: Icon(Icons.more_vert, color: Colors.white),
-                          ),
-                        ],
+                            IconButton(
+                              onPressed: () {},
+                              icon: Icon(Icons.more_vert, color: Colors.white),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
                     Padding(
                       padding: EdgeInsets.symmetric(
                         horizontal: context.wPct(5),
@@ -82,7 +82,7 @@ class CompanyDetailsScreen extends StatelessWidget {
                           Text(
                             company.industry ?? "-",
                             style: TextStyle(
-                              color: AppColors.softWhite70,
+                              color: AppColors.pureWhite.withOpacity(0.5),
                               fontSize: context.wPct(5),
                               fontWeight: FontWeight.w700,
                             ),
@@ -107,7 +107,7 @@ class CompanyDetailsScreen extends StatelessWidget {
                                 itemBuilder: (context, index) =>
                                     Icon(Icons.star, color: AppColors.aquaTeal),
                                 itemCount: 5,
-                                itemSize: context.hPct(2),
+                                itemSize: context.wPct(5),
                                 direction: Axis.horizontal,
                               ),
                             ],
@@ -147,21 +147,25 @@ class CompanyDetailsScreen extends StatelessWidget {
                           ),
 
                           SizedBox(height: context.hPct(4)),
+
                           // positive reviews
                           Row(
                             //  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Text(
-                                "Positive reviews",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: context.wPct(4),
+                              context.wBox(2),
+                              Flexible(
+                                child: Text(
+                                  "Positive reviews",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: context.wPct(4),
+                                  ),
+                                  softWrap: true,
+                                  overflow: TextOverflow.visible,
                                 ),
-                                softWrap: true,
-                                overflow: TextOverflow.visible,
                               ),
                               context.wBox(2),
-                              Expanded(
+                              Flexible(
                                 child: GradientProgressBar(
                                   percentage:
                                       company.positiveReviewsPercentage ?? 0.0,
@@ -178,6 +182,7 @@ class CompanyDetailsScreen extends StatelessWidget {
                                 softWrap: true,
                                 overflow: TextOverflow.visible,
                               ),
+                              context.wBox(2),
                             ],
                           ),
 
@@ -199,7 +204,7 @@ class CompanyDetailsScreen extends StatelessWidget {
                               GestureDetector(
                                 onTap: () {},
                                 child: Text(
-                                  "See all",
+                                  "View all",
                                   style: TextStyle(
                                     color: AppColors.softWhite70,
                                     fontWeight: FontWeight.w500,
@@ -216,9 +221,9 @@ class CompanyDetailsScreen extends StatelessWidget {
                               jobs: company.activeJobs ?? [],
                             ),
                           ),
-
+                          // latest reviews
+                          context.hBox(3),
                           ReviewsList(reviews: company.latestReviews ?? []),
-                          context.hBox(2),
                         ],
                       ),
                     ),
@@ -227,12 +232,11 @@ class CompanyDetailsScreen extends StatelessWidget {
               );
 
             case ApiCallState.failure:
-              return Center(
-                child: ErrorScreen(
-                  onPressed: () {
-                    controller.fetchCompDetails(combId);
-                  },
-                ),
+              return ErrorScreen(
+                height: context.hPct(60),
+                onPressed: () {
+                  controller.fetchCompDetails(1);
+                },
               );
           }
         }),
@@ -240,3 +244,15 @@ class CompanyDetailsScreen extends StatelessWidget {
     );
   }
 }
+
+//////////////////
+///
+///
+///
+///
+/////////////////////////////
+///////////////////////
+//////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
+///

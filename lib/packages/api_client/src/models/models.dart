@@ -23,3 +23,4 @@ export './responses/reset_password_response.dart';
 export './responses/response_details.dart';
 export './responses/send_otp_response.dart';
 export './responses/verify_otp_response.dart';
+export './responses/reviewer.dart';

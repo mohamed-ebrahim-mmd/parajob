@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:para_job/packages/themeing/media_query_values.dart';
 
 class CurvedHeaderWithGlow extends StatelessWidget {
   final String imageUrl;
@@ -15,7 +16,7 @@ class CurvedHeaderWithGlow extends StatelessWidget {
           elevation: 20, // intensity of shadow
           color: Colors.transparent,
           shadowColor: Colors.tealAccent.withOpacity(0.6),
-          child: Container(height: 250, color: Colors.transparent),
+          child: Container(height: context.hPct(40), color: Colors.transparent),
         ),
 
         // --- Main image with curved bottom ---
@@ -24,14 +25,14 @@ class CurvedHeaderWithGlow extends StatelessWidget {
           child: Image.network(
             imageUrl,
             fit: BoxFit.cover,
-            height: 250,
+            height: context.hPct(40),
             width: double.infinity,
             loadingBuilder: (context, child, loadingProgress) {
               if (loadingProgress == null) return child;
               return Center(child: CircularProgressIndicator());
             },
             errorBuilder: (context, error, stackTrace) => Container(
-              height: 250,
+              height: context.hPct(40),
               width: double.infinity,
               color: Colors.grey.shade300,
             ),
@@ -42,7 +43,7 @@ class CurvedHeaderWithGlow extends StatelessWidget {
         // --- Optional overlay for dark effect on image ---
         ClipPath(
           clipper: BottomCurveClipper(),
-          child: Container(height: 250, color: Colors.black.withOpacity(0.3)),
+          child: Container(height: context.hPct(40), color: Colors.black.withOpacity(0.3)),
         ),
 
         // --- Top icons (back + menu) ---

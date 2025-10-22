@@ -16,7 +16,7 @@ class ReviewsList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
+    
       children: [
         // Header Row
         Row(
@@ -32,7 +32,7 @@ class ReviewsList extends StatelessWidget {
             GestureDetector(
               onTap: onSeeAll,
               child: Text(
-                "See all",
+                "View all",
                 style: TextStyle(
                   color: AppColors.softWhite70,
                   fontWeight: FontWeight.w500,
@@ -41,7 +41,7 @@ class ReviewsList extends StatelessWidget {
             ),
           ],
         ),
-        context.hBox(2),
+       
         // Vertical List of Job Cards
         ListView.separated(
           scrollDirection: Axis.vertical,
@@ -49,7 +49,7 @@ class ReviewsList extends StatelessWidget {
           primary: false,
           physics: const NeverScrollableScrollPhysics(),
           itemCount: reviews.length,
-          separatorBuilder: (_, __) => context.hBox(3),
+          separatorBuilder: (_, __) => context.hBox(2),
           itemBuilder: (context, index) {
             final review = reviews[index];
             return ReviewItem(
