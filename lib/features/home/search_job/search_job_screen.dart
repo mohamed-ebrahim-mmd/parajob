@@ -3,6 +3,7 @@
  ==================================================================
 */
 import 'package:flutter/material.dart';
+import 'package:para_job/packages/themeing/app_colors.dart';
 
 class SearchJobScreen extends StatelessWidget {
   const SearchJobScreen({super.key});
@@ -10,8 +11,34 @@ class SearchJobScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Search Job Screen')),
-      body: Container(), // empty screen
+      appBar: AppBar(
+        surfaceTintColor: AppColors.charcoalBlack,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+      ),
+      body: Column(
+        children: [
+          TextField(
+            onTap: () {},
+            decoration: InputDecoration(
+              hintText: 'Search jobs, companies..',
+              prefixIcon: IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.search),
+              ),
+              suffixIcon: IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.tune),
+              ),
+              filled: false,
+            ),
+          ),
+        ],
+      ), // empty screen
     );
   }
 }

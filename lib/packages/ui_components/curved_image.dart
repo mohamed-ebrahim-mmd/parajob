@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
 class CurvedHeaderWithGlow extends StatelessWidget {
   final String imageUrl;
   final Widget? child;
+
   const CurvedHeaderWithGlow({super.key, required this.imageUrl, this.child});
 
   @override
@@ -13,43 +15,41 @@ class CurvedHeaderWithGlow extends StatelessWidget {
         // --- Curved shadow layer (green glow) ---
         PhysicalShape(
           clipper: BottomCurveClipper(),
-          elevation: 20, // intensity of shadow
           color: Colors.transparent,
-          shadowColor: Colors.tealAccent.withOpacity(0.6),
-          child: Container(height: context.hPct(40), color: Colors.transparent),
-        ),
-
-        // --- Main image with curved bottom ---
-        ClipPath(
-          clipper: BottomCurveClipper(),
-          child: Image.network(
-            imageUrl,
-            fit: BoxFit.cover,
+          elevation: 20,
+          // intensity of shadow
+          shadowColor: Colors.tealAccent.withValues(alpha: 0.6),
+          clipBehavior: Clip.antiAlias,
+          child: SizedBox(
             height: context.hPct(40),
-            width: double.infinity,
-            loadingBuilder: (context, child, loadingProgress) {
-              if (loadingProgress == null) return child;
-              return Center(child: CircularProgressIndicator());
-            },
-            errorBuilder: (context, error, stackTrace) => Container(
+            child: Image.network(
+              imageUrl,
+              fit: BoxFit.cover,
               height: context.hPct(40),
               width: double.infinity,
-              color: Colors.grey.shade300,
+              loadingBuilder: (context, child, loadingProgress) {
+                if (loadingProgress == null) return child;
+                return Center(child: CircularProgressIndicator());
+              },
+              errorBuilder: (context, error, stackTrace) => Center(
+                child: Icon(
+                  Icons.image_not_supported_outlined,
+                  color: AppColors.softWhite70,
+                  size: context.hPct(10),
+                ),
+              ),
+              //  Center(child: Icon(Icons.broken_image, color: Colors.grey)),
             ),
-            //  Center(child: Icon(Icons.broken_image, color: Colors.grey)),
           ),
-        ),
-
-        // --- Optional overlay for dark effect on image ---
-        ClipPath(
-          clipper: BottomCurveClipper(),
-          child: Container(height: context.hPct(40), color: Colors.black.withOpacity(0.3)),
         ),
 
         // --- Top icons (back + menu) ---
         SafeArea(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            padding: EdgeInsets.symmetric(
+              horizontal: context.wPct(2),
+              vertical: context.hPct(2),
+            ),
             child: child,
           ),
         ),
