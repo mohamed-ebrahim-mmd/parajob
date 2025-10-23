@@ -3,25 +3,23 @@
 import 'package:para_job/packages/api_client/src/models/models.dart';
 
 class UserProfileResponse {
-  final UserProfileData? data;
-  final bool? isSuccess;
-  final ResponseDetails? details;
+  final UserProfileData data;
+  final bool isSuccess;
+  final ResponseDetails details;
 
   UserProfileResponse({
-    this.data,
-    this.isSuccess,
-    this.details,
+
+  
+    required this.data,
+    required this.details,
+    required this.isSuccess, 
   });
 
   factory UserProfileResponse.fromJson(Map<String, dynamic> json) {
     return UserProfileResponse(
-      data: json['data'] != null
-          ? UserProfileData.fromJson(json['data'])
-          : null,
+      data: UserProfileData.fromJson(json['data']),
       isSuccess: json['is_success'] ?? false,
-      details: json['details'] != null
-          ? ResponseDetails.fromJson(json['details'])
-          : null,
+      details: ResponseDetails.fromJson(json['details']),
     );
   }
 
