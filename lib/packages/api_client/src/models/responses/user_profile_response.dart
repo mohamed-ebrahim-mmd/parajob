@@ -1,5 +1,6 @@
-import 'package:para_job/packages/api_client/src/models/responses/response_details.dart';
-import 'package:para_job/packages/api_client/src/models/responses/user_profile_data.dart';
+
+
+import 'package:para_job/packages/api_client/src/models/models.dart';
 
 class UserProfileResponse {
   final UserProfileData? data;

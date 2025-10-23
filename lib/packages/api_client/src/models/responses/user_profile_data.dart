@@ -1,4 +1,6 @@
-import 'package:para_job/packages/api_client/api_client.dart';
+import 'package:para_job/packages/api_client/src/models/models.dart';
+
+
 
 class UserProfileData {
   final int? id;

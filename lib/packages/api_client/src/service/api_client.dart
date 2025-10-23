@@ -51,4 +51,10 @@ abstract class ApiClient {
   Future<ResetPasswordResponse> resetPassword(
     @Body() ResetPasswordRequest request,
   );
+
+  @GET("/api/user/profile")
+Future<UserProfileResponse> fetchUserProfile({
+  @Header('Authorization') required String token,
+
+});
 }
