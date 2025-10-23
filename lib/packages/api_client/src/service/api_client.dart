@@ -15,6 +15,12 @@ abstract class ApiClient {
   @GET("/api/department")
   Future<DepartmentResponse> getDepartments();
 
+  @GET("/api/skill")
+  Future<SkillResponse> getSkills();
+
+  @GET("/api/company")
+  Future<CompanyListResponse> getCompanies();
+
   @GET("/api/job/{id}")
   Future<JobDetailsResponse> fetchJobDetails(@Path("id") int id);
 

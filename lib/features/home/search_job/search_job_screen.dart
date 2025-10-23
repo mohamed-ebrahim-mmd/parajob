@@ -4,6 +4,7 @@
 */
 import 'package:flutter/material.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
+import 'package:para_job/packages/themeing/media_query_values.dart';
 
 class SearchJobScreen extends StatelessWidget {
   const SearchJobScreen({super.key});
@@ -20,24 +21,28 @@ class SearchJobScreen extends StatelessWidget {
           },
         ),
       ),
-      body: Column(
-        children: [
-          TextField(
-            onTap: () {},
-            decoration: InputDecoration(
-              hintText: 'Search jobs, companies..',
-              prefixIcon: IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.search),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: context.wPct(5)),
+        child: Column(
+          children: [
+            context.hBox(2),
+            TextField(
+              onTap: () {},
+              decoration: InputDecoration(
+                hintText: 'Search jobs, companies..',
+                prefixIcon: IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.search),
+                ),
+                suffixIcon: IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.tune),
+                ),
+                filled: false,
               ),
-              suffixIcon: IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.tune),
-              ),
-              filled: false,
             ),
-          ),
-        ],
+          ],
+        ),
       ), // empty screen
     );
   }
