@@ -4,6 +4,7 @@ import 'package:para_job/features/employer/employer_controller.dart';
 import 'package:para_job/features/employer/widgets/employer_hero_section.dart';
 import 'package:para_job/features/employer/widgets/employer_list_header.dart';
 import 'package:para_job/features/employer/widgets/employer_stat_box.dart';
+import 'package:para_job/features/employer/widgets/employer_submit_review.dart';
 import 'package:para_job/features/home/widgets/job_card.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
@@ -129,11 +130,11 @@ class EmployerScreen extends StatelessWidget {
                                 child: Container(
                                   width: context.wPct(25),
                                   height: context.hPct(0.8),
-                                  color: Colors.grey.shade300,
+                                  color: AppColors.lightGray,
                                   child: FractionallySizedBox(
                                     widthFactor: (company.positiveReviewsPercentage ?? 0) / 100.0,
                                     child: Container(
-                                      color: Colors.teal,
+                                      color: AppColors.aquaTeal,
                                     ),
                                   ),
                                 ),
@@ -143,7 +144,7 @@ class EmployerScreen extends StatelessWidget {
                                 "${company.positiveReviewsPercentage?.toStringAsFixed(0) ?? 0}%",
                                 style: TextStyle(
                                   fontSize: context.wPct(2.5),
-                                  color: Colors.teal,
+                                  color: AppColors.aquaTeal,
                                   fontWeight: FontWeight.w500,
                                 ),
                               ),
@@ -189,6 +190,24 @@ class EmployerScreen extends StatelessWidget {
                           )
                         else
                           Text("There are no reviews currently."),
+                        if (controller.user.isGuest)
+                          EmployerSubmitReview()
+                        else if (company.isSubmitReview == true)
+                          Container(
+                            padding: EdgeInsets.symmetric(vertical: context.hPct(2)),
+                            alignment: Alignment.center,
+                            child: Text(
+                              "You have already submitted a review for this employer.",
+                              style: TextStyle(
+                                color: AppColors.softWhite70,
+                                fontWeight: FontWeight.w500,
+                                fontSize: context.wPct(3.5),
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          )
+                        else
+                          EmployerSubmitReview(),
                       ],
                     ),
                   ),

@@ -177,12 +177,21 @@ class AppPages {
     ),
     GetPage(name: Routes.createAccount, page: () => CreateAccountScreen()),
     GetPage(name: Routes.jobDetails, page: () => JobDetailsScreen()),
-    GetPage(name: Routes.employer, page: () => EmployerScreen()),
-    GetPage(name: Routes.employerReviews, page: () => EmployerReviewsScreen(),
+    GetPage(
+      name: Routes.employer,
+      page: () => LoaderOverlay(
+        overlayWidgetBuilder: (_) => AppLoader(),
+        child: EmployerScreen(),
+      ),
+    ),
+    GetPage(
+      name: Routes.employerReviews,
+      page: () => EmployerReviewsScreen(),
       binding: BindingsBuilder(() {
         final args = Get.arguments;
         Get.put(EmployerReviewsController(args['id']));
-      }),),
+      }),
+    ),
 
     GetPage(
       name: Routes.mainNavigator,

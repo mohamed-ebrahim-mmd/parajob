@@ -17,6 +17,7 @@ class Company {
   final String? accountStatus;
   final String? rejectionReason;
   final int? isBlocked;
+  final bool? isSubmitReview;
 
   Company({
     this.id,
@@ -33,6 +34,7 @@ class Company {
     this.accountStatus,
     this.rejectionReason,
     this.isBlocked,
+    this.isSubmitReview,
   });
 
   factory Company.fromJson(Map<String, dynamic>? json) {
@@ -50,15 +52,36 @@ class Company {
           ?.map((e) => Review.fromJson(e))
           .toList(),
       averageRating: (json['average_rating'] as num?)?.toDouble(),
-      positiveReviewsPercentage:
-      (json['positive_reviews_percentage'] as num?)?.toDouble(),
+      positiveReviewsPercentage: (json['positive_reviews_percentage'] as num?)
+          ?.toDouble(),
       activeJobs: (json['active_jobs'] as List?)
           ?.map((e) => Job.fromJson(e))
           .toList(),
       accountStatus: json['account_status'],
       rejectionReason: json['rejection_reason'],
       isBlocked: json['is_blocked'],
+      isSubmitReview: json['is_submit_review']
     );
   }
-}
 
+  @override
+  String toString() {
+    return '''
+Company(
+  id: $id,
+  name: $name,
+  logo: $logo,
+  industry: $industry,
+  jobPostsCount: $jobPostsCount,
+  employeesCount: $employeesCount,
+  reviewsCount: $reviewsCount,
+  averageRating: $averageRating,
+  positiveReviewsPercentage: $positiveReviewsPercentage,
+  accountStatus: $accountStatus,
+  rejectionReason: $rejectionReason,
+  isBlocked: $isBlocked,
+  isSubmitReview: $isSubmitReview
+)
+''';
+  }
+}
