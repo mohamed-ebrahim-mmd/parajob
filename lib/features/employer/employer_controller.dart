@@ -41,7 +41,6 @@ class EmployerController extends GetxController {
 
       if (response.isSuccess == true) {
         companyData = response.data;
-        print("Company data: ${companyData.toString()}");
         companyCallState.value = ApiCallState.success;
       } else {
         companyCallState.value = ApiCallState.failure;
@@ -73,7 +72,6 @@ class EmployerController extends GetxController {
         companyId: companyId,
         isAnonymous: true,
       );
-      print("sss => $request");
 
       try {
         Get.context!.loaderOverlay.show();

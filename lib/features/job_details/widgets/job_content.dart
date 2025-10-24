@@ -1,12 +1,11 @@
-/*
- Mohamed Ebrahim | mohamed7ebrahim7@gmail.com | 2025-10-21 4:03 PM
- ==================================================================
-*/
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:para_job/packages/api_client/src/models/responses/job_data.dart'
     show JobData;
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
+
+import '../../../packages/route_manager/controller/routes.dart';
 
 class JobContent extends StatelessWidget {
   const JobContent({super.key, required this.jobDetails});
@@ -41,24 +40,32 @@ class JobContent extends StatelessWidget {
           ),
         ),
         context.hBox(2),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CircleAvatar(
-              radius: context.wPct(5),
-              backgroundImage: NetworkImage(jobDetails.company.logo ?? ""),
-            ),
-
-            context.wBox(2),
-            Text(
-              jobDetails.company.name ?? "",
-              style: TextStyle(
-                color: AppColors.pureWhite,
-                fontSize: context.wPct(4),
-                fontWeight: FontWeight.w500,
+        GestureDetector(
+          onTap: () {
+            Get.toNamed(
+              Routes.employer,
+              arguments: {'id': jobDetails.company.id},
+            );
+          },
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CircleAvatar(
+                radius: context.wPct(5),
+                backgroundImage: NetworkImage(jobDetails.company.logo ?? ""),
               ),
-            ),
-          ],
+
+              context.wBox(2),
+              Text(
+                jobDetails.company.name ?? "",
+                style: TextStyle(
+                  color: AppColors.pureWhite,
+                  fontSize: context.wPct(4),
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ],
+          ),
         ),
       ],
     );

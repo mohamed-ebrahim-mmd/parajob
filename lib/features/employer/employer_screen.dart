@@ -172,7 +172,7 @@ class EmployerScreen extends StatelessWidget {
                           )
                         else
                           Text("There are no current jobs."),
-
+                        SizedBox(height: context.hPct(4)),
                         EmployerListHeader(title: "Reviews", onViewAll: () {
                           Get.toNamed(Routes.employerReviews, arguments: {'id': company.id});
                         }),
