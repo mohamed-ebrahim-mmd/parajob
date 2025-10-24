@@ -5,6 +5,7 @@ import 'package:para_job/features/employer/widgets/employer_hero_section.dart';
 import 'package:para_job/features/employer/widgets/employer_list_header.dart';
 import 'package:para_job/features/employer/widgets/employer_stat_box.dart';
 import 'package:para_job/features/home/widgets/job_card.dart';
+import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
@@ -171,7 +172,9 @@ class EmployerScreen extends StatelessWidget {
                         else
                           Text("There are no current jobs."),
 
-                        EmployerListHeader(title: "Reviews", onViewAll: () {}),
+                        EmployerListHeader(title: "Reviews", onViewAll: () {
+                          Get.toNamed(Routes.employerReviews, arguments: {'id': company.id});
+                        }),
 
                         if (company.latestReviews != null && company.latestReviews!.isNotEmpty)
                           ListView.separated(

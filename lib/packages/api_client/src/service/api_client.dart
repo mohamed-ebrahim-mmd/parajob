@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:para_job/packages/api_client/src/models/responses/company_response.dart';
+import 'package:para_job/packages/api_client/src/models/responses/company_reviews_response.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../models/models.dart';
@@ -40,6 +41,12 @@ abstract class ApiClient {
 
   @GET("/api/company/{id}")
   Future<CompanyResponse> fetchCompany(@Path("id") int id);
+
+  @GET("/api/review/company/{id}")
+  Future<CompanyReviewsResponse> fetchCompanyReviews({
+    @Path("id") required int companyId,
+    @Query('page') int? page,
+  });
 
   @POST("/api/reset/password")
   Future<ResetPasswordResponse> resetPassword(

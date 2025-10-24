@@ -44,7 +44,7 @@ class EmployerHeroSection extends StatelessWidget {
             child: IconButton(
               icon: const Icon(
                 Icons.arrow_back_ios_new,
-                color: Colors.white,
+                color: AppColors.pureWhite,
               ),
               onPressed: () => Get.back(),
             ),

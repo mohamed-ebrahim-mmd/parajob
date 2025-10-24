@@ -11,6 +11,7 @@ import 'package:para_job/features/authentication/forgot_password/forgot_password
 import 'package:para_job/features/authentication/forgot_password_otp/forgot_password_otp_screen.dart';
 import 'package:para_job/features/authentication/set_new_password/set_new_password_screen.dart';
 import 'package:para_job/features/employer/employer_screen.dart';
+import 'package:para_job/features/employer/reviews/employer_reviews_screen.dart';
 import 'package:para_job/features/home/flexible_jobs/flexible_jobs_screen.dart';
 import 'package:para_job/features/home/hot_jobs/hot_jobs_screen.dart';
 import 'package:para_job/features/home/non_flexible_jobs_screen/non_flexible_jobs_screen.dart';
@@ -29,6 +30,8 @@ import 'package:para_job/features/registration/education_pic/education_pic_scree
 import 'package:para_job/features/registration/front_national_id/front_national_id_screen.dart';
 import 'package:para_job/features/registration/picture_with_id/picture_with_id_screen.dart';
 import 'package:para_job/packages/ui_components/app_loader.dart';
+
+import '../../../features/employer/reviews/employer_reviews_controller.dart';
 
 class Routes {
   static const String onboarding = '/onboarding';
@@ -54,6 +57,7 @@ class Routes {
   static const String flexibleJobs = '/flex_job';
   static const String nonFlexibleJobs = '/non_flex_job';
   static const String employer = '/employer';
+  static const String employerReviews = '/employer-reviews';
   static const String jobDetails = '/job_details';
 }
 
@@ -174,6 +178,12 @@ class AppPages {
     GetPage(name: Routes.createAccount, page: () => CreateAccountScreen()),
     GetPage(name: Routes.jobDetails, page: () => JobDetailsScreen()),
     GetPage(name: Routes.employer, page: () => EmployerScreen()),
+    GetPage(name: Routes.employerReviews, page: () => EmployerReviewsScreen(),
+      binding: BindingsBuilder(() {
+        final args = Get.arguments;
+        Get.put(EmployerReviewsController(args['id']));
+      }),),
+
     GetPage(
       name: Routes.mainNavigator,
       page: () => MainNavigatorScreen(),
