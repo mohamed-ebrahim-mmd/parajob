@@ -1,34 +1,28 @@
 
 
-
 import 'package:para_job/packages/api_client/src/models/models.dart';
 
-class JobDetailsResponse {
-  final JobData data;
+class UserProfileResponse {
+  final UserProfileData data;
   final bool isSuccess;
   final ResponseDetails details;
 
-  JobDetailsResponse({
+  UserProfileResponse({
+
+  
     required this.data,
-    required this.isSuccess,
     required this.details,
+    required this.isSuccess, 
   });
 
-  factory JobDetailsResponse.fromJson(Map<String, dynamic> json) {
-    return JobDetailsResponse(
-      data: JobData.fromJson(json['data']),
+  factory UserProfileResponse.fromJson(Map<String, dynamic> json) {
+    return UserProfileResponse(
+      data: UserProfileData.fromJson(json['data']),
       isSuccess: json['is_success'] ?? false,
       details: ResponseDetails.fromJson(json['details']),
     );
   }
+
+
 }
-
-
-
-
-
-
-
-
-
 

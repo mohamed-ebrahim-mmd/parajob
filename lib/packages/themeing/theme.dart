@@ -36,6 +36,8 @@ class AppTheme {
         ),
       ),
       appBarTheme: const AppBarTheme(
+        elevation: 0,
+        scrolledUnderElevation: 0,
         iconTheme: IconThemeData(color: AppColors.pureWhite, size: 26),
       ),
 

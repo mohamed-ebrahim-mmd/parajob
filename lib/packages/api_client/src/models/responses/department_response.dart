@@ -2,8 +2,8 @@
  Mohamed Ebrahim | mohamed7ebrahim7@gmail.com | 2025-10-21 11:06 AM
  ==================================================================
 */
-import 'package:para_job/packages/api_client/src/models/responses/department.dart';
-import 'package:para_job/packages/api_client/src/models/responses/response_details.dart';
+import 'package:para_job/packages/api_client/src/models/models.dart';
+
 
 class DepartmentResponse {
   final List<Department> data;
