@@ -76,6 +76,13 @@ class AppTheme {
           ),
           borderRadius: BorderRadius.circular(context.wPct(4)),
         ),
+        disabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: AppColors.lightGrey,
+            // width:context.wPct(4),
+          ),
+          borderRadius: BorderRadius.circular(context.wPct(4)),
+        ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
             color: AppColors.aquaTeal,

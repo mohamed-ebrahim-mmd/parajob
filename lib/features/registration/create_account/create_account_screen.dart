@@ -4,7 +4,10 @@
 */
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:para_job/features/registration/create_account/create_account_controller.dart';
 import 'package:para_job/features/registration/widgets/stepper.dart';
+import 'package:para_job/packages/api_client/src/enums/api_call_state_enum.dart'
+    show ApiCallState;
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
@@ -12,7 +15,8 @@ import 'package:para_job/packages/ui_components/date_packer.dart';
 import 'package:para_job/packages/ui_components/drop_down_button.dart';
 
 class CreateAccountScreen extends StatelessWidget {
-  const CreateAccountScreen({super.key});
+  final controller = Get.put(CreateAccountController());
+  CreateAccountScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -102,10 +106,51 @@ class CreateAccountScreen extends StatelessWidget {
                 ),
               ),
               context.hBox(2.5),
-              DropDownButton(
-                options: ["male", "female"],
-                label: "Choose your city",
-              ),
+
+              Obx(() {
+                switch (controller.citiesCallState.value) {
+                  case ApiCallState.loading:
+                    return TextField(
+                      enabled: false,
+                      decoration: InputDecoration(
+                        labelText: "Loading cities...",
+                        suffixIcon: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: const CircularProgressIndicator(),
+                        ),
+                      ),
+                    );
+
+                  case ApiCallState.success:
+                    return DropdownMenu<int>(
+                      enableSearch: true,
+                      width: context.wPct(90),
+                      menuHeight: context.hPct(30),
+                      hintText: "Select City",
+                      initialSelection: controller.selectedCityId.value,
+                      onSelected: (value) {
+                        if (value != null) {
+                          controller.selectedCityId.value = value;
+                        }
+                      },
+                      dropdownMenuEntries: controller.cityMenuEntries,
+                    );
+
+                  case ApiCallState.failure:
+                    return TextField(
+                      readOnly: true,
+                      onTap: () {
+                        controller.fetchCities();
+                      },
+
+                      decoration: InputDecoration(
+                        labelText: "Failed to load, tap to retry",
+                        suffixIcon: const Icon(Icons.refresh),
+                      ),
+                    );
+                }
+              }),
+
               context.hBox(1.5),
               DropDownButton(
                 options: ["male", "female"],
