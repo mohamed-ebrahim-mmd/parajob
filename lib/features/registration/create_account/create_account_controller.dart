@@ -8,8 +8,11 @@ import 'package:para_job/packages/api_client/api_client.dart';
 
 class CreateAccountController extends GetxController {
   final citiesCallState = ApiCallState.loading.obs;
+  final areasCallState = DataFetchState.initial.obs;
+  int? selectedAreaId;
   final selectedCityId = Rx<int?>(null);
   List<DropdownMenuEntry<int>> cityMenuEntries = [];
+  List<DropdownMenuEntry<int>> areaMenuEntries = [];
 
   @override
   void onInit() {
@@ -35,6 +38,35 @@ class CreateAccountController extends GetxController {
       }
     } catch (e) {
       citiesCallState.value = ApiCallState.failure;
+    }
+  }
+
+  void onCitySelected(int? value) {
+    if (value != null && value != selectedCityId.value) {
+      selectedCityId.value = value;
+      selectedAreaId = null;
+      fetchAreas(value);
+    }
+  }
+
+  Future<void> fetchAreas(int cityId) async {
+    areasCallState.value = DataFetchState.loading;
+
+    try {
+      final response = await apiClient.getAreasByCity(cityId);
+      if (response.isSuccess) {
+        areaMenuEntries = response.data
+            .map(
+              (area) =>
+                  DropdownMenuEntry<int>(value: area.id, label: area.name),
+            )
+            .toList();
+        areasCallState.value = DataFetchState.success;
+      } else {
+        areasCallState.value = DataFetchState.failure;
+      }
+    } catch (e) {
+      areasCallState.value = DataFetchState.failure;
     }
   }
 }

@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import 'package:para_job/features/registration/create_account/create_account_controller.dart';
 import 'package:para_job/features/registration/widgets/stepper.dart';
 import 'package:para_job/packages/api_client/src/enums/api_call_state_enum.dart'
-    show ApiCallState;
+    show ApiCallState, DataFetchState;
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
@@ -106,7 +106,6 @@ class CreateAccountScreen extends StatelessWidget {
                 ),
               ),
               context.hBox(2.5),
-
               Obx(() {
                 switch (controller.citiesCallState.value) {
                   case ApiCallState.loading:
@@ -128,11 +127,7 @@ class CreateAccountScreen extends StatelessWidget {
                       menuHeight: context.hPct(30),
                       hintText: "Select City",
                       initialSelection: controller.selectedCityId.value,
-                      onSelected: (value) {
-                        if (value != null) {
-                          controller.selectedCityId.value = value;
-                        }
-                      },
+                      onSelected: controller.onCitySelected,
                       dropdownMenuEntries: controller.cityMenuEntries,
                     );
 
@@ -150,12 +145,61 @@ class CreateAccountScreen extends StatelessWidget {
                     );
                 }
               }),
-
               context.hBox(1.5),
-              DropDownButton(
-                options: ["male", "female"],
-                label: "Choose your area",
-              ),
+              Obx(() {
+                switch (controller.areasCallState.value) {
+                  case DataFetchState.loading:
+                    return TextField(
+                      enabled: false,
+                      decoration: InputDecoration(
+                        labelText: "Loading areas...",
+                        suffixIcon: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: const CircularProgressIndicator(),
+                        ),
+                      ),
+                    );
+
+                  case DataFetchState.success:
+                    return DropdownMenu<int>(
+                      enableSearch: true,
+                      width: context.wPct(90),
+                      menuHeight: context.hPct(30),
+                      hintText: "Select Area",
+                      initialSelection: controller.selectedAreaId,
+                      onSelected: (value) {
+                        if (value != null) {
+                          controller.selectedAreaId = value;
+                        }
+                      },
+                      dropdownMenuEntries: controller.areaMenuEntries,
+                    );
+
+                  case DataFetchState.failure:
+                    return TextField(
+                      readOnly: true,
+                      onTap: () {
+                        if (controller.selectedCityId.value != null) {
+                          controller.fetchAreas(
+                            controller.selectedCityId.value!,
+                          );
+                        }
+                      },
+                      decoration: InputDecoration(
+                        labelText: "Failed to load areas, tap to retry",
+                        suffixIcon: const Icon(Icons.refresh),
+                      ),
+                    );
+
+                  case DataFetchState.initial:
+                    return TextField(
+                      enabled: false,
+                      decoration: const InputDecoration(
+                        labelText: "Select a city first",
+                      ),
+                    );
+                }
+              }),
               context.hBox(2.5),
 
               FilledButton(
