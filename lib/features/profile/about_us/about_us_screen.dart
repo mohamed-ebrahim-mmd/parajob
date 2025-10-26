@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
@@ -28,6 +31,8 @@ class AboutUsScreen extends StatelessWidget {
               CustomListTileAboutUs(
                 title: "About the application",
                 onTap: () {
+                  Get.toNamed("${Routes.more}${Routes.aboutUs}${Routes.aboutUsContent}");
+
                   // navigate to Edit Info Screen
                 },
               ),
@@ -54,7 +59,7 @@ class AboutUsScreen extends StatelessWidget {
                   // open Change Number flow
                 },
               ),
-               context.hBox(1.5),
+              context.hBox(1.5),
               CustomListTileAboutUs(
                 title: "Like us on facebook",
                 onTap: () {

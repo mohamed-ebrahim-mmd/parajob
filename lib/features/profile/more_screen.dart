@@ -102,7 +102,8 @@ class MoreScreen extends StatelessWidget {
                 icon: AppAssetPaths.aboutUs,
                 title: "About Us",
                 onTap: () {
-                  Get.toNamed(Routes.aboutUs);
+                   Get.toNamed("${Routes.more}${Routes.aboutUs}");
+                
                 },
               ),
               context.hBox(1.5),

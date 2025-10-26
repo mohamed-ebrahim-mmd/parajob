@@ -4,7 +4,7 @@
 */
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:para_job/features/profile/profile_controller.dart';
+import 'package:para_job/features/profile/user_profile/profile_controller.dart';
 import 'package:para_job/features/profile/widgets/job_history_list.dart';
 import 'package:para_job/features/profile/widgets/profile_info.dart';
 import 'package:para_job/packages/api_client/src/enums/api_call_state_enum.dart';
