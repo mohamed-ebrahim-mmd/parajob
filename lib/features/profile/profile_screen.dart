@@ -8,6 +8,7 @@ import 'package:para_job/features/profile/profile_controller.dart';
 import 'package:para_job/features/profile/widgets/job_history_list.dart';
 import 'package:para_job/features/profile/widgets/profile_info.dart';
 import 'package:para_job/packages/api_client/src/enums/api_call_state_enum.dart';
+import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/packages/ui_components/error_screen.dart';
@@ -25,7 +26,9 @@ class ProfileScreen extends StatelessWidget {
         actions: [
           Obx(() {
             if (controller.profileCallState.value == ApiCallState.success) {
-              return IconButton(onPressed: () {}, icon: const Icon(Icons.menu));
+              return IconButton(onPressed: () {
+                Get.toNamed(Routes.more);
+              }, icon: const Icon(Icons.menu));
             } else {
               return const SizedBox.shrink(); // empty widget
             }

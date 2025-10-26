@@ -16,6 +16,7 @@ import 'package:para_job/features/home/search_job/search_job_screen.dart';
 import 'package:para_job/features/job_details/job_details_screen.dart';
 import 'package:para_job/features/main_navigator/main_navigator_screen.dart';
 import 'package:para_job/features/onboarding/onboarding_screen.dart';
+import 'package:para_job/features/profile/see_more/more_screen.dart';
 import 'package:para_job/features/registration/back_national_id/back_national_id_screen.dart';
 import 'package:para_job/features/registration/create_account/create_account_screen.dart';
 import 'package:para_job/features/registration/create_account_cv/create_account_cv_screen.dart';
@@ -51,6 +52,7 @@ class Routes {
   static const String jobs = '/jobs';
   static const String jobDetails = '/job-details';
   static const String companyDetails = '/company-details';
+  static const String more="/more-screen";
 }
 
 class AppPages {
@@ -167,6 +169,9 @@ class AppPages {
         ),
       ],
     ),
+    //profile
+    GetPage(name: Routes.more, page: () => MoreScreen()),
+   
     //CompanyDetailsScreen
     GetPage(name: Routes.createAccount, page: () => CreateAccountScreen()),
     GetPage(
