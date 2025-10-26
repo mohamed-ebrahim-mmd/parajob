@@ -2,6 +2,7 @@
  Mohamed Ebrahim | mohamed7ebrahim7@gmail.com | 2025-10-23 11:49 AM
  ==================================================================
 */
+import 'package:flutter/cupertino.dart' show TextEditingController;
 import 'package:flutter/material.dart' show DropdownMenuEntry;
 import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -11,6 +12,8 @@ class SearchJobController extends GetxController {
   // Unified call state
   final searchDataCallState = ApiCallState.loading.obs;
   late final pagingController;
+  final TextEditingController titleController = TextEditingController();
+
   int? selectedSkillId;
   int? selectedCompanyId;
   String? selectedJobType;
@@ -43,6 +46,9 @@ class SearchJobController extends GetxController {
       fetchPage: (pageKey) async {
         final response = await apiClient.fetchJobs(
           page: pageKey,
+          title: titleController.text.isNotEmpty
+              ? titleController.text.trim()
+              : null,
           companyId: selectedCompanyId,
           skillId: selectedSkillId,
           type: selectedJobType,
@@ -107,6 +113,7 @@ class SearchJobController extends GetxController {
 
   @override
   void onClose() {
+    titleController.dispose();
     pagingController.dispose();
     super.onClose();
   }

@@ -29,6 +29,7 @@ abstract class ApiClient {
 
   @GET("/api/job")
   Future<JobListResponse> fetchJobs({
+    @Query("filter[title]") String? title,
     @Query("filter[category]") String? category,
     @Query("filter[type]") String? type,
     @Query("filter[company_id]") int? companyId,
@@ -62,8 +63,7 @@ abstract class ApiClient {
   );
 
   @GET("/api/user/profile")
-Future<UserProfileResponse> fetchUserProfile({
-  @Header('Authorization') required String token,
-
-});
+  Future<UserProfileResponse> fetchUserProfile({
+    @Header('Authorization') required String token,
+  });
 }

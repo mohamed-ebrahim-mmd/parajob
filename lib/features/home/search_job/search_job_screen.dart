@@ -46,11 +46,13 @@ class SearchJobScreen extends StatelessWidget {
                 children: [
                   context.hBox(2),
                   TextField(
-                    onTap: () {},
+                    controller: controller.titleController,
                     decoration: InputDecoration(
                       hintText: 'Search jobs, companies..',
                       prefixIcon: IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          controller.pagingController.refresh();
+                        },
                         icon: const Icon(Icons.search),
                       ),
                       suffixIcon: IconButton(
