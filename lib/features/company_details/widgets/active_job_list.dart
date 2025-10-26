@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:para_job/features/home/widgets/job_card.dart';
+import 'package:para_job/packages/ui_components/job_card.dart';
 import 'package:para_job/packages/api_client/src/models/models.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';

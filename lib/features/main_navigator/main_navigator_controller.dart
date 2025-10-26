@@ -23,8 +23,8 @@ class MainNavigatorController extends GetxController {
   final List<Widget> pages = [
     HomeScreen(),
     MyJobsScreen(),
-    const NotificationsScreen(),
-    const ProfileScreen(),
+    NotificationsScreen(),
+    ProfileScreen(),
   ];
 
   Future<void> updateTab(BuildContext context, int index) async {

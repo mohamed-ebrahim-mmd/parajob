@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
-import '../../../packages/api_client/src/models/responses/job.dart' show Job;
+import '../api_client/src/models/responses/job.dart' show Job;
 
 class JobCard extends StatelessWidget {
   final Job job;
