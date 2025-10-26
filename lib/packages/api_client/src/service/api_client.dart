@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:para_job/packages/api_client/src/models/responses/my_notifications_response.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../models/models.dart';
@@ -65,5 +66,11 @@ abstract class ApiClient {
   @GET("/api/user/profile")
   Future<UserProfileResponse> fetchUserProfile({
     @Header('Authorization') required String token,
+  });
+
+  @GET("/api/notification")
+  Future<MyNotificationsResponse> getNotifications({
+    @Header('Authorization') required String token,
+    @Query('page') int? page,
   });
 }

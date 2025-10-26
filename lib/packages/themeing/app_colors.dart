@@ -27,6 +27,7 @@ class AppColors {
   static const Color pureWhite = Color(0xFFFFFFFF);
   static const Color softWhite70 = Color(0xB3FFFFFF); // white at 70% opacity
   static const Color softWhite80 = Color(0xCCFFFFFF);
+  static const Color white50 = Color(0x80FFFFFF);
 
   static const Color lightGray = Color(0xffB4B4B4);
   static const Color lightGray2 = Color(0xffD9D9D9);
