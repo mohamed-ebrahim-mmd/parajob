@@ -2,19 +2,18 @@
  Mohamed Ebrahim | mohamed7ebrahim7@gmail.com | 2025-10-23 2:58 PM
  ==================================================================
 */
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/home/search_job/search_job_controller.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
-void showFilterBottomSheet() {
-  final context = Get.context!;
-  final controller = Get.find<SearchJobController>();
-
-  Get.bottomSheet(
+Future<void> showFilterBottomSheet(
+  BuildContext context,
+  SearchJobController controller,
+) async {
+  await Get.bottomSheet(
+    enterBottomSheetDuration: Duration(milliseconds: 50), // faster
     Container(
       padding: EdgeInsets.all(context.wPct(5)),
       decoration: BoxDecoration(
@@ -79,30 +78,23 @@ void showFilterBottomSheet() {
           context.hBox(2),
           DropdownMenu<int>(
             enableSearch: true,
+            width: context.wPct(90),
+
             menuHeight: context.hPct(30),
             initialSelection: controller.selectedSkillId,
-
-            width: double.infinity,
             hintText: 'Skills',
             onSelected: (value) {
               if (value != null) {
                 controller.selectedSkillId = value;
               }
             },
-            dropdownMenuEntries: controller.skills
-                .map(
-                  (skill) => DropdownMenuEntry<int>(
-                    value: skill.id,
-                    label: skill.name,
-                  ),
-                )
-                .toList(),
+            dropdownMenuEntries: controller.skills,
           ),
           context.hBox(2),
           DropdownMenu<int>(
             enableSearch: true,
             menuHeight: context.hPct(30),
-            width: double.infinity,
+            width: context.wPct(90),
             initialSelection: controller.selectedCompanyId,
             hintText: 'Company',
             onSelected: (value) {
@@ -110,20 +102,13 @@ void showFilterBottomSheet() {
                 controller.selectedCompanyId = value;
               }
             },
-            dropdownMenuEntries: controller.companies
-                .map(
-                  (company) => DropdownMenuEntry<int>(
-                    value: company.id,
-                    label: company.name,
-                  ),
-                )
-                .toList(),
+            dropdownMenuEntries: controller.companies,
           ),
           context.hBox(2),
           DropdownMenu<String>(
             enableSearch: true,
             menuHeight: context.hPct(30),
-            width: double.infinity,
+            width: context.wPct(90),
             initialSelection: controller.selectedJobCategory,
             hintText: 'Categories ',
             onSelected: (value) {
@@ -136,9 +121,7 @@ void showFilterBottomSheet() {
           context.hBox(2),
           // button
           FilledButton(
-            onPressed: () {
-              log("🟢 ${controller.selectedSkillId}");
-            },
+            onPressed: controller.applyFilters,
             child: Text("Apply Filter"),
           ),
           context.hBox(2),

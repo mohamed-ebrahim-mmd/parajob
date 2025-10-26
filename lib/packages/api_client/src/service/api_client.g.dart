@@ -186,12 +186,18 @@ class _ApiClient implements ApiClient {
   @override
   Future<JobListResponse> fetchJobs({
     String? category,
+    String? type,
+    int? companyId,
+    int? skillId,
     int? departmentId,
     int? page,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'filter[category]': category,
+      r'filter[type]': type,
+      r'filter[company_id]': companyId,
+      r'filter[skills]': skillId,
       r'filter[department_id]': departmentId,
       r'page': page,
     };

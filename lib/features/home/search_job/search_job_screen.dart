@@ -4,10 +4,16 @@
 */
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:para_job/features/home/search_job/search_job_controller.dart';
 import 'package:para_job/features/home/search_job/widgets/show_filter_bottom_sheet.dart';
+import 'package:para_job/features/home/widgets/job_card.dart' show JobCard;
 import 'package:para_job/packages/api_client/src/enums/api_call_state_enum.dart'
     show ApiCallState;
+import 'package:para_job/packages/api_client/src/models/responses/job.dart'
+    show Job;
+import 'package:para_job/packages/route_manager/controller/routes.dart'
+    show Routes;
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/packages/ui_components/error_screen.dart';
@@ -48,12 +54,39 @@ class SearchJobScreen extends StatelessWidget {
                         icon: const Icon(Icons.search),
                       ),
                       suffixIcon: IconButton(
-                        onPressed: () {
-                          showFilterBottomSheet();
+                        onPressed: () async {
+                          await showFilterBottomSheet(context, controller);
                         },
                         icon: const Icon(Icons.tune),
                       ),
                       filled: false,
+                    ),
+                  ),
+                  context.hBox(2),
+                  Expanded(
+                    child: PagingListener<int, Job>(
+                      controller: controller.pagingController,
+                      builder: (context, state, fetchNextPage) =>
+                          PagedListView<int, Job>(
+                            state: state,
+                            fetchNextPage: fetchNextPage,
+                            builderDelegate: PagedChildBuilderDelegate(
+                              itemBuilder: (context, item, index) => Padding(
+                                padding: EdgeInsets.symmetric(
+                                  vertical: context.hPct(1),
+                                ),
+                                child: JobCard(
+                                  job: item,
+                                  onTap: () {
+                                    Get.toNamed(
+                                      Routes.jobDetails,
+                                      arguments: item.id,
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                          ),
                     ),
                   ),
                 ],
@@ -63,7 +96,7 @@ class SearchJobScreen extends StatelessWidget {
               return Center(
                 child: ErrorScreen(
                   onPressed: () {
-                    controller.fetchSearchData();
+                    controller.initializeSearchData();
                   },
                 ),
               );

@@ -4,18 +4,20 @@
 */
 import 'package:flutter/material.dart' show DropdownMenuEntry;
 import 'package:get/get.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
 
 class SearchJobController extends GetxController {
   // Unified call state
   final searchDataCallState = ApiCallState.loading.obs;
+  late final pagingController;
   int? selectedSkillId;
   int? selectedCompanyId;
   String? selectedJobType;
   String? selectedJobCategory;
   // Data
-  List<Skill> skills = [];
-  List<CompanyListItem> companies = [];
+  List<DropdownMenuEntry<int>> skills = [];
+  List<DropdownMenuEntry<int>> companies = [];
 
   final jobTypeMenuEntries = [
     DropdownMenuEntry<String>(value: 'part_time', label: 'Part time'),
@@ -31,24 +33,59 @@ class SearchJobController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    fetchSearchData();
+    initializeSearchData();
   }
 
-  Future<void> fetchSearchData() async {
+  Future<void> _initPagingController() async {
+    pagingController = PagingController<int, Job>(
+      getNextPageKey: (state) =>
+          state.lastPageIsEmpty ? null : state.nextIntPageKey,
+      fetchPage: (pageKey) async {
+        final response = await apiClient.fetchJobs(
+          page: pageKey,
+          companyId: selectedCompanyId,
+          skillId: selectedSkillId,
+          type: selectedJobType,
+          category: selectedJobCategory,
+        );
+        if (response.isSuccess ?? false) {
+          return response.data ?? [];
+        } else {
+          throw Exception('Failed to load jobs');
+        }
+      },
+    );
+  }
+
+  Future<void> initializeSearchData() async {
     searchDataCallState.value = ApiCallState.loading;
 
     try {
       final results = await Future.wait([
         apiClient.getSkills(),
         apiClient.getCompanies(),
+        _initPagingController(),
       ]);
 
       final skillsResponse = results[0] as SkillResponse;
       final companiesResponse = results[1] as CompanyListResponse;
 
       if (skillsResponse.isSuccess && companiesResponse.isSuccess) {
-        skills = skillsResponse.data;
-        companies = companiesResponse.data;
+        skills = skillsResponse.data
+            .map(
+              (skill) =>
+                  DropdownMenuEntry<int>(value: skill.id, label: skill.name),
+            )
+            .toList();
+
+        companies = companiesResponse.data
+            .map(
+              (company) => DropdownMenuEntry<int>(
+                value: company.id,
+                label: company.name,
+              ),
+            )
+            .toList();
         searchDataCallState.value = ApiCallState.success;
       } else {
         searchDataCallState.value = ApiCallState.failure;
@@ -56,5 +93,21 @@ class SearchJobController extends GetxController {
     } catch (e) {
       searchDataCallState.value = ApiCallState.failure;
     }
+  }
+
+  void applyFilters() {
+    // refresh the paging controller to reload jobs with the selected filters
+    pagingController.refresh();
+
+    // close the bottom sheet or dialog
+    if (Get.isBottomSheetOpen ?? false) {
+      Get.back();
+    }
+  }
+
+  @override
+  void onClose() {
+    pagingController.dispose();
+    super.onClose();
   }
 }

@@ -30,6 +30,9 @@ abstract class ApiClient {
   @GET("/api/job")
   Future<JobListResponse> fetchJobs({
     @Query("filter[category]") String? category,
+    @Query("filter[type]") String? type,
+    @Query("filter[company_id]") int? companyId,
+    @Query("filter[skills]") int? skillId,
     @Query("filter[department_id]") int? departmentId,
     @Query("page") int? page,
   });
