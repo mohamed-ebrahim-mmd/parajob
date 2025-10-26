@@ -5,21 +5,15 @@ class LatestReview {
   final String? review;
   final double? rate;
   final String? createdAt;
-  final Reviwer? reviwer;
+  final Reviewer? reviwer;
 
-  LatestReview({
-    this.id,
-    this.review,
-    this.rate,
-    this.createdAt,
-    this.reviwer
-  });
+  LatestReview({this.id, this.review, this.rate, this.createdAt, this.reviwer});
 
   factory LatestReview.fromJson(Map<String, dynamic> json) => LatestReview(
-        id: json["id"],
-        review: json["review"],
-        rate: (json["rate"] as num?)?.toDouble(),
-        createdAt: json["created_at"],
-        reviwer: Reviwer.fromJson(json["user"]),
-      );
+    id: json["id"],
+    review: json["review"],
+    rate: (json["rate"] as num?)?.toDouble(),
+    createdAt: json["created_at"],
+    reviwer: Reviewer.fromJson(json["user"]),
+  );
 }

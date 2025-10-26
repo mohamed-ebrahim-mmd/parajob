@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:para_job/features/home/search_job/search_job_controller.dart';
 import 'package:para_job/features/home/search_job/widgets/show_filter_bottom_sheet.dart';
-import 'package:para_job/features/home/widgets/job_card.dart' show JobCard;
 import 'package:para_job/packages/api_client/src/enums/api_call_state_enum.dart'
     show ApiCallState;
 import 'package:para_job/packages/api_client/src/models/responses/job.dart'
@@ -17,6 +16,7 @@ import 'package:para_job/packages/route_manager/controller/routes.dart'
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/packages/ui_components/error_screen.dart';
+import 'package:para_job/packages/ui_components/job_card.dart' show JobCard;
 
 class SearchJobScreen extends StatelessWidget {
   final controller = Get.put(SearchJobController());

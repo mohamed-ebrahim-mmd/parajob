@@ -4,37 +4,42 @@
 */
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:para_job/features/profile/user_profilee_controller.dart';
+import 'package:para_job/features/profile/profile_controller.dart';
 import 'package:para_job/features/profile/widgets/job_history_list.dart';
 import 'package:para_job/features/profile/widgets/profile_info.dart';
 import 'package:para_job/packages/api_client/src/enums/api_call_state_enum.dart';
-
+import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/packages/ui_components/error_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({super.key});
+
   final controller = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(// backgroundColor: Colors.white, // or your preferred color
- 
-        actions: [IconButton(onPressed: (){}, icon: Icon(Icons.menu)),],),
+      appBar: AppBar(
+        surfaceTintColor: AppColors.charcoalBlack,
+        actions: [
+          Obx(() {
+            if (controller.profileCallState.value == ApiCallState.success) {
+              return IconButton(onPressed: () {}, icon: const Icon(Icons.menu));
+            } else {
+              return const SizedBox.shrink(); // empty widget
+            }
+          }),
+        ],
+      ),
       body: Center(
         child: Obx(() {
           switch (controller.profileCallState.value) {
             case ApiCallState.loading:
-              return Container(
-                alignment: Alignment.center,
-                height: context.hPct(60),
-                child: const CircularProgressIndicator(),
-              );
+              return Center(child: const CircularProgressIndicator());
 
             case ApiCallState.success:
-              final profileData = controller.profileData!.data;
-
+              final profileData = controller.profileData!;
               return SingleChildScrollView(
                 child: Padding(
                   padding: EdgeInsetsGeometry.symmetric(
@@ -54,17 +59,19 @@ class ProfileScreen extends StatelessWidget {
                         jobHistory: profileData.savedJobs ?? [],
                         title: "Saved Jobs",
                       ),
+                      context.hBox(2),
                     ],
                   ),
                 ),
               );
 
             case ApiCallState.failure:
-              return ErrorScreen(
-                height: context.hPct(60),
-                onPressed: () {
-                  controller.fetchProfileDetails("token");
-                },
+              return Center(
+                child: ErrorScreen(
+                  onPressed: () {
+                    controller.fetchProfileDetails();
+                  },
+                ),
               );
           }
         }),
