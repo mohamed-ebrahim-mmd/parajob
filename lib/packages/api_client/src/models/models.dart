@@ -29,3 +29,7 @@ export './responses/skill_response.dart';
 export './responses/user_profile_data.dart';
 export './responses/user_profile_response.dart';
 export './responses/verify_otp_response.dart';
+export './responses/section.dart';
+export './responses/page_data.dart';
+export './responses/about_us_data.dart';
+export './responses/about_us_response.dart';

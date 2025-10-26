@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/res/app_asset_paths.dart';
@@ -100,7 +102,7 @@ class MoreScreen extends StatelessWidget {
                 icon: AppAssetPaths.aboutUs,
                 title: "About Us",
                 onTap: () {
-                  // navigate to About Us
+                  Get.toNamed(Routes.aboutUs);
                 },
               ),
               context.hBox(1.5),
@@ -130,7 +132,7 @@ class MoreScreen extends StatelessWidget {
     );
   }
 }
-List<CustomListTile> Accoutnts=[];
+
 
 class CustomListTile extends StatelessWidget {
   final String icon;
@@ -159,7 +161,7 @@ class CustomListTile extends StatelessWidget {
         title,
         style: TextStyle(
           color: isRedTitle ? AppColors.coralRed : AppColors.pureWhite,
-          fontSize: 16,
+          fontSize: context.wPct(4),
           fontWeight: FontWeight.w500,
         ),
       ),

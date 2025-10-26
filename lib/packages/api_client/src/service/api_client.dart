@@ -61,6 +61,9 @@ abstract class ApiClient {
     @Body() ResetPasswordRequest request,
   );
 
+    @GET("/api/page/slug/about-parajob")
+  Future<AboutUsResponse> getAboutUs();
+
   @GET("/api/user/profile")
 Future<UserProfileResponse> fetchUserProfile({
   @Header('Authorization') required String token,
