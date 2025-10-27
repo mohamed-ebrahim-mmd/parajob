@@ -112,7 +112,9 @@ class MoreScreen extends StatelessWidget {
                 icon: AppAssetPaths.contactUs,
                 title: "Contact Us",
                 onTap: () {
-                  // navigate to Contact screen
+                   Get.toNamed(
+                    "${Routes.mainNavigator}${Routes.more}${Routes.contactUs}",
+                  );
                 },
               ),
               context.hBox(1.5),

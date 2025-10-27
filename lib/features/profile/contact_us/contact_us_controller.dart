@@ -3,6 +3,8 @@
  ==================================================================
 */
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
@@ -40,18 +42,24 @@ class ContactUsController extends GetxController {
 
 
       if (response.isSuccess) {
+      print("🔴 success");
+
+        //log("🟢 isSuccess");
         showSnackBarSuccess(
           "Success",
           response.details.message ?? "message sent successfully",
         );
         
       } else {
+        log("🟢 isfail");
         showSnackBarError(
           "Failed",
           response.details.message ?? "message sent failed",
         );
       }
     } catch (e) {
+      print("🔴 ${e.toString()}");
+    //  log("🔴 ${e.toString()}");
       showSnackBarApiError();
     } finally {
       context.loaderOverlay.hide();

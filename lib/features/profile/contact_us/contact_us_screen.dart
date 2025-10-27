@@ -1,33 +1,25 @@
-/*
- Mohamed Ebrahim | mohamed7ebrahim7@gmail.com | 2025-10-15 10:44 AM
- ==================================================================
-*/
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:para_job/features/authentication/set_new_password/set_new_password_controller.dart';
+import 'package:para_job/features/profile/contact_us/contact_us_controller.dart';
+import 'package:para_job/features/profile/widgets/custom_listtile_contactus.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
-class SetNewPasswordScreen extends StatelessWidget {
-  final controller = Get.find<SetNewPasswordController>();
+class ContactUsScreen extends StatelessWidget {
+  ContactUsScreen({super.key});
 
-   SetNewPasswordScreen({super.key});
+   final controller = Get.put(ContactUsController());
 
   @override
   Widget build(BuildContext context) {
-    return 
-    
-    PopScope(
+    return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) {
         if (!didPop) {
           controller.closeAndDispose();
         }
       },
-      child:
-
-
-       Scaffold(
+      child: Scaffold(
         appBar: AppBar(
           leading: IconButton(
             icon: const Icon(Icons.arrow_back_ios_new),
@@ -43,7 +35,7 @@ class SetNewPasswordScreen extends StatelessWidget {
               children: [
                 context.hBox(2),
                 Text(
-                  'Set password',
+                  'Complain or Suggest',
                   style: TextStyle(
                     color: AppColors.pureWhite,
                     fontSize: context.wPct(8.5),
@@ -53,28 +45,35 @@ class SetNewPasswordScreen extends StatelessWidget {
                 context.hBox(6),
                 Obx(() {
                   return TextField(
-                    controller: controller.passwordController,
+                    controller: controller.messageController,
                     decoration: InputDecoration(
-                      hintText: "Enter your new password",
-                      errorText: controller.passwordError.value,
+                      hintText: "Share your issues with us..",
+                      errorText: controller.messageError.value,
+                      contentPadding: EdgeInsets.symmetric(
+                        vertical: context.hPct(1),horizontal: context.wPct(2),
+                      ),
                     ),
-                    keyboardType: TextInputType.visiblePassword,
-                    obscureText: true,
-                    textInputAction: TextInputAction.next,
+
+                    keyboardType: TextInputType.multiline,
+                    textInputAction: TextInputAction.newline,
+                    minLines: 4,
+                    maxLines: 6,
                   );
                 }),
-                context.hBox(1.5),
-                Obx(() {
-                  return TextField(
-                    controller: controller.confirmPasswordController,
-                    decoration: InputDecoration(
-                      errorText: controller.confirmPasswordError.value,
-                      hintText: "Confirm your new Password",
-                    ),
-                    obscureText: true,
-                    textInputAction: TextInputAction.done,
-                  );
-                }),
+                context.hBox(3),
+                Text(
+                  'Contact us',
+                  style: TextStyle(
+                    color: AppColors.pureWhite,
+                    fontSize: context.wPct(8.5),
+                    
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                context.hBox(2),
+                CustomListTileContactUs(title: "Email us on", subtitle: ""),
+                 context.hBox(1),
+                CustomListTileContactUs(title: "By phone", subtitle: ""),
               ],
             ),
           ),
@@ -87,18 +86,11 @@ class SetNewPasswordScreen extends StatelessWidget {
           child: FilledButton(
             onPressed: () {
               controller.validateAndSubmit(context);
-              // Get.toNamed("${Routes.forgotPassword}${Routes.forgotPasswordOTP}");
             },
             child: Text("Confirm"),
           ),
         ),
       ),
-   
-   
-   
     );
-
-
-
   }
 }

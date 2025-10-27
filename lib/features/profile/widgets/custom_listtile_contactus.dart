@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
-class CustomListTile extends StatelessWidget {
-  final String icon;
+class CustomListTileContactUs extends StatelessWidget {
   final String title;
+  final String subtitle;
   final VoidCallback? onTap;
-  final bool isRedTitle;
 
-  const CustomListTile({
+  const CustomListTileContactUs({
     super.key,
-    required this.icon,
     required this.title,
+    required this.subtitle,
     this.onTap,
-    this.isRedTitle = false,
   });
 
   @override
@@ -25,17 +22,23 @@ class CustomListTile extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(context.wPct(2)),
       ),
-      leading: SvgPicture.asset(
-        icon,
-        width: context.wPct(4),
-        height: context.hPct(2),
-      ),
       title: Text(
         title,
         style: TextStyle(
-          color: isRedTitle ? AppColors.coralRed : AppColors.pureWhite,
-          fontSize: context.wPct(4),
-          fontWeight: FontWeight.w500,
+          color: AppColors.pureWhite,
+          fontSize: context.wPct(4.2),
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+      subtitle: Padding(
+        padding: EdgeInsets.only(top: context.hPct(0.5)),
+        child: Text(
+          subtitle,
+          style: TextStyle(
+            color: AppColors.softWhite70,
+            fontSize: context.wPct(3.5),
+            fontWeight: FontWeight.w400,
+          ),
         ),
       ),
     );
