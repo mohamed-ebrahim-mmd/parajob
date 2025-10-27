@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart' show TextEditingController;
 import 'package:flutter/material.dart' show DropdownMenuEntry, showDatePicker;
 import 'package:get/get.dart';
 import 'package:intl/intl.dart' show DateFormat;
+import 'package:para_job/features/registration/create_account_otp/create_account_otp_controller.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
 import 'package:para_job/packages/functional_components/validation_utils.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart'
@@ -165,6 +166,7 @@ class CreateAccountController extends GetxController {
     }
 
     // ✅ All validations passed
+    Get.put(CreateAccountOtpController(phone.trim()));
     Get.toNamed("${Routes.createAccount}${Routes.createAccountOTP}");
   }
 
