@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:para_job/features/profile/widgets/custom_listtile_aboutus.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
-import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
 class AboutUsScreen extends StatelessWidget {
@@ -23,15 +23,16 @@ class AboutUsScreen extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.symmetric(
             horizontal: context.wPct(5),
-            vertical: context.hPct(2),
+            
           ),
           child: ListView(
             children: [
+              context.hBox(2),
               // ===== Account Section =====
               CustomListTileAboutUs(
                 title: "About the application",
                 onTap: () {
-                  Get.toNamed("${Routes.more}${Routes.aboutUs}${Routes.aboutUsContent}");
+                  Get.toNamed("${Routes.mainNavigator}${Routes.more}${Routes.aboutUs}${Routes.aboutUsContent}");
 
                   // navigate to Edit Info Screen
                 },
@@ -66,37 +67,10 @@ class AboutUsScreen extends StatelessWidget {
                   // open Change Number flow
                 },
               ),
+              context.hBox(2),
+              
             ],
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class CustomListTileAboutUs extends StatelessWidget {
-  final String title;
-  final VoidCallback? onTap;
-
-  const CustomListTileAboutUs({super.key, required this.title, this.onTap});
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      onTap: onTap,
-      tileColor: AppColors.listTileBG,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      trailing: Icon(
-        Icons.arrow_forward_ios_rounded,
-        color: AppColors.pureWhite,
-      ),
-
-      title: Text(
-        title,
-        style: TextStyle(
-          color: AppColors.pureWhite,
-          fontSize: context.wPct(4),
-          fontWeight: FontWeight.w500,
         ),
       ),
     );

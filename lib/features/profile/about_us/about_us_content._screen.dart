@@ -40,11 +40,11 @@ class AboutUsContentScreen extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsetsGeometry.symmetric(
                     horizontal: context.wPct(5),
-                    vertical: context.hPct(2),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      context.hBox(2),
                       //About ParaJob
                       Text(
                         "About ParaJob",
@@ -68,7 +68,8 @@ class AboutUsContentScreen extends StatelessWidget {
                       //Our Vision
                       context.hBox(3),
                       Text(
-                        "Our Vision",
+                         visionSection?.title ?? 'Our Vision',
+                      
                         style: TextStyle(
                           color: AppColors.pureWhite,
                           fontSize: context.wPct(6),
@@ -89,7 +90,7 @@ class AboutUsContentScreen extends StatelessWidget {
                       context.hBox(3),
 
                       Text(
-                        "Our Mission",
+                        missionSection?.title ?? "Our Mission",
                         style: TextStyle(
                           color: AppColors.pureWhite,
                           fontSize: context.wPct(6),
@@ -110,7 +111,8 @@ class AboutUsContentScreen extends StatelessWidget {
                       //Our values
                       context.hBox(2),
                       Text(
-                        "Our values",
+                         valuesSection?.title ?? "Our values",
+                       
                         style: TextStyle(
                           color: AppColors.pureWhite,
                           fontSize: context.wPct(6),
@@ -127,6 +129,7 @@ class AboutUsContentScreen extends StatelessWidget {
                           fontWeight: FontWeight.w400,
                         ),
                       ),
+                      context.hBox(2),
                     ],
                   ),
                 ),

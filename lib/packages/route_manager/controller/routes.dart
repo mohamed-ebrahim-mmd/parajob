@@ -173,23 +173,6 @@ class AppPages {
         ),
       ],
     ),
-    //profile
-    GetPage(
-      name: Routes.more,
-      page: () => MoreScreen(),
-      children: [
-        GetPage(
-          name: Routes.aboutUs,
-          page: () => AboutUsScreen(),
-          children: [
-            GetPage(
-              name: Routes.aboutUsContent,
-              page: () => AboutUsContentScreen(),
-            ),
-          ],
-        ),
-      ],
-    ),
 
     //CompanyDetailsScreen
     GetPage(name: Routes.createAccount, page: () => CreateAccountScreen()),
@@ -210,6 +193,23 @@ class AppPages {
         /// screens that's under the home tab
         GetPage(name: Routes.jobs, page: () => JobsScreen()),
         GetPage(name: Routes.searchJob, page: () => SearchJobScreen()),
+        //profile
+        GetPage(
+          name: Routes.more,
+          page: () => MoreScreen(),
+          children: [
+            GetPage(
+              name: Routes.aboutUs,
+              page: () => AboutUsScreen(),
+              children: [
+                GetPage(
+                  name: Routes.aboutUsContent,
+                  page: () => AboutUsContentScreen(),
+                ),
+              ],
+            ),
+          ],
+        ),
       ],
     ),
   ];

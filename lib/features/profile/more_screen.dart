@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:para_job/features/profile/widgets/custom_listtile.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
+import 'package:para_job/packages/route_manager/controller/routing_controller.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/res/app_asset_paths.dart';
@@ -12,7 +13,7 @@ class MoreScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: AppBar(
+      appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new), // Or your custom icon
           onPressed: () {
@@ -22,13 +23,11 @@ class MoreScreen extends StatelessWidget {
       ),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: context.wPct(5),
-            vertical: context.hPct(2),
-          ),
+          padding: EdgeInsets.symmetric(horizontal: context.wPct(5)),
           child: ListView(
             children: [
               // ===== Account Section =====
+              context.hBox(2),
               Text(
                 "Account",
                 style: TextStyle(
@@ -81,7 +80,7 @@ class MoreScreen extends StatelessWidget {
                 title: "Log Out",
                 isRedTitle: true,
                 onTap: () {
-                  // perform logout
+                  Get.find<RoutingController>().logOut();
                 },
               ),
 
@@ -102,8 +101,9 @@ class MoreScreen extends StatelessWidget {
                 icon: AppAssetPaths.aboutUs,
                 title: "About Us",
                 onTap: () {
-                   Get.toNamed("${Routes.more}${Routes.aboutUs}");
-                
+                  Get.toNamed(
+                    "${Routes.mainNavigator}${Routes.more}${Routes.aboutUs}",
+                  ); //mainNavigator
                 },
               ),
               context.hBox(1.5),
@@ -123,47 +123,10 @@ class MoreScreen extends StatelessWidget {
                   // navigate to Complaint form
                 },
               ),
-              
 
-              
+              context.hBox(2),
             ],
           ),
-        ),
-      ),
-    );
-  }
-}
-
-
-class CustomListTile extends StatelessWidget {
-  final String icon;
-  final String title;
-  final VoidCallback? onTap;
-  final bool isRedTitle;
-
-  const CustomListTile({
-    super.key,
-    required this.icon,
-    required this.title,
-    this.onTap,
-    this.isRedTitle = false,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      onTap: onTap,
-      tileColor: AppColors.listTileBG,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
-      leading: SvgPicture.asset(icon, width: 24, height: 24),
-      title: Text(
-        title,
-        style: TextStyle(
-          color: isRedTitle ? AppColors.coralRed : AppColors.pureWhite,
-          fontSize: context.wPct(4),
-          fontWeight: FontWeight.w500,
         ),
       ),
     );

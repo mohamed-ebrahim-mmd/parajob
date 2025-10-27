@@ -27,7 +27,7 @@ class ProfileScreen extends StatelessWidget {
           Obx(() {
             if (controller.profileCallState.value == ApiCallState.success) {
               return IconButton(onPressed: () {
-                Get.toNamed(Routes.more);
+                 Get.toNamed("${Routes.mainNavigator}${Routes.more}");
               }, icon: const Icon(Icons.menu));
             } else {
               return const SizedBox.shrink(); // empty widget
