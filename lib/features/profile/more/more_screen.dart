@@ -5,6 +5,7 @@ import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/route_manager/controller/routing_controller.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
+import 'package:para_job/packages/ui_components/app_dialog.dart';
 import 'package:para_job/res/app_asset_paths.dart';
 
 class MoreScreen extends StatelessWidget {
@@ -47,7 +48,7 @@ class MoreScreen extends StatelessWidget {
               ),
               context.hBox(1.5),
 
-              CustomListTile(
+             CustomListTile(
                 icon: AppAssetPaths.lock,
                 title: "Change Password",
                 onTap: () {
@@ -70,7 +71,7 @@ class MoreScreen extends StatelessWidget {
                 title: "Delete Account",
                 isRedTitle: true,
                 onTap: () {
-                  // handle delete account
+                 showApplicationDialog(message: "Are you sure that you want to delete your account?", textButton: "Delete my account",warning: "Warning: if you deleted your account you will lose all your data and your level rank.", context: context, onTap: (){});
                 },
               ),
               context.hBox(1.5),
@@ -112,7 +113,7 @@ class MoreScreen extends StatelessWidget {
                 icon: AppAssetPaths.contactUs,
                 title: "Contact Us",
                 onTap: () {
-                  Get.toNamed(
+                   Get.toNamed(
                     "${Routes.mainNavigator}${Routes.more}${Routes.contactUs}",
                   );
                 },
