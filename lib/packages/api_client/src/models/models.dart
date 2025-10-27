@@ -33,3 +33,5 @@ export './responses/section.dart';
 export './responses/page_data.dart';
 export './responses/about_us_data.dart';
 export './responses/about_us_response.dart';
+export './requests/contact_us_request.dart';
+export './responses/contact_us_response.dart';

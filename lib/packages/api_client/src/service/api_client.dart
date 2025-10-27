@@ -69,4 +69,9 @@ Future<UserProfileResponse> fetchUserProfile({
   @Header('Authorization') required String token,
 
 });
+
+  @POST("/api/contactus/store")
+  Future<ContactUsResponse> contactUs(
+    @Body() ContactUsRequest request,
+  );
 }
