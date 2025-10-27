@@ -74,4 +74,8 @@ Future<UserProfileResponse> fetchUserProfile({
   Future<ContactUsResponse> contactUs(
     @Body() ContactUsRequest request,
   );
+
+
+    @GET("/api/contact/info")
+  Future<ContactInfoResponse> getContactInfo();
 }

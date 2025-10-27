@@ -1,14 +1,14 @@
-class ContactUsInfoData {
+class ContactInfoData {
   final String email;
   final String phoneNumber;
 
-  ContactUsInfoData({
+  ContactInfoData({
     required this.email,
     required this.phoneNumber,
   });
 
-  factory ContactUsInfoData.fromJson(Map<String, dynamic> json) {
-    return ContactUsInfoData(
+  factory ContactInfoData.fromJson(Map<String, dynamic> json) {
+    return ContactInfoData(
       email: json['email'],
       phoneNumber: json['phone_number'],
     );
