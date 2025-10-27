@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:para_job/features/profile/about_us/about_us_content_conroller.dart';
+import 'package:para_job/features/profile/about_app/about_app_conroller.dart';
 import 'package:para_job/packages/api_client/src/enums/api_call_state_enum.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/packages/ui_components/error_screen.dart';
 
-class AboutUsContentScreen extends StatelessWidget {
-  AboutUsContentScreen({super.key});
+class AboutAppScreen extends StatelessWidget {
+  AboutAppScreen({super.key});
 
-  final controller = Get.put(AboutUsContentConroller());
+  final controller = Get.put(AboutAppConroller());
 
   @override
   Widget build(BuildContext context) {
@@ -68,8 +68,8 @@ class AboutUsContentScreen extends StatelessWidget {
                       //Our Vision
                       context.hBox(3),
                       Text(
-                         visionSection?.title ?? 'Our Vision',
-                      
+                        visionSection?.title ?? 'Our Vision',
+
                         style: TextStyle(
                           color: AppColors.pureWhite,
                           fontSize: context.wPct(6),
@@ -111,8 +111,8 @@ class AboutUsContentScreen extends StatelessWidget {
                       //Our values
                       context.hBox(2),
                       Text(
-                         valuesSection?.title ?? "Our values",
-                       
+                        valuesSection?.title ?? "Our values",
+
                         style: TextStyle(
                           color: AppColors.pureWhite,
                           fontSize: context.wPct(6),

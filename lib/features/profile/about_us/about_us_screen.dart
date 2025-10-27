@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:para_job/features/profile/widgets/custom_listtile_aboutus.dart';
+import 'package:para_job/features/profile/widgets/about_us_list_tile.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
@@ -21,25 +20,24 @@ class AboutUsScreen extends StatelessWidget {
       ),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: context.wPct(5),
-            
-          ),
+          padding: EdgeInsets.symmetric(horizontal: context.wPct(5)),
           child: ListView(
             children: [
               context.hBox(2),
               // ===== Account Section =====
-              CustomListTileAboutUs(
+              AboutUsListTile(
                 title: "About the application",
                 onTap: () {
-                  Get.toNamed("${Routes.mainNavigator}${Routes.more}${Routes.aboutUs}${Routes.aboutUsContent}");
+                  Get.toNamed(
+                    "${Routes.mainNavigator}${Routes.more}${Routes.aboutUs}${Routes.aboutApp}",
+                  );
 
                   // navigate to Edit Info Screen
                 },
               ),
               context.hBox(1.5),
 
-              CustomListTileAboutUs(
+              AboutUsListTile(
                 title: "Rate us on App store",
                 onTap: () {
                   // navigate to Change Password Screen
@@ -47,28 +45,27 @@ class AboutUsScreen extends StatelessWidget {
               ),
               context.hBox(1.5),
 
-              CustomListTileAboutUs(
+              AboutUsListTile(
                 title: "Follow us on instagram",
                 onTap: () {
                   // open Change Number flow
                 },
               ),
               context.hBox(1.5),
-              CustomListTileAboutUs(
+              AboutUsListTile(
                 title: "Follow us on Twitter",
                 onTap: () {
                   // open Change Number flow
                 },
               ),
               context.hBox(1.5),
-              CustomListTileAboutUs(
+              AboutUsListTile(
                 title: "Like us on facebook",
                 onTap: () {
                   // open Change Number flow
                 },
               ),
               context.hBox(2),
-              
             ],
           ),
         ),

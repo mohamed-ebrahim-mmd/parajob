@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
-class CustomListTileContactUs extends StatelessWidget {
+class ContactUsListTile extends StatelessWidget {
   final String title;
   final String subtitle;
   final VoidCallback? onTap;
 
-  const CustomListTileContactUs({
+  const ContactUsListTile({
     super.key,
     required this.title,
     required this.subtitle,

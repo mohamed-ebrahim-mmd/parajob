@@ -36,4 +36,24 @@ class ProfileController extends GetxController {
       profileCallState.value = ApiCallState.failure;
     }
   }
+
+  String formatNumber(num number) {
+    if (number >= 1000000000) {
+      return "${_trimZeros((number / 1000000000).toStringAsFixed(1))}B";
+    } else if (number >= 1000000) {
+      return "${_trimZeros((number / 1000000).toStringAsFixed(1))}M";
+    } else if (number >= 1000) {
+      return "${_trimZeros((number / 1000).toStringAsFixed(1))}K";
+    } else {
+      return _trimZeros(number.toStringAsFixed(0));
+    }
+  }
+
+  String _trimZeros(String value) {
+    // Removes ".0" at the end
+    if (value.endsWith('.0')) {
+      return value.substring(0, value.length - 2);
+    }
+    return value;
+  }
 }

@@ -1,13 +1,12 @@
-
 import 'dart:developer';
 
 import 'package:get/get.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
 
-class AboutUsContentConroller extends GetxController {
+class AboutAppConroller extends GetxController {
   var aboutUsCallState = ApiCallState.loading.obs;
   AboutUsData? aboutUsData;
-  AboutUsContentConroller();
+  AboutAppConroller();
 
   @override
   void onInit() {

@@ -26,9 +26,12 @@ class ProfileScreen extends StatelessWidget {
         actions: [
           Obx(() {
             if (controller.profileCallState.value == ApiCallState.success) {
-              return IconButton(onPressed: () {
-                 Get.toNamed("${Routes.mainNavigator}${Routes.more}");
-              }, icon: const Icon(Icons.menu));
+              return IconButton(
+                onPressed: () {
+                  Get.toNamed("${Routes.mainNavigator}${Routes.more}");
+                },
+                icon: const Icon(Icons.menu),
+              );
             } else {
               return const SizedBox.shrink(); // empty widget
             }
@@ -51,7 +54,10 @@ class ProfileScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       //user info
-                      UserProfileInfo(profileData: profileData),
+                      UserProfileInfo(
+                        profileData: profileData,
+                        controller: controller,
+                      ),
 
                       //job history list
                       context.hBox(3),

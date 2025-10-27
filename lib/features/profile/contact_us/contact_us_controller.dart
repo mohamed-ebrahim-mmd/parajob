@@ -3,8 +3,6 @@
  ==================================================================
 */
 
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
@@ -33,17 +31,13 @@ class ContactUsController extends GetxController {
       final response = await apiClient.getContactInfo();
 
       if (response.isSuccess) {
-        log("🟢 isSuccess");
-
         contactInfo = response.data;
 
         contactCallState.value = ApiCallState.success;
       } else {
-        log("🟢 isfail");
         contactCallState.value = ApiCallState.failure;
       }
     } catch (e) {
-      log("🔴 ${e.toString()}");
       contactCallState.value = ApiCallState.failure;
     }
   }
@@ -69,32 +63,21 @@ class ContactUsController extends GetxController {
       );
 
       if (response.isSuccess) {
-        print("🔴 success");
-
-        //log("🟢 isSuccess");
         showSnackBarSuccess(
           "Success",
           response.details.message ?? "message sent successfully",
         );
       } else {
-        log("🟢 isfail");
         showSnackBarError(
           "Failed",
           response.details.message ?? "message sent failed",
         );
       }
     } catch (e) {
-      print("🔴 ${e.toString()}");
-      //  log("🔴 ${e.toString()}");
       showSnackBarApiError();
     } finally {
       context.loaderOverlay.hide();
     }
-  }
-
-  void closeAndDispose() {
-    Get.back();
-    Get.delete<ContactUsController>();
   }
 
   @override

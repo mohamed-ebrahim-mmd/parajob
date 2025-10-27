@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:para_job/features/profile/user_profile/profile_controller.dart'
+    show ProfileController;
 import 'package:para_job/packages/api_client/src/models/responses/user_profile_data.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
@@ -6,9 +8,14 @@ import 'package:para_job/packages/ui_components/custom_container_company_details
 import 'package:para_job/packages/ui_components/custom_gradient_progress.dart';
 
 class UserProfileInfo extends StatelessWidget {
-  const UserProfileInfo({super.key, required this.profileData});
+  const UserProfileInfo({
+    super.key,
+    required this.profileData,
+    required this.controller,
+  });
 
   final UserProfileData profileData;
+  final ProfileController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +82,7 @@ class UserProfileInfo extends StatelessWidget {
           children: [
             Expanded(
               child: CustomContainerCompanyDetail(
-                value: formatNumber(
+                value: controller.formatNumber(
                   profileData.jobsCount ?? 0,
                 ), //profileData.jobsCount?.toString() ?? "0",
                 title: "JOBS",
@@ -84,7 +91,7 @@ class UserProfileInfo extends StatelessWidget {
             context.wBox(2),
             Expanded(
               child: CustomContainerCompanyDetail(
-                value: formatNumber(
+                value: controller.formatNumber(
                   num.parse(profileData.income ?? "0"),
                 ), // profileData.income?.toString() ?? "0",
                 title: "INCOME",
@@ -93,7 +100,7 @@ class UserProfileInfo extends StatelessWidget {
             context.wBox(2),
             Expanded(
               child: CustomContainerCompanyDetail(
-                value: formatNumber(
+                value: controller.formatNumber(
                   profileData.companiesCount ?? 0,
                 ), //profileData.companiesCount?.toString() ?? "0",
                 title: "COMPANIES",
@@ -104,24 +111,4 @@ class UserProfileInfo extends StatelessWidget {
       ],
     );
   }
-}
-
-String formatNumber(num number) {
-  if (number >= 1000000000) {
-    return "${_trimZeros((number / 1000000000).toStringAsFixed(1))}B";
-  } else if (number >= 1000000) {
-    return _trimZeros((number / 1000000).toStringAsFixed(1)) + "M";
-  } else if (number >= 1000) {
-    return _trimZeros((number / 1000).toStringAsFixed(1)) + "K";
-  } else {
-    return _trimZeros(number.toStringAsFixed(0));
-  }
-}
-
-String _trimZeros(String value) {
-  // Removes ".0" at the end
-  if (value.endsWith('.0')) {
-    return value.substring(0, value.length - 2);
-  }
-  return value;
 }
