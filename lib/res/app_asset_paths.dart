@@ -50,4 +50,14 @@ abstract final class AppAssetPaths {
   static const money = "assets/icons/money.svg";
   static const calender = "assets/icons/calendar.svg";
   static const company = "assets/icons/company.svg";
+  //////
+  /// Profile
+  static const logoutIcon = "assets/icons/logout.svg";
+  static const profilrIcon="assets/icons/profile.svg";
+  static const lock="assets/icons/lock.svg";
+  static const deleteAcc="assets/icons/delete_acc.svg";
+  static const changeNum="assets/icons/change_number.svg";
+  static const contactUs="assets/icons/contact_us.svg";
+  static const aboutUs="assets/icons/about_us.svg";
+  static const complaint="assets/icons/complaint.svg";
 }

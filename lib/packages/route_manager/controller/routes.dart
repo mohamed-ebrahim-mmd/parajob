@@ -16,6 +16,10 @@ import 'package:para_job/features/home/search_job/search_job_screen.dart';
 import 'package:para_job/features/job_details/job_details_screen.dart';
 import 'package:para_job/features/main_navigator/main_navigator_screen.dart';
 import 'package:para_job/features/onboarding/onboarding_screen.dart';
+import 'package:para_job/features/profile/about_us/about_us_content._screen.dart';
+import 'package:para_job/features/profile/about_us/about_us_screen.dart';
+import 'package:para_job/features/profile/contact_us/contact_us_screen.dart';
+import 'package:para_job/features/profile/more_screen.dart';
 import 'package:para_job/features/registration/back_national_id/back_national_id_screen.dart';
 import 'package:para_job/features/registration/create_account/create_account_screen.dart';
 import 'package:para_job/features/registration/create_account_cv/create_account_cv_screen.dart';
@@ -51,6 +55,10 @@ class Routes {
   static const String jobs = '/jobs';
   static const String jobDetails = '/job-details';
   static const String companyDetails = '/company-details';
+  static const String more = "/more-screen";
+  static const String aboutUs = "/about-us";
+  static const String aboutUsContent = "/about-us-content";
+  static const String contactUs = "/contacts-us";
 }
 
 class AppPages {
@@ -167,6 +175,7 @@ class AppPages {
         ),
       ],
     ),
+
     //CompanyDetailsScreen
     GetPage(name: Routes.createAccount, page: () => CreateAccountScreen()),
     GetPage(
@@ -186,6 +195,30 @@ class AppPages {
         /// screens that's under the home tab
         GetPage(name: Routes.jobs, page: () => JobsScreen()),
         GetPage(name: Routes.searchJob, page: () => SearchJobScreen()),
+        //profile
+        GetPage(
+          name: Routes.more,
+          page: () => MoreScreen(),
+          children: [
+            GetPage(name: Routes.contactUs, page: () =>  LoaderOverlay(
+                        child: ContactUsScreen(),
+                        overlayWidgetBuilder: (_) {
+                          //ignored progress for the moment
+                          return AppLoader();
+                        },
+                      ),),
+            GetPage(
+              name: Routes.aboutUs,
+              page: () => AboutUsScreen(),
+              children: [
+                GetPage(
+                  name: Routes.aboutUsContent,
+                  page: () => AboutUsContentScreen(),
+                ),
+              ],
+            ),
+          ],
+        ),
       ],
     ),
   ];

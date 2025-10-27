@@ -70,8 +70,22 @@ abstract class ApiClient {
     @Body() ResetPasswordRequest request,
   );
 
+    @GET("/api/page/slug/about-parajob")
+  Future<AboutUsResponse> getAboutUs();
+
   @GET("/api/user/profile")
-  Future<UserProfileResponse> fetchUserProfile({
-    @Header('Authorization') required String token,
-  });
+Future<UserProfileResponse> fetchUserProfile({
+  @Header('Authorization') required String token,
+
+});
+
+  @POST("/api/contactus/store")
+  Future<ContactUsResponse> contactUs(
+    @Body() ContactUsRequest request,
+  );
+
+
+    @GET("/api/contact/info")
+  Future<ContactInfoResponse> getContactInfo();
+
 }
