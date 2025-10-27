@@ -83,6 +83,21 @@ String? validateName(String name) {
   return null; // No error, name is valid
 }
 
+String? validateMessage(String message) {
+  final trimmedMessage = message.trim();
+
+  if (trimmedMessage.isEmpty) {
+    return 'Message cannot be empty';
+  } else if (trimmedMessage.length < 10) {
+    return 'Message must be at least 10 characters long';
+  } else if (trimmedMessage.length > 100) {
+    return 'Message is too long. Maximum 100 characters allowed';
+  }
+
+  return null; // Valid message
+}
+
+
 /// Validates the password.
 /// Returns an error message if invalid, otherwise null.
 String? validatePassword(String password) {
