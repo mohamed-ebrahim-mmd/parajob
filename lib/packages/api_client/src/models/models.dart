@@ -41,6 +41,5 @@ export './responses/verify_otp_response.dart';
 export 'requests/register_request.dart';
 export 'responses/contact_info_data.dart';
 export 'responses/contact_info_response.dart';
-export 'responses/register_response.dart';
 export 'responses/delete_acc_response.dart';
-
+export 'responses/register_response.dart';
