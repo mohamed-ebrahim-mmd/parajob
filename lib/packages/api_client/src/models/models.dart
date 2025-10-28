@@ -46,3 +46,4 @@ export 'responses/register_response.dart';
 export 'requests/update_user_pic_request.dart';
 export 'responses/update_user_photo_response.dart';
 export 'responses/delete_user_photo.dart';
+export 'responses/upload_file_response.dart';

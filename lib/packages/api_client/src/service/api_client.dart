@@ -105,4 +105,11 @@ Future<UpdateUserPhotoResponse> updateUserPhoto(
     @Header('Authorization') required String token,
   });
 
+  @POST("/api/upload")
+@MultiPart()
+Future<UploadFilesResponse> uploadFiles(
+  @Part(name: "files") List<MultipartFile> files,
+  @Header("Authorization") String token,
+);
+
 }
