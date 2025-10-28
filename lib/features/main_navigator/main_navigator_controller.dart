@@ -20,49 +20,26 @@ class MainNavigatorController extends GetxController {
   // Navigation destinations
 
   // Pages for each destination
-  final List<Widget> pages = [
+  late final List<Widget> pages = [
     HomeScreen(),
-    MyJobsScreen(),
-    NotificationsScreen(),
-    ProfileScreen(),
+    userController.isGuest ? SizedBox() : MyJobsScreen(),
+    userController.isGuest ? SizedBox() : NotificationsScreen(),
+    userController.isGuest ? SizedBox() : ProfileScreen(),
   ];
 
   Future<void> updateTab(BuildContext context, int index) async {
-    final UserController userController = Get.find();
-
     switch (index) {
       case 0:
-
-        /// Home screen
+        // Home tab can always be accessed
         tab.value = index;
         break;
-      case 1:
 
-        /// if user isn't guest
-        if (!userController.isGuest) {
-          tab.value = index;
-        } else {
+      default:
+        // For all other tabs, require authentication
+        if (userController.isGuest) {
           showAuthRequiredDialog();
-        }
-        break;
-
-      case 2:
-
-        /// if user isn't guest
-        if (!userController.isGuest) {
-          tab.value = index;
         } else {
-          showAuthRequiredDialog();
-        }
-        break;
-
-      case 3:
-
-        // if user isn't guest
-        if (!userController.isGuest) {
           tab.value = index;
-        } else {
-          showAuthRequiredDialog();
         }
         break;
     }
