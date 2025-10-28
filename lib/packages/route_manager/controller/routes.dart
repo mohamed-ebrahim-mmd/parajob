@@ -208,9 +208,17 @@ class AppPages {
         GetPage(name: Routes.jobs, page: () => JobsScreen()),
         GetPage(name: Routes.searchJob, page: () => SearchJobScreen()),
         //profile
+        
         GetPage(
           name: Routes.more,
-          page: () => MoreScreen(),
+          page: () => LoaderOverlay(
+                child:  MoreScreen(),
+                overlayWidgetBuilder: (_) {
+                  //ignored progress for the moment
+                  return AppLoader();
+                },
+              ),
+         
           children: [
             GetPage(
               name: Routes.contactUs,

@@ -86,4 +86,11 @@ abstract class ApiClient {
 
   @GET("/api/contact/info")
   Future<ContactInfoResponse> getContactInfo();
+
+
+
+  @DELETE("/api/user")
+  Future<DeleteAccountResponse> deleteAccount({
+    @Header('Authorization') required String token,
+  });
 }

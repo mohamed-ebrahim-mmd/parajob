@@ -92,8 +92,8 @@ class UserProfileInfo extends StatelessWidget {
             Expanded(
               child: CustomContainerCompanyDetail(
                 value: controller.formatNumber(
-                  num.parse(profileData.income ?? "0"),
-                ), // profileData.income?.toString() ?? "0",
+                  num.tryParse(profileData.income ?? "0")?? 0,
+                ), 
                 title: "INCOME",
               ),
             ),
@@ -102,12 +102,15 @@ class UserProfileInfo extends StatelessWidget {
               child: CustomContainerCompanyDetail(
                 value: controller.formatNumber(
                   profileData.companiesCount ?? 0,
-                ), //profileData.companiesCount?.toString() ?? "0",
+                ), 
                 title: "COMPANIES",
               ),
             ),
           ],
         ),
+     
+     
+     
       ],
     );
   }
