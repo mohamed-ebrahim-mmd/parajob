@@ -9,6 +9,7 @@ class MyJob {
   final JobApplicationStatus applicationStatus;
   final int isSignedContract;
   final String applicationDate;
+  final bool jobApplicationVerification;
 
   MyJob({
     required this.id,
@@ -17,6 +18,7 @@ class MyJob {
     required this.applicationStatus,
     required this.isSignedContract,
     required this.applicationDate,
+    required this.jobApplicationVerification,
   });
 
   factory MyJob.fromJson(Map<String, dynamic> json) {
@@ -29,6 +31,8 @@ class MyJob {
       ),
       isSignedContract: json['is_signed_contract'] ?? 0,
       applicationDate: json['application_date'] ?? '',
+      jobApplicationVerification:
+          (json['job_application_verification'] ?? 0) == 1,
     );
   }
 }

@@ -1,7 +1,12 @@
 import 'package:dio/dio.dart';
+import 'package:para_job/packages/api_client/src/models/responses/contract.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../models/models.dart';
+import '../models/requests/application_verification_otp_request.dart';
+import '../models/requests/application_verification_request.dart';
+import '../models/responses/base_response.dart';
+import '../models/responses/upload_file_response.dart';
 
 part 'api_client.g.dart';
 
@@ -74,4 +79,25 @@ abstract class ApiClient {
   Future<UserProfileResponse> fetchUserProfile({
     @Header('Authorization') required String token,
   });
+
+  @GET("/api/page/slug/contract")
+  Future<ContractResponse> getContract();
+
+  @POST("/api/job/{jobId}/application/verification")
+  Future<VerifyOtpResponse> applicationVerificationOtp({
+    @Header('Authorization') required String token,
+    @Path("jobId") required int jobId,
+    @Body() required ApplicationVerificationOtpRequest request,
+  });
+
+  @POST("/api/contract")
+  Future<BaseResponse> applicationVerification({
+    @Header('Authorization') required String token,
+    @Body() required ApplicationVerificationRequest request,
+  });
+
+  @POST("/api/upload")
+  Future<UploadFileResponse> uploadFile(
+    @Part(name: "files[]") List<MultipartFile> files,
+  );
 }

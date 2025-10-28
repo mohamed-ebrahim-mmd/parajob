@@ -1,8 +1,3 @@
-/*
- Mohamed Ebrahim | mohamed7ebrahim7@gmail.com | 23/02/2025 8:17 AM
- ==================================================================
-*/
-
 import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:para_job/features/authentication/authentication_choice/auth_choice_screen.dart';
@@ -15,6 +10,9 @@ import 'package:para_job/features/home/jobs/jobs_screen.dart';
 import 'package:para_job/features/home/search_job/search_job_screen.dart';
 import 'package:para_job/features/job_details/job_details_screen.dart';
 import 'package:para_job/features/main_navigator/main_navigator_screen.dart';
+import 'package:para_job/features/my_jobs/contract/application_verification_otp/application_verification_otp_screen.dart';
+import 'package:para_job/features/my_jobs/contract/contract_screen.dart';
+import 'package:para_job/features/my_jobs/my_jobs_screen.dart';
 import 'package:para_job/features/onboarding/onboarding_screen.dart';
 import 'package:para_job/features/registration/back_national_id/back_national_id_screen.dart';
 import 'package:para_job/features/registration/create_account/create_account_screen.dart';
@@ -51,11 +49,30 @@ class Routes {
   static const String jobs = '/jobs';
   static const String jobDetails = '/job-details';
   static const String companyDetails = '/company-details';
+  static const String contract = '/contract';
+  static const String applicationVerificationOTP =
+      '/application-verification-otp';
+  static const String myJobs = '/myJobs';
 }
 
 class AppPages {
   static final pages = [
     GetPage(name: Routes.onboarding, page: () => OnboardingScreen()),
+    GetPage(
+      name: Routes.contract,
+      page: () => LoaderOverlay(
+        overlayWidgetBuilder: (_) => AppLoader(),
+        child: ContractScreen(),
+      ),
+    ),
+    GetPage(name: Routes.myJobs, page: () => MyJobsScreen()),
+    GetPage(
+      name: Routes.applicationVerificationOTP,
+      page: () => LoaderOverlay(
+        overlayWidgetBuilder: (_) => AppLoader(),
+        child: ApplicationVerificationOtpScreen(),
+      ),
+    ),
     GetPage(
       name: Routes.authChoice,
       page: () => AuthChoiceScreen(),
@@ -168,7 +185,7 @@ class AppPages {
       ],
     ),
     //CompanyDetailsScreen
-    GetPage(name: Routes.createAccount, page: () => CreateAccountScreen()),
+    //  GetPage(name: Routes.createAccount, page: () => CreateAccountScreen()),
     GetPage(
       name: Routes.jobDetails,
       page: () => JobDetailsScreen(),

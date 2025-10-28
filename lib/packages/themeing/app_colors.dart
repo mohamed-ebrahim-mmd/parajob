@@ -1,7 +1,3 @@
-/*
- Mohamed Ebrahim | mohamed7ebrahim7@gmail.com | 17/07/2025 5:48 PM
- ==================================================================
-*/
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -14,6 +10,7 @@ class AppColors {
   static const Color midnightBlue = Color(0xFF18222C);
   static const Color darkGrey = Color(0xFF1E2428);
   static const Color lightGrey = Color(0xff2C353A);
+  static const Color darkBlueGray = Color(0xFF23303D);
 
   //
 
@@ -27,6 +24,7 @@ class AppColors {
   static const Color pureWhite = Color(0xFFFFFFFF);
   static const Color softWhite70 = Color(0xB3FFFFFF); // white at 70% opacity
   static const Color softWhite80 = Color(0xCCFFFFFF);
+  static const Color white40 = Color(0x66FFFFFF);
 
   static const Color lightGray = Color(0xffB4B4B4);
   static const Color lightGray2 = Color(0xffD9D9D9);

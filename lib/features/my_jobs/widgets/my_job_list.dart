@@ -4,6 +4,7 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:intl/intl.dart';
 import 'package:para_job/features/my_jobs/widgets/my_job_card.dart';
 import 'package:para_job/packages/api_client/src/service/api_client_instance.dart';
+import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
 
 import '../../../packages/api_client/src/enums/job_application_status.dart';
@@ -128,7 +129,15 @@ class _MyJobsListState extends State<MyJobsList> {
               children.add(
                 Padding(
                   padding: EdgeInsets.only(bottom: context.hPct(2)),
-                  child: MyJobCard(job: item, highlighted: widget.highlighted),
+                  child: MyJobCard(
+                    job: item,
+                    highlighted: widget.highlighted,
+                    onTap: widget.highlighted && item.isSignedContract == 0
+                        ? () {
+                            _showJobDialog(context, item);
+                          }
+                        : null,
+                  ),
                 ),
               );
               return Column(
@@ -136,6 +145,77 @@ class _MyJobsListState extends State<MyJobsList> {
                 children: children,
               );
             },
+          ),
+        );
+      },
+    );
+  }
+
+  void _showJobDialog(BuildContext context, MyJob job) {
+    showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (context) {
+        return Dialog(
+          backgroundColor: AppColors.darkCharcoal,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Align(
+                  alignment: Alignment.topRight,
+                  child: Container(
+                    width: context.wPct(6),
+                    height: context.wPct(6),
+                    decoration: BoxDecoration(
+                      color:AppColors.darkBlueGray,
+                      shape: BoxShape.circle,
+                    ),
+                    child: IconButton(
+                      padding: EdgeInsets.zero,
+                      iconSize:  context.wPct(4),
+                      constraints: const BoxConstraints(),
+                      icon: const Icon(Icons.close, color: Colors.white70),
+                      onPressed: () => Navigator.pop(context),
+                    ),
+                  )
+
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  "Congrats! your application for this job is accepted. 🎉",
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    color: AppColors.pureWhite,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 20,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                SizedBox(
+                  width: double.infinity,
+                  child: FilledButton(
+                    style: FilledButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(vertical: 14),
+                    ),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      Get.toNamed(
+                        job.jobApplicationVerification
+                            ? Routes.contract
+                            : Routes.applicationVerificationOTP,
+                        arguments: {'jobId': job.id},
+                      );
+                    },
+                    child: const Text("Sign the contract"),
+                  ),
+                ),
+              ],
+            ),
           ),
         );
       },

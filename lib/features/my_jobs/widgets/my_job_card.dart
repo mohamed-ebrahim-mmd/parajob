@@ -10,88 +10,101 @@ import 'package:para_job/packages/ui_components/AppNetworkImage.dart'
 class MyJobCard extends StatelessWidget {
   final MyJob job;
   final bool highlighted;
-
-  const MyJobCard({super.key, required this.job, this.highlighted = false});
+  final VoidCallback? onTap;
+  const MyJobCard({
+    super.key,
+    required this.job,
+    this.highlighted = false,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(context.wPct(4)),
-      decoration: BoxDecoration(
-        color: AppColors.darkCharcoal,
-        borderRadius: BorderRadius.circular(context.wPct(3.5)),
-        border: highlighted
-            ? Border.all(color: AppColors.aquaTeal, width: context.wPct(0.3))
-            : null,
-        boxShadow: highlighted
-            ? [
-                BoxShadow(
-                  color: AppColors.aquaTealShadow,
-                  blurRadius: context.wPct(5),
-                  spreadRadius: 0,
-                  offset: const Offset(0, 0),
-                ),
-              ]
-            : [],
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(context.wPct(2)),
-            child: AppNetworkImage(
-              url: job.company.logo ?? '',
-              width: context.wPct(12),
-              height: context.wPct(12),
-              fit: BoxFit.contain,
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(context.wPct(3.5)),
+      child: Container(
+        padding: EdgeInsets.all(context.wPct(4)),
+        decoration: BoxDecoration(
+          color: AppColors.darkCharcoal,
+          borderRadius: BorderRadius.circular(context.wPct(3.5)),
+          border: highlighted
+              ? Border.all(color: AppColors.aquaTeal, width: context.wPct(0.3))
+              : null,
+          boxShadow: highlighted
+              ? [
+                  BoxShadow(
+                    color: AppColors.aquaTealShadow,
+                    blurRadius: context.wPct(5),
+                    spreadRadius: 0,
+                    offset: const Offset(0, 0),
+                  ),
+                ]
+              : [],
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            ClipRRect(
               borderRadius: BorderRadius.circular(context.wPct(2)),
+              child: AppNetworkImage(
+                url: job.company.logo ?? '',
+                width: context.wPct(12),
+                height: context.wPct(12),
+                fit: BoxFit.contain,
+                borderRadius: BorderRadius.circular(context.wPct(2)),
+              ),
             ),
-          ),
-          SizedBox(width: context.wPct(2)),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  job.title,
-                  style: TextStyle(
-                    fontSize: context.wPct(4),
-                    fontWeight: FontWeight.w600,
-                    color: highlighted
-                        ? Colors.white
-                        : AppColors.lightSilverGray,
+            SizedBox(width: context.wPct(2)),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    job.title,
+                    style: TextStyle(
+                      fontSize: context.wPct(4),
+                      fontWeight: FontWeight.w600,
+                      color: highlighted
+                          ? Colors.white
+                          : AppColors.lightSilverGray,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                SizedBox(height: context.hPct(1)),
-                Text(
-                  job.company.name ?? "",
-                  style: TextStyle(
-                    fontSize: context.wPct(3.2),
-                    fontWeight: FontWeight.w600,
-                    color: highlighted
-                        ? Colors.white70
-                        : AppColors.lightSilverGray,
+                  SizedBox(height: context.hPct(1)),
+                  Text(
+                    job.company.name ?? "",
+                    style: TextStyle(
+                      fontSize: context.wPct(3.2),
+                      fontWeight: FontWeight.w600,
+                      color: highlighted
+                          ? Colors.white70
+                          : AppColors.lightSilverGray,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          SizedBox(width: context.wPct(2)),
-          Text(
-            job.applicationStatus.displayName,
-            style: TextStyle(
-              color: highlighted
-                  ? Colors.white
-                  : _getStatusColor(job.applicationStatus),
-              fontWeight: FontWeight.bold,
-              fontSize: context.wPct(3.5),
+            SizedBox(width: context.wPct(2)),
+            Text(
+              !highlighted
+                  ? job.applicationStatus.displayName
+                  : job.isSignedContract == 0
+                  ? 'Upcoming'
+                  : 'Sign Contract',
+              style: TextStyle(
+                color: highlighted
+                    ? AppColors.aquaTeal
+                    : _getStatusColor(job.applicationStatus),
+                fontWeight: FontWeight.bold,
+                fontSize: context.wPct(3.5),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
