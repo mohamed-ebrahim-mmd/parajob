@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:para_job/features/profile/user_profile/profile_controller.dart'
     show ProfileController;
+import 'package:para_job/features/profile/widgets/show_edit_photo_buttom_sheet.dart';
 import 'package:para_job/packages/api_client/src/models/responses/user_profile_data.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
@@ -21,26 +22,31 @@ class UserProfileInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CircleAvatar(
-          radius: context.wPct(15),
-          backgroundColor: AppColors.aquaTeal,
-          child: ClipOval(
-            child: Image.network(
-              profileData.profilePicture ?? '',
-              fit: BoxFit.cover,
-              width: context.wPct(28),
-              height: context.wPct(28),
+        GestureDetector(
+          onTap: () async {
+            await showEditPhotoBottomSheet(context, controller);
+          },
+          child: CircleAvatar(
+            radius: context.wPct(15),
+            backgroundColor: profileData.profilePicture==null? const Color.fromRGBO(0, 203, 184, 1):AppColors.lightGray2,
+            child: ClipOval(
+              child: Image.network(
+                profileData.profilePicture ?? '',
+                fit: BoxFit.cover,
+                width: context.wPct(28),
+                height: context.wPct(28),
 
-              loadingBuilder: (context, child, loadingProgress) {
-                if (loadingProgress == null) return child;
-                return const Center(
-                  child: CircularProgressIndicator(strokeWidth: 2),
-                );
-              },
+                loadingBuilder: (context, child, loadingProgress) {
+                  if (loadingProgress == null) return child;
+                  return const Center(
+                    child: CircularProgressIndicator(strokeWidth: 2),
+                  );
+                },
 
-              errorBuilder: (context, error, stackTrace) {
-                return const Icon(Icons.person, size: 40, color: Colors.grey);
-              },
+                errorBuilder: (context, error, stackTrace) {
+                  return const Icon(Icons.image_not_supported_rounded, size: 40, color: Colors.grey);
+                },
+              ),
             ),
           ),
         ),
@@ -92,25 +98,20 @@ class UserProfileInfo extends StatelessWidget {
             Expanded(
               child: CustomContainerCompanyDetail(
                 value: controller.formatNumber(
-                  num.tryParse(profileData.income ?? "0")?? 0,
-                ), 
+                  num.tryParse(profileData.income ?? "0") ?? 0,
+                ),
                 title: "INCOME",
               ),
             ),
             context.wBox(2),
             Expanded(
               child: CustomContainerCompanyDetail(
-                value: controller.formatNumber(
-                  profileData.companiesCount ?? 0,
-                ), 
+                value: controller.formatNumber(profileData.companiesCount ?? 0),
                 title: "COMPANIES",
               ),
             ),
           ],
         ),
-     
-     
-     
       ],
     );
   }

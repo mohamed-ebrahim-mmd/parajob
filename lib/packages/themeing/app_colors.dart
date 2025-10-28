@@ -48,4 +48,6 @@ class AppColors {
 
   //st
   static const Color listTileBG = Color(0xFF202426);
+
+  static const Color whiteSoft5= Color(0x0DFFFFFF);
 }

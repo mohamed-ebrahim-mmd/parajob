@@ -1,7 +1,10 @@
 import 'dart:developer';
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
+import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
 
 class ProfileController extends GetxController {
@@ -15,6 +18,35 @@ class ProfileController extends GetxController {
     super.onInit();
     fetchProfileDetails();
   }
+
+    Future<void> deleteUserPic(BuildContext context) async {
+      Get.back();
+    
+    context.loaderOverlay.show();
+  //var m =await  Future.delayed(const Duration(seconds: 3));
+    try {
+    final response = await apiClient.deleteUserPhoto(token: token);
+
+      if (response.isSuccess) {
+        log("🟢 isSuccess");
+        
+        fetchProfileDetails();
+
+      } else {
+        showSnackBarError(
+          "Failed",
+         response.details.message ?? "your photo deleted failed",
+        );
+      }
+    } catch (e) {
+      log("🔴 ${e.toString()}");
+      showSnackBarError("Failed", e.toString());
+    } finally {
+      context.loaderOverlay.hide();
+    }
+  }
+
+
 
   Future<void> fetchProfileDetails() async {
     profileCallState.value = ApiCallState.loading;
