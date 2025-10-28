@@ -202,23 +202,30 @@ class AppPages {
     ),
     GetPage(
       name: Routes.mainNavigator,
-      page: () => MainNavigatorScreen(),
+      page: () => LoaderOverlay(
+        child: MainNavigatorScreen(),
+        overlayWidgetBuilder: (_) {
+          //ignored progress for the moment
+          return AppLoader();
+        },
+      ),
+
       children: [
         /// screens that's under the home tab
         GetPage(name: Routes.jobs, page: () => JobsScreen()),
         GetPage(name: Routes.searchJob, page: () => SearchJobScreen()),
+
         //profile
-        
         GetPage(
           name: Routes.more,
           page: () => LoaderOverlay(
-                child:  MoreScreen(),
-                overlayWidgetBuilder: (_) {
-                  //ignored progress for the moment
-                  return AppLoader();
-                },
-              ),
-         
+            child: MoreScreen(),
+            overlayWidgetBuilder: (_) {
+              //ignored progress for the moment
+              return AppLoader();
+            },
+          ),
+
           children: [
             GetPage(
               name: Routes.contactUs,

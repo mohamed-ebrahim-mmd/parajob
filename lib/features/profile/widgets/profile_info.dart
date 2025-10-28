@@ -24,11 +24,11 @@ class UserProfileInfo extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: () async {
-            await showEditPhotoBottomSheet(context);
+            await showEditPhotoBottomSheet(context, controller);
           },
           child: CircleAvatar(
             radius: context.wPct(15),
-            backgroundColor: AppColors.aquaTeal,
+            backgroundColor: profileData.profilePicture==null? const Color.fromRGBO(0, 203, 184, 1):AppColors.lightGray2,
             child: ClipOval(
               child: Image.network(
                 profileData.profilePicture ?? '',
@@ -44,7 +44,7 @@ class UserProfileInfo extends StatelessWidget {
                 },
 
                 errorBuilder: (context, error, stackTrace) {
-                  return const Icon(Icons.person, size: 40, color: Colors.grey);
+                  return const Icon(Icons.image_not_supported_rounded, size: 40, color: Colors.grey);
                 },
               ),
             ),
