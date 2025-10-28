@@ -123,11 +123,23 @@ class AppPages {
       children: [
         GetPage(
           name: Routes.createAccountOTP,
-          page: () => CreateAccountOtpScreen(),
+          page: () => LoaderOverlay(
+            child: CreateAccountOtpScreen(),
+            overlayWidgetBuilder: (_) {
+              //ignored progress for the moment
+              return AppLoader();
+            },
+          ),
           children: [
             GetPage(
               name: Routes.createAccountSetPass,
-              page: () => CreateAccountSetPass(),
+              page: () => LoaderOverlay(
+                child: CreateAccountSetPass(),
+                overlayWidgetBuilder: (_) {
+                  //ignored progress for the moment
+                  return AppLoader();
+                },
+              ),
               children: [
                 GetPage(
                   name: Routes.createAccountFrontID,

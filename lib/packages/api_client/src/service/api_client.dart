@@ -70,6 +70,9 @@ abstract class ApiClient {
     @Body() ResetPasswordRequest request,
   );
 
+  @POST('/api/user/register')
+  Future<RegisterResponse> registerUser(@Body() RegisterRequestModel request);
+
   @GET("/api/page/slug/about-parajob")
   Future<AboutUsResponse> getAboutUs();
 
