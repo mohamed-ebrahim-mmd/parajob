@@ -93,4 +93,11 @@ abstract class ApiClient {
   Future<DeleteAccountResponse> deleteAccount({
     @Header('Authorization') required String token,
   });
+
+  @PUT("/api/user/change/photo")
+Future<UpdateUserPhotoResponse> updateUserPhoto(
+  @Body() UpdateUserPhotoRequest request,
+  @Header("Authorization") String token,
+);
+
 }
