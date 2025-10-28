@@ -11,17 +11,20 @@ class IDImagePicker extends StatefulWidget {
     required this.imagePath,
     required this.text,
     this.isEducation = false,
+    required this.onImageSelected, // 👈 add this
   });
+
   final String imagePath;
   final Widget text;
   final bool isEducation;
+  final ValueChanged<File?> onImageSelected; // 👈 callback to parent
 
   @override
   State<IDImagePicker> createState() => _IDImagePickerState();
 }
 
 class _IDImagePickerState extends State<IDImagePicker> {
-  File? _selectedImage; // holds the picked image file
+  File? _selectedImage;
   final ImagePicker _picker = ImagePicker();
 
   Future<void> _pickImage() async {
@@ -32,9 +35,11 @@ class _IDImagePickerState extends State<IDImagePicker> {
       );
 
       if (pickedFile != null) {
-        setState(() {
-          _selectedImage = File(pickedFile.path);
-        });
+        final file = File(pickedFile.path);
+        setState(() => _selectedImage = file);
+        widget.onImageSelected(file); // 👈 notify parent
+      } else {
+        widget.onImageSelected(null); // 👈 user cancelled
       }
     } catch (e) {
       debugPrint('Error picking image: $e');
@@ -50,42 +55,61 @@ class _IDImagePickerState extends State<IDImagePicker> {
           vertical: context.hPct(4),
           horizontal: context.wPct(1),
         ),
-
         width: context.w,
         decoration: BoxDecoration(
           border: Border.all(color: AppColors.pureWhite),
           borderRadius: BorderRadius.circular(context.wPct(3)),
         ),
-        child: Column(children: [..._buildContent(context)]),
+        child: IDImageContent(
+          selectedImage: _selectedImage,
+          imagePath: widget.imagePath,
+          text: widget.text,
+          isEducation: widget.isEducation,
+        ),
       ),
     );
   }
+}
 
-  List<Widget> _buildContent(BuildContext context) {
-    final imageWidget = _selectedImage != null
+class IDImageContent extends StatelessWidget {
+  final File? selectedImage;
+  final String imagePath;
+  final Widget text;
+  final bool isEducation;
+
+  const IDImageContent({
+    super.key,
+    required this.selectedImage,
+    required this.imagePath,
+    required this.text,
+    required this.isEducation,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final imageWidget = selectedImage != null
         ? ClipRRect(
             borderRadius: BorderRadius.circular(context.wPct(2)),
             child: Image.file(
-              _selectedImage!,
+              selectedImage!,
               width: context.wPct(60),
               height: context.hPct(18),
               fit: BoxFit.cover,
             ),
           )
         : Image.asset(
-            widget.imagePath,
+            imagePath,
             width: context.wPct(60),
             height: context.hPct(18),
             fit: BoxFit.contain,
           );
 
-    final textWidget = widget.text;
     final spacer = context.hBox(0.5);
 
-    if (widget.isEducation) {
-      return [textWidget, spacer, imageWidget];
+    if (isEducation) {
+      return Column(children: [text, spacer, imageWidget]);
     } else {
-      return [imageWidget, spacer, textWidget];
+      return Column(children: [imageWidget, spacer, text]);
     }
   }
 }
