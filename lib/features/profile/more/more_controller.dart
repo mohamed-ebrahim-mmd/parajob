@@ -8,48 +8,37 @@ import 'package:para_job/packages/route_manager/controller/routing_controller.da
 import 'package:para_job/packages/user_manager/user_controller.dart';
 import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
 
-
 class MoreController extends GetxController {
   //var moreCallState = ApiCallState.loading.obs;
-//  UserProfileData? profileData;
+  //  UserProfileData? profileData;
   final String token = Get.find<UserController>().token!;
   MoreController();
 
-
-
-
   Future<void> deleteUserAccount(BuildContext context) async {
-  
+    Navigator.of(context).pop();
     context.loaderOverlay.show();
-
     try {
-     
-
-   final response = await apiClient.deleteAccount(token: token);
+      final response = await apiClient.deleteAccount(token: token);
 
       if (response.isSuccess) {
         log("🟢 isSuccess");
-         showSnackBarSuccess(
-          "Success", "your account deleted successfully"
+        showSnackBarSuccess(
+          "Success",
+          response.details.message ?? "your account deleted successfully",
         );
- 
-         Get.find<RoutingController>().logOut();
 
-
+        Get.find<RoutingController>().logOut();
       } else {
         showSnackBarError(
-          "Failed", "your account deleted failed"
+          "Failed",
+          response.details.message ?? "your account deleted failed",
         );
       }
     } catch (e) {
       log("🔴 ${e.toString()}");
-       showSnackBarSuccess(
-          "Failed", "your account deleted failed"
-        );
-    }finally {
+      showSnackBarError("Failed", e.toString());
+    } finally {
       context.loaderOverlay.hide();
     }
   }
-
-
 }

@@ -82,7 +82,6 @@ class MoreScreen extends StatelessWidget {
                         "Warning: if you deleted your account you will lose all your data and your level rank.",
                     context: context,
                     onTap: () {
-                      Navigator.of(context).pop();
                      controller.deleteUserAccount(context);
 
                     },

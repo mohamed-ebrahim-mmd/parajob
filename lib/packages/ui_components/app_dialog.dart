@@ -12,7 +12,7 @@ Future<void> showApplicationDialog({  required String message,
 ) async {
   return showDialog(
     context: context,
-    barrierDismissible: false,
+    barrierDismissible: true,
     builder: (context) {
       return 
       AlertDialog(
