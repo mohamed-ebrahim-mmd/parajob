@@ -100,4 +100,9 @@ Future<UpdateUserPhotoResponse> updateUserPhoto(
   @Header("Authorization") String token,
 );
 
+  @DELETE("/api/user/delete/photo")
+  Future<DeleteUserPhoto> deleteUserPhoto({
+    @Header('Authorization') required String token,
+  });
+
 }
