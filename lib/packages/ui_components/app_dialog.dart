@@ -5,7 +5,7 @@ import 'package:para_job/packages/themeing/media_query_values.dart';
 Future<void> showApplicationDialog({  required String message,
   String? warning,
   required String textButton, required BuildContext context,
-  required VoidCallback onTap,
+  required void Function()? onTap,
   }
  
 
@@ -14,7 +14,8 @@ Future<void> showApplicationDialog({  required String message,
     context: context,
     barrierDismissible: false,
     builder: (context) {
-      return AlertDialog(
+      return 
+      AlertDialog(
         backgroundColor: AppColors.midnightBlue,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(context.wPct(3)),
@@ -40,7 +41,7 @@ Future<void> showApplicationDialog({  required String message,
             ),
             SizedBox(height: context.hPct(3)),
             OutlinedButton(
-              onPressed: () {},
+              onPressed: onTap,
               style: FilledButton.styleFrom(
                 backgroundColor: Colors.transparent,
                 side: BorderSide(color: AppColors.coralRed),
@@ -68,6 +69,8 @@ Future<void> showApplicationDialog({  required String message,
           ],
         ),
       );
+   
+   
     },
   );
 }

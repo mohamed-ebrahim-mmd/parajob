@@ -40,3 +40,5 @@ export './requests/contact_us_request.dart';
 export './responses/contact_us_response.dart';
 export 'responses/contact_info_data.dart';
 export 'responses/contact_info_response.dart';
+export 'responses/delete_acc_response.dart';
+

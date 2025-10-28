@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loader_overlay/loader_overlay.dart';
+import 'package:para_job/features/profile/more/more_controller.dart';
 import 'package:para_job/features/profile/widgets/custom_list_tile.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/route_manager/controller/routing_controller.dart';
@@ -9,7 +11,8 @@ import 'package:para_job/packages/ui_components/app_dialog.dart';
 import 'package:para_job/res/app_asset_paths.dart';
 
 class MoreScreen extends StatelessWidget {
-  const MoreScreen({super.key});
+  MoreScreen({super.key});
+  final controller = Get.put(MoreController());
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +51,7 @@ class MoreScreen extends StatelessWidget {
               ),
               context.hBox(1.5),
 
-             CustomListTile(
+              CustomListTile(
                 icon: AppAssetPaths.lock,
                 title: "Change Password",
                 onTap: () {
@@ -71,7 +74,19 @@ class MoreScreen extends StatelessWidget {
                 title: "Delete Account",
                 isRedTitle: true,
                 onTap: () {
-                 showApplicationDialog(message: "Are you sure that you want to delete your account?", textButton: "Delete my account",warning: "Warning: if you deleted your account you will lose all your data and your level rank.", context: context, onTap: (){});
+                  showApplicationDialog(
+                    message:
+                        "Are you sure that you want to delete your account?",
+                    textButton: "Delete my account",
+                    warning:
+                        "Warning: if you deleted your account you will lose all your data and your level rank.",
+                    context: context,
+                    onTap: () {
+                      Navigator.of(context).pop();
+                     controller.deleteUserAccount(context);
+
+                    },
+                  );
                 },
               ),
               context.hBox(1.5),
@@ -81,7 +96,17 @@ class MoreScreen extends StatelessWidget {
                 title: "Log Out",
                 isRedTitle: true,
                 onTap: () {
-                  Get.find<RoutingController>().logOut();
+                  showApplicationDialog(
+                    message:
+                        "Are you sure that you want to log out of your account?",
+                    textButton: "Log out",
+                    context: context,
+                    onTap: () {
+                      Get.find<RoutingController>().logOut();
+                    },
+                  );
+
+                  //
                 },
               ),
 
@@ -113,7 +138,7 @@ class MoreScreen extends StatelessWidget {
                 icon: AppAssetPaths.contactUs,
                 title: "Contact Us",
                 onTap: () {
-                   Get.toNamed(
+                  Get.toNamed(
                     "${Routes.mainNavigator}${Routes.more}${Routes.contactUs}",
                   );
                 },

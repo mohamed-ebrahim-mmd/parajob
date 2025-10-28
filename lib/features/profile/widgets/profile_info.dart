@@ -76,38 +76,41 @@ class UserProfileInfo extends StatelessWidget {
           ),
         ),
         context.hBox(3),
-        // Stats
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Expanded(
-              child: CustomContainerCompanyDetail(
-                value: controller.formatNumber(
-                  profileData.jobsCount ?? 0,
-                ), //profileData.jobsCount?.toString() ?? "0",
-                title: "JOBS",
-              ),
-            ),
-            context.wBox(2),
-            Expanded(
-              child: CustomContainerCompanyDetail(
-                value: controller.formatNumber(
-                  num.parse(profileData.income ?? "0"),
-                ), // profileData.income?.toString() ?? "0",
-                title: "INCOME",
-              ),
-            ),
-            context.wBox(2),
-            Expanded(
-              child: CustomContainerCompanyDetail(
-                value: controller.formatNumber(
-                  profileData.companiesCount ?? 0,
-                ), //profileData.companiesCount?.toString() ?? "0",
-                title: "COMPANIES",
-              ),
-            ),
-          ],
-        ),
+        // // Stats
+        // Row(
+        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //   children: [
+        //     Expanded(
+        //       child: CustomContainerCompanyDetail(
+        //         value: controller.formatNumber(
+        //           profileData.jobsCount ?? 0,
+        //         ), //profileData.jobsCount?.toString() ?? "0",
+        //         title: "JOBS",
+        //       ),
+        //     ),
+        //     context.wBox(2),
+        //     Expanded(
+        //       child: CustomContainerCompanyDetail(
+        //         value: controller.formatNumber(
+        //           num.parse(profileData.income ?? "0"),
+        //         ), // profileData.income?.toString() ?? "0",
+        //         title: "INCOME",
+        //       ),
+        //     ),
+        //     context.wBox(2),
+        //     Expanded(
+        //       child: CustomContainerCompanyDetail(
+        //         value: controller.formatNumber(
+        //           profileData.companiesCount ?? 0,
+        //         ), //profileData.companiesCount?.toString() ?? "0",
+        //         title: "COMPANIES",
+        //       ),
+        //     ),
+        //   ],
+        // ),
+     
+     
+     
       ],
     );
   }
