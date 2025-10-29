@@ -1,17 +1,17 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:para_job/features/registration/front_national_id/front_national_id_controller.dart';
 import 'package:para_job/features/registration/widgets/register_img_picker.dart';
 import 'package:para_job/features/registration/widgets/registration_note.dart';
 import 'package:para_job/features/registration/widgets/stepper.dart';
-import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/res/app_asset_paths.dart';
 
 class FrontNationalIdScreen extends StatelessWidget {
-  const FrontNationalIdScreen({super.key});
+  final controller = Get.put(FrontNationalIdController());
+
+  FrontNationalIdScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +73,22 @@ class FrontNationalIdScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                onImageSelected: (File? value) {},
+                onImageSelected: controller.setFrontIdImage,
+              ),
+              Padding(
+                padding: EdgeInsets.only(
+                  left: context.wPct(2),
+                  top: context.hPct(1),
+                ),
+                child: Obx(() {
+                  return Text(
+                    controller.idError.value ?? "",
+                    style: TextStyle(
+                      color: AppColors.coralRed,
+                      fontSize: context.wPct(3),
+                    ),
+                  );
+                }),
               ),
               context.hBox(2),
               RegisterNote(note: "Make sure your surroundings are well-lit."),
@@ -93,11 +108,7 @@ class FrontNationalIdScreen extends StatelessWidget {
           vertical: context.hPct(5),
         ),
         child: FilledButton(
-          onPressed: () {
-            Get.toNamed(
-              "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}${Routes.createAccountBackID}",
-            );
-          },
+          onPressed: controller.validateAndContinue,
           child: Text("Confirm"),
         ),
       ),

@@ -88,16 +88,13 @@ class IDImageContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final imageWidget = selectedImage != null
-        ? Container(
-            color: Colors.red,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(context.wPct(2)),
-              child: Image.file(
-                selectedImage!,
-                width: context.wPct(90),
-                height: context.hPct(18),
-                fit: BoxFit.contain,
-              ),
+        ? ClipRRect(
+            borderRadius: BorderRadius.circular(context.wPct(2)),
+            child: Image.file(
+              selectedImage!,
+              width: context.wPct(90),
+              height: context.hPct(18),
+              fit: BoxFit.contain,
             ),
           )
         : Image.asset(
