@@ -3,7 +3,7 @@ import 'package:timeago/timeago.dart' as timeago;
 import '../../../packages/api_client/src/models/responses/my_notification.dart';
 import '../../../packages/themeing/app_colors.dart';
 import '../../../packages/themeing/media_query_values.dart';
-import '../../../packages/ui_components/AppNetworkImage.dart';
+import '../../../packages/ui_components/app_network_image.dart';
 
 class MyNotificationCard extends StatelessWidget {
   final MyNotification myNotification;
