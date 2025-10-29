@@ -2,13 +2,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:para_job/features/profile/user_profile/profile_controller.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
 
 class EditMainInfo extends StatelessWidget {
    EditMainInfo({super.key, });
- var user=  Get.find<UserController>().user;
+ var user=  Get.find<ProfileController>().profileData;
 
   @override
   Widget build(BuildContext context,) {
@@ -50,7 +51,7 @@ class EditMainInfo extends StatelessWidget {
               TextField(
                 enabled: false,
                 decoration: InputDecoration(
-                  label: Text(user?.phoneNumber??""),
+                  label: Text(user?.dateOfBirth??""),
                   fillColor: AppColors.disabled,
                   filled: true,
                 ),
@@ -69,7 +70,7 @@ class EditMainInfo extends StatelessWidget {
               DropdownMenu<String>(
                 enableSearch: true,
                 expandedInsets: EdgeInsets.zero,
-                hintText: "Choose your gender",
+               // hintText: "Choose your gender",
                 // initialSelection: controller.selectedGender,
                 // onSelected: controller.onGenderSelected,
                 dropdownMenuEntries: [],
