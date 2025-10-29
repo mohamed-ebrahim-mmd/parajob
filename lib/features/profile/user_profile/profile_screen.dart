@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:para_job/features/profile/user_profile/profile_controller.dart';
 import 'package:para_job/features/profile/widgets/job_history_list.dart';
 import 'package:para_job/features/profile/widgets/profile_info.dart';
+import 'package:para_job/packages/api_client/api_client.dart';
 import 'package:para_job/packages/api_client/src/enums/api_call_state_enum.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
@@ -61,10 +62,14 @@ class ProfileScreen extends StatelessWidget {
 
                       //job history list
                       context.hBox(3),
-                      JobHistoryList(jobHistory: profileData.jobs ?? []),
-                      //saved jobs list
-                      context.hBox(3),
                       JobHistoryList(
+                        jobHistory: profileData.jobs ?? [],
+                        emptyMessage: "No job history found ",
+                      ),
+                      //saved jobs list
+                      context.hBox(4),
+                      JobHistoryList(
+                        emptyMessage: "No saved jobs found ",
                         jobHistory: profileData.savedJobs ?? [],
                         title: "Saved Jobs",
                       ),
@@ -88,3 +93,14 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 }
+
+var j = Job(
+  title: "yyyyyy",
+  skills: List.empty(),
+  id: 2,
+  company: Company(id: 2, name: "fffff"),
+  from: "1",
+  to: "2",
+  description: "fds",
+);
+List<Job> llist = [j];

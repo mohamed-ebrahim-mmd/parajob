@@ -1,13 +1,12 @@
-
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/get.dart' hide MultipartFile;
 import 'package:para_job/features/profile/user_profile/profile_controller.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
 Future<void> showEditPhotoBottomSheet(
   BuildContext context,
-   ProfileController controller,
+  ProfileController controller,
 ) async {
   await Get.bottomSheet(
     enterBottomSheetDuration: Duration(milliseconds: 50), // faster
@@ -26,12 +25,15 @@ Future<void> showEditPhotoBottomSheet(
           // button
           context.hBox(2),
           FilledButton(
-            onPressed: () {},
+            onPressed: () async {
+              controller.uploadFile(context);
+            },
             style: FilledButton.styleFrom(
               backgroundColor: AppColors.whiteSoft5,
             ),
             child: Text("Choose photo"),
           ),
+
           context.hBox(2),
           FilledButton(
             onPressed: () {},
@@ -49,7 +51,10 @@ Future<void> showEditPhotoBottomSheet(
             style: FilledButton.styleFrom(
               backgroundColor: AppColors.whiteSoft5,
             ),
-            child: Text("Remove photo",style: TextStyle(color: AppColors.coralRed),),
+            child: Text(
+              "Remove photo",
+              style: TextStyle(color: AppColors.coralRed),
+            ),
           ),
           context.hBox(2),
         ],

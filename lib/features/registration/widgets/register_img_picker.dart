@@ -52,7 +52,7 @@ class _IDImagePickerState extends State<IDImagePicker> {
       onTap: _pickImage,
       child: Container(
         padding: EdgeInsets.symmetric(
-          vertical: context.hPct(4),
+          vertical: context.hPct(2),
           horizontal: context.wPct(1),
         ),
         width: context.w,
@@ -88,13 +88,16 @@ class IDImageContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final imageWidget = selectedImage != null
-        ? ClipRRect(
-            borderRadius: BorderRadius.circular(context.wPct(2)),
-            child: Image.file(
-              selectedImage!,
-              width: context.wPct(90),
-              height: context.hPct(18),
-              fit: BoxFit.contain,
+        ? Container(
+            color: Colors.red,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(context.wPct(2)),
+              child: Image.file(
+                selectedImage!,
+                width: context.wPct(90),
+                height: context.hPct(18),
+                fit: BoxFit.contain,
+              ),
             ),
           )
         : Image.asset(

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
@@ -30,13 +29,8 @@ class GradientProgressBar extends StatelessWidget {
                 184,
                 0.996875,
               ), // rgba(0,203,184,0.996875) at 0.01%
-              Color.fromRGBO(
-                0,
-                152,
-                138,
-                0.645957,
-              ), // rgba(0,152,138,0.645957) at 70.1%
-              Color.fromRGBO(1, 57, 52, 0), // rgba(1,57,52,0) at 100%
+              Color.fromRGBO(0, 152, 138, 0.645957),
+              // Color.fromRGBO(1, 57, 52, 0), // rgba(1,57,52,0) at 100%
               //AppColors.lightGray2,
             ],
             begin: Alignment.centerLeft,
@@ -52,4 +46,3 @@ class GradientProgressBar extends StatelessWidget {
     );
   }
 }
-

@@ -59,9 +59,15 @@ import 'package:para_job/packages/ui_components/job_card.dart';
 
 class JobHistoryList extends StatelessWidget {
   final List<Job> jobHistory;
-  final String? title;
+  final String title;
+  final String emptyMessage;
 
-  const JobHistoryList({super.key, required this.jobHistory, this.title});
+  const JobHistoryList({
+    super.key,
+    required this.jobHistory,
+    this.title = "Your job history",
+    required this.emptyMessage,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +76,7 @@ class JobHistoryList extends StatelessWidget {
       children: [
         // Header
         Text(
-          title ?? "Your job history",
+          title,
           style: TextStyle(
             fontSize: context.wPct(4.5),
             fontWeight: FontWeight.bold,
@@ -78,7 +84,6 @@ class JobHistoryList extends StatelessWidget {
         ),
 
         context.hBox(1.5),
-
         // Job List
         ListView.separated(
           scrollDirection: Axis.vertical,
@@ -92,28 +97,49 @@ class JobHistoryList extends StatelessWidget {
             return JobCard(job: job);
           },
         ),
-
-        Align(
-          alignment: AlignmentGeometry.center,
-          child: TextButton(
-            onPressed: () {},
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  "View more",
-                  style: TextStyle(
-                    fontSize: context.wPct(3.9),
-                    fontWeight: FontWeight.w500,
-                    color: AppColors.pureWhite,
+        jobHistory.isEmpty
+            ? Padding(
+                padding: EdgeInsets.all(context.hPct(4.5)),
+                child: Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        emptyMessage,
+                        style: TextStyle(color: AppColors.lightGray),
+                      ),
+                      Icon(
+                        Icons.do_not_disturb_alt_rounded,
+                        color: AppColors.lightGray,
+                      ),
+                    ],
                   ),
                 ),
+              )
+            : Align(
+                alignment: AlignmentGeometry.center,
+                child: TextButton(
+                  onPressed: () {},
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        "View more",
+                        style: TextStyle(
+                          fontSize: context.wPct(3.9),
+                          fontWeight: FontWeight.w500,
+                          color: AppColors.pureWhite,
+                        ),
+                      ),
 
-                Icon(Icons.fast_forward_rounded, color: AppColors.pureWhite),
-              ],
-            ),
-          ),
-        ),
+                      Icon(
+                        Icons.fast_forward_rounded,
+                        color: AppColors.pureWhite,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
       ],
     );
   }
