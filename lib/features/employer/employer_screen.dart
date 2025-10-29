@@ -5,14 +5,14 @@ import 'package:para_job/features/employer/widgets/employer_hero_section.dart';
 import 'package:para_job/features/employer/widgets/employer_list_header.dart';
 import 'package:para_job/features/employer/widgets/employer_stat_box.dart';
 import 'package:para_job/features/employer/widgets/employer_submit_review.dart';
-import 'package:para_job/features/home/widgets/job_card.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
-import '../../packages/api_client/src/service/api_call_state_enum.dart';
+import '../../packages/api_client/src/enums/api_call_state_enum.dart';
 import '../../packages/ui_components/app_star_rating.dart';
 import '../../packages/ui_components/error_screen.dart';
+import '../../packages/ui_components/job_card.dart';
 import '../review/widgets/review_card.dart';
 
 class EmployerScreen extends StatelessWidget {
