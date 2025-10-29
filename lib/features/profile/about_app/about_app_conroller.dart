@@ -3,10 +3,10 @@ import 'dart:developer';
 import 'package:get/get.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
 
-class AboutAppConroller extends GetxController {
+class AboutAppController extends GetxController {
   var aboutUsCallState = ApiCallState.loading.obs;
   AboutUsData? aboutUsData;
-  AboutAppConroller();
+  AboutAppController();
 
   @override
   void onInit() {

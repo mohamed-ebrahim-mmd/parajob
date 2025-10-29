@@ -3,6 +3,8 @@
  ==================================================================
 */
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
@@ -69,6 +71,7 @@ class SetNewPasswordController extends GetxController {
         );
       }
     } catch (e) {
+      log("🔴 ${e.toString()}");
       showSnackBarApiError();
     } finally {
       context.loaderOverlay.hide();

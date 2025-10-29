@@ -9,7 +9,7 @@ import 'package:para_job/packages/ui_components/error_screen.dart';
 class AboutAppScreen extends StatelessWidget {
   AboutAppScreen({super.key});
 
-  final controller = Get.put(AboutAppConroller());
+  final controller = Get.put(AboutAppController());
 
   @override
   Widget build(BuildContext context) {

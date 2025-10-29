@@ -1,4 +1,3 @@
-
 import 'package:para_job/packages/api_client/src/models/responses/page_data.dart';
 
 class Section {
@@ -10,8 +9,6 @@ class Section {
   final String? linkText;
   final String? linkUrl;
   final String? linkStyle;
-  final List<dynamic>? children;
-  final List<dynamic>? images;
 
   Section({
     this.id,
@@ -22,8 +19,6 @@ class Section {
     this.linkText,
     this.linkUrl,
     this.linkStyle,
-    this.children,
-    this.images,
   });
 
   factory Section.fromJson(Map<String, dynamic> json) {
@@ -36,10 +31,6 @@ class Section {
       linkText: json['link_text'],
       linkUrl: json['link_url'],
       linkStyle: json['link_style'],
-      children: json['children'] ?? [],
-      images: json['images'] ?? [],
     );
   }
-
 }
-

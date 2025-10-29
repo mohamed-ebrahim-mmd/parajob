@@ -92,14 +92,14 @@ class IDImageContent extends StatelessWidget {
             borderRadius: BorderRadius.circular(context.wPct(2)),
             child: Image.file(
               selectedImage!,
-              width: context.wPct(60),
+              width: context.wPct(90),
               height: context.hPct(18),
-              fit: BoxFit.cover,
+              fit: BoxFit.contain,
             ),
           )
         : Image.asset(
             imagePath,
-            width: context.wPct(60),
+            width: context.wPct(90),
             height: context.hPct(18),
             fit: BoxFit.contain,
           );
