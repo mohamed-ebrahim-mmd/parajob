@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:para_job/packages/api_client/src/models/responses/my_notifications_response.dart';
 import 'package:para_job/packages/api_client/src/models/requests/submit_review_request.dart';
 import 'package:para_job/packages/api_client/src/models/responses/company_response.dart';
 import 'package:para_job/packages/api_client/src/models/responses/company_reviews_response.dart';
@@ -99,6 +100,12 @@ abstract class ApiClient {
   @GET("/api/user/profile")
   Future<UserProfileResponse> fetchUserProfile({
     @Header('Authorization') required String token,
+  });
+
+  @GET("/api/notification")
+  Future<MyNotificationsResponse> getNotifications({
+    @Header('Authorization') required String token,
+    @Query('page') int? page,
   });
 
   @POST("/api/contactus/store")

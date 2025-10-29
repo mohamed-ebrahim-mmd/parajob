@@ -1,16 +1,13 @@
-/*
- Mohamed Ebrahim | mohamed7ebrahim7@gmail.com | 2024-12-30 5:51 PM
- ==================================================================
-*/
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:para_job/features/Notifications/notifications_screen.dart';
 import 'package:para_job/features/home/home_screen.dart';
 import 'package:para_job/features/my_jobs/my_jobs_screen.dart';
 import 'package:para_job/features/profile/user_profile/profile_screen.dart';
 import 'package:para_job/packages/ui_components/auth_required_dialog.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
+
+import '../my_notifications/my_notifications_screen.dart';
 
 class MainNavigatorController extends GetxController {
   final userController = Get.find<UserController>();
@@ -23,7 +20,7 @@ class MainNavigatorController extends GetxController {
   late final List<Widget> pages = [
     HomeScreen(),
     userController.isGuest ? SizedBox() : MyJobsScreen(),
-    userController.isGuest ? SizedBox() : NotificationsScreen(),
+    userController.isGuest ? SizedBox() : MyNotificationScreen(),
     userController.isGuest ? SizedBox() : ProfileScreen(),
   ];
 
