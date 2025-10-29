@@ -14,7 +14,6 @@ class JobContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // context.hBox(4),
         Row(
           children: [
             IconButton(

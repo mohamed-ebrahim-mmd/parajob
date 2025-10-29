@@ -1,5 +1,3 @@
-
-
 import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:para_job/features/authentication/authentication_choice/auth_choice_screen.dart';
@@ -7,7 +5,6 @@ import 'package:para_job/features/authentication/email_login/email_login_screen.
 import 'package:para_job/features/authentication/forgot_password/forgot_password_screen.dart';
 import 'package:para_job/features/authentication/forgot_password_otp/forgot_password_otp_screen.dart';
 import 'package:para_job/features/authentication/set_new_password/set_new_password_screen.dart';
-import 'package:para_job/features/company_details/company_details_screen.dart';
 import 'package:para_job/features/employer/employer_screen.dart';
 import 'package:para_job/features/employer/reviews/employer_reviews_screen.dart';
 import 'package:para_job/features/home/jobs/jobs_screen.dart';
@@ -60,7 +57,6 @@ class Routes {
   static const String employerReviews = '/employer-reviews';
   static const String jobDetails = '/job_details';
   static const String jobs = '/jobs';
-  static const String companyDetails = '/company-details';
   static const String more = "/more-screen";
   static const String aboutUs = "/about-us";
   static const String aboutApp = "/about-app";
@@ -198,13 +194,7 @@ class AppPages {
     GetPage(name: Routes.createAccount, page: () => CreateAccountScreen()),
     GetPage(
       name: Routes.jobDetails,
-      page: () => JobDetailsScreen(),
-      children: [
-        GetPage(
-          name: Routes.companyDetails,
-          page: () => CompanyDetailsScreen(),
-        ),
-      ],
+      page: () => JobDetailsScreen()
     ),
     GetPage(name: Routes.jobDetails, page: () => JobDetailsScreen()),
     GetPage(
