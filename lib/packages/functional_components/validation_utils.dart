@@ -3,10 +3,6 @@
  ==================================================================
 */
 
-// validation_utils.dart
-
-/// Validates the email address.
-/// Returns an error message if invalid, otherwise null.
 String? validateEmail(String email) {
   final trimmedEmail = email.trim();
 
@@ -19,31 +15,6 @@ String? validateEmail(String email) {
   return null; // No error, email is valid
 }
 
-String? validateAddress(String address) {
-  final trimmedAddress = address.trim();
-
-  if (trimmedAddress.isEmpty) {
-    return 'Address cannot be empty';
-  } else if (trimmedAddress.length < 5) {
-    return 'Address is too short';
-  }
-
-  return null; // No error, address is valid
-}
-
-String? validatePostalCode(String postalCode) {
-  final trimmedPostalCode = postalCode.trim();
-
-  if (trimmedPostalCode.isEmpty) {
-    return 'Postal code cannot be empty';
-  } else if (!RegExp(r'^\d{5}$').hasMatch(trimmedPostalCode)) {
-    return 'Invalid postal code. Must be exactly 5 digits.';
-  }
-
-  return null; // No error, postal code is valid
-}
-
-/// ✅ OTP Validation
 String? validatePin(String pin) {
   final trimmed = pin.trim();
 
@@ -56,7 +27,6 @@ String? validatePin(String pin) {
   return null;
 }
 
-/// ✅ Egyptian National ID Validation
 String? validateEgyptianNationalId(String id) {
   final trimmed = id.trim();
 
@@ -136,9 +106,6 @@ String? validateMessage(String message) {
   return null; // Valid message
 }
 
-
-/// Validates the password.
-/// Returns an error message if invalid, otherwise null.
 String? validatePassword(String password) {
   final trimmedPassword = password.trim();
 

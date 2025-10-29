@@ -34,6 +34,16 @@ class AppTheme {
           fontSize: context.wPct(2),
           color: AppColors.pureWhite, // Subtext colo, // Subtext color
         ),
+        headlineLarge: TextStyle(
+          color: AppColors.pureWhite,
+          fontSize: context.wPct(3.8),
+          fontWeight: FontWeight.w600,
+        ),
+        headlineMedium: TextStyle(
+          color: AppColors.white50,
+          fontSize: context.wPct(3.8),
+          fontWeight: FontWeight.w400,
+        ),
       ),
       appBarTheme: const AppBarTheme(
         elevation: 0,
