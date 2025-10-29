@@ -2,19 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/job_details/job_details_controller.dart';
 import 'package:para_job/features/job_details/widgets/custom_container_job_detail.dart';
-import 'package:para_job/features/job_details/widgets/custom_image_shadow.dart';
 import 'package:para_job/features/job_details/widgets/job_content.dart'
     show JobContent;
 import 'package:para_job/features/job_details/widgets/job_skill_item.dart';
-import 'package:para_job/packages/api_client/src/service/api_call_state_enum.dart';
+import 'package:para_job/packages/api_client/src/enums/api_call_state_enum.dart';
+import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
+import 'package:para_job/packages/ui_components/curved_image.dart';
 import 'package:para_job/packages/ui_components/error_screen.dart';
 import 'package:para_job/res/app_asset_paths.dart';
 
 class JobDetailsScreen extends StatelessWidget {
   final jobId = Get.arguments as int;
   late final controller = Get.put(JobDetailsController(jobId));
+
   JobDetailsScreen({super.key});
 
   @override
@@ -33,18 +35,22 @@ class JobDetailsScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
 
                 children: [
-                  CurvedImageWithShadow(
+                  CurvedHeaderWithGlow(
                     imageUrl: jobDetails.logo,
-                    height: context.hPct(40),
-                    shadowColor: const Color(0xFF00CBB8),
                     child: JobContent(
                       jobDetails: jobDetails,
-                    ), // your aquaTeal color for soft tone
+                      onCompanyTap: () {
+                        Get.toNamed(
+                          "${Routes.jobDetails}${Routes.companyDetails}",
+                          arguments: jobDetails.company.id,
+                        );
+                      },
+                    ),
                   ),
                   context.hBox(4),
                   Padding(
                     padding: EdgeInsetsGeometry.symmetric(
-                      horizontal: context.wPct(4),
+                      horizontal: context.wPct(5),
                     ),
                     //company
                     child: Column(
@@ -155,11 +161,7 @@ class JobDetailsScreen extends StatelessWidget {
 
                         context.hBox(4),
                         FilledButton(
-                          onPressed: () {
-                            // Get.toNamed(
-                            //   "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}${Routes.createAccountBackID}${Routes.createAccountPicWithID}${Routes.educationInfo}${Routes.educationPic}${Routes.createAccountSkills}${Routes.createAccountCv}",
-                            // );
-                          },
+                          onPressed: () {},
                           child: Text("Apply for this job"),
                         ),
                         context.hBox(4),
@@ -172,7 +174,6 @@ class JobDetailsScreen extends StatelessWidget {
           case ApiCallState.failure:
             return Center(
               child: ErrorScreen(
-                height: context.hPct(60),
                 onPressed: () {
                   controller.fetchJobDetails(jobId);
                 },

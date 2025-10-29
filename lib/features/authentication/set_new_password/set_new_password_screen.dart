@@ -11,16 +11,23 @@ import 'package:para_job/packages/themeing/media_query_values.dart';
 class SetNewPasswordScreen extends StatelessWidget {
   final controller = Get.find<SetNewPasswordController>();
 
+   SetNewPasswordScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return PopScope(
+    return 
+    
+    PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) {
         if (!didPop) {
           controller.closeAndDispose();
         }
       },
-      child: Scaffold(
+      child:
+
+
+       Scaffold(
         appBar: AppBar(
           leading: IconButton(
             icon: const Icon(Icons.arrow_back_ios_new),
@@ -86,6 +93,12 @@ class SetNewPasswordScreen extends StatelessWidget {
           ),
         ),
       ),
+   
+   
+   
     );
+
+
+
   }
 }

@@ -7,8 +7,10 @@ import 'package:get/get.dart';
 import 'package:para_job/features/home/home_controller.dart';
 import 'package:para_job/features/home/widgets/hot_jobs_mini_list.dart';
 import 'package:para_job/features/home/widgets/jobs_mini_list.dart';
-import 'package:para_job/packages/api_client/src/service/api_call_state_enum.dart'
+import 'package:para_job/packages/api_client/src/enums/api_call_state_enum.dart'
     show ApiCallState;
+import 'package:para_job/packages/api_client/src/enums/job_category_enum.dart'
+    show JobCategory;
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
@@ -89,7 +91,11 @@ class HomeScreen extends StatelessWidget {
                           jobs: hotJobsList,
                           onSeeAll: () {
                             Get.toNamed(
-                              "${Routes.mainNavigator}${Routes.hotJobs}",
+                              "${Routes.mainNavigator}${Routes.jobs}",
+                              arguments: {
+                                "title": "Hot Jobs",
+                                "category": JobCategory.hotJob.value,
+                              },
                             );
                           },
                         ),
@@ -99,7 +105,11 @@ class HomeScreen extends StatelessWidget {
                           title: "Flexible Jobs",
                           onSeeAll: () {
                             Get.toNamed(
-                              "${Routes.mainNavigator}${Routes.flexibleJobs}",
+                              "${Routes.mainNavigator}${Routes.jobs}",
+                              arguments: {
+                                "title": "Flexible Jobs",
+                                "category": JobCategory.flexible.value,
+                              },
                             );
                           },
                         ),
@@ -109,7 +119,11 @@ class HomeScreen extends StatelessWidget {
                           title: "Non-Flexible Jobs",
                           onSeeAll: () {
                             Get.toNamed(
-                              "${Routes.mainNavigator}${Routes.nonFlexibleJobs}",
+                              "${Routes.mainNavigator}${Routes.jobs}",
+                              arguments: {
+                                "title": "Non-Flexible Jobs",
+                                "category": JobCategory.nonFlexible.value,
+                              },
                             );
                           },
                         ),

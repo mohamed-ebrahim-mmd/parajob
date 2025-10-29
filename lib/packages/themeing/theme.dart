@@ -36,6 +36,8 @@ class AppTheme {
         ),
       ),
       appBarTheme: const AppBarTheme(
+        elevation: 0,
+        scrolledUnderElevation: 0,
         iconTheme: IconThemeData(color: AppColors.pureWhite, size: 26),
       ),
 
@@ -70,6 +72,13 @@ class AppTheme {
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
             color: AppColors.pureWhite,
+            // width:context.wPct(4),
+          ),
+          borderRadius: BorderRadius.circular(context.wPct(4)),
+        ),
+        disabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(
+            color: AppColors.lightGrey,
             // width:context.wPct(4),
           ),
           borderRadius: BorderRadius.circular(context.wPct(4)),

@@ -8,6 +8,8 @@ import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
 import 'package:para_job/packages/functional_components/validation_utils.dart';
+import 'package:para_job/packages/route_manager/controller/routes.dart'
+    show Routes;
 import 'package:para_job/packages/route_manager/controller/routing_controller.dart';
 import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
 
@@ -46,28 +48,10 @@ class EmailLoginController extends GetxController {
 
       if (loginResponse.isSuccess ?? false) {
         final user = loginResponse.data!.user;
-        // if user is not approved go to the approval screen
-        if (!(user?.isApproved ?? false)) {
-          showSnackBarSuccess(
-            "Failed",
-            "user is not approved go to the approval screen",
-          );
-        }
-        // if user not completed go to the complete profile screen
-        else if (!(user?.isCompleted ?? true)) {
-          //todo change the false to true it was just used for allow because we want to test
-          showSnackBarError(
-            "Failed",
-            " user not completed go to the complete profile screen",
-          );
-        } else {
-          Get.find<RoutingController>().goHomeAsUser(
+        Get.find<RoutingController>().goHomeAsUser(
             user!,
             "Bearer ${loginResponse.data!.token}",
           );
-        }
-      } else {
-        showSnackBarError("Failed", "${loginResponse.details?.message} ");
       }
     } catch (e) {
       showSnackBarApiError();

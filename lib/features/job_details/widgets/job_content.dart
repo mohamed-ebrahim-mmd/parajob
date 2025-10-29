@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:para_job/packages/api_client/src/models/responses/job_data.dart'
     show JobData;
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
-import '../../../packages/route_manager/controller/routes.dart';
-
 class JobContent extends StatelessWidget {
-  const JobContent({super.key, required this.jobDetails});
+  const JobContent({super.key, required this.jobDetails, this.onCompanyTap});
 
   final JobData jobDetails;
+  final VoidCallback? onCompanyTap;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        context.hBox(4),
+        // context.hBox(4),
         Row(
           children: [
             IconButton(
@@ -33,6 +31,8 @@ class JobContent extends StatelessWidget {
         context.hBox(2),
         Text(
           jobDetails.title,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
           style: TextStyle(
             color: AppColors.pureWhite,
             fontSize: context.wPct(8),
@@ -41,17 +41,13 @@ class JobContent extends StatelessWidget {
         ),
         context.hBox(2),
         GestureDetector(
-          onTap: () {
-            Get.toNamed(
-              Routes.employer,
-              arguments: {'id': jobDetails.company.id},
-            );
-          },
+          onTap: onCompanyTap,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CircleAvatar(
                 radius: context.wPct(5),
+                backgroundColor: AppColors.softWhite70,
                 backgroundImage: NetworkImage(jobDetails.company.logo ?? ""),
               ),
 

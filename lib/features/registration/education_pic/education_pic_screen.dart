@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/registration/widgets/register_img_picker.dart';
@@ -24,9 +26,7 @@ class EducationPicScreen extends StatelessWidget {
           },
         ),
       ),
-      body: 
-      
-      Padding(
+      body: Padding(
         padding: EdgeInsets.symmetric(horizontal: context.wPct(5)),
         child: SingleChildScrollView(
           child: Column(
@@ -67,6 +67,7 @@ class EducationPicScreen extends StatelessWidget {
                   ),
                   textAlign: TextAlign.center,
                 ),
+                onImageSelected: (File? value) {},
               ),
               context.hBox(2),
               RegisterNote(note: "Make sure your surroundings are well-lit."),
@@ -87,9 +88,9 @@ class EducationPicScreen extends StatelessWidget {
         ),
         child: FilledButton(
           onPressed: () {
-             Get.toNamed(
-                  "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}${Routes.createAccountBackID}${Routes.createAccountPicWithID}${Routes.educationInfo}${Routes.educationPic}${Routes.createAccountSkills}",
-                );
+            Get.toNamed(
+              "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}${Routes.createAccountBackID}${Routes.createAccountPicWithID}${Routes.educationInfo}${Routes.educationPic}${Routes.createAccountSkills}",
+            );
           },
           child: Text("Confirm"),
         ),

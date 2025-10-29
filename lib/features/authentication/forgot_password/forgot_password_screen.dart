@@ -11,6 +11,8 @@ import 'package:para_job/packages/themeing/media_query_values.dart';
 class ForgotPasswordScreen extends StatelessWidget {
   final controller = Get.put(ForgotPasswordController());
 
+   ForgotPasswordScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

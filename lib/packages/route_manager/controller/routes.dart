@@ -1,7 +1,4 @@
-/*
- Mohamed Ebrahim | mohamed7ebrahim7@gmail.com | 23/02/2025 8:17 AM
- ==================================================================
-*/
+
 
 import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
@@ -10,15 +7,18 @@ import 'package:para_job/features/authentication/email_login/email_login_screen.
 import 'package:para_job/features/authentication/forgot_password/forgot_password_screen.dart';
 import 'package:para_job/features/authentication/forgot_password_otp/forgot_password_otp_screen.dart';
 import 'package:para_job/features/authentication/set_new_password/set_new_password_screen.dart';
+import 'package:para_job/features/company_details/company_details_screen.dart';
 import 'package:para_job/features/employer/employer_screen.dart';
 import 'package:para_job/features/employer/reviews/employer_reviews_screen.dart';
-import 'package:para_job/features/home/flexible_jobs/flexible_jobs_screen.dart';
-import 'package:para_job/features/home/hot_jobs/hot_jobs_screen.dart';
-import 'package:para_job/features/home/non_flexible_jobs_screen/non_flexible_jobs_screen.dart';
+import 'package:para_job/features/home/jobs/jobs_screen.dart';
 import 'package:para_job/features/home/search_job/search_job_screen.dart';
 import 'package:para_job/features/job_details/job_details_screen.dart';
 import 'package:para_job/features/main_navigator/main_navigator_screen.dart';
 import 'package:para_job/features/onboarding/onboarding_screen.dart';
+import 'package:para_job/features/profile/about_app/about_app_screen.dart';
+import 'package:para_job/features/profile/about_us/about_us_screen.dart';
+import 'package:para_job/features/profile/contact_us/contact_us_screen.dart';
+import 'package:para_job/features/profile/more/more_screen.dart';
 import 'package:para_job/features/registration/back_national_id/back_national_id_screen.dart';
 import 'package:para_job/features/registration/create_account/create_account_screen.dart';
 import 'package:para_job/features/registration/create_account_cv/create_account_cv_screen.dart';
@@ -59,6 +59,12 @@ class Routes {
   static const String employer = '/employer';
   static const String employerReviews = '/employer-reviews';
   static const String jobDetails = '/job_details';
+  static const String jobs = '/jobs';
+  static const String companyDetails = '/company-details';
+  static const String more = "/more-screen";
+  static const String aboutUs = "/about-us";
+  static const String aboutApp = "/about-app";
+  static const String contactUs = "/contacts-us";
 }
 
 class AppPages {
@@ -123,11 +129,23 @@ class AppPages {
       children: [
         GetPage(
           name: Routes.createAccountOTP,
-          page: () => CreateAccountOtpScreen(),
+          page: () => LoaderOverlay(
+            child: CreateAccountOtpScreen(),
+            overlayWidgetBuilder: (_) {
+              //ignored progress for the moment
+              return AppLoader();
+            },
+          ),
           children: [
             GetPage(
               name: Routes.createAccountSetPass,
-              page: () => CreateAccountSetPass(),
+              page: () => LoaderOverlay(
+                child: CreateAccountSetPass(),
+                overlayWidgetBuilder: (_) {
+                  //ignored progress for the moment
+                  return AppLoader();
+                },
+              ),
               children: [
                 GetPage(
                   name: Routes.createAccountFrontID,
@@ -175,7 +193,19 @@ class AppPages {
         ),
       ],
     ),
+
+    //CompanyDetailsScreen
     GetPage(name: Routes.createAccount, page: () => CreateAccountScreen()),
+    GetPage(
+      name: Routes.jobDetails,
+      page: () => JobDetailsScreen(),
+      children: [
+        GetPage(
+          name: Routes.companyDetails,
+          page: () => CompanyDetailsScreen(),
+        ),
+      ],
+    ),
     GetPage(name: Routes.jobDetails, page: () => JobDetailsScreen()),
     GetPage(
       name: Routes.employer,
@@ -195,22 +225,50 @@ class AppPages {
 
     GetPage(
       name: Routes.mainNavigator,
-      page: () => MainNavigatorScreen(),
+      page: () => LoaderOverlay(
+        child: MainNavigatorScreen(),
+        overlayWidgetBuilder: (_) {
+          //ignored progress for the moment
+          return AppLoader();
+        },
+      ),
+
       children: [
         /// screens that's under the home tab
-        GetPage(name: Routes.hotJobs, page: () => HotJobsScreen()),
-        GetPage(name: Routes.flexibleJobs, page: () => FlexibleJobsScreen()),
-        GetPage(
-          name: Routes.nonFlexibleJobs,
-          page: () => NonFlexibleJobsScreen(),
-        ),
-        GetPage(name: Routes.hotJobs, page: () => HotJobsScreen()),
-        GetPage(name: Routes.flexibleJobs, page: () => FlexibleJobsScreen()),
-        GetPage(
-          name: Routes.nonFlexibleJobs,
-          page: () => NonFlexibleJobsScreen(),
-        ),
+        GetPage(name: Routes.jobs, page: () => JobsScreen()),
         GetPage(name: Routes.searchJob, page: () => SearchJobScreen()),
+
+        //profile
+        GetPage(
+          name: Routes.more,
+          page: () => LoaderOverlay(
+            child: MoreScreen(),
+            overlayWidgetBuilder: (_) {
+              //ignored progress for the moment
+              return AppLoader();
+            },
+          ),
+
+          children: [
+            GetPage(
+              name: Routes.contactUs,
+              page: () => LoaderOverlay(
+                child: ContactUsScreen(),
+                overlayWidgetBuilder: (_) {
+                  //ignored progress for the moment
+                  return AppLoader();
+                },
+              ),
+            ),
+            GetPage(
+              name: Routes.aboutUs,
+              page: () => AboutUsScreen(),
+              children: [
+                GetPage(name: Routes.aboutApp, page: () => AboutAppScreen()),
+              ],
+            ),
+          ],
+        ),
       ],
     ),
   ];

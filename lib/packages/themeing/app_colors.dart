@@ -29,6 +29,7 @@ class AppColors {
   static const Color almostWhite = Color(0xFFFDFDFD);
 
   static const Color lightGray = Color(0xffB4B4B4);
+  static const Color lightGray2 = Color(0xffD9D9D9);
   static const Color grayButton = Color(0xff9C9C9C);
 
   static const Color darkCharcoal = Color(0xFF1E2428);
@@ -44,4 +45,9 @@ class AppColors {
 
   static const Color aquaTealShadow = Color(0x8800CBB8);
   static const Color lightSilverGray = Color(0xFFB8BABB);
+
+  //st
+  static const Color listTileBG = Color(0xFF202426);
+
+  static const Color whiteSoft5= Color(0x0DFFFFFF);
 }

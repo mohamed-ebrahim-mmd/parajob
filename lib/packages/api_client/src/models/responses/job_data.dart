@@ -1,7 +1,6 @@
 
-import 'package:para_job/packages/api_client/src/models/responses/city.dart';
-import 'package:para_job/packages/api_client/src/models/responses/company.dart';
-import 'package:para_job/packages/api_client/src/models/responses/department.dart';
+import 'package:para_job/packages/api_client/src/models/models.dart';
+
 
 class JobData {
   final int id;

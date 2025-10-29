@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//todo remove this class when finished no  need for it
 class DatePickerField extends StatefulWidget {
   final String hintText;
   const DatePickerField({super.key, required this.hintText});
@@ -32,11 +33,11 @@ class _DatePickerFieldState extends State<DatePickerField> {
     return TextField(
       controller: _controller,
       readOnly: true, // ✅ prevents keyboard from opening
-      decoration:  InputDecoration(
+      decoration: InputDecoration(
         hintText: widget.hintText,
-       // suffixIcon: Icon(Icons.calendar_today),
+        // suffixIcon: Icon(Icons.calendar_today),
       ),
-      onTap: () => _selectDate(context), 
+      onTap: () => _selectDate(context),
     );
   }
 }

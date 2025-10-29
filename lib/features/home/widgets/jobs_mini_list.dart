@@ -1,10 +1,7 @@
-/*
- Mohamed Ebrahim | mohamed7ebrahim7@gmail.com | 2025-10-16 10:52 AM
- ==================================================================
-*/
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:para_job/features/home/widgets/job_card.dart';
+import 'package:para_job/packages/ui_components/job_card.dart';
 import 'package:para_job/packages/api_client/src/models/responses/job.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';

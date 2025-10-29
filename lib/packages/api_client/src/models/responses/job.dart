@@ -1,8 +1,10 @@
 /*
- Mohamed Ebrahim | mohamed7ebrahim7@gmail.com | 2025-10-15 3:26 PM
- ==================================================================
-*/
+   Mohamed Ebrahim | mohamed7ebrahim7@gmail.com | 2025-10-15 3:26 PM
+   ==================================================================
+  */
 import 'package:para_job/packages/api_client/src/models/responses/company.dart';
+import 'package:para_job/packages/api_client/src/models/responses/department.dart'
+    show Department;
 
 class Job {
   final int? id;
@@ -14,6 +16,10 @@ class Job {
   final Company? company;
   final bool? isApplied;
   final bool? isBookmark;
+  final String? category;
+  final Department? department;
+  final String? from;
+  final String? to;
 
   Job({
     this.id,
@@ -25,21 +31,33 @@ class Job {
     this.company,
     this.isApplied,
     this.isBookmark,
+    this.category,
+    this.department,
+    this.from,
+    this.to,
   });
 
   factory Job.fromJson(Map<String, dynamic>? json) {
+    if (json == null) return Job();
+
     return Job(
-      id: json?['id'],
-      title: json?['title'],
-      description: json?['description'],
-      applicationDeadline: json?['application_deadline'],
-      skills: json?['skills'] != null
-          ? List<String>.from(json!['skills'])
+      id: json['id'],
+      title: json['title'],
+      description: json['description'],
+      applicationDeadline: json['application_deadline'],
+      skills: json['skills'] != null ? List<String>.from(json['skills']) : null,
+      monthlySalary: json['monthly_salary'],
+      company: json['company'] != null
+          ? Company.fromJson(json['company'])
           : null,
-      monthlySalary: json?['monthly_salary'],
-      company: Company.fromJson(json?['company']),
-      isApplied: json?['is_applied'],
-      isBookmark: json?['is_bookmark'],
+      isApplied: json['is_applied'],
+      isBookmark: json['is_bookmark'],
+      category: json['category'],
+      department: json['department'] != null
+          ? Department.fromJson(json['department'])
+          : null,
+      from: json['from'],
+      to: json['to'],
     );
   }
 }

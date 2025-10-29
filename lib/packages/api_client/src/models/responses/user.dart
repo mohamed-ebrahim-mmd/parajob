@@ -9,6 +9,8 @@ class User {
   final String? area;
   final String? university;
   final String? faculty;
+  final bool? isVerified;
+
   final bool? isApproved;
   final bool? isCompleted;
   final bool? isBlocked;
@@ -35,6 +37,7 @@ class User {
     this.area,
     this.university,
     this.faculty,
+    this.isVerified,
     this.isApproved,
     this.isCompleted,
     this.isBlocked,
@@ -63,6 +66,7 @@ class User {
       area: json['area'],
       university: json['university'],
       faculty: json['faculty'],
+      isVerified: json['is_verified'],
       isApproved: json['is_approved'],
       isCompleted: json['is_completed'],
       isBlocked: json['is_blocked'],
@@ -92,6 +96,7 @@ class User {
       'area': area,
       'university': university,
       'faculty': faculty,
+      'is_verified': isVerified,
       'is_approved': isApproved,
       'is_completed': isCompleted,
       'is_blocked': isBlocked,

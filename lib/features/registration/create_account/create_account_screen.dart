@@ -4,15 +4,16 @@
 */
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:para_job/features/registration/create_account/create_account_controller.dart';
 import 'package:para_job/features/registration/widgets/stepper.dart';
-import 'package:para_job/packages/route_manager/controller/routes.dart';
+import 'package:para_job/packages/api_client/src/enums/api_call_state_enum.dart'
+    show ApiCallState, DataFetchState;
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
-import 'package:para_job/packages/ui_components/date_packer.dart';
-import 'package:para_job/packages/ui_components/drop_down_button.dart';
 
 class CreateAccountScreen extends StatelessWidget {
-  const CreateAccountScreen({super.key});
+  final controller = Get.put(CreateAccountController());
+  CreateAccountScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -55,16 +56,30 @@ class CreateAccountScreen extends StatelessWidget {
               ),
               context.hBox(2.5),
               TextField(
+                controller: controller.nameController,
                 decoration: InputDecoration(hintText: "Enter your Full Name"),
                 keyboardType: TextInputType.name,
                 textInputAction: TextInputAction.next,
               ),
               context.hBox(1.5),
               // Date of Birth TF
-              DatePickerField(hintText: "Enter your Date of Birth"),
+              Obx(() {
+                final textValue = controller.selectedDate.value;
+                return TextField(
+                  readOnly: true,
+                  controller: TextEditingController(text: textValue),
+                  decoration: InputDecoration(
+                    hintText: textValue.isEmpty
+                        ? "Enter your Date of Birth"
+                        : textValue,
+                  ),
+                  onTap: controller.pickDate,
+                );
+              }),
               context.hBox(1.5),
 
               TextField(
+                controller: controller.phoneController,
                 decoration: InputDecoration(
                   hintText: "Enter your phone Number",
                 ),
@@ -74,6 +89,7 @@ class CreateAccountScreen extends StatelessWidget {
               context.hBox(1.5),
               // Email Address TF
               TextField(
+                controller: controller.emailController,
                 decoration: InputDecoration(hintText: "Enter your Email"),
                 keyboardType: TextInputType.emailAddress,
                 textInputAction: TextInputAction.next,
@@ -81,14 +97,19 @@ class CreateAccountScreen extends StatelessWidget {
               context.hBox(1.5),
 
               TextField(
+                controller: controller.nationalIdController,
                 decoration: InputDecoration(hintText: "Enter your id number"),
                 keyboardType: TextInputType.number,
                 textInputAction: TextInputAction.next,
               ),
               context.hBox(1.5),
-              DropDownButton(
-                options: ["male", "female"],
-                label: "Choose your gender",
+              DropdownMenu<String>(
+                enableSearch: true,
+                expandedInsets: EdgeInsets.zero,
+                hintText: "Choose your gender",
+                initialSelection: controller.selectedGender,
+                onSelected: controller.onGenderSelected,
+                dropdownMenuEntries: controller.genderMenuEntries,
               ),
               context.hBox(2.5),
 
@@ -102,23 +123,104 @@ class CreateAccountScreen extends StatelessWidget {
                 ),
               ),
               context.hBox(2.5),
-              DropDownButton(
-                options: ["male", "female"],
-                label: "Choose your city",
-              ),
+              Obx(() {
+                switch (controller.citiesCallState.value) {
+                  case ApiCallState.loading:
+                    return TextField(
+                      enabled: false,
+                      decoration: InputDecoration(
+                        labelText: "Loading cities...",
+                        suffixIcon: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: const CircularProgressIndicator(),
+                        ),
+                      ),
+                    );
+
+                  case ApiCallState.success:
+                    return DropdownMenu<int>(
+                      enableSearch: true,
+                      expandedInsets: EdgeInsets.zero,
+                      menuHeight: context.hPct(30),
+                      hintText: "Choose your city",
+                      initialSelection: controller.selectedCityId.value,
+                      onSelected: controller.onCitySelected,
+                      dropdownMenuEntries: controller.cityMenuEntries,
+                    );
+
+                  case ApiCallState.failure:
+                    return TextField(
+                      readOnly: true,
+                      onTap: () {
+                        controller.fetchCities();
+                      },
+
+                      decoration: InputDecoration(
+                        labelText: "Failed to load, tap to retry",
+                        suffixIcon: const Icon(Icons.refresh),
+                      ),
+                    );
+                }
+              }),
               context.hBox(1.5),
-              DropDownButton(
-                options: ["male", "female"],
-                label: "Choose your area",
-              ),
+              Obx(() {
+                switch (controller.areasCallState.value) {
+                  case DataFetchState.loading:
+                    return TextField(
+                      enabled: false,
+                      decoration: InputDecoration(
+                        labelText: "Loading areas...",
+                        suffixIcon: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: const CircularProgressIndicator(),
+                        ),
+                      ),
+                    );
+
+                  case DataFetchState.success:
+                    return DropdownMenu<int>(
+                      enableSearch: true,
+                      expandedInsets: EdgeInsets.zero,
+                      menuHeight: context.hPct(30),
+                      hintText: "Choose your city",
+                      initialSelection: controller.selectedAreaId,
+                      onSelected: (value) {
+                        if (value != null) {
+                          controller.selectedAreaId = value;
+                        }
+                      },
+                      dropdownMenuEntries: controller.areaMenuEntries,
+                    );
+
+                  case DataFetchState.failure:
+                    return TextField(
+                      readOnly: true,
+                      onTap: () {
+                        if (controller.selectedCityId.value != null) {
+                          controller.fetchAreas(
+                            controller.selectedCityId.value!,
+                          );
+                        }
+                      },
+                      decoration: InputDecoration(
+                        labelText: "Failed to load areas, tap to retry",
+                        suffixIcon: const Icon(Icons.refresh),
+                      ),
+                    );
+
+                  case DataFetchState.initial:
+                    return TextField(
+                      enabled: false,
+                      decoration: const InputDecoration(
+                        labelText: "Select a city first",
+                      ),
+                    );
+                }
+              }),
               context.hBox(2.5),
 
               FilledButton(
-                onPressed: () {
-                  Get.toNamed(
-                    "${Routes.createAccount}${Routes.createAccountOTP}",
-                  );
-                },
+                onPressed: controller.registerUser,
                 child: Text("Continue"),
               ),
 

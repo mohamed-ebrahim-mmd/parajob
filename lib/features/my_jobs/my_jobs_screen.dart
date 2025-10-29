@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:para_job/features/my_jobs/widgets/my_job_list.dart';
+import 'package:para_job/packages/api_client/src/enums/job_application_status.dart'
+    show JobApplicationStatus;
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
-import '../../packages/api_client/src/enums/job_application_status.dart';
 import '../../packages/themeing/app_colors.dart';
 
 class MyJobsScreen extends StatelessWidget {
