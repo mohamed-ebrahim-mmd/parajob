@@ -73,7 +73,7 @@ abstract class ApiClient {
   @POST('/api/user/register')
   Future<RegisterResponse> registerUser(@Body() RegisterRequestModel request);
 
-  @GET("/api/page/slug/about-parajob")
+  @GET("/api/page/slug/about-parajob-mobile")
   Future<AboutUsResponse> getAboutUs();
 
   @GET("/api/user/profile")

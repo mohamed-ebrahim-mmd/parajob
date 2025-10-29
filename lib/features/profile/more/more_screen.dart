@@ -46,7 +46,9 @@ class MoreScreen extends StatelessWidget {
                 icon: AppAssetPaths.profilrIcon,
                 title: "Edit Personal Info",
                 onTap: () {
-                  // navigate to Edit Info Screen
+                  Get.toNamed(
+                    "${Routes.mainNavigator}${Routes.more}${Routes.editProfile}",
+                  );
                 },
               ),
               context.hBox(1.5),
@@ -82,8 +84,7 @@ class MoreScreen extends StatelessWidget {
                         "Warning: if you deleted your account you will lose all your data and your level rank.",
                     context: context,
                     onTap: () {
-                     controller.deleteUserAccount(context);
-
+                      controller.deleteUserAccount(context);
                     },
                   );
                 },
@@ -128,7 +129,7 @@ class MoreScreen extends StatelessWidget {
                 onTap: () {
                   Get.toNamed(
                     "${Routes.mainNavigator}${Routes.more}${Routes.aboutUs}",
-                  ); //mainNavigator
+                  );
                 },
               ),
               context.hBox(1.5),
