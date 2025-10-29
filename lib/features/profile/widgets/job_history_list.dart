@@ -62,7 +62,12 @@ class JobHistoryList extends StatelessWidget {
   final String title;
   final String emptyMessage;
 
-  const JobHistoryList({super.key, required this.jobHistory, this.title="Your job history", required this.emptyMessage, });
+  const JobHistoryList({
+    super.key,
+    required this.jobHistory,
+    this.title = "Your job history",
+    required this.emptyMessage,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +84,6 @@ class JobHistoryList extends StatelessWidget {
         ),
 
         context.hBox(1.5),
-
         // Job List
         ListView.separated(
           scrollDirection: Axis.vertical,
@@ -95,15 +99,23 @@ class JobHistoryList extends StatelessWidget {
         ),
         jobHistory.isEmpty
             ? Padding(
-              padding:  EdgeInsets.all(context.hPct(4.5),),
-              child:  Center(child:  Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text( emptyMessage, style: TextStyle(color: AppColors.lightGray)),
-                  Icon(Icons.do_not_disturb_alt_rounded, color: AppColors.lightGray,)
-                ],
-              )),
-            )
+                padding: EdgeInsets.all(context.hPct(4.5)),
+                child: Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        emptyMessage,
+                        style: TextStyle(color: AppColors.lightGray),
+                      ),
+                      Icon(
+                        Icons.do_not_disturb_alt_rounded,
+                        color: AppColors.lightGray,
+                      ),
+                    ],
+                  ),
+                ),
+              )
             : Align(
                 alignment: AlignmentGeometry.center,
                 child: TextButton(

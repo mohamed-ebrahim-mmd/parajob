@@ -52,7 +52,7 @@ class _IDImagePickerState extends State<IDImagePicker> {
       onTap: _pickImage,
       child: Container(
         padding: EdgeInsets.symmetric(
-          vertical: context.hPct(4),
+          vertical: context.hPct(2),
           horizontal: context.wPct(1),
         ),
         width: context.w,

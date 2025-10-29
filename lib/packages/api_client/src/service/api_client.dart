@@ -1,5 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:para_job/packages/api_client/src/models/responses/contract.dart';
+import 'package:para_job/packages/api_client/src/models/responses/my_notifications_response.dart';
+import 'package:para_job/packages/api_client/src/models/requests/submit_review_request.dart';
+import 'package:para_job/packages/api_client/src/models/responses/company_response.dart';
+import 'package:para_job/packages/api_client/src/models/responses/company_reviews_response.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../models/models.dart';
@@ -7,6 +11,7 @@ import '../models/requests/application_verification_otp_request.dart';
 import '../models/requests/application_verification_request.dart';
 import '../models/responses/base_response.dart';
 import '../models/responses/upload_file_response.dart';
+import '../models/responses/submit_review_response.dart';
 
 part 'api_client.g.dart';
 
@@ -70,6 +75,22 @@ abstract class ApiClient {
   @GET("/api/verify/otp")
   Future<VerifyOtpResponse> verifyOtp(@Body() VerifyOtpRequest request);
 
+  @GET("/api/company/{id}")
+  Future<CompanyResponse> fetchCompany({
+    @Header('Authorization')  String? token,
+    @Path("id") required int id});
+
+  @GET("/api/review/company/{id}")
+  Future<CompanyReviewsResponse> fetchCompanyReviews({
+    @Path("id") required int companyId,
+    @Query('page') int? page,
+  });
+  @POST("/api/review")
+  Future<SubmitReviewResponse> submitReview({
+    @Header('Authorization') required String token,
+    @Body() required SubmitReviewRequest request
+  });
+
   @POST("/api/reset/password")
   Future<ResetPasswordResponse> resetPassword(
     @Body() ResetPasswordRequest request,
@@ -106,6 +127,12 @@ abstract class ApiClient {
   Future<UploadFileResponse> uploadFile(
     @Part(name: "files[]") List<MultipartFile> files,
   );
+
+  @GET("/api/notification")
+  Future<MyNotificationsResponse> getNotifications({
+    @Header('Authorization') required String token,
+    @Query('page') int? page,
+  });
 
   @POST("/api/contactus/store")
   Future<ContactUsResponse> contactUs(@Body() ContactUsRequest request);

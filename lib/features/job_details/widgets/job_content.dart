@@ -1,7 +1,3 @@
-/*
- Mohamed Ebrahim | mohamed7ebrahim7@gmail.com | 2025-10-21 4:03 PM
- ==================================================================
-*/
 import 'package:flutter/material.dart';
 import 'package:para_job/packages/api_client/src/models/responses/job_data.dart'
     show JobData;
@@ -18,7 +14,6 @@ class JobContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // context.hBox(4),
         Row(
           children: [
             IconButton(

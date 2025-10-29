@@ -5,7 +5,8 @@ import 'package:para_job/features/authentication/email_login/email_login_screen.
 import 'package:para_job/features/authentication/forgot_password/forgot_password_screen.dart';
 import 'package:para_job/features/authentication/forgot_password_otp/forgot_password_otp_screen.dart';
 import 'package:para_job/features/authentication/set_new_password/set_new_password_screen.dart';
-import 'package:para_job/features/company_details/company_details_screen.dart';
+import 'package:para_job/features/employer/employer_screen.dart';
+import 'package:para_job/features/employer/reviews/employer_reviews_screen.dart';
 import 'package:para_job/features/home/jobs/jobs_screen.dart';
 import 'package:para_job/features/home/search_job/search_job_screen.dart';
 import 'package:para_job/features/job_details/job_details_screen.dart';
@@ -30,6 +31,8 @@ import 'package:para_job/features/registration/front_national_id/front_national_
 import 'package:para_job/features/registration/picture_with_id/picture_with_id_screen.dart';
 import 'package:para_job/packages/ui_components/app_loader.dart';
 
+import '../../../features/employer/reviews/employer_reviews_controller.dart';
+
 class Routes {
   static const String onboarding = '/onboarding';
   static const String forgotPasswordOTP = '/forgot-password-otp';
@@ -50,8 +53,13 @@ class Routes {
   static const String searchJob = '/search-job';
   static const String createAccountSkills = '/create-account-skills';
   static const String createAccountCv = '/create-account-cv';
+  static const String hotJobs = '/hot_job';
+  static const String flexibleJobs = '/flex_job';
+  static const String nonFlexibleJobs = '/non_flex_job';
+  static const String employer = '/employer';
+  static const String employerReviews = '/employer-reviews';
+  static const String jobDetails = '/job_details';
   static const String jobs = '/jobs';
-  static const String jobDetails = '/job-details';
   static const String companyDetails = '/company-details';
   static const String contract = '/contract';
   static const String applicationVerificationOTP =
@@ -209,14 +217,25 @@ class AppPages {
     //  GetPage(name: Routes.createAccount, page: () => CreateAccountScreen()),
     GetPage(
       name: Routes.jobDetails,
-      page: () => JobDetailsScreen(),
-      children: [
-        GetPage(
-          name: Routes.companyDetails,
-          page: () => CompanyDetailsScreen(),
-        ),
-      ],
+      page: () => JobDetailsScreen()
     ),
+    GetPage(name: Routes.jobDetails, page: () => JobDetailsScreen()),
+    GetPage(
+      name: Routes.employer,
+      page: () => LoaderOverlay(
+        overlayWidgetBuilder: (_) => AppLoader(),
+        child: EmployerScreen(),
+      ),
+    ),
+    GetPage(
+      name: Routes.employerReviews,
+      page: () => EmployerReviewsScreen(),
+      binding: BindingsBuilder(() {
+        final args = Get.arguments;
+        Get.put(EmployerReviewsController(args['id']));
+      }),
+    ),
+
     GetPage(
       name: Routes.mainNavigator,
       page: () => LoaderOverlay(

@@ -41,8 +41,8 @@ class JobDetailsScreen extends StatelessWidget {
                       jobDetails: jobDetails,
                       onCompanyTap: () {
                         Get.toNamed(
-                          "${Routes.jobDetails}${Routes.companyDetails}",
-                          arguments: jobDetails.company.id,
+                          Routes.employer,
+                          arguments: {'id': jobDetails.company.id},
                         );
                       },
                     ),
