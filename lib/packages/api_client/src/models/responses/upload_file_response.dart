@@ -1,27 +1,33 @@
-import 'package:para_job/packages/api_client/src/models/models.dart';
+import 'package:para_job/packages/api_client/src/models/responses/response_details.dart';
 
-class UploadFilesResponse {
-  final List<String>? data;
+class UploadFileResponse {
+  final String? url;
   final bool isSuccess;
-  final ResponseDetails details;
+  final ResponseDetails? details;
 
-  UploadFilesResponse({
-    required this.data,
+  UploadFileResponse({
+    this.url,
     required this.isSuccess,
-    required this.details,
+    this.details,
   });
 
-  factory UploadFilesResponse.fromJson(Map<String, dynamic> json) {
-    // Convert the weird {"0": "..."} map into a list of values
-    List<String>? parseData(Map<String, dynamic>? rawData) {
-      if (rawData == null) return null;
-      return rawData.values.map((e) => e.toString()).toList();
+  factory UploadFileResponse.fromJson(Map<String, dynamic>? json) {
+    if (json == null) return UploadFileResponse(isSuccess: false);
+    final data = json['data'];
+    String? extractedUrl;
+
+    if (data != null) {
+      if (data is Map && data.containsKey('0')) {
+        extractedUrl = data['0'] as String?;
+      }
     }
 
-    return UploadFilesResponse(
-      data: parseData(json['data']),
+    return UploadFileResponse(
+      url: extractedUrl,
       isSuccess: json['is_success'] ?? false,
-      details: ResponseDetails.fromJson(json['details']),
+      details: json['details'] != null
+          ? ResponseDetails.fromJson(json['details'])
+          : null,
     );
   }
 }

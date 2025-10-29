@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:para_job/packages/api_client/src/models/responses/contract.dart';
 import 'package:para_job/packages/api_client/src/models/responses/my_notifications_response.dart';
 import 'package:para_job/packages/api_client/src/models/requests/submit_review_request.dart';
 import 'package:para_job/packages/api_client/src/models/responses/company_response.dart';
@@ -6,6 +7,10 @@ import 'package:para_job/packages/api_client/src/models/responses/company_review
 import 'package:retrofit/retrofit.dart';
 
 import '../models/models.dart';
+import '../models/requests/application_verification_otp_request.dart';
+import '../models/requests/application_verification_request.dart';
+import '../models/responses/base_response.dart';
+import '../models/responses/upload_file_response.dart';
 import '../models/responses/submit_review_response.dart';
 
 part 'api_client.g.dart';
@@ -102,6 +107,27 @@ abstract class ApiClient {
     @Header('Authorization') required String token,
   });
 
+  @GET("/api/page/slug/contract")
+  Future<ContractResponse> getContract();
+
+  @POST("/api/job/{jobId}/application/verification")
+  Future<VerifyOtpResponse> applicationVerificationOtp({
+    @Header('Authorization') required String token,
+    @Path("jobId") required int jobId,
+    @Body() required ApplicationVerificationOtpRequest request,
+  });
+
+  @POST("/api/contract")
+  Future<BaseResponse> applicationVerification({
+    @Header('Authorization') required String token,
+    @Body() required ApplicationVerificationRequest request,
+  });
+
+  @POST("/api/upload")
+  Future<UploadFileResponse> uploadFile(
+    @Part(name: "files[]") List<MultipartFile> files,
+  );
+
   @GET("/api/notification")
   Future<MyNotificationsResponse> getNotifications({
     @Header('Authorization') required String token,
@@ -132,7 +158,7 @@ abstract class ApiClient {
 
   @POST("/api/upload")
   @MultiPart()
-  Future<UploadFilesResponse> uploadFiles(
+  Future<UploadFileResponse> uploadFiles(
     @Part(name: "files[]") List<MultipartFile> files,
     @Header("Authorization")  String token,
   );

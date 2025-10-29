@@ -11,6 +11,7 @@ class AppColors {
   static const Color midnightBlue = Color(0xFF18222C);
   static const Color darkGrey = Color(0xFF1E2428);
   static const Color lightGrey = Color(0xff2C353A);
+  static const Color darkBlueGray = Color(0xFF23303D);
 
   //
 
@@ -27,6 +28,7 @@ class AppColors {
   static const Color white50 = Color(0x80FFFFFF);
   static const Color white5 = Color(0x0DFFFFFF);
   static const Color almostWhite = Color(0xFFFDFDFD);
+  static const Color white40 = Color(0x66FFFFFF);
 
   static const Color lightGray = Color(0xffB4B4B4);
   static const Color lightGray2 = Color(0xffD9D9D9);

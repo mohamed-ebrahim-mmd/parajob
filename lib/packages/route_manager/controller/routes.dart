@@ -11,6 +11,9 @@ import 'package:para_job/features/home/jobs/jobs_screen.dart';
 import 'package:para_job/features/home/search_job/search_job_screen.dart';
 import 'package:para_job/features/job_details/job_details_screen.dart';
 import 'package:para_job/features/main_navigator/main_navigator_screen.dart';
+import 'package:para_job/features/my_jobs/contract/application_verification_otp/application_verification_otp_screen.dart';
+import 'package:para_job/features/my_jobs/contract/contract_screen.dart';
+import 'package:para_job/features/my_jobs/my_jobs_screen.dart';
 import 'package:para_job/features/onboarding/onboarding_screen.dart';
 import 'package:para_job/features/profile/about_app/about_app_screen.dart';
 import 'package:para_job/features/profile/about_us/about_us_screen.dart';
@@ -57,6 +60,11 @@ class Routes {
   static const String employerReviews = '/employer-reviews';
   static const String jobDetails = '/job_details';
   static const String jobs = '/jobs';
+  static const String companyDetails = '/company-details';
+  static const String contract = '/contract';
+  static const String applicationVerificationOTP =
+      '/application-verification-otp';
+  static const String myJobs = '/myJobs';
   static const String more = "/more-screen";
   static const String aboutUs = "/about-us";
   static const String aboutApp = "/about-app";
@@ -66,6 +74,21 @@ class Routes {
 class AppPages {
   static final pages = [
     GetPage(name: Routes.onboarding, page: () => OnboardingScreen()),
+    GetPage(
+      name: Routes.contract,
+      page: () => LoaderOverlay(
+        overlayWidgetBuilder: (_) => AppLoader(),
+        child: ContractScreen(),
+      ),
+    ),
+    GetPage(name: Routes.myJobs, page: () => MyJobsScreen()),
+    GetPage(
+      name: Routes.applicationVerificationOTP,
+      page: () => LoaderOverlay(
+        overlayWidgetBuilder: (_) => AppLoader(),
+        child: ApplicationVerificationOtpScreen(),
+      ),
+    ),
     GetPage(
       name: Routes.authChoice,
       page: () => AuthChoiceScreen(),
@@ -191,7 +214,7 @@ class AppPages {
     ),
 
     //CompanyDetailsScreen
-    GetPage(name: Routes.createAccount, page: () => CreateAccountScreen()),
+    //  GetPage(name: Routes.createAccount, page: () => CreateAccountScreen()),
     GetPage(
       name: Routes.jobDetails,
       page: () => JobDetailsScreen()
