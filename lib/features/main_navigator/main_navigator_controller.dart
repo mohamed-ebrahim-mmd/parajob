@@ -1,7 +1,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:para_job/features/Notifications/notifications_screen.dart';
 import 'package:para_job/features/home/home_screen.dart';
 import 'package:para_job/features/my_jobs/my_jobs_screen.dart';
 import 'package:para_job/features/profile/user_profile/profile_screen.dart';
@@ -20,11 +19,8 @@ class MainNavigatorController extends GetxController {
   // Pages for each destination
   late final List<Widget> pages = [
     HomeScreen(),
-    MyJobsScreen(),
-    MyNotificationScreen(),
-    ProfileScreen(),
     userController.isGuest ? SizedBox() : MyJobsScreen(),
-    userController.isGuest ? SizedBox() : NotificationsScreen(),
+    userController.isGuest ? SizedBox() : MyNotificationScreen(),
     userController.isGuest ? SizedBox() : ProfileScreen(),
   ];
 
