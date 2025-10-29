@@ -14,6 +14,10 @@ import 'package:para_job/features/my_jobs/contract/application_verification_otp/
 import 'package:para_job/features/my_jobs/contract/contract_screen.dart';
 import 'package:para_job/features/my_jobs/my_jobs_screen.dart';
 import 'package:para_job/features/onboarding/onboarding_screen.dart';
+import 'package:para_job/features/profile/about_app/about_app_screen.dart';
+import 'package:para_job/features/profile/about_us/about_us_screen.dart';
+import 'package:para_job/features/profile/contact_us/contact_us_screen.dart';
+import 'package:para_job/features/profile/more/more_screen.dart';
 import 'package:para_job/features/registration/back_national_id/back_national_id_screen.dart';
 import 'package:para_job/features/registration/create_account/create_account_screen.dart';
 import 'package:para_job/features/registration/create_account_cv/create_account_cv_screen.dart';
@@ -53,6 +57,10 @@ class Routes {
   static const String applicationVerificationOTP =
       '/application-verification-otp';
   static const String myJobs = '/myJobs';
+  static const String more = "/more-screen";
+  static const String aboutUs = "/about-us";
+  static const String aboutApp = "/about-app";
+  static const String contactUs = "/contacts-us";
 }
 
 class AppPages {
@@ -132,11 +140,23 @@ class AppPages {
       children: [
         GetPage(
           name: Routes.createAccountOTP,
-          page: () => CreateAccountOtpScreen(),
+          page: () => LoaderOverlay(
+            child: CreateAccountOtpScreen(),
+            overlayWidgetBuilder: (_) {
+              //ignored progress for the moment
+              return AppLoader();
+            },
+          ),
           children: [
             GetPage(
               name: Routes.createAccountSetPass,
-              page: () => CreateAccountSetPass(),
+              page: () => LoaderOverlay(
+                child: CreateAccountSetPass(),
+                overlayWidgetBuilder: (_) {
+                  //ignored progress for the moment
+                  return AppLoader();
+                },
+              ),
               children: [
                 GetPage(
                   name: Routes.createAccountFrontID,
@@ -184,6 +204,7 @@ class AppPages {
         ),
       ],
     ),
+
     //CompanyDetailsScreen
     //  GetPage(name: Routes.createAccount, page: () => CreateAccountScreen()),
     GetPage(
@@ -198,11 +219,50 @@ class AppPages {
     ),
     GetPage(
       name: Routes.mainNavigator,
-      page: () => MainNavigatorScreen(),
+      page: () => LoaderOverlay(
+        child: MainNavigatorScreen(),
+        overlayWidgetBuilder: (_) {
+          //ignored progress for the moment
+          return AppLoader();
+        },
+      ),
+
       children: [
         /// screens that's under the home tab
         GetPage(name: Routes.jobs, page: () => JobsScreen()),
         GetPage(name: Routes.searchJob, page: () => SearchJobScreen()),
+
+        //profile
+        GetPage(
+          name: Routes.more,
+          page: () => LoaderOverlay(
+            child: MoreScreen(),
+            overlayWidgetBuilder: (_) {
+              //ignored progress for the moment
+              return AppLoader();
+            },
+          ),
+
+          children: [
+            GetPage(
+              name: Routes.contactUs,
+              page: () => LoaderOverlay(
+                child: ContactUsScreen(),
+                overlayWidgetBuilder: (_) {
+                  //ignored progress for the moment
+                  return AppLoader();
+                },
+              ),
+            ),
+            GetPage(
+              name: Routes.aboutUs,
+              page: () => AboutUsScreen(),
+              children: [
+                GetPage(name: Routes.aboutApp, page: () => AboutAppScreen()),
+              ],
+            ),
+          ],
+        ),
       ],
     ),
   ];

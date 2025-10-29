@@ -8,11 +8,8 @@ import 'package:para_job/features/registration/create_account/create_account_con
 import 'package:para_job/features/registration/widgets/stepper.dart';
 import 'package:para_job/packages/api_client/src/enums/api_call_state_enum.dart'
     show ApiCallState, DataFetchState;
-import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
-import 'package:para_job/packages/ui_components/date_packer.dart';
-import 'package:para_job/packages/ui_components/drop_down_button.dart';
 
 class CreateAccountScreen extends StatelessWidget {
   final controller = Get.put(CreateAccountController());
@@ -59,16 +56,30 @@ class CreateAccountScreen extends StatelessWidget {
               ),
               context.hBox(2.5),
               TextField(
+                controller: controller.nameController,
                 decoration: InputDecoration(hintText: "Enter your Full Name"),
                 keyboardType: TextInputType.name,
                 textInputAction: TextInputAction.next,
               ),
               context.hBox(1.5),
               // Date of Birth TF
-              DatePickerField(hintText: "Enter your Date of Birth"),
+              Obx(() {
+                final textValue = controller.selectedDate.value;
+                return TextField(
+                  readOnly: true,
+                  controller: TextEditingController(text: textValue),
+                  decoration: InputDecoration(
+                    hintText: textValue.isEmpty
+                        ? "Enter your Date of Birth"
+                        : textValue,
+                  ),
+                  onTap: controller.pickDate,
+                );
+              }),
               context.hBox(1.5),
 
               TextField(
+                controller: controller.phoneController,
                 decoration: InputDecoration(
                   hintText: "Enter your phone Number",
                 ),
@@ -78,6 +89,7 @@ class CreateAccountScreen extends StatelessWidget {
               context.hBox(1.5),
               // Email Address TF
               TextField(
+                controller: controller.emailController,
                 decoration: InputDecoration(hintText: "Enter your Email"),
                 keyboardType: TextInputType.emailAddress,
                 textInputAction: TextInputAction.next,
@@ -85,14 +97,19 @@ class CreateAccountScreen extends StatelessWidget {
               context.hBox(1.5),
 
               TextField(
+                controller: controller.nationalIdController,
                 decoration: InputDecoration(hintText: "Enter your id number"),
                 keyboardType: TextInputType.number,
                 textInputAction: TextInputAction.next,
               ),
               context.hBox(1.5),
-              DropDownButton(
-                options: ["male", "female"],
-                label: "Choose your gender",
+              DropdownMenu<String>(
+                enableSearch: true,
+                expandedInsets: EdgeInsets.zero,
+                hintText: "Choose your gender",
+                initialSelection: controller.selectedGender,
+                onSelected: controller.onGenderSelected,
+                dropdownMenuEntries: controller.genderMenuEntries,
               ),
               context.hBox(2.5),
 
@@ -123,9 +140,9 @@ class CreateAccountScreen extends StatelessWidget {
                   case ApiCallState.success:
                     return DropdownMenu<int>(
                       enableSearch: true,
-                      width: context.wPct(90),
+                      expandedInsets: EdgeInsets.zero,
                       menuHeight: context.hPct(30),
-                      hintText: "Select City",
+                      hintText: "Choose your city",
                       initialSelection: controller.selectedCityId.value,
                       onSelected: controller.onCitySelected,
                       dropdownMenuEntries: controller.cityMenuEntries,
@@ -163,9 +180,9 @@ class CreateAccountScreen extends StatelessWidget {
                   case DataFetchState.success:
                     return DropdownMenu<int>(
                       enableSearch: true,
-                      width: context.wPct(90),
+                      expandedInsets: EdgeInsets.zero,
                       menuHeight: context.hPct(30),
-                      hintText: "Select Area",
+                      hintText: "Choose your city",
                       initialSelection: controller.selectedAreaId,
                       onSelected: (value) {
                         if (value != null) {
@@ -203,11 +220,7 @@ class CreateAccountScreen extends StatelessWidget {
               context.hBox(2.5),
 
               FilledButton(
-                onPressed: () {
-                  Get.toNamed(
-                    "${Routes.createAccount}${Routes.createAccountOTP}",
-                  );
-                },
+                onPressed: controller.registerUser,
                 child: Text("Continue"),
               ),
 
