@@ -66,12 +66,12 @@ class ProfileController extends GetxController {
       final response = await apiClient.uploadFiles([multipartFile], token);
 
       if (response.isSuccess) {
-        var url = response.data?[0];
+        var url = response.url;
         await updateUserPic(context, url ?? "");
       } else {
         showSnackBarError(
           "Failed",
-          response.details.message ?? "your photo uploaded failed",
+          response.details?.message ?? "your photo uploaded failed",
         );
       }
     } catch (e) {
