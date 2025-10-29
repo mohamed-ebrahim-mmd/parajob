@@ -15,10 +15,11 @@ class EmployerSubmitReview extends StatelessWidget {
     return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          SizedBox(height: context.wPct(5)),
           Text(
             "Write a Review",
             style: TextStyle(
-              fontSize: context.wPct(5),
+              fontSize: 22,
               fontWeight: FontWeight.w600,
             ),
           ),
