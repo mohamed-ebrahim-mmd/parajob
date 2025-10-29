@@ -8,7 +8,6 @@ import 'package:para_job/packages/api_client/api_client.dart';
 import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
 import 'package:dio/dio.dart';
-import 'package:http_parser/http_parser.dart';
 
 class ProfileController extends GetxController {
   var profileCallState = ApiCallState.loading.obs;
@@ -63,20 +62,36 @@ class ProfileController extends GetxController {
       final response = await apiClient.uploadFiles([multipartFile], token);
 
       if (response.isSuccess) {
-        log("🟢 isSuccess");
         var url = response.data?[0];
+        updateUserPic(context, url ?? "");
         log(url ?? "nooo");
-
-        // fetchProfileDetails();
       } else {
-        log(response.details.message ?? " 🔴 your photo uploaded failed");
         showSnackBarError(
           "Failed",
           response.details.message ?? "your photo uploaded failed",
         );
       }
     } catch (e) {
-      log("🔴 ${e.toString()}");
+      showSnackBarError("Failed", e.toString());
+    }
+  }
+
+  Future<void> updateUserPic(BuildContext context, String url) async {
+    try {
+      final response = await apiClient.updateUserPhoto(
+        UpdateUserPhotoRequest(profilePicture: url),
+        token,
+      );
+
+      if (response.isSuccess) {
+        fetchProfileDetails();
+      } else {
+        showSnackBarError(
+          "Failed",
+          response.details.message ?? "your photo deleted failed",
+        );
+      }
+    } catch (e) {
       showSnackBarError("Failed", e.toString());
     } finally {
       context.loaderOverlay.hide();

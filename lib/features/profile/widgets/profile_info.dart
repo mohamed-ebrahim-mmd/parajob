@@ -28,7 +28,11 @@ class UserProfileInfo extends StatelessWidget {
           },
           child: CircleAvatar(
             radius: context.wPct(15),
-            backgroundColor: profileData.profilePicture==null? const Color.fromRGBO(0, 203, 184, 1):AppColors.lightGray2,
+            backgroundColor:
+                (profileData.profilePicture != null &&
+                    profileData.profilePicture != "")
+                ? AppColors.aquaTeal
+                : AppColors.lightGray2,
             child: ClipOval(
               child: Image.network(
                 profileData.profilePicture ?? '',
@@ -38,13 +42,23 @@ class UserProfileInfo extends StatelessWidget {
 
                 loadingBuilder: (context, child, loadingProgress) {
                   if (loadingProgress == null) return child;
-                  return const Center(
-                    child: CircularProgressIndicator(strokeWidth: 2),
+                  return Container(
+                    color: AppColors.lightGray2,
+                    child: Center(
+                      child: CircularProgressIndicator(
+                        strokeWidth: context.wPct(1),
+                        color: AppColors.lightGrey,
+                      ),
+                    ),
                   );
                 },
 
                 errorBuilder: (context, error, stackTrace) {
-                  return const Icon(Icons.image_not_supported_rounded, size: 40, color: Colors.grey);
+                  return Icon(
+                    Icons.image_not_supported_rounded,
+                    size: context.wPct(15),
+                    color: AppColors.lightGrey,
+                  );
                 },
               ),
             ),
