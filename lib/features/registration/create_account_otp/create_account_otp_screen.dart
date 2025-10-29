@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:para_job/features/registration/create_account_otp/create_account_otp_controller.dart';
 import 'package:para_job/features/registration/widgets/stepper.dart';
-import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/packages/themeing/theme.dart';
@@ -10,52 +10,55 @@ import 'package:timer_button/timer_button.dart';
 
 class CreateAccountOtpScreen extends StatelessWidget {
   CreateAccountOtpScreen({super.key});
-  final _pinController = TextEditingController();
-
+  final controller = Get.find<CreateAccountOtpController>();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        if (!didPop) {
+          controller.closeAndDispose();
+        }
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back_ios_new),
+            onPressed: controller.closeAndDispose,
+          ),
         ),
-      ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: context.wPct(5)),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              context.hBox(2),
-              StepperRow(currentStep: 0, stepPercentage: "0%"),
+        body: Padding(
+          padding: EdgeInsets.symmetric(horizontal: context.wPct(5)),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                context.hBox(2),
+                StepperRow(currentStep: 0, stepPercentage: "0%"),
 
-              context.hBox(2),
+                context.hBox(2),
 
-              Text(
-                'Verify your number',
-                style: TextStyle(
-                  color: AppColors.pureWhite,
-                  fontSize: context.wPct(8.5),
-                  fontWeight: FontWeight.w600,
+                Text(
+                  'Verify your number',
+                  style: TextStyle(
+                    color: AppColors.pureWhite,
+                    fontSize: context.wPct(8.5),
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
-              ),
-              context.hBox(0.5),
-              Text(
-                'check your messages to find the  OTP',
-                style: TextStyle(
-                  color: AppColors.softWhite70,
-                  fontSize: context.wPct(3.5),
-                  fontWeight: FontWeight.w500,
+                context.hBox(0.5),
+                Text(
+                  'check your messages to find the  OTP',
+                  style: TextStyle(
+                    color: AppColors.softWhite70,
+                    fontSize: context.wPct(3.5),
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
-              ),
 
-              context.hBox(5),
-              Center(
-                child: Pinput(
-                  controller: _pinController,
+                context.hBox(5),
+                Pinput(
+                  controller: controller.pinController,
                   length: 5,
                   defaultPinTheme: AppTheme.pinTheme(context),
                   focusedPinTheme: AppTheme.pinTheme(context).copyWith(
@@ -65,69 +68,78 @@ class CreateAccountOtpScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  validator: (value) {
-                    if (value != '12345') return 'Invalid code';
-                    return null;
-                  },
-                  onCompleted: (pin) {
-                    debugPrint('Completed: $pin');
-                  },
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                    left: context.wPct(2),
+                    top: context.hPct(1),
+                  ),
+                  child: Obx(() {
+                    return Text(
+                      controller.pinError.value ?? "",
+                      style: TextStyle(
+                        color: AppColors.coralRed, // Hint text
+                        fontSize: context.wPct(3),
+                      ),
+                    );
+                  }),
+                ),
+              ],
+            ),
+          ),
+        ),
+
+        bottomNavigationBar: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: context.wPct(5),
+            vertical: context.hPct(2.8),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              FilledButton(
+                onPressed: () {
+                  /*       Get.toNamed(
+                    "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}",
+                  );*/
+                  controller.verifyOtp(context);
+                },
+                child: Text("Verify"),
+              ),
+              context.hBox(4),
+              TimerButton(
+                label: "Send again",
+                timeOutInSeconds: 59,
+                buttonType: ButtonType.outlinedButton,
+                activeTextStyle: TextStyle(
+                  color: AppColors.pureWhite,
+                  fontSize: context.wPct(4.2),
+                ),
+                disabledTextStyle: TextStyle(
+                  color: AppColors.grayButton,
+                  fontSize: context.wPct(4.2),
+                ),
+                color: AppColors.pureWhite,
+                disabledColor: AppColors.grayButton,
+
+                onPressed: () {
+                  controller.resendForgotPasswordRequest(context);
+                },
+              ),
+              context.hBox(5),
+              GestureDetector(
+                child: Text(
+                  "contact us",
+                  style: TextStyle(
+                    color: AppColors.aquaTeal,
+                    fontSize: context.wPct(4.2),
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ),
             ],
           ),
-        ),
-      ),
-
-      bottomNavigationBar: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: context.wPct(5),
-          vertical: context.hPct(2.8),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            FilledButton(
-              onPressed: () {
-                Get.toNamed(
-                  "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}",
-                );
-              },
-              child: Text("Verify"),
-            ),
-            context.hBox(4),
-            TimerButton(
-              label: "Send again",
-              timeOutInSeconds: 5,
-              buttonType: ButtonType.outlinedButton,
-              activeTextStyle: TextStyle(
-                color: AppColors.pureWhite,
-                fontSize: context.wPct(4.2),
-              ),
-              disabledTextStyle: TextStyle(
-                color: AppColors.grayButton,
-                fontSize: context.wPct(4.2),
-              ),
-              color: AppColors.pureWhite,
-              disabledColor: AppColors.grayButton,
-
-              onPressed: () {
-                // code to execute
-              },
-            ),
-            context.hBox(5),
-            GestureDetector(
-              child: Text(
-                "contact us",
-                style: TextStyle(
-                  color: AppColors.aquaTeal,
-                  fontSize: context.wPct(4.2),
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
-          ],
         ),
       ),
     );

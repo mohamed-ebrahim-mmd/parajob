@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/registration/widgets/register_img_picker.dart';
@@ -48,7 +50,7 @@ class BackNationalIdScreen extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-          
+
               context.hBox(6),
               IDImagePicker(
                 imagePath: AppAssetPaths.nationalID,
@@ -70,6 +72,7 @@ class BackNationalIdScreen extends StatelessWidget {
                     ],
                   ),
                 ),
+                onImageSelected: (File? value) {},
               ),
               context.hBox(2),
               RegisterNote(note: "Make sure your surroundings are well-lit."),

@@ -46,4 +46,9 @@ class AppColors {
 
   static const Color aquaTealShadow = Color(0x8800CBB8);
   static const Color lightSilverGray = Color(0xFFB8BABB);
+
+  //st
+  static const Color listTileBG = Color(0xFF202426);
+
+  static const Color whiteSoft5= Color(0x0DFFFFFF);
 }

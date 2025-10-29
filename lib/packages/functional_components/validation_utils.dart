@@ -56,6 +56,45 @@ String? validatePin(String pin) {
   return null;
 }
 
+/// ✅ Egyptian National ID Validation
+String? validateEgyptianNationalId(String id) {
+  final trimmed = id.trim();
+
+  if (trimmed.isEmpty) {
+    return 'National ID cannot be empty';
+  }
+
+  // Must be exactly 14 digits
+  if (trimmed.length != 14) {
+    return 'National ID must be exactly 14 digits';
+  }
+
+  // Must contain only numbers
+  if (!RegExp(r'^\d{14}$').hasMatch(trimmed)) {
+    return 'National ID must contain only digits';
+  }
+
+  // Validate century (1 = 1800s, 2 = 1900s, 3 = 2000s)
+  final century = int.parse(trimmed[0]);
+  if (century < 2 || century > 3) {
+    return 'Invalid century in National ID';
+  }
+
+  // Validate birth date part (YYMMDD)
+  final month = int.parse(trimmed.substring(3, 5));
+  final day = int.parse(trimmed.substring(5, 7));
+
+  if (month < 1 || month > 12) {
+    return 'Invalid birth month in National ID';
+  }
+
+  if (day < 1 || day > 31) {
+    return 'Invalid birth day in National ID';
+  }
+
+  return null; // ✅ Valid ID
+}
+
 String? validateEgyptianPhone(String phone) {
   final trimmedPhone = phone.trim();
 
@@ -82,6 +121,21 @@ String? validateName(String name) {
 
   return null; // No error, name is valid
 }
+
+String? validateMessage(String message) {
+  final trimmedMessage = message.trim();
+
+  if (trimmedMessage.isEmpty) {
+    return 'Message cannot be empty';
+  } else if (trimmedMessage.length < 10) {
+    return 'Message must be at least 10 characters long';
+  } else if (trimmedMessage.length > 100) {
+    return 'Message is too long. Maximum 100 characters allowed';
+  }
+
+  return null; // Valid message
+}
+
 
 /// Validates the password.
 /// Returns an error message if invalid, otherwise null.

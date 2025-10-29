@@ -3,8 +3,6 @@
  ==================================================================
 */
 
-enum ApiCallState {
-  loading,
-  success,
-  failure,
-}
+enum ApiCallState { loading, success, failure }
+
+enum DataFetchState { initial, loading, success, failure }

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:para_job/features/registration/create_account_set_pass/create_account_set_pass_controller.dart';
 import 'package:para_job/features/registration/widgets/stepper.dart';
-import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
 class CreateAccountSetPass extends StatelessWidget {
-  const CreateAccountSetPass({super.key});
+  final controller = Get.put(CreateAccountSetPassController());
+
+  CreateAccountSetPass({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -39,18 +41,30 @@ class CreateAccountSetPass extends StatelessWidget {
                 ),
               ),
               context.hBox(6),
-              TextField(
-                decoration: InputDecoration(hintText: "Enter password"),
-                keyboardType: TextInputType.visiblePassword,
-                obscureText: true,
-                textInputAction: TextInputAction.next,
-              ),
+              Obx(() {
+                return TextField(
+                  controller: controller.passwordController,
+                  decoration: InputDecoration(
+                    hintText: "Enter password",
+                    errorText: controller.passwordError.value,
+                  ),
+                  keyboardType: TextInputType.visiblePassword,
+                  obscureText: true,
+                  textInputAction: TextInputAction.next,
+                );
+              }),
               context.hBox(1.5),
-              TextField(
-                decoration: InputDecoration(hintText: "Re-enter"),
-                obscureText: true,
-                textInputAction: TextInputAction.done,
-              ),
+              Obx(() {
+                return TextField(
+                  controller: controller.confirmPasswordController,
+                  decoration: InputDecoration(
+                    hintText: "Re-enter",
+                    errorText: controller.confirmPasswordError.value,
+                  ),
+                  obscureText: true,
+                  textInputAction: TextInputAction.done,
+                );
+              }),
             ],
           ),
         ),
@@ -67,9 +81,7 @@ class CreateAccountSetPass extends StatelessWidget {
           children: [
             FilledButton(
               onPressed: () {
-                Get.toNamed(
-                  "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}",
-                );
+                controller.validateAndSubmit(context);
               },
               child: Text("Continue"),
             ),
@@ -88,8 +100,6 @@ class CreateAccountSetPass extends StatelessWidget {
           ],
         ),
       ),
-   
-   
     );
   }
 }

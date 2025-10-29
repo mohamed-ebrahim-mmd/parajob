@@ -22,6 +22,14 @@ abstract class ApiClient {
   @GET("/api/company")
   Future<CompanyListResponse> getCompanies();
 
+  // 🏙️ Fetch all cities
+  @GET("/api/city")
+  Future<CityResponse> getCities();
+
+  // 📍 Fetch areas for a specific city
+  @GET("/api/area/city/{cityId}")
+  Future<AreaResponse> getAreasByCity(@Path("cityId") int cityId);
+
   @GET("/api/job/{id}")
   Future<JobDetailsResponse> fetchJobDetails(@Path("id") int id);
 
@@ -63,6 +71,12 @@ abstract class ApiClient {
     @Body() ResetPasswordRequest request,
   );
 
+  @POST('/api/user/register')
+  Future<RegisterResponse> registerUser(@Body() RegisterRequestModel request);
+
+  @GET("/api/page/slug/about-parajob")
+  Future<AboutUsResponse> getAboutUs();
+
   @GET("/api/user/profile")
   Future<UserProfileResponse> fetchUserProfile({
     @Header('Authorization') required String token,
@@ -73,4 +87,36 @@ abstract class ApiClient {
     @Header('Authorization') required String token,
     @Query('page') int? page,
   });
+
+  @POST("/api/contactus/store")
+  Future<ContactUsResponse> contactUs(@Body() ContactUsRequest request);
+
+  @GET("/api/contact/info")
+  Future<ContactInfoResponse> getContactInfo();
+
+
+
+  @DELETE("/api/user")
+  Future<DeleteAccountResponse> deleteAccount({
+    @Header('Authorization') required String token,
+  });
+
+  @PUT("/api/user/change/photo")
+Future<UpdateUserPhotoResponse> updateUserPhoto(
+  @Body() UpdateUserPhotoRequest request,
+  @Header("Authorization") String token,
+);
+
+  @DELETE("/api/user/delete/photo")
+  Future<DeleteUserPhoto> deleteUserPhoto({
+    @Header('Authorization') required String token,
+  });
+
+  @POST("/api/upload")
+@MultiPart()
+Future<UploadFilesResponse> uploadFiles(
+  @Part(name: "files") List<MultipartFile> files,
+  @Header("Authorization") String token,
+);
+
 }

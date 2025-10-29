@@ -48,49 +48,10 @@ class EmailLoginController extends GetxController {
 
       if (loginResponse.isSuccess ?? false) {
         final user = loginResponse.data!.user;
-
         Get.find<RoutingController>().goHomeAsUser(
-          user!,
-          "Bearer ${loginResponse.data!.token}",
-        );
-        //   if (!(user?.isVerified ?? false)) {
-        //     // 1️⃣ Not verified
-        //     showSnackBarError(
-        //       "Not Verified",
-        //       "Please go to registration and create account.",
-        //     );
-        //   } else if ((user?.isVerified ?? false) &&
-        //       !(user?.isCompleted ?? false)) {
-        //     // 2️⃣ Verified but not complete
-        //     showSnackBarError(
-        //       "Incomplete Profile",
-        //       "Please complete your registration.",
-        //     );
-        //     Get.toNamed(
-        //       "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}",
-        //     );
-        //   }
-        //   else if ((user?.isVerified ?? false) &&
-        //       (user?.isCompleted ?? false) &&
-        //       !(user?.isApproved ?? false)) {
-        //     // 3️⃣ Waiting for admin approval
-        //     showSnackBarSuccess(
-        //       "Pending Approval",
-        //       "Your account is awaiting admin approval. Please wait.",
-        //     );
-        //   }
-        //   else if ((user?.isVerified ?? false) &&
-        //       (user?.isCompleted ?? false) &&
-        //       (user?.isApproved ?? false)) {
-        //     // 4️⃣ All good — go to home
-        //     Get.find<RoutingController>().goHomeAsUser(
-        //       user!,
-        //       "Bearer ${loginResponse.data!.token}",
-        //     );
-        //   }
-        // } else {
-        //   showSnackBarError("Failed", "${loginResponse.details?.message} ");
-        // }
+            user!,
+            "Bearer ${loginResponse.data!.token}",
+          );
       }
     } catch (e) {
       showSnackBarApiError();

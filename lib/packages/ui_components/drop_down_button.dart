@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
+//todo delete this no need for it
 class DropDownButton extends StatefulWidget {
   final List<String> options;
   final String label;
@@ -46,7 +47,9 @@ class _DropDownButtonState extends State<DropDownButton> {
       trailingIcon: const Icon(Icons.arrow_drop_down),
       menuStyle: MenuStyle(
         shape: WidgetStateProperty.all(
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(context.wPct(2))),
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(context.wPct(2)),
+          ),
         ),
       ),
 
