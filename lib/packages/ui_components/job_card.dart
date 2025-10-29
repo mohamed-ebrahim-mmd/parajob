@@ -6,8 +6,8 @@ import '../api_client/src/models/responses/job.dart' show Job;
 
 class JobCard extends StatelessWidget {
   final Job job;
-   final VoidCallback? onTap;
-  const JobCard({super.key, required this.job, this.onTap, });
+  final VoidCallback? onTap;
+  const JobCard({super.key, required this.job, this.onTap});
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -39,7 +39,10 @@ class JobCard extends StatelessWidget {
                       width: context.wPct(12),
                       height: context.wPct(12),
                       color: Colors.grey.shade300,
-                      child: Icon(Icons.image_not_supported, color: Colors.grey),
+                      child: Icon(
+                        Icons.image_not_supported,
+                        color: Colors.grey,
+                      ),
                     ),
                   ),
                 ),
@@ -59,7 +62,7 @@ class JobCard extends StatelessWidget {
                       Text(
                         job.company?.name ?? "",
                         maxLines: 1,
-      
+
                         style: TextStyle(
                           color: AppColors.softWhite70,
                           fontSize: context.wPct(3),
@@ -69,6 +72,7 @@ class JobCard extends StatelessWidget {
                   ),
                 ),
                 // Icon container
+                context.wBox(1),
                 GestureDetector(
                   child: Container(
                     height: context.hPct(7),
@@ -106,20 +110,20 @@ class JobCard extends StatelessWidget {
                       style: TextStyle(color: const Color(0xff859097)),
                     ),
                     shape: RoundedRectangleBorder(
-                     side: const BorderSide(color:AppColors.lightGrey),
+                      side: const BorderSide(color: AppColors.lightGrey),
                       borderRadius: BorderRadius.circular(
                         context.w,
                       ), // makes it nicely rounded
                     ),
                     backgroundColor: AppColors.lightGrey,
-      
+
                     padding: EdgeInsets.all(context.wPct(1)),
                   );
                 },
               ),
             ),
-        context.hBox(1),
-        //price, date
+            context.hBox(1),
+            //price, date
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -130,7 +134,7 @@ class JobCard extends StatelessWidget {
                     text: TextSpan(
                       children: [
                         TextSpan(
-                          text: "${job.monthlySalary??"-"} EGP",
+                          text: "${job.monthlySalary ?? "-"} EGP",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: context.wPct(5),
@@ -147,8 +151,7 @@ class JobCard extends StatelessWidget {
                     ),
                   ),
                 ),
-               
-      
+
                 RichText(
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
@@ -166,7 +169,7 @@ class JobCard extends StatelessWidget {
                       // space between icon and text
                       TextSpan(
                         text: job.applicationDeadline ?? "-",
-                        
+
                         style: TextStyle(
                           color: AppColors.softWhite70,
                           fontSize: context.wPct(3),
@@ -176,7 +179,7 @@ class JobCard extends StatelessWidget {
                   ),
                 ),
               ],
-            ),  
+            ),
           ],
         ),
       ),

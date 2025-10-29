@@ -1,13 +1,12 @@
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide MultipartFile;
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
+import 'package:para_job/packages/functional_components/img_picker.dart';
 import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
-import 'package:dio/dio.dart';
 
 class ProfileController extends GetxController {
   var profileCallState = ApiCallState.loading.obs;
@@ -47,7 +46,12 @@ class ProfileController extends GetxController {
     }
   }
 
-  Future<void> uploadFile(BuildContext context, File file) async {
+  Future<void> uploadFile(BuildContext context) async {
+    var file = await pickImageFile();
+
+    // if no file is selected return
+    if (file == null) return;
+
     Get.back();
 
     context.loaderOverlay.show();
@@ -63,8 +67,7 @@ class ProfileController extends GetxController {
 
       if (response.isSuccess) {
         var url = response.data?[0];
-        updateUserPic(context, url ?? "");
-        log(url ?? "nooo");
+        await updateUserPic(context, url ?? "");
       } else {
         showSnackBarError(
           "Failed",
@@ -73,6 +76,8 @@ class ProfileController extends GetxController {
       }
     } catch (e) {
       showSnackBarError("Failed", e.toString());
+    } finally {
+      context.loaderOverlay.hide();
     }
   }
 
@@ -93,8 +98,6 @@ class ProfileController extends GetxController {
       }
     } catch (e) {
       showSnackBarError("Failed", e.toString());
-    } finally {
-      context.loaderOverlay.hide();
     }
   }
 

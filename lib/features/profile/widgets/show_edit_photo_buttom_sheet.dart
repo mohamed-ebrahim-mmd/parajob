@@ -1,8 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide MultipartFile;
 import 'package:para_job/features/profile/user_profile/profile_controller.dart';
-import 'package:para_job/packages/functional_components/img_picker.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
@@ -28,10 +26,7 @@ Future<void> showEditPhotoBottomSheet(
           context.hBox(2),
           FilledButton(
             onPressed: () async {
-              var file = await pickImageFile();
-              if (file != null) {
-                controller.uploadFile(context, file);
-              }
+              controller.uploadFile(context);
             },
             style: FilledButton.styleFrom(
               backgroundColor: AppColors.whiteSoft5,
