@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:para_job/features/profile/more/more_controller.dart';
 import 'package:para_job/features/profile/widgets/custom_list_tile.dart';
+import 'package:para_job/packages/api_client/api_client.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/route_manager/controller/routing_controller.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
@@ -13,6 +14,7 @@ import 'package:para_job/res/app_asset_paths.dart';
 class MoreScreen extends StatelessWidget {
   MoreScreen({super.key});
   final controller = Get.put(MoreController());
+
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +50,7 @@ class MoreScreen extends StatelessWidget {
                 onTap: () {
                   Get.toNamed(
                     "${Routes.mainNavigator}${Routes.more}${Routes.editProfile}",
+                    
                   );
                 },
               ),

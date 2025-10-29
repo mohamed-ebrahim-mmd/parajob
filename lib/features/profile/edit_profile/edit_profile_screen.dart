@@ -1,34 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:para_job/features/profile/edit_profile/edit_main_info/edit_main_info.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
 class EditProfileScreen extends StatelessWidget {
-  const EditProfileScreen({super.key});
+  EditProfileScreen({super.key});
+ 
+  
+  
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 5, // Number of tabs
       child: Scaffold(
-        appBar: PreferredSize(preferredSize: Size.fromHeight(context.hPct(20),),
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(context.hPct(20)),
           child: AppBar(
             leading: IconButton(
               icon: const Icon(Icons.arrow_back_ios_new), // Or your custom icon
               onPressed: () {
-                Navigator.of(context).pop(); 
+                Navigator.of(context).pop();
               },
             ),
-          
+
             flexibleSpace: SafeArea(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   context.hBox(8),
-          
+
                   Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: context.wPct(5),
-                    //  vertical: context.hPct(1),
+                      //  vertical: context.hPct(1),
                     ),
                     child: Text(
                       "My Jobs",
@@ -39,13 +44,13 @@ class EditProfileScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-          
+
                   context.hBox(4),
                 ],
               ),
             ),
-          
-            bottom:  TabBar(  
+
+            bottom: TabBar(
               tabAlignment: TabAlignment.start,
               automaticIndicatorColorAdjustment: true,
               isScrollable: true,
@@ -63,9 +68,8 @@ class EditProfileScreen extends StatelessWidget {
             ),
           ),
         ),
-       
-       
-        body: const TabBarView(
+
+        body:  TabBarView(
           children: [
             EditMainInfo(),
             Center(child: Text("Job History")),
@@ -74,21 +78,6 @@ class EditProfileScreen extends StatelessWidget {
             Center(child: Text("Skills")),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class EditMainInfo extends StatelessWidget {
-  const EditMainInfo({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        children: [
-         
-        ],
       ),
     );
   }

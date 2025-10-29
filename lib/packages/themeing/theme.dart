@@ -76,6 +76,7 @@ class AppTheme {
           ),
           borderRadius: BorderRadius.circular(context.wPct(4)),
         ),
+        
         disabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
             color: AppColors.lightGrey,
@@ -122,6 +123,10 @@ class AppTheme {
           fontSize: context.wPct(3),
         ),
       ),
+
+
+
+
       filledButtonTheme: FilledButtonThemeData(
         style: ButtonStyle(
           elevation: WidgetStateProperty.all(0),
