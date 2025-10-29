@@ -4,8 +4,8 @@ import 'package:para_job/packages/api_client/src/models/responses/my_job.dart'
     show MyJob;
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
-import 'package:para_job/packages/ui_components/AppNetworkImage.dart'
-    show AppNetworkImage;
+
+import '../../../packages/ui_components/app_network_image.dart';
 
 class MyJobCard extends StatelessWidget {
   final MyJob job;
