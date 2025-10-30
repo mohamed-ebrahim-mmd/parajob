@@ -71,7 +71,8 @@ class CreateAccountController extends GetxController {
       citiesCallState.value = ApiCallState.failure;
     }
   }
-
+ 
+ 
   // Handle selection
   void onGenderSelected(String? value) {
     selectedGender = value;
@@ -105,6 +106,8 @@ class CreateAccountController extends GetxController {
       areasCallState.value = DataFetchState.failure;
     }
   }
+
+
 
   void registerUser() async {
     // 🧹 Trim all text fields before validation
