@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:loader_overlay/loader_overlay.dart';
 import 'package:para_job/features/profile/edit_profile/edit_main_info/edit_main_info_controller.dart';
 import 'package:para_job/features/profile/user_profile/profile_controller.dart';
 import 'package:para_job/packages/api_client/src/enums/api_call_state_enum.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
+import 'package:para_job/packages/ui_components/app_loader.dart';
 
 class EditMainInfo extends StatelessWidget {
   EditMainInfo({super.key});
@@ -13,165 +15,178 @@ class EditMainInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: context.wPct(5)),
-      child: Center(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              context.hBox(4),
-              TextField(
-                enabled: false,
-                decoration: InputDecoration(
-                  label: Text(user?.name ?? ""),
-                  fillColor: AppColors.disabled,
-                  filled: true,
+    return LoaderOverlay(
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: context.wPct(5)),
+        child: Center(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                context.hBox(4),
+                TextField(
+                  enabled: false,
+                  decoration: InputDecoration(
+                    label: Text(user?.name ?? ""),
+                    fillColor: AppColors.disabled,
+                    filled: true,
+                  ),
                 ),
-              ),
 
-              context.hBox(1.5),
+                context.hBox(1.5),
 
-              // Email Address TF
-              TextField(
-                controller: controller.emailController,
-                decoration: InputDecoration(hintText: "Enter your Email"),
-                keyboardType: TextInputType.emailAddress,
-                textInputAction: TextInputAction.next,
-              ),
-              context.hBox(1.5),
-              // Phone Number
-              TextField(
-                enabled: false,
-                decoration: InputDecoration(
-                  label: Text(user?.phoneNumber ?? ""),
-                  fillColor: AppColors.disabled,
-                  filled: true,
+                // Email Address TF
+                TextField(
+                  enabled: false,
+                  decoration: InputDecoration(
+                    label: Text(user?.email ?? ""),
+                    fillColor: AppColors.disabled,
+                    filled: true,
+                  ),
                 ),
-              ),
-              context.hBox(1.5),
-              // DOB
-              TextField(
-                enabled: false,
-                decoration: InputDecoration(
-                  label: Text(user?.dateOfBirth ?? ""),
-                  fillColor: AppColors.disabled,
-                  filled: true,
+                context.hBox(1.5),
+                // Phone Number
+                TextField(
+                  enabled: false,
+                  decoration: InputDecoration(
+                    label: Text(user?.phoneNumber ?? ""),
+                    fillColor: AppColors.disabled,
+                    filled: true,
+                  ),
                 ),
-              ),
-              context.hBox(1.5),
-              // Gender
-              TextField(
-                enabled: false,
-                decoration: InputDecoration(
-                  label: Text(user?.gender ?? ""),
-                  fillColor: AppColors.disabled,
-                  filled: true,
+                context.hBox(1.5),
+                // DOB
+                TextField(
+                  enabled: false,
+                  decoration: InputDecoration(
+                    label: Text(user?.dateOfBirth ?? ""),
+                    fillColor: AppColors.disabled,
+                    filled: true,
+                  ),
                 ),
-              ),
-              context.hBox(1.5),
-              // City
-              Obx(() {
-                switch (controller.citiesCallState.value) {
-                  case ApiCallState.loading:
-                    return TextField(
-                      enabled: false,
-                      decoration: InputDecoration(
-                        labelText: "Loading cities...",
-                        suffixIcon: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: const CircularProgressIndicator(),
+                context.hBox(1.5),
+                // Gender
+                TextField(
+                  enabled: false,
+                  decoration: InputDecoration(
+                    label: Text(user?.gender ?? ""),
+                    fillColor: AppColors.disabled,
+                    filled: true,
+                  ),
+                ),
+                context.hBox(1.5),
+                // City
+                Obx(() {
+                  switch (controller.citiesCallState.value) {
+                    case ApiCallState.loading:
+                      return TextField(
+                        enabled: false,
+                        decoration: InputDecoration(
+                          labelText: "Loading cities...",
+                          suffixIcon: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: const CircularProgressIndicator(),
+                          ),
                         ),
-                      ),
-                    );
+                      );
 
-                  case ApiCallState.success:
-                    return DropdownMenu<int>(
-                      enableSearch: true,
-                      expandedInsets: EdgeInsets.zero,
-                      menuHeight: context.hPct(30),
-                      hintText: "Choose your city",
-                      initialSelection: controller.selectedCityId.value,
-                      onSelected: controller.onCitySelected,
-                      dropdownMenuEntries: controller.cityMenuEntries,
-                    );
+                    case ApiCallState.success:
+                      return DropdownMenu<int>(
+                        enableSearch: true,
+                        expandedInsets: EdgeInsets.zero,
+                        menuHeight: context.hPct(30),
+                        hintText: "Choose your city",
+                        initialSelection: controller.selectedCityId.value,
+                        onSelected: controller.onCitySelected,
+                        dropdownMenuEntries: controller.cityMenuEntries,
+                      );
 
-                  case ApiCallState.failure:
-                    return TextField(
-                      readOnly: true,
-                      onTap: () {
-                        controller.fetchCities();
-                      },
+                    case ApiCallState.failure:
+                      return TextField(
+                        readOnly: true,
+                        onTap: () {
+                          controller.fetchCities();
+                        },
 
-                      decoration: InputDecoration(
-                        labelText: "Failed to load, tap to retry",
-                        suffixIcon: const Icon(Icons.refresh),
-                      ),
-                    );
-                }
-              }),
-              context.hBox(1.5),
-
-              // Area
-              Obx(() {
-                switch (controller.areasCallState.value) {
-                  case DataFetchState.loading:
-                    return TextField(
-                      enabled: false,
-                      decoration: InputDecoration(
-                        labelText: "Loading areas...",
-                        suffixIcon: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: const CircularProgressIndicator(),
+                        decoration: InputDecoration(
+                          labelText: "Failed to load, tap to retry",
+                          suffixIcon: const Icon(Icons.refresh),
                         ),
-                      ),
-                    );
+                      );
+                  }
+                }),
+                context.hBox(1.5),
 
-                  case DataFetchState.success:
-                    return DropdownMenu<int>(
-                      enableSearch: true,
-                      expandedInsets: EdgeInsets.zero,
-                      menuHeight: context.hPct(30),
-                      hintText: "Choose your city",
-                      initialSelection: controller.selectedAreaId,
-                      onSelected: (value) {
-                        if (value != null) {
-                          controller.selectedAreaId = value;
-                        }
-                      },
-                      dropdownMenuEntries: controller.areaMenuEntries,
-                    );
+                // Area
+                Obx(() {
+                  switch (controller.areasCallState.value) {
+                    case DataFetchState.loading:
+                      return TextField(
+                        enabled: false,
+                        decoration: InputDecoration(
+                          labelText: "Loading areas...",
+                          suffixIcon: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: const CircularProgressIndicator(),
+                          ),
+                        ),
+                      );
 
-                  case DataFetchState.failure:
-                    return TextField(
-                      readOnly: true,
-                      onTap: () {
-                        if (controller.selectedCityId.value != null) {
-                          controller.fetchAreas(
-                            controller.selectedCityId.value!,
-                          );
-                        }
-                      },
-                      decoration: InputDecoration(
-                        labelText: "Failed to load areas, tap to retry",
-                        suffixIcon: const Icon(Icons.refresh),
-                      ),
-                    );
+                    case DataFetchState.success:
+                      return DropdownMenu<int>(
+                        enableSearch: true,
+                        expandedInsets: EdgeInsets.zero,
+                        menuHeight: context.hPct(30),
+                        hintText: "Choose your city",
+                        initialSelection: controller.selectedAreaId,
+                        onSelected: (value) {
+                          if (value != null) {
+                            controller.selectedAreaId = value;
+                          }
+                        },
+                        dropdownMenuEntries: controller.areaMenuEntries,
+                      );
 
-                  case DataFetchState.initial:
-                    return TextField(
-                      enabled: false,
-                      decoration: const InputDecoration(
-                        labelText: "Select a city first",
-                      ),
-                    );
-                }
-              }),
+                    case DataFetchState.failure:
+                      return TextField(
+                        readOnly: true,
+                        onTap: () {
+                          if (controller.selectedCityId.value != null) {
+                            controller.fetchAreas(
+                              controller.selectedCityId.value!,
+                            );
+                          }
+                        },
+                        decoration: InputDecoration(
+                          labelText: "Failed to load areas, tap to retry",
+                          suffixIcon: const Icon(Icons.refresh),
+                        ),
+                      );
 
-              context.hBox(2.5),
-            ],
+                    case DataFetchState.initial:
+                      return TextField(
+                        enabled: false,
+                        decoration: const InputDecoration(
+                          labelText: "Select a city first",
+                        ),
+                      );
+                  }
+                }),
+
+                context.hBox(2.5),
+                FilledButton(
+                  onPressed: controller.registerUser,
+                  child: Text("Save changes"),
+                ),
+              ],
+            ),
           ),
         ),
       ),
+
+      overlayWidgetBuilder: (_) {
+        //ignored progress for the moment
+        return AppLoader();
+      },
     );
   }
 }
