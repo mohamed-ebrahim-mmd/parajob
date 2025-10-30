@@ -9,17 +9,9 @@ import 'package:timer_button/timer_button.dart';
 import 'application_verification_otp_controller.dart';
 
 class ApplicationVerificationOtpScreen extends StatelessWidget {
-  ApplicationVerificationOtpScreen({super.key});
-  final int jobId = Get.arguments['jobId'];
-
-
+  final controller = Get.find<ApplicationVerificationOtpController>();
   @override
   Widget build(BuildContext context) {
-
-    final controller = Get.put(
-      ApplicationVerificationOtpController(jobId: jobId),
-    );
-
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) {

@@ -3,6 +3,8 @@
  ==================================================================
 */
 
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
@@ -85,6 +87,7 @@ class EmailLoginController extends GetxController {
         showSnackBarError("Failed", "${loginResponse.details?.message} ");
       }
     } catch (e) {
+      log("🔴 ${e.toString()}");
       showSnackBarApiError();
     } finally {
       Get.context!.loaderOverlay.hide();

@@ -6,7 +6,6 @@ import 'package:para_job/features/my_notifications/widgets/my_notification_card.
 import '../../../packages/themeing/app_colors.dart';
 import '../../../packages/themeing/media_query_values.dart';
 import '../../packages/api_client/src/models/responses/my_notification.dart';
-import 'my_notification_controller.dart';
 
 class MyNotificationScreen extends StatefulWidget {
   const MyNotificationScreen({super.key});
@@ -16,8 +15,6 @@ class MyNotificationScreen extends StatefulWidget {
 }
 
 class _MyNotificationScreenState extends State<MyNotificationScreen> {
-  late MyNotificationController controller;
-
   late final PagingController<int, MyNotification> pagingController;
 
   @override

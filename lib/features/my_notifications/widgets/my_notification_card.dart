@@ -38,15 +38,15 @@ class MyNotificationCard extends StatelessWidget {
       color: myNotification.readAt == null ? AppColors.darkGrey : null,
       child: Row(
         children: [
-          if (logoUrl != null && logoUrl.isNotEmpty) ...[
-            AppNetworkImage(
-              url: logoUrl,
-              width: context.wPct(12),
-              height: context.wPct(12),
-              borderRadius: BorderRadius.circular(context.wPct(2)),
-            ),
-            SizedBox(width: context.wPct(4)),
-          ],
+          //    if (logoUrl != null && logoUrl.isNotEmpty) ...[
+          AppNetworkImage(
+            url: logoUrl,
+            width: context.wPct(12),
+            height: context.wPct(12),
+            borderRadius: BorderRadius.circular(context.wPct(2)),
+          ),
+          SizedBox(width: context.wPct(4)),
+          //],
           Expanded(
             child: RichText(
               text: TextSpan(

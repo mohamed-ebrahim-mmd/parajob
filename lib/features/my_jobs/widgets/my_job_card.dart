@@ -55,7 +55,7 @@ class MyJobCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(context.wPct(2)),
               ),
             ),
-            SizedBox(width: context.wPct(2)),
+            context.wBox(2),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -88,7 +88,7 @@ class MyJobCard extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(width: context.wPct(2)),
+            context.wBox(2),
             Text(
               !highlighted
                   ? job.applicationStatus.displayName

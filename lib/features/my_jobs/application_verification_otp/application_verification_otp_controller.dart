@@ -7,9 +7,7 @@ import 'package:para_job/packages/api_client/src/models/requests/application_ver
 import 'package:para_job/packages/functional_components/validation_utils.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
-
-import '../../../../packages/user_manager/user_controller.dart';
-import '../contract_controller.dart';
+import 'package:para_job/packages/user_manager/user_controller.dart';
 
 class ApplicationVerificationOtpController extends GetxController {
   final int jobId;
@@ -31,7 +29,6 @@ class ApplicationVerificationOtpController extends GetxController {
   Future<void> _verifyOtpRequest(BuildContext context) async {
     try {
       context.loaderOverlay.show();
-      print(pinController.text.trim() + ", " + jobId.toString());
 
       final response = await apiClient.applicationVerificationOtp(
         token: user.token!,
@@ -42,9 +39,7 @@ class ApplicationVerificationOtpController extends GetxController {
       );
 
       if (response.isSuccess ?? false) {
-        Get.delete<ApplicationVerificationOtpController>();
-        Get.delete<ContractController>();
-        Get.toNamed(Routes.contract,   arguments: {'jobId': jobId},);
+        Get.toNamed(Routes.contract, arguments: {'jobId': jobId});
       } else {
         showSnackBarError(
           'Failed',
@@ -52,7 +47,6 @@ class ApplicationVerificationOtpController extends GetxController {
         );
       }
     } catch (e) {
-      print(e);
       showSnackBarApiError();
     } finally {
       context.loaderOverlay.hide();

@@ -5,7 +5,6 @@ import 'package:get/get.dart' hide MultipartFile;
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
 import 'package:para_job/packages/api_client/src/models/responses/contract.dart';
-import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:signature/signature.dart';
 
 import '../../../packages/api_client/src/models/requests/application_verification_request.dart';
@@ -57,7 +56,7 @@ class ContractController extends GetxController {
     }
 
     try {
-     context.loaderOverlay.show();
+      context.loaderOverlay.show();
       final signatureBytes = await signatureController.toPngBytes();
       if (signatureBytes == null) {
         showError("Failed to generate signature image");
@@ -83,8 +82,8 @@ class ContractController extends GetxController {
           signature: uploadedUrl,
         ),
       );
-     Get.delete<ContractController>();
-      Get.toNamed(Routes.myJobs);
+      Get.delete<ContractController>();
+      //  Get.toNamed(Routes.myJobs);
     } catch (e, s) {
       log("Error verifying contract: $e", stackTrace: s);
       showSnackBarApiError();
@@ -101,6 +100,7 @@ class ContractController extends GetxController {
       color: AppColors.coralRed,
     );
   }
+
   @override
   void onClose() {
     signatureController.dispose();

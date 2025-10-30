@@ -2,20 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
-Future<void> showApplicationDialog({  required String message,
+Future<void> showApplicationDialog({
+  required String message,
   String? warning,
-  required String textButton, required BuildContext context,
+  required String textButton,
+  required BuildContext context,
   required void Function()? onTap,
-  }
- 
-
-) async {
+}) async {
   return showDialog(
     context: context,
     barrierDismissible: true,
     builder: (context) {
-      return 
-      AlertDialog(
+      return AlertDialog(
         backgroundColor: AppColors.midnightBlue,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(context.wPct(3)),
@@ -31,7 +29,7 @@ Future<void> showApplicationDialog({  required String message,
             ),
             SizedBox(height: context.hPct(2)),
             Text(
-             message,
+              message,
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: AppColors.pureWhite,
@@ -49,28 +47,24 @@ Future<void> showApplicationDialog({  required String message,
               child: Text(
                 textButton,
                 style: TextStyle(
-                  color:  AppColors.coralRed,
+                  color: AppColors.coralRed,
                   fontWeight: FontWeight.w600,
                 ),
               ),
             ),
-
-            
-            SizedBox(height: context.hPct(1.5)),
+            context.hBox(1.5),
             if (warning != null)
-  Text(
-    warning,
-    textAlign: TextAlign.start,
-    style: TextStyle(
-      color: AppColors.lightGray,
-      fontSize: context.wPct(3.2),
-    ),
-  )
+              Text(
+                warning,
+                textAlign: TextAlign.start,
+                style: TextStyle(
+                  color: AppColors.lightGray,
+                  fontSize: context.wPct(3.2),
+                ),
+              ),
           ],
         ),
       );
-   
-   
     },
   );
 }

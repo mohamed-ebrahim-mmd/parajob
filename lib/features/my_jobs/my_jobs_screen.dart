@@ -11,56 +11,52 @@ class MyJobsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.charcoalBlack,
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: context.wPct(5)),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: context.hPct(2)),
-              Expanded(
-                child: DefaultTabController(
-                  length: 2,
-                  child: Column(
-                    children: [
-                      TabBar(
-                        dividerHeight: 0,
-                        labelStyle: const TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 16,
-                          color: AppColors.pureWhite,
-                        ),
-                        tabs: const [
-                          Tab(text: 'Applied Jobs'),
-                          Tab(text: 'Approved Jobs'),
+    return SafeArea(
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: context.wPct(5)),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: context.hPct(2)),
+            Expanded(
+              child: DefaultTabController(
+                length: 2,
+                child: Column(
+                  children: [
+                    TabBar(
+                      dividerHeight: 0,
+                      labelStyle: const TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
+                        color: AppColors.pureWhite,
+                      ),
+                      tabs: const [
+                        Tab(text: 'Applied Jobs'),
+                        Tab(text: 'Approved Jobs'),
+                      ],
+                    ),
+                    Expanded(
+                      child: TabBarView(
+                        children: [
+                          MyJobsList(
+                            highlighted: false,
+                            title:
+                                'The jobs you applied for and still waiting whether to be approved and assigned to you or not.',
+                          ),
+                          MyJobsList(
+                            status: JobApplicationStatus.accepted,
+                            highlighted: true,
+                            title:
+                                'This category includes all your approved jobs, here you sign your contracts and view your jobs.',
+                          ),
                         ],
                       ),
-                      Expanded(
-                        child: TabBarView(
-                          children: [
-                            MyJobsList(
-                              status: null,
-                              highlighted: false,
-                              title:
-                                  'The jobs you applied for and still waiting whether to be approved and assigned to you or not.',
-                            ),
-                            MyJobsList(
-                              status: JobApplicationStatus.accepted,
-                              highlighted: true,
-                              title:
-                                  'This category includes all your approved jobs, here you sign your contracts and view your jobs.',
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

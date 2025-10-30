@@ -6,7 +6,7 @@ import 'package:para_job/packages/api_client/src/models/responses/user_profile_d
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/packages/ui_components/custom_container_company_details.dart';
-import 'package:para_job/packages/ui_components/custom_gradient_progress.dart';
+import 'package:para_job/packages/ui_components/gradient_progress_bar.dart';
 
 class UserProfileInfo extends StatelessWidget {
   const UserProfileInfo({
