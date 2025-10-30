@@ -103,10 +103,16 @@ abstract class ApiClient {
     @Header('Authorization') required String token,
   });
 
+  @PUT("/api/user")
+  Future<EditUserResponse> updateUserProfile(
+    @Body() EditUserRequest request,
+    @Header("Authorization") String token,
+  );
+
   @POST("/api/upload")
   @MultiPart()
   Future<UploadFilesResponse> uploadFiles(
     @Part(name: "files[]") List<MultipartFile> files,
-    @Header("Authorization")  String token,
+    @Header("Authorization") String token,
   );
 }
