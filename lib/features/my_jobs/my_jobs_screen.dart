@@ -20,15 +20,6 @@ class MyJobsScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: context.hPct(2)),
-              const Text(
-                'My Jobs',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w600,
-                  color: AppColors.pureWhite,
-                ),
-              ),
-              SizedBox(height: context.hPct(2)),
               Expanded(
                 child: DefaultTabController(
                   length: 2,

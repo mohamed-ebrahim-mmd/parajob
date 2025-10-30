@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:para_job/features/my_notifications/my_notification_utils.dart';
 import 'package:para_job/features/my_notifications/widgets/my_notification_card.dart';
 
 import '../../../packages/themeing/app_colors.dart';
@@ -18,18 +18,12 @@ class MyNotificationScreen extends StatefulWidget {
 class _MyNotificationScreenState extends State<MyNotificationScreen> {
   late MyNotificationController controller;
 
-  late final pagingController = PagingController<int, MyNotification>(
-    getNextPageKey: (state) =>
-        state.lastPageIsEmpty ? null : state.nextIntPageKey,
-    fetchPage: (pageKey) {
-      return controller.getNotifications(page: pageKey);
-    },
-  );
+  late final PagingController<int, MyNotification> pagingController;
 
   @override
   void initState() {
     super.initState();
-    controller = Get.put(MyNotificationController(), permanent: true);
+    pagingController = initPagingController();
   }
 
   @override
@@ -43,71 +37,43 @@ class _MyNotificationScreenState extends State<MyNotificationScreen> {
     return Scaffold(
       backgroundColor: AppColors.charcoalBlack,
       body: SafeArea(
-        child: Expanded(
-          child: PagingListener(
-            controller: pagingController,
-            builder: (context, state, fetchNextPage) {
-              return PagedListView<int, MyNotification>(
-                state: state,
-                fetchNextPage: fetchNextPage,
-                builderDelegate: PagedChildBuilderDelegate<MyNotification>(
-                  firstPageProgressIndicatorBuilder: (_) =>
-                      const Center(child: CircularProgressIndicator()),
-                  newPageProgressIndicatorBuilder: (_) =>
-                      const Center(child: CircularProgressIndicator()),
-                  noItemsFoundIndicatorBuilder: (_) => Center(
-                    child: Padding(
-                      padding: EdgeInsets.only(top: context.hPct(20)),
-                      child: Text(
-                        "No notifications found",
-                        style: TextStyle(
-                          color: AppColors.white50,
-                          fontSize: context.wPct(4),
-                        ),
-                      ),
-                    ),
-                  ),
-
-                  itemBuilder: (context, item, index) {
-                    final allItems =
-                        state.pages?.expand((e) => e).toList() ?? [];
-                    final now = DateTime.now();
-
-                    List<Widget> children = [];
-
-                    final date = DateTime.tryParse(item.createdAt);
-                    if (date == null) return const SizedBox.shrink();
-
-                    String sectionLabel = controller.getSectionLabel(date, now);
-
-                    if (index == 0) {
-                      children.add(
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: context.wPct(5),
-                            vertical: context.wPct(2),
-                          ),
-
+        child: Column(
+          children: [
+            context.hBox(2),
+            Expanded(
+              child: PagingListener(
+                controller: pagingController,
+                builder: (context, state, fetchNextPage) {
+                  return PagedListView<int, MyNotification>(
+                    state: state,
+                    fetchNextPage: fetchNextPage,
+                    builderDelegate: PagedChildBuilderDelegate<MyNotification>(
+                      noItemsFoundIndicatorBuilder: (_) => Center(
+                        child: Padding(
+                          padding: EdgeInsets.only(top: context.hPct(20)),
                           child: Text(
-                            sectionLabel,
+                            "No notifications found",
                             style: TextStyle(
-                              fontSize: context.wPct(4.2),
-                              fontWeight: FontWeight.w600,
                               color: AppColors.white50,
+                              fontSize: context.wPct(4),
                             ),
                           ),
                         ),
-                      );
-                    } else {
-                      final prevDate = DateTime.tryParse(
-                        allItems[index - 1].createdAt,
-                      );
-                      if (prevDate != null) {
-                        final prevLabel = controller.getSectionLabel(
-                          prevDate,
-                          now,
-                        );
-                        if (prevLabel != sectionLabel) {
+                      ),
+
+                      itemBuilder: (context, item, index) {
+                        final allItems =
+                            state.pages?.expand((e) => e).toList() ?? [];
+                        final now = DateTime.now();
+
+                        List<Widget> children = [];
+
+                        final date = DateTime.tryParse(item.createdAt);
+                        if (date == null) return const SizedBox.shrink();
+
+                        String sectionLabel = getSectionLabel(date, now);
+
+                        if (index == 0) {
                           children.add(
                             Padding(
                               padding: EdgeInsets.symmetric(
@@ -125,21 +91,46 @@ class _MyNotificationScreenState extends State<MyNotificationScreen> {
                               ),
                             ),
                           );
+                        } else {
+                          final prevDate = DateTime.tryParse(
+                            allItems[index - 1].createdAt,
+                          );
+                          if (prevDate != null) {
+                            final prevLabel = getSectionLabel(prevDate, now);
+                            if (prevLabel != sectionLabel) {
+                              children.add(
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: context.wPct(5),
+                                    vertical: context.wPct(2),
+                                  ),
+
+                                  child: Text(
+                                    sectionLabel,
+                                    style: TextStyle(
+                                      fontSize: context.wPct(4.2),
+                                      fontWeight: FontWeight.w600,
+                                      color: AppColors.white50,
+                                    ),
+                                  ),
+                                ),
+                              );
+                            }
+                          }
                         }
-                      }
-                    }
 
-                    children.add(MyNotificationCard(myNotification: item));
-
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: children,
-                    );
-                  },
-                ),
-              );
-            },
-          ),
+                        children.add(MyNotificationCard(myNotification: item));
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: children,
+                        );
+                      },
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );
