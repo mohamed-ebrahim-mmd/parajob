@@ -198,14 +198,15 @@ class AppPages {
 
     //CompanyDetailsScreen
     //  GetPage(name: Routes.createAccount, page: () => CreateAccountScreen()),
-    GetPage(name: Routes.jobDetails, page: () => JobDetailsScreen()),
-    GetPage(
-      name: Routes.employer,
-      page: () => LoaderOverlay(
-        overlayWidgetBuilder: (_) => AppLoader(),
-        child: EmployerScreen(),
-      ),
-    ),
+    GetPage(name: Routes.jobDetails, page: () => JobDetailsScreen(),children: [
+      GetPage(
+        name: Routes.employer,
+        page: () => LoaderOverlay(
+          overlayWidgetBuilder: (_) => AppLoader(),
+          child: EmployerScreen(),
+        ),
+      )
+    ]),
     GetPage(
       name: Routes.employerReviews,
       page: () => EmployerReviewsScreen(),

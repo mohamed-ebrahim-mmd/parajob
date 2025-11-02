@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:para_job/features/employer/reviews/employer_reviews_controller.dart';
+import 'package:para_job/features/employer/reviews/widgets/review_card.dart';
 
 import '../../../packages/api_client/src/models/responses/review.dart';
 import '../../../packages/themeing/app_colors.dart';
 import '../../../packages/themeing/media_query_values.dart';
 import '../../../packages/ui_components/app_star_rating.dart';
-import '../../review/widgets/review_card.dart';
 
 class EmployerReviewsScreen extends StatefulWidget {
   EmployerReviewsScreen({super.key});

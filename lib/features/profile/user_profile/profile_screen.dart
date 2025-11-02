@@ -93,14 +93,3 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 }
-
-var j = Job(
-  title: "yyyyyy",
-  skills: List.empty(),
-  id: 2,
-  company: Company(id: 2, name: "fffff"),
-  from: "1",
-  to: "2",
-  description: "fds",
-);
-List<Job> llist = [j];

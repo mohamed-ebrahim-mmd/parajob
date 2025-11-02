@@ -34,9 +34,7 @@ class EmployerController extends GetxController {
     try {
       final response = await apiClient.fetchCompany(
         id: companyId,
-        token: user.isGuest
-            ? null
-            : user.token,
+        token: user.token,
       );
 
       if (response.isSuccess == true) {

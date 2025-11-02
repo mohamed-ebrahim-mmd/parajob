@@ -15,7 +15,6 @@ class EmployerSubmitReview extends StatelessWidget {
     return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: context.wPct(5)),
           Text(
             "Write a Review",
             style: TextStyle(
@@ -23,7 +22,8 @@ class EmployerSubmitReview extends StatelessWidget {
               fontWeight: FontWeight.w600,
             ),
           ),
-          SizedBox(height: context.hPct(1.5)),
+          context.hBox(1.5),
+
 
           Obx(
                 () => AppStarRatingInteractive(
@@ -33,28 +33,16 @@ class EmployerSubmitReview extends StatelessWidget {
             ),
           ),
 
-          SizedBox(height: context.hPct(2)),
+          context.hBox(2),
 
           TextField(
             controller: controller.reviewController,
             maxLines: 4,
             decoration: InputDecoration(
               hintText: "Share your opinion with us..",
-              enabledBorder: OutlineInputBorder(
-                borderSide: const BorderSide(color: Colors.grey, width: 1.5),
-                borderRadius: BorderRadius.circular(context.wPct(2.5)),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: const BorderSide(color: Colors.teal, width: 2),
-                borderRadius: BorderRadius.circular(context.wPct(2.5)),
-              ),
-              filled: true,
-              fillColor: Colors.transparent,
-              contentPadding: EdgeInsets.all(context.wPct(3)),
             ),
           ),
-
-          SizedBox(height: context.hPct(2)),
+          context.hBox(2),
           FilledButton( onPressed: () { controller.submitReview(); }, child: Text("Submit"), ),
         ],
     );
