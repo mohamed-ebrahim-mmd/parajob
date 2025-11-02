@@ -106,9 +106,9 @@ class _MyJobsListState extends State<MyJobsList> {
                   child: MyJobCard(
                     job: item,
                     highlighted: widget.highlighted,
-                    onTap: widget.highlighted && item.isSignedContract == 1
+                    onTap: widget.highlighted && item.isSignedContract == 0
                         ? () {
-                            signContractJobDialog(item);
+                            signContractJobDialog(item,pagingController);
                           }
                         : null,
                   ),

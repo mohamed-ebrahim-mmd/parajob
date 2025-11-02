@@ -2,9 +2,11 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide MultipartFile;
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart' show PagingController;
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
 import 'package:para_job/packages/api_client/src/models/responses/contract.dart';
+import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:signature/signature.dart';
 
 import '../../../packages/api_client/src/models/requests/application_verification_request.dart';
@@ -14,6 +16,8 @@ import '../../../packages/user_manager/user_controller.dart';
 
 class ContractController extends GetxController {
   final int jobId;
+  final PagingController<int, MyJob> approvedJobController ;
+
   final user = Get.find<UserController>();
   final signatureController = SignatureController(
     penStrokeWidth: 2,
@@ -22,7 +26,7 @@ class ContractController extends GetxController {
   var contractCallState = ApiCallState.loading.obs;
   var isAgreed = false.obs;
   Contract? contract;
-  ContractController({required this.jobId});
+  ContractController({required this.approvedJobController, required this.jobId});
 
   @override
   void onInit() {
@@ -51,7 +55,7 @@ class ContractController extends GetxController {
 
   Future<void> verify(BuildContext context) async {
     if (signatureController.isEmpty) {
-      showError("Please sign before continuing.");
+      showSnackBarError("Failed" ,"Please sign before continuing.");
       return;
     }
 
@@ -59,7 +63,7 @@ class ContractController extends GetxController {
       context.loaderOverlay.show();
       final signatureBytes = await signatureController.toPngBytes();
       if (signatureBytes == null) {
-        showError("Failed to generate signature image");
+        showSnackBarError("Failed" ,"Failed to generate signature image");
       }
 
       final multipartFile = MultipartFile.fromBytes(
@@ -72,18 +76,23 @@ class ContractController extends GetxController {
       final uploadedUrl = uploadResponse.url ?? "";
 
       if (uploadedUrl.isEmpty) {
-        showError("No file URL returned from upload API");
+        showSnackBarError("Failed","No file URL returned from upload API");
       }
 
-      await apiClient.applicationVerification(
+      final response = await apiClient.applicationVerification(
         token: user.token!,
         request: ApplicationVerificationRequest(
           jobId: jobId.toString(),
           signature: uploadedUrl,
         ),
       );
-      Get.delete<ContractController>();
-      //  Get.toNamed(Routes.myJobs);
+      showSnackBarSuccess('Success', response.details?.message ?? "contract Signed");
+      Get.until(
+            (route) =>
+        Get.currentRoute ==
+            Routes.mainNavigator,
+      );
+      approvedJobController.refresh();
     } catch (e, s) {
       log("Error verifying contract: $e", stackTrace: s);
       showSnackBarApiError();
@@ -92,13 +101,9 @@ class ContractController extends GetxController {
     }
   }
 
-  showError(String message) {
-    showSnackBarMessage(
-      mainText: "Error",
-      subText: message,
-      icon: Icons.error_outline_rounded,
-      color: AppColors.coralRed,
-    );
+  void closeAndDispose() {
+    Get.back();
+    Get.delete<ContractController>();
   }
 
   @override

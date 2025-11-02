@@ -10,6 +10,7 @@ import 'application_verification_otp_controller.dart';
 
 class ApplicationVerificationOtpScreen extends StatelessWidget {
   final controller = Get.find<ApplicationVerificationOtpController>();
+
   @override
   Widget build(BuildContext context) {
     return PopScope(

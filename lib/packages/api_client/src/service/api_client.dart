@@ -156,10 +156,4 @@ abstract class ApiClient {
     @Header('Authorization') required String token,
   });
 
-  @POST("/api/upload")
-  @MultiPart()
-  Future<UploadFileResponse> uploadFiles(
-    @Part(name: "files[]") List<MultipartFile> files,
-    @Header("Authorization")  String token,
-  );
 }

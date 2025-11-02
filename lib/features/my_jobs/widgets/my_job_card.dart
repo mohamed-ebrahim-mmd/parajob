@@ -93,8 +93,8 @@ class MyJobCard extends StatelessWidget {
               !highlighted
                   ? job.applicationStatus.displayName
                   : job.isSignedContract == 0
-                  ? 'Upcoming'
-                  : 'Sign Contract',
+                  ? 'Contract Pending'
+                  : 'Contract Signed',
               style: TextStyle(
                 color: highlighted
                     ? AppColors.aquaTeal

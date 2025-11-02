@@ -4,6 +4,7 @@
 */
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:para_job/features/my_jobs/application_verification_otp/application_verification_otp_controller.dart';
 import 'package:para_job/packages/api_client/src/models/responses/my_job.dart'
     show MyJob;
@@ -11,7 +12,7 @@ import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
-void signContractJobDialog(MyJob job) {
+void signContractJobDialog(MyJob job, PagingController<int, MyJob> approvedJobController) {
   final context = Get.context!;
   Get.dialog(
     Dialog(
@@ -61,7 +62,7 @@ void signContractJobDialog(MyJob job) {
                 // Button
                 FilledButton(
                   onPressed: () {
-                    _navigateToApplicationVerificationOTP(job.id);
+                    _navigateToApplicationVerificationOTP(job.id, approvedJobController);
                   },
                   child: const Text(
                     "Sign the contract",
@@ -82,8 +83,8 @@ void signContractJobDialog(MyJob job) {
   );
 }
 
-void _navigateToApplicationVerificationOTP(int jobId) {
+void _navigateToApplicationVerificationOTP(int jobId, PagingController<int, MyJob> approvedJobController) {
   Get.back(); // close dialog first
-  Get.put(ApplicationVerificationOtpController(jobId: jobId));
+  Get.put(ApplicationVerificationOtpController(jobId: jobId, approvedJobController: approvedJobController, ));
   Get.toNamed("${Routes.mainNavigator}${Routes.applicationVerificationOTP}");
 }

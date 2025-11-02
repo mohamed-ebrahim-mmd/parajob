@@ -63,7 +63,7 @@ class ProfileController extends GetxController {
         filename: file.path.split('/').last,
       );
 
-      final response = await apiClient.uploadFiles([multipartFile], token);
+      final response = await apiClient.uploadFile([multipartFile],);
 
       if (response.isSuccess) {
         var url = response.url;
