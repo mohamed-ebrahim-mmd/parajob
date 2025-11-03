@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
+import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
 
 import '../../packages/api_client/src/models/requests/submit_review_request.dart';
@@ -26,6 +27,13 @@ class EmployerController extends GetxController {
   void onInit() {
     super.onInit();
     fetchCompany();
+  }
+
+  void goToEmployerReviews() {
+    Get.toNamed(
+      "${Routes.jobDetails}${Routes.employer}${Routes.employerReviews}",
+      arguments: {'id': companyId},
+    );
   }
 
   Future<void> fetchCompany() async {

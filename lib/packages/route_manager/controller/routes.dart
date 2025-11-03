@@ -30,7 +30,6 @@ import 'package:para_job/features/registration/front_national_id/front_national_
 import 'package:para_job/features/registration/picture_with_id/picture_with_id_screen.dart';
 import 'package:para_job/packages/ui_components/app_loader.dart';
 
-import '../../../features/employer/reviews/employer_reviews_controller.dart';
 
 class Routes {
   static const String onboarding = '/onboarding';
@@ -197,24 +196,23 @@ class AppPages {
     ),
 
     //CompanyDetailsScreen
-    //  GetPage(name: Routes.createAccount, page: () => CreateAccountScreen()),
     GetPage(name: Routes.jobDetails, page: () => JobDetailsScreen(),children: [
       GetPage(
         name: Routes.employer,
         page: () => LoaderOverlay(
           overlayWidgetBuilder: (_) => AppLoader(),
-          child: EmployerScreen(),
+          child: EmployerScreen(
+          ),
         ),
+        children: [
+          GetPage(
+            name: Routes.employerReviews,
+            page: () => EmployerReviewsScreen(),
+          )
+        ]
       )
     ]),
-    GetPage(
-      name: Routes.employerReviews,
-      page: () => EmployerReviewsScreen(),
-      binding: BindingsBuilder(() {
-        final args = Get.arguments;
-        Get.put(EmployerReviewsController(args['id']));
-      }),
-    ),
+
 
     /// mainNavigator screen and its child
     GetPage(

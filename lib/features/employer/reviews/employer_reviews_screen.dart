@@ -9,35 +9,10 @@ import '../../../packages/themeing/app_colors.dart';
 import '../../../packages/themeing/media_query_values.dart';
 import '../../../packages/ui_components/app_star_rating.dart';
 
-class EmployerReviewsScreen extends StatefulWidget {
+class EmployerReviewsScreen extends StatelessWidget {
   EmployerReviewsScreen({super.key});
   final int id = Get.arguments['id'];
-
-  @override
-  State<EmployerReviewsScreen> createState() => _EmployerReviewsScreenState();
-}
-
-class _EmployerReviewsScreenState extends State<EmployerReviewsScreen> {
-  late EmployerReviewsController controller;
-
-  late final pagingController = PagingController<int, Review>(
-    getNextPageKey: (state) => state.lastPageIsEmpty ? null : state.nextIntPageKey,
-    fetchPage: (pageKey) {
-      return controller.fetchCompanyReviews(companyId: widget.id, page: pageKey);
-    },
-  );
-
-  @override
-  void initState() {
-    super.initState();
-    controller =
-        Get.find<EmployerReviewsController>();
-  }
-  @override
-  void dispose() {
-    pagingController.dispose();
-    super.dispose();
-  }
+  late final controller = Get.put(EmployerReviewsController(id));
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +26,7 @@ class _EmployerReviewsScreenState extends State<EmployerReviewsScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: context.hPct(2)),
+                context.hBox(2),
                 GestureDetector(
                   onTap: () => Navigator.pop(context),
                   child: Icon(
@@ -60,7 +35,7 @@ class _EmployerReviewsScreenState extends State<EmployerReviewsScreen> {
                     size: context.wPct(5),
                   ),
                 ),
-                SizedBox(height: context.hPct(1)),
+                context.hBox(1),
                 Text(
                   'Reviews',
                   style: TextStyle(
@@ -69,29 +44,32 @@ class _EmployerReviewsScreenState extends State<EmployerReviewsScreen> {
                     color: AppColors.pureWhite,
                   ),
                 ),
-                SizedBox(height: context.hPct(2)),
+                context.hBox(2),
                 Obx(
-                      () => Row(
-                    children: [
-                      Text(
-                        controller.averageRating.value.toStringAsFixed(1),
-                        style: TextStyle(
-                          fontSize: context.wPct(5),
-                          fontWeight: FontWeight.w800,
-                          color: Colors.teal,
+                      () => Visibility(
+                        visible: controller.pagingController.status != PagingStatus.loadingFirstPage,
+                        child: Row(
+                                            children: [
+                        Text(
+                          controller.averageRating.value.toStringAsFixed(1),
+                          style: TextStyle(
+                            fontSize: context.wPct(5),
+                            fontWeight: FontWeight.w800,
+                            color: Colors.teal,
+                          ),
                         ),
+                        SizedBox(width: context.wPct(1.5)),
+                        AppStarRating(
+                          rating: controller.averageRating.value,
+                          size: context.wPct(1),
+                        ),
+                                            ],
+                                          ),
                       ),
-                      SizedBox(width: context.wPct(1.5)),
-                      AppStarRating(
-                        rating: controller.averageRating.value,
-                        size: context.wPct(1),
-                      ),
-                    ],
-                  ),
                 ),
-                SizedBox(height: context.hPct(2)),
+                context.hBox(2),
                 PagingListener(
-                  controller: pagingController,
+                  controller: controller.pagingController,
                   builder: (context, state, fetchNextPage) {
                     return PagedListView<int, Review>(
                       state: state,
@@ -99,20 +77,6 @@ class _EmployerReviewsScreenState extends State<EmployerReviewsScreen> {
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       builderDelegate: PagedChildBuilderDelegate<Review>(
-                        firstPageProgressIndicatorBuilder: (_) => Center(
-                          child: SizedBox(
-                            width: context.wPct(8),
-                            height: context.wPct(8),
-                            child: const CircularProgressIndicator(),
-                          ),
-                        ),
-                        newPageProgressIndicatorBuilder: (_) => Center(
-                          child: SizedBox(
-                            width: context.wPct(8),
-                            height: context.wPct(8),
-                            child: const CircularProgressIndicator(),
-                          ),
-                        ),
                         noItemsFoundIndicatorBuilder: (_) => Center(
                           child: Text(
                             "No reviews found",

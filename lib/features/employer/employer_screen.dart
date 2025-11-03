@@ -7,7 +7,6 @@ import 'package:para_job/features/employer/widgets/employer_list_header.dart';
 import 'package:para_job/features/employer/widgets/employer_stat_box.dart';
 import 'package:para_job/features/employer/widgets/employer_submit_review.dart';
 import 'package:para_job/features/employer/widgets/latest_reviews_list.dart';
-import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
@@ -167,12 +166,7 @@ class EmployerScreen extends StatelessWidget {
 
                         EmployerListHeader(
                           title: "Reviews",
-                          onViewAll: () {
-                            Get.toNamed(
-                              Routes.employerReviews,
-                              arguments: {'id': company.id},
-                            );
-                          },
+                          onViewAll:controller.goToEmployerReviews,
                         ),
                         LatestReviewsList(company: company),
 

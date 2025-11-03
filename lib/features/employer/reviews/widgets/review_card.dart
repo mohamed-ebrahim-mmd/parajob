@@ -47,7 +47,7 @@ class ReviewCard extends StatelessWidget {
               Row(
                 children: [
                   Icon(Icons.star, color: AppColors.almostWhite, size: context.wPct(2.5)),
-                  SizedBox(width: context.wPct(1)),
+                  context.wBox(1),
                   Text(
                     rate.toString(),
                     style: TextStyle(
@@ -60,7 +60,7 @@ class ReviewCard extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: context.hPct(1)),
+          context.hBox(1),
           Text(
             comment,
             style: TextStyle(
@@ -69,7 +69,7 @@ class ReviewCard extends StatelessWidget {
               color: AppColors.pureWhite,
             ),
           ),
-          SizedBox(height: context.hPct(1)),
+          context.hBox(1),
           Text(
             formattedDate,
             style: TextStyle(
