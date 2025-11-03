@@ -35,8 +35,9 @@ abstract class ApiClient {
 
   // 🏫 Fetch faculties for a specific university
   @GET("/api/faculty/university/{universityId}")
-  Future<FacultyResponse> getFacultiesByUniversity(@Path("universityId") int universityId);
-
+  Future<FacultyResponse> getFacultiesByUniversity(
+    @Path("universityId") int universityId,
+  );
 
   @GET("/api/job/{id}")
   Future<JobDetailsResponse> fetchJobDetails(@Path("id") int id);
@@ -76,18 +77,20 @@ abstract class ApiClient {
 
   @GET("/api/company/{id}")
   Future<CompanyResponse> fetchCompany({
-    @Header('Authorization')  String? token,
-    @Path("id") required int id});
+    @Header('Authorization') String? token,
+    @Path("id") required int id,
+  });
 
   @GET("/api/review/company/{id}")
   Future<CompanyReviewsResponse> fetchCompanyReviews({
     @Path("id") required int companyId,
     @Query('page') int? page,
   });
+
   @POST("/api/review")
   Future<SubmitReviewResponse> submitReview({
     @Header('Authorization') required String token,
-    @Body() required SubmitReviewRequest request
+    @Body() required SubmitReviewRequest request,
   });
 
   @POST("/api/reset/password")
@@ -155,4 +158,9 @@ abstract class ApiClient {
     @Header('Authorization') required String token,
   });
 
+  @PUT("/api/user")
+  Future<EditUserResponse> updateUserProfile(
+    @Body() EditUserRequest request,
+    @Header("Authorization") String token,
+  );
 }

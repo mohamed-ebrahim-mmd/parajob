@@ -36,10 +36,10 @@ class EditProfileScreen extends StatelessWidget {
                       //  vertical: context.hPct(1),
                     ),
                     child: Text(
-                      "My Jobs",
+                      "Edit personal info",
                       style: TextStyle(
                         color: AppColors.pureWhite,
-                        fontSize: 18,
+                        fontSize: context.wPct(4),
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -56,7 +56,8 @@ class EditProfileScreen extends StatelessWidget {
               isScrollable: true,
               indicatorColor: AppColors.aquaTeal,
               dividerColor: Colors.transparent,
-              labelColor: AppColors.pureWhite, // selected tab text/icon color
+              labelColor: AppColors.pureWhite,
+              // selected tab text/icon color
               unselectedLabelColor: AppColors.lightGray,
               tabs: [
                 Tab(text: "Main info"),
@@ -68,13 +69,12 @@ class EditProfileScreen extends StatelessWidget {
             ),
           ),
         ),
-
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal: context.wPct(5)),
           child: TabBarView(
             children: [
               EditMainInfo(screenContext: context),
-              EditEducation(screenContext:context ,),
+              EditEducation(screenContext: context),
               Center(child: Text("cv")),
               EditNationalIdScreen(),
               EditSkillsScreen(screenContext: context),

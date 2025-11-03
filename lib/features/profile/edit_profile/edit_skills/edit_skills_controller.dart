@@ -15,32 +15,31 @@ import 'package:para_job/packages/user_manager/user_controller.dart';
 class EditSkillsController extends GetxController {
   final String token = Get.find<UserController>().token!;
   final BuildContext screenContext;
+
   EditSkillsController({required this.screenContext});
 
   final skillsCallState = ApiCallState.loading.obs;
   List<DropdownMenuEntry<int>> skillsMenu = [];
-
   List<Skill>? allSkillsList;
   final selectedSkillsList = <Skill>[].obs;
+
   @override
   void onInit() {
     super.onInit();
-    fechSkills();
+    fetchSkills();
   }
 
   void onSkillSelected(int? value) {
     if (value == null) return;
 
- 
     // Get the skill object from the full list
- final skill = getSkillById(value);
+    final skill = getSkillById(value);
 
     // Only add if not already in the selected list
     final alreadySelected = selectedSkillsList.any((s) => s.id == skill.id);
 
     if (!alreadySelected) {
       selectedSkillsList.add(skill);
-     
     }
   }
 
@@ -48,18 +47,17 @@ class EditSkillsController extends GetxController {
     return allSkillsList!.firstWhere((skill) => skill.id == skillId);
   }
 
-  Future<void> fechSkills() async {
+  Future<void> fetchSkills() async {
     skillsCallState.value = ApiCallState.loading;
 
     try {
       final SkillResponse skillsResponse = await apiClient.getSkills();
 
       if (skillsResponse.isSuccess) {
-
-          allSkillsList = skillsResponse.data;
-        skillsMenu = getmenuSkills(skillsResponse.data);
-        selectedSkillsList.value = Get.find<ProfileController>().profileData?.skills??[];
-
+        allSkillsList = skillsResponse.data;
+        skillsMenu = getMenuSkills(skillsResponse.data);
+        selectedSkillsList.value =
+            Get.find<ProfileController>().profileData?.skills ?? [];
 
         skillsCallState.value = ApiCallState.success;
       } else {
@@ -70,7 +68,7 @@ class EditSkillsController extends GetxController {
     }
   }
 
-  List<DropdownMenuEntry<int>> getmenuSkills(List<Skill> skills) {
+  List<DropdownMenuEntry<int>> getMenuSkills(List<Skill> skills) {
     return skills
         .map(
           (skill) => DropdownMenuEntry<int>(value: skill.id, label: skill.name),
@@ -78,14 +76,13 @@ class EditSkillsController extends GetxController {
         .toList();
   }
 
-
-
-  Future<void> editUserProfile(
-   
-  ) async {
+  Future<void> editUserProfile() async {
     screenContext.loaderOverlay.show();
     try {
-      final response = await apiClient.updateUserProfile(EditUserRequest(skills: selectedSkillsList.map((s) => s.id).toList()), token);
+      final response = await apiClient.updateUserProfile(
+        EditUserRequest(skills: selectedSkillsList.map((s) => s.id).toList()),
+        token,
+      );
 
       if (response.isSuccess) {
         log("🟢 isSuccess");
@@ -101,11 +98,7 @@ class EditSkillsController extends GetxController {
       log("🔴 ${e.toString()}");
       showSnackBarError("Failed", e.toString());
     } finally {
-       screenContext.loaderOverlay.hide();
+      screenContext.loaderOverlay.hide();
     }
   }
-
-
-
-
 }

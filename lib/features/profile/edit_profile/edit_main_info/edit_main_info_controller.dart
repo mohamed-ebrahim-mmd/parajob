@@ -11,37 +11,23 @@ import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
 
 class EditMainInfoController extends GetxController {
-    EditMainInfoController({required this.context});
+  EditMainInfoController({required this.context});
 
   final citiesCallState = ApiCallState.loading.obs;
-  
   final areasCallState = DataFetchState.initial.obs;
   int? selectedAreaId;
-  final oldUser = Get.find<ProfileController>().profileData;
+  final user = Get.find<ProfileController>().profileData;
   final String token = Get.find<UserController>().token!;
-
   final selectedCityId = Rx<int?>(null);
   List<DropdownMenuEntry<int>> cityMenuEntries = [];
   List<DropdownMenuEntry<int>> areaMenuEntries = [];
   final BuildContext context;
-  // final emailController = TextEditingController();
 
   @override
   void onInit() {
     super.onInit();
-    //setEmail();
     fetchCities();
   }
-
-  @override
-  void onClose() {
-    // emailController.dispose();
-    super.onClose();
-  }
-
-  // void setEmail() {
-  //   emailController.text = user?.email ?? '';
-  // }
 
   Future<void> fetchCities() async {
     citiesCallState.value = ApiCallState.loading;
@@ -57,7 +43,7 @@ class EditMainInfoController extends GetxController {
             .toList();
 
         // ✅ Set the user's current city *after* fetching cities
-        final userCityName = oldUser?.city;
+        final userCityName = user?.city;
         if (userCityName != null && userCityName.isNotEmpty) {
           final matchedCity = response.data.firstWhereOrNull(
             (city) => city.name == userCityName,
@@ -100,7 +86,7 @@ class EditMainInfoController extends GetxController {
             )
             .toList();
 
-        final useAreaName = oldUser?.area;
+        final useAreaName = user?.area;
         if (useAreaName != null && useAreaName.isNotEmpty) {
           final matchedArea = response.data.firstWhereOrNull(
             (area) => area.name == useAreaName,
@@ -120,9 +106,7 @@ class EditMainInfoController extends GetxController {
     }
   }
 
-  void registerUser() async {
-   
-
+  void editUser() async {
     // City
     if (selectedCityId.value == null) {
       showSnackBarError("Failed", 'Please select your city');
@@ -135,35 +119,24 @@ class EditMainInfoController extends GetxController {
       return;
     }
 
-    // ✅ All validations passed
-    log("${selectedAreaId}  ${selectedCityId.value}");
-
     await editUserProfile(
-      
-      EditUserRequest(
-        
-        areaId: selectedAreaId,
-        cityId: selectedCityId.value,
-       
-      ),
-
-    
+      EditUserRequest(areaId: selectedAreaId, cityId: selectedCityId.value),
     );
   }
 
   Future<void> editUserProfile(
-   // BuildContext context,
+    // BuildContext context,
     EditUserRequest request,
   ) async {
     context.loaderOverlay.show();
     try {
       final response = await apiClient.updateUserProfile(request, token);
-
       if (response.isSuccess) {
         log("🟢 isSuccess");
-                showSnackBarSuccess("success", response.details.message ?? "edit successfully");
-
-        
+        showSnackBarSuccess(
+          "success",
+          response.details.message ?? "edit successfully",
+        );
       } else {
         showSnackBarError("Failed", response.details.message ?? "edit failed");
         log(response.details.message ?? "edit failed");
@@ -175,7 +148,4 @@ class EditMainInfoController extends GetxController {
       context.loaderOverlay.hide();
     }
   }
-
-
-
 }
