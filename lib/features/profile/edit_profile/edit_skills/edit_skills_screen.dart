@@ -100,4 +100,3 @@ class EditSkillsScreen extends StatelessWidget {
   }
 }
 
-List<Skill> skillList = [Skill(id: 1, name: "dw"), Skill(id: 2, name: "j")];

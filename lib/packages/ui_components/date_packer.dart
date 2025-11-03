@@ -1,52 +1,3 @@
-// import 'package:flutter/material.dart';
-
-// //todo remove this class when finished no  need for it
-// class DatePickerField extends StatefulWidget {
-//   final String hintText;
-//     final String? text;
-
-//    DatePickerField({super.key, required this.hintText,this.text});
-
-//   @override
-//   State<DatePickerField> createState() => _DatePickerFieldState();
-// }
-
-// class _DatePickerFieldState extends State<DatePickerField> {
-//   final TextEditingController controller = TextEditingController();
-//   controller.text = widget.text ?? '';
-
-//   Future<void> _selectDate(BuildContext context) async {
-//     final DateTime? pickedDate = await showDatePicker(
-//       context: context,
-//       initialDate: DateTime(2000, 1, 1),
-//       firstDate: DateTime(1900),
-//       lastDate: DateTime.now(),
-//     );
-
-//     if (pickedDate != null) {
-//       setState(() {
-//        controller.text =
-//             "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}";
-//       });
-//     }
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return TextField(
-//       controller:controller,
-//       readOnly: true, // ✅ prevents keyboard from opening
-//       decoration: InputDecoration(
-//         hintText: widget.hintText,
-//         // suffixIcon: Icon(Icons.calendar_today),
-//       ),
-//       onTap: () => _selectDate(context),
-//     );
-//   }
-// }
-
-
-
 import 'package:flutter/material.dart';
 
 // TODO: Remove this class when no longer needed
@@ -54,11 +5,7 @@ class DatePickerField extends StatefulWidget {
   final String? hintText;
   final String? text;
 
-  const DatePickerField({
-    super.key,
-     this.hintText,
-    this.text,
-  });
+  const DatePickerField({super.key, this.hintText, this.text});
 
   @override
   State<DatePickerField> createState() => _DatePickerFieldState();
@@ -109,18 +56,16 @@ class _DatePickerFieldState extends State<DatePickerField> {
   }
 }
 
-
-
-
-
 class YearPickerField extends StatefulWidget {
   final String? hintText;
   final int? selectedYear;
+  final TextEditingController controller;
 
   const YearPickerField({
     super.key,
     this.hintText,
     this.selectedYear,
+    required this.controller,
   });
 
   @override
@@ -128,17 +73,15 @@ class YearPickerField extends StatefulWidget {
 }
 
 class _YearPickerFieldState extends State<YearPickerField> {
-  late TextEditingController controller;
-
   @override
   void initState() {
     super.initState();
-    controller = TextEditingController(text: widget.selectedYear.toString());
+   //// widget.controller.text =widget.selectedYear.toString();
   }
 
   @override
   void dispose() {
-    controller.dispose();
+    // widget.controller.dispose();
     super.dispose();
   }
 
@@ -161,7 +104,7 @@ class _YearPickerFieldState extends State<YearPickerField> {
               selectedDate: DateTime(widget.selectedYear ?? currentYear),
               onChanged: (DateTime dateTime) {
                 setState(() {
-                  controller.text = dateTime.year.toString();
+                  widget.controller.text = dateTime.year.toString();
                 });
                 Navigator.pop(context); // close dialog
               },
@@ -175,7 +118,7 @@ class _YearPickerFieldState extends State<YearPickerField> {
   @override
   Widget build(BuildContext context) {
     return TextField(
-      controller: controller,
+      controller: widget.controller,
       readOnly: true,
       decoration: InputDecoration(
         hintText: widget.hintText ?? "Select Year",

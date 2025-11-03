@@ -74,7 +74,7 @@ class EditProfileScreen extends StatelessWidget {
           child: TabBarView(
             children: [
               EditMainInfo(screenContext: context),
-              EditEducation(),
+              EditEducation(screenContext:context ,),
               Center(child: Text("cv")),
               EditNationalIdScreen(),
               EditSkillsScreen(screenContext: context),

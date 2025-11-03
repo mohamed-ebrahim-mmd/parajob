@@ -104,4 +104,8 @@ class EditSkillsController extends GetxController {
        screenContext.loaderOverlay.hide();
     }
   }
+
+
+
+
 }
