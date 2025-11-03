@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:para_job/features/profile/edit_profile/edit_education/edit_education_screen.dart';
 import 'package:para_job/features/profile/edit_profile/edit_main_info/edit_main_info.dart';
+import 'package:para_job/features/profile/edit_profile/edit_national_id/edit_national_id_screen.dart';
+import 'package:para_job/features/profile/edit_profile/edit_skills/edit_skills_screen.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
@@ -66,14 +69,17 @@ class EditProfileScreen extends StatelessWidget {
           ),
         ),
 
-        body:  TabBarView(
-          children: [
-            EditMainInfo(),
-            Center(child: Text("Job History")),
-            Center(child: Text("Saved Jobs")),
-            Center(child: Text("Nation ID")),
-            Center(child: Text("Skills")),
-          ],
+        body: Padding(
+          padding: EdgeInsets.symmetric(horizontal: context.wPct(5)),
+          child: TabBarView(
+            children: [
+              EditMainInfo(screenContext: context),
+              EditEducation(),
+              Center(child: Text("cv")),
+              EditNationalIdScreen(),
+              EditSkillsScreen(screenContext: context),
+            ],
+          ),
         ),
       ),
     );

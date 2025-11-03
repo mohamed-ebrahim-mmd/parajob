@@ -72,7 +72,7 @@ class UserProfileData {
   final bool? isCompleted;
   final bool? isBlocked;
   final String? rejectionReason;
-  final List<Skill>? additionalSkills;
+  final String? additionalSkills;
   final List<Skill>? skills;
   final String? graduationYear;
   final String? educationStatus;
@@ -93,7 +93,7 @@ class UserProfileData {
     this.jobs,
     this.savedJobs,
     this.strikeCount,
-     this.strikeHistory,
+    this.strikeHistory,
     this.email,
     this.phoneNumber,
     this.dateOfBirth,
@@ -120,30 +120,25 @@ class UserProfileData {
 
   /// Factory constructor to parse JSON from API
   factory UserProfileData.fromJson(Map<String, dynamic> json) {
-
-
-     List<Job> safeJobList(dynamic data) {
-    if (data is List) {
-      return data
-          .whereType<Map<String, dynamic>>()
-          .map((e) => Job.fromJson(e))
-          .toList();
+    List<Job> safeJobList(dynamic data) {
+      if (data is List) {
+        return data
+            .whereType<Map<String, dynamic>>()
+            .map((e) => Job.fromJson(e))
+            .toList();
+      }
+      return [];
     }
-    return [];
-  }
 
-  List<Skill> safeSkillList(dynamic data) {
-    if (data is List) {
-      return data
-          .whereType<Map<String, dynamic>>()
-          .map((e) => Skill.fromJson(e))
-          .toList();
+    List<Skill> safeSkillList(dynamic data) {
+     if (data is List) {
+        return data
+            .whereType<Map<String, dynamic>>()
+            .map((e) => Skill.fromJson(e))
+            .toList();
+      }
+      return [];
     }
-    return [];
-  }
-
-
-
 
     return UserProfileData(
       id: json['id'],
@@ -152,13 +147,13 @@ class UserProfileData {
       jobsCount: json['jobs_count'],
       income: json['income'],
       companiesCount: json['companies_count'],
-      jobs:safeJobList(json['jobs']),
-          // (json['jobs'] as List<dynamic>?)
-          //     ?.map((e) => Job.fromJson(e as Map<String, dynamic>))
-          //     .toList() ??
-          // [],
-      savedJobs:safeJobList(json['saved_jobs']),
-          
+      jobs: safeJobList(json['jobs']),
+      // (json['jobs'] as List<dynamic>?)
+      //     ?.map((e) => Job.fromJson(e as Map<String, dynamic>))
+      //     .toList() ??
+      // [],
+      savedJobs: safeJobList(json['saved_jobs']),
+
       strikeCount: json['strike_count'],
       strikeHistory: json['strike_history'] ?? [],
       email: json['email'],
@@ -173,13 +168,10 @@ class UserProfileData {
       isCompleted: json['is_completed'],
       isBlocked: json['is_blocked'],
       rejectionReason: json['rejection_reason'],
-      additionalSkills:safeSkillList(json['additional_skills']),
-          // (json['additional_skills'] as List<dynamic>?)
-          //     ?.map((e) => Skill.fromJson(e as Map<String, dynamic>))
-          //     .toList() ??
-          // [],
-      skills:safeSkillList(json['skills']),
-          
+      additionalSkills: json['additional_skills'],
+    
+      skills: safeSkillList(json['skills']),
+
       graduationYear: json['graduation_year'],
       educationStatus: json['education_status'],
       nationalIdFront: json['national_id_front'],

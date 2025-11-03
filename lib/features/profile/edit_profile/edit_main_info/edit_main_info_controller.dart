@@ -5,15 +5,16 @@ import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:para_job/features/profile/user_profile/profile_controller.dart';
 import 'package:para_job/packages/api_client/src/enums/api_call_state_enum.dart';
-import 'package:para_job/packages/api_client/src/models/requests/documents.dart';
 import 'package:para_job/packages/api_client/src/models/requests/edit_user_request.dart';
 import 'package:para_job/packages/api_client/src/service/api_client_instance.dart';
-import 'package:para_job/packages/functional_components/validation_utils.dart';
 import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
 
 class EditMainInfoController extends GetxController {
+    EditMainInfoController({required this.context});
+
   final citiesCallState = ApiCallState.loading.obs;
+  
   final areasCallState = DataFetchState.initial.obs;
   int? selectedAreaId;
   final oldUser = Get.find<ProfileController>().profileData;
@@ -22,6 +23,7 @@ class EditMainInfoController extends GetxController {
   final selectedCityId = Rx<int?>(null);
   List<DropdownMenuEntry<int>> cityMenuEntries = [];
   List<DropdownMenuEntry<int>> areaMenuEntries = [];
+  final BuildContext context;
   // final emailController = TextEditingController();
 
   @override
@@ -119,14 +121,7 @@ class EditMainInfoController extends GetxController {
   }
 
   void registerUser() async {
-    // final email = emailController.text.trim();
-
-    // // 4️ Email
-    // final emailError = validateEmail(email);
-    // if (emailError != null) {
-    //   showSnackBarError("Failed", emailError);
-    //   return;
-    // }
+   
 
     // City
     if (selectedCityId.value == null) {
@@ -141,38 +136,23 @@ class EditMainInfoController extends GetxController {
     }
 
     // ✅ All validations passed
+    log("${selectedAreaId}  ${selectedCityId.value}");
 
     await editUserProfile(
-      Get.context!,
+      
       EditUserRequest(
+        
         areaId: selectedAreaId,
         cityId: selectedCityId.value,
-
-        /*         name: oldUser?.name,
-
-        gender: oldUser?.gender,
-        dateOfBirth: oldUser?.dateOfBirth,
-        educationStatus: oldUser?.educationStatus,
-        skills: oldUser?.skills?.map((s) => s.id).toList() ?? [],
-        additionalSkills: "",
-        universityId: int.tryParse(
-          oldUser?.universityId ?? "0",
-        ), 
-        facultyId: int.tryParse(oldUser?.faculty ?? "0"),
-        graduationYear: oldUser?.graduationYear,
-        documents: Documents(
-          cv: oldUser?.cv,
-          universityId: oldUser?.universityId,
-          nationalIdBack: oldUser?.nationalIdBack,
-          nationalIdFront: oldUser?.nationalIdFront,
-          profilePicture: oldUser?.profilePicture,
-        ), */
+       
       ),
+
+    
     );
   }
 
   Future<void> editUserProfile(
-    BuildContext context,
+   // BuildContext context,
     EditUserRequest request,
   ) async {
     context.loaderOverlay.show();
@@ -181,6 +161,9 @@ class EditMainInfoController extends GetxController {
 
       if (response.isSuccess) {
         log("🟢 isSuccess");
+                showSnackBarSuccess("success", response.details.message ?? "edit successfully");
+
+        
       } else {
         showSnackBarError("Failed", response.details.message ?? "edit failed");
         log(response.details.message ?? "edit failed");
@@ -192,4 +175,7 @@ class EditMainInfoController extends GetxController {
       context.loaderOverlay.hide();
     }
   }
+
+
+
 }

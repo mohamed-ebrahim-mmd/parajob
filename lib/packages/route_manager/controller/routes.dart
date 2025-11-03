@@ -247,7 +247,15 @@ class AppPages {
               ],
             ),
 
-            GetPage(name: Routes.editProfile, page: () => EditProfileScreen()),
+            GetPage(name: Routes.editProfile, page: () => LoaderOverlay(
+            child: EditProfileScreen(),
+            overlayWidgetBuilder: (_) {
+              //ignored progress for the moment
+              return AppLoader();
+            },
+          ),
+
+            ),
           ],
         ),
       ],

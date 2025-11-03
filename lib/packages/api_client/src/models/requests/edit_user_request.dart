@@ -11,7 +11,7 @@ class EditUserRequest {
   final String? additionalSkills;
   final int? universityId;
   final int? facultyId;
-  final String? graduationYear;
+  final int? graduationYear;
   final Documents? documents;
 
   EditUserRequest({
@@ -29,20 +29,28 @@ class EditUserRequest {
     this.documents,
   });
 
+
+
   Map<String, dynamic> toJson() {
-    return {
-      "name": name,
-      "city_id": cityId,
-      "area_id": areaId,
-      "gender": gender,
-      "date_of_birth": dateOfBirth,
-      "education_status": educationStatus,
-      "skills": skills,
-      "additional_skills": additionalSkills,
-      "university_id": universityId,
-      "faculty_id": facultyId,
-      "graduation_year": graduationYear,
-      "documents": documents?.toJson(),
-    };
-  }
+  final Map<String, dynamic> data = {
+    "name": name,
+    "city_id": cityId,
+    "area_id": areaId,
+    "gender": gender,
+    "date_of_birth": dateOfBirth,
+    "education_status": educationStatus,
+    "skills": skills,
+    "additional_skills": additionalSkills,
+    "university_id": universityId,
+    "faculty_id": facultyId,
+    "graduation_year": graduationYear,
+    "documents": documents?.toJson(),
+  };
+
+  // ✅ Remove null keys
+  data.removeWhere((key, value) => value == null);
+
+  return data;
+}
+
 }
