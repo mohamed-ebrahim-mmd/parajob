@@ -1,17 +1,17 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:para_job/features/registration/picture_with_id/picture_withl_id_controller.dart';
 import 'package:para_job/features/registration/widgets/register_img_picker.dart';
 import 'package:para_job/features/registration/widgets/registration_note.dart';
 import 'package:para_job/features/registration/widgets/stepper.dart';
-import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/res/app_asset_paths.dart';
 
 class PictureWithIdScreen extends StatelessWidget {
-  const PictureWithIdScreen({super.key});
+  final controller = Get.put(PictureWithIdController());
+
+  PictureWithIdScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -62,8 +62,26 @@ class PictureWithIdScreen extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                   ),
                 ),
-                onImageSelected: (File? value) {},
+                onImageSelected: controller.sePictureWithIdImage,
               ),
+              Obx(() {
+                return Visibility(
+                  visible: controller.idError.value != null,
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      left: context.wPct(2),
+                      top: context.hPct(1),
+                    ),
+                    child: Text(
+                      controller.idError.value ?? "",
+                      style: TextStyle(
+                        color: AppColors.coralRed,
+                        fontSize: context.wPct(3),
+                      ),
+                    ),
+                  ),
+                );
+              }),
               context.hBox(2),
               RegisterNote(
                 note:
@@ -82,11 +100,7 @@ class PictureWithIdScreen extends StatelessWidget {
           vertical: context.hPct(5),
         ),
         child: FilledButton(
-          onPressed: () {
-            Get.toNamed(
-              "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}${Routes.createAccountBackID}${Routes.createAccountPicWithID}${Routes.educationInfo}",
-            );
-          },
+          onPressed: controller.validateAndContinue,
           child: Text("Confirm"),
         ),
       ),

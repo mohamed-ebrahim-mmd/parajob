@@ -39,6 +39,15 @@ abstract class ApiClient {
   @GET("/api/area/city/{cityId}")
   Future<AreaResponse> getAreasByCity(@Path("cityId") int cityId);
 
+  // 🎓 Fetch all universities
+  @GET("/api/university")
+  Future<UniversityResponse> getUniversities();
+
+  // 🏫 Fetch faculties for a specific university
+  @GET("/api/faculty/university/{universityId}")
+  Future<FacultyResponse> getFacultiesByUniversity(@Path("universityId") int universityId);
+
+
   @GET("/api/job/{id}")
   Future<JobDetailsResponse> fetchJobDetails(@Path("id") int id);
 

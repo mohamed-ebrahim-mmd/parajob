@@ -149,15 +149,16 @@ class CreateAccountScreen extends StatelessWidget {
                     );
 
                   case ApiCallState.failure:
-                    return TextField(
-                      readOnly: true,
-                      onTap: () {
-                        controller.fetchCities();
-                      },
-
-                      decoration: InputDecoration(
-                        labelText: "Failed to load, tap to retry",
-                        suffixIcon: const Icon(Icons.refresh),
+                    return GestureDetector(
+                      onTap: controller.fetchCities,
+                      child: AbsorbPointer(
+                        child: TextField(
+                          readOnly: true,
+                          decoration: const InputDecoration(
+                            labelText: "Failed to load, tap to retry",
+                            suffixIcon: Icon(Icons.refresh),
+                          ),
+                        ),
                       ),
                     );
                 }
@@ -193,20 +194,23 @@ class CreateAccountScreen extends StatelessWidget {
                     );
 
                   case DataFetchState.failure:
-                    return TextField(
-                      readOnly: true,
+                    return GestureDetector(
                       onTap: () {
                         if (controller.selectedCityId.value != null) {
-                          controller.fetchAreas(
-                            controller.selectedCityId.value!,
-                          );
+                          controller.fetchAreas(controller.selectedCityId.value!);
                         }
                       },
-                      decoration: InputDecoration(
-                        labelText: "Failed to load areas, tap to retry",
-                        suffixIcon: const Icon(Icons.refresh),
+                      child: AbsorbPointer(
+                        child: TextField(
+                          readOnly: true,
+                          decoration: const InputDecoration(
+                            labelText: "Failed to load areas, tap to retry",
+                            suffixIcon: Icon(Icons.refresh),
+                          ),
+                        ),
                       ),
                     );
+
 
                   case DataFetchState.initial:
                     return TextField(

@@ -75,27 +75,30 @@ class FrontNationalIdScreen extends StatelessWidget {
                 ),
                 onImageSelected: controller.setFrontIdImage,
               ),
-              Padding(
-                padding: EdgeInsets.only(
-                  left: context.wPct(2),
-                  top: context.hPct(1),
-                ),
-                child: Obx(() {
-                  return Text(
-                    controller.idError.value ?? "",
-                    style: TextStyle(
-                      color: AppColors.coralRed,
-                      fontSize: context.wPct(3),
+              Obx(() {
+                return Visibility(
+                  visible: controller.idError.value != null,
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      left: context.wPct(2),
+                      top: context.hPct(1),
                     ),
-                  );
-                }),
-              ),
+                    child: Text(
+                      controller.idError.value ?? "",
+                      style: TextStyle(
+                        color: AppColors.coralRed,
+                        fontSize: context.wPct(3),
+                      ),
+                    ),
+                  ),
+                );
+              }),
               context.hBox(2),
               RegisterNote(note: "Make sure your surroundings are well-lit."),
               context.hBox(2),
               RegisterNote(
                 note:
-                    "Make sure the photo is inside the frame and \ndetails are easy to read",
+                "Make sure the photo is inside the frame and \ndetails are easy to read",
               ),
             ],
           ),

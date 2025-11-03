@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:para_job/features/registration/education_info/education_info_controller.dart';
 import 'package:para_job/features/registration/widgets/stepper.dart';
-import 'package:para_job/packages/route_manager/controller/routes.dart';
+import 'package:para_job/packages/api_client/src/enums/api_call_state_enum.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
-import 'package:para_job/packages/ui_components/date_packer.dart';
-import 'package:para_job/packages/ui_components/drop_down_button.dart';
 
 class EducationInfoScreen extends StatelessWidget {
-  const EducationInfoScreen({super.key});
+  final controller = Get.put(EducationInfoController());
+
+  EducationInfoScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,6 @@ class EducationInfoScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               StepperRow(currentStep: 3, stepPercentage: "60%"),
-
               context.hBox(4),
               Text(
                 'Education',
@@ -39,22 +39,121 @@ class EducationInfoScreen extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                 ),
               ),
+              context.hBox(2.5),
+              Obx(() {
+                switch (controller.universitiesCallState.value) {
+                  case ApiCallState.loading:
+                    return TextField(
+                      enabled: false,
+                      decoration: const InputDecoration(
+                        labelText: "Loading universities...",
+                        suffixIcon: Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: CircularProgressIndicator(),
+                        ),
+                      ),
+                    );
 
-              context.hBox(2.5),
-              // Input fields
-              DropDownButton(
-                options: ["university1", "university2", "uni3"],
-                label: "Choose your university",
-              ),
+                  case ApiCallState.success:
+                    return DropdownMenu<int>(
+                      enableSearch: true,
+                      expandedInsets: EdgeInsets.zero,
+                      menuHeight: context.hPct(30),
+                      hintText: "Choose your university",
+                      initialSelection: controller.selectedUniversityId.value,
+                      onSelected: controller.onUniversitySelected,
+                      dropdownMenuEntries: controller.universityMenuEntries,
+                    );
 
-              context.hBox(2.5),
-              DatePickerField(hintText: "choose your graduation year"),
-              context.hBox(2.5),
-              TextField(
-                decoration: InputDecoration(hintText: "Enter your Faculty"),
-                keyboardType: TextInputType.text,
-                textInputAction: TextInputAction.done,
-              ),
+                  case ApiCallState.failure:
+                    return GestureDetector(
+                      onTap: controller.fetchUniversities,
+                      child: AbsorbPointer(
+                        child: TextField(
+                          readOnly: true,
+                          decoration: const InputDecoration(
+                            labelText:
+                                "Failed to load universities, tap to retry",
+                            suffixIcon: Icon(Icons.refresh),
+                          ),
+                        ),
+                      ),
+                    );
+                }
+              }),
+              context.hBox(1.5),
+              Obx(() {
+                switch (controller.facultiesCallState.value) {
+                  case DataFetchState.loading:
+                    return TextField(
+                      enabled: false,
+                      decoration: const InputDecoration(
+                        labelText: "Loading faculties...",
+                        suffixIcon: Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: CircularProgressIndicator(),
+                        ),
+                      ),
+                    );
+
+                  case DataFetchState.success:
+                    return DropdownMenu<int>(
+                      enableSearch: true,
+                      expandedInsets: EdgeInsets.zero,
+                      menuHeight: context.hPct(30),
+                      hintText: "Choose your faculty",
+                      initialSelection: controller.selectedFacultyId,
+                      onSelected: (value) {
+                        if (value != null) {
+                          controller.selectedFacultyId = value;
+                        }
+                      },
+                      dropdownMenuEntries: controller.facultyMenuEntries,
+                    );
+
+                  case DataFetchState.failure:
+                    return GestureDetector(
+                      onTap: () {
+                        if (controller.selectedUniversityId.value != null) {
+                          controller.fetchFaculties(
+                            controller.selectedUniversityId.value!,
+                          );
+                        }
+                      },
+                      child: AbsorbPointer(
+                        child: TextField(
+                          readOnly: true,
+                          decoration: const InputDecoration(
+                            labelText: "Failed to load faculties, tap to retry",
+                            suffixIcon: Icon(Icons.refresh),
+                          ),
+                        ),
+                      ),
+                    );
+
+                  case DataFetchState.initial:
+                    return const TextField(
+                      enabled: false,
+                      decoration: InputDecoration(
+                        labelText: "Select a university first",
+                      ),
+                    );
+                }
+              }),
+              context.hBox(1.5),
+              Obx(() {
+                final textValue = controller.graduationYear.value;
+                return TextField(
+                  readOnly: true,
+                  controller: TextEditingController(text: textValue),
+                  decoration: InputDecoration(
+                    hintText: textValue.isEmpty
+                        ? "Choose your graduation year"
+                        : textValue,
+                  ),
+                  onTap: controller.pickGraduationYear,
+                );
+              }),
             ],
           ),
         ),
@@ -70,11 +169,7 @@ class EducationInfoScreen extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             FilledButton(
-              onPressed: () {
-                Get.toNamed(
-                  "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}${Routes.createAccountBackID}${Routes.createAccountPicWithID}${Routes.educationInfo}${Routes.educationPic}",
-                );
-              },
+              onPressed: controller.onSubmitEducationInfo,
               child: Text("Continue"),
             ),
 
