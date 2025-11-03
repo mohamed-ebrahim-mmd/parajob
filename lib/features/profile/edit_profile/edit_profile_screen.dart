@@ -69,16 +69,18 @@ class EditProfileScreen extends StatelessWidget {
             ),
           ),
         ),
-        body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: context.wPct(5)),
-          child: TabBarView(
-            children: [
-              EditMainInfo(screenContext: context),
-              EditEducation(screenContext: context),
-              Center(child: Text("cv")),
-              EditNationalIdScreen(),
-              EditSkillsScreen(screenContext: context),
-            ],
+        body: SafeArea(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: context.wPct(5)),
+            child: TabBarView(
+              children: [
+                EditMainInfo(screenContext: context),
+                EditEducation(screenContext: context),
+                Center(child: Text("cv")),
+                EditNationalIdScreen(),
+                EditSkillsScreen(screenContext: context),
+              ],
+            ),
           ),
         ),
       ),

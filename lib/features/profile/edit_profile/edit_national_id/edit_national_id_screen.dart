@@ -7,24 +7,26 @@ import 'package:para_job/packages/themeing/media_query_values.dart';
 
 class EditNationalIdScreen extends StatelessWidget {
   EditNationalIdScreen({super.key});
-  final oldUser = Get.find<ProfileController>().profileData;
+  final user = Get.find<ProfileController>().profileData;
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          context.hBox(5),
-
-          CustomEditImage(img: oldUser?.nationalIdFront ?? ""),
-          context.hBox(5),
-
-          CustomEditImage(img: oldUser?.nationalIdBack ?? ""),
-          context.hBox(5),
-
-          CustomEditImage(img: oldUser?.profilePicture ?? ""),
-          context.hBox(5),
-        ],
+    return SafeArea(
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            context.hBox(5),
+      
+            CustomEditImage(img: user?.nationalIdFront ?? ""),
+            context.hBox(5),
+      
+            CustomEditImage(img: user?.nationalIdBack ?? ""),
+            context.hBox(5),
+      
+            CustomEditImage(img: user?.profilePicture ?? ""),
+            context.hBox(5),
+          ],
+        ),
       ),
     );
   }

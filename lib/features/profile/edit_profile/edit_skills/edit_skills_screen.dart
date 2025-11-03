@@ -15,78 +15,76 @@ class EditSkillsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          context.hBox(2),
-          Obx(() {
-            switch (controller.skillsCallState.value) {
-              case ApiCallState.loading:
-                return TextField(
-                  enabled: false,
-                  decoration: InputDecoration(
-                    labelText: "Loading skills...",
-                    suffixIcon: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: const CircularProgressIndicator(),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        context.hBox(2),
+        Obx(() {
+          switch (controller.skillsCallState.value) {
+            case ApiCallState.loading:
+              return TextField(
+                enabled: false,
+                decoration: InputDecoration(
+                  labelText: "Loading skills...",
+                  suffixIcon: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: const CircularProgressIndicator(),
+                  ),
+                ),
+              );
+    
+            case ApiCallState.success:
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  DropdownMenu<int>(
+                    enableSearch: true,
+                    expandedInsets: EdgeInsets.zero,
+                    menuHeight: context.hPct(30),
+                    hintText: "Choose skill",
+                    onSelected: controller.onSkillSelected,
+                    dropdownMenuEntries: controller.skillsMenu,
+                  ),
+                  context.hBox(1.5),
+                  Wrap(
+                    spacing: context.wPct(3),
+                    runSpacing: context.wPct(3),
+                    children: controller.selectedSkillsList
+                        .map(
+                          (skill) => SkillItem(
+                            skill: skill.name,
+                            onDelete: () {
+                              controller.selectedSkillsList.remove(skill);
+                            },
+                          ),
+                        )
+                        .toList(),
+                  ),
+                ],
+              );
+    
+            case ApiCallState.failure:
+              return GestureDetector(
+                onTap: controller.fetchSkills,
+                child: AbsorbPointer(
+                  child: TextField(
+                    readOnly: true,
+                    decoration: const InputDecoration(
+                      labelText: "Failed to load, tap to retry",
+                      suffixIcon: Icon(Icons.refresh),
                     ),
                   ),
-                );
-
-              case ApiCallState.success:
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    DropdownMenu<int>(
-                      enableSearch: true,
-                      expandedInsets: EdgeInsets.zero,
-                      menuHeight: context.hPct(30),
-                      hintText: "Choose skill",
-                      onSelected: controller.onSkillSelected,
-                      dropdownMenuEntries: controller.skillsMenu,
-                    ),
-                    context.hBox(1.5),
-                    Wrap(
-                      spacing: context.wPct(3),
-                      runSpacing: context.wPct(3),
-                      children: controller.selectedSkillsList
-                          .map(
-                            (skill) => SkillItem(
-                              skill: skill.name,
-                              onDelete: () {
-                                controller.selectedSkillsList.remove(skill);
-                              },
-                            ),
-                          )
-                          .toList(),
-                    ),
-                  ],
-                );
-
-              case ApiCallState.failure:
-                return GestureDetector(
-                  onTap: controller.fetchSkills,
-                  child: AbsorbPointer(
-                    child: TextField(
-                      readOnly: true,
-                      decoration: const InputDecoration(
-                        labelText: "Failed to load, tap to retry",
-                        suffixIcon: Icon(Icons.refresh),
-                      ),
-                    ),
-                  ),
-                );
-            }
-          }),
-          Spacer(),
-          FilledButton(
-            onPressed: controller.editUserProfile,
-            child: Text("Save changes"),
-          ),
-          context.hBox(2.5),
-        ],
-      ),
+                ),
+              );
+          }
+        }),
+        Spacer(),
+        FilledButton(
+          onPressed: controller.editUserProfile,
+          child: Text("Save changes"),
+        ),
+        context.hBox(2.5),
+      ],
     );
   }
 }

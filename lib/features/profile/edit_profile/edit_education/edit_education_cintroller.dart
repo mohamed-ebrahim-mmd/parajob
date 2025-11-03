@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:para_job/features/profile/user_profile/profile_controller.dart';
+import 'package:para_job/packages/api_client/src/enums/api_call_state_enum.dart';
 import 'package:para_job/packages/api_client/src/models/requests/edit_user_request.dart';
 import 'package:para_job/packages/api_client/src/service/api_client_instance.dart';
 import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
@@ -12,25 +13,57 @@ import 'package:para_job/packages/user_manager/user_controller.dart';
 class EditEducationController extends GetxController {
   final BuildContext screenContext;
   EditEducationController(this.screenContext);
-  final facultyController = TextEditingController();
+ // final facultyController = TextEditingController();
   final graduationYearController = TextEditingController();
-    var olderUser = Get.find<ProfileController>().profileData;
-      final String token = Get.find<UserController>().token!;
+  var user = Get.find<ProfileController>().profileData;
+  final String token = Get.find<UserController>().token!;
+  
+  final facultiesCallState = ApiCallState.loading.obs;
+  List<DropdownMenuEntry<int>> facultyMenuEntries = [];
+  int? selectedFacultyId;
 
-
-   @override
+  @override
   void onInit() {
     super.onInit();
     setInitialData();
+    fetchFaculties(user!.university!);
   }
 
+   void setInitialData() {
+    graduationYearController.text = user!.graduationYear ?? "";
+    selectedFacultyId =user!.faculty;
 
-  Future<void> editUserProfile(
-   
-  ) async {
+  }
+
+  /// 📚 Fetch faculties by university
+  Future<void> fetchFaculties(int universityId) async {
+    facultiesCallState.value = ApiCallState.loading;
+
+    try {
+      final response = await apiClient.getFacultiesByUniversity(universityId);
+      if (response.isSuccess) {
+        facultyMenuEntries = response.data
+            .map((f) => DropdownMenuEntry<int>(value: f.id, label: f.name))
+            .toList();
+        facultiesCallState.value = ApiCallState.success;
+      } else {
+        facultiesCallState.value = ApiCallState.failure;
+      }
+    } catch (e) {
+      facultiesCallState.value = ApiCallState.failure;
+    }
+  }
+
+  Future<void> editUserProfile() async {
     screenContext.loaderOverlay.show();
     try {
-      final response = await apiClient.updateUserProfile(EditUserRequest(graduationYear:int.tryParse(graduationYearController.text),facultyId:1) , token);
+      final response = await apiClient.updateUserProfile(
+        EditUserRequest(
+          graduationYear: int.tryParse(graduationYearController.text),
+          facultyId: selectedFacultyId,
+        ),
+        token,
+      );
 
       if (response.isSuccess) {
         log("🟢 isSuccess");
@@ -46,20 +79,15 @@ class EditEducationController extends GetxController {
       log("🔴 ${e.toString()}");
       showSnackBarError("Failed", e.toString());
     } finally {
-       screenContext.loaderOverlay.hide();
+      screenContext.loaderOverlay.hide();
     }
   }
 
-
-
   void onClose() {
-    facultyController.dispose();
+  //  facultyController.dispose();
     graduationYearController.dispose();
     super.onClose();
   }
-  
-  void setInitialData() {
-    facultyController.text = olderUser!.faculty??"";
-    graduationYearController.text = olderUser!.graduationYear??"";
-  }
+
+ 
 }

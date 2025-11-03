@@ -3,13 +3,14 @@ import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
 class CustomEditImage extends StatelessWidget {
-  const CustomEditImage({super.key, required this.img});
+  const CustomEditImage({super.key, required this.img,this.onEdit});
   final String img;
+ final VoidCallback? onEdit;
 
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-       borderRadius: BorderRadius.circular(context.wPct(4)),
+      borderRadius: BorderRadius.circular(context.wPct(4)),
       child: Stack(
         children: [
           Image.network(
@@ -24,7 +25,7 @@ class CustomEditImage extends StatelessWidget {
                 color: AppColors.lightGray,
                 alignment: Alignment.center,
                 child: const CircularProgressIndicator(strokeWidth: 2),
-              ); 
+              );
             },
             // Handle error case (broken link, no internet, etc.)
             errorBuilder: (context, error, stackTrace) {
@@ -41,29 +42,23 @@ class CustomEditImage extends StatelessWidget {
               );
             },
           ),
-          
-      
-          Container(
-            width: double.infinity,
-            height: context.hPct(30),
-            color: const Color.fromARGB(217, 0, 0, 0).withOpacity(0.6), 
-            alignment: Alignment.center,
-            child:  Center(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                CircleAvatar(backgroundColor: const Color(0x80FFFFFF),radius: context.wPct(7),
-                  child:Icon(Icons.edit)),
-                  context.wBox(5),
-                   CircleAvatar(backgroundColor: const Color(0x80FFFFFF),radius: context.wPct(7),
-                  child:Icon(Icons.file_upload_outlined)),
-              ],
+
+          GestureDetector(
+            onTap:onEdit ,
+            child: Container(
+              width: double.infinity,
+              height: context.hPct(30),
+              color: const Color.fromARGB(217, 0, 0, 0).withOpacity(0.6),
+              alignment: Alignment.center,
+              child: Center(
+                child: CircleAvatar(
+                  backgroundColor: const Color(0x80FFFFFF),
+                  radius: context.wPct(7),
+                  child: Icon(Icons.edit),
+                ),
+              ),
             ),
           ),
-          ),
-      
-         
         ],
       ),
     );
