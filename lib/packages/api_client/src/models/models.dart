@@ -49,3 +49,5 @@ export 'responses/delete_user_photo.dart';
 export 'responses/upload_file_response.dart';
 export 'responses/faculty_response.dart';
 export 'responses/university_response.dart';
+export 'requests/edit_user_request.dart';
+export 'responses/edit_user_response.dart';

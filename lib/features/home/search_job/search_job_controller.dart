@@ -101,6 +101,8 @@ class SearchJobController extends GetxController {
     }
   }
 
+
+
   void applyFilters() {
     // refresh the paging controller to reload jobs with the selected filters
     pagingController.refresh();

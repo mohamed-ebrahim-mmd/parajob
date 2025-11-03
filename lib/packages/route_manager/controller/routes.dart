@@ -17,6 +17,7 @@ import 'package:para_job/features/onboarding/onboarding_screen.dart';
 import 'package:para_job/features/profile/about_app/about_app_screen.dart';
 import 'package:para_job/features/profile/about_us/about_us_screen.dart';
 import 'package:para_job/features/profile/contact_us/contact_us_screen.dart';
+import 'package:para_job/features/profile/edit_profile/edit_profile_screen.dart';
 import 'package:para_job/features/profile/more/more_screen.dart';
 import 'package:para_job/features/registration/back_national_id/back_national_id_screen.dart';
 import 'package:para_job/features/registration/create_account/create_account_screen.dart';
@@ -66,6 +67,7 @@ class Routes {
   static const String aboutUs = "/about-us";
   static const String aboutApp = "/about-app";
   static const String contactUs = "/contacts-us";
+  static const String editProfile = "/edit-profile";
 }
 
 class AppPages {
@@ -276,6 +278,16 @@ class AppPages {
               children: [
                 GetPage(name: Routes.aboutApp, page: () => AboutAppScreen()),
               ],
+            ),
+
+            GetPage(name: Routes.editProfile, page: () => LoaderOverlay(
+            child: EditProfileScreen(),
+            overlayWidgetBuilder: (_) {
+              //ignored progress for the moment
+              return AppLoader();
+            },
+          ),
+
             ),
           ],
         ),

@@ -52,4 +52,5 @@ class AppColors {
   static const Color listTileBG = Color(0xFF202426);
 
   static const Color whiteSoft5= Color(0x0DFFFFFF);
+  static const Color disabled=Color(0xB22C2C2C);
 }

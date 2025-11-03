@@ -120,7 +120,7 @@ class UserProfileInfo extends StatelessWidget {
             context.wBox(2),
             Expanded(
               child: CustomContainerCompanyDetail(
-                value: controller.formatNumber(profileData.companiesCount ?? 0),
+                value: controller.formatNumber(  num.tryParse(profileData.companiesCount ?? "0") ?? 0,),
                 title: "COMPANIES",
               ),
             ),

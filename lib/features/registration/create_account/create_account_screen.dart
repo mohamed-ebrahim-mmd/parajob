@@ -164,6 +164,8 @@ class CreateAccountScreen extends StatelessWidget {
                 }
               }),
               context.hBox(1.5),
+
+
               Obx(() {
                 switch (controller.areasCallState.value) {
                   case DataFetchState.loading:
@@ -221,6 +223,9 @@ class CreateAccountScreen extends StatelessWidget {
                     );
                 }
               }),
+             
+             
+             
               context.hBox(2.5),
 
               FilledButton(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:para_job/features/registration/widgets/skill_item.dart';
+import 'package:para_job/packages/ui_components/skill_item.dart';
 import 'package:para_job/features/registration/widgets/stepper.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/packages/ui_components/drop_down_button.dart';

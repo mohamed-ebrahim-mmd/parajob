@@ -12,8 +12,8 @@ class SkillItem extends StatelessWidget {
     return Container(
       height: context.hPct(5),
 
-      padding: EdgeInsets.symmetric(
-        horizontal: context.wPct(1),
+      padding: EdgeInsets.only(
+        left:  context.wPct(3),
       ),
       decoration: BoxDecoration(
         color: AppColors.aquaTeal8,
@@ -22,6 +22,7 @@ class SkillItem extends StatelessWidget {
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
+        
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
@@ -32,6 +33,7 @@ class SkillItem extends StatelessWidget {
               fontWeight: FontWeight.w400,
             ),
           ),
+         // Flexible(child: SizedBox()),
           IconButton(
             onPressed: onDelete,
             icon: Icon(
