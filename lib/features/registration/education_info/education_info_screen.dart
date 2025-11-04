@@ -140,6 +140,8 @@ class EducationInfoScreen extends StatelessWidget {
                     );
                 }
               }),
+             
+             
               context.hBox(1.5),
               TextField(
                 readOnly: true,
