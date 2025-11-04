@@ -1,10 +1,13 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:para_job/features/profile/user_profile/profile_controller.dart';
 import 'package:para_job/packages/api_client/src/enums/api_call_state_enum.dart';
 import 'package:para_job/packages/api_client/src/models/responses/skill.dart';
 import 'package:para_job/packages/api_client/src/models/responses/skill_response.dart';
 import 'package:para_job/packages/api_client/src/service/api_client_instance.dart';
+import 'package:para_job/packages/route_manager/controller/routes.dart'
+    show Routes;
 import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
 
 class CreateAccountSkillsController extends GetxController {
@@ -46,14 +49,12 @@ class CreateAccountSkillsController extends GetxController {
       if (skillsResponse.isSuccess) {
         allSkillsList = skillsResponse.data;
         skillsMenu = getMenuSkills(skillsResponse.data);
-        selectedSkillsList.value =
-            Get.find<ProfileController>().profileData?.skills ?? [];
-
         skillsCallState.value = ApiCallState.success;
       } else {
         skillsCallState.value = ApiCallState.failure;
       }
     } catch (e) {
+      log("🔴 ${e.toString()}");
       skillsCallState.value = ApiCallState.failure;
     }
   }
@@ -66,14 +67,14 @@ class CreateAccountSkillsController extends GetxController {
         .toList();
   }
 
-  void editUser() async {
-    //
+  void validateAndContinue() async {
     if (selectedSkillsList.isEmpty) {
       showSnackBarError("Failed", 'Please select at least one skill');
       return;
     }
-    showSnackBarSuccess("Success", "Skills selected successfully");
-    // await editUserProfile();
+    Get.toNamed(
+      "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}${Routes.createAccountBackID}${Routes.createAccountPicWithID}${Routes.educationInfo}${Routes.educationPic}${Routes.createAccountSkills}${Routes.createAccountCv}",
+    ); // await editUserProfile();
   }
 
   /*

@@ -7,7 +7,6 @@ import 'package:para_job/packages/api_client/src/enums/api_call_state_enum.dart'
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/packages/ui_components/skill_item.dart';
 
-import '../../../packages/route_manager/controller/routes.dart';
 import '../../../packages/themeing/app_colors.dart';
 
 class CreateAccountSkillsScreen extends StatelessWidget {
@@ -120,11 +119,7 @@ class CreateAccountSkillsScreen extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             FilledButton(
-              onPressed: () {
-                Get.toNamed(
-                  "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}${Routes.createAccountBackID}${Routes.createAccountPicWithID}${Routes.educationInfo}${Routes.educationPic}${Routes.createAccountSkills}${Routes.createAccountCv}",
-                );
-              },
+              onPressed: controller.validateAndContinue,
               child: Text("Continue"),
             ),
 
