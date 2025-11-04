@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:para_job/features/profile/edit_profile/edit_cv/edit_cv_screen.dart';
 import 'package:para_job/features/profile/edit_profile/edit_education/edit_education_screen.dart';
 import 'package:para_job/features/profile/edit_profile/edit_main_info/edit_main_info.dart';
 import 'package:para_job/features/profile/edit_profile/edit_national_id/edit_national_id_screen.dart';
@@ -76,19 +77,7 @@ class EditProfileScreen extends StatelessWidget {
               children: [
                 EditMainInfo(screenContext: context),
                 EditEducation(screenContext: context),
-                Center(
-                  child: Container(
-                    padding:  EdgeInsets.all(context.wPct(5),),
-                    color: AppColors.white5,
-                    child: Row(
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(color: AppColors.darkNavy),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                EditCvScreen(screenContext: context),
                 EditNationalIdScreen(screenContext: context),
                 EditSkillsScreen(screenContext: context),
               ],
