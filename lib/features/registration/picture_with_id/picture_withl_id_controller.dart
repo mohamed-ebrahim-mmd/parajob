@@ -10,8 +10,9 @@ import 'package:para_job/packages/route_manager/controller/routes.dart';
 
 class PictureWithIdController extends GetxController {
   File? picWithIdImage;
+
   // error message to show under the picker (nullable)
-  var idError = RxnString(null);
+  var picIdError = RxnString(null);
 
   void sePictureWithIdImage(File? value) {
     picWithIdImage = value;
@@ -20,11 +21,12 @@ class PictureWithIdController extends GetxController {
   /// Validate and navigate if file exists; otherwise show error text
   void validateAndContinue() {
     if (picWithIdImage == null) {
-      idError.value = "Please provide a picture of yourself holding the ID to continue";
+      picIdError.value =
+          "Please provide a picture of yourself holding the ID to continue";
       return;
     }
 
-    idError.value = null;
+    picIdError.value = null;
     // navigate to next screen
     Get.toNamed(
       "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}${Routes.createAccountBackID}${Routes.createAccountPicWithID}${Routes.educationInfo}",

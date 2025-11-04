@@ -1,24 +1,23 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:para_job/features/registration/education_pic/education_pic_controller.dart';
 import 'package:para_job/features/registration/widgets/register_img_picker.dart';
 import 'package:para_job/features/registration/widgets/registration_note.dart';
 import 'package:para_job/features/registration/widgets/stepper.dart';
-import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/res/app_asset_paths.dart';
 
 class EducationPicScreen extends StatelessWidget {
-  const EducationPicScreen({super.key});
+  final controller = Get.put(EducationPicController());
+
+  EducationPicScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         surfaceTintColor: Colors.transparent,
-
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new),
           onPressed: () {
@@ -67,8 +66,26 @@ class EducationPicScreen extends StatelessWidget {
                   ),
                   textAlign: TextAlign.center,
                 ),
-                onImageSelected: (File? value) {},
+                onImageSelected: controller.setEducationImage,
               ),
+              Obx(() {
+                return Visibility(
+                  visible: controller.educationImgError.value != null,
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      left: context.wPct(2),
+                      top: context.hPct(1),
+                    ),
+                    child: Text(
+                      controller.educationImgError.value ?? "",
+                      style: TextStyle(
+                        color: AppColors.coralRed,
+                        fontSize: context.wPct(3),
+                      ),
+                    ),
+                  ),
+                );
+              }),
               context.hBox(2),
               RegisterNote(note: "Make sure your surroundings are well-lit."),
               context.hBox(2),
@@ -87,11 +104,7 @@ class EducationPicScreen extends StatelessWidget {
           vertical: context.hPct(5),
         ),
         child: FilledButton(
-          onPressed: () {
-            Get.toNamed(
-              "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}${Routes.createAccountBackID}${Routes.createAccountPicWithID}${Routes.educationInfo}${Routes.educationPic}${Routes.createAccountSkills}",
-            );
-          },
+          onPressed: controller.validateAndContinue,
           child: Text("Confirm"),
         ),
       ),

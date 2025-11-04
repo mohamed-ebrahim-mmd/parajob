@@ -66,14 +66,14 @@ class PictureWithIdScreen extends StatelessWidget {
               ),
               Obx(() {
                 return Visibility(
-                  visible: controller.idError.value != null,
+                  visible: controller.picIdError.value != null,
                   child: Padding(
                     padding: EdgeInsets.only(
                       left: context.wPct(2),
                       top: context.hPct(1),
                     ),
                     child: Text(
-                      controller.idError.value ?? "",
+                      controller.picIdError.value ?? "",
                       style: TextStyle(
                         color: AppColors.coralRed,
                         fontSize: context.wPct(3),

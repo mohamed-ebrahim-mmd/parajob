@@ -3,7 +3,8 @@
  ==================================================================
 */
 
-import 'package:flutter/material.dart' show DropdownMenuEntry, showDatePicker;
+import 'package:flutter/material.dart'
+    show DropdownMenuEntry, showDatePicker, TextEditingController;
 import 'package:get/get.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart'
@@ -16,7 +17,7 @@ class EducationInfoController extends GetxController {
   final facultiesCallState = DataFetchState.initial.obs;
   final selectedUniversityId = Rx<int?>(null);
   int? selectedFacultyId;
-  final graduationYear = ''.obs;
+  final graduationYearController = TextEditingController();
 
   List<DropdownMenuEntry<int>> universityMenuEntries = [];
   List<DropdownMenuEntry<int>> facultyMenuEntries = [];
@@ -25,6 +26,12 @@ class EducationInfoController extends GetxController {
   void onInit() {
     super.onInit();
     fetchUniversities();
+  }
+
+  @override
+  void onClose() {
+    graduationYearController.dispose();
+    super.onClose();
   }
 
   /// 🎓 Fetch all universities
@@ -84,7 +91,7 @@ class EducationInfoController extends GetxController {
     );
 
     if (pickedDate != null) {
-      graduationYear.value = pickedDate.year.toString();
+      graduationYearController.text = pickedDate.year.toString();
     }
   }
 
@@ -100,7 +107,7 @@ class EducationInfoController extends GetxController {
       return;
     }
 
-    if (graduationYear.value.isEmpty) {
+    if (graduationYearController.text.isEmpty) {
       showSnackBarError("Failed", "Please select your graduation year");
       return;
     }

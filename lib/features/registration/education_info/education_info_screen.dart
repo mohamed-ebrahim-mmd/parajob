@@ -141,19 +141,16 @@ class EducationInfoScreen extends StatelessWidget {
                 }
               }),
               context.hBox(1.5),
-              Obx(() {
-                final textValue = controller.graduationYear.value;
-                return TextField(
-                  readOnly: true,
-                  controller: TextEditingController(text: textValue),
-                  decoration: InputDecoration(
-                    hintText: textValue.isEmpty
-                        ? "Choose your graduation year"
-                        : textValue,
-                  ),
-                  onTap: controller.pickGraduationYear,
-                );
-              }),
+              TextField(
+                readOnly: true,
+                controller: controller.graduationYearController,
+                decoration: InputDecoration(
+                  hintText: controller.graduationYearController.text.isEmpty
+                      ? "Choose your graduation year"
+                      : controller.graduationYearController.text,
+                ),
+                onTap: controller.pickGraduationYear,
+              ),
             ],
           ),
         ),
