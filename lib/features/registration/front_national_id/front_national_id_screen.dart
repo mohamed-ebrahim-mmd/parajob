@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/registration/front_national_id/front_national_id_controller.dart';
-import 'package:para_job/features/registration/widgets/register_img_picker.dart';
+import 'package:para_job/features/registration/widgets/id_img_picker.dart';
 import 'package:para_job/features/registration/widgets/registration_note.dart';
 import 'package:para_job/features/registration/widgets/stepper.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
@@ -9,7 +9,10 @@ import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/res/app_asset_paths.dart';
 
 class FrontNationalIdScreen extends StatelessWidget {
-  final controller = Get.put(FrontNationalIdController());
+  final tempToken = Get.arguments['tempToken'];
+  late final controller = Get.put(
+    FrontNationalIdController(tempToken: tempToken),
+  );
 
   FrontNationalIdScreen({super.key});
 
@@ -53,7 +56,7 @@ class FrontNationalIdScreen extends StatelessWidget {
               ),
 
               context.hBox(6),
-              IDImagePicker(
+              IdImagePicker(
                 imagePath: AppAssetPaths.nationalID,
                 text: RichText(
                   textAlign: TextAlign.center,
@@ -98,7 +101,7 @@ class FrontNationalIdScreen extends StatelessWidget {
               context.hBox(2),
               RegisterNote(
                 note:
-                "Make sure the photo is inside the frame and \ndetails are easy to read",
+                    "Make sure the photo is inside the frame and \ndetails are easy to read",
               ),
             ],
           ),

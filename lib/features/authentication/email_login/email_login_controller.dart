@@ -65,6 +65,7 @@ class EmailLoginController extends GetxController {
           );
           Get.toNamed(
             "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}",
+            arguments: {"tempToken": loginResponse.data?.token ?? "-"},
           );
         } else if ((user?.isVerified ?? false) &&
             (user?.isCompleted ?? false) &&

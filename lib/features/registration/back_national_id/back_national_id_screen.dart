@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/registration/back_national_id/back_national_id_controller.dart';
-import 'package:para_job/features/registration/widgets/register_img_picker.dart';
+import 'package:para_job/features/registration/widgets/id_img_picker.dart';
 import 'package:para_job/features/registration/widgets/registration_note.dart';
 import 'package:para_job/features/registration/widgets/stepper.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
@@ -52,7 +52,7 @@ class BackNationalIdScreen extends StatelessWidget {
               ),
 
               context.hBox(6),
-              IDImagePicker(
+              IdImagePicker(
                 imagePath: AppAssetPaths.nationalID,
                 text: RichText(
                   textAlign: TextAlign.center,

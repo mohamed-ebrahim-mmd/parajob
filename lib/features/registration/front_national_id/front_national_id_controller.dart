@@ -9,9 +9,14 @@ import 'package:get/get.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 
 class FrontNationalIdController extends GetxController {
+  final String tempToken;
+
   File? frontIdImage;
+
   // error message to show under the picker (nullable)
   var idError = RxnString(null);
+
+  FrontNationalIdController({required this.tempToken});
 
   void setFrontIdImage(File? value) {
     frontIdImage = value;

@@ -7,14 +7,9 @@ import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/res/app_asset_paths.dart';
 
 class CVUploader extends StatefulWidget {
-  const CVUploader({
-    super.key,
-    // required this.text,
-    // this.isEducation = false,
-  });
+  const CVUploader({super.key, required this.onFileSelected});
 
-  // final Widget text;
-  //final bool isEducation;
+  final ValueChanged<File?> onFileSelected;
 
   @override
   State<CVUploader> createState() => _CVUploaderState();
@@ -32,10 +27,14 @@ class _CVUploaderState extends State<CVUploader> {
       );
 
       if (result != null && result.files.single.path != null) {
+        final file = File(result.files.single.path!);
         setState(() {
-          _selectedFile = File(result.files.single.path!);
+          _selectedFile = file;
           _fileName = result.files.single.name;
         });
+        widget.onFileSelected(file);
+      } else {
+        widget.onFileSelected(null);
       }
     } catch (e) {
       debugPrint('Error picking file: $e');
@@ -45,70 +44,70 @@ class _CVUploaderState extends State<CVUploader> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      //  onTap: _pickFile,
+      onTap: _pickFile,
       child: Container(
+        height: context.hPct(20),
         padding: EdgeInsets.symmetric(
-          vertical: context.hPct(4),
-          horizontal: context.wPct(1),
+          vertical: context.hPct(3),
+          horizontal: context.wPct(3),
         ),
         width: context.w,
         decoration: BoxDecoration(
           border: Border.all(color: AppColors.pureWhite),
           borderRadius: BorderRadius.circular(context.wPct(3)),
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [..._buildContent(context)],
-        ),
+        child: CVContent(selectedFile: _selectedFile, fileName: _fileName),
       ),
     );
   }
+}
 
-  List<Widget> _buildContent(BuildContext context) {
-    final fileWidget = _selectedFile != null
+class CVContent extends StatelessWidget {
+  final File? selectedFile;
+  final String? fileName;
+
+  const CVContent({
+    super.key,
+    required this.selectedFile,
+    required this.fileName,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final fileWidget = selectedFile != null
         ? Icon(
-            Icons.check,
-            color: AppColors.softWhite70,
+            Icons.check_circle,
+            color: AppColors.aquaTeal,
             size: context.wPct(15),
           )
         : Image.asset(
             AppAssetPaths.cvUploadImg,
-            // width: context.wPct(60),
-            // height: context.hPct(18),
             fit: BoxFit.contain,
+            //width: context.wPct(30),
           );
 
-    final textWidget = Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          "Drag your CV or\t",
-          style: TextStyle(
-            color: AppColors.softWhite70,
-            fontSize: context.wPct(4),
-          ),
-        ),
-        GestureDetector(
-          onTap: _pickFile,
-          child: Text(
-            "click here",
+    final textWidget = selectedFile != null
+        ? Text(
+            fileName ?? "File selected",
             style: TextStyle(
               color: AppColors.pureWhite,
-              decoration: TextDecoration.underline,
+              fontSize: context.wPct(3.8),
+            ),
+            overflow: TextOverflow.ellipsis,
+          )
+        : Text(
+            "Click here to upload CV",
+            style: TextStyle(
+              color: AppColors.pureWhite,
+              fontWeight: FontWeight.w600,
               fontSize: context.wPct(4),
             ),
-          ),
-        ),
-        Text(
-          "\tto upload",
-          style: TextStyle(
-            color: AppColors.softWhite70,
-            fontSize: context.wPct(4),
-          ),
-        ),
-      ],
+          );
+
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [fileWidget, context.hBox(1), textWidget],
     );
-    final spacer = context.hBox(0.9);
-    return [fileWidget, spacer, textWidget];
   }
 }

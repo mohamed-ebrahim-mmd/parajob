@@ -5,8 +5,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
-class IDImagePicker extends StatefulWidget {
-  const IDImagePicker({
+class IdImagePicker extends StatefulWidget {
+  const IdImagePicker({
     super.key,
     required this.imagePath,
     required this.text,
@@ -20,10 +20,10 @@ class IDImagePicker extends StatefulWidget {
   final ValueChanged<File?> onImageSelected; // 👈 callback to parent
 
   @override
-  State<IDImagePicker> createState() => _IDImagePickerState();
+  State<IdImagePicker> createState() => _IdImagePickerState();
 }
 
-class _IDImagePickerState extends State<IDImagePicker> {
+class _IdImagePickerState extends State<IdImagePicker> {
   File? _selectedImage;
   final ImagePicker _picker = ImagePicker();
 

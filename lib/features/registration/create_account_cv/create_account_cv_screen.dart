@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:para_job/features/registration/create_account_cv/create_account_cv_controller.dart';
 import 'package:para_job/features/registration/widgets/file_picker.dart';
 import 'package:para_job/features/registration/widgets/stepper.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
 class CreateAccountCvScreen extends StatelessWidget {
-  const CreateAccountCvScreen({super.key});
+  final controller = Get.put(CreateAccountCvController());
+
+  CreateAccountCvScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +24,6 @@ class CreateAccountCvScreen extends StatelessWidget {
           },
         ),
       ),
-
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: context.wPct(5)),
         child: SingleChildScrollView(
@@ -47,9 +50,26 @@ class CreateAccountCvScreen extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-
               context.hBox(6),
-              CVUploader(),
+              CVUploader(onFileSelected: controller.setCvFile),
+              Obx(() {
+                return Visibility(
+                  visible: controller.cvFileError.value != null,
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      left: context.wPct(2),
+                      top: context.hPct(1),
+                    ),
+                    child: Text(
+                      controller.cvFileError.value ?? "",
+                      style: TextStyle(
+                        color: AppColors.coralRed,
+                        fontSize: context.wPct(3),
+                      ),
+                    ),
+                  ),
+                );
+              }),
             ],
           ),
         ),
@@ -61,11 +81,7 @@ class CreateAccountCvScreen extends StatelessWidget {
           vertical: context.hPct(5),
         ),
         child: FilledButton(
-          onPressed: () {
-            //  Get.toNamed(
-            //       "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}${Routes.createAccountBackID}${Routes.createAccountPicWithID}${Routes.educationInfo}${Routes.educationPic}${Routes.create_account_skills}",
-            //     );
-          },
+          onPressed: controller.validateAndUpload,
           child: Text("Confirm"),
         ),
       ),
