@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:para_job/packages/ui_components/skill_item.dart';
+import 'package:para_job/features/registration/create_account_skills/create_account_skills_controller.dart';
 import 'package:para_job/features/registration/widgets/stepper.dart';
+import 'package:para_job/packages/api_client/src/enums/api_call_state_enum.dart'
+    show ApiCallState;
 import 'package:para_job/packages/themeing/media_query_values.dart';
-import 'package:para_job/packages/ui_components/drop_down_button.dart';
+import 'package:para_job/packages/ui_components/skill_item.dart';
 
 import '../../../packages/route_manager/controller/routes.dart';
 import '../../../packages/themeing/app_colors.dart';
 
 class CreateAccountSkillsScreen extends StatelessWidget {
-  const CreateAccountSkillsScreen({super.key});
+  final controller = Get.put(CreateAccountSkillsController());
+
+  CreateAccountSkillsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +36,6 @@ class CreateAccountSkillsScreen extends StatelessWidget {
             children: [
               context.hBox(2),
               StepperRow(currentStep: 4, stepPercentage: "80%"),
-
               context.hBox(2),
               Text(
                 'Add skills',
@@ -42,28 +45,66 @@ class CreateAccountSkillsScreen extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              context.hBox(6),
-            
+              context.hBox(2),
+              Obx(() {
+                switch (controller.skillsCallState.value) {
+                  case ApiCallState.loading:
+                    return TextField(
+                      enabled: false,
+                      decoration: InputDecoration(
+                        labelText: "Loading skills...",
+                        suffixIcon: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: const CircularProgressIndicator(),
+                        ),
+                      ),
+                    );
 
-               DropDownButton(
-                options: ["skill1", "skill2"],
-                label: "Enter your skills",
-              ),
-              context.hBox(3),
+                  case ApiCallState.success:
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        DropdownMenu<int>(
+                          enableSearch: true,
+                          expandedInsets: EdgeInsets.zero,
+                          menuHeight: context.hPct(30),
+                          hintText: "Choose skill",
+                          onSelected: controller.onSkillSelected,
+                          dropdownMenuEntries: controller.skillsMenu,
+                        ),
+                        context.hBox(1.5),
+                        Wrap(
+                          spacing: context.wPct(3),
+                          runSpacing: context.wPct(3),
+                          children: controller.selectedSkillsList
+                              .map(
+                                (skill) => SkillItem(
+                                  skill: skill.name,
+                                  onDelete: () {
+                                    controller.selectedSkillsList.remove(skill);
+                                  },
+                                ),
+                              )
+                              .toList(),
+                        ),
+                      ],
+                    );
 
-              Row(
-                children: [
-                  Flexible(
-                    child: Wrap(
-                      spacing: context.wPct(3),
-                      runSpacing: context.wPct(3),
-                      children: skills
-                          .map((skill) => SkillItem(skill: skill))
-                          .toList(),
-                    ),
-                  ),
-                ],
-              ),
+                  case ApiCallState.failure:
+                    return GestureDetector(
+                      onTap: controller.fetchSkills,
+                      child: AbsorbPointer(
+                        child: TextField(
+                          readOnly: true,
+                          decoration: const InputDecoration(
+                            labelText: "Failed to load, tap to retry",
+                            suffixIcon: Icon(Icons.refresh),
+                          ),
+                        ),
+                      ),
+                    );
+                }
+              }),
             ],
           ),
         ),
