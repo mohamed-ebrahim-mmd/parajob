@@ -80,7 +80,7 @@ class EditSkillsScreen extends StatelessWidget {
         }),
         Spacer(),
         FilledButton(
-          onPressed: controller.editUserProfile,
+          onPressed: controller.editUser,
           child: Text("Save changes"),
         ),
         context.hBox(2.5),

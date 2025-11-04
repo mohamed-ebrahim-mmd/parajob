@@ -76,6 +76,17 @@ class EditSkillsController extends GetxController {
         .toList();
   }
 
+  void editUser() async {
+    // 
+    if (selectedSkillsList.isEmpty ) {
+      showSnackBarError("Failed", 'Please select at least one skill');
+      return;
+    }
+
+   
+
+    await editUserProfile();
+  }
   Future<void> editUserProfile() async {
     screenContext.loaderOverlay.show();
     try {

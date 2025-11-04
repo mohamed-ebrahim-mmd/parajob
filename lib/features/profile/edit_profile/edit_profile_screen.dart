@@ -77,7 +77,7 @@ class EditProfileScreen extends StatelessWidget {
                 EditMainInfo(screenContext: context),
                 EditEducation(screenContext: context),
                 Center(child: Text("cv")),
-                EditNationalIdScreen(),
+                EditNationalIdScreen(screenContext: context,),
                 EditSkillsScreen(screenContext: context),
               ],
             ),

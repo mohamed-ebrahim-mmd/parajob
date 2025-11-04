@@ -13,14 +13,14 @@ import 'package:para_job/packages/user_manager/user_controller.dart';
 class EditEducationController extends GetxController {
   final BuildContext screenContext;
   EditEducationController(this.screenContext);
- // final facultyController = TextEditingController();
   final graduationYearController = TextEditingController();
   var user = Get.find<ProfileController>().profileData;
   final String token = Get.find<UserController>().token!;
-  
+
   final facultiesCallState = ApiCallState.loading.obs;
   List<DropdownMenuEntry<int>> facultyMenuEntries = [];
   int? selectedFacultyId;
+
 
   @override
   void onInit() {
@@ -29,10 +29,31 @@ class EditEducationController extends GetxController {
     fetchFaculties(user!.university!);
   }
 
-   void setInitialData() {
-    graduationYearController.text = user!.graduationYear ?? "";
-    selectedFacultyId =user!.faculty;
+  void setInitialData() {
+    graduationYearController.text = user!.graduationYear ?? "-";
+    selectedFacultyId = user!.faculty;
+  }
 
+  void onFacultySelected(int? value) {
+    if (value != null && value != selectedFacultyId) {
+      selectedFacultyId = value;
+    }
+  }
+
+  Future<void> pickGraduationYear() async {
+    final DateTime? pickedDate = await showDatePicker(
+      context: Get.context!,
+      initialDate: DateTime(
+        int.tryParse(graduationYearController.text) ??2000 ,) ,
+      
+      firstDate: DateTime(1950),
+      lastDate: DateTime(2050),
+      helpText: 'Select your graduation year',
+    );
+
+    if (pickedDate != null) {
+      graduationYearController.text = pickedDate.year.toString();
+    }
   }
 
   /// 📚 Fetch faculties by university
@@ -52,6 +73,22 @@ class EditEducationController extends GetxController {
     } catch (e) {
       facultiesCallState.value = ApiCallState.failure;
     }
+  }
+
+    void editUser() async {
+    // graduation year
+    if (graduationYearController.text.isEmpty ) {
+      showSnackBarError("Failed", 'Please select your graduation year');
+      return;
+    }
+
+    //  
+    if (selectedFacultyId == null) {
+      showSnackBarError("Failed", 'Please select your faculty');
+      return;
+    }
+
+    await editUserProfile();
   }
 
   Future<void> editUserProfile() async {
@@ -84,10 +121,7 @@ class EditEducationController extends GetxController {
   }
 
   void onClose() {
-  //  facultyController.dispose();
     graduationYearController.dispose();
     super.onClose();
   }
-
- 
 }
