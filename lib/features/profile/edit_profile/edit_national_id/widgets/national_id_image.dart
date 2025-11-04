@@ -1,8 +1,3 @@
-
-
-
-
-
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:para_job/features/profile/edit_profile/edit_national_id/edit_national_id_controller.dart';
 import 'package:para_job/features/profile/edit_profile/edit_national_id/widgets/national_id_image.dart';
-import 'package:para_job/features/profile/user_profile/profile_controller.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
 class EditNationalIdScreen extends StatelessWidget {

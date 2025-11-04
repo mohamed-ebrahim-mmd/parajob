@@ -33,53 +33,6 @@ class EditNationalIdController extends GetxController {
     }
   }
 
-  // Future<void> uploadFile() async {
-  //   final List<File> filesList = [
-  //     frontFile.value,
-  //     backFile.value,
-  //     profileFile.value,
-  //   ].whereType<File>().toList();
-
-  //   if (filesList.isEmpty) {
-  //     showSnackBarError("No files changed", "no files changed");
-  //     return;
-  //   }
-
-  //   screenContext.loaderOverlay.show();
-  //   try {
-  //     // Convert files to MultipartFile list
-  //     final multipartFiles = await Future.wait(
-  //       filesList.map((file) async {
-  //         final bytes = await file.readAsBytes();
-  //         return MultipartFile.fromBytes(
-  //           bytes,
-  //           filename: file.path.split('/').last,
-  //         );
-  //       }),
-  //     );
-
-  //     final response = await apiClient.uploadFile(multipartFiles);
-
-  //     if (response.isSuccess) {
-  //       var url = response.urls;
-  //       // await updateUserPic(context, url ?? "");
-  //     } else {
-  //       showSnackBarError(
-  //         "Failed",
-  //         response.details?.message ?? "your photo uploaded failed",
-  //       );
-  //     }
-  //   } catch (e) {
-  //     showSnackBarError("Failed", e.toString());
-  //   } finally {
-  //     screenContext.loaderOverlay.hide();
-  //   }
-  // }
-
-
-
-
-
 
 Future<void> uploadFile() async {
   final Map<String, File?> fileMap = {
@@ -146,9 +99,9 @@ Future<void> uploadFile() async {
       final response = await apiClient.updateUserProfile(
         EditUserRequest(
         documents: Documents(
-          nationalIdFront: urls["front"]??null,
-          nationalIdBack: urls["back"]??null,
-          profilePictureWithId: urls["profile"]??null,
+          nationalIdFront: urls["front"],
+          nationalIdBack: urls["back"],
+          profilePictureWithId: urls["profile"],
         ),
       ),
         token,
