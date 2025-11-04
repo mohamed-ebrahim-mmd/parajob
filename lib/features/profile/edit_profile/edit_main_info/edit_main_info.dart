@@ -32,7 +32,7 @@ class EditMainInfo extends StatelessWidget {
                   filled: true,
                 ),
               ),
-    
+
               context.hBox(1.5),
               // Email Address TF
               TextField(
@@ -74,7 +74,7 @@ class EditMainInfo extends StatelessWidget {
                 ),
               ),
               context.hBox(1.5),
-    
+
               // City
               Obx(() {
                 switch (controller.citiesCallState.value) {
@@ -89,7 +89,7 @@ class EditMainInfo extends StatelessWidget {
                         ),
                       ),
                     );
-    
+
                   case ApiCallState.success:
                     return DropdownMenu<int>(
                       enableSearch: true,
@@ -100,7 +100,7 @@ class EditMainInfo extends StatelessWidget {
                       onSelected: controller.onCitySelected,
                       dropdownMenuEntries: controller.cityMenuEntries,
                     );
-    
+
                   case ApiCallState.failure:
                     return GestureDetector(
                       onTap: controller.fetchCities,
@@ -117,7 +117,7 @@ class EditMainInfo extends StatelessWidget {
                 }
               }),
               context.hBox(1.5),
-    
+
               // Area
               Obx(() {
                 switch (controller.areasCallState.value) {
@@ -132,7 +132,7 @@ class EditMainInfo extends StatelessWidget {
                         ),
                       ),
                     );
-    
+
                   case DataFetchState.success:
                     return DropdownMenu<int>(
                       enableSearch: true,
@@ -147,7 +147,7 @@ class EditMainInfo extends StatelessWidget {
                       },
                       dropdownMenuEntries: controller.areaMenuEntries,
                     );
-    
+
                   case DataFetchState.failure:
                     return GestureDetector(
                       onTap: () {
@@ -167,7 +167,7 @@ class EditMainInfo extends StatelessWidget {
                         ),
                       ),
                     );
-    
+
                   case DataFetchState.initial:
                     return TextField(
                       enabled: false,
@@ -177,7 +177,7 @@ class EditMainInfo extends StatelessWidget {
                     );
                 }
               }),
-    
+
               Spacer(),
               FilledButton(
                 onPressed: controller.editUser,

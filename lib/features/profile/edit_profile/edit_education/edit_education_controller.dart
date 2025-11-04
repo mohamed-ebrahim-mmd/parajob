@@ -12,15 +12,17 @@ import 'package:para_job/packages/user_manager/user_controller.dart';
 
 class EditEducationController extends GetxController {
   final BuildContext screenContext;
+
   EditEducationController(this.screenContext);
+
   final graduationYearController = TextEditingController();
-  var user = Get.find<ProfileController>().profileData;
+  final profileController = Get.find<ProfileController>();
+  late final user = profileController.profileData;
   final String token = Get.find<UserController>().token!;
 
   final facultiesCallState = ApiCallState.loading.obs;
   List<DropdownMenuEntry<int>> facultyMenuEntries = [];
   int? selectedFacultyId;
-
 
   @override
   void onInit() {
@@ -44,8 +46,8 @@ class EditEducationController extends GetxController {
     final DateTime? pickedDate = await showDatePicker(
       context: Get.context!,
       initialDate: DateTime(
-        int.tryParse(graduationYearController.text) ??2000 ,) ,
-      
+        int.tryParse(graduationYearController.text) ?? 2000,
+      ),
       firstDate: DateTime(1950),
       lastDate: DateTime(2050),
       helpText: 'Select your graduation year',
@@ -75,14 +77,14 @@ class EditEducationController extends GetxController {
     }
   }
 
-    void editUser() async {
+  void editUser() async {
     // graduation year
-    if (graduationYearController.text.isEmpty ) {
+    if (graduationYearController.text.isEmpty) {
       showSnackBarError("Failed", 'Please select your graduation year');
       return;
     }
 
-    //  
+    //
     if (selectedFacultyId == null) {
       showSnackBarError("Failed", 'Please select your faculty');
       return;
@@ -103,6 +105,7 @@ class EditEducationController extends GetxController {
       );
 
       if (response.isSuccess) {
+        await profileController.fetchProfileDetails();
         log("🟢 isSuccess");
         showSnackBarSuccess(
           "success",
@@ -120,6 +123,7 @@ class EditEducationController extends GetxController {
     }
   }
 
+  @override
   void onClose() {
     graduationYearController.dispose();
     super.onClose();

@@ -1,33 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/profile/edit_profile/edit_education/edit_education_controller.dart';
-import 'package:para_job/features/profile/user_profile/profile_controller.dart';
 import 'package:para_job/packages/api_client/src/enums/api_call_state_enum.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
-import 'package:para_job/packages/ui_components/date_packer.dart';
 
 class EditEducation extends StatelessWidget {
-  EditEducation({super.key, required this.screenContext});
   final BuildContext screenContext;
+
+  EditEducation({super.key, required this.screenContext});
+
+  late final controller = Get.put(EditEducationController(screenContext));
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(EditEducationController(screenContext));
-
     return Column(
       children: [
         context.hBox(2.5),
-        // YearPickerField(
-        //   selectedYear: int.tryParse(controller.user!.graduationYear ?? ""),
-        //   controller: controller.graduationYearController,
-        // ),
+        TextField(
+          readOnly: true,
+          controller: controller.graduationYearController,
+          onTap: controller.pickGraduationYear,
+        ),
 
-           TextField(
-                  readOnly: true,
-                  controller: controller.graduationYearController,
-                  onTap: controller.pickGraduationYear,
-                ),
-              
         context.hBox(2.5),
 
         Obx(() {
@@ -51,7 +45,7 @@ class EditEducation extends StatelessWidget {
                 menuHeight: context.hPct(30),
                 hintText: "Choose your faculty",
                 initialSelection: controller.selectedFacultyId,
-                onSelected:controller.onFacultySelected,
+                onSelected: controller.onFacultySelected,
                 dropdownMenuEntries: controller.facultyMenuEntries,
               );
 

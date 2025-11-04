@@ -70,7 +70,7 @@ class EmailLoginController extends GetxController {
             (user?.isCompleted ?? false) &&
             !(user?.isApproved ?? false)) {
           // 3️⃣ Waiting for admin approval
-          showSnackBarSuccess(
+          showSnackBarError(
             "Pending Approval",
             "Your account is awaiting admin approval. Please wait.",
           );
