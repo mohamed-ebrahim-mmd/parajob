@@ -16,7 +16,8 @@ class EditMainInfoController extends GetxController {
   final citiesCallState = ApiCallState.loading.obs;
   final areasCallState = DataFetchState.initial.obs;
   int? selectedAreaId;
-  final user = Get.find<ProfileController>().profileData;
+  final profileController = Get.find<ProfileController>();
+  late final user = profileController.profileData;
   final String token = Get.find<UserController>().token!;
   final selectedCityId = Rx<int?>(null);
   List<DropdownMenuEntry<int>> cityMenuEntries = [];
@@ -132,6 +133,7 @@ class EditMainInfoController extends GetxController {
     try {
       final response = await apiClient.updateUserProfile(request, token);
       if (response.isSuccess) {
+        await profileController.fetchProfileDetails();
         log("🟢 isSuccess");
         showSnackBarSuccess(
           "success",

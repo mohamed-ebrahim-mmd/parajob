@@ -17,6 +17,8 @@ class EditSkillsController extends GetxController {
   final BuildContext screenContext;
 
   EditSkillsController({required this.screenContext});
+   final profileController = Get.find<ProfileController>();
+
 
   final skillsCallState = ApiCallState.loading.obs;
   List<DropdownMenuEntry<int>> skillsMenu = [];
@@ -96,6 +98,7 @@ class EditSkillsController extends GetxController {
       );
 
       if (response.isSuccess) {
+        await profileController.fetchProfileDetails();
         log("🟢 isSuccess");
         showSnackBarSuccess(
           "success",
