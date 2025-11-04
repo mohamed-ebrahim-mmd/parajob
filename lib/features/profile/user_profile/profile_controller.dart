@@ -12,6 +12,7 @@ class ProfileController extends GetxController {
   var profileCallState = ApiCallState.loading.obs;
   UserProfileData? profileData;
   final String token = Get.find<UserController>().token!;
+
   ProfileController();
 
   @override
@@ -63,11 +64,11 @@ class ProfileController extends GetxController {
         filename: file.path.split('/').last,
       );
 
-      final response = await apiClient.uploadFile([multipartFile],);
+      final response = await apiClient.uploadFile([multipartFile]);
 
       if (response.isSuccess) {
-        var url = response.url;
-        await updateUserPic(context, url ?? "");
+        var url = response.urls?.first ?? "-";
+        await updateUserPic(context, url);
       } else {
         showSnackBarError(
           "Failed",

@@ -7,10 +7,13 @@ import 'dart:io';
 
 import 'package:get/get.dart' hide MultipartFile;
 import 'package:para_job/features/registration/back_national_id/back_national_id_controller.dart';
+import 'package:para_job/features/registration/create_account_skills/create_account_skills_controller.dart';
+import 'package:para_job/features/registration/education_info/education_info_controller.dart';
 import 'package:para_job/features/registration/education_pic/education_pic_controller.dart';
 import 'package:para_job/features/registration/front_national_id/front_national_id_controller.dart';
 import 'package:para_job/features/registration/picture_with_id/picture_withl_id_controller.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
+import 'package:para_job/packages/api_client/src/models/requests/documents.dart';
 import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
 
 class CreateAccountCvController extends GetxController {
@@ -33,8 +36,18 @@ class CreateAccountCvController extends GetxController {
 
   Future<void> uploadAllFiles() async {
     try {
+      final frontNationalIdController = Get.find<FrontNationalIdController>();
+      final educationInfoController = Get.find<EducationInfoController>();
+      final createAccountSkillsController =
+          Get.find<CreateAccountSkillsController>();
+      final graduationYearText = int.parse(
+        educationInfoController.graduationYearController.text.trim(),
+      );
+      educationInfoController.graduationYearController.text.trim();
+      final tempToken = "Bearer ${frontNationalIdController.tempToken}";
+
       // --- Collect files from controllers ---
-      final frontFile = Get.find<FrontNationalIdController>().frontIdImage!;
+      final frontFile = frontNationalIdController.frontIdImage!;
       final backFile = Get.find<BackNationalIdController>().backIdImage!;
       final idWithPicFile = Get.find<PictureWithIdController>().picWithIdImage!;
       final graduationFile = Get.find<EducationPicController>().educationImage!;
@@ -70,13 +83,30 @@ class CreateAccountCvController extends GetxController {
       ];
 
       // --- Upload all at once ---
-      final response = await apiClient.uploadFile(files);
+      final filesResponse = await apiClient.uploadFile(files);
 
-      if (response.isSuccess) {
+      if (filesResponse.isSuccess) {
+        final urlResponseList = filesResponse.urls!;
+        final response = await apiClient.updateUserProfile(
+          EditUserRequest(
+            universityId: educationInfoController.selectedUniversityId.value,
+            facultyId: educationInfoController.selectedFacultyId,
+            graduationYear: graduationYearText,
+            skills: createAccountSkillsController.selectedSkillIds,
+            documents: Documents(
+              nationalIdFront: urlResponseList[0],
+              nationalIdBack: urlResponseList[1],
+              profilePictureWithId: urlResponseList[2],
+              universityId: urlResponseList[3],
+              cv: urlResponseList[4],
+            ),
+          ),
+          tempToken,
+        );
       } else {
         showSnackBarError(
           "Upload failed",
-          response.details?.message ?? "Failed to upload files.",
+          filesResponse.details?.message ?? "Failed to upload files.",
         );
       }
     } catch (e) {

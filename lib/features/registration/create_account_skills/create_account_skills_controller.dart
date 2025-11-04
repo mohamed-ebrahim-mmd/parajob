@@ -16,6 +16,9 @@ class CreateAccountSkillsController extends GetxController {
   List<Skill>? allSkillsList;
   final selectedSkillsList = <Skill>[].obs;
 
+  List<int> get selectedSkillIds =>
+      selectedSkillsList.map((s) => s.id).toList();
+
   @override
   void onInit() {
     super.onInit();
@@ -76,32 +79,4 @@ class CreateAccountSkillsController extends GetxController {
       "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}${Routes.createAccountBackID}${Routes.createAccountPicWithID}${Routes.educationInfo}${Routes.educationPic}${Routes.createAccountSkills}${Routes.createAccountCv}",
     ); // await editUserProfile();
   }
-
-  /*
-  Future<void> editUserProfile() async {
-    screenContext.loaderOverlay.show();
-    try {
-      final response = await apiClient.updateUserProfile(
-        EditUserRequest(skills: selectedSkillsList.map((s) => s.id).toList()),
-        token,
-      );
-
-      if (response.isSuccess) {
-        log("🟢 isSuccess");
-        showSnackBarSuccess(
-          "success",
-          response.details.message ?? "edit successfully",
-        );
-      } else {
-        showSnackBarError("Failed", response.details.message ?? "edit failed");
-        log(response.details.message ?? "edit failed");
-      }
-    } catch (e) {
-      log("🔴 ${e.toString()}");
-      showSnackBarError("Failed", e.toString());
-    } finally {
-      screenContext.loaderOverlay.hide();
-    }
-  }
-*/
 }

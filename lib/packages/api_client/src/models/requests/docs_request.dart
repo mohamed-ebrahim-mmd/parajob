@@ -1,13 +1,11 @@
-
-
-class Documents {
+class DocumentsFiles {
   final String? nationalIdFront;
   final String? nationalIdBack;
   final String? profilePicture;
   final String? universityId;
   final String? cv;
 
-  Documents({
+  DocumentsFiles({
     this.nationalIdFront,
     this.nationalIdBack,
     this.profilePicture,

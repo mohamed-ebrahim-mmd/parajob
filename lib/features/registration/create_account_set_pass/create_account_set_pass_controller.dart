@@ -69,6 +69,7 @@ class CreateAccountSetPassController extends GetxController {
         );
         Get.toNamed(
           "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}",
+          arguments: {"tempToken": response.data?.token ?? "-"},
         );
       } else {
         showSnackBarError(

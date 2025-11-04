@@ -12,21 +12,20 @@ import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
 import '../../../../packages/api_client/api_client.dart';
 
 class EditNationalIdController extends GetxController {
-
   final BuildContext screenContext;
+
   EditNationalIdController({required this.screenContext});
-     final profileController = Get.find<ProfileController>();
+
+  final profileController = Get.find<ProfileController>();
 
   Future<void> pickImg() async {
     var file = await pickImageFile();
     if (file != null) {
-     // uploadFile(screenContext,file);
+      // uploadFile(screenContext,file);
     }
-    
   }
 
-  Future<void> uploadFile(BuildContext context,File file) async {
-
+  Future<void> uploadFile(BuildContext context, File file) async {
     try {
       final fileBytes = await file.readAsBytes();
 
@@ -38,7 +37,7 @@ class EditNationalIdController extends GetxController {
       final response = await apiClient.uploadFile([multipartFile]);
 
       if (response.isSuccess) {
-        var url = response.url;
+        var url = response.urls?.first ?? "-";
         // await updateUserPic(context, url ?? "");
       } else {
         showSnackBarError(
