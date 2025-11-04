@@ -1,8 +1,11 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/get_instance.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:loader_overlay/loader_overlay.dart';
+import 'package:para_job/features/profile/user_profile/profile_controller.dart';
 import 'package:para_job/packages/functional_components/img_picker.dart';
 import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
 
@@ -12,6 +15,8 @@ class EditNationalIdController extends GetxController {
 
   final BuildContext screenContext;
   EditNationalIdController({required this.screenContext});
+     final profileController = Get.find<ProfileController>();
+
   Future<void> pickImg() async {
     var file = await pickImageFile();
     if (file != null) {
