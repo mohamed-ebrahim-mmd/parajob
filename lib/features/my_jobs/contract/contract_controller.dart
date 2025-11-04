@@ -73,7 +73,7 @@ class ContractController extends GetxController {
 
       final uploadResponse = await apiClient.uploadFile([multipartFile]);
 
-      final uploadedUrl = uploadResponse.url ?? "";
+      final uploadedUrl = uploadResponse.urls?[0] ?? "";
 
       if (uploadedUrl.isEmpty) {
         showSnackBarError("Failed","No file URL returned from upload API");

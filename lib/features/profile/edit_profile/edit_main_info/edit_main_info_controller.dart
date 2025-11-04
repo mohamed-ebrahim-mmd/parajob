@@ -126,9 +126,9 @@ class EditMainInfoController extends GetxController {
   }
 
   Future<void> editUserProfile(
-    // BuildContext context,
     EditUserRequest request,
   ) async {
+
     context.loaderOverlay.show();
     try {
       final response = await apiClient.updateUserProfile(request, token);
@@ -145,7 +145,8 @@ class EditMainInfoController extends GetxController {
       }
     } catch (e) {
       log("🔴 ${e.toString()}");
-      showSnackBarError("Failed", e.toString());
+    showSnackBarApiError();
+    //  showSnackBarError("Failed", e.toString());
     } finally {
       context.loaderOverlay.hide();
     }

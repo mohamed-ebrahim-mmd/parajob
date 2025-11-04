@@ -66,8 +66,13 @@ class ProfileController extends GetxController {
       final response = await apiClient.uploadFile([multipartFile],);
 
       if (response.isSuccess) {
-        var url = response.url;
-        await updateUserPic(context, url ?? "");
+        var url = response.urls?[0];
+        if( url == null || url.isEmpty){
+            showSnackBarError("Failed","No file URL returned from upload API");
+            return;
+        }
+       
+        await updateUserPic(context, url);
       } else {
         showSnackBarError(
           "Failed",

@@ -6,6 +6,7 @@ class UserProfileData {
   final int? id;
   final String? name;
   final String? profilePicture;
+  final String? profileWithId;
   final int? jobsCount;
   final String? income;
   final String? companiesCount;
@@ -41,6 +42,7 @@ class UserProfileData {
     this.id,
     this.name,
     this.profilePicture,
+    this.profileWithId,
     this.jobsCount,
     this.income,
     this.companiesCount,
@@ -98,6 +100,7 @@ class UserProfileData {
       id: json['id'],
       name: json['name'],
       profilePicture: json['profile_picture'],
+      profileWithId: json['picture_with_national_id'],
       jobsCount: json['jobs_count'],
       income: json['income'],
       companiesCount: json['companies_count'],
