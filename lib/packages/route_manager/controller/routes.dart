@@ -17,6 +17,7 @@ import 'package:para_job/features/onboarding/onboarding_screen.dart';
 import 'package:para_job/features/profile/about_app/about_app_screen.dart';
 import 'package:para_job/features/profile/about_us/about_us_screen.dart';
 import 'package:para_job/features/profile/contact_us/contact_us_screen.dart';
+import 'package:para_job/features/profile/edit_profile/edit_cv/pdf_viewer_page.dart';
 import 'package:para_job/features/profile/edit_profile/edit_profile_screen.dart';
 import 'package:para_job/features/profile/more/more_screen.dart';
 import 'package:para_job/features/registration/back_national_id/back_national_id_screen.dart';
@@ -67,6 +68,7 @@ class Routes {
   static const String aboutApp = "/about-app";
   static const String contactUs = "/contacts-us";
   static const String editProfile = "/edit-profile";
+  static const String pdfViewer = "/pdf-viewer";
 }
 
 class AppPages {
@@ -203,25 +205,23 @@ class AppPages {
     ),
 
     //CompanyDetailsScreen
-    GetPage(
-      name: Routes.jobDetails,
-      page: () => JobDetailsScreen(),
-      children: [
-        GetPage(
-          name: Routes.employer,
-          page: () => LoaderOverlay(
-            overlayWidgetBuilder: (_) => AppLoader(),
-            child: EmployerScreen(),
+    GetPage(name: Routes.jobDetails, page: () => JobDetailsScreen(),children: [
+      GetPage(
+        name: Routes.employer,
+        page: () => LoaderOverlay(
+          overlayWidgetBuilder: (_) => AppLoader(),
+          child: EmployerScreen(
           ),
-          children: [
-            GetPage(
-              name: Routes.employerReviews,
-              page: () => EmployerReviewsScreen(),
-            ),
-          ],
         ),
-      ],
-    ),
+        children: [
+          GetPage(
+            name: Routes.employerReviews,
+            page: () => EmployerReviewsScreen(),
+          )
+        ]
+      )
+    ]),
+
 
     /// mainNavigator screen and its child
     GetPage(
@@ -296,6 +296,15 @@ class AppPages {
                   return AppLoader();
                 },
               ),
+              children: [
+                GetPage(
+                  name: Routes.pdfViewer,
+                  page: () {
+                    final path = Get.parameters['path'] ?? '';
+                    return PdfViewerPage(path: path);
+                  },
+                ),
+              ],
             ),
           ],
         ),

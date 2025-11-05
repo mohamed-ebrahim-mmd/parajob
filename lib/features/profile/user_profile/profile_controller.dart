@@ -12,7 +12,6 @@ class ProfileController extends GetxController {
   var profileCallState = ApiCallState.loading.obs;
   UserProfileData? profileData;
   final String token = Get.find<UserController>().token!;
-
   ProfileController();
 
   @override
@@ -64,10 +63,15 @@ class ProfileController extends GetxController {
         filename: file.path.split('/').last,
       );
 
-      final response = await apiClient.uploadFile([multipartFile]);
+      final response = await apiClient.uploadFile([multipartFile],);
 
       if (response.isSuccess) {
-        var url = response.urls?.first ?? "-";
+        var url = response.urls?[0];
+        if( url == null || url.isEmpty){
+            showSnackBarError("Failed","No file URL returned from upload API");
+            return;
+        }
+
         await updateUserPic(context, url);
       } else {
         showSnackBarError(

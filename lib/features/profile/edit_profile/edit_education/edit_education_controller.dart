@@ -116,12 +116,12 @@ class EditEducationController extends GetxController {
         log(response.details.message ?? "edit failed");
       }
     } catch (e) {
-      log("🔴 ${e.toString()}");
-      showSnackBarError("Failed", e.toString());
+      showSnackBarApiError();
     } finally {
       screenContext.loaderOverlay.hide();
     }
   }
+
 
   @override
   void onClose() {

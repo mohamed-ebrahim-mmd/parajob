@@ -23,6 +23,7 @@ class JobDetailsController extends GetxController {
 
       if (response.isSuccess) {
         log("🟢 isSuccess");
+        log("🟢 ${response.data.id}     ${response.data.title}  ${response.data.department.name} "    );
 
         jobData = response;
 

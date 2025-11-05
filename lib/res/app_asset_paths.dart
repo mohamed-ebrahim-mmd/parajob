@@ -60,4 +60,5 @@ abstract final class AppAssetPaths {
   static const contactUs="assets/icons/contact_us.svg";
   static const aboutUs="assets/icons/about_us.svg";
   static const complaint="assets/icons/complaint.svg";
+ 
 }
