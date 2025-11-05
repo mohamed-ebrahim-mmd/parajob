@@ -10,7 +10,7 @@ abstract class ApiClient {
   factory ApiClient(Dio dio) = _ApiClient;
 
   @GET("/api/user/home")
-  Future<HomeResponse> fetchHomeJobs();
+  Future<HomeResponse> fetchHomeJobs(@Header("Authorization") String? token);
 
   @GET("/api/department")
   Future<DepartmentResponse> getDepartments();
@@ -161,6 +161,20 @@ abstract class ApiClient {
   @PUT("/api/user")
   Future<EditUserResponse> updateUserProfile(
     @Body() EditUserRequest request,
+    @Header("Authorization") String token,
+  );
+
+  // --- Add Bookmark ---
+  @POST("/api/bookmark")
+  Future<BaseResponse> addBookmark(
+    @Body() BookmarkRequest request,
+    @Header("Authorization") String token,
+  );
+
+  // --- Delete Bookmark ---
+  @DELETE("/api/bookmark")
+  Future<BaseResponse> deleteBookmark(
+    @Body() BookmarkRequest request,
     @Header("Authorization") String token,
   );
 }
