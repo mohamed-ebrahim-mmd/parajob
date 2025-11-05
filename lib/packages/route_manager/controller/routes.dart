@@ -31,7 +31,6 @@ import 'package:para_job/features/registration/front_national_id/front_national_
 import 'package:para_job/features/registration/picture_with_id/picture_with_id_screen.dart';
 import 'package:para_job/packages/ui_components/app_loader.dart';
 
-
 class Routes {
   static const String onboarding = '/onboarding';
   static const String forgotPasswordOTP = '/forgot-password-otp';
@@ -176,7 +175,13 @@ class AppPages {
                                       children: [
                                         GetPage(
                                           name: Routes.createAccountCv,
-                                          page: () => CreateAccountCvScreen(),
+                                          page: () => LoaderOverlay(
+                                            child: CreateAccountCvScreen(),
+                                            overlayWidgetBuilder: (_) {
+                                              //ignored progress for the moment
+                                              return AppLoader();
+                                            },
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -198,23 +203,25 @@ class AppPages {
     ),
 
     //CompanyDetailsScreen
-    GetPage(name: Routes.jobDetails, page: () => JobDetailsScreen(),children: [
-      GetPage(
-        name: Routes.employer,
-        page: () => LoaderOverlay(
-          overlayWidgetBuilder: (_) => AppLoader(),
-          child: EmployerScreen(
+    GetPage(
+      name: Routes.jobDetails,
+      page: () => JobDetailsScreen(),
+      children: [
+        GetPage(
+          name: Routes.employer,
+          page: () => LoaderOverlay(
+            overlayWidgetBuilder: (_) => AppLoader(),
+            child: EmployerScreen(),
           ),
+          children: [
+            GetPage(
+              name: Routes.employerReviews,
+              page: () => EmployerReviewsScreen(),
+            ),
+          ],
         ),
-        children: [
-          GetPage(
-            name: Routes.employerReviews,
-            page: () => EmployerReviewsScreen(),
-          )
-        ]
-      )
-    ]),
-
+      ],
+    ),
 
     /// mainNavigator screen and its child
     GetPage(
@@ -280,14 +287,15 @@ class AppPages {
               ],
             ),
 
-            GetPage(name: Routes.editProfile, page: () => LoaderOverlay(
-            child: EditProfileScreen(),
-            overlayWidgetBuilder: (_) {
-              //ignored progress for the moment
-              return AppLoader();
-            },
-          ),
-
+            GetPage(
+              name: Routes.editProfile,
+              page: () => LoaderOverlay(
+                child: EditProfileScreen(),
+                overlayWidgetBuilder: (_) {
+                  //ignored progress for the moment
+                  return AppLoader();
+                },
+              ),
             ),
           ],
         ),
