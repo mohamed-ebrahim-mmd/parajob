@@ -7,7 +7,12 @@ import '../api_client/src/models/responses/job.dart' show Job;
 class JobCard extends StatelessWidget {
   final Job job;
   final VoidCallback? onTap;
-  const JobCard({super.key, required this.job, this.onTap});
+  final VoidCallback? onBookmarkTap;
+
+  late final bool isBookmarked = job.isBookmark ?? false;
+
+  JobCard({super.key, required this.job, this.onTap, this.onBookmarkTap});
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -74,20 +79,27 @@ class JobCard extends StatelessWidget {
                 // Icon container
                 context.wBox(1),
                 GestureDetector(
+                  onTap: onBookmarkTap,
                   child: Container(
                     height: context.hPct(7),
                     padding: EdgeInsets.all(context.hPct(1.4)),
                     decoration: BoxDecoration(
-                      color: Colors.transparent, // transparent background
+                      color: isBookmarked
+                          ? AppColors.aquaTeal8
+                          : Colors.transparent, // transparent background
                       borderRadius: BorderRadius.circular(context.wPct(4)),
                       border: Border.all(
-                        color: AppColors.softWhite80, // your border color
+                        color: isBookmarked
+                            ? AppColors.aquaTeal8
+                            : AppColors.softWhite80, // your border color
                         width: 1.5, // adjust thickness
                       ),
                     ),
                     child: Icon(
                       Icons.bookmark_border,
-                      color: AppColors.softWhite80,
+                      color: isBookmarked
+                          ? AppColors.aquaTeal
+                          : AppColors.softWhite80,
                       size: context.hPct(4),
                     ),
                   ),

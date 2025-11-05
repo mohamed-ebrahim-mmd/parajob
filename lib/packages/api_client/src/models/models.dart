@@ -41,7 +41,6 @@ export './responses/user_profile_response.dart';
 export './responses/verify_otp_response.dart';
 export 'requests/application_verification_otp_request.dart';
 export 'requests/application_verification_request.dart';
-export 'requests/docs_request.dart';
 export 'requests/edit_user_request.dart';
 export 'requests/register_request.dart';
 export 'requests/submit_review_request.dart';

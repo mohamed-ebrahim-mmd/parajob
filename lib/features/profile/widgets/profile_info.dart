@@ -5,7 +5,7 @@ import 'package:para_job/features/profile/widgets/show_edit_photo_buttom_sheet.d
 import 'package:para_job/packages/api_client/src/models/responses/user_profile_data.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
-import 'package:para_job/packages/ui_components/custom_container_company_details.dart';
+import 'package:para_job/packages/ui_components/company_detail_container.dart';
 import 'package:para_job/packages/ui_components/gradient_progress_bar.dart';
 
 class UserProfileInfo extends StatelessWidget {
@@ -101,7 +101,7 @@ class UserProfileInfo extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Expanded(
-              child: CustomContainerCompanyDetail(
+              child: CompanyDetailContainer(
                 value: controller.formatNumber(
                   profileData.jobsCount ?? 0,
                 ), //profileData.jobsCount?.toString() ?? "0",
@@ -110,7 +110,7 @@ class UserProfileInfo extends StatelessWidget {
             ),
             context.wBox(2),
             Expanded(
-              child: CustomContainerCompanyDetail(
+              child: CompanyDetailContainer(
                 value: controller.formatNumber(
                   num.tryParse(profileData.income ?? "0") ?? 0,
                 ),
@@ -119,8 +119,10 @@ class UserProfileInfo extends StatelessWidget {
             ),
             context.wBox(2),
             Expanded(
-              child: CustomContainerCompanyDetail(
-                value: controller.formatNumber(  num.tryParse(profileData.companiesCount ?? "0") ?? 0,),
+              child: CompanyDetailContainer(
+                value: controller.formatNumber(
+                  num.tryParse(profileData.companiesCount ?? "0") ?? 0,
+                ),
                 title: "COMPANIES",
               ),
             ),
