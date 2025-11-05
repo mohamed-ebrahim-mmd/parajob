@@ -27,6 +27,7 @@ dependencies:
   signature: ^6.3.0
   timeago: ^3.7.1
   pdfx: ^2.9.2
+  syncfusion_flutter_pdfviewer: ^31.2.5
 
 
 dev_dependencies:
