@@ -3,13 +3,11 @@ import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_instance/get_instance.dart';
-import 'package:get/get_rx/src/rx_types/rx_types.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:get/get.dart' hide MultipartFile;
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:para_job/features/profile/user_profile/profile_controller.dart';
 import 'package:para_job/packages/api_client/src/models/requests/documents.dart';
+import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
 
@@ -44,6 +42,12 @@ class EditCvController extends GetxController {
       selectedCvName.value = cvFile!.path.split('/').last;
       selectedCvPath = cvFile!.path;
     }
+  }
+
+  void onShowPdf() {
+    Get.toNamed(
+      "${Routes.mainNavigator}${Routes.more}${Routes.editProfile}${Routes.pdfViewer}",
+    );
   }
 
   Future<void> uploadFile() async {

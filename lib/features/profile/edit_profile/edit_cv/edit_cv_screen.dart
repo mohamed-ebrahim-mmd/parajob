@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/profile/edit_profile/edit_cv/edit_cv_controller.dart';
 import 'package:para_job/features/profile/edit_profile/edit_cv/widgets/cv_container.dart';
-import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
 class EditCvScreen extends StatelessWidget {
@@ -21,11 +20,7 @@ class EditCvScreen extends StatelessWidget {
           () => EditCvContainer(
             text: controller.selectedCvName.value ?? "-",
             onEdit: controller.pickFile,
-            onShowPdf: () {
-              Get.toNamed(
-                "${Routes.mainNavigator}${Routes.more}${Routes.editProfile}${Routes.pdfViewer}",
-              );
-            },
+            onShowPdf: controller.onShowPdf,
           ),
         ),
 

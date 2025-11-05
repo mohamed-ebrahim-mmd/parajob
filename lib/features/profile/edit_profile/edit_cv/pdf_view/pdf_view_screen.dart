@@ -19,29 +19,15 @@ class PdfViewScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('PDF Viewer')),
 
-      body: path.isEmpty
-          ? const Center(
-              child: Text(
-                "❌ No PDF file selected.",
-                style: TextStyle(color: Colors.redAccent, fontSize: 16),
-              ),
-            )
-          : path.startsWith('http')
+      body: path.startsWith('http')
           ? SfPdfViewer.network(
               path,
               controller: pdfController,
               canShowScrollHead: true,
               canShowPaginationDialog: true,
-              onDocumentLoaded: (details) {
-                debugPrint(
-                  'Document loaded with ${details.document.pages.count} pages',
-                );
-              },
+
               onDocumentLoadFailed: (details) {
                 showSnackBarApiError();
-              },
-              onPageChanged: (details) {
-                debugPrint('Page changed: ${details.newPageNumber}');
               },
 
               canShowPageLoadingIndicator: true,
@@ -51,9 +37,7 @@ class PdfViewScreen extends StatelessWidget {
               controller: pdfController,
               canShowScrollHead: true,
               canShowPaginationDialog: true,
-              onDocumentLoaded: (details) {
-                debugPrint('Loaded ${details.document.pages.count} pages');
-              },
+
               onDocumentLoadFailed: (details) {
                 showSnackBarApiError();
               },
