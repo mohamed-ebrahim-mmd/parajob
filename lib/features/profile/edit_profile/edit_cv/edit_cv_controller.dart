@@ -48,7 +48,10 @@ class EditCvController extends GetxController {
 
   Future<void> uploadFile() async {
     if (cvFile == null) {
-      showSnackBarError("No files changed", "no files changed");
+      showSnackBarError(
+        "Nothing to update",
+        "You didn’t make any changes to your file.",
+      );
       return;
     }
 
