@@ -21,26 +21,28 @@ class EditCvController extends GetxController {
   final profileController = Get.find<ProfileController>();
   final String token = Get.find<UserController>().token!;
   late final user = profileController.profileData;
-  File? cvFile ;
- final selectedCvName= Rx<String?>(null);
+  File? cvFile;
+  final selectedCvName = Rx<String?>(null);
+  String? selectedCvPath;
 
- @override
+  @override
   void onInit() {
     super.onInit();
-selectedCvName.value = user?.cv != null
-    ? user!.cv!.split('/').last
-    : null;  }
-
+    selectedCvPath = user?.cv;
+    selectedCvName.value = user?.cv != null ? user!.cv!.split('/').last : null;
+  }
 
   Future<void> pickFile() async {
     final result = await FilePicker.platform.pickFiles(
-      type: FileType.any,
+      type: FileType.custom,
+      allowedExtensions: ['pdf', 'doc', 'docx'],
       allowMultiple: false,
     );
 
     if (result != null && result.files.single.path != null) {
       cvFile = File(result.files.single.path!);
       selectedCvName.value = cvFile!.path.split('/').last;
+      selectedCvPath = cvFile!.path;
     }
   }
 
@@ -63,7 +65,7 @@ selectedCvName.value = user?.cv != null
 
       if (response.isSuccess && response.urls != null) {
         var url = response.urls?[0];
-              //  showSnackBarSuccess("title", url??"null url");
+        //  showSnackBarSuccess("title", url??"null url");
 
         if (url == null || url.isEmpty) {
           showSnackBarError("Failed", "No file URL returned from upload API");
