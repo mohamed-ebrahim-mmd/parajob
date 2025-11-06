@@ -29,7 +29,7 @@ class ProfileScreen extends StatelessWidget {
             if (controller.profileCallState.value == ApiCallState.success) {
               return IconButton(
                 onPressed: () {
-                  Get.toNamed("${Routes.mainNavigator}${Routes.more}",);
+                  Get.toNamed("${Routes.mainNavigator}${Routes.more}");
                 },
                 icon: const Icon(Icons.menu),
               );
@@ -72,6 +72,7 @@ class ProfileScreen extends StatelessWidget {
                         emptyMessage: "No saved jobs found ",
                         jobHistory: profileData.savedJobs ?? [],
                         title: "Saved Jobs",
+                        onSeeAll: controller.onSeeAllSavedJobs,
                       ),
                       context.hBox(2),
                     ],

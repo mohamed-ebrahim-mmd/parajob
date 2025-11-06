@@ -5,6 +5,7 @@ import 'package:get/get.dart' hide MultipartFile;
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
 import 'package:para_job/packages/functional_components/img_picker.dart';
+import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
 
@@ -18,6 +19,10 @@ class ProfileController extends GetxController {
   void onInit() {
     super.onInit();
     fetchProfileDetails();
+  }
+
+  void onSeeAllSavedJobs() {
+    Get.toNamed("${Routes.mainNavigator}${Routes.bookmarkedJobs}");
   }
 
   Future<void> deleteUserPic(BuildContext context) async {
@@ -63,13 +68,13 @@ class ProfileController extends GetxController {
         filename: file.path.split('/').last,
       );
 
-      final response = await apiClient.uploadFile([multipartFile],);
+      final response = await apiClient.uploadFile([multipartFile]);
 
       if (response.isSuccess) {
         var url = response.urls?[0];
-        if( url == null || url.isEmpty){
-            showSnackBarError("Failed","No file URL returned from upload API");
-            return;
+        if (url == null || url.isEmpty) {
+          showSnackBarError("Failed", "No file URL returned from upload API");
+          return;
         }
 
         await updateUserPic(context, url);

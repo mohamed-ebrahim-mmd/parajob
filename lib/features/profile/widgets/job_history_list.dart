@@ -61,12 +61,14 @@ class JobHistoryList extends StatelessWidget {
   final List<Job> jobHistory;
   final String title;
   final String emptyMessage;
+  final VoidCallback? onSeeAll;
 
   const JobHistoryList({
     super.key,
     required this.jobHistory,
     this.title = "Your job history",
     required this.emptyMessage,
+    this.onSeeAll,
   });
 
   @override
@@ -97,49 +99,48 @@ class JobHistoryList extends StatelessWidget {
             return JobCard(job: job);
           },
         ),
-        jobHistory.isEmpty
-            ? Padding(
-                padding: EdgeInsets.all(context.hPct(4.5)),
-                child: Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        emptyMessage,
-                        style: TextStyle(color: AppColors.lightGray),
-                      ),
-                      Icon(
-                        Icons.do_not_disturb_alt_rounded,
-                        color: AppColors.lightGray,
-                      ),
-                    ],
-                  ),
-                ),
-              )
-            : Align(
-                alignment: AlignmentGeometry.center,
-                child: TextButton(
-                  onPressed: () {},
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        "View more",
-                        style: TextStyle(
-                          fontSize: context.wPct(3.9),
-                          fontWeight: FontWeight.w500,
-                          color: AppColors.pureWhite,
-                        ),
-                      ),
 
-                      Icon(
-                        Icons.fast_forward_rounded,
-                        color: AppColors.pureWhite,
-                      ),
-                    ],
+        // jobHistory.isEmpty
+        //     ? Padding(
+        //         padding: EdgeInsets.all(context.hPct(4.5)),
+        //         child: Center(
+        //           child: Row(
+        //             mainAxisAlignment: MainAxisAlignment.center,
+        //             children: [
+        //               Text(
+        //                 emptyMessage,
+        //                 style: TextStyle(color: AppColors.lightGray),
+        //               ),
+        //               Icon(
+        //                 Icons.do_not_disturb_alt_rounded,
+        //                 color: AppColors.lightGray,
+        //               ),
+        //             ],
+        //           ),
+        //         ),
+        //       )
+        //     :
+        Align(
+          alignment: AlignmentGeometry.center,
+          child: TextButton(
+            onPressed: onSeeAll,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  "View more",
+                  style: TextStyle(
+                    fontSize: context.wPct(3.9),
+                    fontWeight: FontWeight.w500,
+                    color: AppColors.pureWhite,
                   ),
                 ),
-              ),
+
+                Icon(Icons.fast_forward_rounded, color: AppColors.pureWhite),
+              ],
+            ),
+          ),
+        ),
       ],
     );
   }

@@ -1,3 +1,5 @@
+//  @ Header: @Author: mary.mark@moselaymd.com |
+
 import 'package:para_job/packages/api_client/api_client.dart';
 
 class BookmarkedJobsResponse {
