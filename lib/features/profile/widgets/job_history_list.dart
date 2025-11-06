@@ -33,69 +33,75 @@ class JobHistoryList extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-
         context.hBox(1.5),
         // Job List
-        ListView.separated(
-          scrollDirection: Axis.vertical,
-          shrinkWrap: true,
-          primary: false,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: jobHistory.length,
-          separatorBuilder: (_, __) => context.hBox(2),
-          itemBuilder: (context, index) {
-            final job = jobHistory[index];
-            return JobCard(
-              onBookmarkTap: () {
-                Get.find<ProfileController>().removeBookmark(
-                  job.id ?? 0,
-                  context,
-                );
-              },
-              job: job,
-              showBookmarkIcon: title == null ? false : true,
-            );
-          },
+        Visibility(
+          visible: jobHistory.isNotEmpty,
+          child: ListView.separated(
+            scrollDirection: Axis.vertical,
+            shrinkWrap: true,
+            primary: false,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: jobHistory.length,
+            separatorBuilder: (_, __) => context.hBox(2),
+            itemBuilder: (context, index) {
+              final job = jobHistory[index];
+              return JobCard(
+                onBookmarkTap: () {
+                  Get.find<ProfileController>().removeBookmark(
+                    job.id ?? 0,
+                    context,
+                  );
+                },
+                job: job,
+                showBookmarkIcon: title == null ? false : true,
+              );
+            },
+          ),
         ),
+        Visibility(
+          visible: jobHistory.isNotEmpty,
 
-        // jobHistory.isEmpty
-        //     ? Padding(
-        //         padding: EdgeInsets.all(context.hPct(4.5)),
-        //         child: Center(
-        //           child: Row(
-        //             mainAxisAlignment: MainAxisAlignment.center,
-        //             children: [
-        //               Text(
-        //                 emptyMessage,
-        //                 style: TextStyle(color: AppColors.lightGray),
-        //               ),
-        //               Icon(
-        //                 Icons.do_not_disturb_alt_rounded,
-        //                 color: AppColors.lightGray,
-        //               ),
-        //             ],
-        //           ),
-        //         ),
-        //       )
-        //     :
-        Align(
-          alignment: AlignmentGeometry.center,
-          child: TextButton(
-            onPressed: onSeeAll,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  "View more",
-                  style: TextStyle(
-                    fontSize: context.wPct(3.9),
-                    fontWeight: FontWeight.w500,
-                    color: AppColors.pureWhite,
+          child: Align(
+            alignment: AlignmentGeometry.center,
+            child: TextButton(
+              onPressed: onSeeAll,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    "View more",
+                    style: TextStyle(
+                      fontSize: context.wPct(3.9),
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.pureWhite,
+                    ),
                   ),
-                ),
 
-                Icon(Icons.fast_forward_rounded, color: AppColors.pureWhite),
-              ],
+                  Icon(Icons.fast_forward_rounded, color: AppColors.pureWhite),
+                ],
+              ),
+            ),
+          ),
+        ),
+        Visibility(
+          visible: jobHistory.isEmpty,
+          child: Padding(
+            padding: EdgeInsets.all(context.hPct(4.5)),
+            child: Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    emptyMessage,
+                    style: TextStyle(color: AppColors.lightGray),
+                  ),
+                  Icon(
+                    Icons.do_not_disturb_alt_rounded,
+                    color: AppColors.lightGray,
+                  ),
+                ],
+              ),
             ),
           ),
         ),
