@@ -73,6 +73,7 @@ class JobsScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         DepartmentChips(),
+
                         Expanded(
                           child: PagingListener<int, Job>(
                             controller: controller.pagingController,

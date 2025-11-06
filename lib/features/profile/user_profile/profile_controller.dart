@@ -6,6 +6,7 @@ import 'package:loader_overlay/loader_overlay.dart';
 import 'package:para_job/features/home/home_controller.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
 import 'package:para_job/packages/functional_components/img_picker.dart';
+import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
 
@@ -21,6 +22,10 @@ class ProfileController extends GetxController {
   void onInit() {
     super.onInit();
     fetchProfileDetails();
+  }
+
+  void onSeeAllSavedJobs() {
+    Get.toNamed("${Routes.mainNavigator}${Routes.bookmarkedJobs}");
   }
 
   Future<void> deleteUserPic(BuildContext context) async {

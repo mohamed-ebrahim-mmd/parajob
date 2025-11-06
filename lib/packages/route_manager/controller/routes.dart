@@ -16,6 +16,7 @@ import 'package:para_job/features/my_jobs/contract/contract_screen.dart';
 import 'package:para_job/features/onboarding/onboarding_screen.dart';
 import 'package:para_job/features/profile/about_app/about_app_screen.dart';
 import 'package:para_job/features/profile/about_us/about_us_screen.dart';
+import 'package:para_job/features/profile/bookmarked_jobs.dart/book_marked_jobs_screen.dart';
 import 'package:para_job/features/profile/contact_us/contact_us_screen.dart';
 import 'package:para_job/features/profile/edit_profile/edit_cv/pdf_view/pdf_view_screen.dart';
 import 'package:para_job/features/profile/edit_profile/edit_profile_screen.dart';
@@ -69,6 +70,7 @@ class Routes {
   static const String contactUs = "/contacts-us";
   static const String editProfile = "/edit-profile";
   static const String pdfViewer = "/pdf-viewer";
+  static const String bookmarkedJobs = '/bookmarked_jobs_controller';
 }
 
 class AppPages {
@@ -272,6 +274,10 @@ class AppPages {
           ],
         ),
         //profile
+        GetPage(
+          name: Routes.bookmarkedJobs,
+          page: () => BookMarkedJobsScreen(),
+        ),
         GetPage(
           name: Routes.more,
           page: () => LoaderOverlay(
