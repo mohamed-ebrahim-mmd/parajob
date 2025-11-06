@@ -1058,9 +1058,12 @@ class _ApiClient implements ApiClient {
   }
 
   @override
-  Future<BookmarkedJobsResponse> fetchBookmark({String? token}) async {
+  Future<BookmarkedJobsResponse> fetchBookmark({
+    String? token,
+    int? page,
+  }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'page': page};
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{r'Authorization': token};
     _headers.removeWhere((k, v) => v == null);

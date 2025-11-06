@@ -1,3 +1,6 @@
+//
+//  @ Header: @Author: mary.mark@moselaymd.com |
+
 import 'dart:developer';
 
 import 'package:get/get.dart';
@@ -6,55 +9,37 @@ import 'package:para_job/packages/api_client/api_client.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
 
 class BookmarkedJobsController extends GetxController {
-  BookmarkedJobsController();
-  var pookmarkedCallState = ApiCallState.loading.obs;
+  /// Paging controller for infinite scroll pagination
+  late final PagingController<int, Job> pagingController;
 
-  late final pagingController;
+  /// Authentication token retrieved from user controller
   final String token = Get.find<UserController>().token!;
-  BookmarkedJobsResponse? bookmarkedJobsResponse;
 
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
-    // initPagingController();
-    //  pookmarkedCallState.value = ApiCallState.success;
-    fetchBookmark(1);
     initPagingController();
   }
 
-  /// Initialize pagination logic (runs only after departments are loaded)
+  /// Initialize pagination logic
   void initPagingController() {
-    // pookmarkedCallState.value = ApiCallState.loading;
-
     pagingController = PagingController<int, Job>(
       getNextPageKey: (state) =>
           state.lastPageIsEmpty ? null : state.nextIntPageKey,
-
-      fetchPage: fetchBookmark,
+      fetchPage: _fetchBookmarkPage,
     );
   }
 
-  Future<List<Job>> fetchBookmark(int pageKey) async {
-    pookmarkedCallState.value = ApiCallState.loading;
-    try {
-      final response = await apiClient.fetchBookmark(token: token);
+  /// Fetches bookmarked jobs from API (single page)
+  Future<List<Job>> _fetchBookmarkPage(int pageKey) async {
+    log('📄 Fetching bookmarked jobs (page: $pageKey)');
 
-      if (response.isSuccess) {
-        log("🟢 isSuccess");
+    final response = await apiClient.fetchBookmark(token: token, page: pageKey);
 
-        bookmarkedJobsResponse = response;
-
-        pookmarkedCallState.value = ApiCallState.success;
-        return response.data ?? [];
-      } else {
-        pookmarkedCallState.value = ApiCallState.failure;
-        return [];
-      }
-    } catch (e) {
-      log("🔴 ${e.toString()}");
-      pookmarkedCallState.value = ApiCallState.failure;
-      return [];
+    if (response.isSuccess) {
+      return response.data ?? [];
+    } else {
+      throw Exception('Failed to fetch jobs');
     }
   }
 

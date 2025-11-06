@@ -181,5 +181,6 @@ abstract class ApiClient {
   @GET("/api/bookmark")
   Future<BookmarkedJobsResponse> fetchBookmark({
     @Header('Authorization') String? token,
+    @Query("page") int? page,
   });
 }
