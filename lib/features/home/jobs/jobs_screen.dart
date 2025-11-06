@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:para_job/features/home/jobs/jobs_controller.dart';
 import 'package:para_job/features/home/widgets/department_chips.dart';
-import 'package:para_job/packages/ui_components/job_card.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
 import 'package:para_job/packages/api_client/src/enums/job_category_enum.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
@@ -11,6 +10,7 @@ import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/packages/ui_components/error_screen.dart'
     show ErrorScreen;
+import 'package:para_job/packages/ui_components/job_card.dart';
 
 class JobsScreen extends StatelessWidget {
   JobsScreen({super.key});
@@ -72,6 +72,7 @@ class JobsScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         DepartmentChips(),
+
                         Expanded(
                           child: PagingListener<int, Job>(
                             controller: controller.pagingController,
