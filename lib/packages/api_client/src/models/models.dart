@@ -47,6 +47,7 @@ export 'requests/register_request.dart';
 export 'requests/submit_review_request.dart';
 export 'requests/update_user_pic_request.dart';
 export 'responses/base_response.dart';
+export 'responses/bookmarked_Jobs_response.dart';
 export 'responses/company_response.dart';
 export 'responses/company_reviews_response.dart';
 export 'responses/contact_info_data.dart';

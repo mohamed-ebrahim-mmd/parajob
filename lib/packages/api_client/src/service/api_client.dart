@@ -177,4 +177,9 @@ abstract class ApiClient {
     @Body() BookmarkRequest request,
     @Header("Authorization") String token,
   );
+
+  @GET("/api/bookmark")
+  Future<BookmarkedJobsResponse> fetchBookmark({
+    @Header('Authorization') String? token,
+  });
 }
