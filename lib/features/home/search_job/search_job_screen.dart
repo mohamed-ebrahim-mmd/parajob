@@ -20,6 +20,7 @@ import 'package:para_job/packages/ui_components/job_card.dart' show JobCard;
 
 class SearchJobScreen extends StatelessWidget {
   final controller = Get.put(SearchJobController());
+
   SearchJobScreen({super.key});
 
   @override
@@ -78,6 +79,9 @@ class SearchJobScreen extends StatelessWidget {
                                   vertical: context.hPct(1),
                                 ),
                                 child: JobCard(
+                                  onBookmarkTap: () {
+                                    controller.handleBookmarkTap(item, context);
+                                  },
                                   job: item,
                                   onTap: () {
                                     Get.toNamed(

@@ -246,7 +246,13 @@ class AppPages {
             overlayWidgetBuilder: (_) => AppLoader(),
           ),
         ),
-        GetPage(name: Routes.searchJob, page: () => SearchJobScreen()),
+        GetPage(
+          name: Routes.searchJob,
+          page: () => LoaderOverlay(
+            child: SearchJobScreen(),
+            overlayWidgetBuilder: (_) => AppLoader(),
+          ),
+        ),
 
         // my jobs
         GetPage(

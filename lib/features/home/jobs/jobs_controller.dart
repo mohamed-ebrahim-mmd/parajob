@@ -10,6 +10,7 @@ import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:para_job/features/home/home_controller.dart';
+import 'package:para_job/features/profile/user_profile/profile_controller.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
 import 'package:para_job/packages/ui_components/auth_required_dialog.dart';
 import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
@@ -18,7 +19,9 @@ import 'package:para_job/packages/user_manager/user_controller.dart';
 class JobsController extends GetxController {
   final _userController = Get.find<UserController>();
   final _homeController = Get.find<HomeController>();
-
+  late final _profileController = _userController.isGuest
+      ? null
+      : Get.find<ProfileController>();
   var departmentCallState = ApiCallState.loading.obs;
   var selectedDepartmentId = (-1).obs; // For the selected button
   List<Department>? departments;
@@ -108,6 +111,7 @@ class JobsController extends GetxController {
         if (_homeController.jobIsInHome(jobId)) {
           _homeController.fetchHomeJobs();
         }
+        _profileController?.fetchProfileDetails();
       } else {
         log("🔴 addBookmark ${response.details!.message}");
 
@@ -138,6 +142,7 @@ class JobsController extends GetxController {
         if (_homeController.jobIsInHome(jobId)) {
           _homeController.fetchHomeJobs();
         }
+        _profileController?.fetchProfileDetails();
       } else {
         log("🔴 removeBookmark ${response.details!.message}");
         showSnackBarError(
