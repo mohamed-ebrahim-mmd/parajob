@@ -8,10 +8,17 @@ class JobCard extends StatelessWidget {
   final Job job;
   final VoidCallback? onTap;
   final VoidCallback? onBookmarkTap;
+  final bool showBookmarkIcon;
 
   late final bool isBookmarked = job.isBookmark ?? false;
 
-  JobCard({super.key, required this.job, this.onTap, this.onBookmarkTap});
+  JobCard({
+    super.key,
+    required this.job,
+    this.onTap,
+    this.onBookmarkTap,
+    this.showBookmarkIcon = true,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -78,29 +85,32 @@ class JobCard extends StatelessWidget {
                 ),
                 // Icon container
                 context.wBox(1),
-                GestureDetector(
-                  onTap: onBookmarkTap,
-                  child: Container(
-                    height: context.hPct(7),
-                    padding: EdgeInsets.all(context.hPct(1.4)),
-                    decoration: BoxDecoration(
-                      color: isBookmarked
-                          ? AppColors.aquaTeal8
-                          : Colors.transparent, // transparent background
-                      borderRadius: BorderRadius.circular(context.wPct(4)),
-                      border: Border.all(
+                Visibility(
+                  visible: showBookmarkIcon,
+                  child: GestureDetector(
+                    onTap: onBookmarkTap,
+                    child: Container(
+                      height: context.hPct(7),
+                      padding: EdgeInsets.all(context.hPct(1.4)),
+                      decoration: BoxDecoration(
                         color: isBookmarked
                             ? AppColors.aquaTeal8
-                            : AppColors.softWhite80, // your border color
-                        width: 1.5, // adjust thickness
+                            : Colors.transparent, // transparent background
+                        borderRadius: BorderRadius.circular(context.wPct(4)),
+                        border: Border.all(
+                          color: isBookmarked
+                              ? AppColors.aquaTeal8
+                              : AppColors.softWhite80, // your border color
+                          width: 1.5, // adjust thickness
+                        ),
                       ),
-                    ),
-                    child: Icon(
-                      Icons.bookmark_border,
-                      color: isBookmarked
-                          ? AppColors.aquaTeal
-                          : AppColors.softWhite80,
-                      size: context.hPct(4),
+                      child: Icon(
+                        Icons.bookmark_border,
+                        color: isBookmarked
+                            ? AppColors.aquaTeal
+                            : AppColors.softWhite80,
+                        size: context.hPct(4),
+                      ),
                     ),
                   ),
                 ),

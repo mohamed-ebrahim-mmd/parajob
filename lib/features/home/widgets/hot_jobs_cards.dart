@@ -14,9 +14,11 @@ import '../../../packages/api_client/src/models/responses/job.dart' show Job;
 
 class HotJobCard extends StatelessWidget {
   final Job job;
-    final VoidCallback? onTap;
+  final VoidCallback? onTap;
+  final VoidCallback? onBookmarkTap;
+  late final bool isBookmarked = job.isBookmark ?? false;
 
-  const HotJobCard({super.key, required this.job, this.onTap});
+  HotJobCard({super.key, required this.job, this.onTap, this.onBookmarkTap});
 
   @override
   Widget build(BuildContext context) {
@@ -46,8 +48,7 @@ class HotJobCard extends StatelessWidget {
                     ), // same visual size as before (≈ diameter)
                     height: context.wPct(12),
                     fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) =>
-                     Container(
+                    errorBuilder: (context, error, stackTrace) => Container(
                       width: context.wPct(12),
                       height: context.wPct(12),
                       color: Colors.grey.shade300,
@@ -74,7 +75,7 @@ class HotJobCard extends StatelessWidget {
                       Text(
                         job.company?.name ?? "",
                         maxLines: 1,
-      
+
                         style: TextStyle(
                           color: AppColors.softWhite70,
                           fontSize: context.wPct(3),
@@ -107,7 +108,7 @@ class HotJobCard extends StatelessWidget {
                       ), // makes it nicely rounded
                     ),
                     backgroundColor: const Color(0xFF80E5DB),
-      
+
                     padding: EdgeInsets.all(context.wPct(1)),
                   );
                 },
@@ -126,7 +127,7 @@ class HotJobCard extends StatelessWidget {
             ),
             Spacer(),
             context.hBox(1), // Salary + Deadline
-      
+
             RichText(
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
@@ -201,25 +202,32 @@ class HotJobCard extends StatelessWidget {
                 context.wBox(3),
                 // Icon container
                 GestureDetector(
+                  onTap: onBookmarkTap,
                   child: Container(
                     height: context.hPct(7),
                     padding: EdgeInsets.all(context.hPct(1.4)),
                     decoration: BoxDecoration(
-                      color: Colors.transparent, // transparent background
+                      color: isBookmarked
+                          ? AppColors.aquaTeal8
+                          : Colors.transparent, // transparent background
                       borderRadius: BorderRadius.circular(context.wPct(4)),
                       border: Border.all(
-                        color: AppColors.softWhite70, // your border color
+                        color: isBookmarked
+                            ? AppColors.aquaTeal8
+                            : AppColors.softWhite80, // your border color
                         width: 1.5, // adjust thickness
                       ),
                     ),
                     child: Icon(
                       Icons.bookmark_border,
-                      color: AppColors.softWhite70,
+                      color: isBookmarked
+                          ? AppColors.aquaTeal
+                          : AppColors.softWhite80,
                       size: context.hPct(4),
                     ),
                   ),
                 ),
-      
+
                 // Expanded button
               ],
             ),
@@ -227,7 +235,5 @@ class HotJobCard extends StatelessWidget {
         ),
       ),
     );
-
-
   }
 }

@@ -239,7 +239,13 @@ class AppPages {
       /// screens that's under the home tab
       children: [
         // home
-        GetPage(name: Routes.jobs, page: () => JobsScreen()),
+        GetPage(
+          name: Routes.jobs,
+          page: () => LoaderOverlay(
+            child: JobsScreen(),
+            overlayWidgetBuilder: (_) => AppLoader(),
+          ),
+        ),
         GetPage(name: Routes.searchJob, page: () => SearchJobScreen()),
 
         // my jobs

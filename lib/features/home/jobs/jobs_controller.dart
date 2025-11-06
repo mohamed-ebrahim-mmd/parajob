@@ -5,11 +5,20 @@
 
 import 'dart:developer';
 
+import 'package:flutter/material.dart' show BuildContext;
 import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:loader_overlay/loader_overlay.dart';
+import 'package:para_job/features/home/home_controller.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
+import 'package:para_job/packages/ui_components/auth_required_dialog.dart';
+import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
+import 'package:para_job/packages/user_manager/user_controller.dart';
 
 class JobsController extends GetxController {
+  final _userController = Get.find<UserController>();
+  final _homeController = Get.find<HomeController>();
+
   var departmentCallState = ApiCallState.loading.obs;
   var selectedDepartmentId = (-1).obs; // For the selected button
   List<Department>? departments;
@@ -40,7 +49,6 @@ class JobsController extends GetxController {
       final response = await apiClient.getDepartments();
 
       if (response.isSuccess ?? false) {
-        log("🟢 isSuccess");
         //add the "All" department at the beginning of the list
         departments = response.data;
         departments?.insert(0, Department(id: -1, name: "All"));
@@ -68,6 +76,7 @@ class JobsController extends GetxController {
           departmentId: selectedDepartmentId.value == -1
               ? null
               : selectedDepartmentId.value,
+          token: _userController.isGuest ? null : _userController.token!,
         );
 
         if (response.isSuccess ?? false) {
@@ -80,6 +89,86 @@ class JobsController extends GetxController {
         }
       },
     );
+  }
+
+  /// 🔖 Add bookmark
+  Future<void> _addBookmark(int jobId) async {
+    try {
+      final response = await apiClient.addBookmark(
+        BookmarkRequest(jobId: jobId),
+        _userController.token!,
+      );
+
+      if (response.isSuccess) {
+        showSnackBarSuccess(
+          "Success",
+          response.details?.message ?? "Job bookmarked successfully!",
+        );
+        pagingController.refresh();
+        if (_homeController.jobIsInHome(jobId)) {
+          _homeController.fetchHomeJobs();
+        }
+      } else {
+        log("🔴 addBookmark ${response.details!.message}");
+
+        showSnackBarError(
+          "Failed",
+          response.details?.message ?? "Could not bookmark the job.",
+        );
+      }
+    } catch (e) {
+      showSnackBarApiError();
+    }
+  }
+
+  /// ❌ Remove bookmark
+  Future<void> _removeBookmark(int jobId) async {
+    try {
+      final response = await apiClient.deleteBookmark(
+        BookmarkRequest(jobId: jobId),
+        _userController.token!,
+      );
+
+      if (response.isSuccess) {
+        showSnackBarSuccess(
+          "Success",
+          response.details?.message ?? "Job removed from bookmarks.",
+        );
+        pagingController.refresh();
+        if (_homeController.jobIsInHome(jobId)) {
+          _homeController.fetchHomeJobs();
+        }
+      } else {
+        log("🔴 removeBookmark ${response.details!.message}");
+        showSnackBarError(
+          "Failed",
+          response.details?.message ?? "Could not remove bookmark.",
+        );
+      }
+    } catch (e) {
+      showSnackBarApiError();
+    }
+  }
+
+  Future<void> handleBookmarkTap(Job job, BuildContext context) async {
+    // 🔒 1. Check if the user is guest
+    if (_userController.isGuest) {
+      showAuthRequiredDialog();
+      return;
+    }
+
+    context.loaderOverlay.show();
+    try {
+      if (job.isBookmark!) {
+        await _removeBookmark(job.id!);
+      } else {
+        await _addBookmark(job.id!);
+      }
+    } catch (e) {
+      showSnackBarApiError();
+    } finally {
+      context.loaderOverlay.hide();
+    }
   }
 
   @override

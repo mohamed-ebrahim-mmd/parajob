@@ -4,6 +4,7 @@
 */
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:para_job/features/home/home_controller.dart';
 import 'package:para_job/features/home/widgets/hot_jobs_cards.dart';
 import 'package:para_job/packages/api_client/src/models/responses/job.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
@@ -65,14 +66,16 @@ class HotJobsMiniList extends StatelessWidget {
               itemCount: jobs.length,
               separatorBuilder: (_, __) => context.wBox(3),
               itemBuilder: (context, index) {
-                var job =jobs[index];
-                return 
-               HotJobCard(job:job ,onTap: (
-                   ) {
-                Get.toNamed(Routes.jobDetails,
-                arguments: job.id,
+                var job = jobs[index];
+                return HotJobCard(
+                  job: job,
+                  onBookmarkTap: () {
+                    Get.find<HomeController>().handleBookmarkTap(job, context);
+                  },
+                  onTap: () {
+                    Get.toNamed(Routes.jobDetails, arguments: job.id);
+                  },
                 );
-               },);
               },
             ),
           ),

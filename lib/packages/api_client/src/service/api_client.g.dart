@@ -302,6 +302,7 @@ class _ApiClient implements ApiClient {
     int? skillId,
     int? departmentId,
     int? page,
+    String? token,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
@@ -314,7 +315,8 @@ class _ApiClient implements ApiClient {
       r'page': page,
     };
     queryParameters.removeWhere((k, v) => v == null);
-    final _headers = <String, dynamic>{};
+    final _headers = <String, dynamic>{r'Authorization': token};
+    _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<JobListResponse>(
       Options(method: 'GET', headers: _headers, extra: _extra)

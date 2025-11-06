@@ -7,13 +7,17 @@ import 'dart:developer';
 import 'package:flutter/material.dart' show BuildContext;
 import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
+import 'package:para_job/features/profile/user_profile/profile_controller.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
 import 'package:para_job/packages/ui_components/auth_required_dialog.dart';
 import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
 
 class HomeController extends GetxController {
-  final userController = Get.find<UserController>();
+  final _userController = Get.find<UserController>();
+  late final _profileController = _userController.isGuest
+      ? null
+      : Get.find<ProfileController>();
   var homeCallState = ApiCallState.loading.obs;
   HomeResponse? homeData;
 
@@ -23,33 +27,49 @@ class HomeController extends GetxController {
     fetchHomeJobs();
   }
 
+  bool jobIsInHome(int id) {
+    final JobCategoriesList = homeData?.data.first;
+
+    if (JobCategoriesList == null) return false;
+
+    final hotJobs = JobCategoriesList.hotJobs;
+    final flexJobs = JobCategoriesList.flexibleJobs;
+    final nonFlexJobs = JobCategoriesList.nonFlexibleJobs;
+
+    final isFound =
+        hotJobs.any((job) => job.id == id) ||
+        flexJobs.any((job) => job.id == id) ||
+        nonFlexJobs.any((job) => job.id == id);
+
+    return isFound;
+  }
+
   Future<void> fetchHomeJobs() async {
     homeCallState.value = ApiCallState.loading;
 
     try {
       final response = await apiClient.fetchHomeJobs(
-        userController.isGuest ? null : userController.token!,
+        _userController.isGuest ? null : _userController.token!,
       );
 
       if (response.isSuccess) {
+        log("🟢 fetchHomeJobs success");
         homeData = response;
-
         homeCallState.value = ApiCallState.success;
       } else {
         homeCallState.value = ApiCallState.failure;
       }
     } catch (e) {
-      log("🟢 ${e.toString()}");
       homeCallState.value = ApiCallState.failure;
     }
   }
 
   /// 🔖 Add bookmark
-  Future<void> addBookmark(int jobId) async {
+  Future<void> _addBookmark(int jobId) async {
     try {
       final response = await apiClient.addBookmark(
         BookmarkRequest(jobId: jobId),
-        userController.token!,
+        _userController.token!,
       );
 
       if (response.isSuccess) {
@@ -58,6 +78,7 @@ class HomeController extends GetxController {
           response.details?.message ?? "Job bookmarked successfully!",
         );
         fetchHomeJobs();
+        _profileController!.fetchProfileDetails();
       } else {
         log("🔴 addBookmark ${response.details!.message}");
 
@@ -72,11 +93,11 @@ class HomeController extends GetxController {
   }
 
   /// ❌ Remove bookmark
-  Future<void> removeBookmark(int jobId) async {
+  Future<void> _removeBookmark(int jobId) async {
     try {
       final response = await apiClient.deleteBookmark(
         BookmarkRequest(jobId: jobId),
-        userController.token!,
+        _userController.token!,
       );
 
       if (response.isSuccess) {
@@ -85,6 +106,7 @@ class HomeController extends GetxController {
           response.details?.message ?? "Job removed from bookmarks.",
         );
         fetchHomeJobs();
+        _profileController!.fetchProfileDetails();
       } else {
         log("🔴 removeBookmark ${response.details!.message}");
         showSnackBarError(
@@ -98,11 +120,8 @@ class HomeController extends GetxController {
   }
 
   Future<void> handleBookmarkTap(Job job, BuildContext context) async {
-    log("🟢 ${job.id}");
-    log("🟢 ${job.isBookmark}");
-
     // 🔒 1. Check if the user is guest
-    if (userController.isGuest) {
+    if (_userController.isGuest) {
       showAuthRequiredDialog();
       return;
     }
@@ -110,9 +129,9 @@ class HomeController extends GetxController {
     context.loaderOverlay.show();
     try {
       if (job.isBookmark!) {
-        await removeBookmark(job.id!);
+        await _removeBookmark(job.id!);
       } else {
-        await addBookmark(job.id!);
+        await _addBookmark(job.id!);
       }
     } catch (e) {
       showSnackBarApiError();

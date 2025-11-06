@@ -1,57 +1,6 @@
-// import 'package:flutter/material.dart';
-
-// import 'package:para_job/packages/api_client/src/models/models.dart';
-
-// import 'package:para_job/packages/themeing/media_query_values.dart';
-// import 'package:para_job/packages/ui_components/job_card.dart';
-
-// class JobHistoryList extends StatelessWidget {
-//   final List<Job> jobHistory;
-//   final VoidCallback? onSeeAll;
-//   final String? title;
-
-//   const JobHistoryList({
-//     super.key,
-//     required this.jobHistory,
-//     this.onSeeAll,
-//     this.title,
-//   });
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Column(
-//       crossAxisAlignment: CrossAxisAlignment.start,
-
-//       children: [
-//         // Header Row
-//         Text(
-//           title ?? "Your job history",
-//           style: TextStyle(
-//             fontSize: context.wPct(4.5),
-//             fontWeight: FontWeight.bold,
-//           ),
-//         ),
-
-//         // Vertical List of Job Cards
-//         ListView.separated(
-//           scrollDirection: Axis.vertical,
-//           shrinkWrap: true,
-//           primary: false,
-//           physics: const NeverScrollableScrollPhysics(),
-//           itemCount: jobHistory.length,
-//           separatorBuilder: (_, __) => context.hBox(2),
-//           itemBuilder: (context, index) {
-//             final job = jobHistory[index];
-//             return JobCard(job: job);
-
-//           },
-//         ),
-//       ],
-//     );
-//   }
-// }
-
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:para_job/features/profile/user_profile/profile_controller.dart';
 import 'package:para_job/packages/api_client/src/models/models.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
@@ -59,13 +8,13 @@ import 'package:para_job/packages/ui_components/job_card.dart';
 
 class JobHistoryList extends StatelessWidget {
   final List<Job> jobHistory;
-  final String title;
+  final String? title;
   final String emptyMessage;
 
   const JobHistoryList({
     super.key,
     required this.jobHistory,
-    this.title = "Your job history",
+    this.title,
     required this.emptyMessage,
   });
 
@@ -76,7 +25,7 @@ class JobHistoryList extends StatelessWidget {
       children: [
         // Header
         Text(
-          title,
+          title ?? "Your job history",
           style: TextStyle(
             fontSize: context.wPct(4.5),
             fontWeight: FontWeight.bold,
@@ -94,7 +43,16 @@ class JobHistoryList extends StatelessWidget {
           separatorBuilder: (_, __) => context.hBox(2),
           itemBuilder: (context, index) {
             final job = jobHistory[index];
-            return JobCard(job: job);
+            return JobCard(
+              onBookmarkTap: () {
+                Get.find<ProfileController>().removeBookmark(
+                  job.id ?? 0,
+                  context,
+                );
+              },
+              job: job,
+              showBookmarkIcon: title == null ? false : true,
+            );
           },
         ),
         jobHistory.isEmpty

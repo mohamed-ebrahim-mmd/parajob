@@ -15,38 +15,12 @@ class MainNavigatorScreen extends StatelessWidget {
   final MainNavigatorController controller = Get.put(MainNavigatorController());
   final isGuest = Get.find<UserController>().isGuest;
 
-   MainNavigatorScreen({super.key});
+  MainNavigatorScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      var tabIndex = controller.tab.value;
       return Scaffold(
-        /*
-        appBar: AppBar(
-          scrolledUnderElevation: 0,
-          backgroundColor: Colors.white,
-          elevation: 0,
-          leading: tabIndex == 0 ? AppBarLogo() : null,
-          // Remove shadow
-          title: tabIndex == 0
-              ? TappableSearchBar()
-              : Text(
-                  overflow: TextOverflow.visible,
-                  softWrap: true,
-
-                  controller.appBarTitles[tabIndex].tr, // Dynamic title,
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    fontSize: context.hPct(4),
-                    fontWeight: FontWeight.bold,
-                    color: context.theme.colorScheme.primaryContainer,
-                  ),
-                ),
-          actions: tabIndex == 0
-              ? [NotificationIconButton(), context.wBox(1)]
-              : null,
-        ),
-*/
         body: IndexedStack(
           index: controller.tab.value,
           children: controller.pages,

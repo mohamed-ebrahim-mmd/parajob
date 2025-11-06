@@ -3,15 +3,18 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide MultipartFile;
 import 'package:loader_overlay/loader_overlay.dart';
+import 'package:para_job/features/home/home_controller.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
 import 'package:para_job/packages/functional_components/img_picker.dart';
 import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
 
 class ProfileController extends GetxController {
+  final _homeController = Get.find<HomeController>();
   var profileCallState = ApiCallState.loading.obs;
   UserProfileData? profileData;
   final String token = Get.find<UserController>().token!;
+
   ProfileController();
 
   @override
@@ -29,7 +32,7 @@ class ProfileController extends GetxController {
       final response = await apiClient.deleteUserPhoto(token: token);
 
       if (response.isSuccess) {
-        log("🟢 isSuccess");
+        log("🟢 deleteUserPic isSuccess");
 
         fetchProfileDetails();
       } else {
@@ -63,13 +66,13 @@ class ProfileController extends GetxController {
         filename: file.path.split('/').last,
       );
 
-      final response = await apiClient.uploadFile([multipartFile],);
+      final response = await apiClient.uploadFile([multipartFile]);
 
       if (response.isSuccess) {
         var url = response.urls?[0];
-        if( url == null || url.isEmpty){
-            showSnackBarError("Failed","No file URL returned from upload API");
-            return;
+        if (url == null || url.isEmpty) {
+          showSnackBarError("Failed", "No file URL returned from upload API");
+          return;
         }
 
         await updateUserPic(context, url);
@@ -113,7 +116,7 @@ class ProfileController extends GetxController {
       final response = await apiClient.fetchUserProfile(token: token);
 
       if (response.isSuccess) {
-        log("🟢 isSuccess");
+        log("🟢 fetchProfileDetails isSuccess");
 
         profileData = response.data;
 
@@ -145,5 +148,41 @@ class ProfileController extends GetxController {
       return value.substring(0, value.length - 2);
     }
     return value;
+  }
+
+  Future<void> removeBookmark(int jobId, BuildContext context) async {
+    try {
+      context.loaderOverlay.show();
+      final response = await apiClient.deleteBookmark(
+        BookmarkRequest(jobId: jobId),
+        token,
+      );
+
+      if (response.isSuccess) {
+        fetchProfileDetails();
+        if (_homeController.jobIsInHome(jobId)) {
+          _homeController.fetchHomeJobs();
+        }
+        showSnackBarSuccess(
+          "Success",
+          response.details?.message ?? "Job removed from bookmarks.",
+        );
+      } else {
+        log("🔴 removeBookmark ${response.details!.message}");
+        showSnackBarError(
+          "Failed",
+          response.details?.message ?? "Could not remove bookmark.",
+        );
+      }
+    } catch (e) {
+      showSnackBarApiError();
+    } finally {
+      context.loaderOverlay.hide();
+    }
+  }
+
+  bool jobIsInSavedJobs(int id) {
+    final savedJobs = profileData?.savedJobs ?? [];
+    return savedJobs.any((job) => job.id == id);
   }
 }

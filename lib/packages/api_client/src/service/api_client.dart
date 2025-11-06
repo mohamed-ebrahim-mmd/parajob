@@ -54,6 +54,7 @@ abstract class ApiClient {
     @Query("filter[skills]") int? skillId,
     @Query("filter[department_id]") int? departmentId,
     @Query("page") int? page,
+    @Header("Authorization") String? token,
   });
 
   @GET("/api/user/jobs")
