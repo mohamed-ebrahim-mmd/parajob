@@ -4,9 +4,9 @@ import 'package:para_job/packages/api_client/src/models/responses/review.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
-
 class ReviewCard extends StatelessWidget {
   final Review review;
+
   const ReviewCard({super.key, required this.review});
 
   @override
@@ -46,7 +46,11 @@ class ReviewCard extends StatelessWidget {
               ),
               Row(
                 children: [
-                  Icon(Icons.star, color: AppColors.almostWhite, size: context.wPct(2.5)),
+                  Icon(
+                    Icons.star,
+                    color: AppColors.almostWhite,
+                    size: context.wPct(2.5),
+                  ),
                   context.wBox(1),
                   Text(
                     rate.toString(),

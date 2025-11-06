@@ -8,29 +8,35 @@ import 'package:para_job/packages/ui_components/job_card.dart';
 class ActiveJobsList extends StatelessWidget {
   final Company company;
 
-  const ActiveJobsList({
-    super.key,
-    required this.company,
-  });
+  const ActiveJobsList({super.key, required this.company});
 
   @override
   Widget build(BuildContext context) {
     if (company.activeJobs != null && company.activeJobs!.isNotEmpty) {
-      return ListView.separated(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: company.activeJobs!.length,
-        separatorBuilder: (_, __) => context.hBox(1),
-        itemBuilder: (context, index) {
-          final job = company.activeJobs![index];
-          return JobCard(job: job);
-        },
+      return SizedBox(
+        height: context.hPct(21),
+        child: ListView.separated(
+          scrollDirection: Axis.horizontal,
+          shrinkWrap: true,
+          itemCount: company.activeJobs!.length,
+          separatorBuilder: (_, __) => context.wBox(2),
+          itemBuilder: (context, index) {
+            final job = company.activeJobs![index];
+            return JobCard(
+              showBookmarkIcon: false,
+              job: job,
+              width: context.wPct(80),
+              onTap: () {
+                // Navigate to job details page
+                // Example: Get.toNamed('/job-details', arguments: {'id': job.id});
+              },
+            );
+          },
+        ),
       );
     } else {
       return Padding(
-        padding: EdgeInsets.symmetric(
-          vertical: context.hPct(2),
-        ),
+        padding: EdgeInsets.symmetric(vertical: context.hPct(2)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

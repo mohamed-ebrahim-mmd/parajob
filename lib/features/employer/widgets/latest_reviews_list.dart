@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:para_job/features/employer/reviews/widgets/review_card.dart';
-import 'package:para_job/packages/api_client/src/models/responses/company.dart' show Company;
+import 'package:para_job/packages/api_client/src/models/responses/company.dart'
+    show Company;
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
 class LatestReviewsList extends StatelessWidget {
   final Company company;
 
-  const LatestReviewsList({
-    super.key,
-    required this.company,
-  });
+  const LatestReviewsList({super.key, required this.company});
 
   @override
   Widget build(BuildContext context) {

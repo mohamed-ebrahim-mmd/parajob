@@ -16,12 +16,12 @@ import '../../packages/ui_components/error_screen.dart';
 
 class EmployerScreen extends StatelessWidget {
   EmployerScreen({super.key});
+
   final int id = Get.arguments['id'];
   late final controller = Get.put(EmployerController(id));
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: Obx(() {
         switch (controller.companyCallState.value) {
@@ -155,18 +155,17 @@ class EmployerScreen extends StatelessWidget {
                         ),
 
                         context.hBox(4),
-
                         EmployerListHeader(
                           title: "Active Jobs",
                           onViewAll: () {},
                         ),
-
+                        context.hBox(2),
                         ActiveJobsList(company: company),
-                        context.hBox(4),
 
+                        context.hBox(4),
                         EmployerListHeader(
                           title: "Reviews",
-                          onViewAll:controller.goToEmployerReviews,
+                          onViewAll: controller.goToEmployerReviews,
                         ),
                         LatestReviewsList(company: company),
 

@@ -9,6 +9,7 @@ class JobCard extends StatelessWidget {
   final VoidCallback? onTap;
   final VoidCallback? onBookmarkTap;
   final bool showBookmarkIcon;
+  final double? width;
 
   late final bool isBookmarked = job.isBookmark ?? false;
 
@@ -18,6 +19,7 @@ class JobCard extends StatelessWidget {
     this.onTap,
     this.onBookmarkTap,
     this.showBookmarkIcon = true,
+    this.width,
   });
 
   @override
@@ -25,6 +27,7 @@ class JobCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
+        width: width,
         decoration: BoxDecoration(
           color: AppColors.darkGrey,
           borderRadius: BorderRadius.circular(context.wPct(4)),
