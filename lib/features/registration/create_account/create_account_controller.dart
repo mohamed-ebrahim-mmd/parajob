@@ -58,11 +58,18 @@ class CreateAccountController extends GetxController {
       final response = await apiClient.getCities();
       if (response.isSuccess) {
         cityMenuEntries = response.data
-            .map(
+            .where(
               (city) =>
-                  DropdownMenuEntry<int>(value: city.id, label: city.name),
+                  city.id != null && city.name != null && city.name!.isNotEmpty,
+            )
+            .map(
+              (city) => DropdownMenuEntry<int>(
+                value: city.id!, // safe now
+                label: city.name!,
+              ),
             )
             .toList();
+
         citiesCallState.value = ApiCallState.success;
       } else {
         citiesCallState.value = ApiCallState.failure;
@@ -71,8 +78,7 @@ class CreateAccountController extends GetxController {
       citiesCallState.value = ApiCallState.failure;
     }
   }
- 
- 
+
   // Handle selection
   void onGenderSelected(String? value) {
     selectedGender = value;
@@ -106,8 +112,6 @@ class CreateAccountController extends GetxController {
       areasCallState.value = DataFetchState.failure;
     }
   }
-
-
 
   void registerUser() async {
     // 🧹 Trim all text fields before validation

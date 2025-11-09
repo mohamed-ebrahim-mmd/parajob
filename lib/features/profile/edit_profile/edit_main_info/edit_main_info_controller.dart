@@ -37,9 +37,15 @@ class EditMainInfoController extends GetxController {
       final response = await apiClient.getCities();
       if (response.isSuccess) {
         cityMenuEntries = response.data
-            .map(
+            .where(
               (city) =>
-                  DropdownMenuEntry<int>(value: city.id, label: city.name),
+                  city.id != null && city.name != null && city.name!.isNotEmpty,
+            )
+            .map(
+              (city) => DropdownMenuEntry<int>(
+                value: city.id!, // safe now
+                label: city.name!,
+              ),
             )
             .toList();
 
@@ -53,7 +59,7 @@ class EditMainInfoController extends GetxController {
           if (matchedCity != null) {
             selectedCityId.value = matchedCity.id;
             // optionally fetch areas for that city
-            fetchAreas(matchedCity.id);
+            fetchAreas(matchedCity.id ?? 0);
           }
         }
 
@@ -125,10 +131,7 @@ class EditMainInfoController extends GetxController {
     );
   }
 
-  Future<void> editUserProfile(
-    EditUserRequest request,
-  ) async {
-
+  Future<void> editUserProfile(EditUserRequest request) async {
     context.loaderOverlay.show();
     try {
       final response = await apiClient.updateUserProfile(request, token);
@@ -145,8 +148,8 @@ class EditMainInfoController extends GetxController {
       }
     } catch (e) {
       log("🔴 ${e.toString()}");
-    showSnackBarApiError();
-    //  showSnackBarError("Failed", e.toString());
+      showSnackBarApiError();
+      //  showSnackBarError("Failed", e.toString());
     } finally {
       context.loaderOverlay.hide();
     }

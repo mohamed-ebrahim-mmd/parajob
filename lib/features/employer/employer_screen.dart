@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/employer/employer_controller.dart';
@@ -40,6 +42,7 @@ class EmployerScreen extends StatelessWidget {
             if (company == null) {
               return const Center(child: Text("No data"));
             }
+            log("🟢 ${company.toString()}");
 
             return SingleChildScrollView(
               padding: EdgeInsets.only(bottom: context.hPct(7)),

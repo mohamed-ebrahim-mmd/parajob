@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/job_details/job_details_controller.dart';
@@ -15,7 +17,10 @@ import 'package:para_job/res/app_asset_paths.dart';
 
 class JobDetailsScreen extends StatelessWidget {
   final jobId = Get.arguments as int;
-  late final controller = Get.put(JobDetailsController(jobId));
+  late final controller = Get.put(
+    JobDetailsController(jobId),
+    tag: jobId.toString(),
+  );
 
   JobDetailsScreen({super.key});
 
@@ -28,6 +33,7 @@ class JobDetailsScreen extends StatelessWidget {
             return Center(child: CircularProgressIndicator());
           case ApiCallState.success:
             final jobDetails = controller.jobData!.data;
+            log("🟢 ${jobDetails.toString()}");
 
             return SingleChildScrollView(
               child: Column(

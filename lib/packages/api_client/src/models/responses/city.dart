@@ -1,18 +1,15 @@
-
 class City {
-  final int id;
-  final String name;
+  final int? id;
+  final String? name;
 
-  City({
-    required this.id,
-    required this.name,
-  });
+  City({this.id, this.name});
 
   factory City.fromJson(Map<String, dynamic> json) {
     return City(
-      id: json['id'],
-      name: json['name'] ?? '',
+      id: json['id'] == null || json['id'].toString().isEmpty
+          ? null
+          : int.tryParse(json['id'].toString()),
+      name: json['name']?.toString() ?? '',
     );
   }
 }
-

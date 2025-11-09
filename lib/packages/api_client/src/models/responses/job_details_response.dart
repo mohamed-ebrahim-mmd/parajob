@@ -1,6 +1,3 @@
-
-
-
 import 'package:para_job/packages/api_client/src/models/models.dart';
 
 class JobDetailsResponse {
@@ -22,13 +19,3 @@ class JobDetailsResponse {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
