@@ -13,6 +13,7 @@ import 'package:para_job/packages/ui_components/job_card.dart';
 
 class BookMarkedJobsScreen extends StatelessWidget {
   BookMarkedJobsScreen({super.key});
+
   final controller = Get.put(BookmarkedJobsController());
 
   @override
@@ -39,6 +40,9 @@ class BookMarkedJobsScreen extends StatelessWidget {
               itemBuilder: (context, item, index) => Padding(
                 padding: EdgeInsets.symmetric(vertical: context.hPct(1)),
                 child: JobCard(
+                  onBookmarkTap: () {
+                    controller.removeBookmark(item.id ?? 0, context);
+                  },
                   job: item,
                   onTap: () {
                     Get.toNamed(Routes.jobDetails, arguments: item.id);

@@ -3,9 +3,14 @@
 
 import 'dart:developer';
 
+import 'package:flutter/material.dart' show BuildContext;
 import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:loader_overlay/loader_overlay.dart';
+import 'package:para_job/features/home/home_controller.dart';
+import 'package:para_job/features/profile/user_profile/profile_controller.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
+import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
 
 class BookmarkedJobsController extends GetxController {
@@ -14,6 +19,9 @@ class BookmarkedJobsController extends GetxController {
 
   /// Authentication token retrieved from user controller
   final String token = Get.find<UserController>().token!;
+
+  final _homeController = Get.find<HomeController>();
+  final _profileController = Get.find<ProfileController>();
 
   @override
   void onInit() {
@@ -40,6 +48,40 @@ class BookmarkedJobsController extends GetxController {
       return response.data ?? [];
     } else {
       throw Exception('Failed to fetch jobs');
+    }
+  }
+
+  Future<void> removeBookmark(int jobId, BuildContext context) async {
+    try {
+      context.loaderOverlay.show();
+      final response = await apiClient.deleteBookmark(
+        BookmarkRequest(jobId: jobId),
+        token,
+      );
+
+      if (response.isSuccess) {
+        if (_homeController.jobIsInHome(jobId)) {
+          _homeController.fetchHomeJobs();
+        }
+        if (_profileController.jobIsInSavedJobs(jobId)) {
+          _profileController.fetchProfileDetails();
+        }
+        pagingController.refresh();
+        showSnackBarSuccess(
+          "Success",
+          response.details?.message ?? "Job removed from bookmarks.",
+        );
+      } else {
+        log("🔴 removeBookmark ${response.details!.message}");
+        showSnackBarError(
+          "Failed",
+          response.details?.message ?? "Could not remove bookmark.",
+        );
+      }
+    } catch (e) {
+      showSnackBarApiError();
+    } finally {
+      context.loaderOverlay.hide();
     }
   }
 
