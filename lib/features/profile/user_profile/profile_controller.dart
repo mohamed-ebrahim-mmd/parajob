@@ -28,6 +28,10 @@ class ProfileController extends GetxController {
     Get.toNamed("${Routes.mainNavigator}${Routes.bookmarkedJobs}");
   }
 
+  void onSeeAllHistoryJobs() {
+    Get.toNamed("${Routes.mainNavigator}${Routes.historyJobs}");
+  }
+
   Future<void> deleteUserPic(BuildContext context) async {
     Get.back();
 
