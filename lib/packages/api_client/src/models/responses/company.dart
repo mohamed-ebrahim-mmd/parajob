@@ -60,28 +60,12 @@ class Company {
       accountStatus: json['account_status'],
       rejectionReason: json['rejection_reason'],
       isBlocked: json['is_blocked'],
-      isSubmitReview: json['is_submit_review']
+      isSubmitReview: json['is_submit_review'],
     );
   }
 
   @override
   String toString() {
-    return '''
-Company(
-  id: $id,
-  name: $name,
-  logo: $logo,
-  industry: $industry,
-  jobPostsCount: $jobPostsCount,
-  employeesCount: $employeesCount,
-  reviewsCount: $reviewsCount,
-  averageRating: $averageRating,
-  positiveReviewsPercentage: $positiveReviewsPercentage,
-  accountStatus: $accountStatus,
-  rejectionReason: $rejectionReason,
-  isBlocked: $isBlocked,
-  isSubmitReview: $isSubmitReview
-)
-''';
+    return 'Company{activeJobs: $activeJobs}';
   }
 }

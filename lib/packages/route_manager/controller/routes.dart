@@ -5,6 +5,7 @@ import 'package:para_job/features/authentication/email_login/email_login_screen.
 import 'package:para_job/features/authentication/forgot_password/forgot_password_screen.dart';
 import 'package:para_job/features/authentication/forgot_password_otp/forgot_password_otp_screen.dart';
 import 'package:para_job/features/authentication/set_new_password/set_new_password_screen.dart';
+import 'package:para_job/features/employer/active_jobs.dart/active_jobs_screen.dart';
 import 'package:para_job/features/employer/employer_screen.dart';
 import 'package:para_job/features/employer/reviews/employer_reviews_screen.dart';
 import 'package:para_job/features/home/jobs/jobs_screen.dart';
@@ -70,7 +71,8 @@ class Routes {
   static const String contactUs = "/contacts-us";
   static const String editProfile = "/edit-profile";
   static const String pdfViewer = "/pdf-viewer";
-  static const String bookmarkedJobs = '/bookmarked_jobs_controller';
+  static const String bookmarkedJobs = '/bookmarked_jobs';
+  static const String activeJobs = '/active_jobs';
 }
 
 class AppPages {
@@ -222,6 +224,7 @@ class AppPages {
               name: Routes.employerReviews,
               page: () => EmployerReviewsScreen(),
             ),
+            GetPage(name: Routes.activeJobs, page: () => ActiveJobsScreen()),
           ],
         ),
       ],

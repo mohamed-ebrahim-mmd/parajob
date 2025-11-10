@@ -160,7 +160,7 @@ class EmployerScreen extends StatelessWidget {
                         context.hBox(4),
                         EmployerListHeader(
                           title: "Active Jobs",
-                          onViewAll: () {},
+                          onViewAll: controller.goToActiveJobs,
                         ),
                         context.hBox(2),
                         ActiveJobsList(company: company),
