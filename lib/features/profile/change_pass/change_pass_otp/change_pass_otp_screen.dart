@@ -15,18 +15,11 @@ class ChangePassOtpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PopScope(
-      canPop: false,
-      onPopInvokedWithResult: (didPop, result) {
-        if (!didPop) {
-          controller.closeAndDispose();
-        }
-      },
-      child: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           leading: IconButton(
             icon: const Icon(Icons.arrow_back_ios_new),
-            onPressed: controller.closeAndDispose,
+            onPressed: Get.back,
           ),
         ),
 
@@ -129,7 +122,7 @@ class ChangePassOtpScreen extends StatelessWidget {
             ],
           ),
         ),
-      ),
+     
     );
   }
 }

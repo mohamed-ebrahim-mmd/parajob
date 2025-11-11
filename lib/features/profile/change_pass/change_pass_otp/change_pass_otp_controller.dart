@@ -83,10 +83,7 @@ class ChangePassOtpController extends GetxController {
     }
   }
 
-  void closeAndDispose() {
-    Get.back(); // Close the current screen
-    Get.delete<ChangePassOtpController>(); // Dispose the controller
-  }
+
 
   @override
   void onClose() {

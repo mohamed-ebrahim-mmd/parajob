@@ -77,11 +77,7 @@ class ResetPasswordController extends GetxController {
     }
   }
 
-  void closeAndDispose() {
-    Get.back();
-    Get.delete<ResetPasswordController>();
-  }
-
+ 
   @override
   void onClose() {
     passwordController.dispose();
