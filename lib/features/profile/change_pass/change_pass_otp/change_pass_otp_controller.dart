@@ -42,11 +42,9 @@ class ChangePassOtpController extends GetxController {
 
       if (response.isSuccess ?? false) {
         showSnackBarSuccess('Success', response.details?.message ?? '');
-         Get.toNamed(
-          "${Routes.mainNavigator}${Routes.more}${Routes.changePassOtp}${Routes.resetPassword}",
+        Get.toNamed(
+          "${Routes.mainNavigator}${Routes.more}${Routes.changePassOtp}${Routes.changePassword}",
         );
-
-        
       } else {
         showSnackBarError(
           'Failed',
@@ -82,8 +80,6 @@ class ChangePassOtpController extends GetxController {
       context.loaderOverlay.hide();
     }
   }
-
-
 
   @override
   void onClose() {

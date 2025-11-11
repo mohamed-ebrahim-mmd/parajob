@@ -14,7 +14,7 @@ import 'package:para_job/packages/route_manager/controller/routes.dart'
 import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
 
-class ResetPasswordController extends GetxController {
+class ChangePasswordController extends GetxController {
   final phoneNumber = Get.find<UserController>().user!.phoneNumber ?? '';
 
   // Controllers for password fields

@@ -2,14 +2,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:para_job/features/profile/change_pass/reset_password/reset_password_controller.dart';
+import 'package:para_job/features/profile/change_pass/reset_password/change_password_controller.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
-class ResetPasswordScreen extends StatelessWidget {
-  final controller = Get.put(ResetPasswordController());
+class ChangePasswordScreen extends StatelessWidget {
+  final controller = Get.put(ChangePasswordController());
 
-  ResetPasswordScreen({super.key});
+  ChangePasswordScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
