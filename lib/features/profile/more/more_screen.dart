@@ -13,7 +13,6 @@ class MoreScreen extends StatelessWidget {
   MoreScreen({super.key});
   final controller = Get.put(MoreController());
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +47,6 @@ class MoreScreen extends StatelessWidget {
                 onTap: () {
                   Get.toNamed(
                     "${Routes.mainNavigator}${Routes.more}${Routes.editProfile}",
-                    
                   );
                 },
               ),
@@ -57,19 +55,9 @@ class MoreScreen extends StatelessWidget {
               CustomListTile(
                 icon: AppAssetPaths.lock,
                 title: "Change Password",
-                onTap: () {
-                  // navigate to Change Password Screen
-                },
+                onTap: () => controller.sendChangePassRequest(context),
               ),
-              context.hBox(1.5),
 
-              CustomListTile(
-                icon: AppAssetPaths.changeNum,
-                title: "Change Number",
-                onTap: () {
-                  // open Change Number flow
-                },
-              ),
               context.hBox(1.5),
 
               CustomListTile(
