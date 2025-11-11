@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
+import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/route_manager/controller/routing_controller.dart';
 import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
@@ -53,11 +54,10 @@ class MoreController extends GetxController {
 
       if (response.isSuccess ?? false) {
         showSnackBarSuccess('Success', response.details?.message ?? '');
-        //pass the phone number to the otp screen
-        // Get.put(ForgotPasswordOtpController(phoneNumber: phoneController.text));
-        // Get.toNamed(
-        //   "${Routes.authChoice}${Routes.emailLoginScreen}${Routes.forgotPassword}${Routes.forgotPasswordOTP}",
-        // );
+        //go to the otp screen
+        Get.toNamed(
+          "${Routes.mainNavigator}${Routes.more}${Routes.changePassOtp}",
+        );
       } else {
         showSnackBarError(
           'Failed',
@@ -71,7 +71,4 @@ class MoreController extends GetxController {
       context.loaderOverlay.hide();
     }
   }
-
-
-
 }

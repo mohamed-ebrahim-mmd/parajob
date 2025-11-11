@@ -15,7 +15,6 @@ import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
 
 class ChangePassOtpController extends GetxController {
-  // The phone number passed from the previous screen
     final phoneNumber = Get.find<UserController>().user!.phoneNumber ?? '';
 
   // TextEditingController for OTP / PIN input
@@ -49,10 +48,7 @@ class ChangePassOtpController extends GetxController {
 
       if (response.isSuccess ?? false) {
         showSnackBarSuccess('Success', response.details?.message ?? '');
-        Get.put(SetNewPasswordController(phoneNumber: phoneNumber));
-        Get.toNamed(
-          "${Routes.authChoice}${Routes.emailLoginScreen}${Routes.forgotPassword}${Routes.forgotPasswordOTP}${Routes.setNewPassword}",
-        );
+
       } else {
         showSnackBarError(
           'Failed',
