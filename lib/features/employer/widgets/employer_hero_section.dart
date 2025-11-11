@@ -4,10 +4,15 @@ import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/packages/ui_components/app_network_image.dart';
 
+import '../../job_details/complaint/complaint_bottom_sheet.dart';
+
 class EmployerHeroSection extends StatelessWidget {
   final String? imageUrl;
+  final int companyId;
+  final String companyName;
+  final bool companyIsSubmitComplaint;
 
-  const EmployerHeroSection({super.key, this.imageUrl});
+  const EmployerHeroSection({super.key, this.imageUrl, required this.companyId, required this.companyName, required this.companyIsSubmitComplaint});
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +41,24 @@ class EmployerHeroSection extends StatelessWidget {
             ],
           ),
         ),
+        Positioned(
+          top: context.hPct(3),
+          right: context.wPct(4),
+          child: IconButton(
+            onPressed: () {
+              showComplaintBottomSheet(
+                companyName: companyName,
+                companyId: companyId,
+                companyIsSubmitComplaint: companyIsSubmitComplaint
+              );
+            },
+            icon: const Icon(
+              Icons.more_vert,
+              color: AppColors.pureWhite,
+            ),
+          ),
+        ),
+
         Positioned(
           left: context.wPct(4),
           top: 0,

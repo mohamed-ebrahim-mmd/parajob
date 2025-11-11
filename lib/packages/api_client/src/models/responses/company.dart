@@ -18,6 +18,7 @@ class Company {
   final String? rejectionReason;
   final int? isBlocked;
   final bool? isSubmitReview;
+  final bool? isSubmitComplaint;
 
   Company({
     this.id,
@@ -35,6 +36,7 @@ class Company {
     this.rejectionReason,
     this.isBlocked,
     this.isSubmitReview,
+    this.isSubmitComplaint,
   });
 
   factory Company.fromJson(Map<String, dynamic>? json) {
@@ -61,6 +63,7 @@ class Company {
       rejectionReason: json['rejection_reason'],
       isBlocked: json['is_blocked'],
       isSubmitReview: json['is_submit_review'],
+      isSubmitComplaint: json['is_submit_complaint'],
     );
   }
 

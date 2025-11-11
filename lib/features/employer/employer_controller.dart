@@ -5,14 +5,16 @@ import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
+import 'package:para_job/packages/ui_components/auth_required_dialog.dart';
 import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
 
-import '../../packages/ui_components/auth_required_dialog.dart';
-import '../../packages/user_manager/user_controller.dart';
+import 'package:para_job/packages/user_manager/user_controller.dart';
 
 class EmployerController extends GetxController {
   final int companyId;
   final user = Get.find<UserController>();
+  var isAnonymous = false.obs;
+  var hasSubmittedReview = false.obs;
 
   EmployerController(this.companyId);
 
@@ -62,7 +64,9 @@ class EmployerController extends GetxController {
       companyCallState.value = ApiCallState.failure;
     }
   }
-
+  void triggerReviewSubmitted() {
+    hasSubmittedReview.value = !hasSubmittedReview.value;
+  }
   Future<void> submitReview() async {
     if (user.token == null) {
       showAuthRequiredDialog();
@@ -82,7 +86,7 @@ class EmployerController extends GetxController {
         review: reviewText,
         rate: rating,
         companyId: companyId,
-        isAnonymous: true,
+        isAnonymous: isAnonymous.value,
       );
 
       try {
@@ -98,6 +102,9 @@ class EmployerController extends GetxController {
           reviewController.clear();
           selectedRating.value = 0;
           fetchCompany();
+          hasSubmittedReview.value = true;
+          Get.find<EmployerController>(tag: companyId.toString())
+              .triggerReviewSubmitted();
         } else {
           showSnackBarError(
             "Failed",

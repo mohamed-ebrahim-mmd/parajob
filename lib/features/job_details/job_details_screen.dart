@@ -1,9 +1,10 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:para_job/features/employer/employer_controller.dart';
+import 'package:para_job/features/employer/widgets/employer_submit_review.dart';
 import 'package:para_job/features/job_details/job_details_controller.dart';
 import 'package:para_job/features/job_details/widgets/custom_container_job_detail.dart';
+import 'package:para_job/features/job_details/widgets/delete_job_application_dialog.dart';
 import 'package:para_job/features/job_details/widgets/job_content.dart'
     show JobContent;
 import 'package:para_job/features/job_details/widgets/job_skill_item.dart';
@@ -11,12 +12,15 @@ import 'package:para_job/packages/api_client/src/enums/api_call_state_enum.dart'
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
+import 'package:para_job/packages/ui_components/auth_required_dialog.dart';
 import 'package:para_job/packages/ui_components/curved_image.dart';
 import 'package:para_job/packages/ui_components/error_screen.dart';
+import 'package:para_job/packages/user_manager/user_controller.dart';
 import 'package:para_job/res/app_asset_paths.dart';
 
 class JobDetailsScreen extends StatelessWidget {
   final jobId = Get.arguments as int;
+  final user = Get.find<UserController>();
   late final controller = Get.put(
     JobDetailsController(jobId),
     tag: jobId.toString(),
@@ -26,6 +30,7 @@ class JobDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("jobId => " + jobId.toString());
     return Scaffold(
       body: Obx(() {
         switch (controller.jobDetailsCallState.value) {
@@ -33,11 +38,10 @@ class JobDetailsScreen extends StatelessWidget {
             return Center(child: CircularProgressIndicator());
           case ApiCallState.success:
             final jobDetails = controller.jobData!.data;
-            log("🟢 ${jobDetails.toString()}");
+            Get.put(EmployerController(jobDetails.company.id!));
 
             return SingleChildScrollView(
               child: Column(
-                //  crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.start,
 
                 children: [
@@ -166,10 +170,59 @@ class JobDetailsScreen extends StatelessWidget {
                         ),
 
                         context.hBox(4),
-                        FilledButton(
-                          onPressed: () {},
-                          child: Text("Apply for this job"),
-                        ),
+                        jobDetails.isApplied == true
+                            ? Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  ?jobDetails.company.isSubmitReview == false
+                                      ? EmployerSubmitReview()
+                                      : null,
+                                  context.hBox(2),
+                                  Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: TextButton(
+                                      onPressed:
+                                          jobDetails.applicationId != null
+                                          ? () {
+                                              Get.put(
+                                                JobDetailsController(jobId),
+                                                tag: jobId.toString(),
+                                              );
+                                              deleteJobApplicationDialog(
+                                                jobId: jobId,
+                                                applicationId:
+                                                    jobDetails.applicationId!,
+                                              );
+                                            }
+                                          : null,
+                                      child: Text(
+                                        'Delete my application',
+                                        style: TextStyle(
+                                          color: AppColors.rejected,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              )
+                            : FilledButton(
+                                onPressed: jobDetails.isApplied == true
+                                    ? null
+                                    : () {
+                                        if (user.isGuest) {
+                                          showAuthRequiredDialog();
+                                        } else {
+                                          Get.toNamed(
+                                            Routes.applyJob,
+                                            arguments: jobDetails.id,
+                                          );
+                                        }
+                                      },
+                                child: Text("Apply for this job"),
+                              ),
+
                         context.hBox(4),
                       ],
                     ),

@@ -14,7 +14,9 @@ class AppColors {
   static const Color lightGrey = Color(0xff2C353A);
   static const Color darkBlueGray = Color(0xFF23303D);
 
-  //
+  static const Color darkBackground = Color(0xFF14181B);
+  static const Color line = Color(0xFF282F34);
+  static const Color black80 = Color(0xCC000000);
 
   // Accent tones
   static const Color aquaTeal = Color(0xFF00CBB8);
@@ -30,6 +32,7 @@ class AppColors {
   static const Color white5 = Color(0x0DFFFFFF);
   static const Color almostWhite = Color(0xFFFDFDFD);
   static const Color white40 = Color(0x66FFFFFF);
+  static const Color white60 = Color(0x99FFFFFF);
 
   static const Color lightGray = Color(0xffB4B4B4);
   static const Color lightGray2 = Color(0xffD9D9D9);

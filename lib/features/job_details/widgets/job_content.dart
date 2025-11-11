@@ -4,6 +4,8 @@ import 'package:para_job/packages/api_client/src/models/responses/job_data.dart'
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
+import '../complaint/complaint_bottom_sheet.dart';
+
 class JobContent extends StatelessWidget {
   const JobContent({super.key, required this.jobDetails, this.onCompanyTap});
 
@@ -24,7 +26,19 @@ class JobContent extends StatelessWidget {
             ),
             const Spacer(),
             IconButton(onPressed: () {}, icon: Icon(Icons.share)),
-            IconButton(onPressed: () {}, icon: Icon(Icons.more_vert)),
+            IconButton(
+              onPressed: () {
+                showComplaintBottomSheet(
+                  companyName: jobDetails.company.name!,
+                  companyId: jobDetails.company.id!,
+                  companyIsSubmitComplaint: jobDetails.company.isSubmitComplaint ?? false,
+                  jobId: jobDetails.id,
+                  jobTitle: jobDetails.title,
+                  jobIsSubmitComplaint: jobDetails.isSubmitComplaint
+                );
+              },
+              icon: Icon(Icons.more_vert),
+            ),
           ],
         ),
         context.hBox(2),

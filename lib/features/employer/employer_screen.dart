@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/employer/employer_controller.dart';
@@ -9,12 +7,11 @@ import 'package:para_job/features/employer/widgets/employer_list_header.dart';
 import 'package:para_job/features/employer/widgets/employer_stat_box.dart';
 import 'package:para_job/features/employer/widgets/employer_submit_review.dart';
 import 'package:para_job/features/employer/widgets/latest_reviews_list.dart';
+import 'package:para_job/packages/api_client/src/enums/api_call_state_enum.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
-
-import '../../packages/api_client/src/enums/api_call_state_enum.dart';
-import '../../packages/ui_components/app_star_rating.dart';
-import '../../packages/ui_components/error_screen.dart';
+import 'package:para_job/packages/ui_components/app_star_rating.dart';
+import 'package:para_job/packages/ui_components/error_screen.dart';
 
 class EmployerScreen extends StatelessWidget {
   EmployerScreen({super.key});
@@ -42,14 +39,18 @@ class EmployerScreen extends StatelessWidget {
             if (company == null) {
               return const Center(child: Text("No data"));
             }
-            log("🟢 ${company.toString()}");
 
             return SingleChildScrollView(
               padding: EdgeInsets.only(bottom: context.hPct(7)),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  EmployerHeroSection(imageUrl: company.logo),
+                  EmployerHeroSection(
+                    imageUrl: company.logo,
+                    companyId: company.id!,
+                    companyName: company.name!,
+                    companyIsSubmitComplaint: company.isSubmitComplaint ?? false,
+                  ),
                   Padding(
                     padding: EdgeInsets.all(context.wPct(4)),
                     child: Column(

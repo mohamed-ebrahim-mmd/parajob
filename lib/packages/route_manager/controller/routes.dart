@@ -10,6 +10,9 @@ import 'package:para_job/features/employer/employer_screen.dart';
 import 'package:para_job/features/employer/reviews/employer_reviews_screen.dart';
 import 'package:para_job/features/home/jobs/jobs_screen.dart';
 import 'package:para_job/features/home/search_job/search_job_screen.dart';
+import 'package:para_job/features/job_details/apply_job_screen.dart';
+import 'package:para_job/features/job_details/complaint/complaint_screen.dart';
+import 'package:para_job/features/job_details/job_application_success_screen.dart';
 import 'package:para_job/features/job_details/job_details_screen.dart';
 import 'package:para_job/features/main_navigator/main_navigator_screen.dart';
 import 'package:para_job/features/my_jobs/application_verification_otp/application_verification_otp_screen.dart';
@@ -70,7 +73,11 @@ class Routes {
   static const String aboutApp = "/about-app";
   static const String contactUs = "/contacts-us";
   static const String editProfile = "/edit-profile";
+  static const String applyJob = "/apply-job";
+  static const String complaint = "/complaint";
   static const String pdfViewer = "/pdf-viewer";
+  static const String jobApplicationApplySuccess = '/job-application-apply-success';
+  static const String historyJobs = '/history_jobs';
   static const String bookmarkedJobs = '/bookmarked_jobs';
   static const String activeJobs = '/active_jobs';
 }
@@ -78,6 +85,32 @@ class Routes {
 class AppPages {
   static final pages = [
     GetPage(name: Routes.onboarding, page: () => OnboardingScreen()),
+    GetPage(
+      name: Routes.applyJob,
+      page: () => LoaderOverlay(
+        child: ApplyJobScreen(),
+        overlayWidgetBuilder: (_) {
+          return AppLoader();
+        },
+      ),
+    ), GetPage(
+      name: Routes.jobApplicationApplySuccess,
+      page: () => LoaderOverlay(
+        child: JobApplicationSuccessScreen(),
+        overlayWidgetBuilder: (_) {
+          return AppLoader();
+        },
+      ),
+    ),
+    GetPage(
+      name: Routes.complaint,
+      page: () => LoaderOverlay(
+        child: ComplaintScreen(),
+        overlayWidgetBuilder: (_) {
+          return AppLoader();
+        },
+      ),
+    ),
     GetPage(
       name: Routes.authChoice,
       page: () => AuthChoiceScreen(),
@@ -211,7 +244,12 @@ class AppPages {
     //CompanyDetailsScreen
     GetPage(
       name: Routes.jobDetails,
-      page: () => JobDetailsScreen(),
+      page: () => LoaderOverlay(
+        child: JobDetailsScreen(),
+        overlayWidgetBuilder: (_) {
+          return AppLoader();
+        },
+      ),
       children: [
         GetPage(
           name: Routes.employer,
@@ -309,7 +347,6 @@ class AppPages {
                 GetPage(name: Routes.aboutApp, page: () => AboutAppScreen()),
               ],
             ),
-
             GetPage(
               name: Routes.editProfile,
               page: () => LoaderOverlay(

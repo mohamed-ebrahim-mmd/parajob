@@ -1,7 +1,10 @@
 import 'package:dio/dio.dart';
+import 'package:para_job/packages/api_client/src/models/requests/apply_job_request.dart';
+import 'package:para_job/packages/api_client/src/models/requests/job_complaint_request.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../models/models.dart';
+import '../models/requests/company_complaint_request.dart';
 
 part 'api_client.g.dart';
 
@@ -10,7 +13,7 @@ abstract class ApiClient {
   factory ApiClient(Dio dio) = _ApiClient;
 
   @GET("/api/user/home")
-  Future<HomeResponse> fetchHomeJobs(@Header("Authorization") String? token);
+  Future<HomeResponse> fetchHomeJobs(@Header('Authorization') String? token);
 
   @GET("/api/department")
   Future<DepartmentResponse> getDepartments();
@@ -40,7 +43,10 @@ abstract class ApiClient {
   );
 
   @GET("/api/job/{id}")
-  Future<JobDetailsResponse> fetchJobDetails(@Path("id") int id);
+  Future<JobDetailsResponse> fetchJobDetails({
+    @Path("id") required int id,
+    @Header('Authorization') String? token,
+  });
 
   @GET("/api/company/{id}")
   Future<CompanyDetailsResponse> fetchCompanyDetails(@Path("id") int id);
@@ -164,6 +170,30 @@ abstract class ApiClient {
     @Body() EditUserRequest request,
     @Header("Authorization") String token,
   );
+
+  @POST("/api/job/apply")
+  Future<BaseResponse> applyJob({
+    @Header('Authorization') required String token,
+    @Body() required ApplyJobRequest request,
+  });
+
+  @DELETE("/api/application/{applicationId}")
+  Future<BaseResponse> withdrawJob({
+    @Header('Authorization') required String token,
+    @Path("applicationId") required int applicationId,
+  });
+
+  @POST("/api/complaint/job")
+  Future<BaseResponse> jobComplaint({
+    @Header('Authorization') required String token,
+    @Body() required JobComplaintRequest request,
+  });
+
+  @POST("/api/complaint/company")
+  Future<BaseResponse> companyComplaint({
+    @Header('Authorization') required String token,
+    @Body() required CompanyComplaintRequest request,
+  });
 
   // --- Add Bookmark ---
   @POST("/api/bookmark")
