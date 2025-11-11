@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
 import 'package:para_job/packages/functional_components/validation_utils.dart';
+import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
 
@@ -41,6 +42,11 @@ class ChangePassOtpController extends GetxController {
 
       if (response.isSuccess ?? false) {
         showSnackBarSuccess('Success', response.details?.message ?? '');
+         Get.toNamed(
+          "${Routes.mainNavigator}${Routes.more}${Routes.changePassOtp}${Routes.resetPassword}",
+        );
+
+        
       } else {
         showSnackBarError(
           'Failed',
@@ -54,7 +60,7 @@ class ChangePassOtpController extends GetxController {
     }
   }
 
-  Future<void> resendForgotPasswordRequest(BuildContext context) async {
+  Future<void> resendChangePasswordRequest(BuildContext context) async {
     try {
       context.loaderOverlay.show();
 

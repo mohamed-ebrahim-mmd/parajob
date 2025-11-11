@@ -19,6 +19,7 @@ import 'package:para_job/features/profile/about_app/about_app_screen.dart';
 import 'package:para_job/features/profile/about_us/about_us_screen.dart';
 import 'package:para_job/features/profile/bookmarked_jobs.dart/book_marked_jobs_screen.dart';
 import 'package:para_job/features/profile/change_pass/change_pass_otp/change_pass_otp_screen.dart';
+import 'package:para_job/features/profile/change_pass/reset_password/reset_password_screen.dart';
 import 'package:para_job/features/profile/contact_us/contact_us_screen.dart';
 import 'package:para_job/features/profile/edit_profile/edit_cv/pdf_view/pdf_view_screen.dart';
 import 'package:para_job/features/profile/edit_profile/edit_profile_screen.dart';
@@ -75,6 +76,7 @@ class Routes {
   static const String bookmarkedJobs = '/bookmarked_jobs';
   static const String activeJobs = '/active_jobs';
   static const String changePassOtp = '/changePassOtp';
+  static const String resetPassword = '/reset-password';
 }
 
 class AppPages {
@@ -303,6 +305,19 @@ class AppPages {
                   return AppLoader();
                 },
               ),
+              children: [
+
+                  GetPage(
+              name: Routes.resetPassword,
+              page: () => LoaderOverlay(
+                child: ResetPasswordScreen(),
+                overlayWidgetBuilder: (_) {
+                  //ignored progress for the moment
+                  return AppLoader();
+                },
+              ),
+            ),
+              ]
             ),
             GetPage(
               name: Routes.contactUs,

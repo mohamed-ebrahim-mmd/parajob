@@ -1,6 +1,5 @@
 //Mary Mark ||  mary.mark@moselaymd.com || Tue Nov 11 2025 12:25:00
 
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/profile/change_pass/change_pass_otp/change_pass_otp_controller.dart';
@@ -124,7 +123,7 @@ class ChangePassOtpScreen extends StatelessWidget {
                 color: AppColors.pureWhite,
                 disabledColor: AppColors.grayButton,
                 onPressed: () {
-                  controller.resendForgotPasswordRequest(context);
+                  controller.resendChangePasswordRequest(context);
                 },
               ),
             ],
