@@ -23,6 +23,8 @@ class JobData {
   final String logo;
   final City city;
   final Department department;
+  final int? applicationId;
+  final bool? isSubmitComplaint;
 
   JobData({
     required this.id,
@@ -47,6 +49,8 @@ class JobData {
     required this.logo,
     required this.city,
     required this.department,
+    required this.applicationId,
+    required this.isSubmitComplaint,
   });
 
   factory JobData.fromJson(Map<String, dynamic> json) {
@@ -75,6 +79,8 @@ class JobData {
       logo: json['logo'] ?? '',
       city: City.fromJson(json['city']),
       department: Department.fromJson(json['department']),
+      applicationId: json['application_id'],
+      isSubmitComplaint: json['is_submit_complaint'],
     );
   }
 

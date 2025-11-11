@@ -30,6 +30,7 @@ abstract final class AppAssetPaths {
   static const checkIcon = "assets/icons/check.svg";
   static const userWithID = "assets/images/user_with_id.png";
   static const cvUploadImg = "assets/images/upload.png";
+  static const pdfIcon = "assets/icons/pdf.png";
 
   ////////
   //job details
