@@ -13,7 +13,6 @@ class MoreScreen extends StatelessWidget {
   MoreScreen({super.key});
   final controller = Get.put(MoreController());
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +47,6 @@ class MoreScreen extends StatelessWidget {
                 onTap: () {
                   Get.toNamed(
                     "${Routes.mainNavigator}${Routes.more}${Routes.editProfile}",
-                    
                   );
                 },
               ),
@@ -142,14 +140,6 @@ class MoreScreen extends StatelessWidget {
                   Get.toNamed(
                     "${Routes.mainNavigator}${Routes.more}${Routes.contactUs}",
                   );
-                },
-              ),
-              context.hBox(1.5),
-              CustomListTile(
-                icon: AppAssetPaths.complaint,
-                title: "Complaint",
-                onTap: () {
-                  // navigate to Complaint form
                 },
               ),
 

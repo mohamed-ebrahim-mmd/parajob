@@ -26,7 +26,6 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: SingleChildScrollView(
-
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: context.wPct(5)),
           child: Column(
@@ -55,7 +54,7 @@ class HomeScreen extends StatelessWidget {
                   Get.toNamed("${Routes.mainNavigator}${Routes.searchJob}");
                 },
                 decoration: InputDecoration(
-                  hintText: 'Search jobs, companies..',
+                  hintText: 'Search by job title',
                   prefixIcon: const Icon(Icons.search),
                   suffixIcon: const Icon(Icons.tune),
                   filled: false,

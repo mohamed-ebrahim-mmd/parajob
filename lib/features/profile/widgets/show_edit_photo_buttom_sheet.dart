@@ -34,14 +34,7 @@ Future<void> showEditPhotoBottomSheet(
             child: Text("Choose photo"),
           ),
 
-          context.hBox(2),
-          FilledButton(
-            onPressed: () {},
-            style: FilledButton.styleFrom(
-              backgroundColor: AppColors.whiteSoft5,
-            ),
-            child: Text("Take photo"),
-          ),
+         
           context.hBox(2),
 
           FilledButton(

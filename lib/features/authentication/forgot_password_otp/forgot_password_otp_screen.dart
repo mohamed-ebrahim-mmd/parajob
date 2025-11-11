@@ -64,11 +64,11 @@ class ForgotPasswordOtpScreen extends StatelessWidget {
                     length: 5,
                     defaultPinTheme: AppTheme.pinTheme(context),
                     focusedPinTheme: AppTheme.pinTheme(context).copyWith(
-                      decoration: const BoxDecoration(
+                      decoration:  BoxDecoration(
                         border: Border(
                           bottom: BorderSide(
                             color: AppColors.aquaTeal,
-                            width: 3,
+                            width: context.wPct(0.5),
                           ),
                         ),
                       ),
