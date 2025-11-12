@@ -55,7 +55,7 @@ class EmployerHeroSection extends StatelessWidget {
               showComplaintBottomSheet(
                 companyName: companyName,
                 companyId: companyId,
-                companyIsSubmitComplaint: companyIsSubmitComplaint,context: context
+                companyIsSubmitComplaint: companyIsSubmitComplaint,
               );
             },
             icon: const Icon(Icons.more_vert, color: AppColors.pureWhite),

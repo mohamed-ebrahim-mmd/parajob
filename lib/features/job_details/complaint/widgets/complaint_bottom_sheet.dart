@@ -13,9 +13,10 @@ void showComplaintBottomSheet({
   String? jobTitle,
   int? jobId,
   bool? jobIsSubmitComplaint,
-  required BuildContext context,
+  
 }) {
   final user = Get.find<UserController>();
+  final context =Get.context!;
 
   Get.bottomSheet(
     Container(
@@ -57,7 +58,7 @@ void showComplaintBottomSheet({
                     }
                   },
                 ),
-          SizedBox(height: context.hPct(2)),
+                context.hBox(2)
         ],
       ),
     ),
