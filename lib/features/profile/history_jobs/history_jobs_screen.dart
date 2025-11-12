@@ -21,7 +21,7 @@ class HistoryJobsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("My Job History"),
+        title: const Text("Your job history"),
         surfaceTintColor: AppColors.charcoalBlack,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new),
