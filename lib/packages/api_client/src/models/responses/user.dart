@@ -21,10 +21,12 @@ class User {
   final String? educationStatus;
   final String? profilePicture;
   final String? nationalIdFront;
+  final String? nationalId;
   final String? nationalIdBack;
   final String? universityId;
   final String? cv;
   final String? accountStatus;
+  final String? cvUploadedDate; // change type from DateTime? to String?
 
   User({
     this.id,
@@ -52,6 +54,8 @@ class User {
     this.universityId,
     this.cv,
     this.accountStatus,
+    this.nationalId,
+    this.cvUploadedDate,
   });
 
   factory User.fromJson(Map<String, dynamic> json) {
@@ -81,6 +85,8 @@ class User {
       universityId: json['university_id'],
       cv: json['cv'],
       accountStatus: json['account_status'],
+      nationalId: json['national_id'],
+      cvUploadedDate: json['cv_uploaded_date'],
     );
   }
 
@@ -111,6 +117,8 @@ class User {
       'university_id': universityId,
       'cv': cv,
       'account_status': accountStatus,
+      'national_id': nationalId,
+      'cv_uploaded_date': cvUploadedDate,
     };
   }
 }

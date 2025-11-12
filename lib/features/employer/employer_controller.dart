@@ -5,15 +5,14 @@ import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
+import 'package:para_job/packages/ui_components/auth_required_dialog.dart';
 import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
-
-import '../../packages/api_client/src/models/requests/submit_review_request.dart';
-import '../../packages/ui_components/auth_required_dialog.dart';
-import '../../packages/user_manager/user_controller.dart';
+import 'package:para_job/packages/user_manager/user_controller.dart';
 
 class EmployerController extends GetxController {
   final int companyId;
   final user = Get.find<UserController>();
+  var isAnonymous = false.obs;
 
   EmployerController(this.companyId);
 
@@ -32,6 +31,13 @@ class EmployerController extends GetxController {
   void goToEmployerReviews() {
     Get.toNamed(
       "${Routes.jobDetails}${Routes.employer}${Routes.employerReviews}",
+      arguments: {'id': companyId},
+    );
+  }
+
+  void goToActiveJobs() {
+    Get.toNamed(
+      "${Routes.jobDetails}${Routes.employer}${Routes.activeJobs}",
       arguments: {'id': companyId},
     );
   }
@@ -76,7 +82,7 @@ class EmployerController extends GetxController {
         review: reviewText,
         rate: rating,
         companyId: companyId,
-        isAnonymous: true,
+        isAnonymous: isAnonymous.value,
       );
 
       try {

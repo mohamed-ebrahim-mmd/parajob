@@ -2,10 +2,7 @@
  Mohamed Ebrahim | mohamed7ebrahim7@gmail.com | 2025-10-16 2:50 PM
  ==================================================================
 */
-/*
- Mohamed Ebrahim | mohamed7ebrahim7@gmail.com | 2025-10-16 2:41 PM
- ==================================================================
-*/
+
 import 'package:flutter/material.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';

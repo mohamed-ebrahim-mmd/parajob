@@ -7,8 +7,10 @@ import '../../../packages/api_client/src/models/responses/review.dart';
 class EmployerReviewsController extends GetxController {
   final int companyId;
   final RxDouble averageRating = 0.0.obs;
+
   EmployerReviewsController(this.companyId);
-  late final PagingController<int, Review>  pagingController ;
+
+  late final PagingController<int, Review> pagingController;
 
   @override
   void onInit() {
@@ -18,14 +20,13 @@ class EmployerReviewsController extends GetxController {
 
   void _initPagingController() {
     pagingController = PagingController<int, Review>(
-      getNextPageKey: (state) => state.lastPageIsEmpty ? null : state.nextIntPageKey,
+      getNextPageKey: (state) =>
+          state.lastPageIsEmpty ? null : state.nextIntPageKey,
       fetchPage: (pageKey) {
-       return fetchCompanyReviews(companyId: companyId, page: pageKey);
+        return fetchCompanyReviews(companyId: companyId, page: pageKey);
       },
     );
   }
-
-
 
   Future<List<Review>> fetchCompanyReviews({
     required int companyId,
@@ -37,6 +38,7 @@ class EmployerReviewsController extends GetxController {
     );
     if (page == 1) {
       averageRating.value = response.averageRate ?? 0.0;
-    }return response.data ?? [];
+    }
+    return response.data ?? [];
   }
 }
