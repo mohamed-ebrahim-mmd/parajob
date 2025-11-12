@@ -10,13 +10,15 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init(); // Initialize GetStorage
   Get.put(RoutingController());
-  Get.put(UserController()); // Instantiate RoutingController
+  Get.put(UserController());
   runApp(ParaJobApp());
 }
 
 class ParaJobApp extends StatelessWidget {
   final RoutingController routingController = Get.find();
+
   ParaJobApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
