@@ -20,6 +20,7 @@ import 'package:para_job/packages/user_manager/user_controller.dart';
 class HomeScreen extends StatelessWidget {
   final user = Get.find<UserController>().user;
   final controller = Get.put(HomeController());
+
   HomeScreen({super.key});
 
   @override
@@ -54,7 +55,7 @@ class HomeScreen extends StatelessWidget {
                   Get.toNamed("${Routes.mainNavigator}${Routes.searchJob}");
                 },
                 decoration: InputDecoration(
-                  hintText: 'Search by job title',
+                  hintText: 'Search jobs, companies..',
                   prefixIcon: const Icon(Icons.search),
                   suffixIcon: const Icon(Icons.tune),
                   filled: false,

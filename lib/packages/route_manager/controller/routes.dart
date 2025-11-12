@@ -85,7 +85,6 @@ class Routes {
   static const String changePassword = '/change_password';
 
   static const String historyJobs = '/history_jobs';
-
 }
 
 class AppPages {
