@@ -211,4 +211,10 @@ abstract class ApiClient {
     @Header('Authorization') String? token,
     @Query("page") int? page,
   });
+
+  @PUT("/api/user/device/token")
+  Future<NotificationTokenResponse> updateDeviceToken(
+    @Body() NotificationTokenRequest request,
+    @Header("Authorization") String token,
+  );
 }
