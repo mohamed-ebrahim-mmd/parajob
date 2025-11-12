@@ -102,9 +102,10 @@ class ContractScreen extends StatelessWidget {
                                     controller.isAgreed.value = value ?? false;
                                   },
                                   activeColor: AppColors.aquaTeal,
-                                  visualDensity: const VisualDensity(
-                                    horizontal: -4,
-                                    vertical: -4,
+                                  visualDensity:  VisualDensity(
+                                    horizontal:context.wPct(-2),
+                                    
+                                    vertical: context.wPct(-2),
                                   ),
                                   materialTapTargetSize:
                                   MaterialTapTargetSize.shrinkWrap,

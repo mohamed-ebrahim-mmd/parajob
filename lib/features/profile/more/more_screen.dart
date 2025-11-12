@@ -132,14 +132,6 @@ class MoreScreen extends StatelessWidget {
                   );
                 },
               ),
-              context.hBox(1.5),
-              CustomListTile(
-                icon: AppAssetPaths.complaint,
-                title: "Complaint",
-                onTap: () {
-                  // navigate to Complaint form
-                },
-              ),
 
               context.hBox(2),
             ],
