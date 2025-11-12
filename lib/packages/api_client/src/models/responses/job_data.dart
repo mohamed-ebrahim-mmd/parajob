@@ -1,4 +1,6 @@
+
 import 'package:para_job/packages/api_client/src/models/models.dart';
+
 
 class JobData {
   final int id;
@@ -72,9 +74,7 @@ class JobData {
       from: json['from'],
       to: json['to'],
       applicationDeadline: json['application_deadline'],
-      skills: (json['skills'] as List<dynamic>)
-          .map((e) => e.toString())
-          .toList(),
+      skills: (json['skills'] as List<dynamic>).map((e) => e.toString()).toList(),
       isApplied: json['is_applied'] ?? false,
       logo: json['logo'] ?? '',
       city: City.fromJson(json['city']),
@@ -83,9 +83,7 @@ class JobData {
       isSubmitComplaint: json['is_submit_complaint'],
     );
   }
-
-  @override
-  String toString() {
-    return 'JobData{id: $id, title: $title, type: $type}';
-  }
 }
+
+
+

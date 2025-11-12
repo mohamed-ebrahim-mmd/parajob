@@ -1,6 +1,9 @@
 abstract final class AppAssetPaths {
   const AppAssetPaths._();
 
+  /// App Icon
+  static const parajobLogo = "assets/logo/drb_logo.png";
+
   /// Icons
   /// App Navigation Icons
   static const selectedHomeAppNavIcon = "assets/icons/selected_home_icon.svg";
@@ -19,11 +22,20 @@ abstract final class AppAssetPaths {
   static const onboardingScreenBackground1 = "assets/images/onboarding1.png";
   static const onboardingScreenBackground2 = "assets/images/onboarding2.png";
   static const onboardingScreenBackground3 = "assets/images/onboarding3.png";
+  static const lottie = "assets/lottie/para_job_lottie.json";
   static const getStartedBackground =
       "assets/images/get_started_background.png";
+  static const paraJobTxt = "assets/images/para_job_txt.svg";
+  static const skipArrowIcon = "assets/icons/skip_arrow_icon.svg";
 
+  ///  GetStarted Icon
+  static const appleIcon = "assets/icons/apple_icon.svg";
+  static const emailIcon = "assets/icons/email_icon.svg";
   //static const googleIcon = "assets/icons/google_icon.svg";
   static const guestUserIcon = "assets/icons/guest_user_icon.svg";
+
+  ///  ForgetPassword Icon
+  static const backBtnIcon = "assets/icons/back_btn_icon.svg";
 
   ///  Registration
   static const nationalID = "assets/images/national_id.png";
@@ -39,15 +51,15 @@ abstract final class AppAssetPaths {
   static const money = "assets/icons/money.svg";
   static const calender = "assets/icons/calendar.svg";
   static const company = "assets/icons/company.svg";
-
   //////
   /// Profile
   static const logoutIcon = "assets/icons/logout.svg";
-  static const profilrIcon = "assets/icons/profile.svg";
-  static const lock = "assets/icons/lock.svg";
-  static const deleteAcc = "assets/icons/delete_acc.svg";
-  static const changeNum = "assets/icons/change_number.svg";
-  static const contactUs = "assets/icons/contact_us.svg";
-  static const aboutUs = "assets/icons/about_us.svg";
-  static const complaint = "assets/icons/complaint.svg";
+  static const profilrIcon="assets/icons/profile.svg";
+  static const lock="assets/icons/lock.svg";
+  static const deleteAcc="assets/icons/delete_acc.svg";
+  static const changeNum="assets/icons/change_number.svg";
+  static const contactUs="assets/icons/contact_us.svg";
+  static const aboutUs="assets/icons/about_us.svg";
+  static const complaint="assets/icons/complaint.svg";
+ 
 }
