@@ -1,9 +1,9 @@
 // Karim Toson || kareemtoson1@gmail.com || 12/11/2025 3:50 PM
 
-class DeviceTokenRequest {
+class NotificationtokenRequest {
   final String deviceToken;
 
-  DeviceTokenRequest({required this.deviceToken});
+  NotificationtokenRequest({required this.deviceToken});
 
   // Convert Dart object → JSON
   Map<String, dynamic> toJson() {

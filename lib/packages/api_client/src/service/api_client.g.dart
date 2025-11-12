@@ -1224,8 +1224,8 @@ class _ApiClient implements ApiClient {
   }
 
   @override
-  Future<DeviceTokenResponse> updateDeviceToken(
-    DeviceTokenRequest request,
+  Future<NotificationTokenResponse> updateDeviceToken(
+    NotificationtokenRequest request,
     String token,
   ) async {
     final _extra = <String, dynamic>{};
@@ -1234,7 +1234,7 @@ class _ApiClient implements ApiClient {
     _headers.removeWhere((k, v) => v == null);
     final _data = <String, dynamic>{};
     _data.addAll(request.toJson());
-    final _options = _setStreamType<DeviceTokenResponse>(
+    final _options = _setStreamType<NotificationTokenResponse>(
       Options(method: 'PUT', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -1245,9 +1245,9 @@ class _ApiClient implements ApiClient {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late DeviceTokenResponse _value;
+    late NotificationTokenResponse _value;
     try {
-      _value = DeviceTokenResponse.fromJson(_result.data!);
+      _value = NotificationTokenResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
