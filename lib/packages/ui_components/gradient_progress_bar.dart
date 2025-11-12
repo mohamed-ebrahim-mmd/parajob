@@ -13,24 +13,17 @@ class GradientProgressBar extends StatelessWidget {
     return Container(
       height: context.hPct(1),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(context.wPct(1)),
         color: AppColors.lightGray2,
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(context.wPct(1)),
         child: ShaderMask(
           shaderCallback: (bounds) => const LinearGradient(
-            //  stops: [0.0, 0.0001, 0.701, 1.0],
             colors: [
               Color(0xFF00CBB8), // #00CBB8 at 0%
-              Color.fromRGBO(
-                0,
-                203,
-                184,
-                0.996875,
-              ), 
+              Color.fromRGBO(0, 203, 184, 0.996875),
               Color.fromRGBO(0, 152, 138, 0.645957),
-             
             ],
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,

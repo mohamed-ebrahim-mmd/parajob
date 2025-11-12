@@ -56,7 +56,7 @@ class ApplyJobScreen extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  SizedBox(height: context.hPct(2)),
+                  context.hBox(context.wPct(2)),
 
                   Container(
                     width: double.infinity,
