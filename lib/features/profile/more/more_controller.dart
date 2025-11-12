@@ -37,7 +37,7 @@ class MoreController extends GetxController {
       }
     } catch (e) {
       log("🔴 ${e.toString()}");
-      showSnackBarError("Failed", e.toString());
+      showSnackBarApiError();
     } finally {
       context.loaderOverlay.hide();
     }

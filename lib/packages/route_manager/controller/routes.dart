@@ -19,7 +19,7 @@ import 'package:para_job/features/profile/about_app/about_app_screen.dart';
 import 'package:para_job/features/profile/about_us/about_us_screen.dart';
 import 'package:para_job/features/profile/bookmarked_jobs.dart/book_marked_jobs_screen.dart';
 import 'package:para_job/features/profile/change_pass/change_pass_otp/change_pass_otp_screen.dart';
-import 'package:para_job/features/profile/change_pass/reset_password/change_password_screen.dart';
+import 'package:para_job/features/profile/change_pass/change_password/change_password_screen.dart';
 import 'package:para_job/features/profile/contact_us/contact_us_screen.dart';
 import 'package:para_job/features/profile/edit_profile/edit_cv/pdf_view/pdf_view_screen.dart';
 import 'package:para_job/features/profile/edit_profile/edit_profile_screen.dart';
@@ -75,8 +75,8 @@ class Routes {
   static const String pdfViewer = "/pdf-viewer";
   static const String bookmarkedJobs = '/bookmarked_jobs';
   static const String activeJobs = '/active_jobs';
-  static const String changePassOtp = '/changePassOtp';
-  static const String changePassword = '/change-password';
+  static const String changePassOtp = '/change_pass_otp';
+  static const String changePassword = '/change_password';
 }
 
 class AppPages {

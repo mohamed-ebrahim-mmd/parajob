@@ -71,7 +71,9 @@ class ChangePasswordController extends GetxController {
       }
     } catch (e) {
       log("🔴 ${e.toString()}");
-      showSnackBarApiError();
+      showSnackBarApiError(
+        
+      );
     } finally {
       context.loaderOverlay.hide();
     }
