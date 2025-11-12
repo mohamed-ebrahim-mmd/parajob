@@ -163,7 +163,6 @@ class EducationInfoScreen extends StatelessWidget {
                 onSelected: controller.onStatusSelected,
                 dropdownMenuEntries: controller.statusMenuEntries,
               ),
-              context.hBox(2.5),
             ],
           ),
         ),
