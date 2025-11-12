@@ -28,10 +28,9 @@ class GradientProgressBar extends StatelessWidget {
                 203,
                 184,
                 0.996875,
-              ), // rgba(0,203,184,0.996875) at 0.01%
+              ), 
               Color.fromRGBO(0, 152, 138, 0.645957),
-              // Color.fromRGBO(1, 57, 52, 0), // rgba(1,57,52,0) at 100%
-              //AppColors.lightGray2,
+             
             ],
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,

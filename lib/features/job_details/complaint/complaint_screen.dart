@@ -18,7 +18,7 @@ class ComplaintScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.charcoalBlack,
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 24),
+        padding: EdgeInsets.symmetric(horizontal: context.wPct(5)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -35,7 +35,10 @@ class ComplaintScreen extends StatelessWidget {
 
             Text(
               "Submit a complaint",
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+              style: TextStyle(
+                fontSize: context.wPct(6),
+                fontWeight: FontWeight.w600,
+              ),
             ),
             Row(
               mainAxisSize: MainAxisSize.min,
@@ -43,7 +46,7 @@ class ComplaintScreen extends StatelessWidget {
                 Text(
                   "about ",
                   style: TextStyle(
-                    fontSize: 12,
+                    fontSize: context.wPct(3.3),
                     fontWeight: FontWeight.w400,
                     color: AppColors.white50,
                   ),
@@ -51,7 +54,7 @@ class ComplaintScreen extends StatelessWidget {
                 Text(
                   title,
                   style: TextStyle(
-                    fontSize: 12,
+                    fontSize: context.wPct(3.3),
                     fontWeight: FontWeight.w800,
                     color: AppColors.pureWhite,
                   ),

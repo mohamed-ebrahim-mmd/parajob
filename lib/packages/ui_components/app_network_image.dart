@@ -43,7 +43,7 @@ class AppNetworkImage extends StatelessWidget {
                 height: imgHeight,
                 alignment: Alignment.center,
                 color: Colors.grey.shade100,
-                child: const CircularProgressIndicator(strokeWidth: 2),
+                child:  CircularProgressIndicator(strokeWidth: context.hPct(0.8),),
               );
         },
         errorBuilder: (context, error, stackTrace) {
