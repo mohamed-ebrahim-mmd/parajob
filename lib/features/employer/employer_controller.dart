@@ -101,7 +101,7 @@ class EmployerController extends GetxController {
         } else {
           showSnackBarError(
             "Failed",
-            "${response.details?.message ?? "Unknown error"}",
+            response.details?.message ?? "Unknown error",
           );
         }
       } catch (e) {

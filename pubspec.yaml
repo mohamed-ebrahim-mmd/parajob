@@ -1,6 +1,11 @@
 name: para_job
 description: "A new Flutter project."
+<<<<<<< HEAD
+
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
+=======
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+>>>>>>> a8bccb28ddb38c026cbb89e5f7693604f4be0295
 version: 2.0.0+27
 
 environment:
