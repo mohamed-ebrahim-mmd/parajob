@@ -25,9 +25,9 @@ class MyJobsScreen extends StatelessWidget {
                   children: [
                     TabBar(
                       dividerHeight: 0,
-                      labelStyle: const TextStyle(
+                      labelStyle: TextStyle(
                         fontWeight: FontWeight.w600,
-                        fontSize: 16,
+                        fontSize: context.wPct(3.5),
                         color: AppColors.pureWhite,
                       ),
                       tabs: const [

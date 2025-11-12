@@ -48,8 +48,14 @@ class SearchJobScreen extends StatelessWidget {
                   context.hBox(2),
                   TextField(
                     controller: controller.titleController,
+                    textInputAction:
+                        TextInputAction.done, // Keyboard shows "Done"
+                    onSubmitted: (value) {
+                      // Action when user presses "Done" on the keyboard
+                      controller.pagingController.refresh();
+                    },
                     decoration: InputDecoration(
-                      hintText: 'Search jobs, companies..',
+                      hintText: 'Search by job title',
                       prefixIcon: IconButton(
                         onPressed: () {
                           controller.pagingController.refresh();

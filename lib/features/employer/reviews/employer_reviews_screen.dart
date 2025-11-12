@@ -11,6 +11,7 @@ import '../../../packages/ui_components/app_star_rating.dart';
 
 class EmployerReviewsScreen extends StatelessWidget {
   EmployerReviewsScreen({super.key});
+
   final int id = Get.arguments['id'];
   late final controller = Get.put(EmployerReviewsController(id));
 
@@ -46,10 +47,12 @@ class EmployerReviewsScreen extends StatelessWidget {
                 ),
                 context.hBox(2),
                 Obx(
-                      () => Visibility(
-                        visible: controller.pagingController.status != PagingStatus.loadingFirstPage,
-                        child: Row(
-                                            children: [
+                  () => Visibility(
+                    visible:
+                        controller.pagingController.status !=
+                        PagingStatus.loadingFirstPage,
+                    child: Row(
+                      children: [
                         Text(
                           controller.averageRating.value.toStringAsFixed(1),
                           style: TextStyle(
@@ -63,9 +66,9 @@ class EmployerReviewsScreen extends StatelessWidget {
                           rating: controller.averageRating.value,
                           size: context.wPct(1),
                         ),
-                                            ],
-                                          ),
-                      ),
+                      ],
+                    ),
+                  ),
                 ),
                 context.hBox(2),
                 PagingListener(
