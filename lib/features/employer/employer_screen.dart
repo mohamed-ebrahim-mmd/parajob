@@ -150,7 +150,7 @@ class EmployerScreen extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              context.hBox(3),
+                              context.wBox(3),
 
                               Text(
                                 "${company.positiveReviewsPercentage?.toStringAsFixed(0) ?? 0}%",
