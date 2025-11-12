@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:para_job/packages/api_client/src/models/responses/notification_token_response.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../models/models.dart';
@@ -212,11 +211,10 @@ abstract class ApiClient {
     @Header('Authorization') String? token,
     @Query("page") int? page,
   });
-  ///////////////////////////////
-  /// Device Token APIs
+
   @PUT("/api/user/device/token")
   Future<NotificationTokenResponse> updateDeviceToken(
-    @Body() NotificationtokenRequest request,
+    @Body() NotificationTokenRequest request,
     @Header("Authorization") String token,
   );
 }

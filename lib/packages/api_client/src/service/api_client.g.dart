@@ -1225,7 +1225,7 @@ class _ApiClient implements ApiClient {
 
   @override
   Future<NotificationTokenResponse> updateDeviceToken(
-    NotificationtokenRequest request,
+    NotificationTokenRequest request,
     String token,
   ) async {
     final _extra = <String, dynamic>{};
