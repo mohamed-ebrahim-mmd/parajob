@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:para_job/features/job_details/job_details_controller.dart';
 import 'package:para_job/features/job_details/widgets/job_content.dart'
     show JobContent;
@@ -19,6 +18,7 @@ class ApplyJobScreen extends StatelessWidget {
   final jobId = Get.arguments as int;
   late final controller = Get.find<JobDetailsController>(tag: jobId.toString());
   final user = Get.find<UserController>();
+
   ApplyJobScreen({super.key});
 
   Widget _buildInfoRow(String label, String value) {
@@ -199,7 +199,7 @@ class ApplyJobScreen extends StatelessWidget {
                                               ),
                                             ),
                                             Text(
-                                              'Uploaded ${DateFormat('dd/MM/yyyy').format(user.user!.cvUploadedDate!)}',
+                                              'Uploaded ',
                                               style: TextStyle(
                                                 color: Colors.grey,
                                                 fontSize: 10,

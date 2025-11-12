@@ -1,10 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:para_job/packages/api_client/src/models/requests/apply_job_request.dart';
-import 'package:para_job/packages/api_client/src/models/requests/job_complaint_request.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../models/models.dart';
-import '../models/requests/company_complaint_request.dart';
 
 part 'api_client.g.dart';
 
@@ -13,7 +10,7 @@ abstract class ApiClient {
   factory ApiClient(Dio dio) = _ApiClient;
 
   @GET("/api/user/home")
-  Future<HomeResponse> fetchHomeJobs(@Header('Authorization') String? token);
+  Future<HomeResponse> fetchHomeJobs(@Header("Authorization") String? token);
 
   @GET("/api/department")
   Future<DepartmentResponse> getDepartments();

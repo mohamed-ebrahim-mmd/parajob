@@ -1,5 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:para_job/packages/api_client/src/models/responses/company.dart';
+import 'package:para_job/packages/route_manager/controller/routes.dart'
+    show Routes;
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/packages/ui_components/job_card.dart';
@@ -27,8 +32,12 @@ class ActiveJobsList extends StatelessWidget {
               job: job,
               width: context.wPct(80),
               onTap: () {
-                // Navigate to job details page
-                // Example: Get.toNamed('/job-details', arguments: {'id': job.id});
+                log("🟢🟢 ${job.id}");
+                Get.toNamed(
+                  Routes.jobDetails,
+                  arguments: job.id,
+                  preventDuplicates: false,
+                );
               },
             );
           },
