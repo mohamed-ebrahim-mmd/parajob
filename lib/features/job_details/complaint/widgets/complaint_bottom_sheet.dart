@@ -66,8 +66,7 @@ class ComplaintItem extends StatelessWidget {
   final String title;
   final VoidCallback onTap;
 
-  const ComplaintItem({Key? key, required this.title, required this.onTap})
-    : super(key: key);
+  const ComplaintItem({super.key, required this.title, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
