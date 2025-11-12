@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
-class CustomContainerJobDetail extends StatelessWidget {
+class JobDetailContainer extends StatelessWidget {
   final String text;
   final String iconPath;
-  const CustomContainerJobDetail({
+
+  const JobDetailContainer({
     super.key,
     required this.text,
     required this.iconPath,

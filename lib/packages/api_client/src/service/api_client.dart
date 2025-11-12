@@ -40,7 +40,10 @@ abstract class ApiClient {
   );
 
   @GET("/api/job/{id}")
-  Future<JobDetailsResponse> fetchJobDetails(@Path("id") int id);
+  Future<JobDetailsResponse> fetchJobDetails({
+    @Path("id") required int id,
+    @Header('Authorization') String? token,
+  });
 
   @GET("/api/company/{id}")
   Future<CompanyDetailsResponse> fetchCompanyDetails(@Path("id") int id);
@@ -164,6 +167,30 @@ abstract class ApiClient {
     @Body() EditUserRequest request,
     @Header("Authorization") String token,
   );
+
+  @POST("/api/job/apply")
+  Future<BaseResponse> applyJob({
+    @Header('Authorization') required String token,
+    @Body() required ApplyJobRequest request,
+  });
+
+  @DELETE("/api/application/{applicationId}")
+  Future<BaseResponse> withdrawJob({
+    @Header('Authorization') required String token,
+    @Path("applicationId") required int applicationId,
+  });
+
+  @POST("/api/complaint/job")
+  Future<BaseResponse> jobComplaint({
+    @Header('Authorization') required String token,
+    @Body() required JobComplaintRequest request,
+  });
+
+  @POST("/api/complaint/company")
+  Future<BaseResponse> companyComplaint({
+    @Header('Authorization') required String token,
+    @Body() required CompanyComplaintRequest request,
+  });
 
   // --- Add Bookmark ---
   @POST("/api/bookmark")

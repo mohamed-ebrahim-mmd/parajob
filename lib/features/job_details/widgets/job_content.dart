@@ -24,7 +24,6 @@ class JobContent extends StatelessWidget {
             ),
             const Spacer(),
             IconButton(onPressed: () {}, icon: Icon(Icons.share)),
-            IconButton(onPressed: () {}, icon: Icon(Icons.more_vert)),
           ],
         ),
         context.hBox(2),

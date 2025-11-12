@@ -1,11 +1,10 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/job_details/job_details_controller.dart';
-import 'package:para_job/features/job_details/widgets/custom_container_job_detail.dart';
+import 'package:para_job/features/job_details/widgets/delete_job_application_dialog.dart';
 import 'package:para_job/features/job_details/widgets/job_content.dart'
     show JobContent;
+import 'package:para_job/features/job_details/widgets/job_detail_container.dart';
 import 'package:para_job/features/job_details/widgets/job_skill_item.dart';
 import 'package:para_job/packages/api_client/src/enums/api_call_state_enum.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
@@ -33,11 +32,8 @@ class JobDetailsScreen extends StatelessWidget {
             return Center(child: CircularProgressIndicator());
           case ApiCallState.success:
             final jobDetails = controller.jobData!.data;
-            log("🟢 ${jobDetails.toString()}");
-
             return SingleChildScrollView(
               child: Column(
-                //  crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.start,
 
                 children: [
@@ -66,14 +62,14 @@ class JobDetailsScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Expanded(
-                              child: CustomContainerJobDetail(
+                              child: JobDetailContainer(
                                 text: jobDetails.monthlySalary,
                                 iconPath: AppAssetPaths.money,
                               ),
                             ),
                             context.wBox(5),
                             Expanded(
-                              child: CustomContainerJobDetail(
+                              child: JobDetailContainer(
                                 text: jobDetails.type,
                                 iconPath: AppAssetPaths.company,
                               ),
@@ -86,14 +82,14 @@ class JobDetailsScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Expanded(
-                              child: CustomContainerJobDetail(
+                              child: JobDetailContainer(
                                 text: jobDetails.startDate,
                                 iconPath: AppAssetPaths.calender,
                               ),
                             ),
                             context.wBox(5),
                             Expanded(
-                              child: CustomContainerJobDetail(
+                              child: JobDetailContainer(
                                 text:
                                     "${jobDetails.from ?? "-"} - ${jobDetails.to ?? "-"}",
                                 iconPath: AppAssetPaths.clocks,
@@ -103,7 +99,7 @@ class JobDetailsScreen extends StatelessWidget {
                         ),
                         context.hBox(3),
                         //location
-                        CustomContainerJobDetail(
+                        JobDetailContainer(
                           text: jobDetails.location,
                           iconPath: AppAssetPaths.location,
                         ),
@@ -166,10 +162,38 @@ class JobDetailsScreen extends StatelessWidget {
                         ),
 
                         context.hBox(4),
-                        FilledButton(
-                          onPressed: () {},
-                          child: Text("Apply for this job"),
-                        ),
+                        jobDetails.isApplied
+                            ? Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: TextButton(
+                                      onPressed: () {
+                                        deleteJobApplicationDialog(
+                                          applicationId:
+                                              jobDetails.applicationId!,
+                                          controller: controller,
+                                          screenContext: context,
+                                        );
+                                      },
+                                      child: Text(
+                                        'Delete my application',
+                                        style: TextStyle(
+                                          color: AppColors.rejected,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              )
+                            : FilledButton(
+                                onPressed: controller.handleApplyJobPressed,
+                                child: Text("Apply for this job"),
+                              ),
+
                         context.hBox(4),
                       ],
                     ),

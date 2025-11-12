@@ -20,6 +20,10 @@ class Job {
   final Department? department;
   final String? from;
   final String? to;
+  final String? applicationStatus;
+  final int? isSignedContract;
+  final String? applicationDate;
+  final int? jobApplicationVerification;
 
   Job({
     this.id,
@@ -35,6 +39,10 @@ class Job {
     this.department,
     this.from,
     this.to,
+    this.applicationStatus,
+    this.isSignedContract,
+    this.applicationDate,
+    this.jobApplicationVerification,
   });
 
   factory Job.fromJson(Map<String, dynamic>? json) {
@@ -58,6 +66,10 @@ class Job {
           : null,
       from: json['from'],
       to: json['to'],
+      applicationStatus: json['application_status'],
+      isSignedContract: json['is_signed_contract'],
+      applicationDate: json['application_date'],
+      jobApplicationVerification: json['job_application_verification'],
     );
   }
 }

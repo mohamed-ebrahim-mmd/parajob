@@ -140,5 +140,3 @@ class CreateAccountSkillsScreen extends StatelessWidget {
     );
   }
 }
-
-List<String> skills = ["Plumbing", "Electrical Work", "Carpentry", "Painting"];
