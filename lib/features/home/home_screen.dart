@@ -20,13 +20,13 @@ import 'package:para_job/packages/user_manager/user_controller.dart';
 class HomeScreen extends StatelessWidget {
   final user = Get.find<UserController>().user;
   final controller = Get.put(HomeController());
+
   HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: SingleChildScrollView(
-
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: context.wPct(5)),
           child: Column(

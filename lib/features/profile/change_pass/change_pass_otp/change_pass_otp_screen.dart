@@ -1,34 +1,25 @@
-/*
- Mohamed Ebrahim | mohamed7ebrahim7@gmail.com | 2025-10-15 10:32 AM
- ==================================================================
-*/
+//Mary Mark ||  mary.mark@moselaymd.com || Tue Nov 11 2025 12:25:00
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:para_job/features/authentication/forgot_password_otp/forgot_password_otp_controller.dart';
+import 'package:para_job/features/profile/change_pass/change_pass_otp/change_pass_otp_controller.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/packages/themeing/theme.dart';
 import 'package:pinput/pinput.dart';
 import 'package:timer_button/timer_button.dart';
 
-class ForgotPasswordOtpScreen extends StatelessWidget {
-  ForgotPasswordOtpScreen({super.key});
-  final controller = Get.find<ForgotPasswordOtpController>();
+class ChangePassOtpScreen extends StatelessWidget {
+  ChangePassOtpScreen({super.key});
+  final controller = Get.put(ChangePassOtpController());
 
   @override
   Widget build(BuildContext context) {
-    return PopScope(
-      canPop: false,
-      onPopInvokedWithResult: (didPop, result) {
-        if (!didPop) {
-          controller.closeAndDispose();
-        }
-      },
-      child: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           leading: IconButton(
             icon: const Icon(Icons.arrow_back_ios_new),
-            onPressed: controller.closeAndDispose,
+            onPressed: Get.back,
           ),
         ),
 
@@ -64,11 +55,11 @@ class ForgotPasswordOtpScreen extends StatelessWidget {
                     length: 5,
                     defaultPinTheme: AppTheme.pinTheme(context),
                     focusedPinTheme: AppTheme.pinTheme(context).copyWith(
-                      decoration:  BoxDecoration(
+                      decoration: const BoxDecoration(
                         border: Border(
                           bottom: BorderSide(
                             color: AppColors.aquaTeal,
-                            width: context.wPct(0.5),
+                            width: 3,
                           ),
                         ),
                       ),
@@ -125,13 +116,13 @@ class ForgotPasswordOtpScreen extends StatelessWidget {
                 color: AppColors.pureWhite,
                 disabledColor: AppColors.grayButton,
                 onPressed: () {
-                  controller.resendForgotPasswordRequest(context);
+                  controller.resendChangePasswordRequest(context);
                 },
               ),
             ],
           ),
         ),
-      ),
+     
     );
   }
 }
