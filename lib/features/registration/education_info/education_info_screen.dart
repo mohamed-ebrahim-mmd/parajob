@@ -140,8 +140,7 @@ class EducationInfoScreen extends StatelessWidget {
                     );
                 }
               }),
-             
-             
+
               context.hBox(1.5),
               TextField(
                 readOnly: true,
@@ -153,6 +152,18 @@ class EducationInfoScreen extends StatelessWidget {
                 ),
                 onTap: controller.pickGraduationYear,
               ),
+
+              //status dropDown
+              context.hBox(1.5),
+              DropdownMenu<String>(
+                enableSearch: true,
+                expandedInsets: EdgeInsets.zero,
+                hintText: "Status",
+                initialSelection: controller.selectedStatus,
+                onSelected: controller.onStatusSelected,
+                dropdownMenuEntries: controller.statusMenuEntries,
+              ),
+              context.hBox(2.5),
             ],
           ),
         ),

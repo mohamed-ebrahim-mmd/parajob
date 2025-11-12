@@ -5,7 +5,6 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart' show
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:para_job/features/my_jobs/contract/contract_controller.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
-import 'package:para_job/packages/api_client/src/models/requests/application_verification_otp_request.dart';
 import 'package:para_job/packages/functional_components/validation_utils.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';

@@ -21,6 +21,12 @@ class EducationInfoController extends GetxController {
 
   List<DropdownMenuEntry<int>> universityMenuEntries = [];
   List<DropdownMenuEntry<int>> facultyMenuEntries = [];
+  String? selectedStatus;
+  final List<DropdownMenuEntry<String>> statusMenuEntries = const [
+    DropdownMenuEntry(value: 'student', label: 'Student'),
+    DropdownMenuEntry(value: 'fresh_graduate', label: 'Fresh Graduate'),
+    DropdownMenuEntry(value: 'graduate', label: 'Graduate'),
+  ];
 
   @override
   void onInit() {
@@ -95,6 +101,12 @@ class EducationInfoController extends GetxController {
     }
   }
 
+  void onStatusSelected(String? value) {
+    if (value != null) {
+      selectedStatus = value;
+    }
+  }
+
   /// ✅ Validate before proceeding
   void onSubmitEducationInfo() {
     if (selectedUniversityId.value == null) {
@@ -109,6 +121,10 @@ class EducationInfoController extends GetxController {
 
     if (graduationYearController.text.isEmpty) {
       showSnackBarError("Failed", "Please select your graduation year");
+      return;
+    }
+    if (selectedStatus == null) {
+      showSnackBarError("Failed", "Please select your status");
       return;
     }
 

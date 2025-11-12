@@ -120,6 +120,7 @@ class CreateAccountCvController extends GetxController {
             universityId: urls[3],
             cv: urls[4],
           ),
+          educationStatus: educationInfoController.selectedStatus,
         ),
         tempToken,
       );
