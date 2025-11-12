@@ -37,7 +37,6 @@ class CompanyDetailContainer extends StatelessWidget {
               overflow: TextOverflow.visible,
             ),
             context.hBox(0.5),
-            //  const SizedBox(height: 4),
             Text(
               "$value +",
               style: TextStyle(

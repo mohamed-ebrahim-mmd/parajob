@@ -16,7 +16,7 @@ class MyJobCard extends StatelessWidget {
     super.key,
     required this.job,
     this.highlighted = false,
-    this.isHistoryJobs ,
+    this.isHistoryJobs,
     this.onTap,
   });
 
@@ -74,7 +74,8 @@ class MyJobCard extends StatelessWidget {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  SizedBox(height: context.hPct(1)),
+                  context.hBox(1),
+
                   Text(
                     job.company.name ?? "",
                     style: TextStyle(
@@ -91,8 +92,8 @@ class MyJobCard extends StatelessWidget {
               ),
             ),
             context.wBox(2),
-            isHistoryJobs==null?
-                 Text(
+            isHistoryJobs == null
+                ? Text(
                     !highlighted
                         ? job.applicationStatus.displayName
                         : job.isSignedContract == 0

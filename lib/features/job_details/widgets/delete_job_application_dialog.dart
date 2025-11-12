@@ -43,7 +43,7 @@ void deleteJobApplicationDialog({
           ),
           // Message
           Padding(
-            padding: EdgeInsets.all(12),
+            padding: EdgeInsets.all(context.wPct(4)),
             child: Column(
               children: [
                 Text(
@@ -76,7 +76,7 @@ void deleteJobApplicationDialog({
                   "Warning: if you try to delete your application 48 hours before this you will pay a fee on your next job.",
                   style: TextStyle(
                     color: AppColors.white60,
-                    fontSize: 10,
+                    fontSize: context.wPct(3.5),
                     fontWeight: FontWeight.w400,
                   ),
                 ),

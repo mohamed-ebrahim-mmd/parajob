@@ -39,7 +39,8 @@ class EmployerListHeader extends StatelessWidget {
                   color: AppColors.pureWhite,
                 ),
               ),
-              SizedBox(width: context.wPct(1)),
+              context.wBox(1),
+
               const Icon(
                 Icons.double_arrow,
                 size: 10,

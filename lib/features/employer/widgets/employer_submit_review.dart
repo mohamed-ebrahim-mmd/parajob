@@ -18,7 +18,7 @@ class EmployerSubmitReview extends StatelessWidget {
       children: [
         Text(
           "Write a Review",
-          style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+          style: TextStyle(fontSize: context.wPct(5), fontWeight: FontWeight.w600),
         ),
         context.hBox(1.5),
 
@@ -47,9 +47,9 @@ class EmployerSubmitReview extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5),
                   ),
-                  side: const BorderSide(
+                  side:  BorderSide(
                     color: AppColors.pureWhite,
-                    width: 1.5,
+                    width: context.wPct(0.2),
                   ),
                 ),
               ),
