@@ -11,10 +11,12 @@ class MyJobCard extends StatelessWidget {
   final MyJob job;
   final bool highlighted;
   final VoidCallback? onTap;
+  final bool? isHistoryJobs;
   const MyJobCard({
     super.key,
     required this.job,
     this.highlighted = false,
+    this.isHistoryJobs ,
     this.onTap,
   });
 
@@ -89,20 +91,22 @@ class MyJobCard extends StatelessWidget {
               ),
             ),
             context.wBox(2),
-            Text(
-              !highlighted
-                  ? job.applicationStatus.displayName
-                  : job.isSignedContract == 0
-                  ? 'Contract Pending'
-                  : 'Contract Signed',
-              style: TextStyle(
-                color: highlighted
-                    ? AppColors.aquaTeal
-                    : _getStatusColor(job.applicationStatus),
-                fontWeight: FontWeight.bold,
-                fontSize: context.wPct(3.5),
-              ),
-            ),
+            isHistoryJobs==null?
+                 Text(
+                    !highlighted
+                        ? job.applicationStatus.displayName
+                        : job.isSignedContract == 0
+                        ? 'Contract Pending'
+                        : 'Contract Signed',
+                    style: TextStyle(
+                      color: highlighted
+                          ? AppColors.aquaTeal
+                          : _getStatusColor(job.applicationStatus),
+                      fontWeight: FontWeight.bold,
+                      fontSize: context.wPct(3.5),
+                    ),
+                  )
+                : SizedBox(),
           ],
         ),
       ),

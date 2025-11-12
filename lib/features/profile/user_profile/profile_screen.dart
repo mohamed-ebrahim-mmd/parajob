@@ -65,6 +65,9 @@ class ProfileScreen extends StatelessWidget {
                       JobHistoryList(
                         jobHistory: profileData.jobs ?? [],
                         emptyMessage: "No job history found ",
+                        title: "My Job History",
+
+                        onSeeAll: controller.onSeeAllHistoryJobs,
                       ),
                       //saved jobs list
                       context.hBox(4),
