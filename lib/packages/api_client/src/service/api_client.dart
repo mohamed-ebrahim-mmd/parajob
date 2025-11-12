@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:para_job/packages/api_client/src/models/responses/notificationToken_response.dart';
+import 'package:para_job/packages/api_client/src/models/responses/notification_token_response.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../models/models.dart';
