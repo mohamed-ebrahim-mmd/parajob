@@ -17,7 +17,8 @@ class MyJobsScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: context.hPct(2)),
+            context.hBox(2),
+
             Expanded(
               child: DefaultTabController(
                 length: 2,

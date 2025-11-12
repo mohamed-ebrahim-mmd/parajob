@@ -27,7 +27,8 @@ Future<void> showApplicationDialog({
               color: Colors.white,
               size: context.wPct(10),
             ),
-            SizedBox(height: context.hPct(2)),
+            context.hBox(2),
+
             Text(
               message,
               textAlign: TextAlign.center,
@@ -37,7 +38,8 @@ Future<void> showApplicationDialog({
                 fontWeight: FontWeight.w500,
               ),
             ),
-            SizedBox(height: context.hPct(3)),
+            context.hBox(3),
+
             OutlinedButton(
               onPressed: onTap,
               style: FilledButton.styleFrom(

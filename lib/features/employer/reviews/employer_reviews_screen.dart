@@ -61,7 +61,7 @@ class EmployerReviewsScreen extends StatelessWidget {
                             color: Colors.teal,
                           ),
                         ),
-                        SizedBox(width: context.wPct(1.5)),
+                        context.wBox(1.5),
                         AppStarRating(
                           rating: controller.averageRating.value,
                           size: context.wPct(1),

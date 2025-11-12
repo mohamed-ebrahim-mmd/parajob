@@ -131,7 +131,8 @@ class EmployerScreen extends StatelessWidget {
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
-                              SizedBox(width: context.wPct(3)),
+                              context.wBox(3),
+
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(
                                   context.wPct(10),
@@ -149,7 +150,8 @@ class EmployerScreen extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              SizedBox(width: context.wPct(3)),
+                              context.hBox(3),
+
                               Text(
                                 "${company.positiveReviewsPercentage?.toStringAsFixed(0) ?? 0}%",
                                 style: TextStyle(

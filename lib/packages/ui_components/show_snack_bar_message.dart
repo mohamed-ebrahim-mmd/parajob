@@ -44,7 +44,8 @@ void showSnackBarMessage({
                   size: context.wPct(7), // Icon size 7% of screen width
                   color: Colors.white,
                 ),
-                SizedBox(width: context.wPct(3)), // Spacing 3% of screen width
+                                        context.wBox(3),
+ // Spacing 3% of screen width
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

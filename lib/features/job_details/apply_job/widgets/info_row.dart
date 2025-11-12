@@ -28,11 +28,12 @@ class InfoRow extends StatelessWidget {
               fontWeight: FontWeight.w400,
             ),
           ),
-           SizedBox(height: context.hPct(0.5)),
+          context.hBox(0.5),
+
           Text(
             value,
             maxLines: 1,
-            style:  TextStyle(
+            style: TextStyle(
               color: AppColors.pureWhite,
               fontWeight: FontWeight.w500,
               fontSize: context.wPct(4),

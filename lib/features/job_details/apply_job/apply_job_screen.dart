@@ -102,7 +102,8 @@ class ApplyJobScreen extends StatelessWidget {
                             fontWeight: FontWeight.w400,
                           ),
                         ),
-                        SizedBox(height: context.hPct(0.5)),
+                        context.hBox(0.5),
+
                         Wrap(
                           spacing: 8,
                           runSpacing: 8,
@@ -110,11 +111,13 @@ class ApplyJobScreen extends StatelessWidget {
                               .map((skill) => JobSkillItem(skill: skill))
                               .toList(),
                         ),
-                        SizedBox(height: context.hPct(2)),
+                        context.hBox(2),
+
                         if (user.user?.cv != null &&
                             user.user?.cvUploadedDate != null) ...[
                           const Divider(color: AppColors.line),
-                          const SizedBox(height: 16),
+                          context.hBox(1),
+
                           Text(
                             'Document',
                             style: TextStyle(
@@ -123,7 +126,7 @@ class ApplyJobScreen extends StatelessWidget {
                               fontWeight: FontWeight.w400,
                             ),
                           ),
-                          SizedBox(height: context.hPct(1)),
+                          context.hBox(1),
 
                           Container(
                             padding: EdgeInsets.all(context.wPct(3)),
@@ -152,7 +155,8 @@ class ApplyJobScreen extends StatelessWidget {
                                   ),
                                 ),
 
-                                SizedBox(width: context.wPct(3)),
+                                                        context.wBox(3),
+
                                 Expanded(
                                   child: Column(
                                     crossAxisAlignment:
@@ -187,7 +191,8 @@ class ApplyJobScreen extends StatelessWidget {
                     ),
                   ),
 
-                  SizedBox(height: context.hPct(2)),
+                  context.hBox(2),
+
                   FilledButton(
                     onPressed: () async {
                       controller.applyJob(context, jobDetails.id);
@@ -201,7 +206,7 @@ class ApplyJobScreen extends StatelessWidget {
                     ),
                   ),
 
-                  SizedBox(height: context.hPct(4)),
+                  context.hBox(4),
                 ],
               ),
             ),

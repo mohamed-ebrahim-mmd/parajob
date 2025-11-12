@@ -45,7 +45,8 @@ class MyNotificationCard extends StatelessWidget {
             height: context.wPct(12),
             borderRadius: BorderRadius.circular(context.wPct(2)),
           ),
-          SizedBox(width: context.wPct(4)),
+                                  context.wBox(4),
+
           //],
           Expanded(
             child: RichText(
