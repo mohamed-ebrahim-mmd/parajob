@@ -304,4 +304,15 @@ const Map<String, String> arSA = {
   'contact_us_email_title': 'ابعث لنا بالبريد الإلكتروني',
   'contact_us_phone_title': 'عبر الهاتف',
   'contact_us_submit_button': 'إرسال الشكوى',
+
+  // ============================================================
+  // ✏️ Edit Main Info Screen
+  // ============================================================
+  'edit_main_info_loading_cities': 'تحميل المدن...',
+  'edit_main_info_city_hint': 'اختر مدينتك',
+  'edit_main_info_failed_load_cities': 'فشل التحميل، انقر لإعادة المحاولة',
+  'edit_main_info_loading_areas': 'تحميل المناطق...',
+  'edit_main_info_failed_load_areas': 'فشل تحميل المناطق، انقر لإعادة المحاولة',
+  'edit_main_info_select_city_first': 'اختر مدينة أولاً',
+  'edit_main_info_save_button': 'حفظ التغييرات',
 };

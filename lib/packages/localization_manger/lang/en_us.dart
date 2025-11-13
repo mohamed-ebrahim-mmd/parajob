@@ -308,4 +308,15 @@ const Map<String, String> enUS = {
   'contact_us_email_title': 'Email us on',
   'contact_us_phone_title': 'By phone',
   'contact_us_submit_button': 'Submit your complaint',
+
+  // ============================================================
+  // ✏️ Edit Main Info Screen
+  // ============================================================
+  'edit_main_info_loading_cities': 'Loading cities...',
+  'edit_main_info_city_hint': 'Choose your city',
+  'edit_main_info_failed_load_cities': 'Failed to load, tap to retry',
+  'edit_main_info_loading_areas': 'Loading areas...',
+  'edit_main_info_failed_load_areas': 'Failed to load areas, tap to retry',
+  'edit_main_info_select_city_first': 'Select a city first',
+  'edit_main_info_save_button': 'Save changes',
 };
