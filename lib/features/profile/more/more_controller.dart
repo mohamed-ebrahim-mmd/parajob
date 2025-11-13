@@ -16,6 +16,10 @@ class MoreController extends GetxController {
 
   MoreController();
 
+    void navigateTo(String route) {
+    Get.toNamed("${Routes.mainNavigator}${Routes.more}$route");
+  }
+
   Future<void> deleteUserAccount(BuildContext context) async {
     Navigator.of(context).pop();
     context.loaderOverlay.show();

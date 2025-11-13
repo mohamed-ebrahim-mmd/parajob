@@ -29,6 +29,23 @@ class MoreScreen extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: context.wPct(5)),
           child: ListView(
             children: [
+              Text(
+                "Settings",
+                style: TextStyle(
+                  color: AppColors.softWhite70,
+                  fontSize: context.wPct(5),
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              context.hBox(2),
+
+              CustomListTile(
+                icon: AppAssetPaths.lan,
+                title: "Language",
+
+                onTap: () => controller.navigateTo(Routes.laguageScreen),
+              ),
+              context.hBox(3),
               // ===== Account Section =====
               context.hBox(2),
               Text(
@@ -44,11 +61,8 @@ class MoreScreen extends StatelessWidget {
               CustomListTile(
                 icon: AppAssetPaths.profilrIcon,
                 title: "Edit Personal Info",
-                onTap: () {
-                  Get.toNamed(
-                    "${Routes.mainNavigator}${Routes.more}${Routes.editProfile}",
-                  );
-                },
+
+                onTap: () => controller.navigateTo(Routes.editProfile),
               ),
               context.hBox(1.5),
 
@@ -115,22 +129,16 @@ class MoreScreen extends StatelessWidget {
               CustomListTile(
                 icon: AppAssetPaths.aboutUs,
                 title: "About Us",
-                onTap: () {
-                  Get.toNamed(
-                    "${Routes.mainNavigator}${Routes.more}${Routes.aboutUs}",
-                  );
-                },
+
+                onTap: () => controller.navigateTo(Routes.aboutUs),
               ),
               context.hBox(1.5),
 
               CustomListTile(
                 icon: AppAssetPaths.contactUs,
                 title: "Contact Us",
-                onTap: () {
-                  Get.toNamed(
-                    "${Routes.mainNavigator}${Routes.more}${Routes.contactUs}",
-                  );
-                },
+
+                onTap: () => controller.navigateTo(Routes.contactUs),
               ),
 
               context.hBox(2),
