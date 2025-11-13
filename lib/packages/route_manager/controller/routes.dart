@@ -26,6 +26,7 @@ import 'package:para_job/features/profile/contact_us/contact_us_screen.dart';
 import 'package:para_job/features/profile/edit_profile/edit_cv/pdf_view/pdf_view_screen.dart';
 import 'package:para_job/features/profile/edit_profile/edit_profile_screen.dart';
 import 'package:para_job/features/profile/history_jobs/history_jobs_screen.dart';
+import 'package:para_job/features/profile/language/language_screen.dart';
 import 'package:para_job/features/profile/more/more_screen.dart';
 import 'package:para_job/features/registration/back_national_id/back_national_id_screen.dart';
 import 'package:para_job/features/registration/create_account/create_account_screen.dart';
@@ -85,6 +86,8 @@ class Routes {
   static const String changePassword = '/change_password';
 
   static const String historyJobs = '/history_jobs';
+
+  static const String laguageScreen="/laguage_screen";
 }
 
 class AppPages {
@@ -330,6 +333,11 @@ class AppPages {
           ),
 
           children: [
+
+             GetPage(
+                  name: Routes.laguageScreen,
+                  page: () =>  LanguageScreen()
+                ),
             GetPage(
               name: Routes.changePassOtp,
               page: () => LoaderOverlay(

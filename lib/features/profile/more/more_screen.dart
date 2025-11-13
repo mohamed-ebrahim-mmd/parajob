@@ -29,6 +29,26 @@ class MoreScreen extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: context.wPct(5)),
           child: ListView(
             children: [
+                Text(
+                "Settings",
+                style: TextStyle(
+                  color: AppColors.softWhite70,
+                  fontSize: context.wPct(5),
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              context.hBox(2),
+
+              CustomListTile(
+                icon: AppAssetPaths.lan,
+                title: "Language",
+                onTap: () {
+                  Get.toNamed(
+                    "${Routes.mainNavigator}${Routes.more}${Routes.laguageScreen}",
+                  );
+                },
+              ),
+              context.hBox(3),
               // ===== Account Section =====
               context.hBox(2),
               Text(
