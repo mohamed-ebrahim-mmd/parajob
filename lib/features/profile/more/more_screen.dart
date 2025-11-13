@@ -30,7 +30,7 @@ class MoreScreen extends StatelessWidget {
           child: ListView(
             children: [
               Text(
-                "Settings",
+                'more_settings_title'.tr,
                 style: TextStyle(
                   color: AppColors.softWhite70,
                   fontSize: context.wPct(5),
@@ -41,7 +41,7 @@ class MoreScreen extends StatelessWidget {
 
               CustomListTile(
                 icon: AppAssetPaths.lan,
-                title: "Language",
+                title: 'more_language'.tr,
 
                 onTap: () => controller.navigateTo(Routes.laguageScreen),
               ),
@@ -49,7 +49,7 @@ class MoreScreen extends StatelessWidget {
               // ===== Account Section =====
               context.hBox(2),
               Text(
-                "Account",
+                'more_account_title'.tr,
                 style: TextStyle(
                   color: AppColors.softWhite70,
                   fontSize: context.wPct(5),
@@ -60,7 +60,7 @@ class MoreScreen extends StatelessWidget {
 
               CustomListTile(
                 icon: AppAssetPaths.profilrIcon,
-                title: "Edit Personal Info",
+                title: 'more_edit_personal_info'.tr,
 
                 onTap: () => controller.navigateTo(Routes.editProfile),
               ),
@@ -68,7 +68,7 @@ class MoreScreen extends StatelessWidget {
 
               CustomListTile(
                 icon: AppAssetPaths.lock,
-                title: "Change Password",
+                title: 'more_change_password'.tr,
                 onTap: () => controller.sendChangePassRequest(context),
               ),
 
@@ -76,15 +76,13 @@ class MoreScreen extends StatelessWidget {
 
               CustomListTile(
                 icon: AppAssetPaths.deleteAcc,
-                title: "Delete Account",
+                title: 'more_delete_account'.tr,
                 isRedTitle: true,
                 onTap: () {
                   showApplicationDialog(
-                    message:
-                        "Are you sure that you want to delete your account?",
-                    textButton: "Delete my account",
-                    warning:
-                        "Warning: if you deleted your account you will lose all your data and your level rank.",
+                    message: 'more_delete_account_confirmation'.tr,
+                    textButton: 'more_delete_account_button'.tr,
+                    warning: 'more_delete_account_warning'.tr,
                     context: context,
                     onTap: () {
                       controller.deleteUserAccount(context);
@@ -96,20 +94,17 @@ class MoreScreen extends StatelessWidget {
 
               CustomListTile(
                 icon: AppAssetPaths.logoutIcon,
-                title: "Log Out",
+                title: 'more_logout'.tr,
                 isRedTitle: true,
                 onTap: () {
                   showApplicationDialog(
-                    message:
-                        "Are you sure that you want to log out of your account?",
-                    textButton: "Log out",
+                    message: 'more_logout_confirmation'.tr,
+                    textButton: 'more_logout_button'.tr,
                     context: context,
                     onTap: () {
                       Get.find<RoutingController>().logOut();
                     },
                   );
-
-                  //
                 },
               ),
 
@@ -117,7 +112,7 @@ class MoreScreen extends StatelessWidget {
 
               // ===== Help Section =====
               Text(
-                "Help",
+                'more_help_title'.tr,
                 style: TextStyle(
                   color: AppColors.softWhite70,
                   fontSize: context.wPct(5),
@@ -136,7 +131,7 @@ class MoreScreen extends StatelessWidget {
 
               CustomListTile(
                 icon: AppAssetPaths.contactUs,
-                title: "Contact Us",
+                title: 'more_contact_us'.tr,
 
                 onTap: () => controller.navigateTo(Routes.contactUs),
               ),

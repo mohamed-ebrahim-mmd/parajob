@@ -257,4 +257,23 @@ const Map<String, String> arSA = {
   'profile_info_jobs': 'الوظائف',
   'profile_info_income': 'الدخل',
   'profile_info_companies': 'الشركات',
+
+  // ============================================================
+  // ⚡ More Screen (Settings)
+  // ============================================================
+  'more_settings_title': 'الإعدادات',
+  'more_language': 'اللغة',
+  'more_account_title': 'الحساب',
+  'more_edit_personal_info': 'تعديل البيانات الشخصية',
+  'more_change_password': 'تغيير كلمة المرور',
+  'more_delete_account': 'حذف الحساب',
+  'more_delete_account_confirmation': 'هل أنت متأكد من رغبتك في حذف حسابك؟',
+  'more_delete_account_warning': 'تحذير: إذا حذفت حسابك، سوف تفقد جميع بياناتك وترتيبك.',
+  'more_delete_account_button': 'حذف حسابي',
+  'more_logout': 'تسجيل الخروج',
+  'more_logout_confirmation': 'هل أنت متأكد من رغبتك في تسجيل الخروج من حسابك؟',
+  'more_logout_button': 'تسجيل الخروج',
+  'more_help_title': 'المساعدة',
+  'more_about_us': 'عنا',
+  'more_contact_us': 'اتصل بنا',
 };
