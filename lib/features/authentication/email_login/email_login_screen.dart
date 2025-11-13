@@ -33,7 +33,7 @@ class EmailLoginScreen extends StatelessWidget {
             children: [
               context.hBox(2),
               Text(
-                'Welcome back',
+                'login_title'.tr,
                 style: TextStyle(
                   color: AppColors.pureWhite,
                   fontSize: context.wPct(8.5),
@@ -45,7 +45,7 @@ class EmailLoginScreen extends StatelessWidget {
                 return TextField(
                   controller: controller.emailController,
                   decoration: InputDecoration(
-                    hintText: "Enter your Email",
+                    hintText: 'login_email_hint'.tr,
                     errorText: controller.emailError.value,
                   ),
                   keyboardType: TextInputType.emailAddress,
@@ -57,7 +57,7 @@ class EmailLoginScreen extends StatelessWidget {
                 return TextField(
                   controller: controller.passwordController,
                   decoration: InputDecoration(
-                    hintText: "Enter your Password",
+                    hintText: 'login_password_hint'.tr,
                     errorText: controller.passwordError.value,
                   ),
                   obscureText: true,
@@ -74,7 +74,7 @@ class EmailLoginScreen extends StatelessWidget {
                     );
                   },
                   child: Text(
-                    "Forgot Password?",
+                    'login_forgot_password'.tr,
                     style: TextStyle(
                       color: AppColors.pureWhite,
                       fontSize: context.wPct(4.2),
@@ -99,14 +99,14 @@ class EmailLoginScreen extends StatelessWidget {
               onPressed: () {
                 controller.login();
               },
-              child: Text("Sign in"),
+              child: Text('login_button'.tr),
             ),
             context.hBox(4),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "don't have an account?",
+                  'login_no_account'.tr,
                   style: TextStyle(
                     color: AppColors.pureWhite,
                     fontSize: context.wPct(4.2),
@@ -119,7 +119,7 @@ class EmailLoginScreen extends StatelessWidget {
                     Get.toNamed(Routes.createAccount);
                   },
                   child: Text(
-                    "sign up",
+                    'login_sign_up'.tr,
                     style: TextStyle(
                       decoration: TextDecoration.underline,
                       color: AppColors.pureWhite,

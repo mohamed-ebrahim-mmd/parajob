@@ -15,12 +15,13 @@ const Map<String, String> enUS = {
   // ============================================================
   // 🔐 Login Screen
   // ============================================================
-  'login_title': 'Login to your account',
-  'login_email_hint': 'Enter your email',
-  'login_password_hint': 'Enter your password',
-  'login_button': 'Login',
+  'login_title': 'Welcome back',
+  'login_email_hint': 'Enter your Email',
+  'login_password_hint': 'Enter your Password',
+  'login_button': 'Sign in',
   'login_forgot_password': 'Forgot Password?',
-  'login_no_account': 'Don’t have an account? Sign up',
+  'login_no_account': "don't have an account?",
+  'login_sign_up': 'sign up',
 
   // ============================================================
   // 🏡 Home Screen
