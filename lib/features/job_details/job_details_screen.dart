@@ -2,6 +2,8 @@
  Mohamed Ebrahim | mohamed7ebrahim7@gmail.com | 2025-10-16 10:52 AM
  ==================================================================
 */
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/job_details/job_details_controller.dart';
@@ -36,6 +38,8 @@ class JobDetailsScreen extends StatelessWidget {
             return const Center(child: CircularProgressIndicator());
           case ApiCallState.success:
             final jobDetails = controller.jobData!.data;
+            log("🟢 ${jobDetails.isSubmitComplaint}");
+
             return SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
