@@ -70,12 +70,7 @@ class JobDetailsController extends GetxController {
       );
 
       if (response.isSuccess == true) {
-        showSnackBarSuccess(
-          'Success',
-          response.details?.message ??
-              'You have successfully applied for this job!',
-        );
-
+        showSnackBarJobApplicationCongrats();
         fetchJobDetails(jobId);
 
         Get.until((route) => Get.currentRoute == Routes.jobDetails);

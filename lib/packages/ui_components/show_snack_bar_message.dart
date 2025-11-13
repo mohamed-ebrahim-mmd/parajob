@@ -44,8 +44,8 @@ void showSnackBarMessage({
                   size: context.wPct(7), // Icon size 7% of screen width
                   color: Colors.white,
                 ),
-                                        context.wBox(3),
- // Spacing 3% of screen width
+                context.wBox(3),
+                // Spacing 3% of screen width
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -80,6 +80,40 @@ void showSnackBarMessage({
           ),
         );
       },
+    ),
+  );
+}
+
+void showSnackBarJobApplicationCongrats() {
+  final context = Get.context!;
+  if (Get.isSnackbarOpen) return;
+  Get.rawSnackbar(
+    snackStyle: SnackStyle.FLOATING,
+    snackPosition: SnackPosition.TOP,
+    backgroundColor: Colors.transparent,
+    margin: EdgeInsets.only(
+      top: context.hPct(45), // vertically center (adjust as needed)
+      left: context.wPct(5),
+      right: context.wPct(5),
+    ),
+    duration: const Duration(seconds: 2),
+    messageText: Container(
+      alignment: Alignment.center,
+      height: Get.context!.hPct(15),
+      padding: EdgeInsets.all(context.wPct(4)),
+      decoration: BoxDecoration(
+        color: AppColors.midnightBlue, // dark background
+        borderRadius: BorderRadius.circular(context.wPct(4)),
+      ),
+      child: Text(
+        "Congrats! your application for this job is now being considered. 🎉",
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          color: AppColors.pureWhite,
+          fontSize: context.wPct(4),
+          fontWeight: FontWeight.w600,
+        ),
+      ),
     ),
   );
 }
