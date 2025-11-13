@@ -24,6 +24,15 @@ const Map<String, String> enUS = {
   'login_sign_up': 'sign up',
 
   // ============================================================
+  // 🔑 Forgot Password Screen
+  // ============================================================
+  'forgot_password_title': 'Forgot Password',
+  'forgot_password_subtitle':
+      'please enter your phone number to receive\n your verification OTP',
+  'forgot_password_phone_hint': 'Enter your phone number',
+  'forgot_password_send_button': 'Send',
+
+  // ============================================================
   // 🏡 Home Screen
   // ============================================================
   'home_greeting': 'Hello',
