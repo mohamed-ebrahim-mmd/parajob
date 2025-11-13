@@ -327,4 +327,10 @@ const Map<String, String> enUS = {
   'edit_education_faculty_hint': 'Choose your faculty',
   'edit_education_failed_load': 'Failed to load, tap to retry',
   'edit_education_save_button': 'Save changes',
+
+  // ============================================================
+  // 📄 Edit CV Screen
+  // ============================================================
+  'edit_cv_default_name': '-',
+  'edit_cv_save_button': 'Save changes',
 };

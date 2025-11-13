@@ -323,4 +323,10 @@ const Map<String, String> arSA = {
   'edit_education_faculty_hint': 'اختر كليتك',
   'edit_education_failed_load': 'فشل التحميل، انقر لإعادة المحاولة',
   'edit_education_save_button': 'حفظ التغييرات',
+
+  // ============================================================
+  // 📄 Edit CV Screen
+  // ============================================================
+  'edit_cv_default_name': '-',
+  'edit_cv_save_button': 'حفظ التغييرات',
 };

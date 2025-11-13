@@ -18,7 +18,7 @@ class EditCvScreen extends StatelessWidget {
         context.hBox(5),
         Obx(
           () => EditCvContainer(
-            text: controller.selectedCvName.value ?? "-",
+            text: controller.selectedCvName.value ?? 'edit_cv_default_name'.tr,
             onEdit: controller.pickFile,
             onShowPdf: controller.onShowPdf,
           ),
@@ -27,7 +27,7 @@ class EditCvScreen extends StatelessWidget {
         Spacer(),
         FilledButton(
           onPressed: controller.uploadFile,
-          child: Text("Save changes"),
+          child: Text('edit_cv_save_button'.tr),
         ),
         context.hBox(2.5),
       ],
