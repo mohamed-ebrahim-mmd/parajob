@@ -70,6 +70,15 @@ const Map<String, String> arSA = {
   'create_account_contact_us': 'اتصل بنا',
 
   // ============================================================
+  // 🔢 Create Account OTP Screen
+  // ============================================================
+  'create_account_otp_title': 'تحقق من رقمك',
+  'create_account_otp_subtitle': 'تحقق من رسائلك للعثور على رمز التحقق',
+  'create_account_otp_verify_button': 'تحقق',
+  'create_account_otp_resend_button': 'إرسال مرة أخرى',
+  'create_account_otp_contact_us': 'اتصل بنا',
+
+  // ============================================================
   // 🏡 Home Screen
   // ============================================================
   'home_greeting': 'مرحبًا',

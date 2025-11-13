@@ -70,6 +70,15 @@ const Map<String, String> enUS = {
   'create_account_contact_us': 'contact us',
 
   // ============================================================
+  // 🔢 Create Account OTP Screen
+  // ============================================================
+  'create_account_otp_title': 'Verify your number',
+  'create_account_otp_subtitle': 'check your messages to find the  OTP',
+  'create_account_otp_verify_button': 'Verify',
+  'create_account_otp_resend_button': 'Send again',
+  'create_account_otp_contact_us': 'contact us',
+
+  // ============================================================
   // 🏡 Home Screen
   // ============================================================
   'home_greeting': 'Hello',
