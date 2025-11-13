@@ -154,6 +154,16 @@ const Map<String, String> arSA = {
   'education_pic_confirm_button': 'تأكيد',
 
   // ============================================================
+  // 💪 Create Account Skills Screen
+  // ============================================================
+  'create_account_skills_title': 'إضافة مهارات',
+  'create_account_skills_loading': 'تحميل المهارات...',
+  'create_account_skills_hint': 'اختر مهارة',
+  'create_account_skills_failed_load': 'فشل التحميل، انقر لإعادة المحاولة',
+  'create_account_skills_continue_button': 'متابعة',
+  'create_account_skills_contact_us': 'اتصل بنا',
+
+  // ============================================================
   // 🏡 Home Screen
   // ============================================================
   'home_greeting': 'مرحبًا',

@@ -155,6 +155,16 @@ const Map<String, String> enUS = {
   'education_pic_confirm_button': 'Confirm',
 
   // ============================================================
+  // 💪 Create Account Skills Screen
+  // ============================================================
+  'create_account_skills_title': 'Add skills',
+  'create_account_skills_loading': 'Loading skills...',
+  'create_account_skills_hint': 'Choose skill',
+  'create_account_skills_failed_load': 'Failed to load, tap to retry',
+  'create_account_skills_continue_button': 'Continue',
+  'create_account_skills_contact_us': 'contact us',
+
+  // ============================================================
   // 🏡 Home Screen
   // ============================================================
   'home_greeting': 'Hello',
