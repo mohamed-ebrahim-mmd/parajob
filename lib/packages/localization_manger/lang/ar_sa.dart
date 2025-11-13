@@ -352,4 +352,12 @@ const Map<String, String> arSA = {
   'edit_skills_hint': 'اختر مهارة',
   'edit_skills_failed_load': 'فشل التحميل، انقر لإعادة المحاولة',
   'edit_skills_save_button': 'حفظ التغييرات',
+
+  // ============================================================
+  // 🔍 Change Password OTP Screen
+  // ============================================================
+  'change_pass_otp_title': 'تحقق من رقمك',
+  'change_pass_otp_subtitle': 'التمس مراسلاتك لبحث OTP',
+  'change_pass_otp_verify_button': 'التحقق',
+  'change_pass_otp_resend_button': 'إرسال مرة أخرى',
 };

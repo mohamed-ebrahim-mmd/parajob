@@ -356,4 +356,12 @@ const Map<String, String> enUS = {
   'edit_skills_hint': 'Choose skill',
   'edit_skills_failed_load': 'Failed to load, tap to retry',
   'edit_skills_save_button': 'Save changes',
+
+  // ============================================================
+  // 🔍 Change Password OTP Screen
+  // ============================================================
+  'change_pass_otp_title': 'Verify your number',
+  'change_pass_otp_subtitle': 'check your messages to find the  OTP',
+  'change_pass_otp_verify_button': 'Verify',
+  'change_pass_otp_resend_button': 'Send again',
 };
