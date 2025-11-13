@@ -123,7 +123,7 @@ class MoreScreen extends StatelessWidget {
 
               CustomListTile(
                 icon: AppAssetPaths.aboutUs,
-                title: "About Us",
+                title: 'more_about_us'.tr,
 
                 onTap: () => controller.navigateTo(Routes.aboutUs),
               ),

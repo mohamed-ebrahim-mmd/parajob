@@ -26,19 +26,17 @@ class AboutUsScreen extends StatelessWidget {
               context.hBox(2),
               // ===== Account Section =====
               AboutUsListTile(
-                title: "About the application",
+                title: 'about_us_about_app'.tr,
                 onTap: () {
                   Get.toNamed(
                     "${Routes.mainNavigator}${Routes.more}${Routes.aboutUs}${Routes.aboutApp}",
                   );
-
-                  // navigate to Edit Info Screen
                 },
               ),
               context.hBox(1.5),
 
               AboutUsListTile(
-                title: "Rate us on App store",
+                title: 'about_us_rate_app'.tr,
                 onTap: () {
                   // navigate to Change Password Screen
                 },
@@ -46,21 +44,21 @@ class AboutUsScreen extends StatelessWidget {
               context.hBox(1.5),
 
               AboutUsListTile(
-                title: "Follow us on instagram",
+                title: 'about_us_instagram'.tr,
                 onTap: () {
                   // open Change Number flow
                 },
               ),
               context.hBox(1.5),
               AboutUsListTile(
-                title: "Follow us on Twitter",
+                title: 'about_us_twitter'.tr,
                 onTap: () {
                   // open Change Number flow
                 },
               ),
               context.hBox(1.5),
               AboutUsListTile(
-                title: "Like us on facebook",
+                title: 'about_us_facebook'.tr,
                 onTap: () {
                   // open Change Number flow
                 },

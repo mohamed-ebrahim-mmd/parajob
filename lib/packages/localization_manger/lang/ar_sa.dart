@@ -268,7 +268,8 @@ const Map<String, String> arSA = {
   'more_change_password': 'تغيير كلمة المرور',
   'more_delete_account': 'حذف الحساب',
   'more_delete_account_confirmation': 'هل أنت متأكد من رغبتك في حذف حسابك؟',
-  'more_delete_account_warning': 'تحذير: إذا حذفت حسابك، سوف تفقد جميع بياناتك وترتيبك.',
+  'more_delete_account_warning':
+      'تحذير: إذا حذفت حسابك، سوف تفقد جميع بياناتك وترتيبك.',
   'more_delete_account_button': 'حذف حسابي',
   'more_logout': 'تسجيل الخروج',
   'more_logout_confirmation': 'هل أنت متأكد من رغبتك في تسجيل الخروج من حسابك؟',
@@ -276,4 +277,13 @@ const Map<String, String> arSA = {
   'more_help_title': 'المساعدة',
   'more_about_us': 'عنا',
   'more_contact_us': 'اتصل بنا',
+
+  // ============================================================
+  // ℹ️ About Us Screen
+  // ============================================================
+  'about_us_about_app': 'حول التطبيق',
+  'about_us_rate_app': 'قيّمنا على متجر التطبيقات',
+  'about_us_instagram': 'تابعنا على إنستغرام',
+  'about_us_twitter': 'تابعنا على تويتر',
+  'about_us_facebook': 'أعجبنا على فيسبوك',
 };

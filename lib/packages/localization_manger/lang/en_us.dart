@@ -269,13 +269,25 @@ const Map<String, String> enUS = {
   'more_edit_personal_info': 'Edit Personal Info',
   'more_change_password': 'Change Password',
   'more_delete_account': 'Delete Account',
-  'more_delete_account_confirmation': 'Are you sure that you want to delete your account?',
-  'more_delete_account_warning': 'Warning: if you deleted your account you will lose all your data and your level rank.',
+  'more_delete_account_confirmation':
+      'Are you sure that you want to delete your account?',
+  'more_delete_account_warning':
+      'Warning: if you deleted your account you will lose all your data and your level rank.',
   'more_delete_account_button': 'Delete my account',
   'more_logout': 'Log Out',
-  'more_logout_confirmation': 'Are you sure that you want to log out of your account?',
+  'more_logout_confirmation':
+      'Are you sure that you want to log out of your account?',
   'more_logout_button': 'Log out',
   'more_help_title': 'Help',
   'more_about_us': 'About Us',
   'more_contact_us': 'Contact Us',
+
+  // ============================================================
+  // ℹ️ About Us Screen
+  // ============================================================
+  'about_us_about_app': 'About the application',
+  'about_us_rate_app': 'Rate us on App store',
+  'about_us_instagram': 'Follow us on instagram',
+  'about_us_twitter': 'Follow us on Twitter',
+  'about_us_facebook': 'Like us on facebook',
 };
