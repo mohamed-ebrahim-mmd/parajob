@@ -79,6 +79,41 @@ const Map<String, String> arSA = {
   'create_account_otp_contact_us': 'اتصل بنا',
 
   // ============================================================
+  // 🔑 Create Account Set Password Screen
+  // ============================================================
+  'create_account_set_pass_title': 'تعيين كلمة مرور جديدة',
+  'create_account_set_pass_password_hint': 'أدخل كلمة المرور',
+  'create_account_set_pass_confirm_hint': 'أعد إدخال كلمة المرور',
+  'create_account_set_pass_continue_button': 'متابعة',
+  'create_account_set_pass_contact_us': 'اتصل بنا',
+
+  // ============================================================
+  // 🆔 Back National ID Screen
+  // ============================================================
+  'back_national_id_title': 'مسح البطاقة الوطنية',
+  'back_national_id_subtitle': 'حان وقت التحقق من هويتك',
+  'back_national_id_scan_text_1': 'امسح',
+  'back_national_id_scan_text_back': ' الجهة الخلفية',
+  'back_national_id_scan_text_2': ' للبطاقة',
+  'back_national_id_note_1': 'تأكد من أن المحيط مضاء بشكل جيد.',
+  'back_national_id_note_2':
+      'تأكد من أن الصورة داخل الإطار وأن \nالتفاصيل سهلة القراءة',
+  'back_national_id_confirm_button': 'تأكيد',
+
+  // ============================================================
+  // 🆔 Front National ID Screen
+  // ============================================================
+  'front_national_id_title': 'مسح البطاقة الوطنية',
+  'front_national_id_subtitle': 'حان وقت التحقق من هويتك',
+  'front_national_id_scan_text_1': 'امسح',
+  'front_national_id_scan_text_front': ' الجهة الأمامية',
+  'front_national_id_scan_text_2': ' للبطاقة',
+  'front_national_id_note_1': 'تأكد من أن المحيط مضاء بشكل جيد.',
+  'front_national_id_note_2':
+      'تأكد من أن الصورة داخل الإطار وأن \nالتفاصيل سهلة القراءة',
+  'front_national_id_confirm_button': 'تأكيد',
+
+  // ============================================================
   // 🏡 Home Screen
   // ============================================================
   'home_greeting': 'مرحبًا',

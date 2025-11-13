@@ -33,7 +33,7 @@ class CreateAccountSetPass extends StatelessWidget {
 
               context.hBox(2),
               Text(
-                'Set New Password',
+                'create_account_set_pass_title'.tr,
                 style: TextStyle(
                   color: AppColors.pureWhite,
                   fontSize: context.wPct(8.5),
@@ -45,7 +45,7 @@ class CreateAccountSetPass extends StatelessWidget {
                 return TextField(
                   controller: controller.passwordController,
                   decoration: InputDecoration(
-                    hintText: "Enter password",
+                    hintText: 'create_account_set_pass_password_hint'.tr,
                     errorText: controller.passwordError.value,
                   ),
                   keyboardType: TextInputType.visiblePassword,
@@ -58,7 +58,7 @@ class CreateAccountSetPass extends StatelessWidget {
                 return TextField(
                   controller: controller.confirmPasswordController,
                   decoration: InputDecoration(
-                    hintText: "Re-enter",
+                    hintText: 'create_account_set_pass_confirm_hint'.tr,
                     errorText: controller.confirmPasswordError.value,
                   ),
                   obscureText: true,
@@ -83,13 +83,13 @@ class CreateAccountSetPass extends StatelessWidget {
               onPressed: () {
                 controller.validateAndSubmit(context);
               },
-              child: Text("Continue"),
+              child: Text('create_account_set_pass_continue_button'.tr),
             ),
 
             context.hBox(5),
             GestureDetector(
               child: Text(
-                "contact us",
+                'create_account_set_pass_contact_us'.tr,
                 style: TextStyle(
                   color: AppColors.aquaTeal,
                   fontSize: context.wPct(4.2),

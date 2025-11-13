@@ -79,6 +79,41 @@ const Map<String, String> enUS = {
   'create_account_otp_contact_us': 'contact us',
 
   // ============================================================
+  // 🔑 Create Account Set Password Screen
+  // ============================================================
+  'create_account_set_pass_title': 'Set New Password',
+  'create_account_set_pass_password_hint': 'Enter password',
+  'create_account_set_pass_confirm_hint': 'Re-enter',
+  'create_account_set_pass_continue_button': 'Continue',
+  'create_account_set_pass_contact_us': 'contact us',
+
+  // ============================================================
+  // 🆔 Back National ID Screen
+  // ============================================================
+  'back_national_id_title': 'National ID Scan',
+  'back_national_id_subtitle': 'Time to verify your identity',
+  'back_national_id_scan_text_1': 'Scan the',
+  'back_national_id_scan_text_back': ' back',
+  'back_national_id_scan_text_2': ' of the ID',
+  'back_national_id_note_1': 'Make sure your surroundings are well-lit.',
+  'back_national_id_note_2':
+      'Make sure the photo is inside the frame and \ndetails are easy to read',
+  'back_national_id_confirm_button': 'Confirm',
+
+  // ============================================================
+  // 🆔 Front National ID Screen
+  // ============================================================
+  'front_national_id_title': 'National ID Scan',
+  'front_national_id_subtitle': 'Time to verify your identity',
+  'front_national_id_scan_text_1': 'Scan the',
+  'front_national_id_scan_text_front': ' front',
+  'front_national_id_scan_text_2': ' of the ID',
+  'front_national_id_note_1': 'Make sure your surroundings are well-lit.',
+  'front_national_id_note_2':
+      'Make sure the photo is inside the frame and \ndetails are easy to read',
+  'front_national_id_confirm_button': 'Confirm',
+
+  // ============================================================
   // 🏡 Home Screen
   // ============================================================
   'home_greeting': 'Hello',
