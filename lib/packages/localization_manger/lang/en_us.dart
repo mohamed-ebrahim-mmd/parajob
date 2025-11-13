@@ -1,5 +1,5 @@
 /*
- Mohamed Ebrahim | mohamed7ebrahim7@gmail.com | 15/02/2025 5:24 PM
+ Mohamed Ebrahim | mohamed7ebrahim7@gmail.com | 15/02/2025 5:24 PM
  ==================================================================
 */
 const Map<String, String> enUS = {
@@ -218,7 +218,6 @@ const Map<String, String> enUS = {
   'apply_for_job': 'Apply for this job',
   'delete_application_confirmation':
       'Are you sure that you want to delete your application for this job?',
-
   'delete_application_warning':
       'Warning: if you try to delete your application 48 hours before this you will pay a fee on your next job.',
 
@@ -234,6 +233,7 @@ const Map<String, String> enUS = {
   'document': 'Document',
   'uploaded': 'Uploaded',
   'apply_job_button': 'Yes, Apply for this job',
+
   // ============================================================
   // complaint Screen
   // ============================================================
