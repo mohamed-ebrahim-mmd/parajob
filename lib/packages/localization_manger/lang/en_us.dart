@@ -41,6 +41,14 @@ const Map<String, String> enUS = {
   'forgot_password_otp_resend_button': 'Send again',
 
   // ============================================================
+  // 🔐 Set New Password Screen
+  // ============================================================
+  'set_new_password_title': 'Set password',
+  'set_new_password_hint': 'Enter your new password',
+  'set_new_password_confirm_hint': 'Confirm your new Password',
+  'set_new_password_confirm_button': 'Confirm',
+
+  // ============================================================
   // 🏡 Home Screen
   // ============================================================
   'home_greeting': 'Hello',
