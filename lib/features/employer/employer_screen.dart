@@ -39,7 +39,7 @@ class EmployerScreen extends StatelessWidget {
           case ApiCallState.success:
             final company = controller.companyData;
             if (company == null) {
-              return const Center(child: Text("No data"));
+              return Center(child: Text('no_data'.tr));
             }
             log("🟢 ${company.toString()}");
 
@@ -104,15 +104,15 @@ class EmployerScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             EmployerStatBox(
-                              title: "JOBS",
+                              title: 'jobs'.tr,
                               value: "${company.jobPostsCount ?? 0}+",
                             ),
                             EmployerStatBox(
-                              title: "Employees",
+                              title: 'employees'.tr,
                               value: "${company.employeesCount ?? 0}+",
                             ),
                             EmployerStatBox(
-                              title: "Reviews",
+                              title: 'reviews'.tr,
                               value: "${company.reviewsCount ?? 0}+",
                             ),
                           ],
@@ -122,17 +122,15 @@ class EmployerScreen extends StatelessWidget {
                         Center(
                           child: Wrap(
                             crossAxisAlignment: WrapCrossAlignment.center,
-                            // mainAxisSize: MainAxisSize.min,
                             children: [
                               Text(
-                                "Positive Reviews",
+                                'positive_reviews'.tr,
                                 style: TextStyle(
                                   fontSize: context.wPct(3.5),
                                   fontWeight: FontWeight.w400,
                                 ),
                               ),
                               context.wBox(3),
-
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(
                                   context.wPct(10),
@@ -151,7 +149,6 @@ class EmployerScreen extends StatelessWidget {
                                 ),
                               ),
                               context.wBox(3),
-
                               Text(
                                 "${company.positiveReviewsPercentage?.toStringAsFixed(0) ?? 0}%",
                                 style: TextStyle(
@@ -166,7 +163,7 @@ class EmployerScreen extends StatelessWidget {
 
                         context.hBox(4),
                         EmployerListHeader(
-                          title: "Active Jobs",
+                          title: 'active_jobs'.tr,
                           onViewAll: controller.goToActiveJobs,
                         ),
                         context.hBox(2),
@@ -174,7 +171,7 @@ class EmployerScreen extends StatelessWidget {
 
                         context.hBox(4),
                         EmployerListHeader(
-                          title: "Reviews",
+                          title: 'reviews'.tr,
                           onViewAll: controller.goToEmployerReviews,
                         ),
                         LatestReviewsList(company: company),
@@ -191,7 +188,7 @@ class EmployerScreen extends StatelessWidget {
                               context.wBox(2),
                               Flexible(
                                 child: Text(
-                                  "You’ve already shared your thoughts about this employer. Thank you for your feedback!",
+                                  'already_shared_feedback'.tr,
                                   style: TextStyle(
                                     color: AppColors.softWhite70,
                                     fontWeight: FontWeight.w500,

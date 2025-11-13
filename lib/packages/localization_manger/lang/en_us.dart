@@ -123,4 +123,21 @@ const Map<String, String> enUS = {
   // active Jobs Screen
   // ============================================================
   'active_jobs': 'Active Jobs',
+
+  // ============================================================
+  // employee  Screen
+  // ============================================================
+  'no_data': 'No data',
+  'jobs': 'Jobs',
+  'employees': 'Employees',
+  'positive_reviews': 'Positive Reviews',
+  'view_all': 'View all',
+  'already_shared_feedback':
+      'You’ve already shared your thoughts about this employer. Thank you for your feedback!',
+  'no_active_jobs': 'No active jobs available at the moment.',
+  'write_review': 'Write a Review',
+  'share_opinion': 'Share your opinion with us..',
+  'anonymous_member': 'Anonymous Member',
+  'submit': 'Submit',
+  'no_recent_reviews': 'No recent reviews available.',
 };

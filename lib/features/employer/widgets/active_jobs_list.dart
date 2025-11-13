@@ -56,7 +56,7 @@ class ActiveJobsList extends StatelessWidget {
             ),
             context.wBox(2),
             Text(
-              "No active jobs available at the moment.",
+             'no_active_jobs'.tr,
               style: TextStyle(
                 fontSize: context.wPct(4),
                 color: AppColors.white40,

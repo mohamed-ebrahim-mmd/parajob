@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:para_job/features/employer/reviews/widgets/review_card.dart';
 import 'package:para_job/packages/api_client/src/models/responses/company.dart'
     show Company;
@@ -39,7 +40,7 @@ class LatestReviewsList extends StatelessWidget {
             ),
             context.wBox(2),
             Text(
-              "No recent reviews available.",
+              "no_recent_reviews".tr, 
               style: TextStyle(
                 fontSize: context.wPct(4),
                 color: AppColors.white40,
