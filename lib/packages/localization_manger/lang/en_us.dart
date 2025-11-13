@@ -290,4 +290,12 @@ const Map<String, String> enUS = {
   'about_us_instagram': 'Follow us on instagram',
   'about_us_twitter': 'Follow us on Twitter',
   'about_us_facebook': 'Like us on facebook',
+
+  // ============================================================
+  // 📚 About App Screen
+  // ============================================================
+  'about_app_title': 'About ParaJob',
+  'about_app_vision_default': 'Our Vision',
+  'about_app_mission_default': 'Our Mission',
+  'about_app_values_default': 'Our values',
 };

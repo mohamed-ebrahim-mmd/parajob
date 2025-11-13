@@ -286,4 +286,12 @@ const Map<String, String> arSA = {
   'about_us_instagram': 'تابعنا على إنستغرام',
   'about_us_twitter': 'تابعنا على تويتر',
   'about_us_facebook': 'أعجبنا على فيسبوك',
+
+  // ============================================================
+  // 📚 About App Screen
+  // ============================================================
+  'about_app_title': 'حول بارا جوب',
+  'about_app_vision_default': 'رؤيتنا',
+  'about_app_mission_default': 'رسالتنا',
+  'about_app_values_default': 'قيمنا',
 };

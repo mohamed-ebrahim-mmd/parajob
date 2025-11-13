@@ -47,7 +47,7 @@ class AboutAppScreen extends StatelessWidget {
                       context.hBox(2),
                       //About ParaJob
                       Text(
-                        "About ParaJob",
+                        'about_app_title'.tr,
                         style: TextStyle(
                           color: AppColors.pureWhite,
                           fontSize: context.wPct(6),
@@ -68,7 +68,7 @@ class AboutAppScreen extends StatelessWidget {
                       //Our Vision
                       context.hBox(3),
                       Text(
-                        visionSection?.title ?? 'Our Vision',
+                        visionSection?.title ?? 'about_app_vision_default'.tr,
 
                         style: TextStyle(
                           color: AppColors.pureWhite,
@@ -90,7 +90,7 @@ class AboutAppScreen extends StatelessWidget {
                       context.hBox(3),
 
                       Text(
-                        missionSection?.title ?? "Our Mission",
+                        missionSection?.title ?? 'about_app_mission_default'.tr,
                         style: TextStyle(
                           color: AppColors.pureWhite,
                           fontSize: context.wPct(6),
@@ -111,7 +111,7 @@ class AboutAppScreen extends StatelessWidget {
                       //Our values
                       context.hBox(2),
                       Text(
-                        valuesSection?.title ?? "Our values",
+                        valuesSection?.title ?? 'about_app_values_default'.tr,
 
                         style: TextStyle(
                           color: AppColors.pureWhite,
