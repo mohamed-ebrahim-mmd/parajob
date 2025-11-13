@@ -11,23 +11,18 @@ import 'package:para_job/packages/themeing/media_query_values.dart';
 class SetNewPasswordScreen extends StatelessWidget {
   final controller = Get.find<SetNewPasswordController>();
 
-   SetNewPasswordScreen({super.key});
+  SetNewPasswordScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return 
-    
-    PopScope(
+    return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) {
         if (!didPop) {
           controller.closeAndDispose();
         }
       },
-      child:
-
-
-       Scaffold(
+      child: Scaffold(
         appBar: AppBar(
           leading: IconButton(
             icon: const Icon(Icons.arrow_back_ios_new),
@@ -43,7 +38,7 @@ class SetNewPasswordScreen extends StatelessWidget {
               children: [
                 context.hBox(2),
                 Text(
-                  'Set password',
+                  'set_new_password_title'.tr,
                   style: TextStyle(
                     color: AppColors.pureWhite,
                     fontSize: context.wPct(8.5),
@@ -55,7 +50,7 @@ class SetNewPasswordScreen extends StatelessWidget {
                   return TextField(
                     controller: controller.passwordController,
                     decoration: InputDecoration(
-                      hintText: "Enter your new password",
+                      hintText: 'set_new_password_hint'.tr,
                       errorText: controller.passwordError.value,
                     ),
                     keyboardType: TextInputType.visiblePassword,
@@ -69,7 +64,7 @@ class SetNewPasswordScreen extends StatelessWidget {
                     controller: controller.confirmPasswordController,
                     decoration: InputDecoration(
                       errorText: controller.confirmPasswordError.value,
-                      hintText: "Confirm your new Password",
+                      hintText: 'set_new_password_confirm_hint'.tr,
                     ),
                     obscureText: true,
                     textInputAction: TextInputAction.done,
@@ -89,16 +84,10 @@ class SetNewPasswordScreen extends StatelessWidget {
               controller.validateAndSubmit(context);
               // Get.toNamed("${Routes.forgotPassword}${Routes.forgotPasswordOTP}");
             },
-            child: Text("Confirm"),
+            child: Text('set_new_password_confirm_button'.tr),
           ),
         ),
       ),
-   
-   
-   
     );
-
-
-
   }
 }

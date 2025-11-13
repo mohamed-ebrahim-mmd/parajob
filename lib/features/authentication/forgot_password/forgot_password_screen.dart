@@ -11,7 +11,7 @@ import 'package:para_job/packages/themeing/media_query_values.dart';
 class ForgotPasswordScreen extends StatelessWidget {
   final controller = Get.put(ForgotPasswordController());
 
-   ForgotPasswordScreen({super.key});
+  ForgotPasswordScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class ForgotPasswordScreen extends StatelessWidget {
             children: [
               context.hBox(2),
               Text(
-                'Forgot Password',
+                'forgot_password_title'.tr,
                 style: TextStyle(
                   color: AppColors.pureWhite,
                   fontSize: context.wPct(8.5),
@@ -42,7 +42,7 @@ class ForgotPasswordScreen extends StatelessWidget {
               ),
               context.hBox(0.5),
               Text(
-                'please enter your phone number to receive\n your verification OTP',
+                'forgot_password_subtitle'.tr,
                 style: TextStyle(
                   color: AppColors.pureWhite,
                   fontSize: context.wPct(3.5),
@@ -56,7 +56,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                   controller: controller.phoneController,
                   decoration: InputDecoration(
                     errorText: controller.phoneError.value,
-                    hintText: "Enter your phone number",
+                    hintText: 'forgot_password_phone_hint'.tr,
                   ),
                   keyboardType: TextInputType.phone,
                 );
@@ -73,7 +73,7 @@ class ForgotPasswordScreen extends StatelessWidget {
         ),
         child: FilledButton(
           onPressed: () => controller.forgotPassword(context),
-          child: Text("Send"),
+          child: Text('forgot_password_send_button'.tr),
         ),
       ),
     );

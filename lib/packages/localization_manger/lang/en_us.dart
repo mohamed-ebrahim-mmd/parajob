@@ -15,12 +15,38 @@ const Map<String, String> enUS = {
   // ============================================================
   // 🔐 Login Screen
   // ============================================================
-  'login_title': 'Login to your account',
-  'login_email_hint': 'Enter your email',
-  'login_password_hint': 'Enter your password',
-  'login_button': 'Login',
+  'login_title': 'Welcome back',
+  'login_email_hint': 'Enter your Email',
+  'login_password_hint': 'Enter your Password',
+  'login_button': 'Sign in',
   'login_forgot_password': 'Forgot Password?',
-  'login_no_account': 'Don’t have an account? Sign up',
+  'login_no_account': "don't have an account?",
+  'login_sign_up': 'sign up',
+
+  // ============================================================
+  // 🔑 Forgot Password Screen
+  // ============================================================
+  'forgot_password_title': 'Forgot Password',
+  'forgot_password_subtitle':
+      'please enter your phone number to receive\n your verification OTP',
+  'forgot_password_phone_hint': 'Enter your phone number',
+  'forgot_password_send_button': 'Send',
+
+  // ============================================================
+  // 🔢 Forgot Password OTP Screen
+  // ============================================================
+  'forgot_password_otp_title': 'Verify your number',
+  'forgot_password_otp_subtitle': 'check your messages to find the  OTP',
+  'forgot_password_otp_verify_button': 'Verify',
+  'forgot_password_otp_resend_button': 'Send again',
+
+  // ============================================================
+  // 🔐 Set New Password Screen
+  // ============================================================
+  'set_new_password_title': 'Set password',
+  'set_new_password_hint': 'Enter your new password',
+  'set_new_password_confirm_hint': 'Confirm your new Password',
+  'set_new_password_confirm_button': 'Confirm',
 
   // ============================================================
   // 🏡 Home Screen
