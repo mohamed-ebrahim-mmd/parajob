@@ -42,7 +42,6 @@ class JobDetailContainer extends StatelessWidget {
               ),
             ),
 
-            //  Text(text, style: TextStyle(fontWeight: FontWeight.w400 ,fontSize: context.wPct(4)),),
           ],
         ),
       ),

@@ -58,7 +58,6 @@ const Map<String, String> enUS = {
   'apply_now': 'Apply now',
   'egp': 'EGP',
   'per_month': '/mo',
-  
 
   // ============================================================
   // 🏡 job details Screen
@@ -68,4 +67,32 @@ const Map<String, String> enUS = {
   'required_skills': 'Required Skills',
   'delete_my_application': 'Delete my application',
   'apply_for_job': 'Apply for this job',
+  'delete_application_confirmation':
+      'Are you sure that you want to delete your application for this job?',
+
+  'delete_application_warning':
+      'Warning: if you try to delete your application 48 hours before this you will pay a fee on your next job.',
+
+  // ============================================================
+  // 🏡 apply job Screen
+  // ============================================================
+  'review_application': 'Review Application',
+  'full_name': 'Full Name',
+  'phone': 'Phone',
+  'email': 'Email',
+  'status': 'Status',
+  'national_id': 'National ID',
+  'document': 'Document',
+  'uploaded': 'Uploaded',
+  'apply_job_button': 'Yes, Apply for this job',
+  // ============================================================
+  // complaint Screen
+  // ============================================================
+  'submit_complaint': 'Submit a complaint',
+  'about': 'about ',
+  'complaint_hint': 'Share your issues with us..',
+  'submit_complaint_button': 'Submit your complaint',
+  'company_already_complaint':
+      'You have already filed a complaint for this company.',
+  'complaint_about': 'Complaint about @name',
 };

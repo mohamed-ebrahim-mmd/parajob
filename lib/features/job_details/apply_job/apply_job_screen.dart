@@ -46,10 +46,9 @@ class ApplyJobScreen extends StatelessWidget {
               padding: EdgeInsets.all(context.wPct(5)),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-
                 children: [
                   Text(
-                    'Review Application',
+                    'review_application'.tr,
                     style: TextStyle(
                       color: AppColors.pureWhite,
                       fontSize: context.wPct(6),
@@ -57,7 +56,6 @@ class ApplyJobScreen extends StatelessWidget {
                     ),
                   ),
                   context.hBox(context.wPct(2)),
-
                   Container(
                     width: double.infinity,
                     padding: EdgeInsets.all(context.wPct(5)),
@@ -69,33 +67,29 @@ class ApplyJobScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         InfoRow(
-                          label: 'Full name',
+                          label: 'full_name'.tr,
                           value: user.user!.name.toString(),
                         ),
                         InfoRow(
-                          label: 'Phone',
+                          label: 'phone'.tr,
                           value: user.user!.phoneNumber.toString(),
                         ),
                         InfoRow(
-                          label: 'Email',
+                          label: 'email'.tr,
                           value: user.user!.email.toString(),
                         ),
-
                         if (user.user?.educationStatus != null)
                           InfoRow(
-                            label: 'Status',
+                            label: 'status'.tr,
                             value: user.user!.educationStatus.toString(),
                           ),
-
                         InfoRow(
-                          label: 'National ID',
+                          label: 'national_id'.tr,
                           value: user.user!.nationalId.toString(),
                         ),
-
                         Divider(color: AppColors.line, height: context.hPct(1)),
-
                         Text(
-                          'Skills',
+                          'skills'.tr,
                           style: TextStyle(
                             color: AppColors.white60,
                             fontSize: context.wPct(4),
@@ -103,7 +97,6 @@ class ApplyJobScreen extends StatelessWidget {
                           ),
                         ),
                         context.hBox(0.5),
-
                         Wrap(
                           spacing: 8,
                           runSpacing: 8,
@@ -112,14 +105,12 @@ class ApplyJobScreen extends StatelessWidget {
                               .toList(),
                         ),
                         context.hBox(2),
-
                         if (user.user?.cv != null &&
                             user.user?.cvUploadedDate != null) ...[
                           const Divider(color: AppColors.line),
                           context.hBox(1),
-
                           Text(
-                            'Document',
+                            'document'.tr,
                             style: TextStyle(
                               color: AppColors.white60,
                               fontSize: 14,
@@ -127,7 +118,6 @@ class ApplyJobScreen extends StatelessWidget {
                             ),
                           ),
                           context.hBox(1),
-
                           Container(
                             padding: EdgeInsets.all(context.wPct(3)),
                             decoration: BoxDecoration(
@@ -154,9 +144,7 @@ class ApplyJobScreen extends StatelessWidget {
                                     fit: BoxFit.contain,
                                   ),
                                 ),
-
-                                                        context.wBox(3),
-
+                                context.wBox(3),
                                 Expanded(
                                   child: Column(
                                     crossAxisAlignment:
@@ -173,7 +161,7 @@ class ApplyJobScreen extends StatelessWidget {
                                         ),
                                       ),
                                       Text(
-                                        'Uploaded ${user.user?.cvUploadedDate ?? "-"}',
+                                        '${'uploaded'.tr} ${user.user?.cvUploadedDate ?? "-"}',
                                         style: TextStyle(
                                           color: Colors.grey,
                                           fontSize: context.wPct(3),
@@ -190,22 +178,19 @@ class ApplyJobScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-
                   context.hBox(2),
-
                   FilledButton(
                     onPressed: () async {
                       controller.applyJob(context, jobDetails.id);
                     },
                     child: Text(
-                      'Yes, Apply for this job',
+                      'apply_job_button'.tr,
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
                   ),
-
                   context.hBox(4),
                 ],
               ),

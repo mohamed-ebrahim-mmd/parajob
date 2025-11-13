@@ -32,9 +32,8 @@ class ComplaintScreen extends StatelessWidget {
               ),
             ),
             context.hBox(4),
-
             Text(
-              "Submit a complaint",
+              'submit_complaint'.tr,
               style: TextStyle(
                 fontSize: context.wPct(6),
                 fontWeight: FontWeight.w600,
@@ -44,7 +43,7 @@ class ComplaintScreen extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  "about ",
+                  'about'.tr,
                   style: TextStyle(
                     fontSize: context.wPct(3.3),
                     fontWeight: FontWeight.w400,
@@ -61,22 +60,18 @@ class ComplaintScreen extends StatelessWidget {
                 ),
               ],
             ),
-
             context.hBox(2),
-
             TextField(
               controller: controller.detailsController,
               maxLines: 6,
-              decoration: InputDecoration(
-                hintText: "Share your issues with us..",
-              ),
+              decoration: InputDecoration(hintText: 'complaint_hint'.tr),
             ),
             context.hBox(4),
             FilledButton(
               onPressed: () {
                 controller.complaint(context);
               },
-              child: Text("Submit your complaint"),
+              child: Text('submit_complaint_button'.tr),
             ),
           ],
         ),

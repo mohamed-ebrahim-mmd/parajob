@@ -47,7 +47,7 @@ void deleteJobApplicationDialog({
             child: Column(
               children: [
                 Text(
-                  "Are you sure that you want to delete your application for this job?",
+                  'delete_application_confirmation'.tr,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: context.wPct(5),
@@ -64,7 +64,7 @@ void deleteJobApplicationDialog({
                     side: BorderSide(color: AppColors.coralRed),
                   ),
                   child: Text(
-                    'Delete my application',
+                    'delete_my_application'.tr,
                     style: TextStyle(
                       color: AppColors.coralRed,
                       fontWeight: FontWeight.w600,
@@ -73,7 +73,7 @@ void deleteJobApplicationDialog({
                 ),
                 context.hBox(1.5),
                 Text(
-                  "Warning: if you try to delete your application 48 hours before this you will pay a fee on your next job.",
+                  'delete_application_warning'.tr,
                   style: TextStyle(
                     color: AppColors.white60,
                     fontSize: context.wPct(3.5),
