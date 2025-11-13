@@ -34,7 +34,7 @@ class CreateAccountCvScreen extends StatelessWidget {
               StepperRow(currentStep: 4, stepPercentage: "80%"),
               context.hBox(2),
               Text(
-                'Upload CV',
+                'create_account_cv_title'.tr,
                 style: TextStyle(
                   color: AppColors.pureWhite,
                   fontSize: context.wPct(8.5),
@@ -43,7 +43,7 @@ class CreateAccountCvScreen extends StatelessWidget {
               ),
               context.hBox(0.5),
               Text(
-                'It’s time to Upload your cv.',
+                'create_account_cv_subtitle'.tr,
                 style: TextStyle(
                   color: AppColors.softWhite70,
                   fontSize: context.wPct(3.5),
@@ -82,7 +82,7 @@ class CreateAccountCvScreen extends StatelessWidget {
         ),
         child: FilledButton(
           onPressed: controller.validateAndUpload,
-          child: Text("Confirm"),
+          child: Text('create_account_cv_confirm_button'.tr),
         ),
       ),
     );

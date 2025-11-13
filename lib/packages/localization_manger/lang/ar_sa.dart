@@ -164,6 +164,13 @@ const Map<String, String> arSA = {
   'create_account_skills_contact_us': 'اتصل بنا',
 
   // ============================================================
+  // 📄  Create Account CV Screen
+  // ============================================================
+  'create_account_cv_title': 'رفع السيرة الذاتية',
+  'create_account_cv_subtitle': 'حان وقت رفع سيرتك الذاتية.',
+  'create_account_cv_confirm_button': 'تأكيد',
+
+  // ============================================================
   // 🏡 Home Screen
   // ============================================================
   'home_greeting': 'مرحبًا',

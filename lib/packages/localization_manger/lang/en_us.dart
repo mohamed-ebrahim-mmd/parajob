@@ -165,6 +165,13 @@ const Map<String, String> enUS = {
   'create_account_skills_contact_us': 'contact us',
 
   // ============================================================
+  // 📄 Create Account CV Screen
+  // ============================================================
+  'create_account_cv_title': 'Upload CV',
+  'create_account_cv_subtitle': "It's time to Upload your cv.",
+  'create_account_cv_confirm_button': 'Confirm',
+
+  // ============================================================
   // 🏡 Home Screen
   // ============================================================
   'home_greeting': 'Hello',
