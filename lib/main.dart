@@ -1,8 +1,11 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:para_job/packages/functional_components/request_notification_permission.dart';
 import 'package:para_job/packages/themeing/theme.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
+import 'package:para_job/res/firebase_options.dart';
 
 import 'packages/route_manager/route_manager.dart';
 
@@ -11,13 +14,27 @@ void main() async {
   await GetStorage.init(); // Initialize GetStorage
   Get.put(RoutingController());
   Get.put(UserController());
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(ParaJobApp());
 }
 
-class ParaJobApp extends StatelessWidget {
+class ParaJobApp extends StatefulWidget {
+  const ParaJobApp({super.key});
+
+  @override
+  State<ParaJobApp> createState() => _ParaJobAppState();
+}
+
+class _ParaJobAppState extends State<ParaJobApp> {
   final RoutingController routingController = Get.find();
 
-  ParaJobApp({super.key});
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      requestNotificationPermission(); // runs after first frame
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
