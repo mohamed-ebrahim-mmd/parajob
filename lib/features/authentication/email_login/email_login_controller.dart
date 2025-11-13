@@ -5,6 +5,7 @@
 
 import 'dart:developer';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
@@ -50,6 +51,8 @@ class EmailLoginController extends GetxController {
 
       if (loginResponse.isSuccess ?? false) {
         final user = loginResponse.data!.user;
+        log("🟢 ${loginResponse.data?.token}");
+
         if (!(user?.isVerified ?? false)) {
           // 1️⃣ Not verified
           showSnackBarError(
@@ -79,10 +82,16 @@ class EmailLoginController extends GetxController {
             (user?.isCompleted ?? false) &&
             (user?.isApproved ?? false)) {
           // 4️⃣ All good — go to home
-          Get.find<RoutingController>().goHomeAsUser(
-            user!,
+          final tokenSuccess = await _sendDeviceTokenToBackend(
             "Bearer ${loginResponse.data!.token}",
           );
+          if (tokenSuccess) {
+            // 4️⃣ All good — go to home
+            Get.find<RoutingController>().goHomeAsUser(
+              user!,
+              "Bearer ${loginResponse.data!.token}",
+            );
+          }
         }
       } else {
         showSnackBarError("Failed", "${loginResponse.details?.message} ");
@@ -92,6 +101,25 @@ class EmailLoginController extends GetxController {
       showSnackBarApiError();
     } finally {
       Get.context!.loaderOverlay.hide();
+    }
+  }
+
+  Future<bool> _sendDeviceTokenToBackend(String userToken) async {
+    try {
+      String? deviceToken = await FirebaseMessaging.instance.getToken();
+      final request = NotificationTokenRequest(deviceToken: deviceToken ?? "-");
+      final response = await apiClient.updateDeviceToken(request, userToken);
+
+      if (response.isSuccess) {
+        return true; // successfully updated
+      } else {
+        showSnackBarError("Failed", "${response.details.message}");
+        return false;
+      }
+    } catch (e) {
+      log("🔴 ${e.toString()}");
+      showSnackBarApiError();
+      return false;
     }
   }
 
