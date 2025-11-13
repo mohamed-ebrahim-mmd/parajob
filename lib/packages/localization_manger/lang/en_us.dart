@@ -114,6 +114,17 @@ const Map<String, String> enUS = {
   'front_national_id_confirm_button': 'Confirm',
 
   // ============================================================
+  // 📸 Picture With ID Screen
+  // ============================================================
+  'picture_with_id_title': 'National ID Scan',
+  'picture_with_id_subtitle': 'Time to verify your identity',
+  'picture_with_id_instruction': 'Take a picture of yourself holding the ID.',
+  'picture_with_id_note_1':
+      "Make sure you're looking up at the camera\nfacing the light.",
+  'picture_with_id_note_2': 'Make sure the the details are easy to read.',
+  'picture_with_id_confirm_button': 'Confirm',
+
+  // ============================================================
   // 🏡 Home Screen
   // ============================================================
   'home_greeting': 'Hello',
