@@ -49,14 +49,6 @@ const Map<String, String> enUS = {
   'set_new_password_confirm_button': 'Confirm',
 
   // ============================================================
-  // 🏡 Home Screen
-  // ============================================================
-  'home_greeting': 'Hello',
-  'home_welcome_back': 'Welcome back!',
-  'home_find_jobs': 'Find Jobs',
-  'home_notifications': 'Notifications',
-
-  // ============================================================
   // ⚙️ Settings Screen
   // ============================================================
   'settings_title': 'Settings',
@@ -121,4 +113,14 @@ const Map<String, String> enUS = {
   'company_already_complaint':
       'You have already filed a complaint for this company.',
   'complaint_about': 'Complaint about @name',
+
+  // ============================================================
+  // employee Review Screen
+  // ============================================================
+  'reviews': 'Reviews',
+  'no_reviews_found': 'No reviews found',
+  // ============================================================
+  // active Jobs Screen
+  // ============================================================
+  'active_jobs': 'Active Jobs',
 };

@@ -23,7 +23,7 @@ class ActiveJobsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Active Jobs"),
+       title: Text('active_jobs'.tr),
         surfaceTintColor: AppColors.charcoalBlack,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new),
