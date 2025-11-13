@@ -6,7 +6,9 @@ import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/packages/ui_components/auth_required_dialog.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
 
-void showComplaintBottomSheet({
+import 'complaint_item.dart';
+
+void showCompanyComplaintBottomSheet({
   required String companyName,
   required int companyId,
   required bool companyIsSubmitComplaint,
@@ -40,19 +42,15 @@ void showComplaintBottomSheet({
                   ),
                 )
               : ComplaintItem(
-                  title: 'complaint_about'.trArgs([companyName]),
+                  title: '${'complaint_about'.tr} $companyName',
                   onTap: () {
                     if (user.isGuest) {
                       showAuthRequiredDialog();
                     } else {
                       Get.back();
                       Get.toNamed(
-                        "${Routes.jobDetails}${Routes.employer}${Routes.complaint}",
-                        arguments: {
-                          'id': companyId,
-                          'isCompany': true,
-                          'title': companyName,
-                        },
+                        "${Routes.jobDetails}${Routes.employer}${Routes.companyComplaint}",
+                        arguments: {'id': companyId, 'title': companyName},
                       );
                     }
                   },
@@ -64,52 +62,4 @@ void showComplaintBottomSheet({
     isScrollControlled: true,
     backgroundColor: Colors.transparent,
   );
-}
-
-class ComplaintItem extends StatelessWidget {
-  final String title;
-  final VoidCallback onTap;
-
-  const ComplaintItem({super.key, required this.title, required this.onTap});
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(context.wPct(3)),
-      child: Container(
-        width: double.infinity,
-        padding: EdgeInsets.symmetric(
-          vertical: context.hPct(2),
-          horizontal: context.wPct(4.5),
-        ),
-        decoration: BoxDecoration(
-          color: AppColors.white5,
-          borderRadius: BorderRadius.circular(context.wPct(3)),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Expanded(
-              child: Text(
-                title,
-                style: TextStyle(
-                  color: AppColors.pureWhite,
-                  fontSize: context.wPct(4),
-                  fontWeight: FontWeight.w400,
-                ),
-                softWrap: true,
-                overflow: TextOverflow.visible,
-              ),
-            ),
-            Icon(
-              Icons.arrow_forward_ios,
-              color: AppColors.pureWhite,
-              size: context.wPct(5),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 }

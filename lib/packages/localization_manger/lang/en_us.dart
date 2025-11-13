@@ -243,5 +243,5 @@ const Map<String, String> enUS = {
   'submit_complaint_button': 'Submit your complaint',
   'company_already_complaint':
       'You have already filed a complaint for this company.',
-  'complaint_about': 'Complaint about @name',
+  'complaint_about': 'Complaint about',
 };

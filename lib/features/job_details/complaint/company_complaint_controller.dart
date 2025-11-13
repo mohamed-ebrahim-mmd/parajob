@@ -7,13 +7,12 @@ import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
 
-class ComplaintController extends GetxController {
+class CompanyComplaintController extends GetxController {
   final user = Get.find<UserController>();
   final int id;
-  final bool isCompany;
   final detailsController = TextEditingController();
 
-  ComplaintController(this.id, this.isCompany);
+  CompanyComplaintController(this.id);
 
   Future<void> complaint(BuildContext context) async {
     final details = detailsController.text.trim();

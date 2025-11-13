@@ -241,5 +241,5 @@ const Map<String, String> arSA = {
   'complaint_hint': 'شارك مشاكلك معنا..',
   'submit_complaint_button': 'إرسال الشكوى',
   'company_already_complaint': 'لقد قدمت شكوى بالفعل لهذه الشركة.',
-  'complaint_about': 'شكوى عن @name',
+  'complaint_about': 'شكوى عن ',
 };
