@@ -49,6 +49,27 @@ const Map<String, String> enUS = {
   'set_new_password_confirm_button': 'Confirm',
 
   // ============================================================
+  // 📝 Create Account Screen
+  // ============================================================
+  'create_account_title': 'Create a new account',
+  'create_account_main_info': 'Main Information',
+  'create_account_name_hint': 'Enter your Full Name',
+  'create_account_dob_hint': 'Enter your Date of Birth',
+  'create_account_phone_hint': 'Enter your phone Number',
+  'create_account_email_hint': 'Enter your Email',
+  'create_account_id_hint': 'Enter your id number',
+  'create_account_gender_hint': 'Choose your gender',
+  'create_account_location_info': 'Location  information',
+  'create_account_loading_cities': 'Loading cities...',
+  'create_account_city_hint': 'Choose your city',
+  'create_account_failed_load_retry': 'Failed to load, tap to retry',
+  'create_account_loading_areas': 'Loading areas...',
+  'create_account_failed_load_areas': 'Failed to load areas, tap to retry',
+  'create_account_select_city_first': 'Select a city first',
+  'create_account_continue_button': 'Continue',
+  'create_account_contact_us': 'contact us',
+
+  // ============================================================
   // 🏡 Home Screen
   // ============================================================
   'home_greeting': 'Hello',
@@ -84,7 +105,6 @@ const Map<String, String> enUS = {
   'apply_now': 'Apply now',
   'egp': 'EGP',
   'per_month': '/mo',
-  
 
   // ============================================================
   // 🏡 job details Screen

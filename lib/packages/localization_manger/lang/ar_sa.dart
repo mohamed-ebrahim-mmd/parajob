@@ -49,6 +49,27 @@ const Map<String, String> arSA = {
   'set_new_password_confirm_button': 'تأكيد',
 
   // ============================================================
+  // 📝 Create Account Screen
+  // ============================================================
+  'create_account_title': 'إنشاء حساب جديد',
+  'create_account_main_info': 'المعلومات الرئيسية',
+  'create_account_name_hint': 'أدخل اسمك الكامل',
+  'create_account_dob_hint': 'أدخل تاريخ ميلادك',
+  'create_account_phone_hint': 'أدخل رقم هاتفك',
+  'create_account_email_hint': 'أدخل بريدك الإلكتروني',
+  'create_account_id_hint': 'أدخل رقم بطاقتك',
+  'create_account_gender_hint': 'اختر جنسك',
+  'create_account_location_info': 'معلومات الموقع',
+  'create_account_loading_cities': 'تحميل المدن...',
+  'create_account_city_hint': 'اختر مدينتك',
+  'create_account_failed_load_retry': 'فشل التحميل، انقر لإعادة المحاولة',
+  'create_account_loading_areas': 'تحميل المناطق...',
+  'create_account_failed_load_areas': 'فشل تحميل المناطق، انقر لإعادة المحاولة',
+  'create_account_select_city_first': 'اختر مدينة أولاً',
+  'create_account_continue_button': 'متابعة',
+  'create_account_contact_us': 'اتصل بنا',
+
+  // ============================================================
   // 🏡 Home Screen
   // ============================================================
   'home_greeting': 'مرحبًا',
