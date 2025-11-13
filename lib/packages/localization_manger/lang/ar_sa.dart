@@ -250,4 +250,11 @@ const Map<String, String> arSA = {
   'profile_job_history_title': 'سجل ووظائفك',
   'profile_no_saved_jobs': 'لم يتم العثور على وظائف محفوظة',
   'profile_saved_jobs_title': 'الوظائف المحفوظة',
+
+  // ============================================================
+  // 👤 Profile Info Widget
+  // ============================================================
+  'profile_info_jobs': 'الوظائف',
+  'profile_info_income': 'الدخل',
+  'profile_info_companies': 'الشركات',
 };

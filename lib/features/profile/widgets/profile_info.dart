@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:para_job/features/profile/user_profile/profile_controller.dart'
     show ProfileController;
 import 'package:para_job/features/profile/widgets/show_edit_photo_buttom_sheet.dart';
@@ -102,10 +103,8 @@ class UserProfileInfo extends StatelessWidget {
           children: [
             Expanded(
               child: CompanyDetailContainer(
-                value: controller.formatNumber(
-                  profileData.jobsCount ?? 0,
-                ), //profileData.jobsCount?.toString() ?? "0",
-                title: "JOBS",
+                value: controller.formatNumber(profileData.jobsCount ?? 0),
+                title: 'profile_info_jobs'.tr,
               ),
             ),
             context.wBox(2),
@@ -114,7 +113,7 @@ class UserProfileInfo extends StatelessWidget {
                 value: controller.formatNumber(
                   num.tryParse(profileData.income ?? "0") ?? 0,
                 ),
-                title: "INCOME",
+                title: 'profile_info_income'.tr,
               ),
             ),
             context.wBox(2),
@@ -123,7 +122,7 @@ class UserProfileInfo extends StatelessWidget {
                 value: controller.formatNumber(
                   num.tryParse(profileData.companiesCount ?? "0") ?? 0,
                 ),
-                title: "COMPANIES",
+                title: 'profile_info_companies'.tr,
               ),
             ),
           ],

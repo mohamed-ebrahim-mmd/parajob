@@ -252,4 +252,11 @@ const Map<String, String> enUS = {
   'profile_job_history_title': 'Your job history',
   'profile_no_saved_jobs': 'No saved jobs found',
   'profile_saved_jobs_title': 'Saved Jobs',
+
+  // ============================================================
+  // 👤 Profile Info Widget
+  // ============================================================
+  'profile_info_jobs': 'JOBS',
+  'profile_info_income': 'INCOME',
+  'profile_info_companies': 'COMPANIES',
 };
