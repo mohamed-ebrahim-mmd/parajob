@@ -13,10 +13,9 @@ void showComplaintBottomSheet({
   String? jobTitle,
   int? jobId,
   bool? jobIsSubmitComplaint,
-  
 }) {
   final user = Get.find<UserController>();
-  final context =Get.context!;
+  final context = Get.context!;
 
   Get.bottomSheet(
     Container(
@@ -33,7 +32,7 @@ void showComplaintBottomSheet({
         children: [
           companyIsSubmitComplaint
               ? Text(
-                  'You have already filed a complaint for this company.',
+                  'company_already_complaint'.tr,
                   style: TextStyle(
                     color: AppColors.pureWhite,
                     fontSize: context.wPct(4),
@@ -41,7 +40,7 @@ void showComplaintBottomSheet({
                   ),
                 )
               : ComplaintItem(
-                  title: 'Complaint about $companyName',
+                  title: 'complaint_about'.trArgs([companyName]),
                   onTap: () {
                     if (user.isGuest) {
                       showAuthRequiredDialog();
@@ -58,7 +57,7 @@ void showComplaintBottomSheet({
                     }
                   },
                 ),
-                context.hBox(2)
+          context.hBox(2),
         ],
       ),
     ),
