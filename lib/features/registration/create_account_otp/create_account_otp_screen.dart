@@ -39,7 +39,7 @@ class CreateAccountOtpScreen extends StatelessWidget {
                 context.hBox(2),
 
                 Text(
-                  'Verify your number',
+                  'create_account_otp_title'.tr,
                   style: TextStyle(
                     color: AppColors.pureWhite,
                     fontSize: context.wPct(8.5),
@@ -48,7 +48,7 @@ class CreateAccountOtpScreen extends StatelessWidget {
                 ),
                 context.hBox(0.5),
                 Text(
-                  'check your messages to find the  OTP',
+                  'create_account_otp_subtitle'.tr,
                   style: TextStyle(
                     color: AppColors.softWhite70,
                     fontSize: context.wPct(3.5),
@@ -105,11 +105,11 @@ class CreateAccountOtpScreen extends StatelessWidget {
                   );*/
                   controller.verifyOtp(context);
                 },
-                child: Text("Verify"),
+                child: Text('create_account_otp_verify_button'.tr),
               ),
               context.hBox(4),
               TimerButton(
-                label: "Send again",
+                label: 'create_account_otp_resend_button'.tr,
                 timeOutInSeconds: 59,
                 buttonType: ButtonType.outlinedButton,
                 activeTextStyle: TextStyle(
@@ -130,7 +130,7 @@ class CreateAccountOtpScreen extends StatelessWidget {
               context.hBox(5),
               GestureDetector(
                 child: Text(
-                  "contact us",
+                  'create_account_otp_contact_us'.tr,
                   style: TextStyle(
                     color: AppColors.aquaTeal,
                     fontSize: context.wPct(4.2),

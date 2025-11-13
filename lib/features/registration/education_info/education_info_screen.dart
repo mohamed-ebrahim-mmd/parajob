@@ -32,7 +32,7 @@ class EducationInfoScreen extends StatelessWidget {
               StepperRow(currentStep: 3, stepPercentage: "60%"),
               context.hBox(4),
               Text(
-                'Education',
+                'education_info_title'.tr,
                 style: TextStyle(
                   color: AppColors.pureWhite,
                   fontSize: context.wPct(8.5),
@@ -45,8 +45,8 @@ class EducationInfoScreen extends StatelessWidget {
                   case ApiCallState.loading:
                     return TextField(
                       enabled: false,
-                      decoration: const InputDecoration(
-                        labelText: "Loading universities...",
+                      decoration: InputDecoration(
+                        labelText: 'education_info_loading_universities'.tr,
                         suffixIcon: Padding(
                           padding: EdgeInsets.all(8.0),
                           child: CircularProgressIndicator(),
@@ -59,7 +59,7 @@ class EducationInfoScreen extends StatelessWidget {
                       enableSearch: true,
                       expandedInsets: EdgeInsets.zero,
                       menuHeight: context.hPct(30),
-                      hintText: "Choose your university",
+                      hintText: 'education_info_university_hint'.tr,
                       initialSelection: controller.selectedUniversityId.value,
                       onSelected: controller.onUniversitySelected,
                       dropdownMenuEntries: controller.universityMenuEntries,
@@ -71,9 +71,9 @@ class EducationInfoScreen extends StatelessWidget {
                       child: AbsorbPointer(
                         child: TextField(
                           readOnly: true,
-                          decoration: const InputDecoration(
+                          decoration: InputDecoration(
                             labelText:
-                                "Failed to load universities, tap to retry",
+                                'education_info_failed_load_universities'.tr,
                             suffixIcon: Icon(Icons.refresh),
                           ),
                         ),
@@ -87,8 +87,8 @@ class EducationInfoScreen extends StatelessWidget {
                   case DataFetchState.loading:
                     return TextField(
                       enabled: false,
-                      decoration: const InputDecoration(
-                        labelText: "Loading faculties...",
+                      decoration: InputDecoration(
+                        labelText: 'education_info_loading_faculties'.tr,
                         suffixIcon: Padding(
                           padding: EdgeInsets.all(8.0),
                           child: CircularProgressIndicator(),
@@ -101,7 +101,7 @@ class EducationInfoScreen extends StatelessWidget {
                       enableSearch: true,
                       expandedInsets: EdgeInsets.zero,
                       menuHeight: context.hPct(30),
-                      hintText: "Choose your faculty",
+                      hintText: 'education_info_faculty_hint'.tr,
                       initialSelection: controller.selectedFacultyId,
                       onSelected: (value) {
                         if (value != null) {
@@ -123,8 +123,9 @@ class EducationInfoScreen extends StatelessWidget {
                       child: AbsorbPointer(
                         child: TextField(
                           readOnly: true,
-                          decoration: const InputDecoration(
-                            labelText: "Failed to load faculties, tap to retry",
+                          decoration: InputDecoration(
+                            labelText:
+                                'education_info_failed_load_faculties'.tr,
                             suffixIcon: Icon(Icons.refresh),
                           ),
                         ),
@@ -132,10 +133,10 @@ class EducationInfoScreen extends StatelessWidget {
                     );
 
                   case DataFetchState.initial:
-                    return const TextField(
+                    return TextField(
                       enabled: false,
                       decoration: InputDecoration(
-                        labelText: "Select a university first",
+                        labelText: 'education_info_select_university_first'.tr,
                       ),
                     );
                 }
@@ -147,7 +148,7 @@ class EducationInfoScreen extends StatelessWidget {
                 controller: controller.graduationYearController,
                 decoration: InputDecoration(
                   hintText: controller.graduationYearController.text.isEmpty
-                      ? "Choose your graduation year"
+                      ? 'education_info_graduation_year_hint'.tr
                       : controller.graduationYearController.text,
                 ),
                 onTap: controller.pickGraduationYear,
@@ -158,7 +159,7 @@ class EducationInfoScreen extends StatelessWidget {
               DropdownMenu<String>(
                 enableSearch: true,
                 expandedInsets: EdgeInsets.zero,
-                hintText: "Status",
+                hintText: 'education_info_status_hint'.tr,
                 initialSelection: controller.selectedStatus,
                 onSelected: controller.onStatusSelected,
                 dropdownMenuEntries: controller.statusMenuEntries,
@@ -179,13 +180,13 @@ class EducationInfoScreen extends StatelessWidget {
           children: [
             FilledButton(
               onPressed: controller.onSubmitEducationInfo,
-              child: Text("Continue"),
+              child: Text('education_info_continue_button'.tr),
             ),
 
             context.hBox(5),
             GestureDetector(
               child: Text(
-                "contact us",
+                'education_info_contact_us'.tr,
                 style: TextStyle(
                   color: AppColors.aquaTeal,
                   fontSize: context.wPct(4.2),

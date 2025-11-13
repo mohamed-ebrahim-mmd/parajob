@@ -34,7 +34,7 @@ class PictureWithIdScreen extends StatelessWidget {
               StepperRow(currentStep: 2, stepPercentage: "40%"),
               context.hBox(2),
               Text(
-                'National ID Scan',
+                'picture_with_id_title'.tr,
                 style: TextStyle(
                   color: AppColors.pureWhite,
                   fontSize: context.wPct(8.5),
@@ -43,7 +43,7 @@ class PictureWithIdScreen extends StatelessWidget {
               ),
               context.hBox(0.5),
               Text(
-                'Time to verify your identity',
+                'picture_with_id_subtitle'.tr,
                 style: TextStyle(
                   color: AppColors.softWhite70,
                   fontSize: context.wPct(3.5),
@@ -55,7 +55,7 @@ class PictureWithIdScreen extends StatelessWidget {
               IdImagePicker(
                 imagePath: AppAssetPaths.userWithID,
                 text: Text(
-                  "Take a picture of yourself holding the ID.",
+                  'picture_with_id_instruction'.tr,
                   style: TextStyle(
                     color: AppColors.softWhite70,
                     fontSize: context.wPct(4),
@@ -83,12 +83,9 @@ class PictureWithIdScreen extends StatelessWidget {
                 );
               }),
               context.hBox(2),
-              RegisterNote(
-                note:
-                    "Make sure you’re looking up at the camera\nfacing the light.",
-              ),
+              RegisterNote(note: 'picture_with_id_note_1'.tr),
               context.hBox(2),
-              RegisterNote(note: "Make sure the the details are easy to read."),
+              RegisterNote(note: 'picture_with_id_note_2'.tr),
             ],
           ),
         ),
@@ -101,7 +98,7 @@ class PictureWithIdScreen extends StatelessWidget {
         ),
         child: FilledButton(
           onPressed: controller.validateAndContinue,
-          child: Text("Confirm"),
+          child: Text('picture_with_id_confirm_button'.tr),
         ),
       ),
     );

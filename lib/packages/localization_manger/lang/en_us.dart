@@ -49,6 +49,129 @@ const Map<String, String> enUS = {
   'set_new_password_confirm_button': 'Confirm',
 
   // ============================================================
+  // 📝 Create Account Screen
+  // ============================================================
+  'create_account_title': 'Create a new account',
+  'create_account_main_info': 'Main Information',
+  'create_account_name_hint': 'Enter your Full Name',
+  'create_account_dob_hint': 'Enter your Date of Birth',
+  'create_account_phone_hint': 'Enter your phone Number',
+  'create_account_email_hint': 'Enter your Email',
+  'create_account_id_hint': 'Enter your id number',
+  'create_account_gender_hint': 'Choose your gender',
+  'create_account_location_info': 'Location  information',
+  'create_account_loading_cities': 'Loading cities...',
+  'create_account_city_hint': 'Choose your city',
+  'create_account_failed_load_retry': 'Failed to load, tap to retry',
+  'create_account_loading_areas': 'Loading areas...',
+  'create_account_failed_load_areas': 'Failed to load areas, tap to retry',
+  'create_account_select_city_first': 'Select a city first',
+  'create_account_continue_button': 'Continue',
+  'create_account_contact_us': 'contact us',
+
+  // ============================================================
+  // 🔢 Create Account OTP Screen
+  // ============================================================
+  'create_account_otp_title': 'Verify your number',
+  'create_account_otp_subtitle': 'check your messages to find the  OTP',
+  'create_account_otp_verify_button': 'Verify',
+  'create_account_otp_resend_button': 'Send again',
+  'create_account_otp_contact_us': 'contact us',
+
+  // ============================================================
+  // 🔑 Create Account Set Password Screen
+  // ============================================================
+  'create_account_set_pass_title': 'Set New Password',
+  'create_account_set_pass_password_hint': 'Enter password',
+  'create_account_set_pass_confirm_hint': 'Re-enter',
+  'create_account_set_pass_continue_button': 'Continue',
+  'create_account_set_pass_contact_us': 'contact us',
+
+  // ============================================================
+  // 🆔 Back National ID Screen
+  // ============================================================
+  'back_national_id_title': 'National ID Scan',
+  'back_national_id_subtitle': 'Time to verify your identity',
+  'back_national_id_scan_text_1': 'Scan the',
+  'back_national_id_scan_text_back': ' back',
+  'back_national_id_scan_text_2': ' of the ID',
+  'back_national_id_note_1': 'Make sure your surroundings are well-lit.',
+  'back_national_id_note_2':
+      'Make sure the photo is inside the frame and \ndetails are easy to read',
+  'back_national_id_confirm_button': 'Confirm',
+
+  // ============================================================
+  // 🆔 Front National ID Screen
+  // ============================================================
+  'front_national_id_title': 'National ID Scan',
+  'front_national_id_subtitle': 'Time to verify your identity',
+  'front_national_id_scan_text_1': 'Scan the',
+  'front_national_id_scan_text_front': ' front',
+  'front_national_id_scan_text_2': ' of the ID',
+  'front_national_id_note_1': 'Make sure your surroundings are well-lit.',
+  'front_national_id_note_2':
+      'Make sure the photo is inside the frame and \ndetails are easy to read',
+  'front_national_id_confirm_button': 'Confirm',
+
+  // ============================================================
+  // 📸 Picture With ID Screen
+  // ============================================================
+  'picture_with_id_title': 'National ID Scan',
+  'picture_with_id_subtitle': 'Time to verify your identity',
+  'picture_with_id_instruction': 'Take a picture of yourself holding the ID.',
+  'picture_with_id_note_1':
+      "Make sure you're looking up at the camera\nfacing the light.",
+  'picture_with_id_note_2': 'Make sure the the details are easy to read.',
+  'picture_with_id_confirm_button': 'Confirm',
+
+  // ============================================================
+  // 🎓 Education Info Screen
+  // ============================================================
+  'education_info_title': 'Education',
+  'education_info_loading_universities': 'Loading universities...',
+  'education_info_university_hint': 'Choose your university',
+  'education_info_failed_load_universities':
+      'Failed to load universities, tap to retry',
+  'education_info_loading_faculties': 'Loading faculties...',
+  'education_info_faculty_hint': 'Choose your faculty',
+  'education_info_failed_load_faculties':
+      'Failed to load faculties, tap to retry',
+  'education_info_select_university_first': 'Select a university first',
+  'education_info_graduation_year_hint': 'Choose your graduation year',
+  'education_info_status_hint': 'Status',
+  'education_info_continue_button': 'Continue',
+  'education_info_contact_us': 'contact us',
+
+  // ============================================================
+  // 📷 Education Picture Screen
+  // ============================================================
+  'education_pic_title': 'Education',
+  'education_pic_subtitle': 'Time to verify your university',
+  'education_pic_note':
+      "Note :\nYou can scan any other document that proves \nyou're a university student.",
+  'education_pic_note_1': 'Make sure your surroundings are well-lit.',
+  'education_pic_note_2':
+      'Make sure the photo is inside the frame and \ndetails are easy to read',
+  'education_pic_confirm_button': 'Confirm',
+
+  // ============================================================
+  // 💪 Create Account Skills Screen
+  // ============================================================
+  'create_account_skills_title': 'Add skills',
+  'create_account_skills_loading': 'Loading skills...',
+  'create_account_skills_hint': 'Choose skill',
+  'create_account_skills_failed_load': 'Failed to load, tap to retry',
+  'create_account_skills_continue_button': 'Continue',
+  'create_account_skills_contact_us': 'contact us',
+
+  // ============================================================
+  // 📄 Create Account CV Screen
+  // ============================================================
+  'create_account_cv_title': 'Upload CV',
+  'create_account_cv_subtitle': "It's time to Upload your cv.",
+  'create_account_cv_confirm_button': 'Confirm',
+
+  // ============================================================
   // 🏡 Home Screen
   // ============================================================
   'home_greeting': 'Hello',

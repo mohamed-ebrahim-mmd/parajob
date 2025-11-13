@@ -37,7 +37,7 @@ class CreateAccountScreen extends StatelessWidget {
 
               context.hBox(4),
               Text(
-                'Create a new account',
+                'create_account_title'.tr,
                 style: TextStyle(
                   color: AppColors.pureWhite,
                   fontSize: context.wPct(8.5),
@@ -46,7 +46,7 @@ class CreateAccountScreen extends StatelessWidget {
               ),
               context.hBox(6),
               Text(
-                'Main Information',
+                'create_account_main_info'.tr,
 
                 style: TextStyle(
                   color: AppColors.softWhite70,
@@ -57,7 +57,9 @@ class CreateAccountScreen extends StatelessWidget {
               context.hBox(2.5),
               TextField(
                 controller: controller.nameController,
-                decoration: InputDecoration(hintText: "Enter your Full Name"),
+                decoration: InputDecoration(
+                  hintText: 'create_account_name_hint'.tr,
+                ),
                 keyboardType: TextInputType.name,
                 textInputAction: TextInputAction.next,
               ),
@@ -70,7 +72,7 @@ class CreateAccountScreen extends StatelessWidget {
                   controller: TextEditingController(text: textValue),
                   decoration: InputDecoration(
                     hintText: textValue.isEmpty
-                        ? "Enter your Date of Birth"
+                        ? 'create_account_dob_hint'.tr
                         : textValue,
                   ),
                   onTap: controller.pickDate,
@@ -81,7 +83,7 @@ class CreateAccountScreen extends StatelessWidget {
               TextField(
                 controller: controller.phoneController,
                 decoration: InputDecoration(
-                  hintText: "Enter your phone Number",
+                  hintText: 'create_account_phone_hint'.tr,
                 ),
                 keyboardType: TextInputType.phone,
                 textInputAction: TextInputAction.next,
@@ -90,7 +92,9 @@ class CreateAccountScreen extends StatelessWidget {
               // Email Address TF
               TextField(
                 controller: controller.emailController,
-                decoration: InputDecoration(hintText: "Enter your Email"),
+                decoration: InputDecoration(
+                  hintText: 'create_account_email_hint'.tr,
+                ),
                 keyboardType: TextInputType.emailAddress,
                 textInputAction: TextInputAction.next,
               ),
@@ -98,7 +102,9 @@ class CreateAccountScreen extends StatelessWidget {
 
               TextField(
                 controller: controller.nationalIdController,
-                decoration: InputDecoration(hintText: "Enter your id number"),
+                decoration: InputDecoration(
+                  hintText: 'create_account_id_hint'.tr,
+                ),
                 keyboardType: TextInputType.number,
                 textInputAction: TextInputAction.next,
               ),
@@ -106,7 +112,7 @@ class CreateAccountScreen extends StatelessWidget {
               DropdownMenu<String>(
                 enableSearch: true,
                 expandedInsets: EdgeInsets.zero,
-                hintText: "Choose your gender",
+                hintText: 'create_account_gender_hint'.tr,
                 initialSelection: controller.selectedGender,
                 onSelected: controller.onGenderSelected,
                 dropdownMenuEntries: controller.genderMenuEntries,
@@ -114,7 +120,7 @@ class CreateAccountScreen extends StatelessWidget {
               context.hBox(2.5),
 
               Text(
-                'Location  information',
+                'create_account_location_info'.tr,
 
                 style: TextStyle(
                   color: AppColors.softWhite70,
@@ -129,7 +135,7 @@ class CreateAccountScreen extends StatelessWidget {
                     return TextField(
                       enabled: false,
                       decoration: InputDecoration(
-                        labelText: "Loading cities...",
+                        labelText: 'create_account_loading_cities'.tr,
                         suffixIcon: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: const CircularProgressIndicator(),
@@ -142,7 +148,7 @@ class CreateAccountScreen extends StatelessWidget {
                       enableSearch: true,
                       expandedInsets: EdgeInsets.zero,
                       menuHeight: context.hPct(30),
-                      hintText: "Choose your city",
+                      hintText: 'create_account_city_hint'.tr,
                       initialSelection: controller.selectedCityId.value,
                       onSelected: controller.onCitySelected,
                       dropdownMenuEntries: controller.cityMenuEntries,
@@ -154,8 +160,8 @@ class CreateAccountScreen extends StatelessWidget {
                       child: AbsorbPointer(
                         child: TextField(
                           readOnly: true,
-                          decoration: const InputDecoration(
-                            labelText: "Failed to load, tap to retry",
+                          decoration: InputDecoration(
+                            labelText: 'create_account_failed_load_retry'.tr,
                             suffixIcon: Icon(Icons.refresh),
                           ),
                         ),
@@ -165,14 +171,13 @@ class CreateAccountScreen extends StatelessWidget {
               }),
               context.hBox(1.5),
 
-
               Obx(() {
                 switch (controller.areasCallState.value) {
                   case DataFetchState.loading:
                     return TextField(
                       enabled: false,
                       decoration: InputDecoration(
-                        labelText: "Loading areas...",
+                        labelText: 'create_account_loading_areas'.tr,
                         suffixIcon: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: const CircularProgressIndicator(),
@@ -185,7 +190,7 @@ class CreateAccountScreen extends StatelessWidget {
                       enableSearch: true,
                       expandedInsets: EdgeInsets.zero,
                       menuHeight: context.hPct(30),
-                      hintText: "Choose your city",
+                      hintText: 'create_account_city_hint'.tr,
                       initialSelection: controller.selectedAreaId,
                       onSelected: (value) {
                         if (value != null) {
@@ -199,44 +204,43 @@ class CreateAccountScreen extends StatelessWidget {
                     return GestureDetector(
                       onTap: () {
                         if (controller.selectedCityId.value != null) {
-                          controller.fetchAreas(controller.selectedCityId.value!);
+                          controller.fetchAreas(
+                            controller.selectedCityId.value!,
+                          );
                         }
                       },
                       child: AbsorbPointer(
                         child: TextField(
                           readOnly: true,
-                          decoration: const InputDecoration(
-                            labelText: "Failed to load areas, tap to retry",
+                          decoration: InputDecoration(
+                            labelText: 'create_account_failed_load_areas'.tr,
                             suffixIcon: Icon(Icons.refresh),
                           ),
                         ),
                       ),
                     );
 
-
                   case DataFetchState.initial:
                     return TextField(
                       enabled: false,
-                      decoration: const InputDecoration(
-                        labelText: "Select a city first",
+                      decoration: InputDecoration(
+                        labelText: 'create_account_select_city_first'.tr,
                       ),
                     );
                 }
               }),
-             
-             
-             
+
               context.hBox(2.5),
 
               FilledButton(
                 onPressed: controller.registerUser,
-                child: Text("Continue"),
+                child: Text('create_account_continue_button'.tr),
               ),
 
               context.hBox(5),
               GestureDetector(
                 child: Text(
-                  "contact us",
+                  'create_account_contact_us'.tr,
                   style: TextStyle(
                     color: AppColors.aquaTeal,
                     fontSize: context.wPct(4.2),

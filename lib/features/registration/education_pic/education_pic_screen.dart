@@ -36,7 +36,7 @@ class EducationPicScreen extends StatelessWidget {
               //  Align(alignment: AlignmentGeometry.bottomRight, child: Text("20%")),
               context.hBox(2),
               Text(
-                'Education',
+                'education_pic_title'.tr,
                 style: TextStyle(
                   color: AppColors.pureWhite,
                   fontSize: context.wPct(8.5),
@@ -45,7 +45,7 @@ class EducationPicScreen extends StatelessWidget {
               ),
               context.hBox(0.5),
               Text(
-                'Time to verify your university',
+                'education_pic_subtitle'.tr,
                 style: TextStyle(
                   color: AppColors.softWhite70,
                   fontSize: context.wPct(3.5),
@@ -58,7 +58,7 @@ class EducationPicScreen extends StatelessWidget {
                 isEducation: true,
                 imagePath: AppAssetPaths.nationalID,
                 text: Text(
-                  "Note :\nYou can scan any other document that proves \nyou’re a university student.",
+                  'education_pic_note'.tr,
                   style: TextStyle(
                     color: AppColors.softWhite70,
                     fontSize: context.wPct(4),
@@ -87,12 +87,9 @@ class EducationPicScreen extends StatelessWidget {
                 );
               }),
               context.hBox(2),
-              RegisterNote(note: "Make sure your surroundings are well-lit."),
+              RegisterNote(note: 'education_pic_note_1'.tr),
               context.hBox(2),
-              RegisterNote(
-                note:
-                    "Make sure the photo is inside the frame and \ndetails are easy to read",
-              ),
+              RegisterNote(note: 'education_pic_note_2'.tr),
             ],
           ),
         ),
@@ -105,7 +102,7 @@ class EducationPicScreen extends StatelessWidget {
         ),
         child: FilledButton(
           onPressed: controller.validateAndContinue,
-          child: Text("Confirm"),
+          child: Text('education_pic_confirm_button'.tr),
         ),
       ),
     );
