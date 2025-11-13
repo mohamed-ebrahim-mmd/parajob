@@ -143,6 +143,18 @@ const Map<String, String> enUS = {
   'education_info_contact_us': 'contact us',
 
   // ============================================================
+  // 📷 Education Picture Screen
+  // ============================================================
+  'education_pic_title': 'Education',
+  'education_pic_subtitle': 'Time to verify your university',
+  'education_pic_note':
+      "Note :\nYou can scan any other document that proves \nyou're a university student.",
+  'education_pic_note_1': 'Make sure your surroundings are well-lit.',
+  'education_pic_note_2':
+      'Make sure the photo is inside the frame and \ndetails are easy to read',
+  'education_pic_confirm_button': 'Confirm',
+
+  // ============================================================
   // 🏡 Home Screen
   // ============================================================
   'home_greeting': 'Hello',
