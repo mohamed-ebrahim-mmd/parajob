@@ -338,4 +338,22 @@ const Map<String, String> enUS = {
   // 🆔 Edit National ID Screen
   // ============================================================
   'edit_national_id_save_button': 'Save changes',
+
+  // ============================================================
+  // ✏️ Edit Profile Screen
+  // ============================================================
+  'edit_profile_title': 'Edit personal info',
+  'edit_profile_tab_main_info': 'Main info',
+  'edit_profile_tab_education': 'Education',
+  'edit_profile_tab_cv': 'Cv',
+  'edit_profile_tab_national_id': 'Nation ID',
+  'edit_profile_tab_skills': 'Skills',
+
+  // ============================================================
+  // 🎯 Edit Skills Screen
+  // ============================================================
+  'edit_skills_loading': 'Loading skills...',
+  'edit_skills_hint': 'Choose skill',
+  'edit_skills_failed_load': 'Failed to load, tap to retry',
+  'edit_skills_save_button': 'Save changes',
 };

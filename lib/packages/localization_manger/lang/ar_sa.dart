@@ -334,4 +334,22 @@ const Map<String, String> arSA = {
   // 🆔 Edit National ID Screen
   // ============================================================
   'edit_national_id_save_button': 'حفظ التغييرات',
+
+  // ============================================================
+  // ✏️ Edit Profile Screen
+  // ============================================================
+  'edit_profile_title': 'تعديل البيانات الشخصية',
+  'edit_profile_tab_main_info': 'المعلومات الأساسية',
+  'edit_profile_tab_education': 'البيانات التعليمية',
+  'edit_profile_tab_cv': 'السيرة الذاتية',
+  'edit_profile_tab_national_id': 'بطاقة الهوية',
+  'edit_profile_tab_skills': 'المهارات',
+
+  // ============================================================
+  // 🎯 Edit Skills Screen
+  // ============================================================
+  'edit_skills_loading': 'تحميل المهارات...',
+  'edit_skills_hint': 'اختر مهارة',
+  'edit_skills_failed_load': 'فشل التحميل، انقر لإعادة المحاولة',
+  'edit_skills_save_button': 'حفظ التغييرات',
 };
