@@ -360,4 +360,12 @@ const Map<String, String> arSA = {
   'change_pass_otp_subtitle': 'التمس مراسلاتك لبحث OTP',
   'change_pass_otp_verify_button': 'التحقق',
   'change_pass_otp_resend_button': 'إرسال مرة أخرى',
+
+  // ============================================================
+  // 🔐 Change Password Screen
+  // ============================================================
+  'change_password_title': 'عين كلمة المرور',
+  'change_password_new_hint': 'أدخل كلمة المرور الجديدة',
+  'change_password_confirm_hint': 'أعد إدخال كلمة المرور الجديدة',
+  'change_password_confirm_button': 'تأكيد',
 };

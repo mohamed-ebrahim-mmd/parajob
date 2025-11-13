@@ -364,4 +364,12 @@ const Map<String, String> enUS = {
   'change_pass_otp_subtitle': 'check your messages to find the  OTP',
   'change_pass_otp_verify_button': 'Verify',
   'change_pass_otp_resend_button': 'Send again',
+
+  // ============================================================
+  // 🔐 Change Password Screen
+  // ============================================================
+  'change_password_title': 'Set password',
+  'change_password_new_hint': 'Enter your new password',
+  'change_password_confirm_hint': 'Confirm your new Password',
+  'change_password_confirm_button': 'Confirm',
 };
