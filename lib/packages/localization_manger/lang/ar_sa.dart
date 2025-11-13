@@ -315,4 +315,12 @@ const Map<String, String> arSA = {
   'edit_main_info_failed_load_areas': 'فشل تحميل المناطق، انقر لإعادة المحاولة',
   'edit_main_info_select_city_first': 'اختر مدينة أولاً',
   'edit_main_info_save_button': 'حفظ التغييرات',
+
+  // ============================================================
+  // 🎓 Edit Education Screen
+  // ============================================================
+  'edit_education_loading_faculties': 'تحميل الكليات...',
+  'edit_education_faculty_hint': 'اختر كليتك',
+  'edit_education_failed_load': 'فشل التحميل، انقر لإعادة المحاولة',
+  'edit_education_save_button': 'حفظ التغييرات',
 };

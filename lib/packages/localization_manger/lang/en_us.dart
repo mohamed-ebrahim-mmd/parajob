@@ -319,4 +319,12 @@ const Map<String, String> enUS = {
   'edit_main_info_failed_load_areas': 'Failed to load areas, tap to retry',
   'edit_main_info_select_city_first': 'Select a city first',
   'edit_main_info_save_button': 'Save changes',
+
+  // ============================================================
+  // 🎓 Edit Education Screen
+  // ============================================================
+  'edit_education_loading_faculties': 'Loading faculties...',
+  'edit_education_faculty_hint': 'Choose your faculty',
+  'edit_education_failed_load': 'Failed to load, tap to retry',
+  'edit_education_save_button': 'Save changes',
 };
