@@ -55,7 +55,7 @@ class SearchJobScreen extends StatelessWidget {
                       controller.pagingController.refresh();
                     },
                     decoration: InputDecoration(
-                      hintText: 'Search by job title',
+                      hintText: 'search_job_hint'.tr,
                       prefixIcon: IconButton(
                         onPressed: () {
                           controller.pagingController.refresh();
