@@ -40,7 +40,7 @@ class ForgotPasswordOtpScreen extends StatelessWidget {
               children: [
                 context.hBox(2),
                 Text(
-                  'Verify your number',
+                  'forgot_password_otp_title'.tr,
                   style: TextStyle(
                     color: AppColors.pureWhite,
                     fontSize: context.wPct(8.5),
@@ -49,7 +49,7 @@ class ForgotPasswordOtpScreen extends StatelessWidget {
                 ),
                 context.hBox(0.5),
                 Text(
-                  'check your messages to find the  OTP',
+                  'forgot_password_otp_subtitle'.tr,
                   style: TextStyle(
                     color: AppColors.softWhite70,
                     fontSize: context.wPct(3.5),
@@ -64,7 +64,7 @@ class ForgotPasswordOtpScreen extends StatelessWidget {
                     length: 5,
                     defaultPinTheme: AppTheme.pinTheme(context),
                     focusedPinTheme: AppTheme.pinTheme(context).copyWith(
-                      decoration:  BoxDecoration(
+                      decoration: BoxDecoration(
                         border: Border(
                           bottom: BorderSide(
                             color: AppColors.aquaTeal,
@@ -107,11 +107,11 @@ class ForgotPasswordOtpScreen extends StatelessWidget {
                 onPressed: () {
                   controller.verifyOtp(context);
                 },
-                child: Text("Verify"),
+                child: Text('forgot_password_otp_verify_button'.tr),
               ),
               context.hBox(4),
               TimerButton(
-                label: "Send again",
+                label: 'forgot_password_otp_resend_button'.tr,
                 timeOutInSeconds: 59,
                 buttonType: ButtonType.outlinedButton,
                 activeTextStyle: TextStyle(

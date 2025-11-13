@@ -33,6 +33,14 @@ const Map<String, String> enUS = {
   'forgot_password_send_button': 'Send',
 
   // ============================================================
+  // 🔢 Forgot Password OTP Screen
+  // ============================================================
+  'forgot_password_otp_title': 'Verify your number',
+  'forgot_password_otp_subtitle': 'check your messages to find the  OTP',
+  'forgot_password_otp_verify_button': 'Verify',
+  'forgot_password_otp_resend_button': 'Send again',
+
+  // ============================================================
   // 🏡 Home Screen
   // ============================================================
   'home_greeting': 'Hello',
