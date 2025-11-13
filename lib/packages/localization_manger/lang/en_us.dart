@@ -125,6 +125,24 @@ const Map<String, String> enUS = {
   'picture_with_id_confirm_button': 'Confirm',
 
   // ============================================================
+  // 🎓 Education Info Screen
+  // ============================================================
+  'education_info_title': 'Education',
+  'education_info_loading_universities': 'Loading universities...',
+  'education_info_university_hint': 'Choose your university',
+  'education_info_failed_load_universities':
+      'Failed to load universities, tap to retry',
+  'education_info_loading_faculties': 'Loading faculties...',
+  'education_info_faculty_hint': 'Choose your faculty',
+  'education_info_failed_load_faculties':
+      'Failed to load faculties, tap to retry',
+  'education_info_select_university_first': 'Select a university first',
+  'education_info_graduation_year_hint': 'Choose your graduation year',
+  'education_info_status_hint': 'Status',
+  'education_info_continue_button': 'Continue',
+  'education_info_contact_us': 'contact us',
+
+  // ============================================================
   // 🏡 Home Screen
   // ============================================================
   'home_greeting': 'Hello',

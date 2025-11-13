@@ -124,6 +124,24 @@ const Map<String, String> arSA = {
   'picture_with_id_confirm_button': 'تأكيد',
 
   // ============================================================
+  // 🎓 Education Info Screen
+  // ============================================================
+  'education_info_title': 'التعليم',
+  'education_info_loading_universities': 'تحميل الجامعات...',
+  'education_info_university_hint': 'اختر جامعتك',
+  'education_info_failed_load_universities':
+      'فشل تحميل الجامعات، انقر لإعادة المحاولة',
+  'education_info_loading_faculties': 'تحميل الكليات...',
+  'education_info_faculty_hint': 'اختر كليتك',
+  'education_info_failed_load_faculties':
+      'فشل تحميل الكليات، انقر لإعادة المحاولة',
+  'education_info_select_university_first': 'اختر جامعة أولاً',
+  'education_info_graduation_year_hint': 'اختر سنة التخرج',
+  'education_info_status_hint': 'الحالة',
+  'education_info_continue_button': 'متابعة',
+  'education_info_contact_us': 'اتصل بنا',
+
+  // ============================================================
   // 🏡 Home Screen
   // ============================================================
   'home_greeting': 'مرحبًا',
