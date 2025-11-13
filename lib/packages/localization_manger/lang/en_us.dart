@@ -298,4 +298,14 @@ const Map<String, String> enUS = {
   'about_app_vision_default': 'Our Vision',
   'about_app_mission_default': 'Our Mission',
   'about_app_values_default': 'Our values',
+
+  // ============================================================
+  // 📧 Contact Us Screen
+  // ============================================================
+  'contact_us_title': 'Complain or Suggest',
+  'contact_us_message_hint': 'Share your issues with us..',
+  'contact_us_heading': 'Contact us',
+  'contact_us_email_title': 'Email us on',
+  'contact_us_phone_title': 'By phone',
+  'contact_us_submit_button': 'Submit your complaint',
 };

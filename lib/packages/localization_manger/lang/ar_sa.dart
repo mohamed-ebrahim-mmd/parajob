@@ -294,4 +294,14 @@ const Map<String, String> arSA = {
   'about_app_vision_default': 'رؤيتنا',
   'about_app_mission_default': 'رسالتنا',
   'about_app_values_default': 'قيمنا',
+
+  // ============================================================
+  // 📧 Contact Us Screen
+  // ============================================================
+  'contact_us_title': 'الشكوى أو الاقتراح',
+  'contact_us_message_hint': 'شارك مشاكلك معنا..',
+  'contact_us_heading': 'تواصل معنا',
+  'contact_us_email_title': 'ابعث لنا بالبريد الإلكتروني',
+  'contact_us_phone_title': 'عبر الهاتف',
+  'contact_us_submit_button': 'إرسال الشكوى',
 };
