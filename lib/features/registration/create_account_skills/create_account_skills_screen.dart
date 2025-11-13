@@ -37,7 +37,7 @@ class CreateAccountSkillsScreen extends StatelessWidget {
               StepperRow(currentStep: 4, stepPercentage: "80%"),
               context.hBox(2),
               Text(
-                'Add skills',
+                'create_account_skills_title'.tr,
                 style: TextStyle(
                   color: AppColors.pureWhite,
                   fontSize: context.wPct(8.5),
@@ -51,7 +51,7 @@ class CreateAccountSkillsScreen extends StatelessWidget {
                     return TextField(
                       enabled: false,
                       decoration: InputDecoration(
-                        labelText: "Loading skills...",
+                        labelText: 'create_account_skills_loading'.tr,
                         suffixIcon: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: const CircularProgressIndicator(),
@@ -67,7 +67,7 @@ class CreateAccountSkillsScreen extends StatelessWidget {
                           enableSearch: true,
                           expandedInsets: EdgeInsets.zero,
                           menuHeight: context.hPct(30),
-                          hintText: "Choose skill",
+                          hintText: 'create_account_skills_hint'.tr,
                           onSelected: controller.onSkillSelected,
                           dropdownMenuEntries: controller.skillsMenu,
                         ),
@@ -95,8 +95,8 @@ class CreateAccountSkillsScreen extends StatelessWidget {
                       child: AbsorbPointer(
                         child: TextField(
                           readOnly: true,
-                          decoration: const InputDecoration(
-                            labelText: "Failed to load, tap to retry",
+                          decoration: InputDecoration(
+                            labelText: 'create_account_skills_failed_load'.tr,
                             suffixIcon: Icon(Icons.refresh),
                           ),
                         ),
@@ -120,13 +120,13 @@ class CreateAccountSkillsScreen extends StatelessWidget {
           children: [
             FilledButton(
               onPressed: controller.validateAndContinue,
-              child: Text("Continue"),
+              child: Text('create_account_skills_continue_button'.tr),
             ),
 
             context.hBox(5),
             GestureDetector(
               child: Text(
-                "contact us",
+                'create_account_skills_contact_us'.tr,
                 style: TextStyle(
                   color: AppColors.aquaTeal,
                   fontSize: context.wPct(4.2),

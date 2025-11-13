@@ -11,6 +11,7 @@ import 'package:para_job/res/app_asset_paths.dart';
 
 class MoreScreen extends StatelessWidget {
   MoreScreen({super.key});
+
   final controller = Get.put(MoreController());
 
   @override
@@ -43,7 +44,7 @@ class MoreScreen extends StatelessWidget {
                 icon: AppAssetPaths.lan,
                 title: "Language",
 
-                onTap: () => controller.navigateTo(Routes.laguageScreen),
+                onTap: () => controller.navigateTo(Routes.languageScreen),
               ),
               context.hBox(3),
               // ===== Account Section =====

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:para_job/features/job_details/complaint/widgets/job_complaint_bottom_sheet.dart';
 import 'package:para_job/packages/api_client/src/models/responses/job_data.dart'
     show JobData;
 import 'package:para_job/packages/themeing/app_colors.dart';
@@ -24,6 +25,16 @@ class JobContent extends StatelessWidget {
             ),
             const Spacer(),
             IconButton(onPressed: () {}, icon: Icon(Icons.share)),
+            IconButton(
+              onPressed: () {
+                showJobComplaintBottomSheet(
+                  jobName: jobDetails.title,
+                  jobId: jobDetails.id,
+                  isSubmitComplaint: jobDetails.isSubmitComplaint ?? false,
+                );
+              },
+              icon: const Icon(Icons.more_vert, color: AppColors.pureWhite),
+            ),
           ],
         ),
         context.hBox(2),

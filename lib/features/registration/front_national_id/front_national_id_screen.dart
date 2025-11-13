@@ -38,7 +38,7 @@ class FrontNationalIdScreen extends StatelessWidget {
 
               context.hBox(2),
               Text(
-                'National ID Scan',
+                'front_national_id_title'.tr,
                 style: TextStyle(
                   color: AppColors.pureWhite,
                   fontSize: context.wPct(8.5),
@@ -47,7 +47,7 @@ class FrontNationalIdScreen extends StatelessWidget {
               ),
               context.hBox(0.5),
               Text(
-                'Time to verify your identity',
+                'front_national_id_subtitle'.tr,
                 style: TextStyle(
                   color: AppColors.softWhite70,
                   fontSize: context.wPct(3.5),
@@ -61,7 +61,7 @@ class FrontNationalIdScreen extends StatelessWidget {
                 text: RichText(
                   textAlign: TextAlign.center,
                   text: TextSpan(
-                    text: 'Scan the',
+                    text: 'front_national_id_scan_text_1'.tr,
                     style: TextStyle(
                       color: AppColors.softWhite70,
                       fontSize: context.wPct(4),
@@ -69,10 +69,10 @@ class FrontNationalIdScreen extends StatelessWidget {
                     ),
                     children: [
                       TextSpan(
-                        text: " front",
+                        text: 'front_national_id_scan_text_front'.tr,
                         style: TextStyle(color: AppColors.aquaTeal),
                       ),
-                      TextSpan(text: ' of the ID'),
+                      TextSpan(text: 'front_national_id_scan_text_2'.tr),
                     ],
                   ),
                 ),
@@ -97,12 +97,9 @@ class FrontNationalIdScreen extends StatelessWidget {
                 );
               }),
               context.hBox(2),
-              RegisterNote(note: "Make sure your surroundings are well-lit."),
+              RegisterNote(note: 'front_national_id_note_1'.tr),
               context.hBox(2),
-              RegisterNote(
-                note:
-                    "Make sure the photo is inside the frame and \ndetails are easy to read",
-              ),
+              RegisterNote(note: 'front_national_id_note_2'.tr),
             ],
           ),
         ),
@@ -115,7 +112,7 @@ class FrontNationalIdScreen extends StatelessWidget {
         ),
         child: FilledButton(
           onPressed: controller.validateAndContinue,
-          child: Text("Confirm"),
+          child: Text('front_national_id_confirm_button'.tr),
         ),
       ),
     );

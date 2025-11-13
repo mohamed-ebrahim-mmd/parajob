@@ -4,7 +4,7 @@ import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/packages/ui_components/app_network_image.dart';
 
-import '../../job_details/complaint/widgets/complaint_bottom_sheet.dart';
+import '../../job_details/complaint/widgets/company_complaint_bottom_sheet.dart';
 
 class EmployerHeroSection extends StatelessWidget {
   final String? imageUrl;
@@ -52,7 +52,7 @@ class EmployerHeroSection extends StatelessWidget {
           right: context.wPct(4),
           child: IconButton(
             onPressed: () {
-              showComplaintBottomSheet(
+              showCompanyComplaintBottomSheet(
                 companyName: companyName,
                 companyId: companyId,
                 companyIsSubmitComplaint: companyIsSubmitComplaint,

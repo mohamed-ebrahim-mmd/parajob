@@ -49,6 +49,128 @@ const Map<String, String> arSA = {
   'set_new_password_confirm_button': 'تأكيد',
 
   // ============================================================
+  // 📝 Create Account Screen
+  // ============================================================
+  'create_account_title': 'إنشاء حساب جديد',
+  'create_account_main_info': 'المعلومات الرئيسية',
+  'create_account_name_hint': 'أدخل اسمك الكامل',
+  'create_account_dob_hint': 'أدخل تاريخ ميلادك',
+  'create_account_phone_hint': 'أدخل رقم هاتفك',
+  'create_account_email_hint': 'أدخل بريدك الإلكتروني',
+  'create_account_id_hint': 'أدخل رقم بطاقتك',
+  'create_account_gender_hint': 'اختر جنسك',
+  'create_account_location_info': 'معلومات الموقع',
+  'create_account_loading_cities': 'تحميل المدن...',
+  'create_account_city_hint': 'اختر مدينتك',
+  'create_account_failed_load_retry': 'فشل التحميل، انقر لإعادة المحاولة',
+  'create_account_loading_areas': 'تحميل المناطق...',
+  'create_account_failed_load_areas': 'فشل تحميل المناطق، انقر لإعادة المحاولة',
+  'create_account_select_city_first': 'اختر مدينة أولاً',
+  'create_account_continue_button': 'متابعة',
+  'create_account_contact_us': 'اتصل بنا',
+
+  // ============================================================
+  // 🔢 Create Account OTP Screen
+  // ============================================================
+  'create_account_otp_title': 'تحقق من رقمك',
+  'create_account_otp_subtitle': 'تحقق من رسائلك للعثور على رمز التحقق',
+  'create_account_otp_verify_button': 'تحقق',
+  'create_account_otp_resend_button': 'إرسال مرة أخرى',
+  'create_account_otp_contact_us': 'اتصل بنا',
+
+  // ============================================================
+  // 🔑 Create Account Set Password Screen
+  // ============================================================
+  'create_account_set_pass_title': 'تعيين كلمة مرور جديدة',
+  'create_account_set_pass_password_hint': 'أدخل كلمة المرور',
+  'create_account_set_pass_confirm_hint': 'أعد إدخال كلمة المرور',
+  'create_account_set_pass_continue_button': 'متابعة',
+  'create_account_set_pass_contact_us': 'اتصل بنا',
+
+  // ============================================================
+  // 🆔 Back National ID Screen
+  // ============================================================
+  'back_national_id_title': 'مسح البطاقة الوطنية',
+  'back_national_id_subtitle': 'حان وقت التحقق من هويتك',
+  'back_national_id_scan_text_1': 'امسح',
+  'back_national_id_scan_text_back': ' الجهة الخلفية',
+  'back_national_id_scan_text_2': ' للبطاقة',
+  'back_national_id_note_1': 'تأكد من أن المحيط مضاء بشكل جيد.',
+  'back_national_id_note_2':
+      'تأكد من أن الصورة داخل الإطار وأن \nالتفاصيل سهلة القراءة',
+  'back_national_id_confirm_button': 'تأكيد',
+
+  // ============================================================
+  // 🆔 Front National ID Screen
+  // ============================================================
+  'front_national_id_title': 'مسح البطاقة الوطنية',
+  'front_national_id_subtitle': 'حان وقت التحقق من هويتك',
+  'front_national_id_scan_text_1': 'امسح',
+  'front_national_id_scan_text_front': ' الجهة الأمامية',
+  'front_national_id_scan_text_2': ' للبطاقة',
+  'front_national_id_note_1': 'تأكد من أن المحيط مضاء بشكل جيد.',
+  'front_national_id_note_2':
+      'تأكد من أن الصورة داخل الإطار وأن \nالتفاصيل سهلة القراءة',
+  'front_national_id_confirm_button': 'تأكيد',
+
+  // ============================================================
+  // 📸  Picture With ID Screen
+  // ============================================================
+  'picture_with_id_title': 'مسح البطاقة الوطنية',
+  'picture_with_id_subtitle': 'حان وقت التحقق من هويتك',
+  'picture_with_id_instruction': 'التقط صورة لنفسك وأنت تحمل البطاقة.',
+  'picture_with_id_note_1': 'تأكد من أنك تنظر إلى الكاميرا\nمواجهاً للضوء.',
+  'picture_with_id_note_2': 'تأكد من أن التفاصيل سهلة القراءة.',
+  'picture_with_id_confirm_button': 'تأكيد',
+
+  // ============================================================
+  // 🎓 Education Info Screen
+  // ============================================================
+  'education_info_title': 'التعليم',
+  'education_info_loading_universities': 'تحميل الجامعات...',
+  'education_info_university_hint': 'اختر جامعتك',
+  'education_info_failed_load_universities':
+      'فشل تحميل الجامعات، انقر لإعادة المحاولة',
+  'education_info_loading_faculties': 'تحميل الكليات...',
+  'education_info_faculty_hint': 'اختر كليتك',
+  'education_info_failed_load_faculties':
+      'فشل تحميل الكليات، انقر لإعادة المحاولة',
+  'education_info_select_university_first': 'اختر جامعة أولاً',
+  'education_info_graduation_year_hint': 'اختر سنة التخرج',
+  'education_info_status_hint': 'الحالة',
+  'education_info_continue_button': 'متابعة',
+  'education_info_contact_us': 'اتصل بنا',
+
+  // ============================================================
+  // 📷  Education Picture Screen
+  // ============================================================
+  'education_pic_title': 'التعليم',
+  'education_pic_subtitle': 'حان وقت التحقق من جامعتك',
+  'education_pic_note':
+      'ملاحظة :\nيمكنك مسح أي مستند آخر يثبت \nأنك طالب جامعي.',
+  'education_pic_note_1': 'تأكد من أن المحيط مضاء بشكل جيد.',
+  'education_pic_note_2':
+      'تأكد من أن الصورة داخل الإطار وأن \nالتفاصيل سهلة القراءة',
+  'education_pic_confirm_button': 'تأكيد',
+
+  // ============================================================
+  // 💪 Create Account Skills Screen
+  // ============================================================
+  'create_account_skills_title': 'إضافة مهارات',
+  'create_account_skills_loading': 'تحميل المهارات...',
+  'create_account_skills_hint': 'اختر مهارة',
+  'create_account_skills_failed_load': 'فشل التحميل، انقر لإعادة المحاولة',
+  'create_account_skills_continue_button': 'متابعة',
+  'create_account_skills_contact_us': 'اتصل بنا',
+
+  // ============================================================
+  // 📄  Create Account CV Screen
+  // ============================================================
+  'create_account_cv_title': 'رفع السيرة الذاتية',
+  'create_account_cv_subtitle': 'حان وقت رفع سيرتك الذاتية.',
+  'create_account_cv_confirm_button': 'تأكيد',
+
+  // ============================================================
   // 🏡 Home Screen
   // ============================================================
   'home_greeting': 'مرحبًا',
@@ -119,7 +241,7 @@ const Map<String, String> arSA = {
   'complaint_hint': 'شارك مشاكلك معنا..',
   'submit_complaint_button': 'إرسال الشكوى',
   'company_already_complaint': 'لقد قدمت شكوى بالفعل لهذه الشركة.',
-  'complaint_about': 'شكوى عن @name',
+  'complaint_about': 'شكوى عن ',
 
   // ============================================================
   // employee Review Screen
