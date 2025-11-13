@@ -38,7 +38,7 @@ class HotJobsMiniList extends StatelessWidget {
                   ),
                   context.wBox(2),
                   Text(
-                    "Hot Jobs",
+                    "hot_jobs".tr,
                     style: TextStyle(
                       fontSize: context.wPct(4.5),
                       fontWeight: FontWeight.bold,
@@ -49,7 +49,7 @@ class HotJobsMiniList extends StatelessWidget {
               GestureDetector(
                 onTap: onSeeAll,
                 child: Text(
-                  "See all",
+                  "see_all".tr,
                   style: TextStyle(
                     color: AppColors.softWhite70,
                     fontWeight: FontWeight.w500,

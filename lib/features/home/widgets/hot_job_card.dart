@@ -4,6 +4,7 @@
 */
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
@@ -131,14 +132,14 @@ class HotJobCard extends StatelessWidget {
               text: TextSpan(
                 children: [
                   TextSpan(
-                    text: "${job.monthlySalary} EGP",
+                    text: "${job.monthlySalary} ${'egp'.tr}",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: context.wPct(5),
                     ),
                   ),
                   TextSpan(
-                    text: "/mo",
+                    text: "per_month".tr,
                     style: TextStyle(
                       color: AppColors.softWhite70,
                       fontSize: context.wPct(3),
@@ -190,8 +191,8 @@ class HotJobCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(context.wPct(4)),
                       ),
                     ),
-                    child: const Text(
-                      "Apply now",
+                    child:  Text(
+                      "apply_now".tr,
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),

@@ -1,3 +1,7 @@
+/*
+ Mohamed Ebrahim | mohamed7ebrahim7@gmail.com | 2025-10-16 10:52 AM
+ ==================================================================
+*/
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/job_details/job_details_controller.dart';
@@ -29,13 +33,12 @@ class JobDetailsScreen extends StatelessWidget {
       body: Obx(() {
         switch (controller.jobDetailsCallState.value) {
           case ApiCallState.loading:
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           case ApiCallState.success:
             final jobDetails = controller.jobData!.data;
             return SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
-
                 children: [
                   CurvedHeaderWithGlow(
                     imageUrl: jobDetails.logo,
@@ -51,19 +54,17 @@ class JobDetailsScreen extends StatelessWidget {
                   ),
                   context.hBox(4),
                   Padding(
-                    padding: EdgeInsetsGeometry.symmetric(
-                      horizontal: context.wPct(5),
-                    ),
-                    //company
+                    padding: EdgeInsets.symmetric(horizontal: context.wPct(5)),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        // Company & Type Row
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Expanded(
                               child: JobDetailContainer(
-                                text: jobDetails.monthlySalary,
+                                text: "${jobDetails.monthlySalary} ${'egp'.tr}",
                                 iconPath: AppAssetPaths.money,
                               ),
                             ),
@@ -77,7 +78,7 @@ class JobDetailsScreen extends StatelessWidget {
                           ],
                         ),
                         context.hBox(3),
-                        // time
+                        // Dates Row
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -98,15 +99,15 @@ class JobDetailsScreen extends StatelessWidget {
                           ],
                         ),
                         context.hBox(3),
-                        //location
+                        // Location
                         JobDetailContainer(
                           text: jobDetails.location,
                           iconPath: AppAssetPaths.location,
                         ),
-                        //description
+                        // Description
                         context.hBox(3),
                         Text(
-                          'Description',
+                          'description'.tr,
                           style: TextStyle(
                             color: AppColors.pureWhite,
                             fontSize: context.wPct(5),
@@ -122,11 +123,10 @@ class JobDetailsScreen extends StatelessWidget {
                             fontWeight: FontWeight.w400,
                           ),
                         ),
-
-                        //requirements
+                        // Requirements
                         context.hBox(3),
                         Text(
-                          'Requirements',
+                          'requirements'.tr,
                           style: TextStyle(
                             color: AppColors.pureWhite,
                             fontSize: context.wPct(5),
@@ -142,10 +142,10 @@ class JobDetailsScreen extends StatelessWidget {
                             fontWeight: FontWeight.w400,
                           ),
                         ),
-                        // required skills
+                        // Required Skills
                         context.hBox(3),
                         Text(
-                          'Required Skills',
+                          'required_skills'.tr,
                           style: TextStyle(
                             color: AppColors.pureWhite,
                             fontSize: context.wPct(5),
@@ -160,11 +160,11 @@ class JobDetailsScreen extends StatelessWidget {
                               .map((skill) => JobSkillItem(skill: skill))
                               .toList(),
                         ),
-
                         context.hBox(4),
+                        // Apply / Delete buttons
                         jobDetails.isApplied
                             ? Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Align(
                                     alignment: Alignment.centerLeft,
@@ -178,7 +178,7 @@ class JobDetailsScreen extends StatelessWidget {
                                         );
                                       },
                                       child: Text(
-                                        'Delete my application',
+                                        'delete_my_application'.tr,
                                         style: TextStyle(
                                           color: AppColors.rejected,
                                           fontSize: 16,
@@ -191,9 +191,8 @@ class JobDetailsScreen extends StatelessWidget {
                               )
                             : FilledButton(
                                 onPressed: controller.handleApplyJobPressed,
-                                child: Text("Apply for this job"),
+                                child: Text('apply_for_job'.tr),
                               ),
-
                         context.hBox(4),
                       ],
                     ),

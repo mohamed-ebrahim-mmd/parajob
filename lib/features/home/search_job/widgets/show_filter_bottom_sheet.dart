@@ -7,13 +7,12 @@ import 'package:get/get.dart';
 import 'package:para_job/features/home/search_job/search_job_controller.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
-
 Future<void> showFilterBottomSheet(
   BuildContext context,
   SearchJobController controller,
 ) async {
   await Get.bottomSheet(
-    enterBottomSheetDuration: Duration(milliseconds: 50), // faster
+    enterBottomSheetDuration: Duration(milliseconds: 50),
     Container(
       padding: EdgeInsets.all(context.wPct(5)),
       decoration: BoxDecoration(
@@ -41,9 +40,7 @@ Future<void> showFilterBottomSheet(
               ),
               Spacer(flex: 4),
               GestureDetector(
-                onTap: () {
-                  Get.back();
-                },
+                onTap: () => Get.back(),
                 child: Icon(
                   Icons.close,
                   color: AppColors.lightGray,
@@ -53,76 +50,73 @@ Future<void> showFilterBottomSheet(
             ],
           ),
           context.hBox(3),
+
           // title
           Text(
-            "Filter",
+            'filter'.tr,
             style: TextStyle(
               fontSize: context.wPct(4),
               fontWeight: FontWeight.w600,
             ),
           ),
           context.hBox(2),
+
           DropdownMenu<String>(
             enableSearch: true,
             width: context.wPct(90),
             menuHeight: context.hPct(30),
             initialSelection: controller.selectedJobType,
-            hintText: 'Job type',
+            hintText: 'job_type'.tr,
             onSelected: (value) {
-              if (value != null) {
-                controller.selectedJobType = value;
-              }
+              if (value != null) controller.selectedJobType = value;
             },
             dropdownMenuEntries: controller.jobTypeMenuEntries,
           ),
           context.hBox(2),
+
           DropdownMenu<int>(
             enableSearch: true,
             width: context.wPct(90),
-
             menuHeight: context.hPct(30),
             initialSelection: controller.selectedSkillId,
-            hintText: 'Skills',
+            hintText: 'skills'.tr,
             onSelected: (value) {
-              if (value != null) {
-                controller.selectedSkillId = value;
-              }
+              if (value != null) controller.selectedSkillId = value;
             },
             dropdownMenuEntries: controller.skills,
           ),
           context.hBox(2),
+
           DropdownMenu<int>(
             enableSearch: true,
             menuHeight: context.hPct(30),
             width: context.wPct(90),
             initialSelection: controller.selectedCompanyId,
-            hintText: 'Company',
+            hintText: 'company'.tr,
             onSelected: (value) {
-              if (value != null) {
-                controller.selectedCompanyId = value;
-              }
+              if (value != null) controller.selectedCompanyId = value;
             },
             dropdownMenuEntries: controller.companies,
           ),
           context.hBox(2),
+
           DropdownMenu<String>(
             enableSearch: true,
             menuHeight: context.hPct(30),
             width: context.wPct(90),
             initialSelection: controller.selectedJobCategory,
-            hintText: 'Categories ',
+            hintText: 'categories'.tr,
             onSelected: (value) {
-              if (value != null) {
-                controller.selectedJobCategory = value;
-              }
+              if (value != null) controller.selectedJobCategory = value;
             },
             dropdownMenuEntries: controller.jobCategoriesEntries,
           ),
           context.hBox(2),
+
           // button
           FilledButton(
             onPressed: controller.applyFilters,
-            child: Text("Apply Filter"),
+            child: Text('apply_filter'.tr),
           ),
           context.hBox(2),
         ],

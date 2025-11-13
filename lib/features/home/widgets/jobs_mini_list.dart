@@ -39,7 +39,7 @@ class JobsMiniList extends StatelessWidget {
             GestureDetector(
               onTap: onSeeAll,
               child: Text(
-                "See all",
+                "see_all".tr,
                 style: TextStyle(
                   color: AppColors.softWhite70,
                   fontWeight: FontWeight.w500,
