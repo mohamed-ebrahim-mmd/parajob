@@ -333,4 +333,9 @@ const Map<String, String> enUS = {
   // ============================================================
   'edit_cv_default_name': '-',
   'edit_cv_save_button': 'Save changes',
+
+  // ============================================================
+  // 🆔 Edit National ID Screen
+  // ============================================================
+  'edit_national_id_save_button': 'Save changes',
 };
