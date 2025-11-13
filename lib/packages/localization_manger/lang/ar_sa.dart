@@ -242,4 +242,12 @@ const Map<String, String> arSA = {
   'submit_complaint_button': 'إرسال الشكوى',
   'company_already_complaint': 'لقد قدمت شكوى بالفعل لهذه الشركة.',
   'complaint_about': 'شكوى عن @name',
+
+  // ============================================================
+  // 👤 Profile Screen
+  // ============================================================
+  'profile_no_job_history': 'لم يتم العثور على سجل وظائف',
+  'profile_job_history_title': 'سجل ووظائفك',
+  'profile_no_saved_jobs': 'لم يتم العثور على وظائف محفوظة',
+  'profile_saved_jobs_title': 'الوظائف المحفوظة',
 };
