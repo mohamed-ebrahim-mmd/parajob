@@ -13,6 +13,7 @@ class MoreController extends GetxController {
   //var moreCallState = ApiCallState.loading.obs;
   //  UserProfileData? profileData;
   final user = Get.find<UserController>();
+
   MoreController();
 
   Future<void> deleteUserAccount(BuildContext context) async {

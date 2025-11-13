@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:para_job/packages/functional_components/request_notification_permission.dart';
+import 'package:para_job/packages/localization_manger/localization_manger.dart';
 import 'package:para_job/packages/themeing/theme.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
 import 'package:para_job/res/firebase_options.dart';
@@ -14,6 +15,8 @@ void main() async {
   await GetStorage.init(); // Initialize GetStorage
   Get.put(RoutingController());
   Get.put(UserController());
+  Get.put(LocalizationController());
+
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(ParaJobApp());
 }
@@ -27,6 +30,7 @@ class ParaJobApp extends StatefulWidget {
 
 class _ParaJobAppState extends State<ParaJobApp> {
   final RoutingController routingController = Get.find();
+  final LocalizationController localizationController = Get.find();
 
   @override
   void initState() {
@@ -44,11 +48,13 @@ class _ParaJobAppState extends State<ParaJobApp> {
       themeMode: ThemeMode.dark,
       title: 'Para Job',
       initialRoute: routingController.getInitialRoute(),
-      //Routes.companyDetails,
-      //routingController.getInitialRoute(),
-      // Routes.createAccount,
-      // Set initial route based on stored state
       getPages: AppPages.pages,
+      locale: localizationController.currentLocale,
+      // Set the locale
+      translations: AppTranslations(),
+      // Load translations
+      fallbackLocale:
+          LocalizationController.defaultLocale, // Fallback to English
     );
   }
 }
