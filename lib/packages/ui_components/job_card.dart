@@ -167,7 +167,7 @@ class JobCard extends StatelessWidget {
                           ),
                         ),
                         TextSpan(
-                          text: "/mo",
+                          text: "per_month".tr,
                           style: TextStyle(
                             color: AppColors.softWhite70,
                             fontSize: context.wPct(3),
