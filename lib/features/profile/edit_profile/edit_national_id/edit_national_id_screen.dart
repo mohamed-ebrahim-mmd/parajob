@@ -29,28 +29,29 @@ class EditNationalIdScreen extends StatelessWidget {
                   ),
                 ),
 
-               
                 context.hBox(5),
 
-                 Obx(
-                  () =>NationalIdImg(
-                  img: controller.user?.nationalIdBack ?? "",
-                  localFile: controller.backFile.value,
-                  onEdit: () => controller.pickImg(controller.backFile),
-                ),),
+                Obx(
+                  () => NationalIdImg(
+                    img: controller.user?.nationalIdBack ?? "",
+                    localFile: controller.backFile.value,
+                    onEdit: () => controller.pickImg(controller.backFile),
+                  ),
+                ),
                 context.hBox(5),
 
-                 Obx(
-                  () =>NationalIdImg(
-                  img: controller.user?.profileWithId ?? "",
-                  localFile: controller.profileFile.value,
-                  onEdit: () => controller.pickImg(controller.profileFile),
-                ),),
+                Obx(
+                  () => NationalIdImg(
+                    img: controller.user?.profileWithId ?? "",
+                    localFile: controller.profileFile.value,
+                    onEdit: () => controller.pickImg(controller.profileFile),
+                  ),
+                ),
                 context.hBox(5),
                 Spacer(),
                 FilledButton(
                   onPressed: controller.uploadFile,
-                  child: Text("Save changes"),
+                  child: Text('edit_national_id_save_button'.tr),
                 ),
                 context.hBox(2.5),
               ],

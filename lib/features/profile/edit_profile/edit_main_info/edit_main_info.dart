@@ -82,7 +82,7 @@ class EditMainInfo extends StatelessWidget {
                     return TextField(
                       enabled: false,
                       decoration: InputDecoration(
-                        labelText: "Loading cities...",
+                        labelText: 'edit_main_info_loading_cities'.tr,
                         suffixIcon: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: const CircularProgressIndicator(),
@@ -95,7 +95,7 @@ class EditMainInfo extends StatelessWidget {
                       enableSearch: true,
                       expandedInsets: EdgeInsets.zero,
                       menuHeight: context.hPct(30),
-                      hintText: "Choose your city",
+                      hintText: 'edit_main_info_city_hint'.tr,
                       initialSelection: controller.selectedCityId.value,
                       onSelected: controller.onCitySelected,
                       dropdownMenuEntries: controller.cityMenuEntries,
@@ -107,8 +107,8 @@ class EditMainInfo extends StatelessWidget {
                       child: AbsorbPointer(
                         child: TextField(
                           readOnly: true,
-                          decoration: const InputDecoration(
-                            labelText: "Failed to load, tap to retry",
+                          decoration: InputDecoration(
+                            labelText: 'edit_main_info_failed_load_cities'.tr,
                             suffixIcon: Icon(Icons.refresh),
                           ),
                         ),
@@ -125,7 +125,7 @@ class EditMainInfo extends StatelessWidget {
                     return TextField(
                       enabled: false,
                       decoration: InputDecoration(
-                        labelText: "Loading areas...",
+                        labelText: 'edit_main_info_loading_areas'.tr,
                         suffixIcon: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: const CircularProgressIndicator(),
@@ -138,7 +138,7 @@ class EditMainInfo extends StatelessWidget {
                       enableSearch: true,
                       expandedInsets: EdgeInsets.zero,
                       menuHeight: context.hPct(30),
-                      hintText: "Choose your city",
+                      hintText: 'edit_main_info_city_hint'.tr,
                       initialSelection: controller.selectedAreaId,
                       onSelected: (value) {
                         if (value != null) {
@@ -160,8 +160,8 @@ class EditMainInfo extends StatelessWidget {
                       child: AbsorbPointer(
                         child: TextField(
                           readOnly: true,
-                          decoration: const InputDecoration(
-                            labelText: "Failed to load areas, tap to retry",
+                          decoration: InputDecoration(
+                            labelText: 'edit_main_info_failed_load_areas'.tr,
                             suffixIcon: Icon(Icons.refresh),
                           ),
                         ),
@@ -171,8 +171,8 @@ class EditMainInfo extends StatelessWidget {
                   case DataFetchState.initial:
                     return TextField(
                       enabled: false,
-                      decoration: const InputDecoration(
-                        labelText: "Select a city first",
+                      decoration: InputDecoration(
+                        labelText: 'edit_main_info_select_city_first'.tr,
                       ),
                     );
                 }
@@ -181,7 +181,7 @@ class EditMainInfo extends StatelessWidget {
               Spacer(),
               FilledButton(
                 onPressed: controller.editUser,
-                child: Text("Save changes"),
+                child: Text('edit_main_info_save_button'.tr),
               ),
               context.hBox(2.5),
             ],

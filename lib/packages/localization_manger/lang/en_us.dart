@@ -1,5 +1,5 @@
 /*
- Mohamed Ebrahim | mohamed7ebrahim7@gmail.com | 15/02/2025 5:24 PM
+ Mohamed Ebrahim | mohamed7ebrahim7@gmail.com | 15/02/2025 5:24 PM
  ==================================================================
 */
 const Map<String, String> enUS = {
@@ -244,6 +244,7 @@ const Map<String, String> enUS = {
   'submit_complaint_button': 'Submit your complaint',
   'company_already_complaint':
       'You have already filed a complaint for this company.',
+
   'complaint_about': 'Complaint about',
 
   // ============================================================
@@ -273,4 +274,131 @@ const Map<String, String> enUS = {
   'anonymous_member': 'Anonymous Member',
   'submit': 'Submit',
   'no_recent_reviews': 'No recent reviews available.',
+
+  // ============================================================
+  // 👤 Profile Screen
+  // ============================================================
+  'profile_no_job_history': 'No job history found',
+  'profile_job_history_title': 'Your job history',
+  'profile_no_saved_jobs': 'No saved jobs found',
+  'profile_saved_jobs_title': 'Saved Jobs',
+
+  // ============================================================
+  // 👤 Profile Info Widget
+  // ============================================================
+  'profile_info_jobs': 'JOBS',
+  'profile_info_income': 'INCOME',
+  'profile_info_companies': 'COMPANIES',
+
+  // ============================================================
+  // ⚡ More Screen (Settings)
+  // ============================================================
+  'more_settings_title': 'Settings',
+  'more_language': 'Language',
+  'more_account_title': 'Account',
+  'more_edit_personal_info': 'Edit Personal Info',
+  'more_change_password': 'Change Password',
+  'more_delete_account': 'Delete Account',
+  'more_delete_account_confirmation':
+      'Are you sure that you want to delete your account?',
+  'more_delete_account_warning':
+      'Warning: if you deleted your account you will lose all your data and your level rank.',
+  'more_delete_account_button': 'Delete my account',
+  'more_logout': 'Log Out',
+  'more_logout_confirmation':
+      'Are you sure that you want to log out of your account?',
+  'more_logout_button': 'Log out',
+  'more_help_title': 'Help',
+  'more_about_us': 'About Us',
+  'more_contact_us': 'Contact Us',
+
+  // ============================================================
+  // ℹ️ About Us Screen
+  // ============================================================
+  'about_us_about_app': 'About the application',
+  'about_us_rate_app': 'Rate us on App store',
+  'about_us_instagram': 'Follow us on instagram',
+  'about_us_twitter': 'Follow us on Twitter',
+  'about_us_facebook': 'Like us on facebook',
+
+  // ============================================================
+  // 📚 About App Screen
+  // ============================================================
+  'about_app_title': 'About ParaJob',
+  'about_app_vision_default': 'Our Vision',
+  'about_app_mission_default': 'Our Mission',
+  'about_app_values_default': 'Our values',
+
+  // ============================================================
+  // 📧 Contact Us Screen
+  // ============================================================
+  'contact_us_title': 'Complain or Suggest',
+  'contact_us_message_hint': 'Share your issues with us..',
+  'contact_us_heading': 'Contact us',
+  'contact_us_email_title': 'Email us on',
+  'contact_us_phone_title': 'By phone',
+  'contact_us_submit_button': 'Submit your complaint',
+
+  // ============================================================
+  // ✏️ Edit Main Info Screen
+  // ============================================================
+  'edit_main_info_loading_cities': 'Loading cities...',
+  'edit_main_info_city_hint': 'Choose your city',
+  'edit_main_info_failed_load_cities': 'Failed to load, tap to retry',
+  'edit_main_info_loading_areas': 'Loading areas...',
+  'edit_main_info_failed_load_areas': 'Failed to load areas, tap to retry',
+  'edit_main_info_select_city_first': 'Select a city first',
+  'edit_main_info_save_button': 'Save changes',
+
+  // ============================================================
+  // 🎓 Edit Education Screen
+  // ============================================================
+  'edit_education_loading_faculties': 'Loading faculties...',
+  'edit_education_faculty_hint': 'Choose your faculty',
+  'edit_education_failed_load': 'Failed to load, tap to retry',
+  'edit_education_save_button': 'Save changes',
+
+  // ============================================================
+  // 📄 Edit CV Screen
+  // ============================================================
+  'edit_cv_save_button': 'Save changes',
+
+  // ============================================================
+  // 🆔 Edit National ID Screen
+  // ============================================================
+  'edit_national_id_save_button': 'Save changes',
+
+  // ============================================================
+  // ✏️ Edit Profile Screen
+  // ============================================================
+  'edit_profile_title': 'Edit personal info',
+  'edit_profile_tab_main_info': 'Main info',
+  'edit_profile_tab_education': 'Education',
+  'edit_profile_tab_cv': 'Cv',
+  'edit_profile_tab_national_id': 'Nation ID',
+  'edit_profile_tab_skills': 'Skills',
+
+  // ============================================================
+  // 🎯 Edit Skills Screen
+  // ============================================================
+  'edit_skills_loading': 'Loading skills...',
+  'edit_skills_hint': 'Choose skill',
+  'edit_skills_failed_load': 'Failed to load, tap to retry',
+  'edit_skills_save_button': 'Save changes',
+
+  // ============================================================
+  // 🔍 Change Password OTP Screen
+  // ============================================================
+  'change_pass_otp_title': 'Verify your number',
+  'change_pass_otp_subtitle': 'check your messages to find the  OTP',
+  'change_pass_otp_verify_button': 'Verify',
+  'change_pass_otp_resend_button': 'Send again',
+
+  // ============================================================
+  // 🔐 Change Password Screen
+  // ============================================================
+  'change_password_title': 'Set password',
+  'change_password_new_hint': 'Enter your new password',
+  'change_password_confirm_hint': 'Confirm your new Password',
+  'change_password_confirm_button': 'Confirm',
 };
