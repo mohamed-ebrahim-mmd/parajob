@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
 class EmployerListHeader extends StatelessWidget {
   final String title;
   final VoidCallback onViewAll;
-  final String viewAllText;
+  final String? viewAllText;
 
   const EmployerListHeader({
     super.key,
     required this.title,
     required this.onViewAll,
-    this.viewAllText = "View All",
+    this.viewAllText,
   });
 
   @override
@@ -20,7 +21,7 @@ class EmployerListHeader extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          title,
+          title.tr, // make title itself localized
           style: TextStyle(
             fontSize: context.wPct(4.5),
             fontWeight: FontWeight.w600,
@@ -32,7 +33,7 @@ class EmployerListHeader extends StatelessWidget {
           child: Row(
             children: [
               Text(
-                viewAllText,
+                (viewAllText ?? 'view_all'.tr),
                 style: TextStyle(
                   fontSize: context.wPct(3.5),
                   fontWeight: FontWeight.w500,
@@ -40,7 +41,6 @@ class EmployerListHeader extends StatelessWidget {
                 ),
               ),
               context.wBox(1),
-
               const Icon(
                 Icons.double_arrow,
                 size: 10,

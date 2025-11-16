@@ -49,6 +49,7 @@ const Map<String, String> enUS = {
   'set_new_password_confirm_button': 'Confirm',
 
   // ============================================================
+
   // 📝 Create Account Screen
   // ============================================================
   'create_account_title': 'Create a new account',
@@ -243,7 +244,36 @@ const Map<String, String> enUS = {
   'submit_complaint_button': 'Submit your complaint',
   'company_already_complaint':
       'You have already filed a complaint for this company.',
-  'complaint_about': 'Complaint about @name',
+
+  'complaint_about': 'Complaint about',
+
+  // ============================================================
+  // employee Review Screen
+  // ============================================================
+  'reviews': 'Reviews',
+  'no_reviews_found': 'No reviews found',
+
+  // ============================================================
+  // active Jobs Screen
+  // ============================================================
+  'active_jobs': 'Active Jobs',
+
+  // ============================================================
+  // employee  Screen
+  // ============================================================
+  'no_data': 'No data',
+  'jobs': 'Jobs',
+  'employees': 'Employees',
+  'positive_reviews': 'Positive Reviews',
+  'view_all': 'View all',
+  'already_shared_feedback':
+      'You’ve already shared your thoughts about this employer. Thank you for your feedback!',
+  'no_active_jobs': 'No active jobs available at the moment.',
+  'write_review': 'Write a Review',
+  'share_opinion': 'Share your opinion with us..',
+  'anonymous_member': 'Anonymous Member',
+  'submit': 'Submit',
+  'no_recent_reviews': 'No recent reviews available.',
 
   // ============================================================
   // 👤 Profile Screen

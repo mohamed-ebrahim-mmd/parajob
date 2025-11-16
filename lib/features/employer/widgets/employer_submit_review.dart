@@ -17,8 +17,11 @@ class EmployerSubmitReview extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Write a Review",
-          style: TextStyle(fontSize: context.wPct(5), fontWeight: FontWeight.w600),
+          "write_review".tr, // localized
+          style: TextStyle(
+            fontSize: context.wPct(5),
+            fontWeight: FontWeight.w600,
+          ),
         ),
         context.hBox(1.5),
 
@@ -35,7 +38,9 @@ class EmployerSubmitReview extends StatelessWidget {
         TextField(
           controller: controller.reviewController,
           maxLines: 4,
-          decoration: InputDecoration(hintText: "Share your opinion with us.."),
+          decoration: InputDecoration(
+            hintText: "share_opinion".tr, // localized hint
+          ),
         ),
         context.hBox(1),
         Row(
@@ -47,7 +52,7 @@ class EmployerSubmitReview extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5),
                   ),
-                  side:  BorderSide(
+                  side: BorderSide(
                     color: AppColors.pureWhite,
                     width: context.wPct(0.2),
                   ),
@@ -71,7 +76,7 @@ class EmployerSubmitReview extends StatelessWidget {
             context.wBox(1),
             Expanded(
               child: Text(
-                'Anonymous Member',
+                'anonymous_member'.tr, // localized
                 style: TextStyle(
                   color: AppColors.pureWhite,
                   fontWeight: FontWeight.w400,
@@ -87,7 +92,7 @@ class EmployerSubmitReview extends StatelessWidget {
           onPressed: () {
             controller.submitReview();
           },
-          child: Text("Submit"),
+          child: Text("submit".tr), // localized
         ),
       ],
     );
