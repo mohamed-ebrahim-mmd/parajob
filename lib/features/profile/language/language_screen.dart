@@ -2,8 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:para_job/features/profile/language/widgets/language_listtile.dart';
 import 'package:para_job/packages/localization_manger/controller/localization_controller.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
+import 'package:para_job/res/app_asset_paths.dart';
 
 class LanguageScreen extends StatelessWidget {
   final LocalizationController localizationController =
@@ -24,31 +26,33 @@ class LanguageScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: context.wPct(5)),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text('onboarding_title'.tr, style: TextStyle(fontSize: 20)),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            context.hBox(3),
 
-              const SizedBox(height: 20),
-              // Radio button for English
-              RadioListTile<Locale>(
-                title: const Text('English'),
-                value: const Locale('en'),
-                groupValue: localizationController.currentLocale,
-                // Normalize comparison
-                onChanged: localizationController.changeLanguage,
-              ),
-              // Radio button for Arabic
-              RadioListTile<Locale>(
-                title: const Text('العربية'),
-                value: const Locale('ar'),
-                groupValue: localizationController.currentLocale,
-                // Normalize comparison
-                onChanged: localizationController.changeLanguage,
-              ),
-            ],
-          ),
+            Text('language'.tr, style: TextStyle(fontSize: context.wPct(6))),
+
+            context.hBox(3),
+            // Radio button for English
+            LanguageTile(
+              title: "English",
+              flagAsset: AppAssetPaths.english,
+              value: const Locale('en'),
+              groupValue: localizationController.currentLocale,
+              onChanged: localizationController.changeLanguage,
+            ),
+
+            // Radio button for Arabic
+            LanguageTile(
+              title: 'العربية',
+              flagAsset: AppAssetPaths.arab,
+              value: const Locale('ar'),
+              groupValue: localizationController.currentLocale,
+              onChanged: localizationController.changeLanguage,
+            ),
+          ],
         ),
       ),
     );

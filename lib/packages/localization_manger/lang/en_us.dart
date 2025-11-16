@@ -446,4 +446,9 @@ const Map<String, String> enUS = {
   'job_status_accepted': 'Accepted',
   'job_status_rejected': 'Rejected',
   'job_status_interview_scheduled': 'Interview Scheduled',
+
+  // ============================================================
+  // 📋language
+  // ============================================================
+  'language': 'Language',
 };

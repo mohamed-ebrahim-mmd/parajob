@@ -62,4 +62,6 @@ abstract final class AppAssetPaths {
   static const aboutUs = "assets/icons/about_us.svg";
   static const lan = "assets/icons/lan.svg";
   static const complaint = "assets/icons/complaint.svg";
+  static const arab = "assets/icons/arab_emirates.svg";
+  static const english = "assets/icons/united_kingdom.svg";
 }

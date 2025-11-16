@@ -440,4 +440,9 @@ const Map<String, String> arSA = {
   'job_status_accepted': 'مقبول',
   'job_status_rejected': 'مرفوض',
   'job_status_interview_scheduled': 'تم جدولة المقابلة',
+
+  // ============================================================
+  // 📋language
+  // ============================================================
+  'language': 'اللغه',
 };
