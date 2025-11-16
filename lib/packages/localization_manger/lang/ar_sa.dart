@@ -369,4 +369,9 @@ const Map<String, String> arSA = {
   'change_password_new_hint': 'أدخل كلمة المرور الجديدة',
   'change_password_confirm_hint': 'أعد إدخال كلمة المرور الجديدة',
   'change_password_confirm_button': 'تأكيد',
+
+  // ============================================================
+  // 🔔 My Notifications Screen
+  // ============================================================
+  'notifications_no_found': 'لم يتم العثور على الإخطارات',
 };

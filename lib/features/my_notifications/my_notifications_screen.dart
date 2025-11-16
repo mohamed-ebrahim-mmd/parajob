@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:para_job/features/my_notifications/my_notification_utils.dart';
 import 'package:para_job/features/my_notifications/widgets/my_notification_card.dart';
@@ -49,7 +50,7 @@ class _MyNotificationScreenState extends State<MyNotificationScreen> {
                         child: Padding(
                           padding: EdgeInsets.only(top: context.hPct(20)),
                           child: Text(
-                            "No notifications found",
+                            'notifications_no_found'.tr,
                             style: TextStyle(
                               color: AppColors.white50,
                               fontSize: context.wPct(4),

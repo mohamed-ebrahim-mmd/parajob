@@ -371,4 +371,9 @@ const Map<String, String> enUS = {
   'change_password_new_hint': 'Enter your new password',
   'change_password_confirm_hint': 'Confirm your new Password',
   'change_password_confirm_button': 'Confirm',
+
+  // ============================================================
+  // 🔔 My Notifications Screen
+  // ============================================================
+  'notifications_no_found': 'No notifications found',
 };
