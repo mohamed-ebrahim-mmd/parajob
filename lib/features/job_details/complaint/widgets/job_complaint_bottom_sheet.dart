@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/job_details/complaint/widgets/complaint_item.dart';
+import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/packages/ui_components/auth_required_dialog.dart';
@@ -29,7 +30,7 @@ void showJobComplaintBottomSheet({
         children: [
           isSubmitComplaint
               ? Text(
-                  'you are submitted a complain about this job',
+                  'you submitted a complain about this job',
                   style: TextStyle(
                     color: AppColors.pureWhite,
                     fontSize: context.wPct(4),
@@ -43,7 +44,10 @@ void showJobComplaintBottomSheet({
                       showAuthRequiredDialog();
                     } else {
                       Get.back();
-                      //todo implement the logic for the job compliment here
+                      Get.toNamed(
+                        "${Routes.jobDetails}${Routes.jobComplaint}",
+                        arguments: {'id': jobId, 'title': jobName},
+                      );
                     }
                   },
                 ),
