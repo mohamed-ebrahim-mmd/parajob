@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:intl/intl.dart';
 import 'package:para_job/features/my_jobs/my_jobs_utils.dart';
@@ -52,7 +53,7 @@ class _MyJobsListState extends State<MyJobsList> {
           builderDelegate: PagedChildBuilderDelegate<MyJob>(
             noItemsFoundIndicatorBuilder: (_) => Center(
               child: Text(
-                "No jobs found",
+                'my_job_no_jobs_found'.tr,
                 style: TextStyle(fontSize: context.wPct(4)),
               ),
             ),
@@ -108,7 +109,7 @@ class _MyJobsListState extends State<MyJobsList> {
                     highlighted: widget.highlighted,
                     onTap: widget.highlighted && item.isSignedContract == 0
                         ? () {
-                            signContractJobDialog(item,pagingController);
+                            signContractJobDialog(item, pagingController);
                           }
                         : null,
                   ),

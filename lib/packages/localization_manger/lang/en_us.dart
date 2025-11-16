@@ -398,4 +398,14 @@ const Map<String, String> enUS = {
   'contract_sign_instruction': 'Please sign with your signature below:',
   'contract_clear_button': 'Clear',
   'contract_finish_button': 'Finish',
+
+  // ============================================================
+  // 📋 My Jobs Widgets
+  // ============================================================
+  'my_job_no_jobs_found': 'No jobs found',
+  'my_job_contract_pending': 'Contract Pending',
+  'my_job_contract_signed': 'Contract Signed',
+  'my_job_dialog_congrats':
+      'Congrats! your application for this job is accepted. 🎉',
+  'my_job_dialog_sign_contract': 'Sign the contract',
 };

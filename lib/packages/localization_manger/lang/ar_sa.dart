@@ -396,4 +396,13 @@ const Map<String, String> arSA = {
   'contract_sign_instruction': 'الرجاء التوقيع بعلامتك أدناه:',
   'contract_clear_button': 'حذف',
   'contract_finish_button': 'انتهاء',
+
+  // ============================================================
+  // 📋 My Jobs Widgets
+  // ============================================================
+  'my_job_no_jobs_found': 'لم يتم العثور على وظائف',
+  'my_job_contract_pending': 'عقد معلّق',
+  'my_job_contract_signed': 'تم توقيع العقد',
+  'my_job_dialog_congrats': 'تهانينا! تم قبول طلبك لهذه الوظيفة. 🎉',
+  'my_job_dialog_sign_contract': 'وقّع على العقد',
 };

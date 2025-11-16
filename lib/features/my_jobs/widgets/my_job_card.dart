@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:para_job/packages/api_client/src/enums/job_application_status.dart';
 import 'package:para_job/packages/api_client/src/models/responses/my_job.dart'
     show MyJob;
@@ -97,8 +98,8 @@ class MyJobCard extends StatelessWidget {
                     !highlighted
                         ? job.applicationStatus.displayName
                         : job.isSignedContract == 0
-                        ? 'Contract Pending'
-                        : 'Contract Signed',
+                        ? 'my_job_contract_pending'.tr
+                        : 'my_job_contract_signed'.tr,
                     style: TextStyle(
                       color: highlighted
                           ? AppColors.aquaTeal
