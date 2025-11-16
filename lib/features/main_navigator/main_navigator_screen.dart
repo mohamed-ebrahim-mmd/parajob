@@ -48,14 +48,14 @@ class MainNavigatorScreen extends StatelessWidget {
                 selectedIcon: SvgPicture.asset(
                   AppAssetPaths.selectedHomeAppNavIcon,
                 ),
-                label: 'Home',
+                label: 'nav_home'.tr,
               ),
               NavigationDestination(
                 icon: SvgPicture.asset(AppAssetPaths.unselectedJobsAppNavIcon),
                 selectedIcon: SvgPicture.asset(
                   AppAssetPaths.selectedJobsAppNavIcon,
                 ),
-                label: 'Jobs',
+                label: 'nav_jobs'.tr,
               ),
               NavigationDestination(
                 icon: SvgPicture.asset(
@@ -64,7 +64,7 @@ class MainNavigatorScreen extends StatelessWidget {
                 selectedIcon: SvgPicture.asset(
                   AppAssetPaths.selectedNotificationsAppNavIcon,
                 ),
-                label: 'Notifications',
+                label: 'nav_notifications'.tr,
               ),
               NavigationDestination(
                 icon: Icon(Icons.person_outline, size: context.hPct(4)),
@@ -73,7 +73,7 @@ class MainNavigatorScreen extends StatelessWidget {
                   color: AppColors.aquaTeal,
                   size: context.hPct(4),
                 ),
-                label: 'Profile',
+                label: 'nav_profile'.tr,
               ),
             ],
           ),
