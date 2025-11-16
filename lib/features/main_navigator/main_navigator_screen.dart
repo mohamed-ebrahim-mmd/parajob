@@ -5,6 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:para_job/features/main_navigator/widgets/user_img.dart';
 import 'package:para_job/features/main_navigator/main_navigator_controller.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
@@ -67,12 +68,24 @@ class MainNavigatorScreen extends StatelessWidget {
                 label: 'nav_notifications'.tr,
               ),
               NavigationDestination(
-                icon: Icon(Icons.person_outline, size: context.hPct(4)),
-                selectedIcon: Icon(
-                  Icons.person,
-                  color: AppColors.aquaTeal,
-                  size: context.hPct(4),
-                ),
+                icon: controller.userController.isGuest
+                    ? Icon(Icons.person_outline, size: context.hPct(4))
+                    : UserImg(
+                        profilePic:
+                            controller.userController.user?.profilePicture,
+                      ),
+                selectedIcon: controller.userController.isGuest
+                    ? Icon(
+                        Icons.person_outline,
+                        size: context.hPct(4),
+                        color: AppColors.aquaTeal,
+                      )
+                    : UserImg(
+                        isSelected: true,
+                        profilePic:
+                            controller.userController.user?.profilePicture,
+                      ),
+
                 label: 'nav_profile'.tr,
               ),
             ],
