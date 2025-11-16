@@ -31,25 +31,26 @@ class AuthChoiceScreen extends StatelessWidget {
               children: <Widget>[
                 context.hBox(25),
 
-                RichText(
-                  textAlign: TextAlign.center,
-                  text: TextSpan(
-                    text: 'PARA\t',
-
-                    style: TextStyle(
-                      color: AppColors.pureWhite,
-                      fontSize: context.wPct(10),
-                      fontWeight: FontWeight.w300,
-                    ),
-                    children: [
-                      TextSpan(
-                        text: 'JOB',
-                        style: TextStyle(fontWeight: FontWeight.w700),
+                Directionality(
+                  textDirection: TextDirection.ltr,
+                  child: RichText(
+                    textAlign: TextAlign.center,
+                    text: TextSpan(
+                      text: 'PARA\t',
+                      style: TextStyle(
+                        color: AppColors.pureWhite,
+                        fontSize: context.wPct(10),
+                        fontWeight: FontWeight.w300,
                       ),
-                    ],
+                      children: [
+                        TextSpan(
+                          text: 'JOB',
+                          style: TextStyle(fontWeight: FontWeight.w700),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-
                 context.hBox(7),
                 Text(
                   'auth_choice_title'.tr,
