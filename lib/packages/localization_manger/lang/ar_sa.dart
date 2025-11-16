@@ -511,4 +511,12 @@ const Map<String, String> arSA = {
   'error_screen_default_message':
       'فشل تحميل البيانات.\nيرجى التحقق من اتصالك بالإنترنت.',
   'error_screen_retry_button': 'إعادة المحاولة',
+
+  // ============================================================
+  // 📢 Snackbar Messages
+  // ============================================================
+  'snackbar_something_went_wrong': 'حدث خطأ ما',
+  'snackbar_check_connection': 'يرجى التحقق من اتصالك وإعادة المحاولة.',
+  'snackbar_job_application_congrats':
+      'تهانينا! طلبك لهذه الوظيفة قيد المراجعة الآن. 🎉',
 };

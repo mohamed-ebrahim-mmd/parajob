@@ -518,4 +518,12 @@ const Map<String, String> enUS = {
   'error_screen_default_message':
       'Failed to load data.\nPlease check your internet connection.',
   'error_screen_retry_button': 'Retry',
+
+  // ============================================================
+  // 📢 Snackbar Messages
+  // ============================================================
+  'snackbar_something_went_wrong': 'Something Went Wrong',
+  'snackbar_check_connection': 'Please check your connection and try again.',
+  'snackbar_job_application_congrats':
+      'Congrats! your application for this job is now being considered. 🎉',
 };
