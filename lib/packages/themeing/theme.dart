@@ -50,31 +50,6 @@ class AppTheme {
         scrolledUnderElevation: 0,
         iconTheme: IconThemeData(color: AppColors.pureWhite, size: 26),
       ),
-
-      outlinedButtonTheme: OutlinedButtonThemeData(
-        style: ButtonStyle(
-          side: WidgetStateProperty.all(BorderSide(color: AppColors.pureWhite)),
-          shape: WidgetStateProperty.all(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(context.wPct(4)),
-            ),
-          ),
-          minimumSize: WidgetStateProperty.all(
-            Size(context.w, context.hPct(8)),
-          ),
-
-          padding: WidgetStateProperty.all(
-            EdgeInsets.symmetric(horizontal: context.wPct(9)),
-          ),
-
-          foregroundColor: WidgetStateProperty.all(
-            AppColors.pureWhite,
-          ), // Text/Icon color
-          textStyle: WidgetStateProperty.all(
-            TextStyle(fontSize: context.wPct(4.8), fontWeight: FontWeight.bold),
-          ),
-        ),
-      ),
       inputDecorationTheme: InputDecorationTheme(
         // Border styling
         suffixIconColor: AppColors.softWhite70,
@@ -86,7 +61,7 @@ class AppTheme {
           ),
           borderRadius: BorderRadius.circular(context.wPct(4)),
         ),
-        
+
         disabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
             color: AppColors.lightGrey,
@@ -134,9 +109,29 @@ class AppTheme {
         ),
       ),
 
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: ButtonStyle(
+          side: WidgetStateProperty.all(BorderSide(color: AppColors.pureWhite)),
+          shape: WidgetStateProperty.all(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(context.wPct(4)),
+            ),
+          ),
+          minimumSize: WidgetStateProperty.all(
+            Size(context.w, context.hPct(7)),
+          ),
 
+          padding: WidgetStateProperty.all(
+            EdgeInsets.symmetric(horizontal: context.wPct(9)),
+          ),
 
-
+          foregroundColor: WidgetStateProperty.all(AppColors.pureWhite),
+          // Text/Icon color
+          textStyle: WidgetStateProperty.all(
+            TextStyle(fontSize: context.wPct(4.8), fontWeight: FontWeight.bold),
+          ),
+        ),
+      ),
       filledButtonTheme: FilledButtonThemeData(
         style: ButtonStyle(
           elevation: WidgetStateProperty.all(0),
@@ -146,12 +141,11 @@ class AppTheme {
             ),
           ),
           minimumSize: WidgetStateProperty.all(
-            Size(context.w, context.hPct(8)),
+            Size(context.w, context.hPct(7)),
           ),
 
-          foregroundColor: WidgetStateProperty.all(
-            AppColors.pureWhite,
-          ), // Text/Icon color
+          foregroundColor: WidgetStateProperty.all(AppColors.pureWhite),
+          // Text/Icon color
           textStyle: WidgetStateProperty.all(
             TextStyle(
               fontSize: context.wPct(4.8),
