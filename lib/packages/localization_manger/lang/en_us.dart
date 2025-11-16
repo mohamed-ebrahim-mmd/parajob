@@ -542,4 +542,9 @@ const Map<String, String> enUS = {
   'auth_choice_or': 'Or',
   'auth_choice_continue_as_guest': 'Continue as Guest User',
   'auth_choice_need_help': 'Need help ?',
+
+  // ============================================================
+  // 📄 PDF Viewer Screen
+  // ============================================================
+  'pdf_viewer_title': 'PDF Viewer',
 };
