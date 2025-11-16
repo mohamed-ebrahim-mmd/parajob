@@ -27,7 +27,7 @@ class JobHistoryList extends StatelessWidget {
       children: [
         // Header
         Text(
-          title ?? "Your job history",
+          title ?? 'profile_job_history_title'.tr,
           style: TextStyle(
             fontSize: context.wPct(4.5),
             fontWeight: FontWeight.bold,

@@ -17,7 +17,7 @@ class PdfViewScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final PdfViewerController pdfController = PdfViewerController();
     return Scaffold(
-      appBar: AppBar(title: const Text('PDF Viewer')),
+      appBar: AppBar(title: Text('pdf_viewer_title'.tr)),
 
       body: path.startsWith('http')
           ? SfPdfViewer.network(

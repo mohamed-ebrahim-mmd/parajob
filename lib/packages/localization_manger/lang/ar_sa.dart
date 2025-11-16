@@ -242,7 +242,9 @@ const Map<String, String> arSA = {
   'complaint_hint': 'شارك مشاكلك معنا..',
   'submit_complaint_button': 'إرسال الشكوى',
   'company_already_complaint': 'لقد قدمت شكوى بالفعل لهذه الشركة.',
+  'job_already_complaint': 'لقد قدمت شكوى بالفعل لهذه الوظيفة.',
   'complaint_about': 'شكوى عن ',
+  'complaint_about_job': 'شكوى حول الوظيفة',
 
   // ============================================================
   // employee Review Screen
@@ -529,10 +531,15 @@ const Map<String, String> arSA = {
   // 🔐 Auth Choice Screen
   // ============================================================
   'auth_choice_title': 'تسجيل الدخول أو إنشاء حساب',
-  'auth_choice_continue_with_email': 'متابعة باستخدام البريدالإلكتروني',
+  'auth_choice_continue_with_email': 'متابعة باستخدام البريد الإلكتروني',
   'auth_choice_agree_to': 'بالمتابعة، فإنك توافق على',
   'auth_choice_privacy_policy': 'سياسة الخصوصية',
   'auth_choice_or': 'أو',
   'auth_choice_continue_as_guest': 'متابعة كمستخدم ضيف',
   'auth_choice_need_help': 'تحتاج مساعدة؟',
+
+  // ============================================================
+  // 📄 PDF Viewer Screen
+  // ============================================================
+  'pdf_viewer_title': 'عارض PDF',
 };
