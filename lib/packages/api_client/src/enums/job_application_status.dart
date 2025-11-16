@@ -1,3 +1,5 @@
+import 'package:get/get.dart';
+
 enum JobApplicationStatus {
   shortlisted,
   accepted,
@@ -37,13 +39,13 @@ extension JobApplicationStatusExtension on JobApplicationStatus {
   String get displayName {
     switch (this) {
       case JobApplicationStatus.shortlisted:
-        return 'Shortlisted';
+        return 'job_status_shortlisted'.tr;
       case JobApplicationStatus.accepted:
-        return 'Accepted';
+        return 'job_status_accepted'.tr;
       case JobApplicationStatus.rejected:
-        return 'Rejected';
+        return 'job_status_rejected'.tr;
       case JobApplicationStatus.interviewScheduled:
-        return 'Interview Scheduled';
+        return 'job_status_interview_scheduled'.tr;
     }
   }
 }

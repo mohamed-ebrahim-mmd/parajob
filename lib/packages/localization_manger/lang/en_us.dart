@@ -408,4 +408,12 @@ const Map<String, String> enUS = {
   'my_job_dialog_congrats':
       'Congrats! your application for this job is accepted. 🎉',
   'my_job_dialog_sign_contract': 'Sign the contract',
+
+  // ============================================================
+  // 🏷️ Job Application Status
+  // ============================================================
+  'job_status_shortlisted': 'Shortlisted',
+  'job_status_accepted': 'Accepted',
+  'job_status_rejected': 'Rejected',
+  'job_status_interview_scheduled': 'Interview Scheduled',
 };

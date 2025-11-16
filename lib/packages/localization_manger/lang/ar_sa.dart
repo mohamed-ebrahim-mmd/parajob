@@ -405,4 +405,12 @@ const Map<String, String> arSA = {
   'my_job_contract_signed': 'تم توقيع العقد',
   'my_job_dialog_congrats': 'تهانينا! تم قبول طلبك لهذه الوظيفة. 🎉',
   'my_job_dialog_sign_contract': 'وقّع على العقد',
+
+  // ============================================================
+  // 🏷️ Job Application Status
+  // ============================================================
+  'job_status_shortlisted': 'مدرج في القائمة المختصرة',
+  'job_status_accepted': 'مقبول',
+  'job_status_rejected': 'مرفوض',
+  'job_status_interview_scheduled': 'تم جدولة المقابلة',
 };
