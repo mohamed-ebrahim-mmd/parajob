@@ -244,8 +244,11 @@ const Map<String, String> enUS = {
   'submit_complaint_button': 'Submit your complaint',
   'company_already_complaint':
       'You have already filed a complaint for this company.',
+  'job_already_complaint':
+      'You have already submitted a complaint about this job.',
 
   'complaint_about': 'Complaint about',
+  'complaint_about_job': 'Complaint about the',
 
   // ============================================================
   // employee Review Screen

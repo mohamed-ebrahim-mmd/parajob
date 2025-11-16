@@ -30,7 +30,7 @@ void showJobComplaintBottomSheet({
         children: [
           isSubmitComplaint
               ? Text(
-                  'you submitted a complain about this job',
+                  'job_already_complaint'.tr,
                   style: TextStyle(
                     color: AppColors.pureWhite,
                     fontSize: context.wPct(4),
@@ -38,7 +38,7 @@ void showJobComplaintBottomSheet({
                   ),
                 )
               : ComplaintItem(
-                  title: 'complaint about the $jobName job',
+                  title: '${'complaint_about_job'.tr} $jobName',
                   onTap: () {
                     if (user.isGuest) {
                       showAuthRequiredDialog();

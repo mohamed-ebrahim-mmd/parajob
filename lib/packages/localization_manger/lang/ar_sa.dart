@@ -242,7 +242,9 @@ const Map<String, String> arSA = {
   'complaint_hint': 'شارك مشاكلك معنا..',
   'submit_complaint_button': 'إرسال الشكوى',
   'company_already_complaint': 'لقد قدمت شكوى بالفعل لهذه الشركة.',
+  'job_already_complaint': 'لقد قدمت شكوى بالفعل لهذه الوظيفة.',
   'complaint_about': 'شكوى عن ',
+  'complaint_about_job': 'شكوى حول الوظيفة',
 
   // ============================================================
   // employee Review Screen
