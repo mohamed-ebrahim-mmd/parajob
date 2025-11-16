@@ -38,7 +38,7 @@ class ApplicationVerificationOtpScreen extends StatelessWidget {
               children: [
                 context.hBox(2),
                 Text(
-                  'Verify your job application',
+                  'app_verify_otp_title'.tr,
                   style: TextStyle(
                     color: AppColors.pureWhite,
                     fontSize: context.wPct(7),
@@ -47,7 +47,7 @@ class ApplicationVerificationOtpScreen extends StatelessWidget {
                 ),
                 context.hBox(0.5),
                 Text(
-                  'Check your messages to find the job’s OTP.',
+                  'app_verify_otp_subtitle'.tr,
                   style: TextStyle(
                     color: AppColors.softWhite70,
                     fontSize: context.wPct(3.5),
@@ -105,11 +105,11 @@ class ApplicationVerificationOtpScreen extends StatelessWidget {
                 onPressed: () {
                   controller.verifyOtp(context);
                 },
-                child: Text("Verify"),
+                child: Text('app_verify_otp_verify_button'.tr),
               ),
               context.hBox(4),
               TimerButton(
-                label: "Send again",
+                label: 'app_verify_otp_resend_button'.tr,
                 timeOutInSeconds: 59,
                 buttonType: ButtonType.outlinedButton,
                 activeTextStyle: TextStyle(

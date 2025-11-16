@@ -379,4 +379,12 @@ const Map<String, String> arSA = {
       'الوظائف التي تقدمت فيها وتنتظر الموافقة والتعيين عليها.',
   'my_jobs_approved_description':
       'هذه الفئة تشمل جميع وظائفك المعتمدة، هنا توقع عقودك واعرض وظائفك.',
+
+  // ============================================================
+  // ✅ Application Verification OTP Screen
+  // ============================================================
+  'app_verify_otp_title': 'تحقق من طلب الوظيفة',
+  'app_verify_otp_subtitle': 'التمس رسالتك لبحث OTP الوظيفة.',
+  'app_verify_otp_verify_button': 'التحقق',
+  'app_verify_otp_resend_button': 'إرسال مرة أخرى',
 };

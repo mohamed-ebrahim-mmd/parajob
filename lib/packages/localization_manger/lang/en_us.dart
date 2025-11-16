@@ -381,4 +381,12 @@ const Map<String, String> enUS = {
       'The jobs you applied for and still waiting whether to be approved and assigned to you or not.',
   'my_jobs_approved_description':
       'This category includes all your approved jobs, here you sign your contracts and view your jobs.',
+
+  // ============================================================
+  // ✅ Application Verification OTP Screen
+  // ============================================================
+  'app_verify_otp_title': 'Verify your job application',
+  'app_verify_otp_subtitle': 'Check your messages to find the job\'s OTP.',
+  'app_verify_otp_verify_button': 'Verify',
+  'app_verify_otp_resend_button': 'Send again',
 };
