@@ -389,4 +389,13 @@ const Map<String, String> enUS = {
   'app_verify_otp_subtitle': 'Check your messages to find the job\'s OTP.',
   'app_verify_otp_verify_button': 'Verify',
   'app_verify_otp_resend_button': 'Send again',
+
+  // ============================================================
+  // 📄 Contract Screen
+  // ============================================================
+  'contract_no_found': 'No contract found.',
+  'contract_agree_terms': 'Yes, I agree to all the terms and conditions.',
+  'contract_sign_instruction': 'Please sign with your signature below:',
+  'contract_clear_button': 'Clear',
+  'contract_finish_button': 'Finish',
 };

@@ -387,4 +387,13 @@ const Map<String, String> arSA = {
   'app_verify_otp_subtitle': 'التمس رسالتك لبحث OTP الوظيفة.',
   'app_verify_otp_verify_button': 'التحقق',
   'app_verify_otp_resend_button': 'إرسال مرة أخرى',
+
+  // ============================================================
+  // 📄 Contract Screen
+  // ============================================================
+  'contract_no_found': 'لم يتم العثور على عقد.',
+  'contract_agree_terms': 'نعم، أوافق على جميع الشروط والأحكام.',
+  'contract_sign_instruction': 'الرجاء التوقيع بعلامتك أدناه:',
+  'contract_clear_button': 'حذف',
+  'contract_finish_button': 'انتهاء',
 };
