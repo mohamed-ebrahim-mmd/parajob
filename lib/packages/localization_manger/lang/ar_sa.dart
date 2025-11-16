@@ -396,4 +396,48 @@ const Map<String, String> arSA = {
   'change_password_new_hint': 'أدخل كلمة المرور الجديدة',
   'change_password_confirm_hint': 'أعد إدخال كلمة المرور الجديدة',
   'change_password_confirm_button': 'تأكيد',
+
+  // ============================================================
+  // 💼 My Jobs Screen
+  // ============================================================
+  'my_jobs_tab_applied': 'الوظائف المتقدم فيها',
+  'my_jobs_tab_approved': 'الوظائف المعتمدة',
+  'my_jobs_applied_description':
+      'الوظائف التي تقدمت فيها وتنتظر الموافقة والتعيين عليها.',
+  'my_jobs_approved_description':
+      'هذه الفئة تشمل جميع وظائفك المعتمدة، هنا توقع عقودك واعرض وظائفك.',
+
+  // ============================================================
+  // ✅ Application Verification OTP Screen
+  // ============================================================
+  'app_verify_otp_title': 'تحقق من طلب الوظيفة',
+  'app_verify_otp_subtitle': 'التمس رسالتك لبحث OTP الوظيفة.',
+  'app_verify_otp_verify_button': 'التحقق',
+  'app_verify_otp_resend_button': 'إرسال مرة أخرى',
+
+  // ============================================================
+  // 📄 Contract Screen
+  // ============================================================
+  'contract_no_found': 'لم يتم العثور على عقد.',
+  'contract_agree_terms': 'نعم، أوافق على جميع الشروط والأحكام.',
+  'contract_sign_instruction': 'الرجاء التوقيع بعلامتك أدناه:',
+  'contract_clear_button': 'حذف',
+  'contract_finish_button': 'انتهاء',
+
+  // ============================================================
+  // 📋 My Jobs Widgets
+  // ============================================================
+  'my_job_no_jobs_found': 'لم يتم العثور على وظائف',
+  'my_job_contract_pending': 'عقد معلّق',
+  'my_job_contract_signed': 'تم توقيع العقد',
+  'my_job_dialog_congrats': 'تهانينا! تم قبول طلبك لهذه الوظيفة. 🎉',
+  'my_job_dialog_sign_contract': 'وقّع على العقد',
+
+  // ============================================================
+  // 🏷️ Job Application Status
+  // ============================================================
+  'job_status_shortlisted': 'مدرج في القائمة المختصرة',
+  'job_status_accepted': 'مقبول',
+  'job_status_rejected': 'مرفوض',
+  'job_status_interview_scheduled': 'تم جدولة المقابلة',
 };

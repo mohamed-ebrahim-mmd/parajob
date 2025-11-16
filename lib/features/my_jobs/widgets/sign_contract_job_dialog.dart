@@ -12,7 +12,10 @@ import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
-void signContractJobDialog(MyJob job, PagingController<int, MyJob> approvedJobController) {
+void signContractJobDialog(
+  MyJob job,
+  PagingController<int, MyJob> approvedJobController,
+) {
   final context = Get.context!;
   Get.dialog(
     Dialog(
@@ -51,7 +54,7 @@ void signContractJobDialog(MyJob job, PagingController<int, MyJob> approvedJobCo
             child: Column(
               children: [
                 Text(
-                  "Congrats! your application for this job is accepted. 🎉",
+                  'my_job_dialog_congrats'.tr,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: context.wPct(5),
@@ -62,11 +65,14 @@ void signContractJobDialog(MyJob job, PagingController<int, MyJob> approvedJobCo
                 // Button
                 FilledButton(
                   onPressed: () {
-                    _navigateToApplicationVerificationOTP(job.id, approvedJobController);
+                    _navigateToApplicationVerificationOTP(
+                      job.id,
+                      approvedJobController,
+                    );
                   },
-                  child: const Text(
-                    "Sign the contract",
-                    style: TextStyle(
+                  child: Text(
+                    'my_job_dialog_sign_contract'.tr,
+                    style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w600,
                     ),
@@ -83,8 +89,16 @@ void signContractJobDialog(MyJob job, PagingController<int, MyJob> approvedJobCo
   );
 }
 
-void _navigateToApplicationVerificationOTP(int jobId, PagingController<int, MyJob> approvedJobController) {
+void _navigateToApplicationVerificationOTP(
+  int jobId,
+  PagingController<int, MyJob> approvedJobController,
+) {
   Get.back(); // close dialog first
-  Get.put(ApplicationVerificationOtpController(jobId: jobId, approvedJobController: approvedJobController, ));
+  Get.put(
+    ApplicationVerificationOtpController(
+      jobId: jobId,
+      approvedJobController: approvedJobController,
+    ),
+  );
   Get.toNamed("${Routes.mainNavigator}${Routes.applicationVerificationOTP}");
 }

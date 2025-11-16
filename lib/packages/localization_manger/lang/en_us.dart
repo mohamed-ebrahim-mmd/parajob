@@ -401,4 +401,49 @@ const Map<String, String> enUS = {
   'change_password_new_hint': 'Enter your new password',
   'change_password_confirm_hint': 'Confirm your new Password',
   'change_password_confirm_button': 'Confirm',
+
+  // ============================================================
+  // 💼 My Jobs Screen
+  // ============================================================
+  'my_jobs_tab_applied': 'Applied Jobs',
+  'my_jobs_tab_approved': 'Approved Jobs',
+  'my_jobs_applied_description':
+      'The jobs you applied for and still waiting whether to be approved and assigned to you or not.',
+  'my_jobs_approved_description':
+      'This category includes all your approved jobs, here you sign your contracts and view your jobs.',
+
+  // ============================================================
+  // ✅ Application Verification OTP Screen
+  // ============================================================
+  'app_verify_otp_title': 'Verify your job application',
+  'app_verify_otp_subtitle': 'Check your messages to find the job\'s OTP.',
+  'app_verify_otp_verify_button': 'Verify',
+  'app_verify_otp_resend_button': 'Send again',
+
+  // ============================================================
+  // 📄 Contract Screen
+  // ============================================================
+  'contract_no_found': 'No contract found.',
+  'contract_agree_terms': 'Yes, I agree to all the terms and conditions.',
+  'contract_sign_instruction': 'Please sign with your signature below:',
+  'contract_clear_button': 'Clear',
+  'contract_finish_button': 'Finish',
+
+  // ============================================================
+  // 📋 My Jobs Widgets
+  // ============================================================
+  'my_job_no_jobs_found': 'No jobs found',
+  'my_job_contract_pending': 'Contract Pending',
+  'my_job_contract_signed': 'Contract Signed',
+  'my_job_dialog_congrats':
+      'Congrats! your application for this job is accepted. 🎉',
+  'my_job_dialog_sign_contract': 'Sign the contract',
+
+  // ============================================================
+  // 🏷️ Job Application Status
+  // ============================================================
+  'job_status_shortlisted': 'Shortlisted',
+  'job_status_accepted': 'Accepted',
+  'job_status_rejected': 'Rejected',
+  'job_status_interview_scheduled': 'Interview Scheduled',
 };
