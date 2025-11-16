@@ -470,4 +470,32 @@ const Map<String, String> arSA = {
   // 📃 Saved Jobs Screen
   // ============================================================
   'saved_jobs_title': 'الوظائف المحفوظة',
+
+  // ============================================================
+  // ✅ Validation Messages
+  // ============================================================
+  'validation_email_empty': 'البريد الإلكتروني لا يمكن أن يكون فارغًا',
+  'validation_email_invalid': 'تنسيق البريد الإلكتروني غير صالح',
+  'validation_otp_empty': 'رمز التحقق لا يمكن أن يكون فارغًا',
+  'validation_otp_length': 'رمز التحقق يجب أن يكون 5 أرقام بالضبط',
+  'validation_national_id_empty': 'الرقم القومي لا يمكن أن يكون فارغًا',
+  'validation_national_id_length': 'الرقم القومي يجب أن يكون 14 رقمًا بالضبط',
+  'validation_national_id_digits': 'الرقم القومي يجب أن يحتوي على أرقام فقط',
+  'validation_national_id_century': 'القرن غير صالح في الرقم القومي',
+  'validation_national_id_month': 'شهر الميلاد غير صالح في الرقم القومي',
+  'validation_national_id_day': 'يوم الميلاد غير صالح في الرقم القومي',
+  'validation_phone_empty': 'رقم الهاتف لا يمكن أن يكون فارغًا',
+  'validation_phone_format':
+      'رقم الهاتف يجب أن يكون 11 رقمًا (مثل 01*********)',
+  'validation_name_empty': 'الاسم لا يمكن أن يكون فارغًا',
+  'validation_name_format':
+      'تنسيق الاسم غير صالح. الحروف والمسافات فقط مسموحة.',
+  'validation_message_empty': 'الرسالة لا يمكن أن تكون فارغة',
+  'validation_message_min_length': 'الرسالة يجب أن تكون 10 أحرف على الأقل',
+  'validation_message_max_length': 'الرسالة طويلة جدًا. الحد الأقصى 100 حرف',
+  'validation_password_empty': 'كلمة المرور لا يمكن أن تكون فارغة',
+  'validation_password_min_length': 'كلمة المرور يجب أن تكون 6 أحرف على الأقل',
+  'validation_confirm_password_empty':
+      'تأكيد كلمة المرور لا يمكن أن يكون فارغًا',
+  'validation_confirm_password_mismatch': 'كلمات المرور غير متطابقة',
 };
