@@ -531,4 +531,15 @@ const Map<String, String> enUS = {
   'snackbar_check_connection': 'Please check your connection and try again.',
   'snackbar_job_application_congrats':
       'Congrats! your application for this job is now being considered. 🎉',
+
+  // ============================================================
+  // 🔐 Auth Choice Screen
+  // ============================================================
+  'auth_choice_title': 'Sign in or create an account',
+  'auth_choice_continue_with_email': 'Continue with Email',
+  'auth_choice_agree_to': 'By Continuing, you agree to ParaJob',
+  'auth_choice_privacy_policy': 'Privacy Policy',
+  'auth_choice_or': 'Or',
+  'auth_choice_continue_as_guest': 'Continue as Guest User',
+  'auth_choice_need_help': 'Need help ?',
 };
