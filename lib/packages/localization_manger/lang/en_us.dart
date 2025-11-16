@@ -371,4 +371,14 @@ const Map<String, String> enUS = {
   'change_password_new_hint': 'Enter your new password',
   'change_password_confirm_hint': 'Confirm your new Password',
   'change_password_confirm_button': 'Confirm',
+
+  // ============================================================
+  // 💼 My Jobs Screen
+  // ============================================================
+  'my_jobs_tab_applied': 'Applied Jobs',
+  'my_jobs_tab_approved': 'Approved Jobs',
+  'my_jobs_applied_description':
+      'The jobs you applied for and still waiting whether to be approved and assigned to you or not.',
+  'my_jobs_approved_description':
+      'This category includes all your approved jobs, here you sign your contracts and view your jobs.',
 };

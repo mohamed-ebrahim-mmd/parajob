@@ -369,4 +369,14 @@ const Map<String, String> arSA = {
   'change_password_new_hint': 'أدخل كلمة المرور الجديدة',
   'change_password_confirm_hint': 'أعد إدخال كلمة المرور الجديدة',
   'change_password_confirm_button': 'تأكيد',
+
+  // ============================================================
+  // 💼 My Jobs Screen
+  // ============================================================
+  'my_jobs_tab_applied': 'الوظائف المتقدم فيها',
+  'my_jobs_tab_approved': 'الوظائف المعتمدة',
+  'my_jobs_applied_description':
+      'الوظائف التي تقدمت فيها وتنتظر الموافقة والتعيين عليها.',
+  'my_jobs_approved_description':
+      'هذه الفئة تشمل جميع وظائفك المعتمدة، هنا توقع عقودك واعرض وظائفك.',
 };
