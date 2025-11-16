@@ -38,7 +38,7 @@ class EmployerReviewsScreen extends StatelessWidget {
                 ),
                 context.hBox(1),
                 Text(
-                  'Reviews',
+                  'reviews'.tr,
                   style: TextStyle(
                     fontSize: context.wPct(6),
                     fontWeight: FontWeight.w600,
@@ -82,7 +82,7 @@ class EmployerReviewsScreen extends StatelessWidget {
                       builderDelegate: PagedChildBuilderDelegate<Review>(
                         noItemsFoundIndicatorBuilder: (_) => Center(
                           child: Text(
-                            "No reviews found",
+                            'no_reviews_found'.tr,
                             style: TextStyle(fontSize: context.wPct(4)),
                           ),
                         ),

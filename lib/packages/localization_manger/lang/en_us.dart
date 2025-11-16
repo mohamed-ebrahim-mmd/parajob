@@ -49,6 +49,7 @@ const Map<String, String> enUS = {
   'set_new_password_confirm_button': 'Confirm',
 
   // ============================================================
+
   // 📝 Create Account Screen
   // ============================================================
   'create_account_title': 'Create a new account',
@@ -243,7 +244,36 @@ const Map<String, String> enUS = {
   'submit_complaint_button': 'Submit your complaint',
   'company_already_complaint':
       'You have already filed a complaint for this company.',
-  'complaint_about': 'Complaint about @name',
+
+  'complaint_about': 'Complaint about',
+
+  // ============================================================
+  // employee Review Screen
+  // ============================================================
+  'reviews': 'Reviews',
+  'no_reviews_found': 'No reviews found',
+
+  // ============================================================
+  // active Jobs Screen
+  // ============================================================
+  'active_jobs': 'Active Jobs',
+
+  // ============================================================
+  // employee  Screen
+  // ============================================================
+  'no_data': 'No data',
+  'jobs': 'Jobs',
+  'employees': 'Employees',
+  'positive_reviews': 'Positive Reviews',
+  'view_all': 'View all',
+  'already_shared_feedback':
+      'You’ve already shared your thoughts about this employer. Thank you for your feedback!',
+  'no_active_jobs': 'No active jobs available at the moment.',
+  'write_review': 'Write a Review',
+  'share_opinion': 'Share your opinion with us..',
+  'anonymous_member': 'Anonymous Member',
+  'submit': 'Submit',
+  'no_recent_reviews': 'No recent reviews available.',
 
   // ============================================================
   // 👤 Profile Screen
@@ -376,4 +406,49 @@ const Map<String, String> enUS = {
   // 🔔 My Notifications Screen
   // ============================================================
   'notifications_no_found': 'No notifications found',
+  
+  // ==========================================================
+  // 💼 My Jobs Screen
+  // ============================================================
+  'my_jobs_tab_applied': 'Applied Jobs',
+  'my_jobs_tab_approved': 'Approved Jobs',
+  'my_jobs_applied_description':
+      'The jobs you applied for and still waiting whether to be approved and assigned to you or not.',
+  'my_jobs_approved_description':
+      'This category includes all your approved jobs, here you sign your contracts and view your jobs.',
+
+  // ============================================================
+  // ✅ Application Verification OTP Screen
+  // ============================================================
+  'app_verify_otp_title': 'Verify your job application',
+  'app_verify_otp_subtitle': 'Check your messages to find the job\'s OTP.',
+  'app_verify_otp_verify_button': 'Verify',
+  'app_verify_otp_resend_button': 'Send again',
+
+  // ============================================================
+  // 📄 Contract Screen
+  // ============================================================
+  'contract_no_found': 'No contract found.',
+  'contract_agree_terms': 'Yes, I agree to all the terms and conditions.',
+  'contract_sign_instruction': 'Please sign with your signature below:',
+  'contract_clear_button': 'Clear',
+  'contract_finish_button': 'Finish',
+
+  // ============================================================
+  // 📋 My Jobs Widgets
+  // ============================================================
+  'my_job_no_jobs_found': 'No jobs found',
+  'my_job_contract_pending': 'Contract Pending',
+  'my_job_contract_signed': 'Contract Signed',
+  'my_job_dialog_congrats':
+      'Congrats! your application for this job is accepted. 🎉',
+  'my_job_dialog_sign_contract': 'Sign the contract',
+
+  // ============================================================
+  // 🏷️ Job Application Status
+  // ============================================================
+  'job_status_shortlisted': 'Shortlisted',
+  'job_status_accepted': 'Accepted',
+  'job_status_rejected': 'Rejected',
+  'job_status_interview_scheduled': 'Interview Scheduled',
 };

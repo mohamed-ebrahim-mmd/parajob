@@ -12,7 +12,6 @@ import 'contract_controller.dart';
 class ContractScreen extends StatelessWidget {
   final controller = Get.find<ContractController>();
 
-
   ContractScreen({super.key});
 
   @override
@@ -50,10 +49,10 @@ class ContractScreen extends StatelessWidget {
                 case ApiCallState.success:
                   final contract = controller.contract;
                   if (contract == null) {
-                    return const Center(
+                    return Center(
                       child: Text(
-                        'No contract found.',
-                        style: TextStyle(color: AppColors.pureWhite),
+                        'contract_no_found'.tr,
+                        style: const TextStyle(color: AppColors.pureWhite),
                       ),
                     );
                   }
@@ -102,20 +101,20 @@ class ContractScreen extends StatelessWidget {
                                     controller.isAgreed.value = value ?? false;
                                   },
                                   activeColor: AppColors.aquaTeal,
-                                  visualDensity:  VisualDensity(
-                                    horizontal:context.wPct(-2),
-                                    
+                                  visualDensity: VisualDensity(
+                                    horizontal: context.wPct(-2),
+
                                     vertical: context.wPct(-2),
                                   ),
                                   materialTapTargetSize:
-                                  MaterialTapTargetSize.shrinkWrap,
+                                      MaterialTapTargetSize.shrinkWrap,
                                 );
                               }),
                             ),
                             context.wBox(1),
                             Expanded(
                               child: Text(
-                                'Yes, I agree to all the terms and conditions.',
+                                'contract_agree_terms'.tr,
                                 style: TextStyle(
                                   color: AppColors.pureWhite,
                                   fontWeight: FontWeight.w400,
@@ -127,7 +126,7 @@ class ContractScreen extends StatelessWidget {
                         ),
                         context.hBox(2),
                         Text(
-                          'Please sign with your signature below:',
+                          'contract_sign_instruction'.tr,
                           style: TextStyle(
                             color: AppColors.pureWhite,
                             fontWeight: FontWeight.w400,
@@ -158,9 +157,9 @@ class ContractScreen extends StatelessWidget {
                             onPressed: () {
                               controller.signatureController.clear();
                             },
-                            child: const Text(
-                              'Clear',
-                              style: TextStyle(color: AppColors.aquaTeal),
+                            child: Text(
+                              'contract_clear_button'.tr,
+                              style: const TextStyle(color: AppColors.aquaTeal),
                             ),
                           ),
                         ),
@@ -170,10 +169,10 @@ class ContractScreen extends StatelessWidget {
                             onPressed: controller.isAgreed.value
                                 ? () => controller.verify(context)
                                 : null,
-                            child: const Text('Finish'),
+                            child: Text('contract_finish_button'.tr),
                           );
                         }),
-                        context.hBox(2)
+                        context.hBox(2),
                       ],
                     ),
                   );
