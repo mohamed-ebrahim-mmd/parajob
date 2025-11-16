@@ -498,4 +498,10 @@ const Map<String, String> arSA = {
   'validation_confirm_password_empty':
       'تأكيد كلمة المرور لا يمكن أن يكون فارغًا',
   'validation_confirm_password_mismatch': 'كلمات المرور غير متطابقة',
+
+  // ============================================================
+  // 🔐 Auth Required Dialog
+  // ============================================================
+  'auth_required_title': 'انضم إلى ParaJob الآن لبدء الكسب!',
+  'auth_required_button': 'إنشاء حساب',
 };

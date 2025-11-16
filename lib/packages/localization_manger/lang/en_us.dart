@@ -505,4 +505,10 @@ const Map<String, String> enUS = {
   'validation_password_min_length': 'Password must be at least 6 characters',
   'validation_confirm_password_empty': 'Confirm Password cannot be empty',
   'validation_confirm_password_mismatch': 'Passwords do not match',
+
+  // ============================================================
+  // 🔐 Auth Required Dialog
+  // ============================================================
+  'auth_required_title': 'Join ParaJob now to start earning!',
+  'auth_required_button': 'Create Account',
 };
