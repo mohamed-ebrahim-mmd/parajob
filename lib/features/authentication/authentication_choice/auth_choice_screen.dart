@@ -31,28 +31,29 @@ class AuthChoiceScreen extends StatelessWidget {
               children: <Widget>[
                 context.hBox(25),
 
-                RichText(
-                  textAlign: TextAlign.center,
-                  text: TextSpan(
-                    text: 'PARA\t',
-
-                    style: TextStyle(
-                      color: AppColors.pureWhite,
-                      fontSize: context.wPct(10),
-                      fontWeight: FontWeight.w300,
-                    ),
-                    children: [
-                      TextSpan(
-                        text: 'JOB',
-                        style: TextStyle(fontWeight: FontWeight.w700),
+                Directionality(
+                  textDirection: TextDirection.ltr,
+                  child: RichText(
+                    textAlign: TextAlign.center,
+                    text: TextSpan(
+                      text: 'PARA\t',
+                      style: TextStyle(
+                        color: AppColors.pureWhite,
+                        fontSize: context.wPct(10),
+                        fontWeight: FontWeight.w300,
                       ),
-                    ],
+                      children: [
+                        TextSpan(
+                          text: 'JOB',
+                          style: TextStyle(fontWeight: FontWeight.w700),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-
                 context.hBox(7),
                 Text(
-                  "Sign in or create an account ",
+                  'auth_choice_title'.tr,
                   style: TextStyle(
                     color: AppColors.pureWhite,
                     fontSize: context.wPct(5),
@@ -73,12 +74,19 @@ class AuthChoiceScreen extends StatelessWidget {
                     children: [
                       Icon(
                         Icons.email_outlined,
-                        size: context.wPct(6),
+                        size: context.wPct(5),
 
                         color: AppColors.pureWhite,
                       ),
                       context.wBox(3),
-                      Text('Continue with Email'),
+                      Text(
+                        'auth_choice_continue_with_email'.tr,
+                        style: TextStyle(
+                          color: AppColors.pureWhite,
+                          fontSize: context.wPct(4),
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -89,7 +97,7 @@ class AuthChoiceScreen extends StatelessWidget {
                   //mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      'By Continuing, you agree to ParaJob\t',
+                      'auth_choice_agree_to'.tr,
                       style: TextStyle(
                         color: AppColors.pureWhite,
                         fontSize: context.wPct(3.3),
@@ -98,7 +106,7 @@ class AuthChoiceScreen extends StatelessWidget {
                     ),
                     GestureDetector(
                       child: Text(
-                        "Privacy Policy",
+                        'auth_choice_privacy_policy'.tr,
                         style: TextStyle(
                           decoration: TextDecoration.underline,
                           decorationColor: AppColors.aquaTeal,
@@ -125,7 +133,7 @@ class AuthChoiceScreen extends StatelessWidget {
                         horizontal: context.wPct(2),
                       ),
                       child: Text(
-                        "Or",
+                        'auth_choice_or'.tr,
                         style: TextStyle(
                           color: AppColors.pureWhite,
                           fontSize: context.wPct(4),
@@ -159,7 +167,7 @@ class AuthChoiceScreen extends StatelessWidget {
                       context.hBox(2.5),
 
                       Text(
-                        "Continue as Guest User",
+                        'auth_choice_continue_as_guest'.tr,
                         style: TextStyle(
                           color: AppColors.lightGray,
                           fontSize: context.wPct(5),
@@ -182,7 +190,7 @@ class AuthChoiceScreen extends StatelessWidget {
                 // Get.toNamed(Routes.supportScreen);
               },
               child: Text(
-                "Need help ?",
+                'auth_choice_need_help'.tr,
                 style: TextStyle(
                   color: AppColors.aquaTeal,
                   fontSize: context.wPct(5),
