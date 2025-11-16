@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:para_job/features/profile/language/widgets/language_listtile.dart';
+import 'package:para_job/features/profile/language/widgets/language_tile.dart';
 import 'package:para_job/packages/localization_manger/controller/localization_controller.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/res/app_asset_paths.dart';
