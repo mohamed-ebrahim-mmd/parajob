@@ -406,7 +406,7 @@ const Map<String, String> enUS = {
   // 🔔 My Notifications Screen
   // ============================================================
   'notifications_no_found': 'No notifications found',
-  
+
   // ==========================================================
   // 💼 My Jobs Screen
   // ============================================================
@@ -451,4 +451,29 @@ const Map<String, String> enUS = {
   'job_status_accepted': 'Accepted',
   'job_status_rejected': 'Rejected',
   'job_status_interview_scheduled': 'Interview Scheduled',
+
+  // ============================================================
+  // 🧭 Main Navigator
+  // ============================================================
+  'nav_home': 'Home',
+  'nav_jobs': 'Jobs',
+  'nav_notifications': 'Notifications',
+  'nav_profile': 'Profile',
+
+  // ============================================================
+  // 🔔 Notifications Section Labels
+  // ============================================================
+  'notification_today': 'Today',
+  'notification_yesterday': 'Yesterday',
+  'notification_earlier': 'Earlier',
+
+  // ============================================================
+  // 📚 Job History List
+  // ============================================================
+  'job_history_view_more': 'View more',
+
+  // ============================================================
+  // 📃 Saved Jobs Screen
+  // ============================================================
+  'saved_jobs_title': 'Saved Jobs',
 };
