@@ -70,7 +70,7 @@ class JobHistoryList extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    "View more",
+                    'job_history_view_more'.tr,
                     style: TextStyle(
                       fontSize: context.wPct(3.9),
                       fontWeight: FontWeight.w500,

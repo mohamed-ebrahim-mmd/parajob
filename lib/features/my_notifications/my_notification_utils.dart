@@ -13,9 +13,9 @@ import '../../packages/api_client/src/service/api_client_instance.dart';
 
 String getSectionLabel(DateTime date, DateTime now) {
   final diff = now.difference(date).inDays;
-  if (diff == 0) return 'Today';
-  if (diff == 1) return 'Yesterday';
-  return 'Earlier';
+  if (diff == 0) return 'notification_today'.tr;
+  if (diff == 1) return 'notification_yesterday'.tr;
+  return 'notification_earlier'.tr;
 }
 
 /// Initializes the paging controller and sets up pagination logic
