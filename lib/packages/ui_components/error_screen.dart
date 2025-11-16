@@ -3,6 +3,7 @@
  ==================================================================
 */
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
@@ -33,8 +34,7 @@ class ErrorScreen extends StatelessWidget {
           ),
           context.hBox(2),
           Text(
-            message ??
-                "Failed to load data.\nPlease check your internet connection.",
+            message ?? 'error_screen_default_message'.tr,
             textAlign: TextAlign.center,
             style: TextStyle(color: AppColors.softWhite70),
           ),
@@ -59,7 +59,7 @@ class ErrorScreen extends StatelessWidget {
             ),
             onPressed: onPressed,
             icon: const Icon(Icons.refresh),
-            label: const Text("Retry"),
+            label: Text('error_screen_retry_button'.tr),
           ),
         ],
       ),

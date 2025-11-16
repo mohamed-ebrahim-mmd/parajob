@@ -511,4 +511,11 @@ const Map<String, String> enUS = {
   // ============================================================
   'auth_required_title': 'Join ParaJob now to start earning!',
   'auth_required_button': 'Create Account',
+
+  // ============================================================
+  // ⚠️ Error Screen
+  // ============================================================
+  'error_screen_default_message':
+      'Failed to load data.\nPlease check your internet connection.',
+  'error_screen_retry_button': 'Retry',
 };
