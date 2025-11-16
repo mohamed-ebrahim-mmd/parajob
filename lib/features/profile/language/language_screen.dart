@@ -46,7 +46,7 @@ class LanguageScreen extends StatelessWidget {
 
             // Radio button for Arabic
             LanguageTile(
-              title: 'العربية',
+              title: 'عربى',
               flagAsset: AppAssetPaths.arab,
               value: const Locale('ar'),
               groupValue: localizationController.currentLocale,

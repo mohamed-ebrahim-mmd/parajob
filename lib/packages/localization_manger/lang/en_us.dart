@@ -403,6 +403,11 @@ const Map<String, String> enUS = {
   'change_password_confirm_button': 'Confirm',
 
   // ============================================================
+  // 🔔 My Notifications Screen
+  // ============================================================
+  'notifications_no_found': 'No notifications found',
+
+  // ==========================================================
   // 💼 My Jobs Screen
   // ============================================================
   'my_jobs_tab_applied': 'Applied Jobs',
@@ -450,5 +455,60 @@ const Map<String, String> enUS = {
   // ============================================================
   // 📋language
   // ============================================================
-  'language': 'Language',
+  'language': 'Languages',
+
+  // ============================================================
+  // 🧭 Main Navigator
+  // ============================================================
+  'nav_home': 'Home',
+  'nav_jobs': 'Jobs',
+  'nav_notifications': 'Notifications',
+  'nav_profile': 'Profile',
+
+  // ============================================================
+  // 🔔 Notifications Section Labels
+  // ============================================================
+  'notification_today': 'Today',
+  'notification_yesterday': 'Yesterday',
+  'notification_earlier': 'Earlier',
+
+  // ============================================================
+  // 📚 Job History List
+  // ============================================================
+  'job_history_view_more': 'View more',
+
+  // ============================================================
+  // 📃 Saved Jobs Screen
+  // ============================================================
+  'saved_jobs_title': 'Saved Jobs',
+
+  // ============================================================
+  // ✅ Validation Messages
+  // ============================================================
+  'validation_email_empty': 'Email cannot be empty',
+  'validation_email_invalid': 'Invalid email format',
+  'validation_otp_empty': 'OTP cannot be empty',
+  'validation_otp_length': 'OTP must be exactly 5 digits',
+  'validation_national_id_empty': 'National ID cannot be empty',
+  'validation_national_id_length': 'National ID must be exactly 14 digits',
+  'validation_national_id_digits': 'National ID must contain only digits',
+  'validation_national_id_century': 'Invalid century in National ID',
+  'validation_national_id_month': 'Invalid birth month in National ID',
+  'validation_national_id_day': 'Invalid birth day in National ID',
+  'validation_phone_empty': 'Phone number cannot be empty',
+  'validation_phone_format':
+      'Phone number must be 11 digits (e.g. 01*********)',
+  'validation_name_empty': 'Name cannot be empty',
+  'validation_name_format':
+      'Invalid name format. Only letters and spaces are allowed.',
+  'validation_message_empty': 'Message cannot be empty',
+  'validation_message_min_length':
+      'Message must be at least 10 characters long',
+  'validation_message_max_length':
+      'Message is too long. Maximum 100 characters allowed',
+  'validation_password_empty': 'Password cannot be empty',
+  'validation_password_min_length': 'Password must be at least 6 characters',
+  'validation_confirm_password_empty': 'Confirm Password cannot be empty',
+  'validation_confirm_password_mismatch': 'Passwords do not match',
+
 };
