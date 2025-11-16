@@ -403,6 +403,11 @@ const Map<String, String> enUS = {
   'change_password_confirm_button': 'Confirm',
 
   // ============================================================
+  // 🔔 My Notifications Screen
+  // ============================================================
+  'notifications_no_found': 'No notifications found',
+  
+  // ==========================================================
   // 💼 My Jobs Screen
   // ============================================================
   'my_jobs_tab_applied': 'Applied Jobs',
