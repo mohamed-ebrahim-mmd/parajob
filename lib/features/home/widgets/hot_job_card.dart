@@ -132,7 +132,7 @@ class HotJobCard extends StatelessWidget {
               text: TextSpan(
                 children: [
                   TextSpan(
-                    text: "${job.monthlySalary} ${'egp'.tr}",
+                    text: "${job.monthlySalary ?? "-"} ${'egp'.tr}",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: context.wPct(5),
@@ -191,7 +191,7 @@ class HotJobCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(context.wPct(4)),
                       ),
                     ),
-                    child:  Text(
+                    child: Text(
                       "apply_now".tr,
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),

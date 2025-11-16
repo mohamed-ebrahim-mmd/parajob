@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:para_job/packages/api_client/src/service/dio_singleton_instance.dart';
 
 class LocalizationController extends GetxController {
   /// Stores the selected language code.
@@ -31,6 +32,8 @@ class LocalizationController extends GetxController {
   void changeLanguage(Locale? locale) {
     if (locale == null) return; // Prevent null values
     _storedLanguage.val = locale.languageCode; // Save new language
+    // Update Dio header
+    dio.options.headers['Locale'] = locale.languageCode;
     Get.updateLocale(locale); // Apply new locale
   }
 }
