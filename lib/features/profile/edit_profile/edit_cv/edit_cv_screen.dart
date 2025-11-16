@@ -27,7 +27,7 @@ class EditCvScreen extends StatelessWidget {
         Spacer(),
         FilledButton(
           onPressed: controller.uploadFile,
-          child: Text("Save changes"),
+          child: Text('edit_cv_save_button'.tr),
         ),
         context.hBox(2.5),
       ],

@@ -221,6 +221,7 @@ const Map<String, String> arSA = {
       'هل أنت متأكد أنك تريد حذف طلبك لهذه الوظيفة؟',
   'delete_application_warning':
       'تحذير: إذا حاولت حذف طلبك قبل 48 ساعة من الموعد، ستدفع رسومًا على وظيفتك التالية.',
+
   // ============================================================
   // 🏡 apply job Screen
   // ============================================================
@@ -233,6 +234,7 @@ const Map<String, String> arSA = {
   'document': 'المستند',
   'uploaded': 'تم الرفع',
   'apply_job_button': 'نعم، قدّم لهذه الوظيفة',
+
   // ============================================================
   // complaint Screen
   // ============================================================
@@ -241,5 +243,130 @@ const Map<String, String> arSA = {
   'complaint_hint': 'شارك مشاكلك معنا..',
   'submit_complaint_button': 'إرسال الشكوى',
   'company_already_complaint': 'لقد قدمت شكوى بالفعل لهذه الشركة.',
-  'complaint_about': 'شكوى عن ',
+  'complaint_about': 'شكوى عن @name',
+
+  // ============================================================
+  // 👤 Profile Screen
+  // ============================================================
+  'profile_no_job_history': 'لم يتم العثور على سجل وظائف',
+  'profile_job_history_title': 'سجل ووظائفك',
+  'profile_no_saved_jobs': 'لم يتم العثور على وظائف محفوظة',
+  'profile_saved_jobs_title': 'الوظائف المحفوظة',
+
+  // ============================================================
+  // 👤 Profile Info Widget
+  // ============================================================
+  'profile_info_jobs': 'الوظائف',
+  'profile_info_income': 'الدخل',
+  'profile_info_companies': 'الشركات',
+
+  // ============================================================
+  // ⚡ More Screen (Settings)
+  // ============================================================
+  'more_settings_title': 'الإعدادات',
+  'more_language': 'اللغة',
+  'more_account_title': 'الحساب',
+  'more_edit_personal_info': 'تعديل البيانات الشخصية',
+  'more_change_password': 'تغيير كلمة المرور',
+  'more_delete_account': 'حذف الحساب',
+  'more_delete_account_confirmation': 'هل أنت متأكد من رغبتك في حذف حسابك؟',
+  'more_delete_account_warning':
+      'تحذير: إذا حذفت حسابك، سوف تفقد جميع بياناتك وترتيبك.',
+  'more_delete_account_button': 'حذف حسابي',
+  'more_logout': 'تسجيل الخروج',
+  'more_logout_confirmation': 'هل أنت متأكد من رغبتك في تسجيل الخروج من حسابك؟',
+  'more_logout_button': 'تسجيل الخروج',
+  'more_help_title': 'المساعدة',
+  'more_about_us': 'عنا',
+  'more_contact_us': 'اتصل بنا',
+
+  // ============================================================
+  // ℹ️ About Us Screen
+  // ============================================================
+  'about_us_about_app': 'حول التطبيق',
+  'about_us_rate_app': 'قيّمنا على متجر التطبيقات',
+  'about_us_instagram': 'تابعنا على إنستغرام',
+  'about_us_twitter': 'تابعنا على تويتر',
+  'about_us_facebook': 'أعجبنا على فيسبوك',
+
+  // ============================================================
+  // 📚 About App Screen
+  // ============================================================
+  'about_app_title': 'حول بارا جوب',
+  'about_app_vision_default': 'رؤيتنا',
+  'about_app_mission_default': 'رسالتنا',
+  'about_app_values_default': 'قيمنا',
+
+  // ============================================================
+  // 📧 Contact Us Screen
+  // ============================================================
+  'contact_us_title': 'الشكوى أو الاقتراح',
+  'contact_us_message_hint': 'شارك مشاكلك معنا..',
+  'contact_us_heading': 'تواصل معنا',
+  'contact_us_email_title': 'ابعث لنا بالبريد الإلكتروني',
+  'contact_us_phone_title': 'عبر الهاتف',
+  'contact_us_submit_button': 'إرسال الشكوى',
+
+  // ============================================================
+  // ✏️ Edit Main Info Screen
+  // ============================================================
+  'edit_main_info_loading_cities': 'تحميل المدن...',
+  'edit_main_info_city_hint': 'اختر مدينتك',
+  'edit_main_info_failed_load_cities': 'فشل التحميل، انقر لإعادة المحاولة',
+  'edit_main_info_loading_areas': 'تحميل المناطق...',
+  'edit_main_info_failed_load_areas': 'فشل تحميل المناطق، انقر لإعادة المحاولة',
+  'edit_main_info_select_city_first': 'اختر مدينة أولاً',
+  'edit_main_info_save_button': 'حفظ التغييرات',
+
+  // ============================================================
+  // 🎓 Edit Education Screen
+  // ============================================================
+  'edit_education_loading_faculties': 'تحميل الكليات...',
+  'edit_education_faculty_hint': 'اختر كليتك',
+  'edit_education_failed_load': 'فشل التحميل، انقر لإعادة المحاولة',
+  'edit_education_save_button': 'حفظ التغييرات',
+
+  // ============================================================
+  // 📄 Edit CV Screen
+  // ============================================================
+  'edit_cv_save_button': 'حفظ التغييرات',
+
+  // ============================================================
+  // 🆔 Edit National ID Screen
+  // ============================================================
+  'edit_national_id_save_button': 'حفظ التغييرات',
+
+  // ============================================================
+  // ✏️ Edit Profile Screen
+  // ============================================================
+  'edit_profile_title': 'تعديل البيانات الشخصية',
+  'edit_profile_tab_main_info': 'المعلومات الأساسية',
+  'edit_profile_tab_education': 'البيانات التعليمية',
+  'edit_profile_tab_cv': 'السيرة الذاتية',
+  'edit_profile_tab_national_id': 'بطاقة الهوية',
+  'edit_profile_tab_skills': 'المهارات',
+
+  // ============================================================
+  // 🎯 Edit Skills Screen
+  // ============================================================
+  'edit_skills_loading': 'تحميل المهارات...',
+  'edit_skills_hint': 'اختر مهارة',
+  'edit_skills_failed_load': 'فشل التحميل، انقر لإعادة المحاولة',
+  'edit_skills_save_button': 'حفظ التغييرات',
+
+  // ============================================================
+  // 🔍 Change Password OTP Screen
+  // ============================================================
+  'change_pass_otp_title': 'تحقق من رقمك',
+  'change_pass_otp_subtitle': 'التمس مراسلاتك لبحث OTP',
+  'change_pass_otp_verify_button': 'التحقق',
+  'change_pass_otp_resend_button': 'إرسال مرة أخرى',
+
+  // ============================================================
+  // 🔐 Change Password Screen
+  // ============================================================
+  'change_password_title': 'عين كلمة المرور',
+  'change_password_new_hint': 'أدخل كلمة المرور الجديدة',
+  'change_password_confirm_hint': 'أعد إدخال كلمة المرور الجديدة',
+  'change_password_confirm_button': 'تأكيد',
 };

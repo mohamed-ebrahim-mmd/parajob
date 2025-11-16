@@ -25,14 +25,14 @@ class EditSkillsScreen extends StatelessWidget {
               return TextField(
                 enabled: false,
                 decoration: InputDecoration(
-                  labelText: "Loading skills...",
-                  suffixIcon: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: const CircularProgressIndicator(),
+                  labelText: 'edit_skills_loading'.tr,
+                  suffixIcon: const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: CircularProgressIndicator(),
                   ),
                 ),
               );
-    
+
             case ApiCallState.success:
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,7 +41,7 @@ class EditSkillsScreen extends StatelessWidget {
                     enableSearch: true,
                     expandedInsets: EdgeInsets.zero,
                     menuHeight: context.hPct(30),
-                    hintText: "Choose skill",
+                    hintText: 'edit_skills_hint'.tr,
                     onSelected: controller.onSkillSelected,
                     dropdownMenuEntries: controller.skillsMenu,
                   ),
@@ -62,16 +62,16 @@ class EditSkillsScreen extends StatelessWidget {
                   ),
                 ],
               );
-    
+
             case ApiCallState.failure:
               return GestureDetector(
                 onTap: controller.fetchSkills,
                 child: AbsorbPointer(
                   child: TextField(
                     readOnly: true,
-                    decoration: const InputDecoration(
-                      labelText: "Failed to load, tap to retry",
-                      suffixIcon: Icon(Icons.refresh),
+                    decoration: InputDecoration(
+                      labelText: 'edit_skills_failed_load'.tr,
+                      suffixIcon: const Icon(Icons.refresh),
                     ),
                   ),
                 ),
@@ -81,7 +81,7 @@ class EditSkillsScreen extends StatelessWidget {
         Spacer(),
         FilledButton(
           onPressed: controller.editUser,
-          child: Text("Save changes"),
+          child: Text('edit_skills_save_button'.tr),
         ),
         context.hBox(2.5),
       ],

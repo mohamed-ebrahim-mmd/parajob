@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:para_job/features/profile/edit_profile/edit_cv/edit_cv_screen.dart';
 import 'package:para_job/features/profile/edit_profile/edit_education/edit_education_screen.dart';
 import 'package:para_job/features/profile/edit_profile/edit_main_info/edit_main_info.dart';
@@ -37,7 +38,7 @@ class EditProfileScreen extends StatelessWidget {
                       //  vertical: context.hPct(1),
                     ),
                     child: Text(
-                      "Edit personal info",
+                      'edit_profile_title'.tr,
                       style: TextStyle(
                         color: AppColors.pureWhite,
                         fontSize: context.wPct(4),
@@ -61,11 +62,11 @@ class EditProfileScreen extends StatelessWidget {
               // selected tab text/icon color
               unselectedLabelColor: AppColors.lightGray,
               tabs: [
-                Tab(text: "Main info"),
-                Tab(text: "Education"),
-                Tab(text: "Cv"),
-                Tab(text: "Nation ID"),
-                Tab(text: "Skills"),
+                Tab(text: 'edit_profile_tab_main_info'.tr),
+                Tab(text: 'edit_profile_tab_education'.tr),
+                Tab(text: 'edit_profile_tab_cv'.tr),
+                Tab(text: 'edit_profile_tab_national_id'.tr),
+                Tab(text: 'edit_profile_tab_skills'.tr),
               ],
             ),
           ),

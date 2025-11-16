@@ -31,7 +31,7 @@ class ChangePasswordScreen extends StatelessWidget {
             children: [
               context.hBox(2),
               Text(
-                'Set password',
+                'change_password_title'.tr,
                 style: TextStyle(
                   color: AppColors.pureWhite,
                   fontSize: context.wPct(8.5),
@@ -43,7 +43,7 @@ class ChangePasswordScreen extends StatelessWidget {
                 return TextField(
                   controller: controller.passwordController,
                   decoration: InputDecoration(
-                    hintText: "Enter your new password",
+                    hintText: 'change_password_new_hint'.tr,
                     errorText: controller.passwordError.value,
                   ),
                   keyboardType: TextInputType.visiblePassword,
@@ -57,7 +57,7 @@ class ChangePasswordScreen extends StatelessWidget {
                   controller: controller.confirmPasswordController,
                   decoration: InputDecoration(
                     errorText: controller.confirmPasswordError.value,
-                    hintText: "Confirm your new Password",
+                    hintText: 'change_password_confirm_hint'.tr,
                   ),
                   obscureText: true,
                   textInputAction: TextInputAction.done,
@@ -76,7 +76,7 @@ class ChangePasswordScreen extends StatelessWidget {
           onPressed: () {
             controller.validateAndSubmit(context);
           },
-          child: Text("Confirm"),
+          child: Text('change_password_confirm_button'.tr),
         ),
       ),
     );

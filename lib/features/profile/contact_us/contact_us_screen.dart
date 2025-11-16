@@ -30,7 +30,7 @@ class ContactUsScreen extends StatelessWidget {
             children: [
               context.hBox(2),
               Text(
-                'Complain or Suggest',
+                'contact_us_title'.tr,
                 style: TextStyle(
                   color: AppColors.pureWhite,
                   fontSize: context.wPct(8.5),
@@ -42,7 +42,7 @@ class ContactUsScreen extends StatelessWidget {
                 return TextField(
                   controller: controller.messageController,
                   decoration: InputDecoration(
-                    hintText: "Share your issues with us..",
+                    hintText: 'contact_us_message_hint'.tr,
                     errorText: controller.messageError.value,
                     contentPadding: EdgeInsets.symmetric(
                       vertical: context.hPct(1),
@@ -59,7 +59,7 @@ class ContactUsScreen extends StatelessWidget {
               context.hBox(3),
 
               Text(
-                'Contact us',
+                'contact_us_heading'.tr,
                 style: TextStyle(
                   color: AppColors.pureWhite,
                   fontSize: context.wPct(8.5),
@@ -81,12 +81,12 @@ class ContactUsScreen extends StatelessWidget {
                     return Column(
                       children: [
                         ContactUsListTile(
-                          title: "Email us on",
+                          title: 'contact_us_email_title'.tr,
                           subtitle: contact!.email,
                         ),
                         context.hBox(1),
                         ContactUsListTile(
-                          title: "By phone",
+                          title: 'contact_us_phone_title'.tr,
                           subtitle: contact.phoneNumber,
                         ),
                       ],
@@ -107,7 +107,7 @@ class ContactUsScreen extends StatelessWidget {
                 onPressed: () {
                   controller.validateAndSubmit(context);
                 },
-                child: Text("Submit your complaint"),
+                child: Text('contact_us_submit_button'.tr),
               ),
             ],
           ),

@@ -29,9 +29,9 @@ class EditEducation extends StatelessWidget {
             case ApiCallState.loading:
               return TextField(
                 enabled: false,
-                decoration: const InputDecoration(
-                  labelText: "Loading faculties...",
-                  suffixIcon: Padding(
+                decoration: InputDecoration(
+                  labelText: 'edit_education_loading_faculties'.tr,
+                  suffixIcon: const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: CircularProgressIndicator(),
                   ),
@@ -43,7 +43,7 @@ class EditEducation extends StatelessWidget {
                 enableSearch: true,
                 expandedInsets: EdgeInsets.zero,
                 menuHeight: context.hPct(30),
-                hintText: "Choose your faculty",
+                hintText: 'edit_education_faculty_hint'.tr,
                 initialSelection: controller.selectedFacultyId,
                 onSelected: controller.onFacultySelected,
                 dropdownMenuEntries: controller.facultyMenuEntries,
@@ -57,9 +57,9 @@ class EditEducation extends StatelessWidget {
                 child: AbsorbPointer(
                   child: TextField(
                     readOnly: true,
-                    decoration: const InputDecoration(
-                      labelText: "Failed to load, tap to retry",
-                      suffixIcon: Icon(Icons.refresh),
+                    decoration: InputDecoration(
+                      labelText: 'edit_education_failed_load'.tr,
+                      suffixIcon: const Icon(Icons.refresh),
                     ),
                   ),
                 ),
@@ -69,7 +69,7 @@ class EditEducation extends StatelessWidget {
         Spacer(),
         FilledButton(
           onPressed: controller.editUser,
-          child: Text("Save changes"),
+          child: Text('edit_education_save_button'.tr),
         ),
         context.hBox(2.5),
       ],
