@@ -47,7 +47,7 @@ void showAuthRequiredDialog() {
             child: Column(
               children: [
                 Text(
-                  'Join ParaJob now to start earning!',
+                  'auth_required_title'.tr,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: context.wPct(5),
@@ -60,9 +60,9 @@ void showAuthRequiredDialog() {
                   onPressed: () async {
                     await Get.find<RoutingController>().logOut();
                   },
-                  child: const Text(
-                    'Create Account',
-                    style: TextStyle(
+                  child: Text(
+                    'auth_required_button'.tr,
+                    style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w600,
                     ),

@@ -106,7 +106,7 @@ void showSnackBarJobApplicationCongrats() {
         borderRadius: BorderRadius.circular(context.wPct(4)),
       ),
       child: Text(
-        "Congrats! your application for this job is now being considered. 🎉",
+        'snackbar_job_application_congrats'.tr,
         textAlign: TextAlign.center,
         style: TextStyle(
           color: AppColors.pureWhite,
@@ -129,8 +129,8 @@ void showSnackBarError(String title, String message) {
 
 void showSnackBarApiError() {
   showSnackBarMessage(
-    mainText: "Something Went Wrong",
-    subText: 'Please check your connection and try again.',
+    mainText: 'snackbar_something_went_wrong'.tr,
+    subText: 'snackbar_check_connection'.tr,
     icon: Icons.error_outline_rounded,
     color: AppColors.coralRed,
   );

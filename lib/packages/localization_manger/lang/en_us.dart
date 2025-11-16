@@ -511,4 +511,24 @@ const Map<String, String> enUS = {
   'validation_confirm_password_empty': 'Confirm Password cannot be empty',
   'validation_confirm_password_mismatch': 'Passwords do not match',
 
+  // ============================================================
+  // 🔐 Auth Required Dialog
+  // ============================================================
+  'auth_required_title': 'Join ParaJob now to start earning!',
+  'auth_required_button': 'Create Account',
+
+  // ============================================================
+  // ⚠️ Error Screen
+  // ============================================================
+  'error_screen_default_message':
+      'Failed to load data.\nPlease check your internet connection.',
+  'error_screen_retry_button': 'Retry',
+
+  // ============================================================
+  // 📢 Snackbar Messages
+  // ============================================================
+  'snackbar_something_went_wrong': 'Something Went Wrong',
+  'snackbar_check_connection': 'Please check your connection and try again.',
+  'snackbar_job_application_congrats':
+      'Congrats! your application for this job is now being considered. 🎉',
 };

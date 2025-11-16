@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
+import 'package:get/get.dart';
 
 import '../api_client/src/models/responses/job.dart' show Job;
 
@@ -159,14 +160,14 @@ class JobCard extends StatelessWidget {
                     text: TextSpan(
                       children: [
                         TextSpan(
-                          text: "${job.monthlySalary ?? "-"} EGP",
+                          text: "${job.monthlySalary ?? "-"} ${'egp'.tr}",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: context.wPct(5),
                           ),
                         ),
                         TextSpan(
-                          text: "/mo",
+                          text: "per_month".tr,
                           style: TextStyle(
                             color: AppColors.softWhite70,
                             fontSize: context.wPct(3),
