@@ -40,7 +40,7 @@ class UserImg extends StatelessWidget {
                   child: Center(
                     child: CircularProgressIndicator(
                       strokeWidth: context.wPct(0.6),
-                      color: AppColors.lightGrey,
+                      color: AppColors.grayButton,
                     ),
                   ),
                 );
@@ -48,9 +48,9 @@ class UserImg extends StatelessWidget {
 
               errorBuilder: (context, error, stackTrace) {
                 return Icon(
-                  Icons.image_not_supported_rounded,
+                  Icons.person_off,
                   size: context.wPct(5),
-                  color: AppColors.lightGrey,
+                  color: AppColors.grayButton,
                 );
               },
             ),

@@ -72,7 +72,7 @@ class MainNavigatorScreen extends StatelessWidget {
                     ? Icon(Icons.person_outline, size: context.hPct(4))
                     : UserImg(
                         profilePic:
-                            controller.userController.user?.profilePicture,
+                            controller.userProfilePic.value,
                       ),
                 selectedIcon: controller.userController.isGuest
                     ? Icon(
@@ -83,7 +83,7 @@ class MainNavigatorScreen extends StatelessWidget {
                     : UserImg(
                         isSelected: true,
                         profilePic:
-                            controller.userController.user?.profilePicture,
+                            controller.userProfilePic.value,
                       ),
 
                 label: 'nav_profile'.tr,

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/home/home_screen.dart';
@@ -11,10 +10,23 @@ import '../my_notifications/my_notifications_screen.dart';
 
 class MainNavigatorController extends GetxController {
   final userController = Get.find<UserController>();
-  //  int? cartCount;
   //var cartCountApiCallState = ApiCallState.loading.obs;
   var tab = 0.obs; // Observable variable to track tab index
   // Navigation destinations
+  var userProfilePic = Rx<String?>(null);
+  @override
+  void onInit() {
+    userProfilePic.value = userController.user?.profilePicture;
+    super.onInit();
+  }
+
+  void deleteUserProfilePic() {
+    userProfilePic.value = null;
+  }
+
+  void setUserProfilePic(String profilePic) {
+    userProfilePic.value = profilePic;
+  }
 
   // Pages for each destination
   late final List<Widget> pages = [
