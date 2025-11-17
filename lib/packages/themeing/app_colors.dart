@@ -40,13 +40,14 @@ class AppColors {
   static const Color darkCharcoal = Color(0xFF1E2428);
 
   // Alert / Error
-  static const Color coralRed = Color(0xFFFF4D4D);
+  static const Color coralRed = Color(0xFFFF0000);
 
   // Job Application Status Colors
-  static const Color shortlisted = Color(0xFF00CBB8);
-  static const Color accepted = aquaTeal;
+  static const Color shortlisted = Color(0xFF0080FF);
+  static const Color accepted = Color(0xff33FF99);
   static const Color rejected = coralRed;
-  static const Color interviewScheduled = Color(0xFFFABD20);
+  static const Color interviewScheduled = Color(0xFF00FFFF);
+  static const Color pending = Color(0xFFFFFF5C);
 
   static const Color aquaTealShadow = Color(0x8800CBB8);
   static const Color lightSilverGray = Color(0xFFB8BABB);

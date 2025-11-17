@@ -450,6 +450,7 @@ const Map<String, String> enUS = {
   // ============================================================
   // 🏷️ Job Application Status
   // ============================================================
+  'job_status_pending': 'Pending',
   'job_status_shortlisted': 'Shortlisted',
   'job_status_accepted': 'Accepted',
   'job_status_rejected': 'Rejected',
