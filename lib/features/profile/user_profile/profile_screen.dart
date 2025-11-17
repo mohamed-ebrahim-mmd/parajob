@@ -66,8 +66,8 @@ class ProfileScreen extends StatelessWidget {
                         jobHistory: profileData.jobs ?? [],
                         emptyMessage: 'profile_no_job_history'.tr,
                         title: 'profile_job_history_title'.tr,
-
                         onSeeAll: controller.onSeeAllHistoryJobs,
+                        showBookmarkIcon: false,
                       ),
                       //saved jobs list
                       context.hBox(4),
@@ -76,6 +76,7 @@ class ProfileScreen extends StatelessWidget {
                         jobHistory: profileData.savedJobs ?? [],
                         title: 'profile_saved_jobs_title'.tr,
                         onSeeAll: controller.onSeeAllSavedJobs,
+                        showBookmarkIcon: true,
                       ),
                       context.hBox(2),
                     ],

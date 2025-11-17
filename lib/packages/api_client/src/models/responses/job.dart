@@ -72,4 +72,26 @@ class Job {
       jobApplicationVerification: json['job_application_verification'],
     );
   }
+
+  Job copyWith({bool? isBookmark}) {
+    return Job(
+      id: id,
+      title: title,
+      description: description,
+      applicationDeadline: applicationDeadline,
+      skills: skills,
+      monthlySalary: monthlySalary,
+      company: company,
+      isApplied: isApplied,
+      isBookmark: isBookmark ?? this.isBookmark,
+      category: category,
+      department: department,
+      from: from,
+      to: to,
+      applicationStatus: applicationStatus,
+      isSignedContract: isSignedContract,
+      applicationDate: applicationDate,
+      jobApplicationVerification: jobApplicationVerification,
+    );
+  }
 }

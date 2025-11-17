@@ -26,7 +26,7 @@ class JobsController extends GetxController {
   var selectedDepartmentId = (-1).obs; // For the selected button
   List<Department>? departments;
   final String jobCategory;
-  late final pagingController;
+  late final PagingController<int, Job> pagingController;
 
   JobsController({required this.jobCategory});
 
@@ -107,7 +107,14 @@ class JobsController extends GetxController {
           "Success",
           response.details?.message ?? "Job bookmarked successfully!",
         );
-        pagingController.refresh();
+
+        pagingController.mapItems((job) {
+          if (job.id == jobId) {
+            return job.copyWith(isBookmark: true);
+          }
+          return job;
+        });
+
         if (_homeController.jobIsInHome(jobId)) {
           _homeController.fetchHomeJobs();
         }
@@ -138,7 +145,14 @@ class JobsController extends GetxController {
           "Success",
           response.details?.message ?? "Job removed from bookmarks.",
         );
-        pagingController.refresh();
+
+        pagingController.mapItems((job) {
+          if (job.id == jobId) {
+            return job.copyWith(isBookmark: false);
+          }
+          return job;
+        });
+
         if (_homeController.jobIsInHome(jobId)) {
           _homeController.fetchHomeJobs();
         }

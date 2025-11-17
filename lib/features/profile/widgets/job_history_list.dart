@@ -11,6 +11,7 @@ class JobHistoryList extends StatelessWidget {
   final String? title;
   final String emptyMessage;
   final VoidCallback? onSeeAll;
+  final bool showBookmarkIcon;
 
   const JobHistoryList({
     super.key,
@@ -18,6 +19,7 @@ class JobHistoryList extends StatelessWidget {
     this.title,
     required this.emptyMessage,
     this.onSeeAll,
+    required this.showBookmarkIcon,
   });
 
   @override
@@ -54,7 +56,7 @@ class JobHistoryList extends StatelessWidget {
                   );
                 },
                 job: job,
-                showBookmarkIcon: title == null ? false : true,
+                showBookmarkIcon: showBookmarkIcon,
               );
             },
           ),

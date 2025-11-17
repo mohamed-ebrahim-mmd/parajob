@@ -17,7 +17,7 @@ class BookMarkedJobsScreen extends StatelessWidget {
   final controller = Get.put(BookmarkedJobsController());
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext screenContext) {
     return Scaffold(
       appBar: AppBar(
         title: Text('saved_jobs_title'.tr),
@@ -25,12 +25,12 @@ class BookMarkedJobsScreen extends StatelessWidget {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new),
           onPressed: () {
-            Navigator.of(context).pop();
+            Get.back();
           },
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: context.wPct(5)),
+        padding: EdgeInsets.symmetric(horizontal: screenContext.wPct(5)),
         child: PagingListener<int, Job>(
           controller: controller.pagingController,
           builder: (context, state, fetchNextPage) => PagedListView<int, Job>(
@@ -41,7 +41,7 @@ class BookMarkedJobsScreen extends StatelessWidget {
                 padding: EdgeInsets.symmetric(vertical: context.hPct(1)),
                 child: JobCard(
                   onBookmarkTap: () {
-                    controller.removeBookmark(item.id ?? 0, context);
+                    controller.removeBookmark(item.id ?? 0, screenContext);
                   },
                   job: item,
                   onTap: () {

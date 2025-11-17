@@ -20,7 +20,7 @@ import 'package:para_job/packages/user_manager/user_controller.dart';
 class SearchJobController extends GetxController {
   // Unified call state
   final searchDataCallState = ApiCallState.loading.obs;
-  late final pagingController;
+  late final PagingController<int, Job> pagingController;
   final TextEditingController titleController = TextEditingController();
   final _homeController = Get.find<HomeController>();
   late final _profileController = _userController.isGuest
@@ -130,7 +130,13 @@ class SearchJobController extends GetxController {
           "Success",
           response.details?.message ?? "Job bookmarked successfully!",
         );
-        pagingController.refresh();
+        pagingController.mapItems((job) {
+          if (job.id == jobId) {
+            return job.copyWith(isBookmark: true); // or false for remove
+          }
+          return job;
+        });
+
         if (_homeController.jobIsInHome(jobId)) {
           _homeController.fetchHomeJobs();
         }
@@ -161,7 +167,12 @@ class SearchJobController extends GetxController {
           "Success",
           response.details?.message ?? "Job removed from bookmarks.",
         );
-        pagingController.refresh();
+        pagingController.mapItems((job) {
+          if (job.id == jobId) {
+            return job.copyWith(isBookmark: false); // or false for remove
+          }
+          return job;
+        });
         if (_homeController.jobIsInHome(jobId)) {
           _homeController.fetchHomeJobs();
         }

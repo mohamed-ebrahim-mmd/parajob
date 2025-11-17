@@ -66,7 +66,11 @@ class BookmarkedJobsController extends GetxController {
         if (_profileController.jobIsInSavedJobs(jobId)) {
           _profileController.fetchProfileDetails();
         }
-        pagingController.refresh();
+
+        final newState = pagingController.value.filterItems(
+          (job) => job.id != jobId,
+        );
+        pagingController.value = newState;
         showSnackBarSuccess(
           "Success",
           response.details?.message ?? "Job removed from bookmarks.",

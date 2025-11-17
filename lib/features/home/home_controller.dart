@@ -28,13 +28,13 @@ class HomeController extends GetxController {
   }
 
   bool jobIsInHome(int id) {
-    final JobCategoriesList = homeData?.data.first;
+    final jobCategoriesList = homeData?.data.first;
 
-    if (JobCategoriesList == null) return false;
+    if (jobCategoriesList == null) return false;
 
-    final hotJobs = JobCategoriesList.hotJobs;
-    final flexJobs = JobCategoriesList.flexibleJobs;
-    final nonFlexJobs = JobCategoriesList.nonFlexibleJobs;
+    final hotJobs = jobCategoriesList.hotJobs;
+    final flexJobs = jobCategoriesList.flexibleJobs;
+    final nonFlexJobs = jobCategoriesList.nonFlexibleJobs;
 
     final isFound =
         hotJobs.any((job) => job.id == id) ||

@@ -330,7 +330,13 @@ class AppPages {
         //profile
         GetPage(
           name: Routes.bookmarkedJobs,
-          page: () => BookMarkedJobsScreen(),
+          page: () => LoaderOverlay(
+            child: BookMarkedJobsScreen(),
+            overlayWidgetBuilder: (_) {
+              //ignored progress for the moment
+              return AppLoader();
+            },
+          ),
         ),
         GetPage(name: Routes.historyJobs, page: () => HistoryJobsScreen()),
 
