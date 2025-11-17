@@ -1,7 +1,3 @@
-/*
- Mohamed Ebrahim | mohamed7ebrahim7@gmail.com | 2025-10-16 9:51 AM
- ==================================================================
-*/
 import 'dart:developer';
 
 import 'package:flutter/material.dart' show BuildContext;
@@ -64,7 +60,6 @@ class HomeController extends GetxController {
     }
   }
 
-  /// 🔖 Add bookmark
   Future<void> _addBookmark(int jobId) async {
     try {
       final response = await apiClient.addBookmark(
@@ -74,17 +69,16 @@ class HomeController extends GetxController {
 
       if (response.isSuccess) {
         showSnackBarSuccess(
-          "Success",
-          response.details?.message ?? "Job bookmarked successfully!",
+          "success_title".tr,
+          response.details?.message ?? "job_bookmarked_success".tr,
         );
         fetchHomeJobs();
         _profileController!.fetchProfileDetails();
       } else {
         log("🔴 addBookmark ${response.details!.message}");
-
         showSnackBarError(
-          "Failed",
-          response.details?.message ?? "Could not bookmark the job.",
+          "failed_title".tr,
+          response.details?.message ?? "job_bookmark_failed".tr,
         );
       }
     } catch (e) {
@@ -92,7 +86,6 @@ class HomeController extends GetxController {
     }
   }
 
-  /// ❌ Remove bookmark
   Future<void> _removeBookmark(int jobId) async {
     try {
       final response = await apiClient.deleteBookmark(
@@ -102,16 +95,16 @@ class HomeController extends GetxController {
 
       if (response.isSuccess) {
         showSnackBarSuccess(
-          "Success",
-          response.details?.message ?? "Job removed from bookmarks.",
+          "success_title".tr,
+          response.details?.message ?? "job_removed_from_bookmarks".tr,
         );
         fetchHomeJobs();
         _profileController!.fetchProfileDetails();
       } else {
         log("🔴 removeBookmark ${response.details!.message}");
         showSnackBarError(
-          "Failed",
-          response.details?.message ?? "Could not remove bookmark.",
+          "failed_title".tr,
+          response.details?.message ?? "job_remove_bookmark_failed".tr,
         );
       }
     } catch (e) {
@@ -120,7 +113,6 @@ class HomeController extends GetxController {
   }
 
   Future<void> handleBookmarkTap(Job job, BuildContext context) async {
-    // 🔒 1. Check if the user is guest
     if (_userController.isGuest) {
       showAuthRequiredDialog();
       return;

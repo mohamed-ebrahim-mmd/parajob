@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart' show TextEditingController;
 import 'package:flutter/material.dart' show BuildContext;
 import 'package:get/get.dart';
-import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart' show PagingController;
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart'
+    show PagingController;
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:para_job/features/my_jobs/contract/contract_controller.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
@@ -12,14 +13,16 @@ import 'package:para_job/packages/user_manager/user_controller.dart';
 
 class ApplicationVerificationOtpController extends GetxController {
   final int jobId;
-  final PagingController<int, MyJob> approvedJobController ;
+  final PagingController<int, MyJob> approvedJobController;
   final user = Get.find<UserController>();
 
   final pinController = TextEditingController();
-
   var pinError = RxnString(null);
 
-  ApplicationVerificationOtpController({required this.approvedJobController ,required this.jobId});
+  ApplicationVerificationOtpController({
+    required this.approvedJobController,
+    required this.jobId,
+  });
 
   Future<void> verifyOtp(BuildContext context) async {
     pinError.value = validatePin(pinController.text);
@@ -41,12 +44,19 @@ class ApplicationVerificationOtpController extends GetxController {
       );
 
       if (response.isSuccess ?? false) {
-        Get.put(ContractController(jobId: jobId, approvedJobController: approvedJobController));
-        Get.toNamed("${Routes.mainNavigator}${Routes.applicationVerificationOTP}${Routes.contract}");
+        Get.put(
+          ContractController(
+            jobId: jobId,
+            approvedJobController: approvedJobController,
+          ),
+        );
+        Get.toNamed(
+          "${Routes.mainNavigator}${Routes.applicationVerificationOTP}${Routes.contract}",
+        );
       } else {
         showSnackBarError(
-          'Failed',
-          response.details?.message ?? 'Unknown error',
+          "failed_title".tr,
+          response.details?.message ?? "unknown_error".tr,
         );
       }
     } catch (e) {
@@ -67,11 +77,14 @@ class ApplicationVerificationOtpController extends GetxController {
       );
 
       if (response.isSuccess ?? false) {
-        showSnackBarSuccess('Success', response.details?.message ?? '');
+        showSnackBarSuccess(
+          "success_title".tr,
+          response.details?.message ?? "",
+        );
       } else {
         showSnackBarError(
-          'Failed',
-          response.details?.message ?? 'Unknown error',
+          "failed_title".tr,
+          response.details?.message ?? "unknown_error".tr,
         );
       }
     } catch (e) {

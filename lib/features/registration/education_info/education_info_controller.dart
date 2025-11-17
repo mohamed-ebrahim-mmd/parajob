@@ -22,10 +22,10 @@ class EducationInfoController extends GetxController {
   List<DropdownMenuEntry<int>> universityMenuEntries = [];
   List<DropdownMenuEntry<int>> facultyMenuEntries = [];
   String? selectedStatus;
-  final List<DropdownMenuEntry<String>> statusMenuEntries = const [
-    DropdownMenuEntry(value: 'student', label: 'Student'),
-    DropdownMenuEntry(value: 'fresh_graduate', label: 'Fresh Graduate'),
-    DropdownMenuEntry(value: 'graduate', label: 'Graduate'),
+  final List<DropdownMenuEntry<String>> statusMenuEntries =  [
+    DropdownMenuEntry(value: 'student', label: 'student'.tr),
+    DropdownMenuEntry(value: 'fresh_graduate', label: 'fresh_graduate'.tr),
+    DropdownMenuEntry(value: 'graduate', label: 'graduate'.tr),
   ];
 
   @override
@@ -40,7 +40,6 @@ class EducationInfoController extends GetxController {
     super.onClose();
   }
 
-  /// 🎓 Fetch all universities
   Future<void> fetchUniversities() async {
     universitiesCallState.value = ApiCallState.loading;
 
@@ -48,7 +47,8 @@ class EducationInfoController extends GetxController {
       final response = await apiClient.getUniversities();
       if (response.isSuccess) {
         universityMenuEntries = response.data
-            .map((u) => DropdownMenuEntry<int>(value: u.id, label: u.name))
+            .map((u) => DropdownMenuEntry<int>(
+                value: u.id, label: u.name)) // names assumed already localized
             .toList();
         universitiesCallState.value = ApiCallState.success;
       } else {
@@ -59,7 +59,6 @@ class EducationInfoController extends GetxController {
     }
   }
 
-  /// 🏫 Handle university selection
   void onUniversitySelected(int? universityId) {
     if (universityId != null && universityId != selectedUniversityId.value) {
       selectedUniversityId.value = universityId;
@@ -68,7 +67,6 @@ class EducationInfoController extends GetxController {
     }
   }
 
-  /// 📚 Fetch faculties by university
   Future<void> fetchFaculties(int universityId) async {
     facultiesCallState.value = DataFetchState.loading;
 
@@ -93,7 +91,7 @@ class EducationInfoController extends GetxController {
       initialDate: DateTime.now(),
       firstDate: DateTime(1950),
       lastDate: DateTime(2050),
-      helpText: 'Select your graduation year',
+      helpText: 'select_graduation_year'.tr,
     );
 
     if (pickedDate != null) {
@@ -107,28 +105,28 @@ class EducationInfoController extends GetxController {
     }
   }
 
-  /// ✅ Validate before proceeding
   void onSubmitEducationInfo() {
     if (selectedUniversityId.value == null) {
-      showSnackBarError("Failed", "Please select a university");
+      showSnackBarError("failed".tr, "select_university".tr);
       return;
     }
 
     if (selectedFacultyId == null) {
-      showSnackBarError("Failed", "Please select a faculty");
+      showSnackBarError("failed".tr, "select_faculty".tr);
       return;
     }
 
     if (graduationYearController.text.isEmpty) {
-      showSnackBarError("Failed", "Please select your graduation year");
-      return;
-    }
-    if (selectedStatus == null) {
-      showSnackBarError("Failed", "Please select your status");
+      showSnackBarError("failed".tr, "select_graduation_year".tr);
       return;
     }
 
-    // 🚀 Continue to next step
+    if (selectedStatus == null) {
+      showSnackBarError("failed".tr, "select_status".tr);
+      return;
+    }
+
+    // Continue to next step
     Get.toNamed(
       "${Routes.createAccount}"
       "${Routes.createAccountOTP}"

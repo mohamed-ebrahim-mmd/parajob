@@ -550,4 +550,132 @@ const Map<String, String> enUS = {
   // 📄 PDF Viewer Screen
   // ============================================================
   'pdf_viewer_title': 'PDF Viewer',
+
+  // ============================================================
+  // Email login controller
+  // ============================================================
+  "incomplete_profile": "Incomplete Profile",
+  "please_complete_registration": "Please complete your registration.",
+  "not_verified_title": "Not Verified",
+  "not_verified_message": "Please complete registration to continue.",
+  "pending_approval_title": "Pending Approval",
+  "pending_approval_message":
+      "Your account is awaiting admin approval. Please wait.",
+  "success_title": "Success",
+  "failed_title": "Failed",
+  "unknown_error": "Unknown error",
+
+  // ============================================================
+  // Set Password controller
+  // ============================================================
+  "password_reset_success": "Password reset successfully",
+  "password_reset_failed": "Password reset failed",
+
+  // ============================================================
+  // active jobs controller
+  // ============================================================
+  "fetch_jobs_failed": "Failed to fetch jobs",
+
+  // ============================================================
+  // EmployerController
+  // ============================================================
+  "warning_title": "Warning",
+  "rating_comment_required": "Please select a rating and write a comment.",
+  "review_submitted_success": "Review submitted successfully!",
+
+  // ============================================================
+  // home Controller
+  // ============================================================
+  "job_bookmarked_success": "Job bookmarked successfully!",
+  "job_bookmark_failed": "Could not bookmark the job.",
+  "job_removed_from_bookmarks": "Job removed from bookmarks.",
+  "job_remove_bookmark_failed": "Could not remove bookmark.",
+  "all": "All",
+
+  // ============================================================
+  //Search job Controller
+  // ============================================================
+  "part_time": "Part time",
+  "full_time": "Full time",
+  "flexible_job": "Flexible",
+  "non_flexible_job": "Non Flexible",
+  "hot_job": "Hot Job",
+
+  // ============================================================
+  //complaintController
+  // ============================================================
+  "complaint_empty_error": "Please give some detail about your complaint.",
+  "complaint_success_message":
+      "Your complaint has been submitted successfully.",
+
+  // ============================================================
+  //job details controller
+  // ============================================================
+  "job_application_success": "You have successfully applied for the job.",
+  "job_withdraw_success": "You have successfully withdrawn your application.",
+
+  // ============================================================
+  //contract controller
+  // ============================================================
+  "please_sign": "Please sign before continuing.",
+  "signature_generation_failed": "Failed to generate signature image.",
+  "no_file_url": "No file URL returned from upload API.",
+  "contract_signed": "Contract signed successfully.",
+
+  // ============================================================
+  //back national id controller
+  // ============================================================
+  "back_id_required": "Please provide your Back ID image to continue",
+
+  // ============================================================
+  //create acc controller
+  // ============================================================
+  "failed": "Failed",
+  "male": "Male",
+  "female": "Female",
+  "birth_date_required": "Birth date cannot be empty",
+  "gender_required": "Please select your gender",
+  "city_required": "Please select your city",
+  "area_required": "Please select your area",
+
+  // ============================================================
+  //create acc cv controller
+  // ============================================================
+  "cv_required": "Please provide your CV to continue",
+  "upload_failed": "Upload failed",
+  "upload_error": "Failed to upload files.",
+  "profile_updated": "Profile Updated",
+  "upload_success": "Your files and info were uploaded successfully!",
+  "update_failed": "Update failed",
+  "update_error": "Failed to update your profile.",
+
+  // ============================================================
+  //create acc set pass controller
+  // ============================================================
+  "registration_completed": "Registration completed successfully.",
+  "something_went_wrong": "Something went wrong, please try again.",
+
+  // ============================================================
+  //create acc skills controller
+  // ============================================================
+  "select_at_least_one_skill": "Please select at least one skill",
+  "skills_fetch_failed": "Failed to fetch skills",
+  // ============================================================
+  //create acc education info controller
+  // ============================================================
+  "select_university": "Please select a university",
+  "select_faculty": "Please select a faculty",
+  "select_graduation_year": "Please select your graduation year",
+  "select_status": "Please select your status",
+  "student": "Student",
+  "fresh_graduate": "Fresh Graduate",
+  "graduate": "Graduate",
+  "education_image_required": "Please provide your Education image to continue",
+
+  // ============================================================
+  //create acc front national id controller
+  // ============================================================
+  "front_id_required": "Please provide your front ID image to continue",
+  "pic_with_id_required":
+      "Please provide a picture of yourself holding the ID to continue",
 };

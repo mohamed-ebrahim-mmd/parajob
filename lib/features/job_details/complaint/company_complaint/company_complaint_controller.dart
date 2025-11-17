@@ -18,8 +18,8 @@ class CompanyComplaintController extends GetxController {
     final details = detailsController.text.trim();
     if (details.isEmpty) {
       showSnackBarError(
-        "Failed",
-        "Please give some detail about your complain.",
+        "failed_title".tr,
+        "complaint_empty_error".tr,
       );
       return;
     }
@@ -32,11 +32,10 @@ class CompanyComplaintController extends GetxController {
 
       if (response.isSuccess == true) {
         detailsController.clear();
-        // show success message and go back
         showSnackBarSuccess(
-          "Success",
+          "success_title".tr,
           response.details?.message ??
-              "Your complaint has been submitted successfully.",
+              "complaint_success_message".tr,
         );
         Get.find<EmployerController>().fetchCompany();
         Get.until(
@@ -45,8 +44,8 @@ class CompanyComplaintController extends GetxController {
         );
       } else {
         showSnackBarError(
-          'Failed',
-          response.details?.message ?? 'Unknown error',
+          "failed_title".tr,
+          response.details?.message ?? "unknown_error".tr,
         );
       }
     } catch (e) {

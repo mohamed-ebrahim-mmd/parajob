@@ -1,7 +1,3 @@
-/*
- Mohamed Ebrahim | mohamed7ebrahim7@gmail.com | 2025-10-23 11:49 AM
- ==================================================================
-*/
 import 'dart:developer';
 
 import 'package:flutter/cupertino.dart' show TextEditingController;
@@ -18,7 +14,6 @@ import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
 
 class SearchJobController extends GetxController {
-  // Unified call state
   final searchDataCallState = ApiCallState.loading.obs;
   late final pagingController;
   final TextEditingController titleController = TextEditingController();
@@ -38,14 +33,14 @@ class SearchJobController extends GetxController {
   List<DropdownMenuEntry<int>> companies = [];
 
   final jobTypeMenuEntries = [
-    DropdownMenuEntry<String>(value: 'part_time', label: 'Part time'),
-    DropdownMenuEntry<String>(value: 'full_time', label: 'Full time'),
+    DropdownMenuEntry<String>(value: 'part_time', label: 'part_time'.tr),
+    DropdownMenuEntry<String>(value: 'full_time', label: 'full_time'.tr),
   ];
 
   final jobCategoriesEntries = [
-    DropdownMenuEntry<String>(value: 'flexible', label: 'Flexible'),
-    DropdownMenuEntry<String>(value: 'non_flexible', label: 'Non Flexible'),
-    DropdownMenuEntry<String>(value: 'hot_job', label: 'Hot Job'),
+    DropdownMenuEntry<String>(value: 'flexible', label: 'flexible_job'.tr),
+    DropdownMenuEntry<String>(value: 'non_flexible', label: 'non_flexible_job'.tr),
+    DropdownMenuEntry<String>(value: 'hot_job', label: 'hot_job'.tr),
   ];
 
   @override
@@ -73,7 +68,7 @@ class SearchJobController extends GetxController {
         if (response.isSuccess ?? false) {
           return response.data ?? [];
         } else {
-          throw Exception('Failed to load jobs');
+          throw Exception('fetch_jobs_failed'.tr);
         }
       },
     );
@@ -117,7 +112,6 @@ class SearchJobController extends GetxController {
     }
   }
 
-  /// 🔖 Add bookmark
   Future<void> _addBookmark(int jobId) async {
     try {
       final response = await apiClient.addBookmark(
@@ -127,8 +121,8 @@ class SearchJobController extends GetxController {
 
       if (response.isSuccess) {
         showSnackBarSuccess(
-          "Success",
-          response.details?.message ?? "Job bookmarked successfully!",
+          "success_title".tr,
+          response.details?.message ?? "job_bookmarked_success".tr,
         );
         pagingController.refresh();
         if (_homeController.jobIsInHome(jobId)) {
@@ -137,10 +131,9 @@ class SearchJobController extends GetxController {
         _profileController?.fetchProfileDetails();
       } else {
         log("🔴 addBookmark ${response.details!.message}");
-
         showSnackBarError(
-          "Failed",
-          response.details?.message ?? "Could not bookmark the job.",
+          "failed_title".tr,
+          response.details?.message ?? "job_bookmark_failed".tr,
         );
       }
     } catch (e) {
@@ -148,7 +141,6 @@ class SearchJobController extends GetxController {
     }
   }
 
-  /// ❌ Remove bookmark
   Future<void> _removeBookmark(int jobId) async {
     try {
       final response = await apiClient.deleteBookmark(
@@ -158,8 +150,8 @@ class SearchJobController extends GetxController {
 
       if (response.isSuccess) {
         showSnackBarSuccess(
-          "Success",
-          response.details?.message ?? "Job removed from bookmarks.",
+          "success_title".tr,
+          response.details?.message ?? "job_removed_from_bookmarks".tr,
         );
         pagingController.refresh();
         if (_homeController.jobIsInHome(jobId)) {
@@ -169,8 +161,8 @@ class SearchJobController extends GetxController {
       } else {
         log("🔴 removeBookmark ${response.details!.message}");
         showSnackBarError(
-          "Failed",
-          response.details?.message ?? "Could not remove bookmark.",
+          "failed_title".tr,
+          response.details?.message ?? "job_remove_bookmark_failed".tr,
         );
       }
     } catch (e) {
@@ -179,7 +171,6 @@ class SearchJobController extends GetxController {
   }
 
   Future<void> handleBookmarkTap(Job job, BuildContext context) async {
-    // 🔒 1. Check if the user is guest
     if (_userController.isGuest) {
       showAuthRequiredDialog();
       return;
@@ -200,10 +191,7 @@ class SearchJobController extends GetxController {
   }
 
   void applyFilters() {
-    // refresh the paging controller to reload jobs with the selected filters
     pagingController.refresh();
-
-    // close the bottom sheet or dialog
     if (Get.isBottomSheetOpen ?? false) {
       Get.back();
     }

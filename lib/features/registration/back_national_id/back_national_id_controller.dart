@@ -11,7 +11,7 @@ import 'package:para_job/packages/route_manager/controller/routes.dart';
 class BackNationalIdController extends GetxController {
   File? backIdImage;
 
-  // error message to show under the picker (nullable)
+  // Error message to show under the picker (nullable)
   var idError = RxnString(null);
 
   void setBackIdImage(File? value) {
@@ -21,16 +21,14 @@ class BackNationalIdController extends GetxController {
   /// Validate and navigate if file exists; otherwise show error text
   void validateAndContinue() {
     if (backIdImage == null) {
-      idError.value = "Please provide your Back ID image to continue";
+      idError.value = "back_id_required".tr;
       return;
     }
 
     idError.value = null;
-    // navigate to next screen
+    // Navigate to next screen
     Get.toNamed(
-      "${Routes.createAccount}${Routes.createAccountOTP}${Routes
-          .createAccountSetPass}${Routes.createAccountFrontID}${Routes
-          .createAccountBackID}${Routes.createAccountPicWithID}",
+      "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}${Routes.createAccountBackID}${Routes.createAccountPicWithID}",
     );
   }
 }

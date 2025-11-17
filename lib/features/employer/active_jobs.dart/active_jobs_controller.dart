@@ -44,7 +44,7 @@ class ActiveJobsController extends GetxController {
     if (response.isSuccess ?? false) {
       return response.data ?? [];
     } else {
-      throw Exception('Failed to fetch jobs');
+      throw Exception("fetch_jobs_failed".tr);
     }
   }
 

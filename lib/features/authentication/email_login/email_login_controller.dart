@@ -17,76 +17,66 @@ import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
 import '../../../packages/route_manager/controller/routes.dart';
 
 class EmailLoginController extends GetxController {
-  // TextEditingController for email
   final emailController = TextEditingController();
-
-  // TextEditingController for password
   final passwordController = TextEditingController();
 
-  // Email error state (null by default)
   var emailError = RxnString(null);
-
-  // Password error state (null by default)
   var passwordError = RxnString(null);
 
   Future<void> login() async {
     emailError.value = validateEmail(emailController.text);
     passwordError.value = validatePassword(passwordController.text);
+
     if (emailError.value == null && passwordError.value == null) {
       await loginUser();
     }
   }
 
   Future<void> loginUser() async {
-    // Show loader overlay
-
     try {
       Get.context!.loaderOverlay.show();
+
       final loginResponse = await apiClient.loginWithMail(
         LoginWithMailRequest(
           email: emailController.text,
           password: passwordController.text,
         ),
-      ); // Get posts by user ID
+      );
 
       if (loginResponse.isSuccess ?? false) {
         final user = loginResponse.data!.user;
         log("🟢 ${loginResponse.data?.token}");
 
+        // 1️⃣ Not verified
         if (!(user?.isVerified ?? false)) {
-          // 1️⃣ Not verified
+          showSnackBarError("not_verified_title".tr, "not_verified_message".tr);
+        }
+        // 2️⃣ Verified but profile not completed
+        else if (!(user?.isCompleted ?? false)) {
           showSnackBarError(
-            "Not Verified",
-            "Please go to registration and create account.",
+            "incomplete_profile".tr,
+            "please_complete_registration".tr,
           );
-        } else if ((user?.isVerified ?? false) &&
-            !(user?.isCompleted ?? false)) {
-          // 2️⃣ Verified but not complete
-          showSnackBarError(
-            "Incomplete Profile",
-            "Please complete your registration.",
-          );
+
           Get.toNamed(
             "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}",
             arguments: {"tempToken": loginResponse.data?.token ?? "-"},
           );
-        } else if ((user?.isVerified ?? false) &&
-            (user?.isCompleted ?? false) &&
-            !(user?.isApproved ?? false)) {
-          // 3️⃣ Waiting for admin approval
+        }
+        // 3️⃣ Completed but not approved
+        else if (!(user?.isApproved ?? false)) {
           showSnackBarError(
-            "Pending Approval",
-            "Your account is awaiting admin approval. Please wait.",
+            "pending_approval_title".tr,
+            "pending_approval_message".tr,
           );
-        } else if ((user?.isVerified ?? false) &&
-            (user?.isCompleted ?? false) &&
-            (user?.isApproved ?? false)) {
-          // 4️⃣ All good — go to home
+        }
+        // 4️⃣ Verified + completed + approved → go home
+        else {
           final tokenSuccess = await _sendDeviceTokenToBackend(
             "Bearer ${loginResponse.data!.token}",
           );
+
           if (tokenSuccess) {
-            // 4️⃣ All good — go to home
             Get.find<RoutingController>().goHomeAsUser(
               user!,
               "Bearer ${loginResponse.data!.token}",
@@ -94,7 +84,7 @@ class EmailLoginController extends GetxController {
           }
         }
       } else {
-        showSnackBarError("Failed", "${loginResponse.details?.message} ");
+        showSnackBarError("failed_title".tr, "${loginResponse.details?.message}");
       }
     } catch (e) {
       log("🔴 ${e.toString()}");
@@ -107,13 +97,15 @@ class EmailLoginController extends GetxController {
   Future<bool> _sendDeviceTokenToBackend(String userToken) async {
     try {
       String? deviceToken = await FirebaseMessaging.instance.getToken();
+
       final request = NotificationTokenRequest(deviceToken: deviceToken ?? "-");
+
       final response = await apiClient.updateDeviceToken(request, userToken);
 
       if (response.isSuccess) {
-        return true; // successfully updated
+        return true;
       } else {
-        showSnackBarError("Failed", "${response.details.message}");
+        showSnackBarError("failed".tr, "${response.details.message}");
         return false;
       }
     } catch (e) {
@@ -123,7 +115,6 @@ class EmailLoginController extends GetxController {
     }
   }
 
-  // Dispose controllers when not needed
   @override
   void onClose() {
     emailController.dispose();

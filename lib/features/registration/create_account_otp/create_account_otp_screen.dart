@@ -124,7 +124,7 @@ class CreateAccountOtpScreen extends StatelessWidget {
                 disabledColor: AppColors.grayButton,
 
                 onPressed: () {
-                  controller.resendForgotPasswordRequest(context);
+                  controller.resendOtpRequest(context);
                 },
               ),
               context.hBox(5),
