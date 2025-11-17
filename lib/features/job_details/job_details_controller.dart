@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart' show BuildContext;
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
@@ -110,5 +111,20 @@ class JobDetailsController extends GetxController {
       fetchJobDetails(jobId);
       context.loaderOverlay.hide();
     }
+  }
+
+  //change DataFormate
+
+  String formatLocalizedDate(String dateString) {
+    final date = DateTime.tryParse(dateString);
+    if (date == null) return dateString;
+
+    // Get current locale from GetX
+    final locale = Get.locale?.languageCode ?? "en";
+
+    // Format: 9 مارس / 9 March
+    final formatter = DateFormat("d MMMM", locale);
+
+    return formatter.format(date);
   }
 }

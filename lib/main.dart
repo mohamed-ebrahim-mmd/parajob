@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:para_job/packages/functional_components/request_notification_permission.dart';
 import 'package:para_job/packages/localization_manger/localization_manger.dart';
 import 'package:para_job/packages/themeing/theme.dart';
@@ -16,6 +17,9 @@ void main() async {
   Get.put(RoutingController());
   Get.put(UserController());
   Get.put(LocalizationController());
+  // Load Arabic & English date formatting
+  await initializeDateFormatting('ar', null);
+  await initializeDateFormatting('en', null);
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(ParaJobApp());
