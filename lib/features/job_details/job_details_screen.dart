@@ -13,11 +13,11 @@ import 'package:para_job/features/job_details/widgets/job_content.dart'
 import 'package:para_job/features/job_details/widgets/job_detail_container.dart';
 import 'package:para_job/features/job_details/widgets/job_skill_item.dart';
 import 'package:para_job/packages/api_client/src/enums/api_call_state_enum.dart';
+import 'package:para_job/packages/api_client/src/extensions/job_data_extension.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/packages/ui_components/curved_image.dart';
-import 'package:para_job/packages/api_client/src/extensions/job_data_extension.dart';
 import 'package:para_job/packages/ui_components/error_screen.dart';
 import 'package:para_job/res/app_asset_paths.dart';
 
@@ -106,11 +106,16 @@ class JobDetailsScreen extends StatelessWidget {
                           ],
                         ),
                         context.hBox(3),
+
                         // Location
-                        JobDetailContainer(
-                          text: jobDetails.location,
-                          iconPath: AppAssetPaths.location,
+                        GestureDetector(
+                          onTap: controller.openLocation,
+                          child: JobDetailContainer(
+                            text: jobDetails.location,
+                            iconPath: AppAssetPaths.location,
+                          ),
                         ),
+
                         // Description
                         context.hBox(3),
                         Text(

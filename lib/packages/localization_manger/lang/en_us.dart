@@ -542,6 +542,14 @@ const Map<String, String> enUS = {
       'Congrats! your application for this job is now being considered. 🎉',
 
   // ============================================================
+  // 📍 Location Messages
+  // ============================================================
+  'location_not_available': 'Location not available',
+  'location_invalid_link': 'Invalid link',
+  'location_failed_to_open': 'Failed to open location',
+  'location_error': 'Error',
+
+  // ============================================================
   // 🔐 Auth Choice Screen
   // ============================================================
   'auth_choice_title': 'Sign in or create an account',
