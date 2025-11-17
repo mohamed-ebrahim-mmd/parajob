@@ -41,14 +41,14 @@ class ChangePassOtpController extends GetxController {
       );
 
       if (response.isSuccess ?? false) {
-        showSnackBarSuccess('Success', response.details?.message ?? '');
+        showSnackBarSuccess('success_title'.tr, response.details?.message ?? 'otp_verified'.tr);
         Get.toNamed(
           "${Routes.mainNavigator}${Routes.more}${Routes.changePassOtp}${Routes.changePassword}",
         );
       } else {
         showSnackBarError(
-          'Failed',
-          response.details?.message ?? 'Unknown error',
+         'failed_title'.tr,
+          response.details?.message ?? 'unknown_error'.tr,
         );
       }
     } catch (e) {
@@ -67,11 +67,11 @@ class ChangePassOtpController extends GetxController {
       );
 
       if (response.isSuccess ?? false) {
-        showSnackBarSuccess('Success', response.details?.message ?? '');
+        showSnackBarSuccess('success_title'.tr, response.details?.message ?? 'otp_sent'.tr);
       } else {
         showSnackBarError(
-          'Failed',
-          response.details?.message ?? 'Unknown error',
+          'failed_title'.tr,
+          response.details?.message ?? 'unknown_error'.tr,
         );
       }
     } catch (e) {

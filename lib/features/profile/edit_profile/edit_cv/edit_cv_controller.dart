@@ -52,17 +52,13 @@ class EditCvController extends GetxController {
 
   Future<void> uploadFile() async {
     if (cvFile == null) {
-      showSnackBarError(
-        "Nothing to update",
-        "You didn’t make any changes to your file.",
-      );
+      showSnackBarError("nothing_to_update".tr, "no_changes_made".tr);
       return;
     }
 
     screenContext.loaderOverlay.show();
     try {
       final fileBytes = await cvFile!.readAsBytes();
-
       final multipartFile = MultipartFile.fromBytes(
         fileBytes,
         filename: selectedCvName.value,
@@ -72,18 +68,17 @@ class EditCvController extends GetxController {
 
       if (response.isSuccess && response.urls != null) {
         var url = response.urls?[0];
-        //  showSnackBarSuccess("title", url??"null url");
 
         if (url == null || url.isEmpty) {
-          showSnackBarError("Failed", "No file URL returned from upload API");
+          showSnackBarError("failed_title".tr, "no_file_url_returned".tr);
           return;
         }
 
         await editUserProfile(url);
       } else {
         showSnackBarError(
-          "Failed",
-          response.details?.message ?? "Upload failed",
+          "failed_title".tr,
+          response.details?.message ?? "upload_failed".tr,
         );
       }
     } catch (e) {
@@ -105,12 +100,15 @@ class EditCvController extends GetxController {
         await profileController.fetchProfileDetails();
         log("🟢 isSuccess");
         showSnackBarSuccess(
-          "success",
-          response.details.message ?? "edit successfully",
+          "success_title".tr,
+          response.details.message ?? "edit_successfully".tr,
         );
       } else {
-        showSnackBarError("Failed", response.details.message ?? "edit failed");
-        log(response.details.message ?? "edit failed");
+        showSnackBarError(
+          "failed_title".tr,
+          response.details.message ?? "edit_failed".tr,
+        );
+        log(response.details.message ?? "edit_failed");
       }
     } catch (e) {
       showSnackBarApiError();

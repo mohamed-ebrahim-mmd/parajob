@@ -10,13 +10,11 @@ import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
 
 class MoreController extends GetxController {
-  //var moreCallState = ApiCallState.loading.obs;
-  //  UserProfileData? profileData;
   final user = Get.find<UserController>();
 
   MoreController();
 
-    void navigateTo(String route) {
+  void navigateTo(String route) {
     Get.toNamed("${Routes.mainNavigator}${Routes.more}$route");
   }
 
@@ -29,15 +27,15 @@ class MoreController extends GetxController {
       if (response.isSuccess) {
         log("🟢 isSuccess");
         showSnackBarSuccess(
-          "Success",
-          response.details.message ?? "your account deleted successfully",
+          "success_title".tr,
+          response.details.message ?? "account_deleted_successfully".tr,
         );
 
         Get.find<RoutingController>().logOut();
       } else {
         showSnackBarError(
-          "Failed",
-          response.details.message ?? "your account deleted failed",
+          "failed_title".tr,
+          response.details.message ?? "account_deleted_failed".tr,
         );
       }
     } catch (e) {
@@ -58,15 +56,18 @@ class MoreController extends GetxController {
       );
 
       if (response.isSuccess ?? false) {
-        showSnackBarSuccess('Success', response.details?.message ?? '');
+        showSnackBarSuccess(
+          'success_title'.tr,
+          response.details?.message ?? "otp_sent".tr,
+        );
         //go to the otp screen
         Get.toNamed(
           "${Routes.mainNavigator}${Routes.more}${Routes.changePassOtp}",
         );
       } else {
         showSnackBarError(
-          'Failed',
-          response.details?.message ?? 'Unknown error',
+          'failed_title'.tr,
+          response.details?.message ?? 'unknown_error'.tr,
         );
       }
     } catch (e) {

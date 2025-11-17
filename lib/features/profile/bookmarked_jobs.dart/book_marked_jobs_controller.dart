@@ -72,14 +72,14 @@ class BookmarkedJobsController extends GetxController {
         );
         pagingController.value = newState;
         showSnackBarSuccess(
-          "Success",
-          response.details?.message ?? "Job removed from bookmarks.",
+          "success_title".tr,
+          response.details?.message ?? "job_removed_bookmark".tr,
         );
       } else {
         log("🔴 removeBookmark ${response.details!.message}");
         showSnackBarError(
-          "Failed",
-          response.details?.message ?? "Could not remove bookmark.",
+          "failed_title".tr,
+          response.details?.message ?? "job_could_not_remove".tr,
         );
       }
     } catch (e) {
