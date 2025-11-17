@@ -127,4 +127,26 @@ class JobDetailsController extends GetxController {
 
     return formatter.format(date);
   }
+
+  //change TimeFormate
+
+  String formatLocalizedTime(String? time) {
+    if (time == null || time.isEmpty) return "-";
+
+    // time comes like "07:00" or "17:00"
+    final parsed = DateTime.tryParse("2025-01-01 $time");
+    if (parsed == null) return "-";
+
+    final isArabic = Get.locale?.languageCode == "ar";
+
+    if (isArabic) {
+      // Arabic format
+      final hour = parsed.hour % 12 == 0 ? 12 : parsed.hour % 12;
+      final suffix = parsed.hour >= 12 ? "م" : "ص";
+      return "$hour $suffix";
+    } else {
+      // English format
+      return DateFormat("h a", "en").format(parsed);
+    }
+  }
 }
