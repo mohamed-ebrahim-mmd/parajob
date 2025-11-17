@@ -443,6 +443,7 @@ const Map<String, String> arSA = {
   // ============================================================
   // 🏷️ Job Application Status
   // ============================================================
+  'job_status_pending': 'قيد الانتظار',
   'job_status_shortlisted': 'مدرج في القائمة المختصرة',
   'job_status_accepted': 'مقبول',
   'job_status_rejected': 'مرفوض',
