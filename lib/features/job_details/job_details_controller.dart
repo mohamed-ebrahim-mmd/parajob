@@ -48,15 +48,11 @@ class JobDetailsController extends GetxController {
         jobDetailsCallState.value = ApiCallState.success;
       } else {
         jobDetailsCallState.value = ApiCallState.failure;
-        showSnackBarError(
-          "failed_title".tr,
-          "unknown_error".tr,
-        );
+       
       }
     } catch (e) {
       log("🔴 ${e.toString()}");
       jobDetailsCallState.value = ApiCallState.failure;
-      showSnackBarApiError();
     }
   }
 
@@ -73,7 +69,7 @@ class JobDetailsController extends GetxController {
       );
 
       if (response.isSuccess == true) {
-        showSnackBarSuccess("success_title".tr, "job_application_success".tr);
+           showSnackBarJobApplicationCongrats();
         fetchJobDetails(jobId);
         Get.until((route) => Get.currentRoute == Routes.jobDetails);
       } else {
@@ -101,7 +97,6 @@ class JobDetailsController extends GetxController {
 
       if (response.isSuccess) {
         fetchJobDetails(jobId);
-        showSnackBarSuccess("success_title".tr, "job_withdraw_success".tr);
       } else {
         showSnackBarError(
           "failed_title".tr,

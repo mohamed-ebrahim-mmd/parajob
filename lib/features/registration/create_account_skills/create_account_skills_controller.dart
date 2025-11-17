@@ -52,20 +52,17 @@ class CreateAccountSkillsController extends GetxController {
         skillsCallState.value = ApiCallState.success;
       } else {
         skillsCallState.value = ApiCallState.failure;
-        showSnackBarError('failed'.tr, 'skills_fetch_failed'.tr);
       }
     } catch (e) {
       log("🔴 ${e.toString()}");
       skillsCallState.value = ApiCallState.failure;
-      showSnackBarError('failed'.tr, 'skills_fetch_failed'.tr);
     }
   }
 
   List<DropdownMenuEntry<int>> getMenuSkills(List<Skill> skills) {
     return skills
         .map(
-          (skill) =>
-              DropdownMenuEntry<int>(value: skill.id, label: skill.name),
+          (skill) => DropdownMenuEntry<int>(value: skill.id, label: skill.name),
         )
         .toList();
   }

@@ -29,58 +29,60 @@ class CreateAccountCvController extends GetxController {
     cvFile = value;
   }
 
-  /// Validate file before uploading
   void validateAndUpload() {
     if (cvFile == null) {
-      cvFileError.value = "cv_required".tr;
+      cvFileError.value = "Please provide your CV to Confirm";
       return;
     }
     cvFileError.value = null;
     uploadAllFiles();
   }
 
-  /// Upload all required files and update profile
   Future<void> uploadAllFiles() async {
     try {
       Get.context!.loaderOverlay.show();
-
       final frontNationalIdController = Get.find<FrontNationalIdController>();
       final educationInfoController = Get.find<EducationInfoController>();
-      final skillsController = Get.find<CreateAccountSkillsController>();
+      final createAccountSkillsController =
+          Get.find<CreateAccountSkillsController>();
       final tempToken = "Bearer ${frontNationalIdController.tempToken}";
 
-      final graduationYear = int.parse(
+      final graduationYearText = int.parse(
         educationInfoController.graduationYearController.text.trim(),
       );
 
-      // Collect all files
-      final files = [
-        frontNationalIdController.frontIdImage!,
-        Get.find<BackNationalIdController>().backIdImage!,
-        Get.find<PictureWithIdController>().picWithIdImage!,
-        Get.find<EducationPicController>().educationImage!,
-        cvFile!
-      ];
+      // --- Collect files from controllers ---
+      final frontFile = frontNationalIdController.frontIdImage!;
+      final backFile = Get.find<BackNationalIdController>().backIdImage!;
+      final idWithPicFile = Get.find<PictureWithIdController>().picWithIdImage!;
+      final graduationFile = Get.find<EducationPicController>().educationImage!;
+      final cvFileLocal = cvFile!;
 
-      // Convert to MultipartFile
-      final multipartFiles = await Future.wait(files.map(_toMultipart));
+      // --- Convert each to MultipartFile ---
+      final files = await Future.wait([
+        _toMultipart(frontFile),
+        _toMultipart(backFile),
+        _toMultipart(idWithPicFile),
+        _toMultipart(graduationFile),
+        _toMultipart(cvFileLocal),
+      ]);
 
-      // Upload
-      final uploadResponse = await apiClient.uploadFile(multipartFiles);
+      // --- Upload all at once ---
+      final filesResponse = await apiClient.uploadFile(files);
 
-      if (uploadResponse.isSuccess) {
-        final urls = uploadResponse.urls!;
+      if (filesResponse.isSuccess) {
+        final urls = filesResponse.urls!;
         await _updateUserProfile(
           urls: urls,
           educationInfoController: educationInfoController,
-          skillsController: skillsController,
-          graduationYear: graduationYear,
+          skillsController: createAccountSkillsController,
+          graduationYear: graduationYearText,
           tempToken: tempToken,
         );
       } else {
         showSnackBarError(
-          "upload_failed".tr,
-          uploadResponse.details?.message ?? "upload_error".tr,
+           "upload_failed".tr,
+          filesResponse.details?.message ?? "upload_error".tr,
         );
       }
     } catch (e) {
@@ -90,16 +92,13 @@ class CreateAccountCvController extends GetxController {
     }
   }
 
-  /// Convert File → MultipartFile
+  /// Helper to convert File → MultipartFile
   Future<MultipartFile> _toMultipart(File file) async {
     final bytes = await file.readAsBytes();
-    return MultipartFile.fromBytes(
-      bytes,
-      filename: file.path.split('/').last,
-    );
+    return MultipartFile.fromBytes(bytes, filename: file.path.split('/').last);
   }
 
-  /// Update user profile after uploading all files
+  /// Separate method to handle profile update logic
   Future<void> _updateUserProfile({
     required List<String> urls,
     required EducationInfoController educationInfoController,
@@ -128,14 +127,14 @@ class CreateAccountCvController extends GetxController {
 
       if (response.isSuccess) {
         showSnackBarSuccess(
-          "profile_updated".tr,
+           "profile_updated".tr,
           response.details.message ??
               "upload_success".tr,
         );
         Get.until((route) => Get.currentRoute == Routes.authChoice);
       } else {
         showSnackBarError(
-          "update_failed".tr,
+           "update_failed".tr,
           response.details.message ?? "update_error".tr,
         );
       }

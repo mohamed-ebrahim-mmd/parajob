@@ -50,11 +50,7 @@ class ForgotPasswordOtpController extends GetxController {
         Get.put(SetNewPasswordController(phoneNumber: phoneNumber));
 
         Get.toNamed(
-          "${Routes.authChoice}"
-          "${Routes.emailLoginScreen}"
-          "${Routes.forgotPassword}"
-          "${Routes.forgotPasswordOTP}"
-          "${Routes.setNewPassword}",
+          "${Routes.authChoice}${Routes.emailLoginScreen}${Routes.forgotPassword}${Routes.forgotPasswordOTP}${Routes.setNewPassword}",
         );
       } else {
         showSnackBarError(
@@ -80,7 +76,7 @@ class ForgotPasswordOtpController extends GetxController {
       if (response.isSuccess ?? false) {
         showSnackBarSuccess(
           "success_title".tr,
-          response.details?.message ?? "",
+          response.details?.message ?? "otp_sent".tr,
         );
       } else {
         showSnackBarError(

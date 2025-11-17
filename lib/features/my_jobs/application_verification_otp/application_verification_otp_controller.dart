@@ -79,7 +79,7 @@ class ApplicationVerificationOtpController extends GetxController {
       if (response.isSuccess ?? false) {
         showSnackBarSuccess(
           "success_title".tr,
-          response.details?.message ?? "",
+          response.details?.message ?? "otp_sent".tr,
         );
       } else {
         showSnackBarError(

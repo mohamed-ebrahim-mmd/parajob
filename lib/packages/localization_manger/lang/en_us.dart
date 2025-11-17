@@ -563,7 +563,7 @@ const Map<String, String> enUS = {
       "Your account is awaiting admin approval. Please wait.",
   "success_title": "Success",
   "failed_title": "Failed",
-  "unknown_error": "Unknown error",
+  "unknown_error": "An unexpected error occurred. Please try again.",
 
   // ============================================================
   // Set Password controller
@@ -654,6 +654,7 @@ const Map<String, String> enUS = {
   // ============================================================
   "registration_completed": "Registration completed successfully.",
   "something_went_wrong": "Something went wrong, please try again.",
+  "otp_sent":"otp sent successfully",
 
   // ============================================================
   //create acc skills controller

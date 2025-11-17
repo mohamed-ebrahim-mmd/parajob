@@ -73,7 +73,7 @@ class CreateAccountOtpController extends GetxController {
       );
 
       if (response.isSuccess ?? false) {
-        showSnackBarSuccess('success'.tr, response.details?.message ?? '');
+        showSnackBarSuccess('success'.tr, response.details?.message ?? 'otp_sent'.tr);
       } else {
         showSnackBarError(
           'failed'.tr,

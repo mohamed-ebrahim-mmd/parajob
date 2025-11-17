@@ -78,7 +78,7 @@ class JobsController extends GetxController {
           log(
             '🔴 failed_fetch_jobs_for_department: ${selectedDepartmentId.value}',
           );
-          throw Exception('fetch_jobs_failed'.tr);
+          throw Exception('Failed to load jobs');
         }
       },
     );
