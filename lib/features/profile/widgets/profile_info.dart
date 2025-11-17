@@ -27,7 +27,9 @@ class UserProfileInfo extends StatelessWidget {
           onTap: () async {
             await showEditPhotoBottomSheet(context, controller);
           },
-          child: CircleAvatar(
+          child:
+          
+           CircleAvatar(
             radius: context.wPct(15),
             backgroundColor:
                 (profileData.profilePicture != null &&
@@ -64,6 +66,8 @@ class UserProfileInfo extends StatelessWidget {
               ),
             ),
           ),
+       
+       
         ),
 
         ///

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart' hide MultipartFile;
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:para_job/features/home/home_controller.dart';
+import 'package:para_job/features/main_navigator/main_navigator_controller.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
 import 'package:para_job/packages/functional_components/img_picker.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
@@ -14,7 +15,8 @@ class ProfileController extends GetxController {
   final _homeController = Get.find<HomeController>();
   var profileCallState = ApiCallState.loading.obs;
   UserProfileData? profileData;
-  final String token = Get.find<UserController>().token!;
+  final user = Get.find<UserController>();
+  final navController = Get.find<MainNavigatorController>();
 
   ProfileController();
 
@@ -38,12 +40,13 @@ class ProfileController extends GetxController {
     context.loaderOverlay.show();
     //var m =await  Future.delayed(const Duration(seconds: 3));
     try {
-      final response = await apiClient.deleteUserPhoto(token: token);
+      final response = await apiClient.deleteUserPhoto(token: user.token!);
 
       if (response.isSuccess) {
         log("🟢 deleteUserPic isSuccess");
 
         fetchProfileDetails();
+        navController.deleteUserProfilePic();
       } else {
         showSnackBarError(
           "Failed",
@@ -102,11 +105,12 @@ class ProfileController extends GetxController {
     try {
       final response = await apiClient.updateUserPhoto(
         UpdateUserPhotoRequest(profilePicture: url),
-        token,
+        user.token!,
       );
 
       if (response.isSuccess) {
         fetchProfileDetails();
+        navController.setUserProfilePic(url);
       } else {
         showSnackBarError(
           "Failed",
@@ -122,7 +126,7 @@ class ProfileController extends GetxController {
     profileCallState.value = ApiCallState.loading;
 
     try {
-      final response = await apiClient.fetchUserProfile(token: token);
+      final response = await apiClient.fetchUserProfile(token: user.token!);
 
       if (response.isSuccess) {
         log("🟢 fetchProfileDetails isSuccess");
@@ -164,7 +168,7 @@ class ProfileController extends GetxController {
       context.loaderOverlay.show();
       final response = await apiClient.deleteBookmark(
         BookmarkRequest(jobId: jobId),
-        token,
+        user.token!,
       );
 
       if (response.isSuccess) {

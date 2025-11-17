@@ -35,6 +35,8 @@ class RoutingController extends GetxController {
     await Get.offAllNamed(Routes.mainNavigator); // Navigate back to LoginScreen
   }
 
+
+
   // Method to set the navigation state to home screen as a guest user
   Future<void> goHomeAsGuest() async {
     _navigationState.val = Routes.mainNavigator;
