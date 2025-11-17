@@ -88,7 +88,9 @@ class JobDetailsScreen extends StatelessWidget {
                           children: [
                             Expanded(
                               child: JobDetailContainer(
-                                text: jobDetails.startDate,
+                                text: controller.formatLocalizedDate(
+                                  jobDetails.startDate,
+                                ),
                                 iconPath: AppAssetPaths.calender,
                               ),
                             ),
@@ -96,7 +98,7 @@ class JobDetailsScreen extends StatelessWidget {
                             Expanded(
                               child: JobDetailContainer(
                                 text:
-                                    "${jobDetails.from ?? "-"} - ${jobDetails.to ?? "-"}",
+                                    "${controller.formatLocalizedTime(jobDetails.from)} - ${controller.formatLocalizedTime(jobDetails.to)}",
                                 iconPath: AppAssetPaths.clocks,
                               ),
                             ),

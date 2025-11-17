@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart' show BuildContext;
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
@@ -109,6 +110,42 @@ class JobDetailsController extends GetxController {
     } finally {
       fetchJobDetails(jobId);
       context.loaderOverlay.hide();
+    }
+  }
+
+  //change DataFormate
+
+  String formatLocalizedDate(String dateString) {
+    final date = DateTime.tryParse(dateString);
+    if (date == null) return dateString;
+
+    // Get current locale from GetX
+    final locale = Get.locale?.languageCode ?? "en";
+
+    // Format: 9 مارس / 9 March
+    final formatter = DateFormat("d MMMM", locale);
+
+    return formatter.format(date);
+  }
+  //change TimeFormate
+
+  String formatLocalizedTime(String? time) {
+    if (time == null || time.isEmpty) return "-";
+
+    // time comes like "07:00" or "17:00"
+    final parsed = DateTime.tryParse("2025-01-01 $time");
+    if (parsed == null) return "-";
+
+    final isArabic = Get.locale?.languageCode == "ar";
+
+    if (isArabic) {
+      // Arabic format
+      final hour = parsed.hour % 12 == 0 ? 12 : parsed.hour % 12;
+      final suffix = parsed.hour >= 12 ? "م" : "ص";
+      return "$hour $suffix";
+    } else {
+      // English format
+      return DateFormat("h a", "en").format(parsed);
     }
   }
 }
