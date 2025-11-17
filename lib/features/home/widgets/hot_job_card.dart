@@ -216,7 +216,7 @@ class HotJobCard extends StatelessWidget {
                     color: isBookmarked
                         ? AppColors.aquaTeal
                         : AppColors.softWhite80,
-                    size: context.hPct(3),
+                    size: context.hPct(2.5),
                   ),
                 ),
               ),
