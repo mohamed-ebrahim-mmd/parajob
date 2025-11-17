@@ -150,9 +150,9 @@ class JobDetailsController extends GetxController {
     }
   }
 
-  Future<void> openLocation(String url) async {
+  Future<void> openLocation() async {
     try {
-      final uri = Uri.parse(url);
+      final uri = Uri.parse(jobData?.data.locationLink ?? "");
       final launched = await launchUrl(
         uri,
         mode: LaunchMode.externalApplication,

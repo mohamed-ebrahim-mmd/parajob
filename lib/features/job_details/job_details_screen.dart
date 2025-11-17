@@ -20,7 +20,6 @@ import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/packages/ui_components/curved_image.dart';
 import 'package:para_job/packages/ui_components/error_screen.dart';
 import 'package:para_job/res/app_asset_paths.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class JobDetailsScreen extends StatelessWidget {
   final jobId = Get.arguments as int;
@@ -110,9 +109,7 @@ class JobDetailsScreen extends StatelessWidget {
 
                         // Location
                         GestureDetector(
-                          onTap: () {
-                            controller.openLocation(jobDetails.locationLink);
-                          },
+                          onTap: controller.openLocation,
                           child: JobDetailContainer(
                             text: jobDetails.location,
                             iconPath: AppAssetPaths.location,
