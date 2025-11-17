@@ -48,7 +48,7 @@ class UserImg extends StatelessWidget {
 
               errorBuilder: (context, error, stackTrace) {
                 return Icon(
-                  Icons.person_off,
+                  Icons.person_outline,
                   size: context.wPct(5),
                   color: AppColors.grayButton,
                 );
