@@ -28,10 +28,7 @@ class CreateAccountSkillsController extends GetxController {
   void onSkillSelected(int? value) {
     if (value == null) return;
 
-    // Get the skill object from the full list
     final skill = getSkillById(value);
-
-    // Only add if not already in the selected list
     final alreadySelected = selectedSkillsList.any((s) => s.id == skill.id);
 
     if (!alreadySelected) {
@@ -72,11 +69,11 @@ class CreateAccountSkillsController extends GetxController {
 
   void validateAndContinue() async {
     if (selectedSkillsList.isEmpty) {
-      showSnackBarError("Failed", 'Please select at least one skill');
+      showSnackBarError('failed'.tr, 'select_at_least_one_skill'.tr);
       return;
     }
     Get.toNamed(
       "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}${Routes.createAccountBackID}${Routes.createAccountPicWithID}${Routes.educationInfo}${Routes.educationPic}${Routes.createAccountSkills}${Routes.createAccountCv}",
-    ); // await editUserProfile();
+    );
   }
 }

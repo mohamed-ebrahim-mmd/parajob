@@ -15,13 +15,10 @@ import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
 
 class ForgotPasswordController extends GetxController {
-  // TextEditingController for the phone input
   final phoneController = TextEditingController();
 
-  // Phone error state (null by default)
   var phoneError = RxnString(null);
 
-  // Main method to trigger the process
   Future<void> forgotPassword(BuildContext context) async {
     phoneError.value = validateEgyptianPhone(phoneController.text);
 
@@ -30,7 +27,6 @@ class ForgotPasswordController extends GetxController {
     }
   }
 
-  // Send the forgot password request to API
   Future<void> sendForgotPasswordRequest(BuildContext context) async {
     try {
       context.loaderOverlay.show();
@@ -40,16 +36,24 @@ class ForgotPasswordController extends GetxController {
       );
 
       if (response.isSuccess ?? false) {
-        showSnackBarSuccess('Success', response.details?.message ?? '');
-        //pass the phone number to the otp screen
-        Get.put(ForgotPasswordOtpController(phoneNumber: phoneController.text));
+        showSnackBarSuccess(
+          "success_title".tr,
+          response.details?.message ?? "",
+        );
+
+        Get.put(
+          ForgotPasswordOtpController(
+            phoneNumber: phoneController.text,
+          ),
+        );
+
         Get.toNamed(
           "${Routes.authChoice}${Routes.emailLoginScreen}${Routes.forgotPassword}${Routes.forgotPasswordOTP}",
         );
       } else {
         showSnackBarError(
-          'Failed',
-          response.details?.message ?? 'Unknown error',
+          "failed_title".tr,
+          response.details?.message ?? "unknown_error".tr,
         );
       }
     } catch (e) {
@@ -60,7 +64,6 @@ class ForgotPasswordController extends GetxController {
     }
   }
 
-  // Dispose controllers
   @override
   void onClose() {
     phoneController.dispose();

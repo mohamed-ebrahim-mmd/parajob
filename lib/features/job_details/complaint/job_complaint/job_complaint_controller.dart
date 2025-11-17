@@ -17,8 +17,8 @@ class JobComplaintController extends GetxController {
     final details = detailsController.text.trim();
     if (details.isEmpty) {
       showSnackBarError(
-        "Failed",
-        "Please give some detail about your complain.",
+        "failed_title".tr,
+        "complaint_empty_error".tr,
       );
       return;
     }
@@ -32,17 +32,16 @@ class JobComplaintController extends GetxController {
       if (response.isSuccess == true) {
         detailsController.clear();
 
-        // 2️⃣ Refresh the JobDetailsController
+        // Refresh the JobDetailsController
         Get.find<JobDetailsController>(tag: id.toString()).fetchJobDetails(id);
 
-        // 3️⃣ Close the complaint screen
+        // Close the complaint screen
         Get.back();
 
-        // 4️⃣ Show success
+        // Show success
         showSnackBarSuccess(
-          "Success",
-          response.details?.message ??
-              "Your complaint has been submitted successfully.",
+          "success_title".tr,
+          response.details?.message ?? "complaint_success_message".tr,
         );
       }
     } catch (e) {

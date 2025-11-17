@@ -25,6 +25,7 @@ class ContractController extends GetxController {
   var contractCallState = ApiCallState.loading.obs;
   var isAgreed = false.obs;
   Contract? contract;
+
   ContractController({
     required this.approvedJobController,
     required this.jobId,
@@ -57,7 +58,7 @@ class ContractController extends GetxController {
 
   Future<void> verify(BuildContext context) async {
     if (signatureController.isEmpty) {
-      showSnackBarError("Failed", "Please sign before continuing.");
+      showSnackBarError("failed_title".tr, "please_sign".tr);
       return;
     }
 
@@ -65,20 +66,21 @@ class ContractController extends GetxController {
       context.loaderOverlay.show();
       final signatureBytes = await signatureController.toPngBytes();
       if (signatureBytes == null) {
-        showSnackBarError("Failed", "Failed to generate signature image");
+        showSnackBarError("failed_title".tr, "signature_generation_failed".tr);
+        return;
       }
 
       final multipartFile = MultipartFile.fromBytes(
-        signatureBytes!,
+        signatureBytes,
         filename: "signature.png",
       );
 
       final uploadResponse = await apiClient.uploadFile([multipartFile]);
-
       final uploadedUrl = uploadResponse.urls?.first ?? "-";
 
       if (uploadedUrl.isEmpty) {
-        showSnackBarError("Failed", "No file URL returned from upload API");
+        showSnackBarError("failed_title".tr, "no_file_url".tr);
+        return;
       }
 
       final response = await apiClient.applicationVerification(
@@ -88,10 +90,12 @@ class ContractController extends GetxController {
           signature: uploadedUrl,
         ),
       );
+
       showSnackBarSuccess(
-        'Success',
-        response.details?.message ?? "contract Signed",
+        "success_title".tr,
+        response.details?.message ?? "contract_signed".tr,
       );
+
       Get.until((route) => Get.currentRoute == Routes.mainNavigator);
       approvedJobController.refresh();
     } catch (e, s) {

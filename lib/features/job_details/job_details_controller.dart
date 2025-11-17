@@ -46,15 +46,14 @@ class JobDetailsController extends GetxController {
       );
       if (response.isSuccess) {
         log("🟢 isSuccess");
-
         jobData = response;
-
         jobDetailsCallState.value = ApiCallState.success;
       } else {
         jobDetailsCallState.value = ApiCallState.failure;
+       
       }
     } catch (e) {
-      log("🟢 ${e.toString()}");
+      log("🔴 ${e.toString()}");
       jobDetailsCallState.value = ApiCallState.failure;
     }
   }
@@ -72,14 +71,13 @@ class JobDetailsController extends GetxController {
       );
 
       if (response.isSuccess == true) {
-        showSnackBarJobApplicationCongrats();
+           showSnackBarJobApplicationCongrats();
         fetchJobDetails(jobId);
-
         Get.until((route) => Get.currentRoute == Routes.jobDetails);
       } else {
         showSnackBarError(
-          'Failed',
-          response.details?.message ?? 'Unknown error',
+          "failed_title".tr,
+          response.details?.message ?? "unknown_error".tr,
         );
       }
     } catch (e) {
@@ -92,18 +90,19 @@ class JobDetailsController extends GetxController {
   Future<void> withDrawJob(BuildContext context, int applicationId) async {
     try {
       Get.back();
-
       context.loaderOverlay.show();
+
       final response = await apiClient.withdrawJob(
         token: user.token!,
         applicationId: applicationId,
       );
+
       if (response.isSuccess) {
         fetchJobDetails(jobId);
       } else {
         showSnackBarError(
-          'Failed',
-          response.details?.message ?? 'Unknown error',
+          "failed_title".tr,
+          response.details?.message ?? "unknown_error".tr,
         );
       }
     } catch (e) {

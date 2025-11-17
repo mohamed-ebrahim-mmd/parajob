@@ -1,7 +1,3 @@
-/*
- Mohamed Ebrahim | mohamed7ebrahim7@gmail.com | 2025-10-26 3:24 PM
- ==================================================================
-*/
 import 'package:flutter/cupertino.dart' show TextEditingController;
 import 'package:flutter/material.dart' show DropdownMenuEntry, showDatePicker;
 import 'package:get/get.dart';
@@ -27,9 +23,9 @@ class CreateAccountController extends GetxController {
   final selectedCityId = Rx<int?>(null);
   List<DropdownMenuEntry<int>> cityMenuEntries = [];
   List<DropdownMenuEntry<int>> areaMenuEntries = [];
-  final List<DropdownMenuEntry<String>> genderMenuEntries = const [
-    DropdownMenuEntry(value: 'male', label: 'Male'),
-    DropdownMenuEntry(value: 'female', label: 'Female'),
+  final List<DropdownMenuEntry<String>> genderMenuEntries =  [
+    DropdownMenuEntry(value: 'male', label: "male".tr),
+    DropdownMenuEntry(value: 'female', label: 'female'.tr),
   ];
 
   @override
@@ -64,7 +60,7 @@ class CreateAccountController extends GetxController {
             )
             .map(
               (city) => DropdownMenuEntry<int>(
-                value: city.id!, // safe now
+                value: city.id!,
                 label: city.name!,
               ),
             )
@@ -79,7 +75,6 @@ class CreateAccountController extends GetxController {
     }
   }
 
-  // Handle selection
   void onGenderSelected(String? value) {
     selectedGender = value;
   }
@@ -100,8 +95,8 @@ class CreateAccountController extends GetxController {
       if (response.isSuccess) {
         areaMenuEntries = response.data
             .map(
-              (area) =>
-                  DropdownMenuEntry<int>(value: area.id, label: area.name),
+              (area) => DropdownMenuEntry<int>(
+                  value: area.id, label: area.name),
             )
             .toList();
         areasCallState.value = DataFetchState.success;
@@ -114,70 +109,59 @@ class CreateAccountController extends GetxController {
   }
 
   void registerUser() async {
-    // 🧹 Trim all text fields before validation
     final name = nameController.text.trim();
     final phone = phoneController.text.trim();
     final email = emailController.text.trim();
     final nationalId = nationalIdController.text.trim();
 
-    // 1️⃣ Name
     final nameError = validateName(name);
     if (nameError != null) {
-      showSnackBarError("Failed", nameError);
+      showSnackBarError("failed".tr, nameError);
       return;
     }
 
-    // 2️⃣ Date of Birth
     if (selectedDate.value.isEmpty) {
-      showSnackBarError("Failed", 'Birth date cannot be empty');
+      showSnackBarError("failed".tr, "birth_date_required".tr);
       return;
     }
 
-    // 3️⃣ Phone Number
     final phoneError = validateEgyptianPhone(phone);
     if (phoneError != null) {
-      showSnackBarError("Failed", phoneError);
+      showSnackBarError("failed".tr, phoneError);
       return;
     }
 
-    // 4️⃣ Email
     final emailError = validateEmail(email);
     if (emailError != null) {
-      showSnackBarError("Failed", emailError);
+      showSnackBarError("failed".tr, emailError);
       return;
     }
 
-    // 5️⃣ National ID
     final idError = validateEgyptianNationalId(nationalId);
     if (idError != null) {
-      showSnackBarError("Failed", idError);
+      showSnackBarError("failed".tr, idError);
       return;
     }
 
-    // 6️⃣ Gender
     if (selectedGender == null) {
-      showSnackBarError("Failed", 'Please select your gender');
+      showSnackBarError("failed".tr, 'gender_required'.tr);
       return;
     }
 
-    // 7️⃣ City
     if (selectedCityId.value == null) {
-      showSnackBarError("Failed", 'Please select your city');
+      showSnackBarError("failed".tr, 'city_required'.tr);
       return;
     }
 
-    // 8️⃣ Area
     if (selectedAreaId == null) {
-      showSnackBarError("Failed", 'Please select your area');
+      showSnackBarError("failed".tr, 'area_required'.tr);
       return;
     }
 
-    // ✅ All validations passed
     Get.put(CreateAccountOtpController(phone.trim()));
     Get.toNamed("${Routes.createAccount}${Routes.createAccountOTP}");
   }
 
-  // ✅ Dispose method to avoid memory leaks
   @override
   void onClose() {
     nameController.dispose();

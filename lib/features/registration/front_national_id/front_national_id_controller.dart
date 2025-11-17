@@ -1,10 +1,12 @@
+
+
+
 /*
  Mohamed Ebrahim | mohamed7ebrahim7@gmail.com | 2025-10-29 2:15 PM
  ==================================================================
 */
 
 import 'dart:io';
-
 import 'package:get/get.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 
@@ -25,14 +27,16 @@ class FrontNationalIdController extends GetxController {
   /// Validate and navigate if file exists; otherwise show error text
   void validateAndContinue() {
     if (frontIdImage == null) {
-      idError.value = "Please provide your front ID image to continue";
+      idError.value = 'front_id_required'.tr;
       return;
     }
 
     idError.value = null;
+
     // navigate to next screen
     Get.toNamed(
-      "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}${Routes.createAccountBackID}",
+            "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}${Routes.createAccountBackID}",
+
     );
   }
 }

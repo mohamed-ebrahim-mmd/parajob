@@ -56,8 +56,8 @@ class SetNewPasswordController extends GetxController {
 
       if (response.isSuccess ?? false) {
         showSnackBarSuccess(
-          "Success",
-          response.details?.message ?? "Password reset successfully",
+          "success_title".tr,
+          response.details?.message ?? "password_reset_success".tr,
         );
         Get.until(
           (route) =>
@@ -66,8 +66,8 @@ class SetNewPasswordController extends GetxController {
         );
       } else {
         showSnackBarError(
-          "Failed",
-          response.details?.message ?? "Password reset failed",
+         "failed_title".tr,
+          response.details?.message ?? "password_reset_failed".tr,
         );
       }
     } catch (e) {

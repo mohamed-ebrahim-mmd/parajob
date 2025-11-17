@@ -21,8 +21,7 @@ class PictureWithIdController extends GetxController {
   /// Validate and navigate if file exists; otherwise show error text
   void validateAndContinue() {
     if (picWithIdImage == null) {
-      picIdError.value =
-          "Please provide a picture of yourself holding the ID to continue";
+      picIdError.value = "pic_with_id_required".tr;
       return;
     }
 

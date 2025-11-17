@@ -4,7 +4,6 @@
 */
 
 import 'dart:io';
-
 import 'package:get/get.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 
@@ -21,12 +20,12 @@ class EducationPicController extends GetxController {
   /// Validate and navigate if file exists; otherwise show error text
   void validateAndContinue() {
     if (educationImage == null) {
-      educationImgError.value =
-          "Please provide your Education image to continue";
+      educationImgError.value = 'education_image_required'.tr;
       return;
     }
 
     educationImgError.value = null;
+
     // navigate to next screen
     Get.toNamed(
       "${Routes.createAccount}"

@@ -14,18 +14,14 @@ import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
 
 class ForgotPasswordOtpController extends GetxController {
-  // The phone number passed from the previous screen
   final String phoneNumber;
 
-  // TextEditingController for OTP / PIN input
   final pinController = TextEditingController();
 
-  // Validation error for the PIN input
   var pinError = RxnString(null);
 
   ForgotPasswordOtpController({required this.phoneNumber});
 
-  /// ✅ Validate and proceed with verifying OTP
   Future<void> verifyOtp(BuildContext context) async {
     pinError.value = validatePin(pinController.text);
 
@@ -34,7 +30,6 @@ class ForgotPasswordOtpController extends GetxController {
     }
   }
 
-  /// ✅ API Call (to be implemented when backend endpoint is ready)
   Future<void> _verifyOtpRequest(BuildContext context) async {
     try {
       context.loaderOverlay.show();
@@ -47,15 +42,20 @@ class ForgotPasswordOtpController extends GetxController {
       );
 
       if (response.isSuccess ?? false) {
-        showSnackBarSuccess('Success', response.details?.message ?? '');
+        showSnackBarSuccess(
+          "success_title".tr,
+          response.details?.message ?? "",
+        );
+
         Get.put(SetNewPasswordController(phoneNumber: phoneNumber));
+
         Get.toNamed(
           "${Routes.authChoice}${Routes.emailLoginScreen}${Routes.forgotPassword}${Routes.forgotPasswordOTP}${Routes.setNewPassword}",
         );
       } else {
         showSnackBarError(
-          'Failed',
-          response.details?.message ?? 'Unknown error',
+          "failed_title".tr,
+          response.details?.message ?? "unknown_error".tr,
         );
       }
     } catch (e) {
@@ -74,11 +74,14 @@ class ForgotPasswordOtpController extends GetxController {
       );
 
       if (response.isSuccess ?? false) {
-        showSnackBarSuccess('Success', response.details?.message ?? '');
+        showSnackBarSuccess(
+          "success_title".tr,
+          response.details?.message ?? "otp_sent".tr,
+        );
       } else {
         showSnackBarError(
-          'Failed',
-          response.details?.message ?? 'Unknown error',
+          "failed_title".tr,
+          response.details?.message ?? "unknown_error".tr,
         );
       }
     } catch (e) {
@@ -89,8 +92,8 @@ class ForgotPasswordOtpController extends GetxController {
   }
 
   void closeAndDispose() {
-    Get.back(); // Close the current screen
-    Get.delete<ForgotPasswordOtpController>(); // Dispose the controller
+    Get.back();
+    Get.delete<ForgotPasswordOtpController>();
   }
 
   @override

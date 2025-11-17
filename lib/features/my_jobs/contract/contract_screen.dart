@@ -78,6 +78,7 @@ class ContractScreen extends StatelessWidget {
                             color: AppColors.pureWhite,
                           ),
                         ),
+
                         context.hBox(2),
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -101,17 +102,12 @@ class ContractScreen extends StatelessWidget {
                                     controller.isAgreed.value = value ?? false;
                                   },
                                   activeColor: AppColors.aquaTeal,
-                                  visualDensity: VisualDensity(
-                                    horizontal: context.wPct(-2),
 
-                                    vertical: context.wPct(-2),
-                                  ),
                                   materialTapTargetSize:
                                       MaterialTapTargetSize.shrinkWrap,
                                 );
                               }),
                             ),
-                            context.wBox(1),
                             Expanded(
                               child: Text(
                                 'contract_agree_terms'.tr,

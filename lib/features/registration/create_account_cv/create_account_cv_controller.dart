@@ -81,8 +81,8 @@ class CreateAccountCvController extends GetxController {
         );
       } else {
         showSnackBarError(
-          "Upload failed",
-          filesResponse.details?.message ?? "Failed to upload files.",
+           "upload_failed".tr,
+          filesResponse.details?.message ?? "upload_error".tr,
         );
       }
     } catch (e) {
@@ -127,15 +127,15 @@ class CreateAccountCvController extends GetxController {
 
       if (response.isSuccess) {
         showSnackBarSuccess(
-          "Profile Updated",
+           "profile_updated".tr,
           response.details.message ??
-              "Your files and info were uploaded successfully!",
+              "upload_success".tr,
         );
         Get.until((route) => Get.currentRoute == Routes.authChoice);
       } else {
         showSnackBarError(
-          "Update failed",
-          response.details.message ?? "Failed to update your profile.",
+           "update_failed".tr,
+          response.details.message ?? "update_error".tr,
         );
       }
     } catch (e) {

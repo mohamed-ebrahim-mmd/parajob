@@ -2,6 +2,7 @@
  Mohamed Ebrahim | mohamed7ebrahim7@gmail.com | 2025-10-27 3:19 PM
  ==================================================================
 */
+
 import 'dart:developer';
 
 import 'package:flutter/material.dart' show TextEditingController, BuildContext;
@@ -15,16 +16,15 @@ import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
 
 class CreateAccountSetPassController extends GetxController {
-  // Controllers for password fields
   final createAccountController = Get.find<CreateAccountController>();
+
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
 
-  // Error messages
   var passwordError = RxnString(null);
   var confirmPasswordError = RxnString(null);
 
-  /// ✅ Validate both password fields
+  /// Validate both password fields
   Future<void> validateAndSubmit(BuildContext context) async {
     passwordError.value = validatePassword(passwordController.text.trim());
     confirmPasswordError.value = validateConfirmPassword(
@@ -33,15 +33,13 @@ class CreateAccountSetPassController extends GetxController {
     );
 
     if (passwordError.value == null && confirmPasswordError.value == null) {
-      _registerUserRequest(context);
-
-      // showSnackBarSuccess("Success", "Account created successfully");
+      await _registerUserRequest(context);
     }
   }
 
+  /// API request to register the user
   Future<void> _registerUserRequest(BuildContext context) async {
     try {
-      // Show loading overlay
       context.loaderOverlay.show();
 
       final request = RegisterRequestModel(
@@ -57,31 +55,29 @@ class CreateAccountSetPassController extends GetxController {
         passwordConfirmation: confirmPasswordController.text.trim(),
       );
 
-      // Send API request
-      final response = await apiClient.registerUser(request);
-      log("🟢 ${request.toString()}");
+      log("🟢 Registration Request: $request");
 
-      // Handle response
+      final response = await apiClient.registerUser(request);
+
       if (response.isSuccess ?? false) {
         showSnackBarSuccess(
-          'Success',
-          response.details?.message ?? 'Registration completed successfully.',
+          'success'.tr,
+          response.details?.message ?? 'registration_completed'.tr,
         );
+
         Get.toNamed(
           "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}",
           arguments: {"tempToken": response.data?.token ?? "-"},
         );
       } else {
         showSnackBarError(
-          'Failed',
-          response.details?.message ??
-              'Something went wrong, please try again.',
+          'failed'.tr,
+          response.details?.message ?? 'something_went_wrong'.tr,
         );
       }
     } catch (e) {
       showSnackBarApiError();
     } finally {
-      // Always hide the loader
       context.loaderOverlay.hide();
     }
   }

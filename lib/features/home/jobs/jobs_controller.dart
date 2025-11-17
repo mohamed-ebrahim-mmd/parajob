@@ -1,8 +1,3 @@
-/*
- Mohamed Ebrahim | mohamed7ebrahim7@gmail.com | 2025-10-22 10:43 AM
- ==================================================================
-*/
-
 import 'dart:developer';
 
 import 'package:flutter/material.dart' show BuildContext;
@@ -23,7 +18,7 @@ class JobsController extends GetxController {
       ? null
       : Get.find<ProfileController>();
   var departmentCallState = ApiCallState.loading.obs;
-  var selectedDepartmentId = (-1).obs; // For the selected button
+  var selectedDepartmentId = (-1).obs; 
   List<Department>? departments;
   final String jobCategory;
   late final PagingController<int, Job> pagingController;
@@ -36,7 +31,6 @@ class JobsController extends GetxController {
     fetchDepartments();
   }
 
-  /// Change selected department
   void selectDepartment(int id) {
     if (selectedDepartmentId.value != id) {
       selectedDepartmentId.value = id;
@@ -44,7 +38,6 @@ class JobsController extends GetxController {
     }
   }
 
-  /// Fetch departments first, then initialize paging
   Future<void> fetchDepartments() async {
     departmentCallState.value = ApiCallState.loading;
 
@@ -52,11 +45,9 @@ class JobsController extends GetxController {
       final response = await apiClient.getDepartments();
 
       if (response.isSuccess ?? false) {
-        //add the "All" department at the beginning of the list
         departments = response.data;
-        departments?.insert(0, Department(id: -1, name: "All"));
+        departments?.insert(0, Department(id: -1, name: "all".tr));
         _initPagingController();
-
         departmentCallState.value = ApiCallState.success;
       } else {
         departmentCallState.value = ApiCallState.failure;
@@ -67,7 +58,6 @@ class JobsController extends GetxController {
     }
   }
 
-  /// Initialize pagination logic (runs only after departments are loaded)
   void _initPagingController() {
     pagingController = PagingController<int, Job>(
       getNextPageKey: (state) =>
@@ -86,15 +76,14 @@ class JobsController extends GetxController {
           return response.data ?? [];
         } else {
           log(
-            '🔴 Failed to fetch jobs for department: ${selectedDepartmentId.value}',
+            '🔴 failed_fetch_jobs_for_department: ${selectedDepartmentId.value}',
           );
-          throw Exception('Failed to fetch jobs');
+          throw Exception('Failed to load jobs');
         }
       },
     );
   }
 
-  /// 🔖 Add bookmark
   Future<void> _addBookmark(int jobId) async {
     try {
       final response = await apiClient.addBookmark(
@@ -104,8 +93,8 @@ class JobsController extends GetxController {
 
       if (response.isSuccess) {
         showSnackBarSuccess(
-          "Success",
-          response.details?.message ?? "Job bookmarked successfully!",
+          "success_title".tr,
+          response.details?.message ?? "job_bookmarked_success".tr,
         );
 
         pagingController.mapItems((job) {
@@ -121,10 +110,9 @@ class JobsController extends GetxController {
         _profileController?.fetchProfileDetails();
       } else {
         log("🔴 addBookmark ${response.details!.message}");
-
         showSnackBarError(
-          "Failed",
-          response.details?.message ?? "Could not bookmark the job.",
+          "failed_title".tr,
+          response.details?.message ?? "job_bookmark_failed".tr,
         );
       }
     } catch (e) {
@@ -132,7 +120,6 @@ class JobsController extends GetxController {
     }
   }
 
-  /// ❌ Remove bookmark
   Future<void> _removeBookmark(int jobId) async {
     try {
       final response = await apiClient.deleteBookmark(
@@ -142,8 +129,8 @@ class JobsController extends GetxController {
 
       if (response.isSuccess) {
         showSnackBarSuccess(
-          "Success",
-          response.details?.message ?? "Job removed from bookmarks.",
+          "success_title".tr,
+          response.details?.message ?? "job_removed_from_bookmarks".tr,
         );
 
         pagingController.mapItems((job) {
@@ -160,8 +147,8 @@ class JobsController extends GetxController {
       } else {
         log("🔴 removeBookmark ${response.details!.message}");
         showSnackBarError(
-          "Failed",
-          response.details?.message ?? "Could not remove bookmark.",
+          "failed_title".tr,
+          response.details?.message ?? "job_remove_bookmark_failed".tr,
         );
       }
     } catch (e) {
@@ -170,7 +157,6 @@ class JobsController extends GetxController {
   }
 
   Future<void> handleBookmarkTap(Job job, BuildContext context) async {
-    // 🔒 1. Check if the user is guest
     if (_userController.isGuest) {
       showAuthRequiredDialog();
       return;

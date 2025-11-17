@@ -72,8 +72,8 @@ class EmployerController extends GetxController {
 
       if (rating == 0 || reviewText.isEmpty) {
         showSnackBarError(
-          "Warning",
-          "Please select a rating and write a comment.",
+          "warning_title".tr,
+          "rating_comment_required".tr,
         );
         return;
       }
@@ -94,14 +94,17 @@ class EmployerController extends GetxController {
         );
 
         if (response.isSuccess == true) {
-          showSnackBarSuccess("Success", "Review submitted successfully!");
+          showSnackBarSuccess(
+            "success_title".tr,
+            "review_submitted_success".tr,
+          );
           reviewController.clear();
           selectedRating.value = 0;
           fetchCompany();
         } else {
           showSnackBarError(
-            "Failed",
-            response.details?.message ?? "Unknown error",
+            "failed_title".tr,
+            response.details?.message ?? "unknown_error".tr,
           );
         }
       } catch (e) {
