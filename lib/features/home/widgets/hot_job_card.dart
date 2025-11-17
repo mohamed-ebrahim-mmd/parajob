@@ -181,39 +181,41 @@ class HotJobCard extends StatelessWidget {
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {
-                      // handle apply action
+                      // navigation
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.pureWhite,
                       foregroundColor: const Color(0xFF122A2B),
-                      minimumSize: Size(double.infinity, context.hPct(7)),
+                      minimumSize: Size(double.infinity, context.hPct(5)),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(context.wPct(4)),
+                        borderRadius: BorderRadius.circular(context.wPct(3)),
                       ),
                     ),
                     child: Text(
                       "apply_now".tr,
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14,
+                      ),
                     ),
                   ),
                 ),
-                context.wBox(3),
-                // Icon container
+                context.wBox(2),
                 GestureDetector(
                   onTap: onBookmarkTap,
                   child: Container(
-                    height: context.hPct(7),
-                    padding: EdgeInsets.all(context.hPct(1.4)),
+                    height: context.hPct(5),
+                    padding: EdgeInsets.all(context.hPct(1)),
                     decoration: BoxDecoration(
                       color: isBookmarked
                           ? AppColors.aquaTeal8
-                          : Colors.transparent, // transparent background
-                      borderRadius: BorderRadius.circular(context.wPct(4)),
+                          : Colors.transparent,
+                      borderRadius: BorderRadius.circular(context.wPct(3)),
                       border: Border.all(
                         color: isBookmarked
                             ? AppColors.aquaTeal8
-                            : AppColors.softWhite80, // your border color
-                        width: 1.5, // adjust thickness
+                            : AppColors.softWhite80,
+                        width: 1.2,
                       ),
                     ),
                     child: Icon(
@@ -221,12 +223,10 @@ class HotJobCard extends StatelessWidget {
                       color: isBookmarked
                           ? AppColors.aquaTeal
                           : AppColors.softWhite80,
-                      size: context.hPct(4),
+                      size: context.hPct(3),
                     ),
                   ),
                 ),
-
-                // Expanded button
               ],
             ),
           ],
