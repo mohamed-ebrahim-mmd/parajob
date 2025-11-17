@@ -125,6 +125,9 @@ class MyJobCard extends StatelessWidget {
         return AppColors.rejected;
       case JobApplicationStatus.interviewScheduled:
         return AppColors.interviewScheduled;
+      case JobApplicationStatus.pending:
+        return AppColors.pending;
+      //pending
     }
   }
 }

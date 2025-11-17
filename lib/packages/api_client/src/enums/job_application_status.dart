@@ -5,6 +5,7 @@ enum JobApplicationStatus {
   accepted,
   rejected,
   interviewScheduled,
+  pending, // added
 }
 
 extension JobApplicationStatusExtension on JobApplicationStatus {
@@ -18,6 +19,8 @@ extension JobApplicationStatusExtension on JobApplicationStatus {
         return 'rejected';
       case JobApplicationStatus.interviewScheduled:
         return 'interview_scheduled';
+      case JobApplicationStatus.pending:
+        return 'pending';
     }
   }
 
@@ -31,6 +34,8 @@ extension JobApplicationStatusExtension on JobApplicationStatus {
         return JobApplicationStatus.rejected;
       case 'interview_scheduled':
         return JobApplicationStatus.interviewScheduled;
+      case 'pending':
+        return JobApplicationStatus.pending;
       default:
         return JobApplicationStatus.shortlisted;
     }
@@ -46,6 +51,8 @@ extension JobApplicationStatusExtension on JobApplicationStatus {
         return 'job_status_rejected'.tr;
       case JobApplicationStatus.interviewScheduled:
         return 'job_status_interview_scheduled'.tr;
+      case JobApplicationStatus.pending:
+        return 'job_status_pending'.tr;
     }
   }
 }
