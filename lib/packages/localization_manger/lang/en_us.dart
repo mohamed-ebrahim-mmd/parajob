@@ -456,6 +456,12 @@ const Map<String, String> enUS = {
   'job_status_interview_scheduled': 'Interview Scheduled',
 
   // ============================================================
+  // 🏷️ Job Types
+  // ============================================================
+  'job_type_full_time': 'Full Time',
+  'job_type_part_time': 'Part Time',
+
+  // ============================================================
   // 📋language
   // ============================================================
   'language': 'Languages',

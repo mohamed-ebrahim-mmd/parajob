@@ -17,6 +17,7 @@ import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/packages/ui_components/curved_image.dart';
+import 'package:para_job/packages/api_client/src/extensions/job_data_extension.dart';
 import 'package:para_job/packages/ui_components/error_screen.dart';
 import 'package:para_job/res/app_asset_paths.dart';
 
@@ -75,7 +76,7 @@ class JobDetailsScreen extends StatelessWidget {
                             context.wBox(5),
                             Expanded(
                               child: JobDetailContainer(
-                                text: jobDetails.type,
+                                text: jobDetails.displayType,
                                 iconPath: AppAssetPaths.company,
                               ),
                             ),
