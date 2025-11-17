@@ -9,6 +9,7 @@ import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/ui_components/auth_required_dialog.dart';
 import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class JobDetailsController extends GetxController {
   var jobDetailsCallState = ApiCallState.loading.obs;
@@ -146,6 +147,22 @@ class JobDetailsController extends GetxController {
     } else {
       // English format
       return DateFormat("h a", "en").format(parsed);
+    }
+  }
+
+  Future<void> openLocation(String url) async {
+    try {
+      final uri = Uri.parse(url);
+      final launched = await launchUrl(
+        uri,
+        mode: LaunchMode.externalApplication,
+      );
+      if (!launched) {
+        Get.snackbar('location_error'.tr, 'location_failed_to_open'.tr);
+      }
+    } catch (e) {
+      log('Error opening location: $e');
+      Get.snackbar('location_error'.tr, 'location_failed_to_open'.tr);
     }
   }
 }
