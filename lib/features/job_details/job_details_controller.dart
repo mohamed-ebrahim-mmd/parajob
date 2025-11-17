@@ -127,7 +127,6 @@ class JobDetailsController extends GetxController {
 
     return formatter.format(date);
   }
-
   //change TimeFormate
 
   String formatLocalizedTime(String? time) {

@@ -19,7 +19,6 @@ void main() async {
   Get.put(LocalizationController());
   // Load Arabic & English date formatting
   await initializeDateFormatting('ar', null);
-  await initializeDateFormatting('en', null);
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(ParaJobApp());
