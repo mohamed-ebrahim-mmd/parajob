@@ -30,7 +30,7 @@ class BookMarkedJobsScreen extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: screenContext.wPct(5)),
+        padding: EdgeInsets.symmetric(horizontal: screenContext.defaultPadding),
         child: PagingListener<int, Job>(
           controller: controller.pagingController,
           builder: (context, state, fetchNextPage) => PagedListView<int, Job>(

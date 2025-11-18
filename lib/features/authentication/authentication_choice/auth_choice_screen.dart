@@ -25,7 +25,7 @@ class AuthChoiceScreen extends StatelessWidget {
           Image.asset(AppAssetPaths.getStartedBackground, fit: BoxFit.cover),
 
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: context.wPct(8)),
+            padding: EdgeInsets.symmetric(horizontal: context.defaultPadding),
             child: Column(
               // mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[

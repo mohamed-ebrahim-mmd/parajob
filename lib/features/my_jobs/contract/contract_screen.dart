@@ -33,7 +33,7 @@ class ContractScreen extends StatelessWidget {
         backgroundColor: AppColors.charcoalBlack,
         body: SafeArea(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: context.wPct(5)),
+            padding: EdgeInsets.symmetric(horizontal: context.defaultPadding),
             child: Obx(() {
               switch (controller.contractCallState.value) {
                 case ApiCallState.loading:

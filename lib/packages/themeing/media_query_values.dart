@@ -6,7 +6,7 @@
 import 'package:flutter/material.dart';
 
 extension MediaQueryValues on BuildContext {
-  double get defaultPadding => sizePct(2);
+  double get defaultPadding => wPct(3);
 
   // Screen height
   double get h => MediaQuery.sizeOf(this).height;
@@ -24,23 +24,13 @@ extension MediaQueryValues on BuildContext {
     return w * (percentage / 100);
   }
 
-  // Size as a percentage of the smaller dimension
-  double sizePct(double percentage) {
-    double smallerDimension = w < h ? w : h;
-    return smallerDimension * (percentage / 100);
-  }
-
   /// Represents a SizedBox with a specific height
   SizedBox hBox(double value) {
-    return SizedBox(
-      height: hPct(value),
-    );
+    return SizedBox(height: hPct(value));
   }
 
   /// Represents a SizedBox with a specific width
   SizedBox wBox(double value) {
-    return SizedBox(
-      width: wPct(value),
-    );
+    return SizedBox(width: wPct(value));
   }
 }

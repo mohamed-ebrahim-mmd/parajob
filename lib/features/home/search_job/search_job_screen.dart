@@ -36,7 +36,7 @@ class SearchJobScreen extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: context.wPct(5)),
+        padding: EdgeInsets.symmetric(horizontal: context.defaultPadding),
         child: Obx(() {
           switch (controller.searchDataCallState.value) {
             case ApiCallState.loading:

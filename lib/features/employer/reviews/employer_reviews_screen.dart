@@ -23,7 +23,7 @@ class EmployerReviewsScreen extends StatelessWidget {
         child: SingleChildScrollView(
           padding: EdgeInsets.only(bottom: context.hPct(7)),
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: context.wPct(5)),
+            padding: EdgeInsets.symmetric(horizontal: context.defaultPadding),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

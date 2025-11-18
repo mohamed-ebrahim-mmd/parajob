@@ -27,7 +27,7 @@ class MoreScreen extends StatelessWidget {
       ),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: context.wPct(5)),
+          padding: EdgeInsets.symmetric(horizontal: context.defaultPadding),
           child: ListView(
             children: [
               Text(

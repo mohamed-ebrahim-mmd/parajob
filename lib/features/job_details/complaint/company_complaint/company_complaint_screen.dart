@@ -17,7 +17,7 @@ class CompanyComplaintScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.charcoalBlack,
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: context.wPct(5)),
+        padding: EdgeInsets.symmetric(horizontal: context.defaultPadding),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

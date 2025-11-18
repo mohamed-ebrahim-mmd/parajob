@@ -56,7 +56,7 @@ class EmployerScreen extends StatelessWidget {
                         company.isSubmitComplaint ?? false,
                   ),
                   Padding(
-                    padding: EdgeInsets.all(context.wPct(4)),
+                    padding: EdgeInsets.all(context.defaultPadding),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
