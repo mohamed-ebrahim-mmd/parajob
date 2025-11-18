@@ -147,7 +147,7 @@ const Map<String, String> arSA = {
   'education_pic_title': 'التعليم',
   'education_pic_subtitle': 'حان وقت التحقق من جامعتك',
   'education_pic_note':
-      'ملاحظة :\nيمكنك مسح أي مستند آخر يثبت \nأنك طالب جامعي.',
+      'ملاحظة :\nاضغط لاختيار مستند  يثبت \nأنك طالب جامعي.',
   'education_pic_note_1': 'تأكد من أن المحيط مضاء بشكل جيد.',
   'education_pic_note_2':
       'تأكد من أن الصورة داخل الإطار وأن \nالتفاصيل سهلة القراءة',
