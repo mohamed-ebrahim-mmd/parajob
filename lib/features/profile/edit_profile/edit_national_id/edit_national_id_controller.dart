@@ -6,6 +6,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/get_instance.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:get/get_utils/get_utils.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:para_job/features/profile/user_profile/profile_controller.dart';
@@ -45,7 +46,7 @@ Future<void> uploadFile() async {
   final validFiles = fileMap.entries.where((e) => e.value != null).toList();
 
   if (validFiles.isEmpty) {
-    showSnackBarError("No files changed", "no files changed");
+    showSnackBarError("failed_title".tr, "no_changes_made".tr);
     return;
   }
 
@@ -76,8 +77,8 @@ Future<void> uploadFile() async {
       await editUserProfile(urlMap);
     } else {
       showSnackBarError(
-        "Failed",
-        response.details?.message ?? "Upload failed",
+        "failed_title".tr,
+        response.details?.message ?? "photo_upload_failed".tr,
       );
     }
   } catch (e) {
@@ -111,11 +112,11 @@ Future<void> uploadFile() async {
         await profileController.fetchProfileDetails();
         log("🟢 isSuccess");
         showSnackBarSuccess(
-          "success",
-          response.details.message ?? "edit successfully",
+         "success_title".tr,
+          response.details.message ??  "edit_successfully".tr,
         );
       } else {
-        showSnackBarError("Failed", response.details.message ?? "edit failed");
+        showSnackBarError("failed_title".tr, response.details.message ?? "edit_failed".tr,);
         log(response.details.message ?? "edit failed");
       }
     } catch (e) {

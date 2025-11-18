@@ -116,13 +116,13 @@ class EditMainInfoController extends GetxController {
   void editUser() async {
     // City
     if (selectedCityId.value == null) {
-      showSnackBarError("Failed", 'Please select your city');
+      showSnackBarError("failed_title".tr, 'city_required'.tr);
       return;
     }
 
     //  Area
     if (selectedAreaId == null) {
-      showSnackBarError("Failed", 'Please select your area');
+      showSnackBarError("failed_title".tr, "area_required".tr);
       return;
     }
 
@@ -139,11 +139,11 @@ class EditMainInfoController extends GetxController {
         await profileController.fetchProfileDetails();
         log("🟢 isSuccess");
         showSnackBarSuccess(
-          "success",
-          response.details.message ?? "edit successfully",
+           "success_title".tr,
+          response.details.message ?? "edit_successfully".tr,
         );
       } else {
-        showSnackBarError("Failed", response.details.message ?? "edit failed");
+        showSnackBarError("failed_title".tr, response.details.message ??"edit_failed".tr,);
         log(response.details.message ?? "edit failed");
       }
     } catch (e) {

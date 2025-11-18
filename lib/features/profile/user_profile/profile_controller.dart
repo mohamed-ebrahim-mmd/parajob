@@ -49,13 +49,13 @@ class ProfileController extends GetxController {
         navController.deleteUserProfilePic();
       } else {
         showSnackBarError(
-          "Failed",
-          response.details.message ?? "your photo deleted failed",
+          "failed_title",
+          response.details.message ?? "photo_delete_failed".tr,
         );
       }
     } catch (e) {
       log("🔴 ${e.toString()}");
-      showSnackBarError("Failed", e.toString());
+      showSnackBarError("failed_title".tr, e.toString());
     } finally {
       context.loaderOverlay.hide();
     }
@@ -83,19 +83,19 @@ class ProfileController extends GetxController {
       if (response.isSuccess) {
         var url = response.urls?[0];
         if (url == null || url.isEmpty) {
-          showSnackBarError("Failed", "No file URL returned from upload API");
+          showSnackBarError("failed_title".tr, "no_file_url_returned".tr);
           return;
         }
 
         await updateUserPic(context, url);
       } else {
         showSnackBarError(
-          "Failed",
-          response.details?.message ?? "your photo uploaded failed",
+          "failed_title".tr,
+          response.details?.message ?? "photo_upload_failed".tr,
         );
       }
     } catch (e) {
-      showSnackBarError("Failed", e.toString());
+      showSnackBarError("failed_title".tr, e.toString());
     } finally {
       context.loaderOverlay.hide();
     }
@@ -113,8 +113,8 @@ class ProfileController extends GetxController {
         navController.setUserProfilePic(url);
       } else {
         showSnackBarError(
-          "Failed",
-          response.details.message ?? "your photo deleted failed",
+          "failed_title".tr,
+          response.details.message ?? "photo_update_failed".tr,
         );
       }
     } catch (e) {
@@ -177,14 +177,14 @@ class ProfileController extends GetxController {
           _homeController.fetchHomeJobs();
         }
         showSnackBarSuccess(
-          "Success",
-          response.details?.message ?? "Job removed from bookmarks.",
+          "success_title".tr,
+          response.details?.message ?? "bookmark_removed".tr,
         );
       } else {
         log("🔴 removeBookmark ${response.details!.message}");
         showSnackBarError(
-          "Failed",
-          response.details?.message ?? "Could not remove bookmark.",
+          "failed_title".tr,
+          response.details?.message ?? "could_not_remove_bookmark".tr,
         );
       }
     } catch (e) {

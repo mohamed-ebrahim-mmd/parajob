@@ -64,13 +64,13 @@ class ContactUsController extends GetxController {
 
       if (response.isSuccess) {
         showSnackBarSuccess(
-          "Success",
-          response.details.message ?? "message sent successfully",
+          "success_title".tr,
+          response.details.message ?? "message_sent_successfully".tr,
         );
       } else {
         showSnackBarError(
-          "Failed",
-          response.details.message ?? "message sent failed",
+          "failed_title".tr,
+          response.details.message ?? "message_sent_failed".tr,
         );
       }
     } catch (e) {

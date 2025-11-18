@@ -81,7 +81,7 @@ class EditSkillsController extends GetxController {
   void editUser() async {
     // 
     if (selectedSkillsList.isEmpty ) {
-      showSnackBarError("Failed", 'Please select at least one skill');
+      showSnackBarError("failed_title".tr, 'select_at_least_one_skill'.tr);
       return;
     }
 
@@ -101,11 +101,11 @@ class EditSkillsController extends GetxController {
         await profileController.fetchProfileDetails();
         log("🟢 isSuccess");
         showSnackBarSuccess(
-          "success",
-          response.details.message ?? "edit successfully",
+          "success_title".tr,
+          response.details.message ??  "edit_successfully".tr,
         );
       } else {
-        showSnackBarError("Failed", response.details.message ?? "edit failed");
+        showSnackBarError("failed_title".tr, response.details.message ?? "edit_failed".tr,);
         log(response.details.message ?? "edit failed");
       }
     } catch (e) {

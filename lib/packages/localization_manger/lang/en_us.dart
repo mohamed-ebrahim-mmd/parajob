@@ -669,7 +669,8 @@ const Map<String, String> enUS = {
   // ============================================================
   "registration_completed": "Registration completed successfully.",
   "something_went_wrong": "Something went wrong, please try again.",
-  "otp_sent":"otp sent successfully",
+  "otp_sent": "otp sent successfully",
+  "otp_verified": "otp verified successfully",
 
   // ============================================================
   //create acc skills controller
@@ -694,4 +695,48 @@ const Map<String, String> enUS = {
   "front_id_required": "Please provide your front ID image to continue",
   "pic_with_id_required":
       "Please provide a picture of yourself holding the ID to continue",
+
+  // ============================================================
+  //bookmark job controller
+  // ============================================================
+  "job_removed_bookmark": "Job removed from bookmarks.",
+  "job_could_not_remove": "Could not remove bookmark.",
+
+  // ============================================================
+  //contact us controller
+  // ============================================================
+  "message_sent_successfully": "Message sent successfully",
+  "message_sent_failed": "Failed to send message",
+
+  // ============================================================
+  //more controller
+  // ============================================================
+  "account_deleted_successfully": "Your account was deleted successfully",
+  "account_deleted_failed": "Failed to delete your account",
+
+  // ============================================================
+  // profile controller
+  // ============================================================
+  "photo_delete_failed": "Failed to delete your photo",
+  "photo_upload_failed": "Failed to upload your photo",
+  "photo_update_failed": "Failed to update your photo",
+  "no_file_url_returned": "No file URL returned from upload API",
+  "bookmark_removed": "Job removed from bookmarks",
+  "could_not_remove_bookmark": "Could not remove bookmark",
+ // "file_upload_failed": "Failed to upload your file",
+
+  // ============================================================
+  // edit cv profile controller
+  // ============================================================
+  "nothing_to_update": "Nothing to update",
+  "no_changes_made": "You didn’t make any changes to your file.",
+  "edit_successfully": "Edited successfully",
+  "edit_failed": "Edit failed",
+
+  // ============================================================
+  // edit education controller
+  // ============================================================
+  "select_graduation_year_msg": "Please select your graduation year",
+  "select_faculty_msg": "Please select your faculty",
+
 };

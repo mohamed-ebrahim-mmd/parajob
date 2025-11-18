@@ -50,7 +50,7 @@ class EditEducationController extends GetxController {
       ),
       firstDate: DateTime(1950),
       lastDate: DateTime(2050),
-      helpText: 'Select your graduation year',
+      helpText: 'select_graduation_year'.tr,
     );
 
     if (pickedDate != null) {
@@ -78,15 +78,13 @@ class EditEducationController extends GetxController {
   }
 
   void editUser() async {
-    // graduation year
     if (graduationYearController.text.isEmpty) {
-      showSnackBarError("Failed", 'Please select your graduation year');
+      showSnackBarError("failed_title".tr, 'select_graduation_year_msg'.tr);
       return;
     }
 
-    //
     if (selectedFacultyId == null) {
-      showSnackBarError("Failed", 'Please select your faculty');
+      showSnackBarError("failed_title".tr, 'select_faculty_msg'.tr);
       return;
     }
 
@@ -108,12 +106,15 @@ class EditEducationController extends GetxController {
         await profileController.fetchProfileDetails();
         log("🟢 isSuccess");
         showSnackBarSuccess(
-          "success",
-          response.details.message ?? "edit successfully",
+          "success_title".tr,
+          response.details.message ?? "edit_successfully".tr,
         );
       } else {
-        showSnackBarError("Failed", response.details.message ?? "edit failed");
-        log(response.details.message ?? "edit failed");
+        showSnackBarError(
+          "failed_title".tr,
+          response.details.message ?? "edit_failed".tr,
+        );
+        log(response.details.message ?? "edit_failed");
       }
     } catch (e) {
       showSnackBarApiError();
@@ -121,7 +122,6 @@ class EditEducationController extends GetxController {
       screenContext.loaderOverlay.hide();
     }
   }
-
 
   @override
   void onClose() {
