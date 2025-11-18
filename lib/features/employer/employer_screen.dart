@@ -173,6 +173,7 @@ class EmployerScreen extends StatelessWidget {
                         EmployerListHeader(
                           title: 'reviews'.tr,
                           onViewAll: controller.goToEmployerReviews,
+                          showViewAllButton: company.latestReviews != null && company.latestReviews!.isNotEmpty,
                         ),
                         LatestReviewsList(company: company),
 
