@@ -23,7 +23,7 @@ class ActiveJobsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-       title: Text('active_jobs'.tr),
+        title: Text('active_jobs'.tr),
         surfaceTintColor: AppColors.charcoalBlack,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new),
@@ -33,7 +33,7 @@ class ActiveJobsScreen extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: context.wPct(5)),
+        padding: EdgeInsets.symmetric(horizontal: context.defaultPadding),
         child: PagingListener<int, Job>(
           controller: controller.pagingController,
           builder: (context, state, fetchNextPage) => PagedListView<int, Job>(
