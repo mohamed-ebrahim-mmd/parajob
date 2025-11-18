@@ -89,6 +89,7 @@ class HomeScreen extends StatelessWidget {
                       );
 
                     case ApiCallState.success:
+                     controller.startShowcase();
                       final hotJobsList =
                           controller.homeData!.data.first.hotJobs;
                       final nonFlexibleJobs =

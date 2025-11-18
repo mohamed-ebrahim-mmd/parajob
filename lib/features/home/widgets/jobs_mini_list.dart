@@ -6,13 +6,15 @@ import 'package:para_job/packages/api_client/src/models/responses/job.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
+import 'package:showcaseview/showcaseview.dart';
 
 class JobsMiniList extends StatelessWidget {
   final List<Job> jobs;
   final VoidCallback? onSeeAll;
   final String title;
+  final controller = Get.find<HomeController>();
 
-  const JobsMiniList({
+  JobsMiniList({
     super.key,
     required this.jobs,
     this.onSeeAll,
@@ -29,11 +31,19 @@ class JobsMiniList extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              title,
-              style: TextStyle(
-                fontSize: context.wPct(4.5),
-                fontWeight: FontWeight.bold,
+            Showcase(
+              tooltipBackgroundColor: AppColors.midnightBlue,
+              key: title == 'flexible_jobs'.tr
+                  ? controller.secondKey
+                  : controller.thirdKey,
+              description: title == 'flexible_jobs'.tr ? "des" : "dessssss2",
+
+              child: Text(
+                title,
+                style: TextStyle(
+                  fontSize: context.wPct(4.5),
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
             GestureDetector(

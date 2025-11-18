@@ -10,12 +10,14 @@ import 'package:para_job/packages/api_client/src/models/responses/job.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
+import 'package:showcaseview/showcaseview.dart';
 
 class HotJobsMiniList extends StatelessWidget {
   final List<Job> jobs;
   final VoidCallback? onSeeAll;
+  final controller = Get.find<HomeController>();
 
-  const HotJobsMiniList({super.key, required this.jobs, this.onSeeAll});
+  HotJobsMiniList({super.key, required this.jobs, this.onSeeAll});
 
   @override
   Widget build(BuildContext context) {
@@ -37,11 +39,23 @@ class HotJobsMiniList extends StatelessWidget {
                     size: context.hPct(4),
                   ),
                   context.wBox(2),
-                  Text(
-                    "hot_jobs".tr,
-                    style: TextStyle(
-                      fontSize: context.wPct(4.5),
-                      fontWeight: FontWeight.bold,
+                  Showcase(
+                    key: controller.firstKey,
+                    description:
+                        "Premium jobs from major companies or special events. These roles are limited and competitive—apply fast and stand out.",
+                    tooltipBackgroundColor: AppColors.midnightBlue,
+                    textColor: AppColors.pureWhite,
+                    // لون النص
+                    tooltipPadding: EdgeInsets.all(30), // padding داخلي
+                    tooltipBorderRadius: BorderRadius.circular(
+                      12,
+                    ), // تدوير الزوايا
+                    child: Text(
+                      "hot_jobs".tr,
+                      style: TextStyle(
+                        fontSize: context.wPct(4.5),
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ],
