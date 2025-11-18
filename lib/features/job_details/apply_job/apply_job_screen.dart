@@ -58,7 +58,7 @@ class ApplyJobScreen extends StatelessWidget {
                   context.hBox(context.wPct(2)),
                   Container(
                     width: double.infinity,
-                    padding: EdgeInsets.all(context.wPct(5)),
+                    padding: EdgeInsets.all(context.defaultPadding),
                     decoration: BoxDecoration(
                       color: AppColors.charcoalBlack,
                       borderRadius: BorderRadius.circular(context.wPct(2)),

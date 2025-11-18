@@ -59,7 +59,9 @@ class JobDetailsScreen extends StatelessWidget {
                   ),
                   context.hBox(4),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: context.wPct(5)),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: context.defaultPadding,
+                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
