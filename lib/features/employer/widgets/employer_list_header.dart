@@ -30,7 +30,7 @@ class EmployerListHeader extends StatelessWidget {
             color: AppColors.pureWhite,
           ),
         ),
-        if (showViewAllButton && onViewAll != null)
+        if (showViewAllButton)
           GestureDetector(
             onTap: onViewAll,
             child: Row(

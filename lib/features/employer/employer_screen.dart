@@ -165,6 +165,9 @@ class EmployerScreen extends StatelessWidget {
                         EmployerListHeader(
                           title: 'active_jobs'.tr,
                           onViewAll: controller.goToActiveJobs,
+                          showViewAllButton:
+                              company.activeJobs != null &&
+                              company.activeJobs!.isNotEmpty,
                         ),
                         context.hBox(2),
                         ActiveJobsList(company: company),
@@ -173,7 +176,9 @@ class EmployerScreen extends StatelessWidget {
                         EmployerListHeader(
                           title: 'reviews'.tr,
                           onViewAll: controller.goToEmployerReviews,
-                          showViewAllButton: company.latestReviews != null && company.latestReviews!.isNotEmpty,
+                          showViewAllButton:
+                              company.latestReviews != null &&
+                              company.latestReviews!.isNotEmpty,
                         ),
                         LatestReviewsList(company: company),
 
