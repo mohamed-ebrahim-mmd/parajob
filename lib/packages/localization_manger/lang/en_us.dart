@@ -93,7 +93,7 @@ const Map<String, String> enUS = {
   // ============================================================
   'back_national_id_title': 'National ID Scan',
   'back_national_id_subtitle': 'Time to verify your identity',
-  'back_national_id_scan_text_1': 'Scan the',
+  'back_national_id_scan_text_1': 'Tap to upload the',
   'back_national_id_scan_text_back': ' back',
   'back_national_id_scan_text_2': ' of the ID',
   'back_national_id_note_1': 'Make sure your surroundings are well-lit.',
@@ -106,7 +106,7 @@ const Map<String, String> enUS = {
   // ============================================================
   'front_national_id_title': 'National ID Scan',
   'front_national_id_subtitle': 'Time to verify your identity',
-  'front_national_id_scan_text_1': 'Scan the',
+  'front_national_id_scan_text_1': 'Tap to upload the',
   'front_national_id_scan_text_front': ' front',
   'front_national_id_scan_text_2': ' of the ID',
   'front_national_id_note_1': 'Make sure your surroundings are well-lit.',

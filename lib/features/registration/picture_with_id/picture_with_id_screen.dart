@@ -53,7 +53,7 @@ class PictureWithIdScreen extends StatelessWidget {
 
               context.hBox(6),
               IdImagePicker(
-                fromCamera: true,
+                galleryOption: false,
                 imagePath: AppAssetPaths.userWithID,
                 text: Text(
                   'picture_with_id_instruction'.tr,
