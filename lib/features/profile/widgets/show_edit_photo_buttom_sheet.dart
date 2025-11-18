@@ -31,10 +31,18 @@ Future<void> showEditPhotoBottomSheet(
             style: FilledButton.styleFrom(
               backgroundColor: AppColors.whiteSoft5,
             ),
-            child: Text("Choose photo"),
+            child: Text("choose_photo".tr),
           ),
-
-         
+          context.hBox(2),
+          FilledButton(
+            onPressed: () async {
+              controller.uploadFile(context, fromCamera: true);
+            },
+            style: FilledButton.styleFrom(
+              backgroundColor: AppColors.whiteSoft5,
+            ),
+            child: Text("take_photo".tr),
+          ),
           context.hBox(2),
 
           FilledButton(
@@ -45,7 +53,7 @@ Future<void> showEditPhotoBottomSheet(
               backgroundColor: AppColors.whiteSoft5,
             ),
             child: Text(
-              "Remove photo",
+              "remove_photo".tr,
               style: TextStyle(color: AppColors.coralRed),
             ),
           ),
