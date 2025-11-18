@@ -15,7 +15,6 @@ class HomeController extends GetxController {
       ? null
       : Get.find<ProfileController>();
   var homeCallState = ApiCallState.loading.obs;
-  var isRefreshing = false.obs; //  track refresh state
   HomeResponse? homeData;
 
   @override
@@ -41,13 +40,8 @@ class HomeController extends GetxController {
     return isFound;
   }
 
-  Future<void> fetchHomeJobs({bool isRefresh = false}) async {
-    // Set refresh state if this is a refresh operation
-    if (isRefresh) {
-      isRefreshing.value = true;
-    } else {
-      homeCallState.value = ApiCallState.loading;
-    }
+  Future<void> fetchHomeJobs() async {
+    homeCallState.value = ApiCallState.loading;
 
     try {
       final response = await apiClient.fetchHomeJobs(
@@ -63,11 +57,6 @@ class HomeController extends GetxController {
       }
     } catch (e) {
       homeCallState.value = ApiCallState.failure;
-    } finally {
-      // Reset refresh state
-      if (isRefresh) {
-        isRefreshing.value = false;
-      }
     }
   }
 

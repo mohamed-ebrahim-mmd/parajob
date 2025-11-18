@@ -29,7 +29,7 @@ class HomeScreen extends StatelessWidget {
       child: Obx(() {
         return RefreshIndicator(
           onRefresh: () async {
-            await controller.fetchHomeJobs(isRefresh: true);
+            await controller.fetchHomeJobs();
           },
           child: SingleChildScrollView(
             child: Padding(
