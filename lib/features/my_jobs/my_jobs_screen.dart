@@ -14,7 +14,7 @@ class MyJobsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: context.wPct(5)),
+        padding: EdgeInsets.symmetric(horizontal: context.defaultPadding),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
