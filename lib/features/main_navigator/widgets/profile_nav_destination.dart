@@ -8,35 +8,31 @@ import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
 class ProfileNavDestination extends StatelessWidget {
-  const ProfileNavDestination({super.key, required this.controller});
+  ProfileNavDestination({super.key});
 
-  final MainNavigatorController controller;
+  //final MainNavigatorController controller;
+  final controller = Get.find<MainNavigatorController>();
 
   @override
   Widget build(BuildContext context) {
-    return NavigationDestination(
-      icon: controller.userController.isGuest
-          ? Icon(Icons.person_outline, size: context.hPct(3))
-          : SizedBox(
-              height: context.hPct(3),
-              width: context.hPct(3),
-              child: UserImg(profilePic: controller.userProfilePic.value),
-            ),
-      selectedIcon: controller.userController.isGuest
-          ? Icon(
-              Icons.person_outline,
-              size: context.hPct(3),
-              color: AppColors.aquaTeal,
-            )
-          : SizedBox(
-              height: context.hPct(3),
-              width: context.hPct(3),
-              child: UserImg(
+    return Obx(() {
+      return NavigationDestination(
+        icon: controller.userController.isGuest
+            ? Icon(Icons.person_outline, size: context.hPct(4))
+            : UserImg(profilePic: controller.userProfilePic.value),
+        selectedIcon: controller.userController.isGuest
+            ? Icon(
+                Icons.person_outline,
+                size: context.hPct(4),
+                color: AppColors.aquaTeal,
+              )
+            : UserImg(
                 isSelected: true,
                 profilePic: controller.userProfilePic.value,
               ),
-            ),
-      label: 'nav_profile'.tr,
-    );
+
+        label: 'nav_profile'.tr,
+      );
+    });
   }
 }

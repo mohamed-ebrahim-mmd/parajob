@@ -5,8 +5,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:para_job/features/main_navigator/widgets/profile_nav_destination.dart';
 import 'package:para_job/features/main_navigator/main_navigator_controller.dart';
+import 'package:para_job/features/main_navigator/widgets/profile_nav_destination.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
 import 'package:para_job/res/app_asset_paths.dart';
@@ -83,7 +83,7 @@ class MainNavigatorScreen extends StatelessWidget {
                 ),
                 label: 'nav_notifications'.tr,
               ),
-              ProfileNavDestination(controller: controller),
+              ProfileNavDestination(),
             ],
           ),
         ),

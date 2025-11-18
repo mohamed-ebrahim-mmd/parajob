@@ -10,21 +10,10 @@ import '../my_notifications/my_notifications_screen.dart';
 
 class MainNavigatorController extends GetxController {
   final userController = Get.find<UserController>();
-  //var cartCountApiCallState = ApiCallState.loading.obs;
   var tab = 0.obs; // Observable variable to track tab index
-  // Navigation destinations
   var userProfilePic = Rx<String?>(null);
-  @override
-  void onInit() {
-    userProfilePic.value = userController.user?.profilePicture;
-    super.onInit();
-  }
 
-  void deleteUserProfilePic() {
-    userProfilePic.value = null;
-  }
-
-  void setUserProfilePic(String profilePic) {
+  void setUserProfilePic(String? profilePic) {
     userProfilePic.value = profilePic;
   }
 

@@ -292,6 +292,9 @@ const Map<String, String> enUS = {
   'profile_info_jobs': 'JOBS',
   'profile_info_income': 'INCOME',
   'profile_info_companies': 'COMPANIES',
+  "take_photo": "Take Photo",
+  "choose_photo": "Choose photo",
+  "remove_photo": "Remove photo",
 
   // ============================================================
   // ⚡ More Screen (Settings)
@@ -723,7 +726,7 @@ const Map<String, String> enUS = {
   "no_file_url_returned": "No file URL returned from upload API",
   "bookmark_removed": "Job removed from bookmarks",
   "could_not_remove_bookmark": "Could not remove bookmark",
- // "file_upload_failed": "Failed to upload your file",
+  // "file_upload_failed": "Failed to upload your file",
 
   // ============================================================
   // edit cv profile controller
@@ -738,5 +741,4 @@ const Map<String, String> enUS = {
   // ============================================================
   "select_graduation_year_msg": "Please select your graduation year",
   "select_faculty_msg": "Please select your faculty",
-
 };

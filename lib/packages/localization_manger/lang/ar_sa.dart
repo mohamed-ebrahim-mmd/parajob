@@ -288,6 +288,9 @@ const Map<String, String> arSA = {
   'profile_info_jobs': 'الوظائف',
   'profile_info_income': 'الدخل',
   'profile_info_companies': 'الشركات',
+  "take_photo": "التقط صوره",
+  "choose_photo": "اختر صوره",
+  "remove_photo": "حذف الصوره",
 
   // ============================================================
   // ⚡ More Screen (Settings)
@@ -729,5 +732,4 @@ const Map<String, String> arSA = {
   // ============================================================
   "select_graduation_year_msg": "الرجاء اختيار سنة التخرج",
   "select_faculty_msg": "الرجاء اختيار الكلية",
-
 };
