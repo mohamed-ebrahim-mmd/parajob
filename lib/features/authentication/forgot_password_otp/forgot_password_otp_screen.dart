@@ -33,7 +33,7 @@ class ForgotPasswordOtpScreen extends StatelessWidget {
         ),
 
         body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: context.wPct(5)),
+          padding: EdgeInsets.symmetric(horizontal: context.defaultPadding),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
