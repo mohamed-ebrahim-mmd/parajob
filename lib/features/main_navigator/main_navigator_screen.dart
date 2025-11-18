@@ -7,6 +7,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/main_navigator/main_navigator_controller.dart';
 import 'package:para_job/features/main_navigator/widgets/profile_nav_destination.dart';
+import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
 import 'package:para_job/res/app_asset_paths.dart';
@@ -27,11 +28,20 @@ class MainNavigatorScreen extends StatelessWidget {
         ),
         bottomNavigationBar: NavigationBarTheme(
           data: NavigationBarThemeData(
-            labelTextStyle: WidgetStateProperty.all(
-              TextStyle(
+            labelTextStyle: WidgetStateProperty.resolveWith<TextStyle>((
+              states,
+            ) {
+              if (states.contains(WidgetState.selected)) {
+                return TextStyle(
+                  fontSize: context.wPct(3),
+                  color: AppColors.aquaTeal, // Color for selected text
+                );
+              }
+              return TextStyle(
                 fontSize: context.wPct(3),
-              ), // Set your desired font size here
-            ),
+                color: Colors.white, // Color for unselected text
+              );
+            }),
           ),
           child: NavigationBar(
             height: context.hPct(6.2),
@@ -45,33 +55,41 @@ class MainNavigatorScreen extends StatelessWidget {
             // Change this color
             destinations: [
               NavigationDestination(
-                icon: SvgPicture.asset(AppAssetPaths.unselectedHomeAppNavIcon),
+                icon: SvgPicture.asset(
+                  AppAssetPaths.unselectedHomeAppNavIcon,
+                  height: context.hPct(3),
+                  width: context.wPct(3),
+                ),
                 selectedIcon: SvgPicture.asset(
                   AppAssetPaths.selectedHomeAppNavIcon,
-                  height: context.hPct(4),
-                  width: context.wPct(4),
+                  height: context.hPct(3),
+                  width: context.wPct(3),
                 ),
                 label: 'nav_home'.tr,
               ),
               NavigationDestination(
-                icon: SvgPicture.asset(AppAssetPaths.unselectedJobsAppNavIcon),
+                icon: SvgPicture.asset(
+                  AppAssetPaths.unselectedJobsAppNavIcon,
+                  height: context.hPct(3),
+                  width: context.wPct(3),
+                ),
                 selectedIcon: SvgPicture.asset(
                   AppAssetPaths.selectedJobsAppNavIcon,
-                  height: context.hPct(4),
-                  width: context.wPct(4),
+                  height: context.hPct(3),
+                  width: context.wPct(3),
                 ),
                 label: 'nav_jobs'.tr,
               ),
               NavigationDestination(
                 icon: SvgPicture.asset(
                   AppAssetPaths.unselectedNotificationsAppNavIcon,
-                  height: context.hPct(4),
-                  width: context.wPct(4),
+                  height: context.hPct(3),
+                  width: context.wPct(3),
                 ),
                 selectedIcon: SvgPicture.asset(
                   AppAssetPaths.selectedNotificationsAppNavIcon,
-                  height: context.hPct(4),
-                  width: context.wPct(4),
+                  height: context.hPct(3),
+                  width: context.wPct(3),
                 ),
                 label: 'nav_notifications'.tr,
               ),
