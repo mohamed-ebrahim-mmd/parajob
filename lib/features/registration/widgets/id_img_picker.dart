@@ -1,7 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:para_job/features/job_details/complaint/widgets/complaint_item.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
@@ -12,14 +14,16 @@ class IdImagePicker extends StatefulWidget {
     required this.text,
     this.isEducation = false,
     required this.onImageSelected, // 👈 add this
-    this.fromCamera = false,
+    this.cameraOption = true,
+    this.galleryOption = true,
   });
 
   final String imagePath;
   final Widget text;
   final bool isEducation;
   final ValueChanged<File?> onImageSelected; // 👈 callback to parent
-  final bool fromCamera;
+  final bool cameraOption;
+  final bool galleryOption;
 
   @override
   State<IdImagePicker> createState() => _IdImagePickerState();
@@ -29,10 +33,54 @@ class _IdImagePickerState extends State<IdImagePicker> {
   File? _selectedImage;
   final ImagePicker _picker = ImagePicker();
 
-  Future<void> _pickImage() async {
+  void showTakePhotoOptionsBottomSheet() {
+    final context = Get.context!;
+
+    Get.bottomSheet(
+      Container(
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: AppColors.midnightBlue,
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(context.wPct(6)),
+          ),
+        ),
+        padding: EdgeInsets.all(context.wPct(6)),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            widget.cameraOption
+                ? ComplaintItem(
+                    title: '${'take_photo'.tr} ',
+                    onTap: () {
+                      Get.back();
+                      _pickImage(fromCamera: true);
+                    },
+                  )
+                : SizedBox(),
+            context.hBox(2),
+            widget.galleryOption
+                ? ComplaintItem(
+                    title: '${'choose_photo'.tr} ',
+                    onTap: () {
+                      Get.back();
+                      _pickImage();
+                    },
+                  )
+                : SizedBox(),
+            context.hBox(2),
+          ],
+        ),
+      ),
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+    );
+  }
+
+  Future<void> _pickImage({bool fromCamera = false}) async {
     try {
       final XFile? pickedFile = await _picker.pickImage(
-        source: widget.fromCamera ? ImageSource.camera : ImageSource.gallery,
+        source: fromCamera ? ImageSource.camera : ImageSource.gallery,
 
         imageQuality: 85,
       );
@@ -52,7 +100,7 @@ class _IdImagePickerState extends State<IdImagePicker> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: _pickImage,
+      onTap: showTakePhotoOptionsBottomSheet,
       child: Container(
         padding: EdgeInsets.symmetric(
           vertical: context.hPct(2),

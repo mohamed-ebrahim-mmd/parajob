@@ -92,7 +92,7 @@ const Map<String, String> arSA = {
   // ============================================================
   'back_national_id_title': 'مسح البطاقة الوطنية',
   'back_national_id_subtitle': 'حان وقت التحقق من هويتك',
-  'back_national_id_scan_text_1': 'امسح',
+  'back_national_id_scan_text_1': 'اضغط لتحميل',
   'back_national_id_scan_text_back': ' الجهة الخلفية',
   'back_national_id_scan_text_2': ' للبطاقة',
   'back_national_id_note_1': 'تأكد من أن المحيط مضاء بشكل جيد.',
@@ -105,7 +105,7 @@ const Map<String, String> arSA = {
   // ============================================================
   'front_national_id_title': 'مسح البطاقة الوطنية',
   'front_national_id_subtitle': 'حان وقت التحقق من هويتك',
-  'front_national_id_scan_text_1': 'امسح',
+  'front_national_id_scan_text_1': 'اضغط لتحميل',
   'front_national_id_scan_text_front': ' الجهة الأمامية',
   'front_national_id_scan_text_2': ' للبطاقة',
   'front_national_id_note_1': 'تأكد من أن المحيط مضاء بشكل جيد.',
@@ -147,7 +147,7 @@ const Map<String, String> arSA = {
   'education_pic_title': 'التعليم',
   'education_pic_subtitle': 'حان وقت التحقق من جامعتك',
   'education_pic_note':
-      'ملاحظة :\nيمكنك مسح أي مستند آخر يثبت \nأنك طالب جامعي.',
+      'ملاحظة :\nاضغط لاختيار مستند  يثبت \nأنك طالب جامعي.',
   'education_pic_note_1': 'تأكد من أن المحيط مضاء بشكل جيد.',
   'education_pic_note_2':
       'تأكد من أن الصورة داخل الإطار وأن \nالتفاصيل سهلة القراءة',
