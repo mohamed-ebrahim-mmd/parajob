@@ -22,23 +22,36 @@ class CurvedHeaderWithGlow extends StatelessWidget {
           clipBehavior: Clip.antiAlias,
           child: SizedBox(
             height: context.hPct(40),
-            child: Image.network(
-              imageUrl,
-              fit: BoxFit.cover,
-              height: context.hPct(40),
-              width: double.infinity,
-              loadingBuilder: (context, child, loadingProgress) {
-                if (loadingProgress == null) return child;
-                return Center(child: CircularProgressIndicator());
+            child: ShaderMask(
+              blendMode: BlendMode.srcATop,
+              shaderCallback: (bounds) {
+                return LinearGradient(
+                  // Use  opacity for the overlay
+                  colors: [
+                    Colors.black.withOpacity(0.7),
+                    Colors.black.withOpacity(0.7),
+                  ],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                ).createShader(bounds);
               },
-              errorBuilder: (context, error, stackTrace) => Center(
-                child: Icon(
-                  Icons.image_not_supported_outlined,
-                  color: AppColors.softWhite70,
-                  size: context.hPct(10),
+              child: Image.network(
+                imageUrl,
+                fit: BoxFit.cover,
+                height: context.hPct(40),
+                width: double.infinity,
+                loadingBuilder: (context, child, loadingProgress) {
+                  if (loadingProgress == null) return child;
+                  return Center(child: CircularProgressIndicator());
+                },
+                errorBuilder: (context, error, stackTrace) => Center(
+                  child: Icon(
+                    Icons.image_not_supported_outlined,
+                    color: AppColors.softWhite70,
+                    size: context.hPct(10),
+                  ),
                 ),
               ),
-              //  Center(child: Icon(Icons.broken_image, color: Colors.grey)),
             ),
           ),
         ),
