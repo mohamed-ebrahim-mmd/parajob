@@ -551,6 +551,12 @@ const Map<String, String> enUS = {
   'location_error': 'Error',
 
   // ============================================================
+  // 📤 Share Job Messages
+  // ============================================================
+  'share_error': 'Share Error',
+  'failed_to_share_job': 'Failed to share the job',
+
+  // ============================================================
   // 🔐 Auth Choice Screen
   // ============================================================
   'auth_choice_title': 'Sign in or create an account',
@@ -723,7 +729,7 @@ const Map<String, String> enUS = {
   "no_file_url_returned": "No file URL returned from upload API",
   "bookmark_removed": "Job removed from bookmarks",
   "could_not_remove_bookmark": "Could not remove bookmark",
- // "file_upload_failed": "Failed to upload your file",
+  // "file_upload_failed": "Failed to upload your file",
 
   // ============================================================
   // edit cv profile controller
@@ -738,5 +744,4 @@ const Map<String, String> enUS = {
   // ============================================================
   "select_graduation_year_msg": "Please select your graduation year",
   "select_faculty_msg": "Please select your faculty",
-
 };

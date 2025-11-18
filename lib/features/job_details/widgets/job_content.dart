@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:para_job/features/job_details/complaint/widgets/job_complaint_bottom_sheet.dart';
+import 'package:para_job/features/job_details/job_details_controller.dart';
 import 'package:para_job/packages/api_client/src/models/responses/job_data.dart'
     show JobData;
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
 class JobContent extends StatelessWidget {
-  const JobContent({super.key, required this.jobDetails, this.onCompanyTap});
+  JobContent({super.key, required this.jobDetails, this.onCompanyTap});
 
   final JobData jobDetails;
   final VoidCallback? onCompanyTap;
@@ -24,7 +26,15 @@ class JobContent extends StatelessWidget {
               icon: Icon(Icons.arrow_back_ios_new),
             ),
             const Spacer(),
-            IconButton(onPressed: () {}, icon: Icon(Icons.share)),
+            IconButton(
+              onPressed: () {
+                final controller = Get.find<JobDetailsController>(
+                  tag: jobDetails.id.toString(),
+                );
+                controller.shareJob(jobDetails);
+              },
+              icon: Icon(Icons.share),
+            ),
             IconButton(
               onPressed: () {
                 showJobComplaintBottomSheet(
@@ -59,7 +69,6 @@ class JobContent extends StatelessWidget {
                 backgroundColor: AppColors.softWhite70,
                 backgroundImage: NetworkImage(jobDetails.company.logo ?? ""),
               ),
-
               context.wBox(2),
               Text(
                 jobDetails.company.name ?? "",

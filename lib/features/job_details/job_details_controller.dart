@@ -1,14 +1,16 @@
 import 'dart:developer';
 
-import 'package:flutter/material.dart' show BuildContext;
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
+import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/ui_components/auth_required_dialog.dart';
 import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class JobDetailsController extends GetxController {
@@ -50,7 +52,6 @@ class JobDetailsController extends GetxController {
         jobDetailsCallState.value = ApiCallState.success;
       } else {
         jobDetailsCallState.value = ApiCallState.failure;
-       
       }
     } catch (e) {
       log("🔴 ${e.toString()}");
@@ -71,7 +72,7 @@ class JobDetailsController extends GetxController {
       );
 
       if (response.isSuccess == true) {
-           showSnackBarJobApplicationCongrats();
+        showSnackBarJobApplicationCongrats();
         fetchJobDetails(jobId);
         Get.until((route) => Get.currentRoute == Routes.jobDetails);
       } else {
@@ -162,6 +163,37 @@ class JobDetailsController extends GetxController {
     } catch (e) {
       log('Error opening location: $e');
       Get.snackbar('location_error'.tr, 'location_failed_to_open'.tr);
+    }
+  }
+
+  Future<void> shareJob(JobData job) async {
+    final jobTitle = job.title;
+    final companyName = job.company.name;
+    final jobDescription = job.description;
+    final jobLink = job.locationLink ?? ''; // Handle null case
+
+    final message =
+        '''
+Check out this job: $jobTitle
+Company: $companyName
+Description: $jobDescription
+Job link: $jobLink
+Job ID: ${job.id}
+''';
+
+    try {
+      // Share the job info including the link
+      await Share.share(message, subject: 'Share Job: $jobTitle');
+    } catch (e) {
+      log('Error sharing job: $e');
+      // Show error snackbar if sharing fails
+      Get.snackbar(
+        'share_error'.tr,
+        'failed_to_share_job'.tr,
+        backgroundColor: AppColors.midnightBlue,
+        colorText: AppColors.pureWhite,
+        snackPosition: SnackPosition.BOTTOM,
+      );
     }
   }
 }
