@@ -45,33 +45,41 @@ class MainNavigatorScreen extends StatelessWidget {
             // Change this color
             destinations: [
               NavigationDestination(
-                icon: SvgPicture.asset(AppAssetPaths.unselectedHomeAppNavIcon),
+                icon: SvgPicture.asset(
+                  AppAssetPaths.unselectedHomeAppNavIcon,
+                  height: context.hPct(3),
+                  width: context.wPct(3),
+                ),
                 selectedIcon: SvgPicture.asset(
                   AppAssetPaths.selectedHomeAppNavIcon,
-                  height: context.hPct(4),
-                  width: context.wPct(4),
+                  height: context.hPct(3),
+                  width: context.wPct(3),
                 ),
                 label: 'nav_home'.tr,
               ),
               NavigationDestination(
-                icon: SvgPicture.asset(AppAssetPaths.unselectedJobsAppNavIcon),
+                icon: SvgPicture.asset(
+                  AppAssetPaths.unselectedJobsAppNavIcon,
+                  height: context.hPct(3),
+                  width: context.wPct(3),
+                ),
                 selectedIcon: SvgPicture.asset(
                   AppAssetPaths.selectedJobsAppNavIcon,
-                  height: context.hPct(4),
-                  width: context.wPct(4),
+                  height: context.hPct(3),
+                  width: context.wPct(3),
                 ),
                 label: 'nav_jobs'.tr,
               ),
               NavigationDestination(
                 icon: SvgPicture.asset(
                   AppAssetPaths.unselectedNotificationsAppNavIcon,
-                  height: context.hPct(4),
-                  width: context.wPct(4),
+                  height: context.hPct(3),
+                  width: context.wPct(3),
                 ),
                 selectedIcon: SvgPicture.asset(
                   AppAssetPaths.selectedNotificationsAppNavIcon,
-                  height: context.hPct(4),
-                  width: context.wPct(4),
+                  height: context.hPct(3),
+                  width: context.wPct(3),
                 ),
                 label: 'nav_notifications'.tr,
               ),
