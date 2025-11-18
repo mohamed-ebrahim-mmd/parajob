@@ -12,12 +12,14 @@ class IdImagePicker extends StatefulWidget {
     required this.text,
     this.isEducation = false,
     required this.onImageSelected, // 👈 add this
+    this.fromCamera = false,
   });
 
   final String imagePath;
   final Widget text;
   final bool isEducation;
   final ValueChanged<File?> onImageSelected; // 👈 callback to parent
+  final bool fromCamera;
 
   @override
   State<IdImagePicker> createState() => _IdImagePickerState();
@@ -30,7 +32,8 @@ class _IdImagePickerState extends State<IdImagePicker> {
   Future<void> _pickImage() async {
     try {
       final XFile? pickedFile = await _picker.pickImage(
-        source: ImageSource.gallery,
+        source: widget.fromCamera ? ImageSource.camera : ImageSource.gallery,
+
         imageQuality: 85,
       );
 
