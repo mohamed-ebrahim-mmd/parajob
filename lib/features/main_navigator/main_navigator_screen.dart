@@ -34,6 +34,7 @@ class MainNavigatorScreen extends StatelessWidget {
             ),
           ),
           child: NavigationBar(
+            height: context.hPct(6.2),
             elevation: 3,
             backgroundColor: Colors.black,
             selectedIndex: controller.tab.value,
@@ -47,6 +48,8 @@ class MainNavigatorScreen extends StatelessWidget {
                 icon: SvgPicture.asset(AppAssetPaths.unselectedHomeAppNavIcon),
                 selectedIcon: SvgPicture.asset(
                   AppAssetPaths.selectedHomeAppNavIcon,
+                  height: context.hPct(4),
+                  width: context.wPct(4),
                 ),
                 label: 'nav_home'.tr,
               ),
@@ -54,15 +57,21 @@ class MainNavigatorScreen extends StatelessWidget {
                 icon: SvgPicture.asset(AppAssetPaths.unselectedJobsAppNavIcon),
                 selectedIcon: SvgPicture.asset(
                   AppAssetPaths.selectedJobsAppNavIcon,
+                  height: context.hPct(4),
+                  width: context.wPct(4),
                 ),
                 label: 'nav_jobs'.tr,
               ),
               NavigationDestination(
                 icon: SvgPicture.asset(
                   AppAssetPaths.unselectedNotificationsAppNavIcon,
+                  height: context.hPct(4),
+                  width: context.wPct(4),
                 ),
                 selectedIcon: SvgPicture.asset(
                   AppAssetPaths.selectedNotificationsAppNavIcon,
+                  height: context.hPct(4),
+                  width: context.wPct(4),
                 ),
                 label: 'nav_notifications'.tr,
               ),
