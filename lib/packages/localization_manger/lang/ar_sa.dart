@@ -543,7 +543,14 @@ const Map<String, String> arSA = {
   'location_not_available': 'الموقع غير متوفر',
   'location_invalid_link': 'رابط غير صالح',
   'location_failed_to_open': 'تعذر فتح الموقع',
+  'location_link_not_available': 'رابط الموقع غير متوفر',
   'location_error': 'خطأ',
+
+  // ============================================================
+  // 📤 Share Job Messages
+  // ============================================================
+  'share_error': 'خطأ في المشاركة',
+  'failed_to_share_job': 'فشل في مشاركة الوظيفة',
 
   // ============================================================
   // 🔐 Auth Choice Screen
