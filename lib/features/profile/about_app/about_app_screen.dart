@@ -38,8 +38,8 @@ class AboutAppScreen extends StatelessWidget {
 
               return SingleChildScrollView(
                 child: Padding(
-                  padding: EdgeInsetsGeometry.symmetric(
-                    horizontal: context.wPct(5),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: context.defaultPadding,
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
