@@ -46,7 +46,6 @@ class ProfileController extends GetxController {
         log("🟢 deleteUserPic isSuccess");
 
         fetchProfileDetails();
-        navController.deleteUserProfilePic();
       } else {
         showSnackBarError(
           "failed_title",
@@ -61,8 +60,8 @@ class ProfileController extends GetxController {
     }
   }
 
-  Future<void> uploadFile(BuildContext context) async {
-    var file = await pickImageFile();
+  Future<void> uploadFile(BuildContext context,{bool fromCamera = false}) async {
+    var file = await pickImageFile(fromCamera: fromCamera);
 
     // if no file is selected return
     if (file == null) return;
@@ -110,7 +109,7 @@ class ProfileController extends GetxController {
 
       if (response.isSuccess) {
         fetchProfileDetails();
-        navController.setUserProfilePic(url);
+       
       } else {
         showSnackBarError(
           "failed_title".tr,
@@ -132,7 +131,7 @@ class ProfileController extends GetxController {
         log("🟢 fetchProfileDetails isSuccess");
 
         profileData = response.data;
-
+        navController.setUserProfilePic(profileData?.profilePicture);
         profileCallState.value = ApiCallState.success;
       } else {
         profileCallState.value = ApiCallState.failure;
