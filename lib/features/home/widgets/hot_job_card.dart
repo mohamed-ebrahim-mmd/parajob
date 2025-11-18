@@ -14,9 +14,13 @@ class HotJobCard extends StatelessWidget {
   final Job job;
   final VoidCallback? onTap;
   final VoidCallback? onBookmarkTap;
-  late final bool isBookmarked = job.isBookmark ?? false;
 
-  HotJobCard({super.key, required this.job, this.onTap, this.onBookmarkTap});
+  const HotJobCard({
+    super.key,
+    required this.job,
+    this.onTap,
+    this.onBookmarkTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -194,32 +198,35 @@ class HotJobCard extends StatelessWidget {
                 ),
               ),
               context.wBox(2),
-              GestureDetector(
-                onTap: onBookmarkTap,
-                child: Container(
-                  height: context.hPct(5),
-                  padding: EdgeInsets.all(context.hPct(1)),
-                  decoration: BoxDecoration(
-                    color: isBookmarked
-                        ? AppColors.aquaTeal8
-                        : Colors.transparent,
-                    borderRadius: BorderRadius.circular(context.wPct(3)),
-                    border: Border.all(
+              Obx(() {
+                final isBookmarked = job.isBookmarkedReactive.value;
+                return GestureDetector(
+                  onTap: onBookmarkTap,
+                  child: Container(
+                    height: context.hPct(5),
+                    padding: EdgeInsets.all(context.hPct(1)),
+                    decoration: BoxDecoration(
                       color: isBookmarked
                           ? AppColors.aquaTeal8
+                          : Colors.transparent,
+                      borderRadius: BorderRadius.circular(context.wPct(3)),
+                      border: Border.all(
+                        color: isBookmarked
+                            ? AppColors.aquaTeal8
+                            : AppColors.softWhite80,
+                        width: 1.2,
+                      ),
+                    ),
+                    child: Icon(
+                      isBookmarked ? Icons.bookmark : Icons.bookmark_border,
+                      color: isBookmarked
+                          ? AppColors.aquaTeal
                           : AppColors.softWhite80,
-                      width: 1.2,
+                      size: context.hPct(2.5),
                     ),
                   ),
-                  child: Icon(
-                    Icons.bookmark_border,
-                    color: isBookmarked
-                        ? AppColors.aquaTeal
-                        : AppColors.softWhite80,
-                    size: context.hPct(2.5),
-                  ),
-                ),
-              ),
+                );
+              }),
             ],
           ),
         ],

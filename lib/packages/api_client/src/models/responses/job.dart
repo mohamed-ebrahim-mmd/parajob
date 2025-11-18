@@ -2,6 +2,7 @@
    Mohamed Ebrahim | mohamed7ebrahim7@gmail.com | 2025-10-15 3:26 PM
    ==================================================================
   */
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:para_job/packages/api_client/src/models/responses/company.dart';
 import 'package:para_job/packages/api_client/src/models/responses/department.dart'
     show Department;
@@ -15,7 +16,8 @@ class Job {
   final String? monthlySalary;
   final Company? company;
   final bool? isApplied;
-  final bool? isBookmark;
+  final bool? isBookmark; // backend value
+  final RxBool isBookmarkedReactive; // reactive copy
   final String? category;
   final Department? department;
   final String? from;
@@ -43,7 +45,7 @@ class Job {
     this.isSignedContract,
     this.applicationDate,
     this.jobApplicationVerification,
-  });
+  }) : isBookmarkedReactive = RxBool(isBookmark ?? false);
 
   factory Job.fromJson(Map<String, dynamic>? json) {
     if (json == null) return Job();

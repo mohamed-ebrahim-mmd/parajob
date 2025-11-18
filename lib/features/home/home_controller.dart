@@ -60,10 +60,10 @@ class HomeController extends GetxController {
     }
   }
 
-  Future<void> _addBookmark(int jobId) async {
+  Future<void> _addBookmark(Job job) async {
     try {
       final response = await apiClient.addBookmark(
-        BookmarkRequest(jobId: jobId),
+        BookmarkRequest(jobId: job.id!),
         _userController.token!,
       );
 
@@ -72,7 +72,7 @@ class HomeController extends GetxController {
           "success_title".tr,
           response.details?.message ?? "job_bookmarked_success".tr,
         );
-        fetchHomeJobs();
+        job.isBookmarkedReactive.value = true;
         _profileController!.fetchProfileDetails();
       } else {
         log("🔴 addBookmark ${response.details!.message}");
@@ -86,10 +86,10 @@ class HomeController extends GetxController {
     }
   }
 
-  Future<void> _removeBookmark(int jobId) async {
+  Future<void> _removeBookmark(Job job) async {
     try {
       final response = await apiClient.deleteBookmark(
-        BookmarkRequest(jobId: jobId),
+        BookmarkRequest(jobId: job.id!),
         _userController.token!,
       );
 
@@ -98,7 +98,7 @@ class HomeController extends GetxController {
           "success_title".tr,
           response.details?.message ?? "job_removed_from_bookmarks".tr,
         );
-        fetchHomeJobs();
+        job.isBookmarkedReactive.value = false;
         _profileController!.fetchProfileDetails();
       } else {
         log("🔴 removeBookmark ${response.details!.message}");
@@ -120,10 +120,12 @@ class HomeController extends GetxController {
 
     context.loaderOverlay.show();
     try {
-      if (job.isBookmark!) {
-        await _removeBookmark(job.id!);
+      if (job.isBookmarkedReactive.value) {
+        await _removeBookmark(job);
+        job.isBookmarkedReactive.value = false;
       } else {
-        await _addBookmark(job.id!);
+        await _addBookmark(job);
+        job.isBookmarkedReactive.value = true;
       }
     } catch (e) {
       showSnackBarApiError();
