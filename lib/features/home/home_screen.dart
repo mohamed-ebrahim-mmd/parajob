@@ -16,6 +16,7 @@ import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/packages/ui_components/error_screen.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
+
 class HomeScreen extends StatelessWidget {
   final user = Get.find<UserController>().user;
   final controller = Get.put(HomeController());
@@ -27,7 +28,7 @@ class HomeScreen extends StatelessWidget {
     return SafeArea(
       child: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: context.wPct(5)),
+          padding: EdgeInsets.symmetric(horizontal: context.defaultPadding),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
