@@ -170,7 +170,7 @@ class JobDetailsController extends GetxController {
     final jobTitle = job.title;
     final companyName = job.company.name;
     final jobDescription = job.description;
-    final jobLink = job.locationLink ?? ''; // Handle null case
+    final jobLink = job.locationLink;
 
     final message =
         '''

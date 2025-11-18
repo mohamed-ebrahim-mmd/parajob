@@ -540,6 +540,7 @@ const Map<String, String> arSA = {
   'location_not_available': 'الموقع غير متوفر',
   'location_invalid_link': 'رابط غير صالح',
   'location_failed_to_open': 'تعذر فتح الموقع',
+  'location_link_not_available': 'رابط الموقع غير متوفر',
   'location_error': 'خطأ',
 
   // ============================================================

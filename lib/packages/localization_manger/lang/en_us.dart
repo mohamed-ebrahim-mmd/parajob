@@ -548,6 +548,7 @@ const Map<String, String> enUS = {
   'location_not_available': 'Location not available',
   'location_invalid_link': 'Invalid link',
   'location_failed_to_open': 'Failed to open location',
+  'location_link_not_available': 'Location link not available',
   'location_error': 'Error',
 
   // ============================================================
