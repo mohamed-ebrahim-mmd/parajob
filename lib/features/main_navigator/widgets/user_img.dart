@@ -7,13 +7,14 @@ import 'package:para_job/packages/themeing/media_query_values.dart';
 class UserImg extends StatelessWidget {
   final String? profilePic;
   final bool isSelected;
+
   const UserImg({super.key, this.profilePic, this.isSelected = false});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: context.wPct(7.4),
-      height: context.wPct(7.4),
+      width: context.wPct(5.4),
+      height: context.wPct(5.4),
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         border: Border.all(
@@ -23,16 +24,13 @@ class UserImg extends StatelessWidget {
       ),
       child: Center(
         child: Container(
-          width: context.wPct(5.8),
-          height: context.wPct(5.8),
+          width: context.wPct(4),
+          height: context.wPct(4),
           decoration: BoxDecoration(shape: BoxShape.circle),
           child: ClipOval(
             child: Image.network(
               profilePic ?? '',
               fit: BoxFit.cover,
-              width: context.wPct(6),
-              height: context.wPct(6),
-
               loadingBuilder: (context, child, loadingProgress) {
                 if (loadingProgress == null) return child;
                 return Container(
@@ -49,7 +47,7 @@ class UserImg extends StatelessWidget {
               errorBuilder: (context, error, stackTrace) {
                 return Icon(
                   Icons.person_outline,
-                  size: context.wPct(5),
+                  size: context.wPct(4),
                   color: AppColors.grayButton,
                 );
               },
