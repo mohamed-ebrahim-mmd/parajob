@@ -19,7 +19,7 @@ class ActiveJobsList extends StatelessWidget {
   Widget build(BuildContext context) {
     if (company.activeJobs != null && company.activeJobs!.isNotEmpty) {
       return SizedBox(
-        height: context.hPct(21),
+        height: context.hPct(22),
         child: ListView.separated(
           scrollDirection: Axis.horizontal,
           shrinkWrap: true,
@@ -56,7 +56,7 @@ class ActiveJobsList extends StatelessWidget {
             ),
             context.wBox(2),
             Text(
-             'no_active_jobs'.tr,
+              'no_active_jobs'.tr,
               style: TextStyle(
                 fontSize: context.wPct(4),
                 color: AppColors.white40,

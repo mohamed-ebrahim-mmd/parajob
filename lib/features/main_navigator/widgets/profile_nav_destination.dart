@@ -18,12 +18,12 @@ class ProfileNavDestination extends StatelessWidget {
     return Obx(() {
       return NavigationDestination(
         icon: controller.userController.isGuest
-            ? Icon(Icons.person_outline, size: context.hPct(4))
+            ? Icon(Icons.person_2_outlined, size: context.hPct(2.3))
             : UserImg(profilePic: controller.userProfilePic.value),
         selectedIcon: controller.userController.isGuest
             ? Icon(
                 Icons.person_outline,
-                size: context.hPct(4),
+                size: context.hPct(3),
                 color: AppColors.aquaTeal,
               )
             : UserImg(
