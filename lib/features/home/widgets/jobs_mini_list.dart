@@ -38,6 +38,8 @@ class JobsMiniList extends StatelessWidget {
               description: title == 'flexible_jobs'.tr
                   ? "Work on your schedule—choose hours and locations that suit you."
                   : "Structured roles with fixed hours and responsibilities—perfect for steady routines.",
+              onBarrierClick: () => controller.goDismiss(),
+
               tooltipBackgroundColor: AppColors.midnightBlue,
               textColor: AppColors.pureWhite,
               descriptionTextAlign: TextAlign.center,

@@ -8,7 +8,6 @@ import 'package:flutter/material.dart'
         MainAxisAlignment,
         TextStyle,
         WidgetsBinding;
-      
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:loader_overlay/loader_overlay.dart';
@@ -35,7 +34,7 @@ class HomeController extends GetxController {
   final lastKey = GlobalKey();
 
   @override
-  void onInit() async {
+  void onInit() {
     super.onInit();
     fetchHomeJobs();
   }
@@ -43,8 +42,6 @@ class HomeController extends GetxController {
   void startShowcase() {
     ShowcaseView.register(
       enableAutoScroll: true,
-      disableBarrierInteraction: false,
-      onStart: (index, key) {},
       onDismiss: (key) async {
         // Mark as seen when dismissed
         await box.write('hasSeenShowcase', true);
@@ -87,7 +84,7 @@ class HomeController extends GetxController {
           textStyle: const TextStyle(color: AppColors.pureWhite),
           hideActionWidgetForShowcase: [firstKey, secondKey, thirdKey],
         ),
-          // Here we don't need next action for the last showcase widget so we
+        // Here we don't need next action for the last showcase widget so we
         // hide this action for the last showcase widget
         TooltipActionButton(
           name: "Next",
@@ -96,14 +93,11 @@ class HomeController extends GetxController {
           textStyle: const TextStyle(color: AppColors.pureWhite),
           hideActionWidgetForShowcase: [firstKey, lastKey],
         ),
-
-      
       ],
     );
     if (!hasSeenShowcase) {
       _goStart();
     }
-  
   }
 
   _goStart() {
@@ -118,15 +112,11 @@ class HomeController extends GetxController {
   }
 
   goNext() {
-    WidgetsBinding.instance.addPostFrameCallback(
-      (_) => ShowcaseView.get().next(),
-    );
+    ShowcaseView.get().next();
   }
 
   goDismiss() {
-    WidgetsBinding.instance.addPostFrameCallback(
-      (_) => ShowcaseView.get().dismiss(),
-    );
+    ShowcaseView.get().dismiss();
   }
 
   bool jobIsInHome(int id) {
@@ -239,5 +229,11 @@ class HomeController extends GetxController {
     } finally {
       context.loaderOverlay.hide();
     }
+  }
+
+  @override
+  void onClose() {
+    ShowcaseView.get().unregister();
+    super.onClose();
   }
 }
