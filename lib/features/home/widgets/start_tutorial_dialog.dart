@@ -24,11 +24,15 @@ class StartTutorialDialog extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          // Close icon aligned top-right
           Align(
-            alignment: AlignmentGeometry.centerRight,
+            alignment: Alignment.topRight,
             child: GestureDetector(
               onTap: () => controller.goDismiss(),
-              child: Icon(Icons.close, size: context.wPct(6)),
+              child: const Icon(
+                Icons.cancel_outlined,
+                color: Color(0xFF636B73),
+              ),
             ),
           ),
 
