@@ -16,11 +16,9 @@ class ActiveJobsScreen extends StatelessWidget {
   final int companyId;
 
   ActiveJobsScreen({super.key}) : companyId = Get.arguments['id'];
-
+  late final controller = Get.put(ActiveJobsController(companyId: companyId));
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(ActiveJobsController(companyId: companyId));
-
     return Scaffold(
       appBar: AppBar(
         title: Text('active_jobs'.tr),
