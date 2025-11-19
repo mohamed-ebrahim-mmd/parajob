@@ -35,8 +35,8 @@ class JobComplaintController extends GetxController {
         // Close the complaint screen
         Get.back();
 
-        // Show job complaint success snackbar
-        showSnackBarJobComplaintSuccess();
+        // Show success
+        showSnackBarComplaintSuccess();
       }
     } catch (e) {
       showSnackBarApiError();

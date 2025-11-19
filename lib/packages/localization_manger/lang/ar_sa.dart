@@ -535,9 +535,8 @@ const Map<String, String> arSA = {
   'snackbar_check_connection': 'يرجى التحقق من اتصالك وإعادة المحاولة.',
   'snackbar_job_application_congrats':
       'تهانينا! طلبك لهذه الوظيفة قيد المراجعة الآن. 🎉',
-  'snackbar_job_complaint_success': 'تم تقديم شكواك حول هذه الوظيفة بنجاح. 🎉',
-  'snackbar_company_complaint_success':
-      'تم تقديم شكواك حول هذه الشركة بنجاح. 🎉',
+  'snackbar_complaint_success':
+      '"تم إرسال شكواك، يرجى انتظار تواصل فريقنا معك .',
 
   // ============================================================
   // 📍 Location Messages

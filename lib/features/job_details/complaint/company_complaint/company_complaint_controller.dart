@@ -30,7 +30,7 @@ class CompanyComplaintController extends GetxController {
       if (response.isSuccess == true) {
         detailsController.clear();
         // Show company complaint success snackbar
-        showSnackBarCompanyComplaintSuccess();
+        showSnackBarComplaintSuccess();
         Get.find<EmployerController>().fetchCompany();
         Get.until(
           (route) =>

@@ -544,13 +544,15 @@ const Map<String, String> enUS = {
   'snackbar_check_connection': 'Please check your connection and try again.',
   'snackbar_job_application_congrats':
       'Congrats! your application for this job is now being considered. 🎉',
-  'snackbar_job_complaint_success':
-      'Your complaint about this job has been submitted successfully. 🎉',
-  'snackbar_company_complaint_success':
-      'Your complaint about this company has been submitted successfully. 🎉',
+  'snackbar_complaint_success': '''
+Your complaint has been 
+submitted wait for our team
+to connect with you.
+''',
 
   // ============================================================
   // 📍 Location Messages
+
   // ============================================================
   'location_not_available': 'Location not available',
   'location_invalid_link': 'Invalid link',
