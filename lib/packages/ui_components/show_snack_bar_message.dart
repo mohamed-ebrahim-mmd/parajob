@@ -144,3 +144,71 @@ void showSnackBarSuccess(String title, String message) {
     color: AppColors.aquaTeal,
   );
 }
+
+void showSnackBarJobComplaintSuccess() {
+  final context = Get.context!;
+  if (Get.isSnackbarOpen) return;
+  Get.rawSnackbar(
+    snackStyle: SnackStyle.FLOATING,
+    snackPosition: SnackPosition.TOP,
+    backgroundColor: Colors.transparent,
+    margin: EdgeInsets.only(
+      top: context.hPct(45), // vertically center (adjust as needed)
+      left: context.wPct(5),
+      right: context.wPct(5),
+    ),
+    duration: const Duration(seconds: 2),
+    messageText: Container(
+      alignment: Alignment.center,
+      height: Get.context!.hPct(15),
+      padding: EdgeInsets.all(context.wPct(4)),
+      decoration: BoxDecoration(
+        color: AppColors.midnightBlue, // dark background
+        borderRadius: BorderRadius.circular(context.wPct(4)),
+      ),
+      child: Text(
+        'snackbar_job_complaint_success'.tr,
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          color: AppColors.pureWhite,
+          fontSize: context.wPct(4),
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+    ),
+  );
+}
+
+void showSnackBarCompanyComplaintSuccess() {
+  final context = Get.context!;
+  if (Get.isSnackbarOpen) return;
+  Get.rawSnackbar(
+    snackStyle: SnackStyle.FLOATING,
+    snackPosition: SnackPosition.TOP,
+    backgroundColor: Colors.transparent,
+    margin: EdgeInsets.only(
+      top: context.hPct(45), // vertically center (adjust as needed)
+      left: context.wPct(5),
+      right: context.wPct(5),
+    ),
+    duration: const Duration(seconds: 2),
+    messageText: Container(
+      alignment: Alignment.center,
+      height: Get.context!.hPct(15),
+      padding: EdgeInsets.all(context.wPct(4)),
+      decoration: BoxDecoration(
+        color: AppColors.midnightBlue, // dark background
+        borderRadius: BorderRadius.circular(context.wPct(4)),
+      ),
+      child: Text(
+        'snackbar_company_complaint_success'.tr,
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          color: AppColors.pureWhite,
+          fontSize: context.wPct(4),
+          fontWeight: FontWeight.w600,
+        ),
+      ),
+    ),
+  );
+}

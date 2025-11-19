@@ -17,10 +17,7 @@ class CompanyComplaintController extends GetxController {
   Future<void> complaint(BuildContext context) async {
     final details = detailsController.text.trim();
     if (details.isEmpty) {
-      showSnackBarError(
-        "failed_title".tr,
-        "complaint_empty_error".tr,
-      );
+      showSnackBarError("failed_title".tr, "complaint_empty_error".tr);
       return;
     }
     try {
@@ -32,11 +29,8 @@ class CompanyComplaintController extends GetxController {
 
       if (response.isSuccess == true) {
         detailsController.clear();
-        showSnackBarSuccess(
-          "success_title".tr,
-          response.details?.message ??
-              "complaint_success_message".tr,
-        );
+        // Show company complaint success snackbar
+        showSnackBarCompanyComplaintSuccess();
         Get.find<EmployerController>().fetchCompany();
         Get.until(
           (route) =>

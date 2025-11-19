@@ -16,10 +16,7 @@ class JobComplaintController extends GetxController {
   Future<void> complaint(BuildContext context) async {
     final details = detailsController.text.trim();
     if (details.isEmpty) {
-      showSnackBarError(
-        "failed_title".tr,
-        "complaint_empty_error".tr,
-      );
+      showSnackBarError("failed_title".tr, "complaint_empty_error".tr);
       return;
     }
     try {
@@ -38,11 +35,8 @@ class JobComplaintController extends GetxController {
         // Close the complaint screen
         Get.back();
 
-        // Show success
-        showSnackBarSuccess(
-          "success_title".tr,
-          response.details?.message ?? "complaint_success_message".tr,
-        );
+        // Show job complaint success snackbar
+        showSnackBarJobComplaintSuccess();
       }
     } catch (e) {
       showSnackBarApiError();
