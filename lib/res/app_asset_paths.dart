@@ -28,6 +28,8 @@ abstract final class AppAssetPaths {
   static const paraJobTxt = "assets/images/para_job_txt.svg";
   static const skipArrowIcon = "assets/icons/skip_arrow_icon.svg";
 
+  static const tutorial = "assets/icons/tutorial_flag.svg";
+
   ///  GetStarted Icon
   static const appleIcon = "assets/icons/apple_icon.svg";
   static const emailIcon = "assets/icons/email_icon.svg";

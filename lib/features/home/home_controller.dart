@@ -3,13 +3,14 @@ import 'dart:developer';
 import 'package:flutter/material.dart'
     show
         BuildContext,
-        GlobalKey,
-        WidgetsBinding,
-        TextStyle,
         Colors,
-        MainAxisAlignment;
-import 'package:flutter/services.dart';
+        GlobalKey,
+        MainAxisAlignment,
+        TextStyle,
+        WidgetsBinding;
+      
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:para_job/features/profile/user_profile/profile_controller.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
@@ -26,74 +27,107 @@ class HomeController extends GetxController {
       : Get.find<ProfileController>();
   var homeCallState = ApiCallState.loading.obs;
   HomeResponse? homeData;
-  /////
-  ///
+  final box = GetStorage();
+  bool get hasSeenShowcase => box.read('hasSeenShowcase') ?? false;
   final firstKey = GlobalKey();
   final secondKey = GlobalKey();
   final thirdKey = GlobalKey();
-
-  final currentStep = 0.obs;
-  late List<GlobalKey> keys;
+  final lastKey = GlobalKey();
 
   @override
-  void onInit() {
+  void onInit() async {
     super.onInit();
     fetchHomeJobs();
-
-    // startShowcase();
   }
 
   void startShowcase() {
     ShowcaseView.register(
       enableAutoScroll: true,
-
-      // hideFloatingActionWidgetForShowcase: [thirdKey],
+      disableBarrierInteraction: false,
       onStart: (index, key) {},
-      onComplete: (index, key) {
-        if (index == 2) {
-          SystemChrome.setSystemUIOverlayStyle(
-            SystemUiOverlayStyle.light.copyWith(
-              statusBarIconBrightness: Brightness.dark,
-              statusBarColor: Colors.white,
-            ),
-          );
-        }
+      onDismiss: (key) async {
+        // Mark as seen when dismissed
+        await box.write('hasSeenShowcase', true);
       },
+
+      onFinish: () async {
+        // Mark as seen when finished
+        await box.write('hasSeenShowcase', true);
+      },
+
       blurValue: 1,
-      autoPlayDelay: const Duration(seconds: 3),
+
       globalTooltipActionConfig: const TooltipActionConfig(
         position: TooltipActionPosition.inside,
         alignment: MainAxisAlignment.spaceBetween,
         actionGap: 20,
       ),
       globalTooltipActions: [
-        // Here we don't need previous action for the first showcase widget
-        // so we hide this action for the first showcase widget
         TooltipActionButton(
+          name: "Back",
           backgroundColor: Colors.transparent,
           type: TooltipDefaultActionType.previous,
           textStyle: const TextStyle(color: AppColors.pureWhite),
-          hideActionWidgetForShowcase: [firstKey],
+          hideActionWidgetForShowcase: [firstKey, secondKey],
         ),
-        // Here we don't need next action for the last showcase widget so we
-        // hide this action for the last showcase widget
+        // for presrntation ui only
         TooltipActionButton(
+          name: "",
+          onTap: () {},
+          backgroundColor: Colors.transparent,
+          type: TooltipDefaultActionType.previous,
+          textStyle: const TextStyle(color: AppColors.pureWhite),
+          hideActionWidgetForShowcase: [firstKey, thirdKey, lastKey],
+        ),
+
+        TooltipActionButton(
+          name: "Done",
           backgroundColor: Colors.transparent,
           type: TooltipDefaultActionType.next,
           textStyle: const TextStyle(color: AppColors.pureWhite),
-          hideActionWidgetForShowcase: [thirdKey],
+          hideActionWidgetForShowcase: [firstKey, secondKey, thirdKey],
         ),
+          // Here we don't need next action for the last showcase widget so we
+        // hide this action for the last showcase widget
+        TooltipActionButton(
+          name: "Next",
+          backgroundColor: Colors.transparent,
+          type: TooltipDefaultActionType.next,
+          textStyle: const TextStyle(color: AppColors.pureWhite),
+          hideActionWidgetForShowcase: [firstKey, lastKey],
+        ),
+
+      
       ],
-      onDismiss: (key) {
-        //  debugPrint('Dismissed at $key');
-      },
     );
+    if (!hasSeenShowcase) {
+      _goStart();
+    }
+  
+  }
+
+  _goStart() {
     WidgetsBinding.instance.addPostFrameCallback(
-      (_) => ShowcaseView.get().startShowCase([firstKey, secondKey, thirdKey]),
+      (_) => ShowcaseView.get().startShowCase([
+        firstKey,
+        secondKey,
+        thirdKey,
+        lastKey,
+      ]),
     );
   }
 
+  goNext() {
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => ShowcaseView.get().next(),
+    );
+  }
 
+  goDismiss() {
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => ShowcaseView.get().dismiss(),
+    );
+  }
 
   bool jobIsInHome(int id) {
     final jobCategoriesList = homeData?.data.first;
@@ -124,6 +158,7 @@ class HomeController extends GetxController {
         log("🟢 fetchHomeJobs success");
         homeData = response;
         homeCallState.value = ApiCallState.success;
+        startShowcase();
       } else {
         homeCallState.value = ApiCallState.failure;
       }

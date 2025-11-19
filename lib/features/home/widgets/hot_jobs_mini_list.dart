@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/home/home_controller.dart';
 import 'package:para_job/features/home/widgets/hot_job_card.dart';
+import 'package:para_job/features/home/widgets/start_tutorial_dialog.dart';
 import 'package:para_job/packages/api_client/src/models/responses/job.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
@@ -31,34 +32,32 @@ class HotJobsMiniList extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                children: [
-                  Icon(
-                    Icons.local_fire_department,
-                    color: Colors.red,
-                    size: context.hPct(4),
-                  ),
-                  context.wBox(2),
-                  Showcase(
-                    key: controller.firstKey,
-                    description:
-                        "Premium jobs from major companies or special events. These roles are limited and competitive—apply fast and stand out.",
-                    tooltipBackgroundColor: AppColors.midnightBlue,
-                    textColor: AppColors.pureWhite,
-                    // لون النص
-                    tooltipPadding: EdgeInsets.all(30), // padding داخلي
-                    tooltipBorderRadius: BorderRadius.circular(
-                      12,
-                    ), // تدوير الزوايا
-                    child: Text(
+              Showcase(
+                key: controller.secondKey,
+                description:
+                    "Premium jobs from major companies or special events. These roles are limited and competitive—apply fast and stand out.",
+                tooltipBackgroundColor: AppColors.midnightBlue,
+                textColor: AppColors.pureWhite,
+                tooltipPadding: EdgeInsets.all(context.wPct(6)),
+                descriptionTextAlign: TextAlign.center,
+                tooltipBorderRadius: BorderRadius.circular(context.wPct(3)),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.local_fire_department,
+                      color: Colors.red,
+                      size: context.hPct(4),
+                    ),
+                    context.wBox(2),
+                    Text(
                       "hot_jobs".tr,
                       style: TextStyle(
                         fontSize: context.wPct(4.5),
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
               GestureDetector(
                 onTap: onSeeAll,
@@ -72,7 +71,13 @@ class HotJobsMiniList extends StatelessWidget {
               ),
             ],
           ),
-          context.hBox(2),
+          Showcase.withWidget(
+            key: controller.firstKey,
+            // dialog width
+            container: StartTutorialDialog(),
+            child: context.hBox(2),
+          ),
+
           // Horizontal List of Job Cards
           Expanded(
             child: ListView.separated(

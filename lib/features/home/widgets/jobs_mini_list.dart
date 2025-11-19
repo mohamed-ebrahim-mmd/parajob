@@ -32,12 +32,17 @@ class JobsMiniList extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Showcase(
-              tooltipBackgroundColor: AppColors.midnightBlue,
               key: title == 'flexible_jobs'.tr
-                  ? controller.secondKey
-                  : controller.thirdKey,
-              description: title == 'flexible_jobs'.tr ? "des" : "dessssss2",
-
+                  ? controller.thirdKey
+                  : controller.lastKey,
+              description: title == 'flexible_jobs'.tr
+                  ? "Work on your schedule—choose hours and locations that suit you."
+                  : "Structured roles with fixed hours and responsibilities—perfect for steady routines.",
+              tooltipBackgroundColor: AppColors.midnightBlue,
+              textColor: AppColors.pureWhite,
+              descriptionTextAlign: TextAlign.center,
+              tooltipPadding: EdgeInsets.all(context.wPct(6)),
+              tooltipBorderRadius: BorderRadius.circular(context.wPct(3)),
               child: Text(
                 title,
                 style: TextStyle(

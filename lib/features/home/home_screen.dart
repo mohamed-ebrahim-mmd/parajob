@@ -89,7 +89,6 @@ class HomeScreen extends StatelessWidget {
                       );
 
                     case ApiCallState.success:
-                     controller.startShowcase();
                       final hotJobsList =
                           controller.homeData!.data.first.hotJobs;
                       final nonFlexibleJobs =
@@ -113,6 +112,7 @@ class HomeScreen extends StatelessWidget {
                             },
                           ),
                           context.hBox(2),
+
                           JobsMiniList(
                             jobs: flexibleJobsList,
                             title: 'flexible_jobs'.tr,
