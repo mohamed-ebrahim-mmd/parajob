@@ -112,6 +112,7 @@ class HomeScreen extends StatelessWidget {
                             },
                           ),
                           context.hBox(2),
+
                           JobsMiniList(
                             jobs: flexibleJobsList,
                             title: 'flexible_jobs'.tr,

@@ -6,13 +6,15 @@ import 'package:para_job/packages/api_client/src/models/responses/job.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
+import 'package:showcaseview/showcaseview.dart';
 
 class JobsMiniList extends StatelessWidget {
   final List<Job> jobs;
   final VoidCallback? onSeeAll;
   final String title;
+  final controller = Get.find<HomeController>();
 
-  const JobsMiniList({
+  JobsMiniList({
     super.key,
     required this.jobs,
     this.onSeeAll,
@@ -29,11 +31,26 @@ class JobsMiniList extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              title,
-              style: TextStyle(
-                fontSize: context.wPct(4.5),
-                fontWeight: FontWeight.bold,
+            Showcase(
+              key: title == 'flexible_jobs'.tr
+                  ? controller.thirdKey
+                  : controller.lastKey,
+              description: title == 'flexible_jobs'.tr
+                  ? "Work on your schedule—choose hours and locations that suit you."
+                  : "Structured roles with fixed hours and responsibilities—perfect for steady routines.",
+              onBarrierClick: () => controller.goDismiss(),
+
+              tooltipBackgroundColor: AppColors.midnightBlue,
+              textColor: AppColors.pureWhite,
+              descriptionTextAlign: TextAlign.center,
+              tooltipPadding: EdgeInsets.all(context.wPct(6)),
+              tooltipBorderRadius: BorderRadius.circular(context.wPct(3)),
+              child: Text(
+                title,
+                style: TextStyle(
+                  fontSize: context.wPct(4.5),
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
             GestureDetector(

@@ -1,13 +1,23 @@
 import 'dart:developer';
 
-import 'package:flutter/material.dart' show BuildContext;
+import 'package:flutter/material.dart'
+    show
+        BuildContext,
+        Colors,
+        GlobalKey,
+        MainAxisAlignment,
+        TextStyle,
+        WidgetsBinding;
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:para_job/features/profile/user_profile/profile_controller.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
+import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/ui_components/auth_required_dialog.dart';
 import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
+import 'package:showcaseview/showcaseview.dart';
 
 class HomeController extends GetxController {
   final _userController = Get.find<UserController>();
@@ -16,11 +26,97 @@ class HomeController extends GetxController {
       : Get.find<ProfileController>();
   var homeCallState = ApiCallState.loading.obs;
   HomeResponse? homeData;
+  final box = GetStorage();
+  bool get hasSeenShowcase => box.read('hasSeenShowcase') ?? false;
+  final firstKey = GlobalKey();
+  final secondKey = GlobalKey();
+  final thirdKey = GlobalKey();
+  final lastKey = GlobalKey();
 
   @override
   void onInit() {
     super.onInit();
     fetchHomeJobs();
+  }
+
+  void startShowcase() {
+    ShowcaseView.register(
+      enableAutoScroll: true,
+      onDismiss: (key) async {
+        // Mark as seen when dismissed
+        await box.write('hasSeenShowcase', true);
+      },
+
+      onFinish: () async {
+        // Mark as seen when finished
+        await box.write('hasSeenShowcase', true);
+      },
+
+      blurValue: 1,
+
+      globalTooltipActionConfig: const TooltipActionConfig(
+        position: TooltipActionPosition.inside,
+        alignment: MainAxisAlignment.spaceBetween,
+        actionGap: 20,
+      ),
+      globalTooltipActions: [
+        TooltipActionButton(
+          name: "Back",
+          backgroundColor: Colors.transparent,
+          type: TooltipDefaultActionType.previous,
+          textStyle: const TextStyle(color: AppColors.pureWhite),
+          hideActionWidgetForShowcase: [firstKey, secondKey],
+        ),
+        // for presrntation ui only
+        TooltipActionButton(
+          name: "",
+          onTap: () {},
+          backgroundColor: Colors.transparent,
+          type: TooltipDefaultActionType.previous,
+          textStyle: const TextStyle(color: AppColors.pureWhite),
+          hideActionWidgetForShowcase: [firstKey, thirdKey, lastKey],
+        ),
+
+        TooltipActionButton(
+          name: "Done",
+          backgroundColor: Colors.transparent,
+          type: TooltipDefaultActionType.next,
+          textStyle: const TextStyle(color: AppColors.pureWhite),
+          hideActionWidgetForShowcase: [firstKey, secondKey, thirdKey],
+        ),
+        // Here we don't need next action for the last showcase widget so we
+        // hide this action for the last showcase widget
+        TooltipActionButton(
+          name: "Next",
+          backgroundColor: Colors.transparent,
+          type: TooltipDefaultActionType.next,
+          textStyle: const TextStyle(color: AppColors.pureWhite),
+          hideActionWidgetForShowcase: [firstKey, lastKey],
+        ),
+      ],
+    );
+    if (!hasSeenShowcase) {
+      _goStart();
+    }
+  }
+
+  _goStart() {
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => ShowcaseView.get().startShowCase([
+        firstKey,
+        secondKey,
+        thirdKey,
+        lastKey,
+      ]),
+    );
+  }
+
+  goNext() {
+    ShowcaseView.get().next();
+  }
+
+  goDismiss() {
+    ShowcaseView.get().dismiss();
   }
 
   bool jobIsInHome(int id) {
@@ -52,6 +148,7 @@ class HomeController extends GetxController {
         log("🟢 fetchHomeJobs success");
         homeData = response;
         homeCallState.value = ApiCallState.success;
+        startShowcase();
       } else {
         homeCallState.value = ApiCallState.failure;
       }
@@ -132,5 +229,11 @@ class HomeController extends GetxController {
     } finally {
       context.loaderOverlay.hide();
     }
+  }
+
+  @override
+  void onClose() {
+    ShowcaseView.get().unregister();
+    super.onClose();
   }
 }
