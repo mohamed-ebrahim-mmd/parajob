@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/features/my_notifications/widgets/message_spans.dart'
     show buildMessageSpans;
 import 'package:timeago/timeago.dart' as timeago;
@@ -33,39 +34,49 @@ class MyNotificationCard extends StatelessWidget {
       context.theme.textTheme.headlineLarge!,
     );
 
-    return Container(
-      padding: EdgeInsets.all(context.wPct(5)),
-      color: myNotification.readAt == null ? AppColors.darkGrey : null,
-      child: Row(
-        children: [
-          //    if (logoUrl != null && logoUrl.isNotEmpty) ...[
-          AppNetworkImage(
-            url: logoUrl,
-            width: context.wPct(12),
-            height: context.wPct(12),
-            borderRadius: BorderRadius.circular(context.wPct(2)),
-          ),
-                                  context.wBox(4),
+    // Wrap the container with InkWell to make it tappable with visual feedback
+    return InkWell(
+      onTap: () {
+        if (myNotification.type == 'strike') {
+          Get.toNamed(
+            '${Routes.mainNavigator}${Routes.notificationStrikeScreen}',
+          );
+        }
+      },
+      child: Container(
+        padding: EdgeInsets.all(context.wPct(5)),
+        color: myNotification.readAt == null ? AppColors.darkGrey : null,
+        child: Row(
+          children: [
+            //    if (logoUrl != null && logoUrl.isNotEmpty) ...[
+            AppNetworkImage(
+              url: logoUrl,
+              width: context.wPct(12),
+              height: context.wPct(12),
+              borderRadius: BorderRadius.circular(context.wPct(2)),
+            ),
+            context.wBox(4),
 
-          //],
-          Expanded(
-            child: RichText(
-              text: TextSpan(
-                style: context.theme.textTheme.headlineMedium,
-                children: [
-                  ...messageSpans,
-                  TextSpan(
-                    text: '  $timeAgo',
-                    style: context.theme.textTheme.headlineMedium?.copyWith(
-                      color: Colors.grey.shade400,
-                      fontSize: context.wPct(3.2),
+            //],
+            Expanded(
+              child: RichText(
+                text: TextSpan(
+                  style: context.theme.textTheme.headlineMedium,
+                  children: [
+                    ...messageSpans,
+                    TextSpan(
+                      text: '  $timeAgo',
+                      style: context.theme.textTheme.headlineMedium?.copyWith(
+                        color: Colors.grey.shade400,
+                        fontSize: context.wPct(3.2),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
