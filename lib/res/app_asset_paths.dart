@@ -31,6 +31,7 @@ abstract final class AppAssetPaths {
   ///  GetStarted Icon
   static const appleIcon = "assets/icons/apple_icon.svg";
   static const emailIcon = "assets/icons/email_icon.svg";
+  static const googleIcon = "assets/icons/google-icon.svg";
   //static const googleIcon = "assets/icons/google_icon.svg";
   static const guestUserIcon = "assets/icons/guest_user_icon.svg";
 

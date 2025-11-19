@@ -563,7 +563,7 @@ const Map<String, String> arSA = {
   'auth_choice_or': 'أو',
   'auth_choice_continue_as_guest': 'متابعة كمستخدم ضيف',
   'auth_choice_need_help': 'تحتاج مساعدة؟',
-
+  'auth_choice_continue_with_google': 'متابعة باستخدام Google',
   // ============================================================
   // 📄 PDF Viewer Screen
   // ============================================================
