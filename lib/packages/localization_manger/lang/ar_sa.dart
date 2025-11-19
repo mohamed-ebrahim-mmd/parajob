@@ -146,8 +146,7 @@ const Map<String, String> arSA = {
   // ============================================================
   'education_pic_title': 'التعليم',
   'education_pic_subtitle': 'حان وقت التحقق من جامعتك',
-  'education_pic_note':
-      'ملاحظة :\nاضغط لاختيار مستند  يثبت \nأنك طالب جامعي.',
+  'education_pic_note': 'ملاحظة :\nاضغط لاختيار مستند  يثبت \nأنك طالب جامعي.',
   'education_pic_note_1': 'تأكد من أن المحيط مضاء بشكل جيد.',
   'education_pic_note_2':
       'تأكد من أن الصورة داخل الإطار وأن \nالتفاصيل سهلة القراءة',
@@ -536,6 +535,8 @@ const Map<String, String> arSA = {
   'snackbar_check_connection': 'يرجى التحقق من اتصالك وإعادة المحاولة.',
   'snackbar_job_application_congrats':
       'تهانينا! طلبك لهذه الوظيفة قيد المراجعة الآن. 🎉',
+  'snackbar_complaint_success':
+      '"تم إرسال شكواك، يرجى انتظار تواصل فريقنا معك .',
 
   // ============================================================
   // 📍 Location Messages
