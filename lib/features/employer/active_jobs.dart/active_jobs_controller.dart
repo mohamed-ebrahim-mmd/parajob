@@ -15,13 +15,18 @@ class ActiveJobsController extends GetxController {
   late final PagingController<int, Job> pagingController;
 
   /// Authentication token retrieved from user controller
-  final String token = Get.find<UserController>().token!;
+  String? token; // Changed to nullable
 
   ActiveJobsController({required this.companyId});
 
   @override
   void onInit() {
     super.onInit();
+    // Get token if user is logged in
+    final userController = Get.find<UserController>();
+    if (!userController.isGuest) {
+      token = userController.token;
+    }
     initPagingController();
   }
 
@@ -36,7 +41,7 @@ class ActiveJobsController extends GetxController {
 
   Future<List<Job>> _fetchActiveJobs(int pageKey) async {
     final response = await apiClient.fetchJobs(
-      token: token,
+      token: token, // Now passing nullable token
       page: pageKey,
       companyId: companyId,
     );
