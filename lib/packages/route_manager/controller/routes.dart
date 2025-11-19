@@ -38,6 +38,7 @@ import 'package:para_job/features/registration/create_account_skills/create_acco
 import 'package:para_job/features/registration/education_info/education_info_screen.dart';
 import 'package:para_job/features/registration/education_pic/education_pic_screen.dart';
 import 'package:para_job/features/registration/front_national_id/front_national_id_screen.dart';
+import 'package:para_job/features/my_notifications/strike/strike_screen.dart';
 import 'package:para_job/features/registration/picture_with_id/picture_with_id_screen.dart';
 import 'package:para_job/packages/ui_components/app_loader.dart';
 
@@ -89,6 +90,7 @@ class Routes {
   static const String historyJobs = '/history_jobs';
 
   static const String languageScreen = "/language_screen";
+  static const String notificationStrikeScreen = "/notification_strike_screen";
 }
 
 class AppPages {
@@ -327,6 +329,12 @@ class AppPages {
             ),
           ],
         ),
+        // notification strike screen
+        GetPage(
+          name: Routes.notificationStrikeScreen,
+          page: () => const NotificationStrikeScreen(),
+        ),
+
         //profile
         GetPage(
           name: Routes.bookmarkedJobs,
