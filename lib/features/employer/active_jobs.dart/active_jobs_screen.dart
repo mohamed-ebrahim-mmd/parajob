@@ -13,10 +13,12 @@ import 'package:para_job/packages/ui_components/job_card.dart';
 import 'active_jobs_controller.dart';
 
 class ActiveJobsScreen extends StatelessWidget {
-  final int companyId;
+  final int companyId = Get.arguments['id'];
 
-  ActiveJobsScreen({super.key}) : companyId = Get.arguments['id'];
+  ActiveJobsScreen({super.key});
+
   late final controller = Get.put(ActiveJobsController(companyId: companyId));
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
