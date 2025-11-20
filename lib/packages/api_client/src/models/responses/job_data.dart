@@ -1,6 +1,4 @@
-
 import 'package:para_job/packages/api_client/src/models/models.dart';
-
 
 class JobData {
   final int id;
@@ -27,6 +25,7 @@ class JobData {
   final Department department;
   final int? applicationId;
   final bool? isSubmitComplaint;
+  final String? shareableLink;
 
   JobData({
     required this.id,
@@ -53,10 +52,12 @@ class JobData {
     required this.department,
     required this.applicationId,
     required this.isSubmitComplaint,
+    required this.shareableLink,
   });
 
   factory JobData.fromJson(Map<String, dynamic> json) {
     return JobData(
+      shareableLink: json['shareable_link'],
       id: json['id'],
       title: json['title'] ?? '',
       company: Company.fromJson(json['company']),
@@ -74,7 +75,9 @@ class JobData {
       from: json['from'],
       to: json['to'],
       applicationDeadline: json['application_deadline'],
-      skills: (json['skills'] as List<dynamic>).map((e) => e.toString()).toList(),
+      skills: (json['skills'] as List<dynamic>)
+          .map((e) => e.toString())
+          .toList(),
       isApplied: json['is_applied'] ?? false,
       logo: json['logo'] ?? '',
       city: City.fromJson(json['city']),
@@ -84,6 +87,3 @@ class JobData {
     );
   }
 }
-
-
-
