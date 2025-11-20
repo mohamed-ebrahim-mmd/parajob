@@ -37,11 +37,14 @@ class MyNotificationCard extends StatelessWidget {
     // Wrap the container with InkWell to make it tappable with visual feedback
     return InkWell(
       onTap: () {
-        if (myNotification.type == 'strike') {
-          Get.toNamed(
+        Get.toNamed(
             '${Routes.mainNavigator}${Routes.notificationStrikeScreen}',
           );
-        }
+        // if (myNotification.type == 'strike') {
+        //   Get.toNamed(
+        //     '${Routes.mainNavigator}${Routes.notificationStrikeScreen}',
+        //   );
+        // }
       },
       child: Container(
         padding: EdgeInsets.all(context.wPct(5)),
