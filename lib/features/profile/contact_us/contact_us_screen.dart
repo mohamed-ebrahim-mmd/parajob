@@ -33,11 +33,11 @@ class ContactUsScreen extends StatelessWidget {
                 'contact_us_title'.tr,
                 style: TextStyle(
                   color: AppColors.pureWhite,
-                  fontSize: context.wPct(6.5),
+                  fontSize: context.wPct(6),
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              context.hBox(3),
+              context.hBox(2),
               Obx(() {
                 return TextField(
                   controller: controller.messageController,
@@ -62,12 +62,12 @@ class ContactUsScreen extends StatelessWidget {
                 'contact_us_heading'.tr,
                 style: TextStyle(
                   color: AppColors.pureWhite,
-                  fontSize: context.wPct(8.5),
+                  fontSize: context.wPct(6),
 
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              context.hBox(4),
+              context.hBox(1),
 
               Obx(() {
                 final contact = controller.contactInfo;
