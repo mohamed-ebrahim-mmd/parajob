@@ -39,7 +39,6 @@ import 'package:para_job/features/registration/create_account_skills/create_acco
 import 'package:para_job/features/registration/education_info/education_info_screen.dart';
 import 'package:para_job/features/registration/education_pic/education_pic_screen.dart';
 import 'package:para_job/features/registration/front_national_id/front_national_id_screen.dart';
-
 import 'package:para_job/features/registration/picture_with_id/picture_with_id_screen.dart';
 import 'package:para_job/packages/ui_components/app_loader.dart';
 
