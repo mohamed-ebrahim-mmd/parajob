@@ -32,7 +32,7 @@ class MainNavigatorController extends GetxController {
       initPages();
 
     } else {
-      fetchProfileDetails();
+      fetchBlockStatus();
     }
   }
  // Pages for each destination
@@ -45,19 +45,20 @@ class MainNavigatorController extends GetxController {
     ];
   }
 
-  Future<void> fetchProfileDetails() async {
+
+
+  Future<void> fetchBlockStatus() async {
     isBlockedCallState.value = ApiCallState.loading;
 
     try {
-      final response = await apiClient.fetchUserProfile(
-        token: userController.token!,
+      final response = await apiClient.fetchBlockStatus(
+        userController.token,
       );
 
       if (response.isSuccess) {
-        log("🟢 fetchProfileDetails isSuccess");
-        var profileData = response.data;
-
-       isBlocked = profileData.isBlocked ?? false;
+        log("🟢 block status isSuccess");
+        var blockData = response.data;
+       isBlocked = blockData?.isBlocked ?? false;
         if (!isBlocked) {
           initPages();
         }
@@ -70,7 +71,6 @@ class MainNavigatorController extends GetxController {
       isBlockedCallState.value = ApiCallState.failure;
     }
   }
-
   Future<void> updateTab(BuildContext context, int index) async {
     switch (index) {
       case 0:

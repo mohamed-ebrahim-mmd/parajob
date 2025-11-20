@@ -2,25 +2,18 @@
 
 import 'package:para_job/packages/api_client/src/models/responses/block_status_data.dart';
 
-class BlockStatus {
+class BlockStatusResponse {
   final BlockStatusData? data;
   final bool isSuccess;
- 
-  BlockStatus({
-    required this.data,
-    required this.isSuccess,
-  });
 
-  factory BlockStatus.fromJson(Map<String, dynamic> json) {
-    return BlockStatus(
+  BlockStatusResponse({required this.data, required this.isSuccess});
+
+  factory BlockStatusResponse.fromJson(Map<String, dynamic> json) {
+    return BlockStatusResponse(
       data: json['data'] != null
           ? BlockStatusData.fromJson(json['data'])
           : null,
       isSuccess: json['is_success'] ?? false,
-    
     );
   }
 }
-
-
-
