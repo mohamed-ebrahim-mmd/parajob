@@ -92,6 +92,31 @@ class AuthChoiceScreen extends StatelessWidget {
                 ),
 
                 context.hBox(2.5),
+                // button to sign in with gmail
+                OutlinedButton(
+                  onPressed: () {},
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      //svg
+                      SvgPicture.asset(
+                        AppAssetPaths.googleIcon,
+                        height: context.hPct(2.2),
+                        width: context.wPct(2),
+                      ),
+                      context.wBox(3),
+                      Text(
+                        'auth_choice_continue_with_google'.tr,
+                        style: TextStyle(
+                          color: AppColors.pureWhite,
+                          fontSize: context.wPct(4),
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                context.hBox(2.5),
                 //text
                 Wrap(
                   //mainAxisAlignment: MainAxisAlignment.start,
