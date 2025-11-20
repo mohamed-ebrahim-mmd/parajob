@@ -28,6 +28,8 @@ class MyJobCard extends StatelessWidget {
       borderRadius: BorderRadius.circular(context.wPct(3.5)),
       child: Container(
         padding: EdgeInsets.all(context.wPct(4)),
+
+        margin: EdgeInsets.symmetric(horizontal: context.wPct(1.5)),
         decoration: BoxDecoration(
           color: AppColors.darkCharcoal,
           borderRadius: BorderRadius.circular(context.wPct(3.5)),
