@@ -99,12 +99,15 @@ class NotificationStrikeScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                Text(
-                  "Warnings can limit your access and features.\n Follow the rules to keep your account safe and fully active.",
-                  style: TextStyle(
-                    color: AppColors.softWhite80,
-                    fontSize: context.wPct(4),
-                    fontWeight: FontWeight.w400,
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "Warnings can limit your access and features.\n Follow the rules to keep your account safe and fully active.",
+                    style: TextStyle(
+                      color: AppColors.softWhite80,
+                      fontSize: context.wPct(4),
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
                 ),
                 context.hBox(3),
@@ -120,12 +123,15 @@ class NotificationStrikeScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                Text(
-                  "Follow the app rules carefully: provide accurate information.\nrespect other users, and avoid prohibited actions.\n Staying compliant keeps your account safe and fully functional.",
-                  style: TextStyle(
-                    color: AppColors.softWhite80,
-                    fontSize: context.wPct(4),
-                    fontWeight: FontWeight.w400,
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "Follow the app rules carefully: provide accurate information.\nrespect other users, and avoid prohibited actions.\n Staying compliant keeps your account safe and fully functional.",
+                    style: TextStyle(
+                      color: AppColors.softWhite80,
+                      fontSize: context.wPct(4),
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
                 ),
                 context.hBox(2),
