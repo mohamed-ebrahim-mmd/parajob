@@ -332,7 +332,7 @@ class AppPages {
         // notification strike screen
         GetPage(
           name: Routes.notificationStrikeScreen,
-          page: () => const NotificationStrikeScreen(),
+          page: () =>  NotificationStrikeScreen(),
         ),
 
         //profile

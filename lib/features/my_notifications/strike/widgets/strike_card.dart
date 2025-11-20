@@ -1,22 +1,19 @@
 //Mary Mark ||  mary.mark@moselaymd.com || Thu Nov 20 2025 15:18:45
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:para_job/features/my_notifications/strike/notification_strike_controller.dart';
+import 'package:para_job/packages/api_client/src/models/responses/strike.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/packages/ui_components/app_network_image.dart';
 
 class MyStrikeCard extends StatelessWidget {
-  // final MyJob job;
+  final Strike strike;
+  final controller = Get.find<NotificationStrikeController>();
+  final String langCode = Get.locale?.languageCode ?? 'en';
 
-  final VoidCallback? onTap;
-  final bool? isHistoryJobs;
-  const MyStrikeCard({
-    super.key,
-
-    // required this.job,
-    this.isHistoryJobs,
-    this.onTap,
-  });
+  MyStrikeCard({super.key, required this.strike});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +21,7 @@ class MyStrikeCard extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "13 August 2023",
+          controller.getFormattedDate(strike.createdAt, locale: langCode),
           style: TextStyle(
             fontSize: context.wPct(3.4),
             fontWeight: FontWeight.w500,
@@ -48,8 +45,7 @@ class MyStrikeCard extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(context.wPct(2)),
                 child: AppNetworkImage(
-                  url: "companyLogo",
-                  //job.company.logo ?? '',
+                  url: strike.company?.logo ?? '',
                   width: context.wPct(12),
                   height: context.wPct(12),
                   fit: BoxFit.contain,
@@ -62,8 +58,7 @@ class MyStrikeCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "title",
-                      //  job.title,
+                      strike.job.title,
                       style: TextStyle(
                         fontSize: context.wPct(4),
                         fontWeight: FontWeight.w600,
@@ -75,8 +70,7 @@ class MyStrikeCard extends StatelessWidget {
                     context.hBox(1),
 
                     Text(
-                      "companyName",
-                      // job.company.name ?? "",
+                      strike.company?.name ?? "",
                       style: TextStyle(
                         fontSize: context.wPct(3.2),
                         fontWeight: FontWeight.w600,
@@ -94,8 +88,7 @@ class MyStrikeCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                    "177888",
-                    //  job.title,
+                    strike.job.salary,
                     style: TextStyle(
                       fontSize: context.wPct(4),
                       fontWeight: FontWeight.w600,
@@ -114,7 +107,10 @@ class MyStrikeCard extends StatelessWidget {
                       ),
                       context.wBox(0.5),
                       Text(
-                        "9 march",
+                        controller.getFormattedDate(
+                          strike.job.startDate,
+                          locale: langCode,
+                        ),
                         style: TextStyle(
                           fontSize: context.wPct(3.2),
                           fontWeight: FontWeight.w600,
@@ -142,7 +138,7 @@ class MyStrikeCard extends StatelessWidget {
             context.wBox(1),
 
             Text(
-              "You were 30 mins late.",
+              strike.reason,
               style: TextStyle(
                 fontSize: context.wPct(2.5),
                 fontWeight: FontWeight.w400,

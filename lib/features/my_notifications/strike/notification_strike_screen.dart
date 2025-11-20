@@ -1,11 +1,19 @@
 // Karim Toson || kareemtoson1@gmail.com || 19/11/2025 2:06 PM
+
 import 'package:flutter/material.dart';
-import 'package:para_job/features/my_notifications/strike/widgets/strike_card.dart';
+import 'package:get/get.dart';
+import 'package:para_job/features/my_notifications/strike/notification_strike_controller.dart';
+import 'package:para_job/features/my_notifications/strike/strikes_details.dart';
+import 'package:para_job/packages/api_client/src/enums/api_call_state_enum.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
+import 'package:para_job/packages/ui_components/error_screen.dart';
 
 class NotificationStrikeScreen extends StatelessWidget {
-  const NotificationStrikeScreen({super.key});
+  NotificationStrikeScreen({super.key});
+  final NotificationStrikeController controller = Get.put(
+    NotificationStrikeController(),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +33,7 @@ class NotificationStrikeScreen extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  "warning",
+                  "warning_label".tr,
 
                   style: TextStyle(
                     color: AppColors.rejected,
@@ -36,7 +44,7 @@ class NotificationStrikeScreen extends StatelessWidget {
                 context.hBox(1),
 
                 Text(
-                  "Violation of the application rules",
+                  "violation_rules".tr,
                   style: TextStyle(
                     color: AppColors.pureWhite,
                     fontSize: context.wPct(5),
@@ -45,53 +53,34 @@ class NotificationStrikeScreen extends StatelessWidget {
                 ),
 
                 context.hBox(1),
-                SizedBox(
-                  height: context.hPct(8),
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    shrinkWrap: true,
-                    children: [
-                      Icon(
-                        Icons.warning_amber_rounded,
-                        color: AppColors.rejected,
-                        size: context.wPct(10),
-                      ),
-                      Icon(
-                        Icons.warning_amber_rounded,
-                        color: AppColors.rejected,
-                        size: context.wPct(10),
-                      ),
-                      Icon(
-                        Icons.warning_amber_rounded,
-                        color: AppColors.grayButton,
-                        size: context.wPct(10),
-                      ),
-                    ],
-                  ),
-                ),
+                Obx(() {
+                  switch (controller.strikesCallState.value) {
+                    case ApiCallState.loading:
+                      return const Center(child: CircularProgressIndicator());
 
-                Text(
-                  "2 out of 3 violations",
-                  style: TextStyle(
-                    color: AppColors.pureWhite,
-                    fontSize: context.wPct(4),
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-                context.hBox(2),
+                    case ApiCallState.success:
+                      return StrikesDetails();
 
-                ListView(
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  children: [MyStrikeCard(), context.hBox(4), MyStrikeCard()],
-                ),
-                context.hBox(2),
+                    case ApiCallState.failure:
+                      return Center(
+                        child: ErrorScreen(
+                          onPressed: () {
+                            controller.fetchStrikesDetails();
+                          },
+                        ),
+                      );
+                  }
+                }),
+
+                context.hBox(4),
 
                 //Why you don’t want to get a warning?
                 Align(
-                  alignment: Alignment.centerLeft,
+                  alignment: Directionality.of(context) == TextDirection.rtl
+                      ? Alignment.centerRight
+                      : Alignment.centerLeft,
                   child: Text(
-                    "Why you don’t want to get a warning?",
+                    "warning_info_title".tr,
                     style: TextStyle(
                       color: AppColors.pureWhite,
                       fontSize: context.wPct(5),
@@ -100,9 +89,11 @@ class NotificationStrikeScreen extends StatelessWidget {
                   ),
                 ),
                 Align(
-                  alignment: Alignment.centerLeft,
+                  alignment: Directionality.of(context) == TextDirection.rtl
+                      ? Alignment.centerRight
+                      : Alignment.centerLeft,
                   child: Text(
-                    "Warnings can limit your access and features.\n Follow the rules to keep your account safe and fully active.",
+                    "warning_consequences_list".tr,
                     style: TextStyle(
                       color: AppColors.softWhite80,
                       fontSize: context.wPct(4),
@@ -113,9 +104,11 @@ class NotificationStrikeScreen extends StatelessWidget {
                 context.hBox(3),
 
                 Align(
-                  alignment: Alignment.centerLeft,
+                  alignment: Directionality.of(context) == TextDirection.rtl
+                      ? Alignment.centerRight
+                      : Alignment.centerLeft,
                   child: Text(
-                    "How to avoid getting a warning?",
+                    "warning_info_tips".tr,
                     style: TextStyle(
                       color: AppColors.pureWhite,
                       fontSize: context.wPct(5),
@@ -124,14 +117,18 @@ class NotificationStrikeScreen extends StatelessWidget {
                   ),
                 ),
                 Align(
-                  alignment: Alignment.centerLeft,
+                  alignment: Directionality.of(context) == TextDirection.rtl
+                      ? Alignment.centerRight
+                      : Alignment.centerLeft,
                   child: Text(
-                    "Follow the app rules carefully: provide accurate information.\nrespect other users, and avoid prohibited actions.\n Staying compliant keeps your account safe and fully functional.",
+                    "warning_tips_list".tr,
                     style: TextStyle(
                       color: AppColors.softWhite80,
                       fontSize: context.wPct(4),
                       fontWeight: FontWeight.w400,
+                      
                     ),
+                    textAlign: TextAlign.start, 
                   ),
                 ),
                 context.hBox(2),
