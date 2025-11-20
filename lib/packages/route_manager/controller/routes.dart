@@ -17,6 +17,7 @@ import 'package:para_job/features/job_details/job_details_screen.dart';
 import 'package:para_job/features/main_navigator/main_navigator_screen.dart';
 import 'package:para_job/features/my_jobs/application_verification_otp/application_verification_otp_screen.dart';
 import 'package:para_job/features/my_jobs/contract/contract_screen.dart';
+import 'package:para_job/features/my_notifications/strike/notification_strike_screen.dart';
 import 'package:para_job/features/onboarding/onboarding_screen.dart';
 import 'package:para_job/features/profile/about_app/about_app_screen.dart';
 import 'package:para_job/features/profile/about_us/about_us_screen.dart';
@@ -38,7 +39,7 @@ import 'package:para_job/features/registration/create_account_skills/create_acco
 import 'package:para_job/features/registration/education_info/education_info_screen.dart';
 import 'package:para_job/features/registration/education_pic/education_pic_screen.dart';
 import 'package:para_job/features/registration/front_national_id/front_national_id_screen.dart';
-import 'package:para_job/features/my_notifications/strike/strike_screen.dart';
+
 import 'package:para_job/features/registration/picture_with_id/picture_with_id_screen.dart';
 import 'package:para_job/packages/ui_components/app_loader.dart';
 
