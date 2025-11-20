@@ -35,46 +35,45 @@ class MainNavigatorScreen extends StatelessWidget {
           (callState == ApiCallState.success && isBlocked);
 
       return Scaffold(
-        body: Stack(
-          children: [
-            Container(
-              decoration: showBackground
-                  ? BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage(AppAssetPaths.getStartedBackground),
-                        fit: BoxFit.cover,
-                      ),
-                    )
-                  : null,
-            ),
-            if (showBackground) Container(color: const Color(0xCC000000)),
-
-            () {
-              switch (callState) {
-                case ApiCallState.loading:
-                  return const Center(child: CircularProgressIndicator());
-
-                case ApiCallState.success:
-                  if (isBlocked) {
-                    return Center(child: Text('blocked'));
-                  } else {
-                    return IndexedStack(
-                      index: controller.tab.value,
-                      children: controller.pages,
-                    );
-                  }
-
-                case ApiCallState.failure:
-                  return Center(
-                    child: ErrorScreen(
-                      onPressed: () {
-                        controller.fetchProfileDetails();
-                      },
+        body: Container(
+          decoration: showBackground
+              ? BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(AppAssetPaths.getStartedBackground),
+                    fit: BoxFit.cover,
+                    colorFilter: ColorFilter.mode(
+                      Color(0xCC000000),
+                      BlendMode.darken,
                     ),
+                  ),
+                )
+              : null,
+
+          child: () {
+            switch (callState) {
+              case ApiCallState.loading:
+                return const Center(child: CircularProgressIndicator());
+
+              case ApiCallState.success:
+                if (isBlocked) {
+                  return Center(child: Text('blocked'));
+                } else {
+                  return IndexedStack(
+                    index: controller.tab.value,
+                    children: controller.pages,
                   );
-              }
-            }(),
-          ],
+                }
+
+              case ApiCallState.failure:
+                return Center(
+                  child: ErrorScreen(
+                    onPressed: () {
+                      controller.fetchProfileDetails();
+                    },
+                  ),
+                );
+            }
+          }(),
         ),
 
         bottomNavigationBar: () {
