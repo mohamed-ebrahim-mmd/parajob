@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/my_notifications/strike/notification_strike_controller.dart';
-import 'package:para_job/features/my_notifications/strike/widgets/strikes_details.dart';
+import 'package:para_job/packages/ui_components/strikes_details.dart';
 import 'package:para_job/packages/api_client/src/enums/api_call_state_enum.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
@@ -60,7 +60,7 @@ class NotificationStrikeScreen extends StatelessWidget {
                         ),
 
                         context.hBox(1),
-                        StrikesDetails(),
+                        StrikesDetails(strikes: controller.strikesData,),
 
                         context.hBox(4),
 

@@ -3,7 +3,6 @@
 import 'dart:developer';
 
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:para_job/packages/api_client/src/enums/api_call_state_enum.dart';
 import 'package:para_job/packages/api_client/src/models/responses/strike.dart';
 import 'package:para_job/packages/api_client/src/service/api_client_instance.dart';
@@ -41,14 +40,6 @@ class NotificationStrikeController extends GetxController {
   }
 
 
-  String getFormattedDate(String dateString, {String locale = 'en'}) {
-    try {
-      final dateTime = DateTime.parse(dateString);
-      return DateFormat('d MMMM yyyy', locale).format(dateTime);
-    } catch (_) {
-      return dateString; // fallback if parsing fails
-    }
-  }
 
 
 
