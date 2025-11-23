@@ -8,6 +8,7 @@ import 'package:para_job/features/registration/create_account/create_account_con
 import 'package:para_job/features/registration/widgets/stepper.dart';
 import 'package:para_job/packages/api_client/src/enums/api_call_state_enum.dart'
     show ApiCallState, DataFetchState;
+import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
@@ -239,6 +240,7 @@ class CreateAccountScreen extends StatelessWidget {
 
               context.hBox(5),
               GestureDetector(
+                onTap: () => Get.toNamed(Routes.contactUsAuth),
                 child: Text(
                   'create_account_contact_us'.tr,
                   style: TextStyle(

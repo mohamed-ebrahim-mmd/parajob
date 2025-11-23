@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/registration/create_account_set_pass/create_account_set_pass_controller.dart';
 import 'package:para_job/features/registration/widgets/stepper.dart';
+import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
@@ -88,6 +89,8 @@ class CreateAccountSetPass extends StatelessWidget {
 
             context.hBox(5),
             GestureDetector(
+              onTap: () =>Get.toNamed(Routes.contactUsAuth),
+
               child: Text(
                 'create_account_set_pass_contact_us'.tr,
                 style: TextStyle(
