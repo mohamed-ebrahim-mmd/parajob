@@ -6,6 +6,7 @@ import 'package:para_job/features/home/home_screen.dart';
 import 'package:para_job/features/my_jobs/my_jobs_screen.dart';
 import 'package:para_job/features/profile/user_profile/profile_screen.dart';
 import 'package:para_job/packages/api_client/src/enums/api_call_state_enum.dart';
+import 'package:para_job/packages/api_client/src/models/responses/strike.dart';
 import 'package:para_job/packages/api_client/src/service/api_client_instance.dart';
 import 'package:para_job/packages/ui_components/auth_required_dialog.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
@@ -18,10 +19,12 @@ class MainNavigatorController extends GetxController {
   var userProfilePic = Rx<String?>(null);
   var isBlockedCallState = ApiCallState.loading.obs;
   bool isBlocked = false;
+  List<Strike> strikesData = [];
 
   void setUserProfilePic(String? profilePic) {
     userProfilePic.value = profilePic;
   }
+
   late final List<Widget> pages;
 
   @override
@@ -30,12 +33,12 @@ class MainNavigatorController extends GetxController {
     if (userController.isGuest) {
       isBlockedCallState.value = ApiCallState.success;
       initPages();
-
     } else {
       fetchBlockStatus();
     }
   }
- // Pages for each destination
+
+  // Pages for each destination
   void initPages() {
     pages = [
       HomeScreen(),
@@ -45,20 +48,17 @@ class MainNavigatorController extends GetxController {
     ];
   }
 
-
-
   Future<void> fetchBlockStatus() async {
     isBlockedCallState.value = ApiCallState.loading;
 
     try {
-      final response = await apiClient.fetchBlockStatus(
-        userController.token,
-      );
+      final response = await apiClient.fetchStrikes(userController.token!);
 
       if (response.isSuccess) {
         log("🟢 block status isSuccess");
-        var blockData = response.data;
-       isBlocked = blockData?.isBlocked ?? false;
+        isBlocked = response.isBlocked;
+        strikesData = response.data;
+
         if (!isBlocked) {
           initPages();
         }
@@ -71,6 +71,7 @@ class MainNavigatorController extends GetxController {
       isBlockedCallState.value = ApiCallState.failure;
     }
   }
+
   Future<void> updateTab(BuildContext context, int index) async {
     switch (index) {
       case 0:

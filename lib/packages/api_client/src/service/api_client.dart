@@ -223,8 +223,8 @@ abstract class ApiClient {
     @Header("Authorization") String token,
   );
 
-  @GET("/api/user/block-status")
-  Future<BlockStatusResponse> fetchBlockStatus(
-    @Header("Authorization") String? token,
-  );
+  // @GET("/api/user/block-status")
+  // Future<BlockStatusResponse> fetchBlockStatus(
+  //   @Header("Authorization") String? token,
+  // );
 }
