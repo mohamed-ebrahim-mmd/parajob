@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:app_links/app_links.dart';
 import 'package:flutter/material.dart'
     show
         BuildContext,
@@ -13,6 +14,8 @@ import 'package:get_storage/get_storage.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:para_job/features/profile/user_profile/profile_controller.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
+import 'package:para_job/packages/route_manager/controller/routes.dart';
+import 'package:para_job/packages/route_manager/controller/routing_controller.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/ui_components/auth_required_dialog.dart';
 import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
@@ -24,19 +27,63 @@ class HomeController extends GetxController {
   late final _profileController = _userController.isGuest
       ? null
       : Get.find<ProfileController>();
+
   var homeCallState = ApiCallState.loading.obs;
   HomeResponse? homeData;
   final box = GetStorage();
+
   bool get hasSeenShowcase => box.read('hasSeenShowcase') ?? false;
+
   final firstKey = GlobalKey();
   final secondKey = GlobalKey();
   final thirdKey = GlobalKey();
   final lastKey = GlobalKey();
 
+  final isGuest = Get.find<UserController>().isGuest;
+  final routingController = Get.find<RoutingController>();
+
+  final AppLinks _appLinks = AppLinks();
+
+  late bool shouldCheckDeepLink;
+
   @override
   void onInit() {
     super.onInit();
+
+    shouldCheckDeepLink = Get.arguments == true;
+
     fetchHomeJobs();
+
+    if (shouldCheckDeepLink) {
+      _handleDeepLink();
+      shouldCheckDeepLink = false;
+    }
+  }
+
+  void _handleDeepLink() async {
+    log("handleDeepLink called");
+    final Uri? uri = await _appLinks.getInitialLink();
+    _processLink(uri);
+  }
+
+  void _processLink(Uri? uri) {
+    String? jobIdString;
+
+    if (uri != null) {
+      if (uri.path.contains('/share/')) {
+        final segments = uri.pathSegments;
+        int shareIndex = segments.indexOf('share');
+        if (shareIndex != -1 && shareIndex + 1 < segments.length) {
+          jobIdString = segments[shareIndex + 1];
+        }
+      }
+    }
+
+    final int? jobId = jobIdString != null ? int.tryParse(jobIdString) : null;
+
+    if (jobId != null) {
+      Get.toNamed(Routes.jobDetails, arguments: jobId);
+    }
   }
 
   void startShowcase() {
@@ -148,6 +195,7 @@ class HomeController extends GetxController {
         log("🟢 fetchHomeJobs success");
         homeData = response;
         homeCallState.value = ApiCallState.success;
+
         startShowcase();
       } else {
         homeCallState.value = ApiCallState.failure;
