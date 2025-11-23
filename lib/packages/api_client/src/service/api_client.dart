@@ -218,9 +218,13 @@ abstract class ApiClient {
     @Header("Authorization") String token,
   );
 
-  
   @GET("/api/user/job/strike")
-  Future<NotificationWarningResponse> fetchStrikes(@Header("Authorization") String token);
+  Future<NotificationWarningResponse> fetchStrikes(
+    @Header("Authorization") String token,
+  );
 
-
+  @GET("/api/user/block-status")
+  Future<BlockStatusResponse> fetchBlockStatus(
+    @Header("Authorization") String? token,
+  );
 }

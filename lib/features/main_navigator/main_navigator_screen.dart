@@ -70,7 +70,7 @@ class MainNavigatorScreen extends StatelessWidget {
                 return Center(
                   child: ErrorScreen(
                     onPressed: () {
-                      controller.fetchProfileDetails();
+                      controller.fetchBlockStatus();
                     },
                   ),
                 );
