@@ -98,7 +98,13 @@ class AppPages {
     GetPage(name: Routes.onboarding, page: () => OnboardingScreen()),
     GetPage(
       name: Routes.authChoice,
-      page: () => AuthChoiceScreen(),
+      page: () => LoaderOverlay(
+        child: AuthChoiceScreen(),
+        overlayWidgetBuilder: (_) {
+          //ignored progress for the moment
+          return AppLoader();
+        },
+      ),
       children: [
         GetPage(
           name: Routes.emailLoginScreen,

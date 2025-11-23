@@ -5,6 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:para_job/features/authentication/authentication_choice/auth_choice_util.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/route_manager/controller/routing_controller.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
@@ -94,7 +95,9 @@ class AuthChoiceScreen extends StatelessWidget {
                 context.hBox(2.5),
                 // button to sign in with gmail
                 OutlinedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    signInAndLogUserData(context);
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

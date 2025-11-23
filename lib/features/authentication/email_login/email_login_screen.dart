@@ -97,7 +97,7 @@ class EmailLoginScreen extends StatelessWidget {
           children: [
             FilledButton(
               onPressed: () {
-                controller.login();
+                controller.login(context);
               },
               child: Text('login_button'.tr),
             ),
