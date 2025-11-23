@@ -50,6 +50,8 @@ class MainNavigatorScreen extends StatelessWidget {
               : null,
 
           child: () {
+
+            
             switch (callState) {
               case ApiCallState.loading:
                 return const Center(child: CircularProgressIndicator());
@@ -73,6 +75,9 @@ class MainNavigatorScreen extends StatelessWidget {
                   ),
                 );
             }
+         
+         
+         
           }(),
         ),
 

@@ -1256,27 +1256,26 @@ class _ApiClient implements ApiClient {
   }
 
   @override
-  Future<BlockStatusResponse> fetchBlockStatus(String? token) async {
+  Future<NotificationWarningResponse> fetchStrikes(String token) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{r'Authorization': token};
     _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<BlockStatusResponse>(
+    final _options = _setStreamType<NotificationWarningResponse>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/api/user/block-status',
+            '/api/user/job/strike',
             queryParameters: queryParameters,
             data: _data,
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late BlockStatusResponse _value;
+    late NotificationWarningResponse _value;
     try {
-      _value = BlockStatusResponse.fromJson(_result.data!);
+      _value = NotificationWarningResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;
