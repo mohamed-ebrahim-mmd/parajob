@@ -54,6 +54,7 @@ class MyStrikeCard extends StatelessWidget {
               ),
               context.wBox(2),
               Expanded(
+                //flex: 2,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -84,44 +85,47 @@ class MyStrikeCard extends StatelessWidget {
               ),
               context.wBox(2),
 
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Text(
-                    strike.job.salary,
-                    style: TextStyle(
-                      fontSize: context.wPct(4),
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      "${"egp".tr} ${strike.job.salary}",
+                      style: TextStyle(
+                        fontSize: context.wPct(4),
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  context.hBox(1),
+                    context.hBox(1),
 
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.calendar_month_outlined,
-                        size: context.wPct(3.5),
-                      ),
-                      context.wBox(0.5),
-                      Text(
-                        controller.getFormattedDate(
-                          strike.job.startDate,
-                          locale: langCode,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Icon(
+                          Icons.calendar_month_outlined,
+                          size: context.wPct(3.5),
                         ),
-                        style: TextStyle(
-                          fontSize: context.wPct(3.2),
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white70,
+                        context.wBox(0.5),
+                        Text(
+                          controller.getFormattedDate(
+                            strike.job.startDate,
+                            locale: langCode,
+                          ),
+                          style: TextStyle(
+                            fontSize: context.wPct(3.2),
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white70,
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                         ),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ],
-                  ),
-                ],
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

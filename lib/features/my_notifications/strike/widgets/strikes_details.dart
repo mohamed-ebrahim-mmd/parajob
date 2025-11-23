@@ -26,7 +26,7 @@ class StrikesDetails extends StatelessWidget {
             itemBuilder: (context, index) {
               final color = index < strikes.length
                   ? AppColors.rejected
-                  : AppColors.grayButton;
+                  : AppColors.pureWhite;
               return Icon(
                 Icons.warning_amber_rounded,
                 color: color,
