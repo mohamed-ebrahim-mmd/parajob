@@ -2,15 +2,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:para_job/features/my_notifications/strike/notification_strike_controller.dart';
 import 'package:para_job/packages/api_client/src/models/responses/strike.dart';
+import 'package:para_job/packages/functional_components/date_format.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/packages/ui_components/app_network_image.dart';
 
 class MyStrikeCard extends StatelessWidget {
   final Strike strike;
-  final controller = Get.find<NotificationStrikeController>();
   final String langCode = Get.locale?.languageCode ?? 'en';
 
   MyStrikeCard({super.key, required this.strike});
@@ -21,7 +20,7 @@ class MyStrikeCard extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          controller.getFormattedDate(strike.createdAt, locale: langCode),
+        getFormattedDate(strike.createdAt, locale: langCode),
           style: TextStyle(
             fontSize: context.wPct(3.4),
             fontWeight: FontWeight.w500,
@@ -110,7 +109,7 @@ class MyStrikeCard extends StatelessWidget {
                         ),
                         context.wBox(0.5),
                         Text(
-                          controller.getFormattedDate(
+                         getFormattedDate(
                             strike.job.startDate,
                             locale: langCode,
                           ),
@@ -155,3 +154,6 @@ class MyStrikeCard extends StatelessWidget {
     );
   }
 }
+
+
+

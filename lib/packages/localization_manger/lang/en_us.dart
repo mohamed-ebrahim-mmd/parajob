@@ -768,4 +768,9 @@ to connect with you.
       "Arrive on time\nMaintain professional behavior\nMeet performance expectations\nFollow workplace policies",
   "warning_consequences_list":
       "It goes into your employment record\nIt impacts your chances for getting accepted in another job\nAfter 3 strikes your account will be blocked",
+
+  // ============================================================
+  // block screen
+  // ============================================================
+  "account_disabled": "YOUR ACCOUNT HAS BEEN DISABLED!",
 };

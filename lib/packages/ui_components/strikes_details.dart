@@ -4,14 +4,14 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:para_job/features/my_notifications/strike/notification_strike_controller.dart';
-import 'package:para_job/features/my_notifications/strike/widgets/strike_card.dart';
+import 'package:para_job/packages/ui_components/strike_card.dart';
+import 'package:para_job/packages/api_client/src/models/responses/strike.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
 class StrikesDetails extends StatelessWidget {
-  StrikesDetails({super.key});
-  final strikes = Get.find<NotificationStrikeController>().strikesData;
+  StrikesDetails({super.key, required this.strikes});
+  final List<Strike> strikes;
   final int totaAvailableStrikes = 3;
   @override
   Widget build(BuildContext context) {
