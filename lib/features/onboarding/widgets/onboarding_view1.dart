@@ -74,19 +74,23 @@ class OnboardingView1 extends StatelessWidget {
                       onTap: () {
                         Get.find<RoutingController>().goAuthChoiceScreen();
                       },
-                      child: Row(
-                        children: [
-                          Text(
-                            "skip",
-                            style: TextStyle(fontSize: context.wPct(4)),
-                          ),
-                          context.wBox(1),
-                          Icon(
-                            Icons.double_arrow_rounded,
-                            size: context.wPct(4),
-                          ),
-                        ],
-                      ),
+                      child: (Container(
+                        padding: EdgeInsets.all(context.wPct(3)),
+                        color: Colors.transparent,
+                        child: Row(
+                          children: [
+                            Text(
+                              "skip",
+                              style: TextStyle(fontSize: context.wPct(4)),
+                            ),
+                            context.wBox(1),
+                            Icon(
+                              Icons.double_arrow_rounded,
+                              size: context.wPct(4),
+                            ),
+                          ],
+                        ),
+                      )),
                     ),
                   ],
                 ),
