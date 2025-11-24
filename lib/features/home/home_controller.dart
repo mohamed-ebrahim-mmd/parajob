@@ -74,8 +74,6 @@ class HomeController extends GetxController {
     final int? jobId = int.tryParse(jobIdString ?? "");
     if (jobId == null) return;
 
-    // Deep link processed, no need to set a flag since we'll check Get.arguments directly
-
     // 4) Navigate to job details
     Get.toNamed(Routes.jobDetails, arguments: jobId);
   }
@@ -84,9 +82,11 @@ class HomeController extends GetxController {
     ShowcaseView.register(
       enableAutoScroll: true,
       onDismiss: (key) async {
+        // Mark as seen when dismissed
         await box.write('hasSeenShowcase', true);
       },
       onFinish: () async {
+        // Mark as seen when finished
         await box.write('hasSeenShowcase', true);
       },
       blurValue: 1,
@@ -137,14 +137,14 @@ class HomeController extends GetxController {
   }
 
   _goStart() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      ShowcaseView.get().startShowCase([
+    WidgetsBinding.instance.addPostFrameCallback(
+      (_) => ShowcaseView.get().startShowCase([
         firstKey,
         secondKey,
         thirdKey,
         lastKey,
-      ]);
-    });
+      ]),
+    );
   }
 
   goNext() {
