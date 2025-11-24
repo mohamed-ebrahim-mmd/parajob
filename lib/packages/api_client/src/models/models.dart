@@ -63,6 +63,7 @@ export 'responses/edit_user_response.dart';
 export 'responses/faculty_response.dart';
 export 'responses/my_notifications_response.dart';
 export 'responses/notification_token_response.dart';
+export 'responses/notification_warning_response.dart';
 export 'responses/register_response.dart';
 export 'responses/submit_review_response.dart';
 export 'responses/university_response.dart';

@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/main_navigator/main_navigator_controller.dart';
+import 'package:para_job/features/main_navigator/widgets/blocked_screen.dart';
 import 'package:para_job/features/main_navigator/widgets/profile_nav_destination.dart';
 import 'package:para_job/packages/api_client/src/enums/api_call_state_enum.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
@@ -50,13 +51,15 @@ class MainNavigatorScreen extends StatelessWidget {
               : null,
 
           child: () {
+
+            
             switch (callState) {
               case ApiCallState.loading:
                 return const Center(child: CircularProgressIndicator());
 
               case ApiCallState.success:
                 if (isBlocked) {
-                  return Center(child: Text('blocked'));
+                  return BlockedScreen();
                 } else {
                   return IndexedStack(
                     index: controller.tab.value,
@@ -68,11 +71,14 @@ class MainNavigatorScreen extends StatelessWidget {
                 return Center(
                   child: ErrorScreen(
                     onPressed: () {
-                      controller.fetchProfileDetails();
+                      controller.fetchBlockStatus();
                     },
                   ),
                 );
             }
+         
+         
+         
           }(),
         ),
 

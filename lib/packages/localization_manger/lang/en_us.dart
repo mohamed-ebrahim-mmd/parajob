@@ -755,4 +755,22 @@ to connect with you.
   // ============================================================
   "select_graduation_year_msg": "Please select your graduation year",
   "select_faculty_msg": "Please select your faculty",
+
+  // ============================================================
+  // notification strikee screen
+  // ============================================================
+  "warning_label": "Warning",
+  "violation_rules": "Violation of the application rules",
+  "warning_info_title": "Why you don’t want to get a warning?",
+  "warning_info_tips": "How to avoid getting a warning?",
+  "violations_count": "@current out of @total violations",
+  "warning_tips_list":
+      "Arrive on time\nMaintain professional behavior\nMeet performance expectations\nFollow workplace policies",
+  "warning_consequences_list":
+      "It goes into your employment record\nIt impacts your chances for getting accepted in another job\nAfter 3 strikes your account will be blocked",
+
+  // ============================================================
+  // block screen
+  // ============================================================
+  "account_disabled": "YOUR ACCOUNT HAS BEEN DISABLED!",
 };
