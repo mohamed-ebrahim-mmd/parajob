@@ -131,7 +131,7 @@ class HomeController extends GetxController {
         ),
       ],
     );
-    if (!hasSeenShowcase && isDeepLink != true) {
+    if (!hasSeenShowcase && !isDeepLink) {
       _goStart();
     }
   }
