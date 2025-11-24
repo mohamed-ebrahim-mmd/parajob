@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:para_job/features/deep_link_loading/deep_link_loading_screen.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:para_job/features/authentication/authentication_choice/auth_choice_screen.dart';
 import 'package:para_job/features/authentication/email_login/email_login_screen.dart';
@@ -92,11 +93,14 @@ class Routes {
 
   static const String languageScreen = "/language_screen";
   static const String notificationStrikeScreen = "/notification_strike_screen";
+
   static const String contactUsAuth = "/contacts-us-auth";
+  static const String deepLinkLoading = "/deep-link-loading";
 }
 
 class AppPages {
   static final pages = [
+    GetPage(name: Routes.deepLinkLoading, page: () => DeepLinkLoadingScreen()),
     GetPage(name: Routes.onboarding, page: () => OnboardingScreen()),
     GetPage(
       name: Routes.authChoice,
