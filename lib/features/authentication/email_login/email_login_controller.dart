@@ -23,18 +23,18 @@ class EmailLoginController extends GetxController {
   var emailError = RxnString(null);
   var passwordError = RxnString(null);
 
-  Future<void> login() async {
+  Future<void> login(BuildContext context) async {
     emailError.value = validateEmail(emailController.text);
     passwordError.value = validatePassword(passwordController.text);
 
     if (emailError.value == null && passwordError.value == null) {
-      await loginUser();
+      await loginUser(context);
     }
   }
 
-  Future<void> loginUser() async {
+  Future<void> loginUser(BuildContext context) async {
     try {
-      Get.context!.loaderOverlay.show();
+      context.loaderOverlay.show();
 
       final loginResponse = await apiClient.loginWithMail(
         LoginWithMailRequest(
@@ -84,13 +84,16 @@ class EmailLoginController extends GetxController {
           }
         }
       } else {
-        showSnackBarError("failed_title".tr, "${loginResponse.details?.message}");
+        showSnackBarError(
+          "failed_title".tr,
+          "${loginResponse.details?.message}",
+        );
       }
     } catch (e) {
       log("🔴 ${e.toString()}");
       showSnackBarApiError();
     } finally {
-      Get.context!.loaderOverlay.hide();
+      context.loaderOverlay.hide();
     }
   }
 

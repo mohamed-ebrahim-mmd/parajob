@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/profile/contact_us/contact_us_controller.dart';
-import 'package:para_job/features/profile/widgets/contact_us_list_tile.dart';
+import 'package:para_job/packages/ui_components/contact_us_list_tile.dart';
 import 'package:para_job/packages/api_client/src/enums/api_call_state_enum.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';

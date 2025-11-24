@@ -32,6 +32,7 @@ import 'package:para_job/features/profile/history_jobs/history_jobs_screen.dart'
 import 'package:para_job/features/profile/language/language_screen.dart';
 import 'package:para_job/features/profile/more/more_screen.dart';
 import 'package:para_job/features/registration/back_national_id/back_national_id_screen.dart';
+import 'package:para_job/features/registration/contact_us_auth/contact_us_auth_screen.dart';
 import 'package:para_job/features/registration/create_account/create_account_screen.dart';
 import 'package:para_job/features/registration/create_account_cv/create_account_cv_screen.dart';
 import 'package:para_job/features/registration/create_account_otp/create_account_otp_screen.dart';
@@ -92,7 +93,9 @@ class Routes {
 
   static const String languageScreen = "/language_screen";
   static const String notificationStrikeScreen = "/notification_strike_screen";
-  static const String deepLinkLoading = "/deep-link-loading"; // Deep link entry point
+ // Deep link entry point
+  static const String contactUsAuth = "/contacts-us-auth";
+   static const String deepLinkLoading = "/deep-link-loading"; 
 }
 
 class AppPages {
@@ -101,7 +104,13 @@ class AppPages {
     GetPage(name: Routes.onboarding, page: () => OnboardingScreen()),
     GetPage(
       name: Routes.authChoice,
-      page: () => AuthChoiceScreen(),
+      page: () => LoaderOverlay(
+        child: AuthChoiceScreen(),
+        overlayWidgetBuilder: (_) {
+          //ignored progress for the moment
+          return AppLoader();
+        },
+      ),
       children: [
         GetPage(
           name: Routes.emailLoginScreen,
@@ -151,6 +160,8 @@ class AppPages {
         ),
       ],
     ),
+
+    GetPage(name: Routes.contactUsAuth, page: () => ContactUsAurhScreen()),
 
     GetPage(
       name: Routes.createAccount,
@@ -335,7 +346,7 @@ class AppPages {
         // notification strike screen
         GetPage(
           name: Routes.notificationStrikeScreen,
-          page: () => const NotificationStrikeScreen(),
+          page: () => NotificationStrikeScreen(),
         ),
 
         //profile
