@@ -36,8 +36,7 @@ abstract class ApiClient {
   // 🏫 Fetch faculties for a specific university
   @GET("/api/faculty/university/{universityId}")
   Future<FacultyResponse> getFacultiesByUniversity(
-    @Path("universityId") int universityId,
-  );
+      @Path("universityId") int universityId,);
 
   @GET("/api/job/{id}")
   Future<JobDetailsResponse> fetchJobDetails({
@@ -70,8 +69,7 @@ abstract class ApiClient {
 
   @POST("/api/user/login")
   Future<LoginWithMailResponse> loginWithMail(
-    @Body() LoginWithMailRequest request,
-  );
+      @Body() LoginWithMailRequest request,);
 
   @POST("/api/send/otp")
   Future<SendOtpResponse> sendOtp(@Body() SendOtpRequest request);
@@ -99,8 +97,7 @@ abstract class ApiClient {
 
   @POST("/api/reset/password")
   Future<ResetPasswordResponse> resetPassword(
-    @Body() ResetPasswordRequest request,
-  );
+      @Body() ResetPasswordRequest request,);
 
   @POST('/api/user/register')
   Future<RegisterResponse> registerUser(@Body() RegisterRequestModel request);
@@ -131,8 +128,7 @@ abstract class ApiClient {
 
   @POST("/api/upload")
   Future<UploadFileResponse> uploadFile(
-    @Part(name: "files[]") List<MultipartFile> files,
-  );
+      @Part(name: "files[]") List<MultipartFile> files,);
 
   @GET("/api/notification")
   Future<MyNotificationsResponse> getNotifications({
@@ -153,9 +149,8 @@ abstract class ApiClient {
 
   @PUT("/api/user/change/photo")
   Future<UpdateUserPhotoResponse> updateUserPhoto(
-    @Body() UpdateUserPhotoRequest request,
-    @Header("Authorization") String token,
-  );
+      @Body() UpdateUserPhotoRequest request,
+      @Header("Authorization") String token,);
 
   @DELETE("/api/user/delete/photo")
   Future<DeleteUserPhoto> deleteUserPhoto({
@@ -163,10 +158,8 @@ abstract class ApiClient {
   });
 
   @PUT("/api/user")
-  Future<EditUserResponse> updateUserProfile(
-    @Body() EditUserRequest request,
-    @Header("Authorization") String token,
-  );
+  Future<EditUserResponse> updateUserProfile(@Body() EditUserRequest request,
+      @Header("Authorization") String token,);
 
   @POST("/api/job/apply")
   Future<BaseResponse> applyJob({
@@ -194,17 +187,13 @@ abstract class ApiClient {
 
   // --- Add Bookmark ---
   @POST("/api/bookmark")
-  Future<BaseResponse> addBookmark(
-    @Body() BookmarkRequest request,
-    @Header("Authorization") String token,
-  );
+  Future<BaseResponse> addBookmark(@Body() BookmarkRequest request,
+      @Header("Authorization") String token,);
 
   // --- Delete Bookmark ---
   @DELETE("/api/bookmark")
-  Future<BaseResponse> deleteBookmark(
-    @Body() BookmarkRequest request,
-    @Header("Authorization") String token,
-  );
+  Future<BaseResponse> deleteBookmark(@Body() BookmarkRequest request,
+      @Header("Authorization") String token,);
 
   @GET("/api/bookmark")
   Future<BookmarkedJobsResponse> fetchBookmark({
@@ -214,17 +203,16 @@ abstract class ApiClient {
 
   @PUT("/api/user/device/token")
   Future<NotificationTokenResponse> updateDeviceToken(
-    @Body() NotificationTokenRequest request,
-    @Header("Authorization") String token,
-  );
+      @Body() NotificationTokenRequest request,
+      @Header("Authorization") String token,);
 
   @GET("/api/user/job/strike")
   Future<NotificationWarningResponse> fetchStrikes(
-    @Header("Authorization") String token,
-  );
+      @Header("Authorization") String token,);
 
-  // @GET("/api/user/block-status")
-  // Future<BlockStatusResponse> fetchBlockStatus(
-  //   @Header("Authorization") String? token,
-  // );
+  @POST("/api/auth/social/google")
+  Future<GoogleAuthResponse> signInWithGoogle(
+      @Body() GoogleAuthRequest request,);
+
+
 }
