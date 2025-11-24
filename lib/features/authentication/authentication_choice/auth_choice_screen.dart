@@ -215,7 +215,7 @@ class AuthChoiceScreen extends StatelessWidget {
             // right: context.wPct(8),
             child: GestureDetector(
               onTap: () {
-                // Get.toNamed(Routes.supportScreen);
+                Get.toNamed(Routes.contactUsAuth);
               },
               child: Text(
                 'auth_choice_need_help'.tr,
