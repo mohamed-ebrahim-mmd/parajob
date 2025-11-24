@@ -3,6 +3,7 @@ abstract final class AppAssetPaths {
 
   /// App Icon
   static const parajobLogo = "assets/logo/drb_logo.png";
+  static const parajobDeepLinkLogo = "assets/icons/parajobIcon.png";
 
   /// Icons
   /// App Navigation Icons

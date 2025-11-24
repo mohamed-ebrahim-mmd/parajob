@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
+import 'package:para_job/res/app_asset_paths.dart';
 
 class DeepLinkLoadingScreen extends StatefulWidget {
   const DeepLinkLoadingScreen({super.key});
@@ -30,7 +31,7 @@ class _DeepLinkLoadingScreenState extends State<DeepLinkLoadingScreen> {
       backgroundColor: AppColors.black80,
       body: Center(
         child: Image.asset(
-          'assets/icons/parajobIcon.png',
+          AppAssetPaths.parajobDeepLinkLogo,
           width: context.wPct(40),
           height: context.wPct(40),
         ),
