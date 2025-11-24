@@ -44,19 +44,14 @@ class HomeController extends GetxController {
 
   final AppLinks _appLinks = AppLinks();
 
-  late bool shouldCheckDeepLink;
-
   @override
   void onInit() {
     super.onInit();
 
-    shouldCheckDeepLink = Get.arguments == true;
-
     fetchHomeJobs();
 
-    if (shouldCheckDeepLink) {
+    if (Get.arguments == true) {
       _handleDeepLink();
-      shouldCheckDeepLink = false;
     }
   }
 
