@@ -1,6 +1,5 @@
 // Karim Toson || kareemtoson1@gmail.com || 23/11/2025 9:41AM
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import 'package:para_job/packages/route_manager/controller/routes.dart';
@@ -30,10 +29,10 @@ class _DeepLinkLoadingScreenState extends State<DeepLinkLoadingScreen> {
     return Scaffold(
       backgroundColor: AppColors.black80,
       body: Center(
-        child: SizedBox(
+        child: Image.asset(
+          'assets/icons/parajobIcon.png',
           width: context.wPct(40),
           height: context.wPct(40),
-          child: SvgPicture.asset('assets/icons/parajob.svg'),
         ),
       ),
     );

@@ -92,7 +92,7 @@ class Routes {
 
   static const String languageScreen = "/language_screen";
   static const String notificationStrikeScreen = "/notification_strike_screen";
-  static const String deepLinkLoading = "/deep-link-loading"; // Deep link entry point
+  static const String deepLinkLoading = "/deep-link-loading";
 }
 
 class AppPages {

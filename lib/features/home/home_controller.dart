@@ -15,7 +15,7 @@ import 'package:loader_overlay/loader_overlay.dart';
 import 'package:para_job/features/profile/user_profile/profile_controller.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
-import 'package:para_job/packages/route_manager/controller/routing_controller.dart';
+
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/ui_components/auth_required_dialog.dart';
 import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
@@ -39,9 +39,6 @@ class HomeController extends GetxController {
   final thirdKey = GlobalKey();
   final lastKey = GlobalKey();
 
-  final isGuest = Get.find<UserController>().isGuest;
-  final routingController = Get.find<RoutingController>();
-
   final AppLinks _appLinks = AppLinks();
 
   @override
@@ -57,28 +54,27 @@ class HomeController extends GetxController {
 
   void _handleDeepLink() async {
     log("handleDeepLink called");
+
+    // 1) Get the initial deep link
     final Uri? uri = await _appLinks.getInitialLink();
-    _processLink(uri);
-  }
+    if (uri == null) return;
 
-  void _processLink(Uri? uri) {
+    // 2) Extract jobId from /share/{id}
     String? jobIdString;
-
-    if (uri != null) {
-      if (uri.path.contains('/share/')) {
-        final segments = uri.pathSegments;
-        int shareIndex = segments.indexOf('share');
-        if (shareIndex != -1 && shareIndex + 1 < segments.length) {
-          jobIdString = segments[shareIndex + 1];
-        }
+    if (uri.path.contains('/share/')) {
+      final segments = uri.pathSegments;
+      final shareIndex = segments.indexOf('share');
+      if (shareIndex != -1 && shareIndex + 1 < segments.length) {
+        jobIdString = segments[shareIndex + 1];
       }
     }
 
-    final int? jobId = jobIdString != null ? int.tryParse(jobIdString) : null;
+    // 3) Convert to int
+    final int? jobId = int.tryParse(jobIdString ?? "");
+    if (jobId == null) return;
 
-    if (jobId != null) {
-      Get.toNamed(Routes.jobDetails, arguments: jobId);
-    }
+    // 4) Navigate to job details
+    Get.toNamed(Routes.jobDetails, arguments: jobId);
   }
 
   void startShowcase() {
