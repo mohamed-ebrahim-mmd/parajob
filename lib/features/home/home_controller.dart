@@ -32,6 +32,7 @@ class HomeController extends GetxController {
   HomeResponse? homeData;
   final box = GetStorage();
 
+  final bool isDeepLink = Get.arguments ?? false;
   bool get hasSeenShowcase => box.read('hasSeenShowcase') ?? false;
 
   final firstKey = GlobalKey();
@@ -47,7 +48,7 @@ class HomeController extends GetxController {
 
     fetchHomeJobs();
 
-    if (Get.arguments == true) {
+    if (isDeepLink) {
       _handleDeepLink();
     }
   }
@@ -84,14 +85,11 @@ class HomeController extends GetxController {
         // Mark as seen when dismissed
         await box.write('hasSeenShowcase', true);
       },
-
       onFinish: () async {
         // Mark as seen when finished
         await box.write('hasSeenShowcase', true);
       },
-
       blurValue: 1,
-
       globalTooltipActionConfig: const TooltipActionConfig(
         position: TooltipActionPosition.inside,
         alignment: MainAxisAlignment.spaceBetween,
@@ -133,7 +131,7 @@ class HomeController extends GetxController {
         ),
       ],
     );
-    if (!hasSeenShowcase) {
+    if (!hasSeenShowcase && !isDeepLink) {
       _goStart();
     }
   }
