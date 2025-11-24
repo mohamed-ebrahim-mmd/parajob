@@ -32,6 +32,7 @@ class HomeController extends GetxController {
   HomeResponse? homeData;
   final box = GetStorage();
 
+  final bool isDeepLink = Get.arguments ?? false;
   bool get hasSeenShowcase => box.read('hasSeenShowcase') ?? false;
 
   final firstKey = GlobalKey();
@@ -47,7 +48,7 @@ class HomeController extends GetxController {
 
     fetchHomeJobs();
 
-    if (Get.arguments == true) {
+    if (isDeepLink) {
       _handleDeepLink();
     }
   }
@@ -73,6 +74,8 @@ class HomeController extends GetxController {
     final int? jobId = int.tryParse(jobIdString ?? "");
     if (jobId == null) return;
 
+    // Deep link processed, no need to set a flag since we'll check Get.arguments directly
+
     // 4) Navigate to job details
     Get.toNamed(Routes.jobDetails, arguments: jobId);
   }
@@ -81,17 +84,12 @@ class HomeController extends GetxController {
     ShowcaseView.register(
       enableAutoScroll: true,
       onDismiss: (key) async {
-        // Mark as seen when dismissed
         await box.write('hasSeenShowcase', true);
       },
-
       onFinish: () async {
-        // Mark as seen when finished
         await box.write('hasSeenShowcase', true);
       },
-
       blurValue: 1,
-
       globalTooltipActionConfig: const TooltipActionConfig(
         position: TooltipActionPosition.inside,
         alignment: MainAxisAlignment.spaceBetween,
@@ -133,20 +131,20 @@ class HomeController extends GetxController {
         ),
       ],
     );
-    if (!hasSeenShowcase) {
+    if (!hasSeenShowcase && isDeepLink != true) {
       _goStart();
     }
   }
 
   _goStart() {
-    WidgetsBinding.instance.addPostFrameCallback(
-      (_) => ShowcaseView.get().startShowCase([
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ShowcaseView.get().startShowCase([
         firstKey,
         secondKey,
         thirdKey,
         lastKey,
-      ]),
-    );
+      ]);
+    });
   }
 
   goNext() {
