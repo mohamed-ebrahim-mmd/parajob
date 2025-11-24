@@ -163,22 +163,17 @@ class PrivacyPolicyScreen extends StatelessWidget {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              context.hBox(1),
+              context.hBox(2),
+              Text(
+                'last_updated'.tr,
+                style: TextStyle(
+                  color: AppColors.aquaTeal,
+                  fontSize: context.wPct(4.2),
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              context.hBox(2),
             ],
-          ),
-        ),
-      ),
-      bottomNavigationBar: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: context.wPct(5),
-          vertical: context.hPct(2.8),
-        ),
-        child: Text(
-          'last_updated'.tr,
-          style: TextStyle(
-            color: AppColors.aquaTeal,
-            fontSize: context.wPct(4.2),
-            fontWeight: FontWeight.w500,
           ),
         ),
       ),

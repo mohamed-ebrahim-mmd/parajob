@@ -124,8 +124,8 @@ class AuthChoiceScreen extends StatelessWidget {
                 Wrap(
                   //mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text(
-                      "${'auth_choice_agree_to'.tr} ",
+                    Text('auth_choice_agree_to'.tr,
+                      
                       style: TextStyle(
                         color: AppColors.pureWhite,
                         fontSize: context.wPct(3.3),

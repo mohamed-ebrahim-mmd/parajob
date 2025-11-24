@@ -98,7 +98,7 @@ class Routes {
   static const String contactUsAuth = "/contacts-us-auth";
   static const String deepLinkLoading = "/deep-link-loading";
 
-  static const String privacyPolicy = "/privacy-policy-screen";
+  static const String privacyPolicy = "/privacy-policy";
 }
 
 class AppPages {

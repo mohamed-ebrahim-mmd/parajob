@@ -571,7 +571,7 @@ to connect with you.
   // ============================================================
   'auth_choice_title': 'Sign in or create an account',
   'auth_choice_continue_with_email': 'Continue with Email',
-  'auth_choice_agree_to': 'By Continuing, you agree to ParaJob',
+  'auth_choice_agree_to': 'By Continuing, you agree to ParaJob\t',
   'auth_choice_privacy_policy': 'Privacy Policy',
   'auth_choice_or': 'Or',
   'auth_choice_continue_as_guest': 'Continue as Guest User',

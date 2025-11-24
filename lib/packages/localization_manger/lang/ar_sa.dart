@@ -558,7 +558,7 @@ const Map<String, String> arSA = {
   // ============================================================
   'auth_choice_title': 'تسجيل الدخول أو إنشاء حساب',
   'auth_choice_continue_with_email': 'متابعة باستخدام البريد الإلكتروني',
-  'auth_choice_agree_to': 'بالمتابعة، فإنك توافق على',
+  'auth_choice_agree_to': 'بالمتابعة، فإنك توافق على\t',
   'auth_choice_privacy_policy': 'سياسة الخصوصية',
   'auth_choice_or': 'أو',
   'auth_choice_continue_as_guest': 'متابعة كمستخدم ضيف',
