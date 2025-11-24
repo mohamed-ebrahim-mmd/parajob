@@ -41,6 +41,7 @@ class JobContent extends StatelessWidget {
                   jobName: jobDetails.title,
                   jobId: jobDetails.id,
                   isSubmitComplaint: jobDetails.isSubmitComplaint ?? false,
+                  canLogAttendance: jobDetails.canLogAttendance
                 );
               },
               icon: const Icon(Icons.more_vert, color: AppColors.pureWhite),

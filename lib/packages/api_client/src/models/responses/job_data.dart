@@ -26,6 +26,10 @@ class JobData {
   final int? applicationId;
   final bool? isSubmitComplaint;
   final String? shareableLink;
+  final bool canLogAttendance;
+  final bool hasAttendance;
+
+
 
   JobData({
     required this.id,
@@ -53,6 +57,9 @@ class JobData {
     required this.applicationId,
     required this.isSubmitComplaint,
     required this.shareableLink,
+    required this.canLogAttendance,
+    required this.hasAttendance,
+
   });
 
   factory JobData.fromJson(Map<String, dynamic> json) {
@@ -84,6 +91,8 @@ class JobData {
       department: Department.fromJson(json['department']),
       applicationId: json['application_id'],
       isSubmitComplaint: json['is_submit_complaint'],
+      canLogAttendance: json['can_log_attendance'] ?? false,
+      hasAttendance: json['has_attendance']?? false,
     );
   }
 }

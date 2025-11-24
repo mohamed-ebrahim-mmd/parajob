@@ -224,6 +224,39 @@ class JobDetailsScreen extends StatelessWidget {
             );
         }
       }),
+      bottomNavigationBar: Obx(() {
+        final state = controller.jobDetailsCallState.value;
+
+        if (state != ApiCallState.success) return const SizedBox.shrink();
+
+        final jobDetails = controller.jobData!.data;
+        if (!jobDetails.canLogAttendance) return const SizedBox.shrink();
+
+        return Padding(
+          padding: const EdgeInsets.fromLTRB(16, 16, 16, 50),
+          child: FilledButton(
+            onPressed: () {
+              Get.toNamed(
+                Routes.checkInOut,
+                arguments: {'jobId': jobId, 'hasAttendance': jobDetails.hasAttendance},
+              );
+            },
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Image.asset(
+                  AppAssetPaths.barcode,
+                  width: 20,
+                  height: 20,
+                  fit: BoxFit.contain,
+                ),
+                SizedBox(width: 8),
+                Text('log_attendance'.tr),
+              ],
+            ),
+          ),
+        );
+      }),
     );
   }
 }

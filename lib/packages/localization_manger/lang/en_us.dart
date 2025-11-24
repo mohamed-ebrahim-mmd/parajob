@@ -1,7 +1,4 @@
-/*
- Mohamed Ebrahim | mohamed7ebrahim7@gmail.com | 15/02/2025 5:24 PM
- ==================================================================
-*/
+
 const Map<String, String> enUS = {
   // ============================================================
   // 🏠 Onboarding Screen
@@ -755,4 +752,21 @@ to connect with you.
   // ============================================================
   "select_graduation_year_msg": "Please select your graduation year",
   "select_faculty_msg": "Please select your faculty",
+
+
+  "log_attendance": "Log Attendance",
+  "attendance_log": "Attendance Log",
+  "scan_qr_to_check_in": "Scan the QR code to complete your check-in.",
+  "checked_in_at": "Checked in at",
+  "checked_out_at": "Checked out at",
+  "extra_time": "Extra time",
+  "check_in": "Check In",
+  "check_out": "Check Out",
+  "full_shift_requires_hours": "A full shift requires @hours hours of work.",
+  "attendance_history": "Attendance History",
+  "check_past_shifts": "Check your past shifts and see your attendance.",
+  "checked_in": "Checked In",
+  "checked_out": "Checked Out",
+  "check_in_out_note": "Note: You logged @hours of work on this day.",
+  "no_data_found": "No data found"
 };

@@ -58,4 +58,14 @@ class AppColors {
 
   static const Color whiteSoft5 = Color(0x0DFFFFFF);
   static const Color disabled = Color(0xB22C2C2C);
+
+  static const Color white15 = Color(0x26FFFFFF);
+
+  static const Color mintTeal = Color(0xFF00CCB8);
+  static const Color gray8D = Color(0xFF8D8D8D);
+  static const Color greenLeaf = Color(0xFF4BAE4F);
+
+  static const Color white10 = Color(0x1AFFFFFF);
+
+
 }

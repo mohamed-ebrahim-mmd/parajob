@@ -2,6 +2,9 @@ import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../models/models.dart';
+import '../models/requests/check_in_out_request.dart';
+import '../models/responses/check_in_out_history_response.dart';
+import '../models/responses/last_check_in_out_response.dart';
 
 part 'api_client.g.dart';
 
@@ -217,4 +220,23 @@ abstract class ApiClient {
     @Body() NotificationTokenRequest request,
     @Header("Authorization") String token,
   );
+
+  @POST("/api/attendance/scan")
+  Future<BaseResponse> scanCheckInOut({
+    @Body() required CheckInOutRequest request,
+    @Header("Authorization") required String token,
+  });
+
+  @GET("/api/attendance/job/{id}")
+  Future<ActiveCheckInOutResponse> getActiveCheckInOut({
+    @Path("id") required int jobId,
+    @Header("Authorization") required String token,
+  });
+
+  @GET("/api/attendance/history/job/{id}")
+  Future<CheckInOutHistoryResponse> getCheckInOutHistory({
+    @Path("id") required int jobId,
+    @Query('page') int? page,
+    @Header("Authorization") required String token,
+  });
 }

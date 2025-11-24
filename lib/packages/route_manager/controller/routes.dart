@@ -11,6 +11,7 @@ import 'package:para_job/features/employer/reviews/employer_reviews_screen.dart'
 import 'package:para_job/features/home/jobs/jobs_screen.dart';
 import 'package:para_job/features/home/search_job/search_job_screen.dart';
 import 'package:para_job/features/job_details/apply_job/apply_job_screen.dart';
+import 'package:para_job/features/job_details/check_in_out/check_in_out_history/check_in_out_history_screen.dart';
 import 'package:para_job/features/job_details/complaint/company_complaint/company_complaint_screen.dart';
 import 'package:para_job/features/job_details/complaint/job_complaint/job_complaint_screen.dart';
 import 'package:para_job/features/job_details/job_details_screen.dart';
@@ -41,6 +42,7 @@ import 'package:para_job/features/registration/education_pic/education_pic_scree
 import 'package:para_job/features/registration/front_national_id/front_national_id_screen.dart';
 import 'package:para_job/features/registration/picture_with_id/picture_with_id_screen.dart';
 import 'package:para_job/packages/ui_components/app_loader.dart';
+import 'package:para_job/features/job_details/check_in_out/check_in_out_screen.dart';
 
 class Routes {
   static const String onboarding = '/onboarding';
@@ -91,11 +93,33 @@ class Routes {
 
   static const String languageScreen = "/language_screen";
   static const String notificationStrikeScreen = "/notification_strike_screen";
+
+  static const String checkInOut = "/check_in_out";
+  static const String checkInOutHistory = "/check_in_out_history";
+
 }
 
 class AppPages {
   static final pages = [
     GetPage(name: Routes.onboarding, page: () => OnboardingScreen()),
+    GetPage(
+      name: Routes.checkInOut,
+      page: () => LoaderOverlay(
+        child: CheckInOutScreen(),
+        overlayWidgetBuilder: (_) {
+          return AppLoader();
+        },
+      ),
+    ),
+    GetPage(
+      name: Routes.checkInOutHistory,
+      page: () => LoaderOverlay(
+        child: CheckInOutHistoryScreen(),
+        overlayWidgetBuilder: (_) {
+          return AppLoader();
+        },
+      ),
+    ),
     GetPage(
       name: Routes.authChoice,
       page: () => AuthChoiceScreen(),

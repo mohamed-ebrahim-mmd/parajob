@@ -8,6 +8,7 @@ import 'package:para_job/features/my_jobs/widgets/sign_contract_job_dialog.dart'
 
 import '../../../packages/api_client/src/enums/job_application_status.dart';
 import '../../../packages/api_client/src/models/responses/my_job.dart';
+import '../../../packages/route_manager/controller/routes.dart';
 import '../../../packages/themeing/app_colors.dart';
 import '../../../packages/themeing/media_query_values.dart';
 
@@ -107,11 +108,13 @@ class _MyJobsListState extends State<MyJobsList> {
                   child: MyJobCard(
                     job: item,
                     highlighted: widget.highlighted,
-                    onTap: widget.highlighted && item.isSignedContract == 0
-                        ? () {
-                            signContractJobDialog(item, pagingController);
-                          }
-                        : null,
+                    onTap: () {
+                      if (widget.highlighted && item.isSignedContract == 0) {
+                        signContractJobDialog(item, pagingController);
+                      } else {
+                        Get.toNamed(Routes.jobDetails, arguments: item.id);
+                      }
+                    },
                   ),
                 ),
               );

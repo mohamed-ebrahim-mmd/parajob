@@ -1,7 +1,3 @@
-/*
- Mohamed Ebrahim | mohamed7ebrahim7@gmail.com | 15/02/2025 5:24 PM
- ==================================================================
-*/
 const Map<String, String> arSA = {
   // ============================================================
   // 🏠 Onboarding Screen
@@ -740,4 +736,21 @@ const Map<String, String> arSA = {
   // ============================================================
   "select_graduation_year_msg": "الرجاء اختيار سنة التخرج",
   "select_faculty_msg": "الرجاء اختيار الكلية",
+
+  "log_attendance": "تسجيل الحضور",
+  "attendance_log": "سجل الحضور",
+  "scan_qr_to_check_in": "امسح رمز الـ QR لإتمام تسجيل الدخول",
+  "checked_in_at": "تم تسجيل الدخول في",
+  "checked_out_at": "تم تسجيل الخروج في",
+  "extra_time": "وقت إضافي",
+  "check_in": "تسجيل الدخول",
+  "check_out": "تسجيل الخروج",
+  "full_shift_requires_hours": "يتطلب الدوام الكامل hours@ ساعات عمل",
+  "attendance_history": "تاريخ الحضور",
+  "check_past_shifts": "تحقق من الورديات السابقة واطلع على حضورك",
+  "checked_in": "تم الدخول",
+  "checked_out": "تم الخروج",
+  "check_in_out_note": "ملاحظة: لقد سجّلت hours@ ساعة عمل في هذا اليوم.",
+  "no_data_found": "لا توجد بيانات"
+
 };
