@@ -775,8 +775,47 @@ to connect with you.
   "account_disabled": "YOUR ACCOUNT HAS BEEN DISABLED!",
 
   // ============================================================
-  // privacy policy screen
+  // Privacy Policy Screen
   // ============================================================
   "privacy_policy": "Privacy policy",
   "last_updated": "Last updated",
+
+  "privacy_intro":
+      "We are committed to protecting your privacy. This policy explains how we collect, use, and safeguard your information when using our app.",
+
+  "section_1_title": "1. Information We Collect",
+  "section_1_desc":
+      "During registration: Name, phone number, email, optional CV.\n"
+      "During profile completion: National ID, education details, skills, profile picture.\n"
+      "During job applications: Application details and statuses.\n"
+      "Technical information: Device type, app version, usage data.",
+
+  "section_2_title": "2. How We Use Your Information",
+  "section_2_desc":
+      "To create and verify your account.\n"
+      "To allow browsing and applying for jobs after verification.\n"
+      "To display suitable job opportunities.\n"
+      "To send notifications and updates.\n"
+      "To improve app performance and prevent misuse.",
+
+  "section_3_title": "3. Sharing Your Information",
+  "section_3_desc":
+      "With employers only when you apply for their jobs.\n"
+      "With our admin team for profile verification.\n"
+      "With trusted service providers for hosting and analytics.\n"
+      "We do not sell your data to any third party.",
+
+  "section_4_title": "4. Data Protection",
+  "section_4_desc":
+      "We use secure storage, encryption, and restricted access to protect your personal information.",
+
+  "section_5_title": "5. Your Rights",
+  "section_5_desc":
+      "You may update or correct your information.\n"
+      "Request account deletion.\n"
+      "Contact us for data removal or concerns at [support email].",
+
+  "section_6_title": "6. Policy Updates",
+  "section_6_desc":
+      "We may update this policy and will notify you within the app when changes occur.",
 };

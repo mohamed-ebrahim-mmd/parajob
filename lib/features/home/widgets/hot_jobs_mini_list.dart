@@ -24,7 +24,7 @@ class HotJobsMiniList extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       //color: Colors.red,
-      height: context.hPct(49), // adjust to fit your design
+      height: context.hPct(50), // adjust to fit your design
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

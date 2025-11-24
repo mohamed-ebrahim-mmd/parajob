@@ -22,34 +22,149 @@ class PrivacyPolicyScreen extends StatelessWidget {
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: context.defaultPadding),
         child: SingleChildScrollView(
-          child: SizedBox(
-            width: double.infinity,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
 
-              children: [
-                context.hBox(2),
-                Text(
-                  'privacy_policy'.tr,
-                  style: TextStyle(
-                    color: AppColors.pureWhite,
-                    fontSize: context.wPct(8.5),
-                    fontWeight: FontWeight.w600,
-                  ),
+            children: [
+              context.hBox(2),
+              Text(
+                'privacy_policy'.tr,
+                style: TextStyle(
+                  color: AppColors.pureWhite,
+                  fontSize: context.wPct(8.5),
+                  fontWeight: FontWeight.w600,
                 ),
-                context.hBox(0.5),
+              ),
+              context.hBox(0.5),
 
-                Text(
-                  'privacy policy content',
-                  style: TextStyle(
-                    color: AppColors.softWhite70,
-                    fontSize: context.wPct(3.5),
-                    fontWeight: FontWeight.w500,
-                  ),
+              Text(
+                'privacy_intro'.tr,
+                style: TextStyle(
+                  color: AppColors.softWhite70,
+                  fontSize: context.wPct(3.5),
+                  fontWeight: FontWeight.w500,
                 ),
-                context.hBox(5),
-              ],
-            ),
+              ),
+              context.hBox(2),
+              Text(
+                'section_1_title'.tr,
+                style: TextStyle(
+                  color: AppColors.softWhite70,
+                  fontSize: context.wPct(3.5),
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              context.hBox(0.5),
+              Text(
+                'section_1_desc'.tr,
+                style: TextStyle(
+                  color: AppColors.softWhite70,
+                  fontSize: context.wPct(3.5),
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+
+              ///
+              context.hBox(2),
+              Text(
+                'section_2_title'.tr,
+                style: TextStyle(
+                  color: AppColors.softWhite70,
+                  fontSize: context.wPct(3.5),
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              context.hBox(0.5),
+              Text(
+                'section_2_desc'.tr,
+                style: TextStyle(
+                  color: AppColors.softWhite70,
+                  fontSize: context.wPct(3.5),
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+
+              ///
+              context.hBox(2),
+              Text(
+                'section_3_title'.tr,
+                style: TextStyle(
+                  color: AppColors.softWhite70,
+                  fontSize: context.wPct(3.5),
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              context.hBox(0.5),
+              Text(
+                'section_3_desc'.tr,
+                style: TextStyle(
+                  color: AppColors.softWhite70,
+                  fontSize: context.wPct(3.5),
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+
+              ///
+              context.hBox(2),
+              Text(
+                'section_4_title'.tr,
+                style: TextStyle(
+                  color: AppColors.softWhite70,
+                  fontSize: context.wPct(3.5),
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              context.hBox(0.5),
+              Text(
+                'section_4_desc'.tr,
+                style: TextStyle(
+                  color: AppColors.softWhite70,
+                  fontSize: context.wPct(3.5),
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+
+              ///
+              context.hBox(2),
+              Text(
+                'section_5_title'.tr,
+                style: TextStyle(
+                  color: AppColors.softWhite70,
+                  fontSize: context.wPct(3.5),
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              context.hBox(0.5),
+              Text(
+                'section_5_desc'.tr,
+                style: TextStyle(
+                  color: AppColors.softWhite70,
+                  fontSize: context.wPct(3.5),
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+
+              ///
+              context.hBox(2),
+              Text(
+                'section_6_title'.tr,
+                style: TextStyle(
+                  color: AppColors.softWhite70,
+                  fontSize: context.wPct(3.5),
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              context.hBox(0.5),
+              Text(
+                'section_6_desc'.tr,
+                style: TextStyle(
+                  color: AppColors.softWhite70,
+                  fontSize: context.wPct(3.5),
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              context.hBox(1),
+            ],
           ),
         ),
       ),
