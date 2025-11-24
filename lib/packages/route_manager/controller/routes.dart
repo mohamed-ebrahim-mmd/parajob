@@ -31,6 +31,7 @@ import 'package:para_job/features/profile/history_jobs/history_jobs_screen.dart'
 import 'package:para_job/features/profile/language/language_screen.dart';
 import 'package:para_job/features/profile/more/more_screen.dart';
 import 'package:para_job/features/registration/back_national_id/back_national_id_screen.dart';
+import 'package:para_job/features/registration/contact_us_auth/contact_us_auth_screen.dart';
 import 'package:para_job/features/registration/create_account/create_account_screen.dart';
 import 'package:para_job/features/registration/create_account_cv/create_account_cv_screen.dart';
 import 'package:para_job/features/registration/create_account_otp/create_account_otp_screen.dart';
@@ -91,6 +92,7 @@ class Routes {
 
   static const String languageScreen = "/language_screen";
   static const String notificationStrikeScreen = "/notification_strike_screen";
+  static const String contactUsAuth = "/contacts-us-auth";
 }
 
 class AppPages {
@@ -154,6 +156,8 @@ class AppPages {
         ),
       ],
     ),
+
+    GetPage(name: Routes.contactUsAuth, page: () => ContactUsAurhScreen()),
 
     GetPage(
       name: Routes.createAccount,
@@ -338,7 +342,7 @@ class AppPages {
         // notification strike screen
         GetPage(
           name: Routes.notificationStrikeScreen,
-          page: () =>  NotificationStrikeScreen(),
+          page: () => NotificationStrikeScreen(),
         ),
 
         //profile

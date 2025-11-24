@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:para_job/features/registration/education_info/education_info_controller.dart';
 import 'package:para_job/features/registration/widgets/stepper.dart';
 import 'package:para_job/packages/api_client/src/enums/api_call_state_enum.dart';
+import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
@@ -185,6 +186,8 @@ class EducationInfoScreen extends StatelessWidget {
 
             context.hBox(5),
             GestureDetector(
+              onTap: () => Get.toNamed(Routes.contactUsAuth),
+
               child: Text(
                 'education_info_contact_us'.tr,
                 style: TextStyle(
