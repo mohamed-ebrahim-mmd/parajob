@@ -26,7 +26,7 @@ class StartTutorialDialog extends StatelessWidget {
         children: [
           // Close icon aligned top-right
           Align(
-            alignment: Alignment.topRight,
+            alignment: AlignmentDirectional.topEnd,
             child: GestureDetector(
               onTap: () => controller.goDismiss(),
               child: const Icon(

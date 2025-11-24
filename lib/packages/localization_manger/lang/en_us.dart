@@ -773,4 +773,10 @@ to connect with you.
   // block screen
   // ============================================================
   "account_disabled": "YOUR ACCOUNT HAS BEEN DISABLED!",
+
+  // ============================================================
+  // privacy policy screen
+  // ============================================================
+  "privacy_policy": "Privacy policy",
+  "last_updated": "Last updated",
 };
