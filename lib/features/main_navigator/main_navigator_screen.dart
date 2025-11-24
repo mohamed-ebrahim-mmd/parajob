@@ -146,7 +146,7 @@ class MainNavigatorScreen extends StatelessWidget {
                     ),
                     label: 'nav_notifications'.tr,
                   ),
-                  ProfileNavDestination(controller: controller),
+                  ProfileNavDestination(),
                 ],
               ),
             );
