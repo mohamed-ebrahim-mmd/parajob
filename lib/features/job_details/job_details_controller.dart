@@ -109,7 +109,6 @@ class JobDetailsController extends GetxController {
     } catch (e) {
       showSnackBarApiError();
     } finally {
-      fetchJobDetails(jobId);
       context.loaderOverlay.hide();
     }
   }

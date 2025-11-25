@@ -25,8 +25,8 @@ class GradientProgressBar extends StatelessWidget {
               Color.fromRGBO(0, 203, 184, 0.996875),
               Color.fromRGBO(0, 152, 138, 0.645957),
             ],
-            begin: Alignment.centerLeft,
-            end: Alignment.centerRight,
+            begin: AlignmentDirectional.centerStart,
+            end: AlignmentDirectional.centerEnd,
           ).createShader(Rect.fromLTWH(0, 0, bounds.width, bounds.height)),
           child: LinearProgressIndicator(
             value: progress,

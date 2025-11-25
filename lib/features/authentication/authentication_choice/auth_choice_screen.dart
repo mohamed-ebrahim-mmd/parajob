@@ -124,8 +124,8 @@ class AuthChoiceScreen extends StatelessWidget {
                 Wrap(
                   //mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text(
-                      'auth_choice_agree_to'.tr,
+                    Text('auth_choice_agree_to'.tr,
+                      
                       style: TextStyle(
                         color: AppColors.pureWhite,
                         fontSize: context.wPct(3.3),
@@ -133,6 +133,11 @@ class AuthChoiceScreen extends StatelessWidget {
                       ),
                     ),
                     GestureDetector(
+                      onTap: () {
+                        Get.toNamed(
+                          "${Routes.authChoice}${Routes.privacyPolicy}",
+                        );
+                      },
                       child: Text(
                         'auth_choice_privacy_policy'.tr,
                         style: TextStyle(
