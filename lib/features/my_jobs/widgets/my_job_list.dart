@@ -112,7 +112,13 @@ class _MyJobsListState extends State<MyJobsList> {
                       if (widget.highlighted && item.isSignedContract == 0) {
                         signContractJobDialog(item, pagingController);
                       } else {
-                        Get.toNamed(Routes.jobDetails, arguments: item.id);
+                        Get.toNamed(
+                          Routes.jobDetails,
+                          arguments: {
+                            'jobId': item.id,
+                            'isFromSignedJobs': true,
+                          },
+                        );
                       }
                     },
                   ),

@@ -11,7 +11,6 @@ void showJobComplaintBottomSheet({
   required String jobName,
   required int jobId,
   required bool isSubmitComplaint,
-  required bool canLogAttendance,
 }) {
   final user = Get.find<UserController>();
   final context = Get.context!;
@@ -52,18 +51,6 @@ void showJobComplaintBottomSheet({
                     }
                   },
                 ),
-          context.hBox(2),
-          if (canLogAttendance == true)
-            ComplaintItem(
-              title: 'attendance_history'.tr,
-              onTap: () {
-                Get.back();
-                Get.toNamed(
-                  Routes.checkInOutHistory,
-                  arguments: {'jobId': jobId},
-                );
-              },
-            ),
           context.hBox(2),
         ],
       ),
