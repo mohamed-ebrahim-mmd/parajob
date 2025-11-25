@@ -102,7 +102,7 @@ Future<void> signInAndLogUserData(BuildContext context) async {
       }
     } else {
       Get.toNamed(Routes.createAccount);
-      showSnackBarError("failed_title".tr, 'Please create account first'.tr);
+      showSnackBarError("failed_title".tr, 'Please_create_account_first'.tr);
     }
   } on GoogleSignInException catch (e) {
     log("🔴 GoogleSignInException ${e.code}: ${e.description}");
@@ -116,7 +116,7 @@ Future<void> signInAndLogUserData(BuildContext context) async {
         break;
       case GoogleSignInExceptionCode.clientConfigurationError:
         showSnackBarError(
-          "  google_login_config_error_title".tr,
+          "google_login_config_error_title".tr,
           'google_login_config_error_message'.tr,
         );
         break;

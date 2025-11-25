@@ -605,7 +605,7 @@ to connect with you.
   'google_login_unknown_error_message': 'Something went wrong.',
   'google_login_unexpected_error': 'Unexpected error occurred: @code',
   'Error': 'Error Occurred',
-  'Please create account first': 'Please create account first',
+  'Please_create_account_first': 'Please create account first',
 
   // ============================================================
   // Set Password controller

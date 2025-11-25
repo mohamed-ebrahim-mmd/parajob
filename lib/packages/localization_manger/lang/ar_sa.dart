@@ -591,7 +591,7 @@ const Map<String, String> arSA = {
   'google_login_unknown_error_message': 'حدث خطأ غير متوقع.',
   'google_login_unexpected_error': 'حدث خطأ غير متوقع: @code',
   'Error': 'خطأ',
-  'Please create account first': 'يجب عليك إنشاء حساب اولا',
+  'Please_create_account_first': 'يجب عليك إنشاء حساب اولا',
 
   // ============================================================
   // Set Password controller
