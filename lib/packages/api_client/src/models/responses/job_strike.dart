@@ -15,10 +15,10 @@ class JobStrike {
 
   factory JobStrike.fromJson(Map<String, dynamic> json) {
     return JobStrike(
-      id: json["id"],
-      title: json["title"],
-      salary: json["salary"],
-      startDate: json["start_date"],
+      id: json["id"] ?? 0,
+      title: json["title"] ?? "",
+      salary: json["salary"] ?? "",
+      startDate: json["start_date"] ?? "",
     );
   }
 }

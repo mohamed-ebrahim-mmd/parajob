@@ -37,7 +37,7 @@ class MyNotificationCard extends StatelessWidget {
     // Wrap the container with InkWell to make it tappable with visual feedback
     return InkWell(
       onTap: () {
-        if (myNotification.type == 'strike') {
+        if (d.jobId != null && myNotification.type == 'strike') {
           Get.toNamed(
             '${Routes.mainNavigator}${Routes.notificationStrikeScreen}',
           );
