@@ -596,6 +596,16 @@ to connect with you.
   "success_title": "Success",
   "failed_title": "Failed",
   "unknown_error": "An unexpected error occurred. Please try again.",
+  'google_login_canceled_title': 'Login canceled',
+  'google_login_canceled_message': 'You canceled the login.',
+  'google_login_config_error_title': 'Configuration Error',
+  'google_login_config_error_message':
+      'Google Sign-In is not set up correctly. Check OAuth settings.',
+  'google_login_unknown_error_title': 'Unknown Error',
+  'google_login_unknown_error_message': 'Something went wrong.',
+  'google_login_unexpected_error': 'Unexpected error occurred: @code',
+  'Error': 'Error Occurred',
+  'Please create account first': 'Please create account first',
 
   // ============================================================
   // Set Password controller
