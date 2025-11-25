@@ -4,6 +4,7 @@ import 'package:para_job/features/registration/create_account_skills/create_acco
 import 'package:para_job/features/registration/widgets/stepper.dart';
 import 'package:para_job/packages/api_client/src/enums/api_call_state_enum.dart'
     show ApiCallState;
+import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/packages/ui_components/skill_item.dart';
 
@@ -125,6 +126,8 @@ class CreateAccountSkillsScreen extends StatelessWidget {
 
             context.hBox(5),
             GestureDetector(
+              onTap: () => Get.toNamed(Routes.contactUsAuth),
+
               child: Text(
                 'create_account_skills_contact_us'.tr,
                 style: TextStyle(

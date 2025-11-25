@@ -12,7 +12,9 @@ class SkillItem extends StatelessWidget {
     return Container(
       height: context.hPct(5),
 
-      padding: EdgeInsets.only(left: context.wPct(3)),
+      padding:
+          //EdgeInsets.only(left: context.wPct(3)),
+          EdgeInsetsDirectional.only(start: context.wPct(3)),
       decoration: BoxDecoration(
         color: AppColors.aquaTeal8,
         border: Border.all(color: AppColors.aquaTeal),

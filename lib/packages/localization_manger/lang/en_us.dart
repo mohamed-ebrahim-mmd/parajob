@@ -568,7 +568,7 @@ to connect with you.
   // ============================================================
   'auth_choice_title': 'Sign in or create an account',
   'auth_choice_continue_with_email': 'Continue with Email',
-  'auth_choice_agree_to': 'By Continuing, you agree to ParaJob',
+  'auth_choice_agree_to': 'By Continuing, you agree to ParaJob\t',
   'auth_choice_privacy_policy': 'Privacy Policy',
   'auth_choice_or': 'Or',
   'auth_choice_continue_as_guest': 'Continue as Guest User',
@@ -753,7 +753,72 @@ to connect with you.
   "select_graduation_year_msg": "Please select your graduation year",
   "select_faculty_msg": "Please select your faculty",
 
+  // ============================================================
+  // notification strikee screen
+  // ============================================================
+  "warning_label": "Warning",
+  "violation_rules": "Violation of the application rules",
+  "warning_info_title": "Why you don’t want to get a warning?",
+  "warning_info_tips": "How to avoid getting a warning?",
+  "violations_count": "@current out of @total violations",
+  "warning_tips_list":
+      "Arrive on time\nMaintain professional behavior\nMeet performance expectations\nFollow workplace policies",
+  "warning_consequences_list":
+      "It goes into your employment record\nIt impacts your chances for getting accepted in another job\nAfter 3 strikes your account will be blocked",
 
+  // ============================================================
+  // block screen
+  // ============================================================
+  "account_disabled": "YOUR ACCOUNT HAS BEEN DISABLED!",
+
+  // ============================================================
+  // Privacy Policy Screen
+  // ============================================================
+  "privacy_policy": "Privacy policy",
+  "last_updated": "Last updated",
+
+  "privacy_intro":
+      "We are committed to protecting your privacy. This policy explains how we collect, use, and safeguard your information when using our app.",
+
+  "section_1_title": "1. Information We Collect",
+  "section_1_desc":
+      "During registration: Name, phone number, email, optional CV.\n"
+      "During profile completion: National ID, education details, skills, profile picture.\n"
+      "During job applications: Application details and statuses.\n"
+      "Technical information: Device type, app version, usage data.",
+
+  "section_2_title": "2. How We Use Your Information",
+  "section_2_desc":
+      "To create and verify your account.\n"
+      "To allow browsing and applying for jobs after verification.\n"
+      "To display suitable job opportunities.\n"
+      "To send notifications and updates.\n"
+      "To improve app performance and prevent misuse.",
+
+  "section_3_title": "3. Sharing Your Information",
+  "section_3_desc":
+      "With employers only when you apply for their jobs.\n"
+      "With our admin team for profile verification.\n"
+      "With trusted service providers for hosting and analytics.\n"
+      "We do not sell your data to any third party.",
+
+  "section_4_title": "4. Data Protection",
+  "section_4_desc":
+      "We use secure storage, encryption, and restricted access to protect your personal information.",
+
+  "section_5_title": "5. Your Rights",
+  "section_5_desc":
+      "You may update or correct your information.\n"
+      "Request account deletion.\n"
+      "Contact us for data removal or concerns at [support email].",
+
+  "section_6_title": "6. Policy Updates",
+  "section_6_desc":
+      "We may update this policy and will notify you within the app when changes occur.",
+
+  // ============================================================
+  // check in and out Screens
+  // ============================================================
   "log_attendance": "Log Attendance",
   "attendance_log": "Attendance Log",
   "scan_qr_to_check_in": "Scan the QR code to complete your check-in.",

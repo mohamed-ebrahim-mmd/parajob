@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:app_links/app_links.dart';
 import 'package:flutter/material.dart'
     show
         BuildContext,
@@ -13,6 +14,8 @@ import 'package:get_storage/get_storage.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:para_job/features/profile/user_profile/profile_controller.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
+import 'package:para_job/packages/route_manager/controller/routes.dart';
+
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/ui_components/auth_required_dialog.dart';
 import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
@@ -24,19 +27,55 @@ class HomeController extends GetxController {
   late final _profileController = _userController.isGuest
       ? null
       : Get.find<ProfileController>();
+
   var homeCallState = ApiCallState.loading.obs;
   HomeResponse? homeData;
   final box = GetStorage();
+
+  final bool isDeepLink = Get.arguments ?? false;
   bool get hasSeenShowcase => box.read('hasSeenShowcase') ?? false;
+
   final firstKey = GlobalKey();
   final secondKey = GlobalKey();
   final thirdKey = GlobalKey();
   final lastKey = GlobalKey();
 
+  final AppLinks _appLinks = AppLinks();
+
   @override
   void onInit() {
     super.onInit();
+
     fetchHomeJobs();
+
+    if (isDeepLink) {
+      _handleDeepLink();
+    }
+  }
+
+  void _handleDeepLink() async {
+    log("handleDeepLink called");
+
+    // 1) Get the initial deep link
+    final Uri? uri = await _appLinks.getInitialLink();
+    if (uri == null) return;
+
+    // 2) Extract jobId from /share/{id}
+    String? jobIdString;
+    if (uri.path.contains('/share/')) {
+      final segments = uri.pathSegments;
+      final shareIndex = segments.indexOf('share');
+      if (shareIndex != -1 && shareIndex + 1 < segments.length) {
+        jobIdString = segments[shareIndex + 1];
+      }
+    }
+
+    // 3) Convert to int
+    final int? jobId = int.tryParse(jobIdString ?? "");
+    if (jobId == null) return;
+
+    // 4) Navigate to job details
+    Get.toNamed(Routes.jobDetails, arguments: jobId);
   }
 
   void startShowcase() {
@@ -46,14 +85,11 @@ class HomeController extends GetxController {
         // Mark as seen when dismissed
         await box.write('hasSeenShowcase', true);
       },
-
       onFinish: () async {
         // Mark as seen when finished
         await box.write('hasSeenShowcase', true);
       },
-
       blurValue: 1,
-
       globalTooltipActionConfig: const TooltipActionConfig(
         position: TooltipActionPosition.inside,
         alignment: MainAxisAlignment.spaceBetween,
@@ -95,7 +131,7 @@ class HomeController extends GetxController {
         ),
       ],
     );
-    if (!hasSeenShowcase) {
+    if (!hasSeenShowcase && !isDeepLink) {
       _goStart();
     }
   }
@@ -148,6 +184,7 @@ class HomeController extends GetxController {
         log("🟢 fetchHomeJobs success");
         homeData = response;
         homeCallState.value = ApiCallState.success;
+
         startShowcase();
       } else {
         homeCallState.value = ApiCallState.failure;

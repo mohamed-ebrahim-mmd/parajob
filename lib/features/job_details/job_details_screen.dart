@@ -181,7 +181,7 @@ class JobDetailsScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Align(
-                                    alignment: Alignment.centerLeft,
+                                    alignment: AlignmentDirectional.centerStart,
                                     child: TextButton(
                                       onPressed: () {
                                         deleteJobApplicationDialog(

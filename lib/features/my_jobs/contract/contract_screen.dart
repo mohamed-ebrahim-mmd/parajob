@@ -148,7 +148,7 @@ class ContractScreen extends StatelessWidget {
                         ),
                         context.hBox(1),
                         Align(
-                          alignment: Alignment.centerLeft,
+                          alignment: AlignmentDirectional.centerStart,
                           child: TextButton(
                             onPressed: () {
                               controller.signatureController.clear();

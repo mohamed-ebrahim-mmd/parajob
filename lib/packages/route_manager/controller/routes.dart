@@ -4,7 +4,9 @@ import 'package:para_job/features/authentication/authentication_choice/auth_choi
 import 'package:para_job/features/authentication/email_login/email_login_screen.dart';
 import 'package:para_job/features/authentication/forgot_password/forgot_password_screen.dart';
 import 'package:para_job/features/authentication/forgot_password_otp/forgot_password_otp_screen.dart';
+import 'package:para_job/features/authentication/privacy_policy/privacy_policy_screen.dart';
 import 'package:para_job/features/authentication/set_new_password/set_new_password_screen.dart';
+import 'package:para_job/features/deep_link_loading/deep_link_loading_screen.dart';
 import 'package:para_job/features/employer/active_jobs.dart/active_jobs_screen.dart';
 import 'package:para_job/features/employer/employer_screen.dart';
 import 'package:para_job/features/employer/reviews/employer_reviews_screen.dart';
@@ -94,6 +96,11 @@ class Routes {
   static const String languageScreen = "/language_screen";
   static const String notificationStrikeScreen = "/notification_strike_screen";
 
+  static const String contactUsAuth = "/contacts-us-auth";
+  static const String deepLinkLoading = "/deep-link-loading";
+
+  static const String privacyPolicy = "/privacy-policy";
+
   static const String checkInOut = "/check_in_out";
   static const String checkInOutHistory = "/check_in_out_history";
 
@@ -101,6 +108,7 @@ class Routes {
 
 class AppPages {
   static final pages = [
+    GetPage(name: Routes.deepLinkLoading, page: () => DeepLinkLoadingScreen()),
     GetPage(name: Routes.onboarding, page: () => OnboardingScreen()),
     GetPage(
       name: Routes.checkInOut,
@@ -122,8 +130,17 @@ class AppPages {
     ),
     GetPage(
       name: Routes.authChoice,
-      page: () => AuthChoiceScreen(),
+      page: () => LoaderOverlay(
+        child: AuthChoiceScreen(),
+        overlayWidgetBuilder: (_) {
+          //ignored progress for the moment
+          return AppLoader();
+        },
+      ),
       children: [
+        //PrivacyPolicyScreen
+        GetPage(name: Routes.privacyPolicy, page: () => PrivacyPolicyScreen()),
+
         GetPage(
           name: Routes.emailLoginScreen,
           page: () => LoaderOverlay(
@@ -172,6 +189,8 @@ class AppPages {
         ),
       ],
     ),
+
+    GetPage(name: Routes.contactUsAuth, page: () => ContactUsAurhScreen()),
 
     GetPage(
       name: Routes.createAccount,
@@ -356,7 +375,7 @@ class AppPages {
         // notification strike screen
         GetPage(
           name: Routes.notificationStrikeScreen,
-          page: () => const NotificationStrikeScreen(),
+          page: () => NotificationStrikeScreen(),
         ),
 
         //profile

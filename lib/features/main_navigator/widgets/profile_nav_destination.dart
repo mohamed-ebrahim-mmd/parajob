@@ -8,10 +8,9 @@ import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
 class ProfileNavDestination extends StatelessWidget {
-  ProfileNavDestination({super.key});
-
   //final MainNavigatorController controller;
   final controller = Get.find<MainNavigatorController>();
+  ProfileNavDestination({super.key});
 
   @override
   Widget build(BuildContext context) {

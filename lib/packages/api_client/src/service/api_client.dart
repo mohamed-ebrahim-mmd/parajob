@@ -2,9 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../models/models.dart';
-import '../models/requests/check_in_out_request.dart';
-import '../models/responses/check_in_out_history_response.dart';
-import '../models/responses/last_check_in_out_response.dart';
 
 part 'api_client.g.dart';
 
@@ -217,6 +214,18 @@ abstract class ApiClient {
 
   @PUT("/api/user/device/token")
   Future<NotificationTokenResponse> updateDeviceToken(
+      @Body() NotificationTokenRequest request,
+      @Header("Authorization") String token,);
+
+  @GET("/api/user/job/strike")
+  Future<NotificationWarningResponse> fetchStrikes(
+      @Header("Authorization") String token,);
+
+  @POST("/api/auth/social/google")
+  Future<GoogleAuthResponse> signInWithGoogle(
+      @Body() GoogleAuthRequest request,);
+
+
     @Body() NotificationTokenRequest request,
     @Header("Authorization") String token,
   );

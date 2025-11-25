@@ -66,7 +66,7 @@ class EmailLoginScreen extends StatelessWidget {
               }),
               context.hBox(1.5),
               Align(
-                alignment: Alignment.topRight,
+                alignment: AlignmentDirectional.topEnd,
                 child: GestureDetector(
                   onTap: () {
                     Get.toNamed(
@@ -97,7 +97,7 @@ class EmailLoginScreen extends StatelessWidget {
           children: [
             FilledButton(
               onPressed: () {
-                controller.login();
+                controller.login(context);
               },
               child: Text('login_button'.tr),
             ),
