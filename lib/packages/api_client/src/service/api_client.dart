@@ -214,20 +214,18 @@ abstract class ApiClient {
 
   @PUT("/api/user/device/token")
   Future<NotificationTokenResponse> updateDeviceToken(
-      @Body() NotificationTokenRequest request,
-      @Header("Authorization") String token,);
+    @Body() NotificationTokenRequest request,
+    @Header("Authorization") String token,
+  );
 
   @GET("/api/user/job/strike")
   Future<NotificationWarningResponse> fetchStrikes(
-      @Header("Authorization") String token,);
+    @Header("Authorization") String token,
+  );
 
   @POST("/api/auth/social/google")
   Future<GoogleAuthResponse> signInWithGoogle(
-      @Body() GoogleAuthRequest request,);
-
-
-    @Body() NotificationTokenRequest request,
-    @Header("Authorization") String token,
+    @Body() GoogleAuthRequest request,
   );
 
   @POST("/api/attendance/scan")
