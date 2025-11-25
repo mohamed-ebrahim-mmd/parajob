@@ -800,10 +800,9 @@ to connect with you.
 
   "section_3_title": "3. Sharing Your Information",
   "section_3_desc":
-      "With employers only when you apply for their jobs.\n"
+      "sharing your data with our trusted partners.\n"
       "With our admin team for profile verification.\n"
-      "With trusted service providers for hosting and analytics.\n"
-      "We do not sell your data to any third party.",
+      "With trusted service providers for hosting and analytics.\n",
 
   "section_4_title": "4. Data Protection",
   "section_4_desc":
