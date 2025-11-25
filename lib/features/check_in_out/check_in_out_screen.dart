@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:para_job/features/job_details/check_in_out/check_in_out_controller.dart';
-import 'package:para_job/features/job_details/check_in_out/widgets/check_in_out_status.dart';
-import 'package:para_job/features/job_details/check_in_out/widgets/check_in_out_timeline_item.dart';
+import 'package:para_job/features/check_in_out/check_in_out_controller.dart';
+import 'package:para_job/features/check_in_out/widgets/check_in_out_status.dart';
+import 'package:para_job/features/check_in_out/widgets/check_in_out_timeline_item.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
 import '../../../packages/api_client/src/enums/api_call_state_enum.dart';
 import '../../../packages/ui_components/error_screen.dart';
-import '../../barcode/widgets/scanner_button.dart';
+import '../barcode/widgets/scanner_button.dart';
 
 class CheckInOutScreen extends StatelessWidget {
   final args = Get.arguments as Map<String, dynamic>;
@@ -25,8 +25,6 @@ class CheckInOutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    controller.getActiveCheckInOut();
-
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -141,7 +139,7 @@ class CheckInOutScreen extends StatelessWidget {
                   if (controller.checkOutStatus.value == false)
                     Center(
                       child: ScannerButton(
-                        title: controller.hasAttendance == false
+                        title: controller.hasAttendance.value == false
                             ? 'check_in'.tr
                             : 'check_out'.tr,
                         onScanned: (code) {

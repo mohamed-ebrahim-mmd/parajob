@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:para_job/features/job_details/check_in_out/check_in_out_history/widgets/check_in_out_history_card.dart';
+import 'package:para_job/features/check_in_out/check_in_out_history/widgets/check_in_out_history_card.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
 import '../../../../packages/api_client/src/models/responses/check_in_out_history.dart';
@@ -21,7 +21,7 @@ class CheckInOutHistoryScreen extends StatelessWidget {
       backgroundColor: AppColors.charcoalBlack,
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: EdgeInsets.only(bottom: context.hPct(7)),
+          padding: EdgeInsets.only(bottom: context.hPct(2)),
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: context.defaultPadding),
             child: Column(
@@ -45,7 +45,7 @@ class CheckInOutHistoryScreen extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                const SizedBox(height: 7),
+                context.hBox(2),
 
                 Text(
                   'check_past_shifts'.tr,

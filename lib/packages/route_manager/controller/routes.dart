@@ -6,6 +6,8 @@ import 'package:para_job/features/authentication/forgot_password/forgot_password
 import 'package:para_job/features/authentication/forgot_password_otp/forgot_password_otp_screen.dart';
 import 'package:para_job/features/authentication/privacy_policy/privacy_policy_screen.dart';
 import 'package:para_job/features/authentication/set_new_password/set_new_password_screen.dart';
+import 'package:para_job/features/check_in_out/check_in_out_history/check_in_out_history_screen.dart';
+import 'package:para_job/features/check_in_out/check_in_out_screen.dart';
 import 'package:para_job/features/deep_link_loading/deep_link_loading_screen.dart';
 import 'package:para_job/features/employer/active_jobs.dart/active_jobs_screen.dart';
 import 'package:para_job/features/employer/employer_screen.dart';
@@ -13,8 +15,6 @@ import 'package:para_job/features/employer/reviews/employer_reviews_screen.dart'
 import 'package:para_job/features/home/jobs/jobs_screen.dart';
 import 'package:para_job/features/home/search_job/search_job_screen.dart';
 import 'package:para_job/features/job_details/apply_job/apply_job_screen.dart';
-import 'package:para_job/features/job_details/check_in_out/check_in_out_history/check_in_out_history_screen.dart';
-import 'package:para_job/features/job_details/check_in_out/check_in_out_screen.dart';
 import 'package:para_job/features/job_details/complaint/company_complaint/company_complaint_screen.dart';
 import 'package:para_job/features/job_details/complaint/job_complaint/job_complaint_screen.dart';
 import 'package:para_job/features/job_details/job_details_screen.dart';

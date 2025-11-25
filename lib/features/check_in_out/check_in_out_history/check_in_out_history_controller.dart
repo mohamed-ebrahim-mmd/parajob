@@ -5,11 +5,11 @@ import 'package:para_job/packages/api_client/api_client.dart';
 import '../../../../packages/api_client/src/models/responses/check_in_out_history.dart';
 import '../../../../packages/user_manager/user_controller.dart';
 
-
 class CheckInOutHistoryController extends GetxController {
   final int jobId;
 
-  CheckInOutHistoryController({ required this.jobId});
+  CheckInOutHistoryController({required this.jobId});
+
   final String token = Get.find<UserController>().token!;
 
   late final PagingController<int, CheckInOutHistory> pagingController;
@@ -23,7 +23,7 @@ class CheckInOutHistoryController extends GetxController {
   void _initPagingController() {
     pagingController = PagingController<int, CheckInOutHistory>(
       getNextPageKey: (state) =>
-      state.lastPageIsEmpty ? null : state.nextIntPageKey,
+          state.lastPageIsEmpty ? null : state.nextIntPageKey,
       fetchPage: (pageKey) {
         return getCheckInOutHistory(jobId: jobId, page: pageKey);
       },
@@ -32,13 +32,14 @@ class CheckInOutHistoryController extends GetxController {
 
   Future<List<CheckInOutHistory>> getCheckInOutHistory({
     required int jobId,
-    int page = 1,
+    required page,
   }) async {
     final response = await apiClient.getCheckInOutHistory(
-        jobId: jobId,
-        page: page,
-        token: token
+      jobId: jobId,
+      page: page,
+      token: token,
     );
+
     return response.data ?? [];
   }
 
@@ -56,5 +57,4 @@ class CheckInOutHistoryController extends GetxController {
       return '${hours}h ${minutes}m';
     }
   }
-
 }

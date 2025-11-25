@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
@@ -24,6 +26,7 @@ class CheckInOutController extends GetxController {
     required this.jobId,
     this.initialHasAttendance = false,
   });
+
   @override
   void onInit() {
     super.onInit();
@@ -32,6 +35,8 @@ class CheckInOutController extends GetxController {
   }
 
   Future<void> scan(BuildContext context, String code) async {
+    log("🟢 ${code}");
+
     try {
       context.loaderOverlay.show();
       final response = await apiClient.scanCheckInOut(
@@ -103,7 +108,7 @@ class CheckInOutController extends GetxController {
       final response = await apiClient.getCheckInOutHistory(
         jobId: jobId,
         token: user.token!,
-        page: 1
+        page: 1,
       );
       if (response.isSuccess) {
         activeCheckInOutHistory.value = response.data?[0];

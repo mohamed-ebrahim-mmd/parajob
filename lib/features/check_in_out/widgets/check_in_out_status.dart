@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:para_job/features/job_details/check_in_out/check_in_out_controller.dart';
+import 'package:para_job/features/check_in_out/check_in_out_controller.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 
 import '../../../../res/app_asset_paths.dart';
