@@ -50,6 +50,9 @@ class AppTheme {
         scrolledUnderElevation: 0,
         iconTheme: IconThemeData(color: AppColors.pureWhite, size: 26),
       ),
+      // Disable hover for NavigationBar
+      splashColor: Colors.transparent,
+
       inputDecorationTheme: InputDecorationTheme(
         // Border styling
         suffixIconColor: AppColors.softWhite70,
