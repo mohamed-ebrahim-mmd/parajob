@@ -13,9 +13,7 @@ import '../../../packages/themeing/app_colors.dart';
 import '../../../packages/themeing/media_query_values.dart';
 
 class ApprovedJobList extends StatelessWidget {
-  final String title;
-
-  ApprovedJobList({super.key, required this.title});
+  ApprovedJobList({super.key});
 
   final controller = Get.find<MyJobsController>();
 
@@ -42,7 +40,7 @@ class ApprovedJobList extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: context.hPct(3)),
                     child: Text(
-                      title,
+                      'my_jobs_approved_description'.tr,
                       style: TextStyle(
                         fontSize: context.wPct(3),
                         fontWeight: FontWeight.w400,

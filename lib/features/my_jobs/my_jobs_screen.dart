@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:para_job/features/my_jobs/my_job_controller.dart';
 import 'package:para_job/features/my_jobs/widgets/applied_job_list.dart';
 import 'package:para_job/features/my_jobs/widgets/approved_job_list.dart';
-
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
 import '../../packages/themeing/app_colors.dart';
@@ -28,7 +27,6 @@ class MyJobsScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     TabBar(
-                   
                       dividerHeight: 0,
                       labelStyle: TextStyle(
                         fontWeight: FontWeight.w600,
@@ -42,17 +40,7 @@ class MyJobsScreen extends StatelessWidget {
                     ),
                     Expanded(
                       child: TabBarView(
-                        children: [
-                          AppliedJobList(
-                          
-                            title: 'my_jobs_applied_description'.tr,
-                          ),
-
-                          ApprovedJobList(
-                           
-                            title: 'my_jobs_approved_description'.tr,
-                          ),
-                        ],
+                        children: [AppliedJobList(), ApprovedJobList()],
                       ),
                     ),
                   ],
