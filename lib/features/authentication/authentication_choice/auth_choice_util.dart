@@ -33,7 +33,10 @@ Future<void> signInAndLogUserData(BuildContext context) async {
 
     if (account == null) {
       log("🔴 account == null");
-      showSnackBarError("Login canceled", "You canceled the login.");
+      showSnackBarError(
+        'google_login_canceled_title'.tr,
+        'google_login_canceled_message'.tr,
+      );
       return;
     }
     // Request access token with email scope
@@ -47,7 +50,10 @@ Future<void> signInAndLogUserData(BuildContext context) async {
 
     if (authorization.accessToken.isEmpty) {
       log("🔴 account == null");
-      showSnackBarError("Login canceled", "You canceled the login.");
+      showSnackBarError(
+        'google_login_canceled_title'.tr,
+        'google_login_canceled_message'.tr,
+      );
       return;
     }
     // Create request body
@@ -96,31 +102,37 @@ Future<void> signInAndLogUserData(BuildContext context) async {
       }
     } else {
       Get.toNamed(Routes.createAccount);
-      showSnackBarError("failed_title".tr, "Please create account first");
+      showSnackBarError("failed_title".tr, 'Please_create_account_first'.tr);
     }
   } on GoogleSignInException catch (e) {
     log("🔴 GoogleSignInException ${e.code}: ${e.description}");
 
     switch (e.code) {
       case GoogleSignInExceptionCode.canceled:
-        showSnackBarError("Login canceled", "You canceled the login.");
+        showSnackBarError(
+          "google_login_canceled_title".tr,
+          "google_login_canceled_message".tr,
+        );
         break;
       case GoogleSignInExceptionCode.clientConfigurationError:
         showSnackBarError(
-          "Configuration Error",
-          "Google Sign-In is not set up correctly. Check OAuth settings.",
+          "google_login_config_error_title".tr,
+          'google_login_config_error_message'.tr,
         );
         break;
 
       case GoogleSignInExceptionCode.unknownError:
         showSnackBarError(
-          "Unknown Error",
-          e.description ?? "Something went wrong.",
+          "google_login_unknown_error_title".tr,
+          e.description ?? "google_login_unknown_error_message".tr,
         );
         break;
 
       default:
-        showSnackBarError("Error", "Unexpected error occurred: ${e.code}");
+        showSnackBarError(
+          "error".tr,
+          "google_login_unexpected_error".trParams({"code": e.code.toString()}),
+        );
     }
   } catch (e) {
     log("🔴 catch ${e.toString()}");
