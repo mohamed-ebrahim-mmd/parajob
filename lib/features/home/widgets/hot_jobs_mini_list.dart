@@ -83,8 +83,8 @@ class HotJobsMiniList extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start, // Align top
             children: jobs.map((job) {
               return Padding(
-                padding: const EdgeInsets.only(
-                  right: 10,
+                padding: EdgeInsets.only(
+                  right: context.wPct(2),
                 ), // spacing between items
                 child: HotJobCard(
                   job: job,
@@ -99,9 +99,6 @@ class HotJobsMiniList extends StatelessWidget {
             }).toList(),
           ),
         ),
-
-    
-    
       ],
     );
   }
