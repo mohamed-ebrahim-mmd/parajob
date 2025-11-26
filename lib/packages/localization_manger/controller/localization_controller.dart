@@ -43,6 +43,7 @@ class LocalizationController extends GetxController {
     Get.updateLocale(locale); // Apply new locale
     profileController.fetchProfileDetails();
     homeController.fetchHomeJobs();
-    jobController.pagingController.refresh();
+    jobController.pagingAppliedController.refresh();
+    jobController.pagingApprovedController.refresh();
   }
 }

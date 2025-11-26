@@ -1,7 +1,7 @@
 //Mary Mark ||  mary.mark@moselaymd.com || Wed Nov 26 2025 15:24:09
 
-
 import 'dart:developer';
+
 import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
@@ -9,7 +9,8 @@ import 'package:para_job/packages/api_client/src/enums/job_application_status.da
 import 'package:para_job/packages/user_manager/user_controller.dart';
 
 class MyJobsController extends GetxController {
-  late PagingController<int, MyJob> pagingController;
+  late PagingController<int, MyJob> pagingAppliedController;
+  late PagingController<int, MyJob> pagingApprovedController;
 
   /// Authentication token retrieved from user controller
   final String token = Get.find<UserController>().token!;
@@ -17,7 +18,10 @@ class MyJobsController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    pagingController = initPagingController(null);
+    pagingAppliedController = initPagingController(null);
+    pagingApprovedController = initPagingController(
+      JobApplicationStatus.accepted,
+    );
   }
 
   Future<List<MyJob>> fetchMyJobsPage({
@@ -48,7 +52,7 @@ class MyJobsController extends GetxController {
 
   @override
   void onClose() {
-    pagingController.dispose();
+    pagingAppliedController.dispose();
     super.onClose();
   }
 }
