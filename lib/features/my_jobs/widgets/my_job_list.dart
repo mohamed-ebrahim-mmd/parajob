@@ -1,8 +1,9 @@
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:intl/intl.dart';
-import 'package:para_job/features/my_jobs/my_jobs_utils.dart';
+import 'package:para_job/features/my_jobs/my_job_controller.dart';
 import 'package:para_job/features/my_jobs/widgets/my_job_card.dart';
 import 'package:para_job/features/my_jobs/widgets/sign_contract_job_dialog.dart';
 
@@ -11,41 +12,25 @@ import '../../../packages/api_client/src/models/responses/my_job.dart';
 import '../../../packages/themeing/app_colors.dart';
 import '../../../packages/themeing/media_query_values.dart';
 
-class MyJobsList extends StatefulWidget {
+class MyJobsList extends StatelessWidget {
   final JobApplicationStatus? status;
   final bool highlighted;
   final String title;
 
-  const MyJobsList({
+   MyJobsList({
     super.key,
     this.status,
     required this.highlighted,
     required this.title,
   });
 
-  @override
-  State<MyJobsList> createState() => _MyJobsListState();
-}
-
-class _MyJobsListState extends State<MyJobsList> {
-  late final PagingController<int, MyJob> pagingController;
-
-  @override
-  void initState() {
-    super.initState();
-    pagingController = initPagingController(widget.status);
-  }
-
-  @override
-  void dispose() {
-    pagingController.dispose();
-    super.dispose();
-  }
+ final controller = Get.find<MyJobsController>();
 
   @override
   Widget build(BuildContext context) {
+  
     return PagingListener(
-      controller: pagingController,
+      controller: controller.pagingController,
       builder: (context, state, fetchNextPage) {
         return PagedListView<int, MyJob>(
           state: state,
@@ -65,7 +50,7 @@ class _MyJobsListState extends State<MyJobsList> {
                   Padding(
                     padding: EdgeInsets.symmetric(vertical: context.hPct(3)),
                     child: Text(
-                      widget.title,
+                      title,
                       style: TextStyle(
                         fontSize: context.wPct(3),
                         fontWeight: FontWeight.w400,
@@ -106,10 +91,10 @@ class _MyJobsListState extends State<MyJobsList> {
                   padding: EdgeInsets.only(bottom: context.hPct(2)),
                   child: MyJobCard(
                     job: item,
-                    highlighted: widget.highlighted,
-                    onTap: widget.highlighted && item.isSignedContract == 0
+                    highlighted: highlighted,
+                    onTap: highlighted && item.isSignedContract == 0
                         ? () {
-                            signContractJobDialog(item, pagingController);
+                            signContractJobDialog(item, controller.pagingController);
                           }
                         : null,
                   ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:para_job/features/my_jobs/my_job_controller.dart';
 import 'package:para_job/features/my_jobs/widgets/my_job_list.dart';
 import 'package:para_job/packages/api_client/src/enums/job_application_status.dart'
     show JobApplicationStatus;
@@ -8,7 +9,8 @@ import 'package:para_job/packages/themeing/media_query_values.dart';
 import '../../packages/themeing/app_colors.dart';
 
 class MyJobsScreen extends StatelessWidget {
-  const MyJobsScreen({super.key});
+  MyJobsScreen({super.key});
+  final myJobscontroller = Get.put(MyJobsController());
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +28,17 @@ class MyJobsScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     TabBar(
+                      onTap: (value) {
+                        if (value == 0) {
+                          myJobscontroller.pagingController =
+                              myJobscontroller.initPagingController(null);
+                        } else {
+                          myJobscontroller.pagingController =
+                              myJobscontroller.initPagingController(
+                                JobApplicationStatus.accepted,
+                              );
+                        }
+                      },
                       dividerHeight: 0,
                       labelStyle: TextStyle(
                         fontWeight: FontWeight.w600,
@@ -44,6 +57,7 @@ class MyJobsScreen extends StatelessWidget {
                             highlighted: false,
                             title: 'my_jobs_applied_description'.tr,
                           ),
+
                           MyJobsList(
                             status: JobApplicationStatus.accepted,
                             highlighted: true,
