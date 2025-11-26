@@ -25,6 +25,7 @@ class HotJobCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: context.wPct(65),
+
       decoration: BoxDecoration(
         color: const Color(0xFF122A2B),
         borderRadius: BorderRadius.circular(context.wPct(4)),
@@ -37,8 +38,8 @@ class HotJobCard extends StatelessWidget {
           // 👉 Company Row
           Padding(
             padding: EdgeInsets.symmetric(
-              horizontal: context.wPct(3),
-              vertical: context.hPct(2),
+              horizontal: context.wPct(4),
+              vertical: context.hPct(1),
             ),
             child: Row(
               children: [
@@ -118,7 +119,7 @@ class HotJobCard extends StatelessWidget {
           // 👉 Description (Fixed height always = 4 lines)
           Padding(
             padding: EdgeInsets.symmetric(
-              horizontal: context.wPct(2.5),
+              horizontal: context.wPct(3),
               vertical: context.hPct(1),
             ),
             child: SizedBox(
@@ -139,7 +140,7 @@ class HotJobCard extends StatelessWidget {
 
           // 👉 Salary
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: context.wPct(2.5)),
+            padding: EdgeInsets.symmetric(horizontal: context.wPct(3)),
             child: RichText(
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
@@ -168,7 +169,7 @@ class HotJobCard extends StatelessWidget {
 
           // 👉 Deadline
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: context.wPct(2.5)),
+            padding: EdgeInsets.symmetric(horizontal: context.wPct(3)),
             child: RichText(
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
