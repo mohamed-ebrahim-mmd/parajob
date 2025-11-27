@@ -1,7 +1,3 @@
-/*
- Mohamed Ebrahim | mohamed7ebrahim7@gmail.com | 2025-10-16 10:52 AM
- ==================================================================
-*/
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
@@ -253,8 +249,7 @@ class JobDetailsScreen extends StatelessWidget {
               Get.toNamed(
                 "${Routes.jobDetails}${Routes.checkInOut}",
                 arguments: {
-                  'jobId': jobDetails.id,
-                  'hasAttendance': jobDetails.hasAttendance,
+                  'jobId': jobDetails.id
                 },
               );
             },

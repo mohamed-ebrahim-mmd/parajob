@@ -14,9 +14,9 @@ import '../barcode/widgets/scanner_button.dart';
 class CheckInOutScreen extends StatelessWidget {
   final args = Get.arguments as Map<String, dynamic>;
   late final int jobId = args['jobId'] as int;
-  late final bool hasAttendance = args['hasAttendance'] == true;
+
   late final controller = Get.put(
-    CheckInOutController(jobId: jobId, initialHasAttendance: hasAttendance),
+    CheckInOutController(jobId: jobId),
   );
 
   CheckInOutScreen({super.key});
@@ -57,7 +57,7 @@ class CheckInOutScreen extends StatelessWidget {
                   const SizedBox(height: 7),
 
                   Text(
-                    hasAttendance == false
+                    controller.hasAttendance.value == false && controller.checkOutStatus.value == false
                         ? 'scan_qr_to_check_in'.tr
                         : "full_shift_requires_hours".trParams({
                             'hours': controller.shiftHours.value.toString(),

@@ -15,7 +15,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
   final controller = MobileScannerController();
 
   static const String emulatorValue =
-      "https://para-jobs-be-staging.v4.mmd-technology.com/qr-code/99/0bbb50d8-0f49-492d-8d5f-ce35539cfa21";
+      "https://para-jobs-be-staging.v4.mmd-technology.com/qr-code/67/59443057-db63-4097-8adc-e5bbfd41a71c";
   @override
   void initState() {
     super.initState();

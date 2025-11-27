@@ -13,7 +13,7 @@ import '../../../packages/ui_components/show_snack_bar_message.dart';
 
 class CheckInOutController extends GetxController {
   final int jobId;
-  final bool? initialHasAttendance;
+
   var hasAttendance = false.obs;
   final user = Get.find<UserController>();
   var callState = ApiCallState.loading.obs;
@@ -22,15 +22,11 @@ class CheckInOutController extends GetxController {
   var checkInStatus = false.obs;
   var checkOutStatus = false.obs;
 
-  CheckInOutController({
-    required this.jobId,
-    this.initialHasAttendance = false,
-  });
+  CheckInOutController({required this.jobId});
 
   @override
   void onInit() {
     super.onInit();
-    hasAttendance.value = initialHasAttendance!;
     getActiveCheckInOut();
   }
 
@@ -39,23 +35,28 @@ class CheckInOutController extends GetxController {
 
     try {
       context.loaderOverlay.show();
+      final payload = CheckInOutRequest(
+        jobId: jobId,
+        code: code,
+        scannedAt: DateTime.now(),
+        type: hasAttendance.value == true ? 'check_out' : 'check_in',
+      );
+
       final response = await apiClient.scanCheckInOut(
         token: user.token!,
-        request: CheckInOutRequest(
-          jobId: jobId,
-          code: code,
-          scannedAt: DateTime.now(),
-          type: hasAttendance.value == true ? 'check_out' : 'check_in',
-        ),
+        request: payload,
       );
 
       if (response.isSuccess == true) {
         if (hasAttendance.value == false) {
           hasAttendance.value = true;
           checkInStatus.value = true;
+          checkOutStatus.value = false;
           getActiveCheckInOut();
         } else {
           checkOutStatus.value = true;
+          hasAttendance.value = false;
+          checkInStatus.value = false;
           getLastCheckInOut();
         }
       } else {
@@ -73,32 +74,28 @@ class CheckInOutController extends GetxController {
   }
 
   Future<void> getActiveCheckInOut() async {
-    if (hasAttendance.value == false) {
-      callState.value = ApiCallState.success;
-      return;
-    }
-
     callState.value = ApiCallState.loading;
 
-    try {
-      final response = await apiClient.getActiveCheckInOut(
-        jobId: jobId,
-        token: user.token!,
-      );
-      if (response.isSuccess) {
+    final response = await apiClient.getActiveCheckInOut(
+      jobId: jobId,
+      token: user.token!,
+    );
+    if (response.isSuccess) {
+      if (response.data.checkInAt != null) {
+        hasAttendance.value = true;
         activeCheckInOutHistory.value = response.data;
         shiftHours.value = calculateShiftHours(
           response.data.job?.from,
           response.data.job?.to,
         );
-        callState.value = ApiCallState.success;
       } else {
-        callState.value = ApiCallState.failure;
+        hasAttendance.value == false;
       }
-    } catch (e) {
-      print("🔴 ${e.toString()}");
-      callState.value = ApiCallState.failure;
+
+    } else {
+      hasAttendance.value = false;
     }
+    callState.value = ApiCallState.success;
   }
 
   Future<void> getLastCheckInOut() async {

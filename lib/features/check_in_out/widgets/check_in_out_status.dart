@@ -14,7 +14,7 @@ class CheckInOutStatus extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      if (controller.hasAttendance.value == false) {
+      if (controller.hasAttendance.value == false && controller.checkOutStatus.value ==false) {
         return Center(
           child: Image.asset(
             AppAssetPaths.barcodeScan,
@@ -26,7 +26,7 @@ class CheckInOutStatus extends StatelessWidget {
       } else if (controller.checkInStatus.value == true &&
           controller.checkOutStatus.value == false) {
         return _statusCircle('checked_in'.tr, Icons.check_circle);
-      } else if (controller.checkOutStatus.value == true) {
+      } else if (controller.checkOutStatus.value == true && controller.checkInStatus.value == false) {
         return _statusCircle('checked_out'.tr, Icons.check);
       } else {
         return Center(
