@@ -180,7 +180,7 @@ class AppPages {
       ],
     ),
 
-    GetPage(name: Routes.contactUsAuth, page: () => ContactUsAurhScreen()),
+    GetPage(name: Routes.contactUsAuth, page: () => ContactUsAuthScreen()),
 
     GetPage(
       name: Routes.createAccount,

@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -47,7 +48,7 @@ class _ParaJobAppState extends State<ParaJobApp> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: !kReleaseMode,
       theme: AppTheme.getTheme(context),
       themeMode: ThemeMode.dark,
       title: 'Para Job',
@@ -57,8 +58,8 @@ class _ParaJobAppState extends State<ParaJobApp> {
       // Set the locale
       translations: AppTranslations(),
       // Load translations
-      fallbackLocale:
-          LocalizationController.defaultLocale, // Fallback to English
+      fallbackLocale: LocalizationController.defaultLocale,
+      // Fallback to English
       unknownRoute: GetPage(
         name: Routes.deepLinkLoading,
         page: () => DeepLinkLoadingScreen(),
