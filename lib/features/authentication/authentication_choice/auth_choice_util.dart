@@ -4,6 +4,7 @@
 */
 
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
@@ -22,11 +23,7 @@ Future<void> signInAndLogUserData(BuildContext context) async {
   try {
     // Initialize GoogleSignIn with serverClientId
     final GoogleSignIn _googleSignIn = GoogleSignIn.instance;
-    await _googleSignIn.initialize(
-      clientId: kDebugMode
-          ? '587982285191-tgnk9a8n2fuug3e0qssbcint573frhb9.apps.googleusercontent.com'
-          : "587982285191-ak57ddc7a2lm0clcfrsn5t9kf8sc59ct.apps.googleusercontent.com",
-    );
+    await _googleSignIn.initialize(clientId: getGoogleClientId());
 
     // Attempt interactive sign-in
     final GoogleSignInAccount? account = await _googleSignIn.authenticate();
@@ -140,6 +137,32 @@ Future<void> signInAndLogUserData(BuildContext context) async {
   } finally {
     context.loaderOverlay.hide(); // Hide loader overlay
   }
+}
+
+String getGoogleClientId() {
+  // ---- iOS Client ID ----
+  const iosClientId =
+      "587982285191-0eqnatdtp8grom3g71ph1fphs9dad6o7.apps.googleusercontent.com";
+  // ---- Android Client IDs ----
+  const androidDebugClientId =
+      "587982285191-tgnk9a8n2fuug3e0qssbcint573frhb9.apps.googleusercontent.com";
+  const androidReleaseClientId =
+      "587982285191-ak57ddc7a2lm0clcfrsn5t9kf8sc59ct.apps.googleusercontent.com";
+
+  // --------- PLATFORM LOGIC ----------
+  if (Platform.isIOS) {
+    return iosClientId;
+  }
+
+  if (Platform.isAndroid) {
+    if (kDebugMode) {
+      return androidDebugClientId;
+    } else {
+      return androidReleaseClientId;
+    }
+  }
+  log("⚠️ Unknown platform — no client ID");
+  return "";
 }
 
 Future<bool> _sendDeviceTokenToBackend(String userToken) async {
