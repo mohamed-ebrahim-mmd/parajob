@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -93,7 +94,7 @@ class _IdImagePickerState extends State<IdImagePicker> {
         widget.onImageSelected(null); // 👈 user cancelled
       }
     } catch (e) {
-      debugPrint('Error picking image: $e');
+      log('Error picking image: $e');
     }
   }
 

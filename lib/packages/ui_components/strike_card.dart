@@ -20,7 +20,7 @@ class MyStrikeCard extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-        getFormattedDate(strike.createdAt, locale: langCode),
+          getFormattedDate(strike.createdAt, locale: langCode),
           style: TextStyle(
             fontSize: context.wPct(3.4),
             fontWeight: FontWeight.w500,
@@ -108,18 +108,20 @@ class MyStrikeCard extends StatelessWidget {
                           size: context.wPct(3.5),
                         ),
                         context.wBox(0.5),
-                        Text(
-                         getFormattedDate(
-                            strike.job.startDate,
-                            locale: langCode,
+                        Flexible(
+                          child: Text(
+                            getFormattedDate(
+                              strike.job.startDate,
+                              locale: langCode,
+                            ),
+                            style: TextStyle(
+                              fontSize: context.wPct(3.2),
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white70,
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
                           ),
-                          style: TextStyle(
-                            fontSize: context.wPct(3.2),
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white70,
-                          ),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
                         ),
                       ],
                     ),
@@ -154,6 +156,3 @@ class MyStrikeCard extends StatelessWidget {
     );
   }
 }
-
-
-
