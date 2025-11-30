@@ -578,6 +578,16 @@ const Map<String, String> arSA = {
   "success_title": "نجاح",
   "failed_title": "فشل",
   "unknown_error": "حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى.",
+  'google_login_canceled_title': 'تم إلغاء تسجيل الدخول',
+  'google_login_canceled_message': 'لقد قمت بإلغاء عملية تسجيل الدخول.',
+  'google_login_config_error_title': 'خطأ في الإعدادات',
+  'google_login_config_error_message':
+      '  يرجى مراجعة إعدادات خدمه تسجيل الدخول عبر جوجل',
+  'google_login_unknown_error_title': 'خطأ غير معروف',
+  'google_login_unknown_error_message': 'حدث خطأ غير متوقع.',
+  'google_login_unexpected_error': 'حدث خطأ غير متوقع: @code',
+  'Error': 'خطأ',
+  'Please_create_account_first': 'يجب عليك إنشاء حساب اولا',
 
   // ============================================================
   // Set Password controller
@@ -781,10 +791,10 @@ const Map<String, String> arSA = {
 
   "section_3_title": "3. مشاركة معلوماتك",
   "section_3_desc":
-      "مع أصحاب العمل فقط عند التقديم على وظائفهم.\n"
+      "مشاركة بياناتك مع شركائنا الموثوقين\n"
       "مع فريق الإدارة لدينا للتحقق من الملف الشخصي.\n"
       "مع مزودي الخدمات الموثوقين للاستضافة والتحليلات.\n"
-      "لن نبيع بياناتك لأي جهة خارجية.",
+     ,
 
   "section_4_title": "4. حماية البيانات",
   "section_4_desc":

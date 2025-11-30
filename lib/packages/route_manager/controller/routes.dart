@@ -6,8 +6,6 @@ import 'package:para_job/features/authentication/forgot_password/forgot_password
 import 'package:para_job/features/authentication/forgot_password_otp/forgot_password_otp_screen.dart';
 import 'package:para_job/features/authentication/privacy_policy/privacy_policy_screen.dart';
 import 'package:para_job/features/authentication/set_new_password/set_new_password_screen.dart';
-import 'package:para_job/features/check_in_out/check_in_out_history/check_in_out_history_screen.dart';
-import 'package:para_job/features/check_in_out/check_in_out_screen.dart';
 import 'package:para_job/features/deep_link_loading/deep_link_loading_screen.dart';
 import 'package:para_job/features/employer/active_jobs.dart/active_jobs_screen.dart';
 import 'package:para_job/features/employer/employer_screen.dart';
@@ -57,60 +55,69 @@ class Routes {
   static const String forgotPassword = '/forgot-password';
   static const String createAccount = '/create-account';
   static const String info = '/info';
+
   static const String createAccountOTP = '/create-account-otp';
   static const String createAccountSetPass = '/create-account-set-pass';
   static const String createAccountFrontID = '/create-account-front-id';
   static const String createAccountBackID = '/create-account-back-id';
   static const String createAccountPicWithID = '/create-account-pic-with-id';
-  static const String educationInfo = '/education-info';
-  static const String educationPic = '/education-pic';
-  static const String searchJob = '/search-job';
   static const String createAccountSkills = '/create-account-skills';
   static const String createAccountCv = '/create-account-cv';
-  static const String hotJobs = '/hot_job';
-  static const String flexibleJobs = '/flex_job';
-  static const String nonFlexibleJobs = '/non_flex_job';
+
+  static const String educationInfo = '/education-info';
+  static const String educationPic = '/education-pic';
+
+  static const String searchJob = '/search-job';
+
+  static const String hotJobs = '/hot-jobs';
+  static const String flexibleJobs = '/flexible-jobs';
+  static const String nonFlexibleJobs = '/non-flexible-jobs';
+
   static const String employer = '/employer';
   static const String employerReviews = '/employer-reviews';
-  static const String jobDetails = '/job_details';
+
+  static const String jobDetails = '/job-details';
   static const String jobs = '/jobs';
   static const String companyDetails = '/company-details';
+
   static const String contract = '/contract';
+
   static const String applicationVerificationOTP =
       '/application-verification-otp';
-  static const String more = "/more-screen";
-  static const String aboutUs = "/about-us";
-  static const String aboutApp = "/about-app";
-  static const String contactUs = "/contacts-us";
-  static const String editProfile = "/edit-profile";
-  static const String applyJob = "/apply-job";
-  static const String companyComplaint = "/company-complaint";
-  static const String jobComplaint = "/job-complaint";
-  static const String pdfViewer = "/pdf-viewer";
-  static const String bookmarkedJobs = '/bookmarked_jobs';
-  static const String activeJobs = '/active_jobs';
-  static const String changePassOtp = '/change_pass_otp';
-  static const String changePassword = '/change_password';
 
-  static const String historyJobs = '/history_jobs';
+  static const String more = '/more-screen';
+  static const String aboutUs = '/about-us';
+  static const String aboutApp = '/about-app';
+  static const String contactUs = '/contact-us';
 
-  static const String languageScreen = "/language_screen";
-  static const String notificationStrikeScreen = "/notification_strike_screen";
+  static const String editProfile = '/edit-profile';
 
-  static const String contactUsAuth = "/contacts-us-auth";
-  static const String deepLinkLoading = "/deep-link-loading";
+  static const String applyJob = '/apply-job';
+  static const String companyComplaint = '/company-complaint';
+  static const String jobComplaint = '/job-complaint';
 
-  static const String privacyPolicy = "/privacy-policy";
+  static const String pdfViewer = '/pdf-viewer';
 
-  static const String checkInOut = "/check_in_out";
-  static const String checkInOutHistory = "/check_in_out_history";
+  static const String bookmarkedJobs = '/bookmarked-jobs';
+  static const String activeJobs = '/active-jobs';
+  static const String historyJobs = '/history-jobs';
+
+  static const String changePassOtp = '/change-pass-otp';
+  static const String changePassword = '/change-password';
+
+  static const String languageScreen = '/language-screen';
+  static const String notificationStrikeScreen = '/notification-strike-screen';
+
+  static const String contactUsAuth = '/contact-us-auth';
+
+  static const String deepLinkLoading = '/deep-link-loading';
+  static const String privacyPolicy = '/privacy-policy';
 }
 
 class AppPages {
   static final pages = [
     GetPage(name: Routes.deepLinkLoading, page: () => DeepLinkLoadingScreen()),
     GetPage(name: Routes.onboarding, page: () => OnboardingScreen()),
-
     GetPage(
       name: Routes.authChoice,
       page: () => LoaderOverlay(
@@ -173,7 +180,7 @@ class AppPages {
       ],
     ),
 
-    GetPage(name: Routes.contactUsAuth, page: () => ContactUsAurhScreen()),
+    GetPage(name: Routes.contactUsAuth, page: () => ContactUsAuthScreen()),
 
     GetPage(
       name: Routes.createAccount,
@@ -252,6 +259,7 @@ class AppPages {
       ],
     ),
 
+    //CompanyDetailsScreen
     GetPage(
       name: Routes.jobDetails,
       page: () => LoaderOverlay(
@@ -262,24 +270,6 @@ class AppPages {
       ),
 
       children: [
-        GetPage(
-          name: Routes.checkInOut,
-          page: () => LoaderOverlay(
-            child: CheckInOutScreen(),
-            overlayWidgetBuilder: (_) {
-              return AppLoader();
-            },
-          ),
-        ),
-        GetPage(
-          name: Routes.checkInOutHistory,
-          page: () => LoaderOverlay(
-            child: CheckInOutHistoryScreen(),
-            overlayWidgetBuilder: (_) {
-              return AppLoader();
-            },
-          ),
-        ),
         GetPage(
           name: Routes.jobComplaint,
           page: () => LoaderOverlay(

@@ -4,6 +4,7 @@
 */
 
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
@@ -22,18 +23,17 @@ Future<void> signInAndLogUserData(BuildContext context) async {
   try {
     // Initialize GoogleSignIn with serverClientId
     final GoogleSignIn _googleSignIn = GoogleSignIn.instance;
-    await _googleSignIn.initialize(
-      clientId: kDebugMode
-          ? '587982285191-tgnk9a8n2fuug3e0qssbcint573frhb9.apps.googleusercontent.com'
-          : "587982285191-ak57ddc7a2lm0clcfrsn5t9kf8sc59ct.apps.googleusercontent.com",
-    );
+    await _googleSignIn.initialize(clientId: getGoogleClientId());
 
     // Attempt interactive sign-in
     final GoogleSignInAccount? account = await _googleSignIn.authenticate();
 
     if (account == null) {
       log("🔴 account == null");
-      showSnackBarError("Login canceled", "You canceled the login.");
+      showSnackBarError(
+        'google_login_canceled_title'.tr,
+        'google_login_canceled_message'.tr,
+      );
       return;
     }
     // Request access token with email scope
@@ -47,7 +47,10 @@ Future<void> signInAndLogUserData(BuildContext context) async {
 
     if (authorization.accessToken.isEmpty) {
       log("🔴 account == null");
-      showSnackBarError("Login canceled", "You canceled the login.");
+      showSnackBarError(
+        'google_login_canceled_title'.tr,
+        'google_login_canceled_message'.tr,
+      );
       return;
     }
     // Create request body
@@ -96,31 +99,37 @@ Future<void> signInAndLogUserData(BuildContext context) async {
       }
     } else {
       Get.toNamed(Routes.createAccount);
-      showSnackBarError("failed_title".tr, "Please create account first");
+      showSnackBarError("failed_title".tr, 'Please_create_account_first'.tr);
     }
   } on GoogleSignInException catch (e) {
     log("🔴 GoogleSignInException ${e.code}: ${e.description}");
 
     switch (e.code) {
       case GoogleSignInExceptionCode.canceled:
-        showSnackBarError("Login canceled", "You canceled the login.");
+        showSnackBarError(
+          "google_login_canceled_title".tr,
+          "google_login_canceled_message".tr,
+        );
         break;
       case GoogleSignInExceptionCode.clientConfigurationError:
         showSnackBarError(
-          "Configuration Error",
-          "Google Sign-In is not set up correctly. Check OAuth settings.",
+          "google_login_config_error_title".tr,
+          'google_login_config_error_message'.tr,
         );
         break;
 
       case GoogleSignInExceptionCode.unknownError:
         showSnackBarError(
-          "Unknown Error",
-          e.description ?? "Something went wrong.",
+          "google_login_unknown_error_title".tr,
+          e.description ?? "google_login_unknown_error_message".tr,
         );
         break;
 
       default:
-        showSnackBarError("Error", "Unexpected error occurred: ${e.code}");
+        showSnackBarError(
+          "error".tr,
+          "google_login_unexpected_error".trParams({"code": e.code.toString()}),
+        );
     }
   } catch (e) {
     log("🔴 catch ${e.toString()}");
@@ -128,6 +137,32 @@ Future<void> signInAndLogUserData(BuildContext context) async {
   } finally {
     context.loaderOverlay.hide(); // Hide loader overlay
   }
+}
+
+String getGoogleClientId() {
+  // ---- iOS Client ID ----
+  const iosClientId =
+      "587982285191-0eqnatdtp8grom3g71ph1fphs9dad6o7.apps.googleusercontent.com";
+  // ---- Android Client IDs ----
+  const androidDebugClientId =
+      "587982285191-tgnk9a8n2fuug3e0qssbcint573frhb9.apps.googleusercontent.com";
+  const androidReleaseClientId =
+      "587982285191-ak57ddc7a2lm0clcfrsn5t9kf8sc59ct.apps.googleusercontent.com";
+
+  // --------- PLATFORM LOGIC ----------
+  if (Platform.isIOS) {
+    return iosClientId;
+  }
+
+  if (Platform.isAndroid) {
+    if (kDebugMode) {
+      return androidDebugClientId;
+    } else {
+      return androidReleaseClientId;
+    }
+  }
+  log("⚠️ Unknown platform — no client ID");
+  return "";
 }
 
 Future<bool> _sendDeviceTokenToBackend(String userToken) async {

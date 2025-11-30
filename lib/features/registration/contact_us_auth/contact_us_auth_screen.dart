@@ -9,8 +9,8 @@ import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/packages/ui_components/contact_us_list_tile.dart';
 import 'package:para_job/packages/ui_components/error_screen.dart';
 
-class ContactUsAurhScreen extends StatelessWidget {
-  ContactUsAurhScreen({super.key});
+class ContactUsAuthScreen extends StatelessWidget {
+  ContactUsAuthScreen({super.key});
 
   final controller = Get.put(ContactUsAuthController());
 

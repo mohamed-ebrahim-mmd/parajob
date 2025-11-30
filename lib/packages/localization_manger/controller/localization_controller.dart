@@ -2,6 +2,9 @@ import 'dart:ui';
 
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:para_job/features/home/home_controller.dart';
+import 'package:para_job/features/my_jobs/my_job_controller.dart';
+import 'package:para_job/features/profile/user_profile/profile_controller.dart';
 import 'package:para_job/packages/api_client/src/service/dio_singleton_instance.dart';
 
 class LocalizationController extends GetxController {
@@ -30,10 +33,17 @@ class LocalizationController extends GetxController {
 
   /// Changes the app's language and updates storage.
   void changeLanguage(Locale? locale) {
+    final profileController = Get.find<ProfileController>();
+    final homeController = Get.find<HomeController>();
+    final jobController = Get.find<MyJobsController>();
     if (locale == null) return; // Prevent null values
     _storedLanguage.val = locale.languageCode; // Save new language
     // Update Dio header
     dio.options.headers['Locale'] = locale.languageCode;
     Get.updateLocale(locale); // Apply new locale
+    profileController.fetchProfileDetails();
+    homeController.fetchHomeJobs();
+    jobController.pagingAppliedController.refresh();
+    jobController.pagingApprovedController.refresh();
   }
 }

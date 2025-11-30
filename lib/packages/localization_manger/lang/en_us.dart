@@ -593,6 +593,16 @@ to connect with you.
   "success_title": "Success",
   "failed_title": "Failed",
   "unknown_error": "An unexpected error occurred. Please try again.",
+  'google_login_canceled_title': 'Login canceled',
+  'google_login_canceled_message': 'You canceled the login.',
+  'google_login_config_error_title': 'Configuration Error',
+  'google_login_config_error_message':
+      'Google Sign-In is not set up correctly. Check OAuth settings.',
+  'google_login_unknown_error_title': 'Unknown Error',
+  'google_login_unknown_error_message': 'Something went wrong.',
+  'google_login_unexpected_error': 'Unexpected error occurred: @code',
+  'Error': 'Error Occurred',
+  'Please_create_account_first': 'Please create account first',
 
   // ============================================================
   // Set Password controller
@@ -797,10 +807,9 @@ to connect with you.
 
   "section_3_title": "3. Sharing Your Information",
   "section_3_desc":
-      "With employers only when you apply for their jobs.\n"
+      "sharing your data with our trusted partners.\n"
       "With our admin team for profile verification.\n"
-      "With trusted service providers for hosting and analytics.\n"
-      "We do not sell your data to any third party.",
+      "With trusted service providers for hosting and analytics.\n",
 
   "section_4_title": "4. Data Protection",
   "section_4_desc":

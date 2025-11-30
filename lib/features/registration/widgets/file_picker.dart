@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
@@ -37,7 +38,7 @@ class _CVUploaderState extends State<CVUploader> {
         widget.onFileSelected(null);
       }
     } catch (e) {
-      debugPrint('Error picking file: $e');
+      log('Error picking file: $e');
     }
   }
 

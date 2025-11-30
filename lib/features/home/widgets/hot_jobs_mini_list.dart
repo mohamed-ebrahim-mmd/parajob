@@ -22,72 +22,71 @@ class HotJobsMiniList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      //color: Colors.red,
-      height: context.hPct(50), // adjust to fit your design
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Header Row
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Showcase(
-                key: controller.secondKey,
-                description:
-                    "Premium jobs from major companies or special events. These roles are limited and competitive—apply fast and stand out.",
-                onBarrierClick: () => controller.goDismiss(),
-                tooltipBackgroundColor: AppColors.midnightBlue,
-                textColor: AppColors.pureWhite,
-                tooltipPadding: EdgeInsets.all(context.wPct(6)),
-                descriptionTextAlign: TextAlign.center,
-                tooltipBorderRadius: BorderRadius.circular(context.wPct(3)),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.local_fire_department,
-                      color: Colors.red,
-                      size: context.hPct(4),
-                    ),
-                    context.wBox(2),
-                    Text(
-                      "hot_jobs".tr,
-                      style: TextStyle(
-                        fontSize: context.wPct(4.5),
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              GestureDetector(
-                onTap: onSeeAll,
-                child: Text(
-                  "see_all".tr,
-                  style: TextStyle(
-                    color: AppColors.softWhite70,
-                    fontWeight: FontWeight.w500,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Header Row
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Showcase(
+              key: controller.secondKey,
+              description:
+                  "Premium jobs from major companies or special events. These roles are limited and competitive—apply fast and stand out.",
+              onBarrierClick: () => controller.goDismiss(),
+              tooltipBackgroundColor: AppColors.midnightBlue,
+              textColor: AppColors.pureWhite,
+              tooltipPadding: EdgeInsets.all(context.wPct(6)),
+              descriptionTextAlign: TextAlign.center,
+              tooltipBorderRadius: BorderRadius.circular(context.wPct(3)),
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.local_fire_department,
+                    color: Colors.red,
+                    size: context.hPct(4),
                   ),
+                  context.wBox(2),
+                  Text(
+                    "hot_jobs".tr,
+                    style: TextStyle(
+                      fontSize: context.wPct(4.5),
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            GestureDetector(
+              onTap: onSeeAll,
+              child: Text(
+                "see_all".tr,
+                style: TextStyle(
+                  color: AppColors.softWhite70,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
-            ],
-          ),
-          Showcase.withWidget(
-            key: controller.firstKey,
-            disableBarrierInteraction: true,
-            container: StartTutorialDialog(),
-            child: context.hBox(2),
-          ),
+            ),
+          ],
+        ),
+        Showcase.withWidget(
+          key: controller.firstKey,
+          disableBarrierInteraction: true,
+          container: StartTutorialDialog(),
+          child: context.hBox(2),
+        ),
 
-          // Horizontal List of Job Cards
-          Expanded(
-            child: ListView.separated(
-              scrollDirection: Axis.horizontal,
-              itemCount: jobs.length,
-              separatorBuilder: (_, __) => context.wBox(3),
-              itemBuilder: (context, index) {
-                var job = jobs[index];
-                return HotJobCard(
+        // // Horizontal List of Job Cards
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start, // Align top
+            children: jobs.map((job) {
+              return Padding(
+                padding: EdgeInsets.only(
+                  right: context.wPct(2),
+                ), // spacing between items
+                child: HotJobCard(
                   job: job,
                   onBookmarkTap: () {
                     Get.find<HomeController>().handleBookmarkTap(job, context);
@@ -95,12 +94,12 @@ class HotJobsMiniList extends StatelessWidget {
                   onTap: () {
                     Get.toNamed(Routes.jobDetails, arguments: job.id);
                   },
-                );
-              },
-            ),
+                ),
+              );
+            }).toList(),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

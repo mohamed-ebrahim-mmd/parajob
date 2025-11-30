@@ -51,8 +51,6 @@ class MainNavigatorScreen extends StatelessWidget {
               : null,
 
           child: () {
-
-            
             switch (callState) {
               case ApiCallState.loading:
                 return const Center(child: CircularProgressIndicator());
@@ -76,9 +74,6 @@ class MainNavigatorScreen extends StatelessWidget {
                   ),
                 );
             }
-         
-         
-         
           }(),
         ),
 
@@ -103,7 +98,7 @@ class MainNavigatorScreen extends StatelessWidget {
                 }),
               ),
               child: NavigationBar(
-                height: context.hPct(6.2),
+                height: context.hPct(8),
                 elevation: 3,
                 backgroundColor: Colors.black,
                 selectedIndex: controller.tab.value,
