@@ -9,7 +9,8 @@ import '../../packages/themeing/app_colors.dart';
 
 class MyJobsScreen extends StatelessWidget {
   MyJobsScreen({super.key});
-  final myJobscontroller = Get.put(MyJobsController());
+
+  final myJobsController = Get.put(MyJobsController());
 
   @override
   Widget build(BuildContext context) {
