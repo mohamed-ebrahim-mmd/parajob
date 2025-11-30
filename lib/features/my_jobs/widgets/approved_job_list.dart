@@ -1,5 +1,3 @@
-//Mary Mark ||  mary.mark@moselaymd.com || Wed Nov 26 2025 16:41:41
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -7,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:para_job/features/my_jobs/my_job_controller.dart';
 import 'package:para_job/features/my_jobs/widgets/my_job_card.dart';
 import 'package:para_job/features/my_jobs/widgets/sign_contract_job_dialog.dart';
+import 'package:para_job/packages/route_manager/controller/routes.dart';
 
 import '../../../packages/api_client/src/models/responses/my_job.dart';
 import '../../../packages/themeing/app_colors.dart';
@@ -82,14 +81,22 @@ class ApprovedJobList extends StatelessWidget {
                   child: MyJobCard(
                     job: item,
                     highlighted: true,
-                    onTap: item.isSignedContract == 0
-                        ? () {
-                            signContractJobDialog(
-                              item,
-                              controller.pagingApprovedController,
-                            );
-                          }
-                        : null,
+                    onTap: () {
+                      if (item.isSignedContract == 0) {
+                        signContractJobDialog(
+                          item,
+                          controller.pagingApprovedController,
+                        );
+                      } else {
+                        Get.toNamed(
+                          Routes.jobDetails,
+                          arguments: {
+                            'jobId': item.id,
+                            'isFromSignedJobs': true,
+                          },
+                        );
+                      }
+                    },
                   ),
                 ),
               );

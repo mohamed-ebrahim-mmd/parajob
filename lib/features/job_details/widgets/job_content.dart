@@ -4,14 +4,21 @@ import 'package:para_job/features/job_details/complaint/widgets/job_complaint_bo
 import 'package:para_job/features/job_details/job_details_controller.dart';
 import 'package:para_job/packages/api_client/src/models/responses/job_data.dart'
     show JobData;
+import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
 class JobContent extends StatelessWidget {
-  JobContent({super.key, required this.jobDetails, this.onCompanyTap});
+  JobContent({
+    super.key,
+    required this.jobDetails,
+    this.onCompanyTap,
+    this.isFromSignedJobs = false,
+  });
 
   final JobData jobDetails;
   final VoidCallback? onCompanyTap;
+  final bool isFromSignedJobs;
 
   @override
   Widget build(BuildContext context) {
@@ -26,25 +33,41 @@ class JobContent extends StatelessWidget {
               icon: Icon(Icons.arrow_back_ios_new),
             ),
             const Spacer(),
-            IconButton(
-              onPressed: () {
-                final controller = Get.find<JobDetailsController>(
-                  tag: jobDetails.id.toString(),
-                );
-                controller.shareJob(jobDetails);
-              },
-              icon: Icon(Icons.share),
-            ),
-            IconButton(
-              onPressed: () {
-                showJobComplaintBottomSheet(
-                  jobName: jobDetails.title,
-                  jobId: jobDetails.id,
-                  isSubmitComplaint: jobDetails.isSubmitComplaint ?? false,
-                );
-              },
-              icon: const Icon(Icons.more_vert, color: AppColors.pureWhite),
-            ),
+            // Conditional buttons
+            if (isFromSignedJobs)
+              IconButton(
+                onPressed: () {
+                  Get.toNamed(
+                    "${Routes.jobDetails}${Routes.checkInOutHistory}",
+                    arguments: {'jobId': jobDetails.id},
+                  );
+                },
+                icon: Icon(
+                  Icons.date_range_outlined,
+                  color: AppColors.pureWhite,
+                ),
+              )
+            else ...[
+              IconButton(
+                onPressed: () {
+                  final controller = Get.find<JobDetailsController>(
+                    tag: jobDetails.id.toString(),
+                  );
+                  controller.shareJob(jobDetails);
+                },
+                icon: Icon(Icons.share),
+              ),
+              IconButton(
+                onPressed: () {
+                  showJobComplaintBottomSheet(
+                    jobName: jobDetails.title,
+                    jobId: jobDetails.id,
+                    isSubmitComplaint: jobDetails.isSubmitComplaint ?? false,
+                  );
+                },
+                icon: const Icon(Icons.more_vert, color: AppColors.pureWhite),
+              ),
+            ],
           ],
         ),
         context.hBox(2),

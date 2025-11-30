@@ -6,6 +6,8 @@ import 'package:para_job/features/authentication/forgot_password/forgot_password
 import 'package:para_job/features/authentication/forgot_password_otp/forgot_password_otp_screen.dart';
 import 'package:para_job/features/authentication/privacy_policy/privacy_policy_screen.dart';
 import 'package:para_job/features/authentication/set_new_password/set_new_password_screen.dart';
+import 'package:para_job/features/check_in_out/check_in_out_history/check_in_out_history_screen.dart';
+import 'package:para_job/features/check_in_out/check_in_out_screen.dart';
 import 'package:para_job/features/deep_link_loading/deep_link_loading_screen.dart';
 import 'package:para_job/features/employer/active_jobs.dart/active_jobs_screen.dart';
 import 'package:para_job/features/employer/employer_screen.dart';
@@ -112,6 +114,9 @@ class Routes {
 
   static const String deepLinkLoading = '/deep-link-loading';
   static const String privacyPolicy = '/privacy-policy';
+
+  static const String checkInOut = "/check-in-out";
+  static const String checkInOutHistory = "/check-in-out-history";
 }
 
 class AppPages {
@@ -270,6 +275,24 @@ class AppPages {
       ),
 
       children: [
+        GetPage(
+          name: Routes.checkInOut,
+          page: () => LoaderOverlay(
+            child: CheckInOutScreen(),
+            overlayWidgetBuilder: (_) {
+              return AppLoader();
+            },
+          ),
+        ),
+        GetPage(
+          name: Routes.checkInOutHistory,
+          page: () => LoaderOverlay(
+            child: CheckInOutHistoryScreen(),
+            overlayWidgetBuilder: (_) {
+              return AppLoader();
+            },
+          ),
+        ),
         GetPage(
           name: Routes.jobComplaint,
           page: () => LoaderOverlay(

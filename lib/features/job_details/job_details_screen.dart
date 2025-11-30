@@ -1,7 +1,3 @@
-/*
- Mohamed Ebrahim | mohamed7ebrahim7@gmail.com | 2025-10-16 10:52 AM
- ==================================================================
-*/
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
@@ -22,7 +18,14 @@ import 'package:para_job/packages/ui_components/error_screen.dart';
 import 'package:para_job/res/app_asset_paths.dart';
 
 class JobDetailsScreen extends StatelessWidget {
-  final jobId = Get.arguments as int;
+  final jobId = (Get.arguments is int)
+      ? Get.arguments as int
+      : (Get.arguments as Map)['jobId'] as int;
+
+  final bool isFromSignedJobs = (Get.arguments is Map)
+      ? (Get.arguments as Map)['isFromSignedJobs'] ?? false
+      : false;
+
   late final controller = Get.put(
     JobDetailsController(jobId),
     tag: jobId.toString(),
@@ -49,6 +52,7 @@ class JobDetailsScreen extends StatelessWidget {
                     imageUrl: jobDetails.logo,
                     child: JobContent(
                       jobDetails: jobDetails,
+                      isFromSignedJobs: isFromSignedJobs,
                       onCompanyTap: () {
                         Get.toNamed(
                           "${Routes.jobDetails}${Routes.employer}",
@@ -177,31 +181,35 @@ class JobDetailsScreen extends StatelessWidget {
                         context.hBox(4),
                         // Apply / Delete buttons
                         jobDetails.isApplied
-                            ? Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Align(
-                                    alignment: AlignmentDirectional.centerStart,
-                                    child: TextButton(
-                                      onPressed: () {
-                                        deleteJobApplicationDialog(
-                                          applicationId:
-                                              jobDetails.applicationId!,
-                                          controller: controller,
-                                          screenContext: context,
-                                        );
-                                      },
-                                      child: Text(
-                                        'delete_my_application'.tr,
-                                        style: TextStyle(
-                                          color: AppColors.rejected,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w700,
+                            ? Visibility(
+                                visible: !isFromSignedJobs,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Align(
+                                      alignment:
+                                          AlignmentDirectional.centerStart,
+                                      child: TextButton(
+                                        onPressed: () {
+                                          deleteJobApplicationDialog(
+                                            applicationId:
+                                                jobDetails.applicationId!,
+                                            controller: controller,
+                                            screenContext: context,
+                                          );
+                                        },
+                                        child: Text(
+                                          'delete_my_application'.tr,
+                                          style: TextStyle(
+                                            color: AppColors.rejected,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w700,
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               )
                             : FilledButton(
                                 onPressed: controller.handleApplyJobPressed,
@@ -223,6 +231,43 @@ class JobDetailsScreen extends StatelessWidget {
               ),
             );
         }
+      }),
+      bottomNavigationBar: Obx(() {
+        final jobDetails = controller.jobData?.data;
+
+        // Show nothing if API call is not success or jobDetails is null or can't log attendance
+        if (controller.jobDetailsCallState.value != ApiCallState.success ||
+            jobDetails == null ||
+            !jobDetails.canLogAttendance) {
+          return SizedBox(); // Flutter ignores null bottomNavigationBar
+        }
+
+        return Padding(
+          padding: const EdgeInsets.fromLTRB(16, 16, 16, 50),
+          child: FilledButton(
+            onPressed: () {
+              Get.toNamed(
+                "${Routes.jobDetails}${Routes.checkInOut}",
+                arguments: {
+                  'jobId': jobDetails.id
+                },
+              );
+            },
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Image.asset(
+                  AppAssetPaths.barcode,
+                  width: 20,
+                  height: 20,
+                  fit: BoxFit.contain,
+                ),
+                const SizedBox(width: 8),
+                Text('log_attendance'.tr),
+              ],
+            ),
+          ),
+        );
       }),
     );
   }
