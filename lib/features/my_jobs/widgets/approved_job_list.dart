@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:para_job/features/my_jobs/my_job_controller.dart';
 import 'package:para_job/features/my_jobs/widgets/my_job_card.dart';
 import 'package:para_job/features/my_jobs/widgets/sign_contract_job_dialog.dart';
+import 'package:para_job/packages/route_manager/controller/routes.dart';
 
 import '../../../packages/api_client/src/models/responses/my_job.dart';
 import '../../../packages/themeing/app_colors.dart';
@@ -81,8 +82,11 @@ class ApprovedJobList extends StatelessWidget {
                     job: item,
                     highlighted: true,
                     onTap: () {
-                      if (widget.highlighted && item.isSignedContract == 0) {
-                        signContractJobDialog(item,  controller.pagingApprovedController);
+                      if (item.isSignedContract == 0) {
+                        signContractJobDialog(
+                          item,
+                          controller.pagingApprovedController,
+                        );
                       } else {
                         Get.toNamed(
                           Routes.jobDetails,

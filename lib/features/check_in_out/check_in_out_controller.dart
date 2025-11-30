@@ -91,7 +91,6 @@ class CheckInOutController extends GetxController {
       } else {
         hasAttendance.value == false;
       }
-
     } else {
       hasAttendance.value = false;
     }
@@ -114,8 +113,6 @@ class CheckInOutController extends GetxController {
         callState.value = ApiCallState.failure;
       }
     } catch (e) {
-      print("🔴🔴🔴🔴🔴🔴");
-      print("🔴 ${e.toString()}");
       callState.value = ApiCallState.failure;
     }
   }
@@ -138,15 +135,5 @@ class CheckInOutController extends GetxController {
 
     final duration = toTime.difference(fromTime);
     return duration.inHours;
-  }
-
-  void closeAndDispose() {
-    Get.back();
-    Get.delete<CheckInOutController>();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
   }
 }

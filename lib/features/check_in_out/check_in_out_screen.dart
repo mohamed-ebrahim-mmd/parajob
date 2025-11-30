@@ -15,9 +15,7 @@ class CheckInOutScreen extends StatelessWidget {
   final args = Get.arguments as Map<String, dynamic>;
   late final int jobId = args['jobId'] as int;
 
-  late final controller = Get.put(
-    CheckInOutController(jobId: jobId),
-  );
+  late final controller = Get.put(CheckInOutController(jobId: jobId));
 
   CheckInOutScreen({super.key});
 
@@ -29,7 +27,7 @@ class CheckInOutScreen extends StatelessWidget {
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new),
-          onPressed: controller.closeAndDispose,
+          onPressed: () => Get.back(),
         ),
       ),
       body: Obx(() {
@@ -57,7 +55,8 @@ class CheckInOutScreen extends StatelessWidget {
                   const SizedBox(height: 7),
 
                   Text(
-                    controller.hasAttendance.value == false && controller.checkOutStatus.value == false
+                    controller.hasAttendance.value == false &&
+                            controller.checkOutStatus.value == false
                         ? 'scan_qr_to_check_in'.tr
                         : "full_shift_requires_hours".trParams({
                             'hours': controller.shiftHours.value.toString(),
