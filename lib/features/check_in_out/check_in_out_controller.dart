@@ -32,9 +32,9 @@ class CheckInOutController extends GetxController {
 
   Future<void> scan(BuildContext context, String code) async {
     log("🟢 ${code}");
-
+    final overlay = context.loaderOverlay;
     try {
-      context.loaderOverlay.show();
+      overlay.show();
       final payload = CheckInOutRequest(
         jobId: jobId,
         code: code,
@@ -69,7 +69,7 @@ class CheckInOutController extends GetxController {
       showSnackBarApiError();
       print(e);
     } finally {
-      context.loaderOverlay.hide();
+      overlay.hide();
     }
   }
 

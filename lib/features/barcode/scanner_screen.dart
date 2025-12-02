@@ -25,6 +25,8 @@ class _ScannerScreenState extends State<ScannerScreen> {
         controller: controller,
         onDetect: (capture) {
           final code = capture.barcodes.first.rawValue ?? "";
+          controller.stop();
+          if (!mounted) return;
           Navigator.pop(context, code);
         },
       ),
