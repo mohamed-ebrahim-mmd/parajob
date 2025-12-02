@@ -32,11 +32,12 @@ class AppColors {
   static const Color almostWhite = Color(0xFFFDFDFD);
   static const Color white40 = Color(0x66FFFFFF);
   static const Color white60 = Color(0x99FFFFFF);
-  static const Color mediumGray=Color(0xFFBFBFBF);
+  static const Color mediumGray = Color(0xFFBFBFBF);
 
   static const Color lightGray = Color(0xffB4B4B4);
   static const Color lightGray2 = Color(0xffD9D9D9);
   static const Color grayButton = Color(0xff9C9C9C);
+  static const Color lightGray3 = Color(0xCC181BCC);
 
   static const Color darkCharcoal = Color(0xFF1E2428);
 
@@ -66,6 +67,4 @@ class AppColors {
   static const Color greenLeaf = Color(0xFF4BAE4F);
 
   static const Color white10 = Color(0x1AFFFFFF);
-
-
 }

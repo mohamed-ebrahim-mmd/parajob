@@ -1,4 +1,3 @@
-
 const Map<String, String> enUS = {
   // ============================================================
   // 🏠 Onboarding Screen
@@ -842,5 +841,15 @@ to connect with you.
   "checked_in": "Checked In",
   "checked_out": "Checked Out",
   "check_in_out_note": "Note: You logged @hours of work on this day.",
-  "no_data_found": "No data found"
+  "no_data_found": "No data found",
+  // ============================================================
+  // job interview
+  // ============================================================
+  "job_interview": "Job Interview",
+  "meeting_link": "Meeting Link",
+  "interview_mode": "Interview Mode",
+  "interviewer_name": "Interviewer Name",
+  "job_title": "Job Title",
+  "reject_interview": "Reject Interview",
+  "accept_interview": "Accept Interview",
 };
