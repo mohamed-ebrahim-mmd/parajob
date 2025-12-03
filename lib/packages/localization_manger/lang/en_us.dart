@@ -852,4 +852,11 @@ to connect with you.
   "job_title": "Job Title",
   "reject_interview": "Reject Interview",
   "accept_interview": "Accept Interview",
+  "interview_rejected": "You have rejected this interview.",
+  "interview_accepted": "You have accepted this interview.",
+  // ============================================================
+  // job interview controller
+  // ============================================================
+  "interview_status_sent_successfully": "Interview Status Sent Successfully",
+  "failed_to_send_interview_status": "Failed to send interview status",
 };

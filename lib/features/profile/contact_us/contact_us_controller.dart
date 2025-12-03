@@ -50,6 +50,7 @@ class ContactUsController extends GetxController {
     }
   }
 
+
   Future<void> _contactUs(BuildContext context) async {
     try {
       context.loaderOverlay.show();
@@ -79,6 +80,9 @@ class ContactUsController extends GetxController {
       context.loaderOverlay.hide();
     }
   }
+
+
+
 
   @override
   void onClose() {

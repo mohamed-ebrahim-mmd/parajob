@@ -67,4 +67,7 @@ class AppColors {
   static const Color greenLeaf = Color(0xFF4BAE4F);
 
   static const Color white10 = Color(0x1AFFFFFF);
+
+  static const Color backg = Color(0xff1e2123);
+ 
 }

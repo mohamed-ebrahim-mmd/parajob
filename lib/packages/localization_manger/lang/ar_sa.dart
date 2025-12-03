@@ -837,4 +837,11 @@ const Map<String, String> arSA = {
   "job_title": "عنوان الوظيفة",
   "reject_interview": "رفض المقابلة",
   "accept_interview": "قبول المقابلة",
+  "interview_rejected": "لقد رفضت هذه المقابلة.",
+  "interview_accepted": "لقد قبلت هذه المقابلة.",
+  // ============================================================
+  // job interview controller
+  // ============================================================
+  "interview_status_sent_successfully":"تم ارسال حالة المقابلة بنجاح",
+  "failed_to_send_interview_status":"فشل في ارسال حالة المقابلة"
 };

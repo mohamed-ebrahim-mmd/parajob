@@ -11,7 +11,6 @@ import 'package:para_job/packages/user_manager/user_controller.dart';
 
 class InterviewController extends GetxController {
   final user = Get.find<UserController>().user!;
-  ContactInfoData? contactInfo;
   var interviewCallState = ApiCallState.loading.obs;
 
   @override
@@ -24,10 +23,9 @@ class InterviewController extends GetxController {
     interviewCallState.value = ApiCallState.loading;
 
     try {
-      final response = await apiClient.getContactInfo();
-
-      if (response.isSuccess) {
-        contactInfo = response.data;
+      //final response = await apiClient.getContactInfo();
+       await Future.delayed(const Duration(seconds: 7));
+      if (true) {
 
         interviewCallState.value = ApiCallState.success;
       } else {
@@ -37,4 +35,27 @@ class InterviewController extends GetxController {
       interviewCallState.value = ApiCallState.failure;
     }
   }
+
+  // Future<void> sendInterviewStatus(BuildContext context,String status) async {
+  //   try {
+  //     context.loaderOverlay.show();
+  //     Future.delayed(const Duration(seconds: 2));
+
+  //     if (true) {
+  //       showSnackBarSuccess(
+  //         "success_title".tr,"interview_status_sent_successfully".tr,
+  //        // response.details.message ?? "interview_status_sent_successfully".tr,
+  //       );
+  //     } else {
+  //       showSnackBarError(
+  //         "failed_title".tr,"failed_to_send_interview_status".tr,
+  //       //  response.details.message ?? "failed_to_send_interview_status".tr,
+  //       );
+  //     }
+  //   } catch (e) {
+  //     showSnackBarApiError();
+  //   } finally {
+  //     context.loaderOverlay.hide();
+  //   }
+  // }
 }
