@@ -2,20 +2,23 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:para_job/features/interview/interview_controller.dart';
-import 'package:para_job/features/interview/widgets/interview_Status.dart';
+import 'package:para_job/features/my_notifications/interview/interview_controller.dart';
+import 'package:para_job/features/my_notifications/interview/widgets/interview_Status.dart';
 import 'package:para_job/packages/api_client/src/enums/api_call_state_enum.dart';
+import 'package:para_job/packages/api_client/src/enums/interview_status_enum.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/packages/ui_components/app_network_image.dart';
 import 'package:para_job/packages/ui_components/error_screen.dart';
 
 class InterviewScreen extends StatelessWidget {
-  InterviewScreen({super.key});
-  final controller = Get.put(InterviewController());
+  const InterviewScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final args = Get.arguments as Map<String, dynamic>;
+    final id = args['id'];
+    final controller = Get.put(InterviewController(id: id));
     return Scaffold(
       backgroundColor: AppColors.backg,
       appBar: AppBar(
@@ -29,6 +32,7 @@ class InterviewScreen extends StatelessWidget {
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: context.defaultPadding),
         child: Obx(() {
+          var interviewData = controller.interviewData;
           switch (controller.interviewCallState.value) {
             case ApiCallState.loading:
               return Center(
@@ -59,7 +63,7 @@ class InterviewScreen extends StatelessWidget {
                             ),
                             context.hBox(2),
                             Text(
-                              "company name",
+                              interviewData!.company?.name ?? "_",
                               style: TextStyle(
                                 color: AppColors.lightSilverGray,
                                 fontSize: context.wPct(3.5),
@@ -70,7 +74,7 @@ class InterviewScreen extends StatelessWidget {
                         ),
                         Spacer(),
                         AppNetworkImage(
-                          url: "logoUrl",
+                          url: interviewData.company?.logo ?? "_",
                           width: context.wPct(12),
                           height: context.wPct(12),
                           borderRadius: BorderRadius.circular(context.wPct(2)),
@@ -101,7 +105,7 @@ class InterviewScreen extends StatelessWidget {
                           ),
                           context.hBox(1),
                           Text(
-                            "ttt",
+                            interviewData.job?.title ?? "_",
                             style: TextStyle(
                               color: AppColors.pureWhite,
                               fontSize: context.wPct(4.2),
@@ -112,7 +116,7 @@ class InterviewScreen extends StatelessWidget {
 
                           ///interview name
                           Text(
-                            "interviewer_name".tr,
+                            "date".tr,
                             style: TextStyle(
                               color: AppColors.softWhite70,
                               fontSize: context.wPct(3.5),
@@ -121,7 +125,7 @@ class InterviewScreen extends StatelessWidget {
                           ),
                           context.hBox(1),
                           Text(
-                            "title",
+                            interviewData.interviewDate ?? "_",
                             style: TextStyle(
                               color: AppColors.pureWhite,
                               fontSize: context.wPct(4.2),
@@ -143,7 +147,7 @@ class InterviewScreen extends StatelessWidget {
                           ),
                           context.hBox(1),
                           Text(
-                            "title",
+                            interviewData.mode ?? "_",
                             style: TextStyle(
                               color: AppColors.pureWhite,
                               fontSize: context.wPct(4.2),
@@ -164,7 +168,7 @@ class InterviewScreen extends StatelessWidget {
                           ),
                           context.hBox(1),
                           Text(
-                            "title",
+                            interviewData.meetingLink ?? "_",
                             style: TextStyle(
                               color: AppColors.pureWhite,
                               fontSize: context.wPct(4.2),
@@ -179,7 +183,11 @@ class InterviewScreen extends StatelessWidget {
                     ),
 
                     context.hBox(4),
-                    InterviewStatus(status: "accepted"),
+                    InterviewStatus(
+                      status:
+                          interviewData.userResponse ??
+                          InterviewStatusEnum.pending,
+                    ),
                     context.hBox(4),
                   ],
                 ),
@@ -189,7 +197,7 @@ class InterviewScreen extends StatelessWidget {
               return Center(
                 child: ErrorScreen(
                   onPressed: () {
-                    controller.fetchInterviewData();
+                    controller.fetchInterviewData(id);
                   },
                 ),
               );

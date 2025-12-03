@@ -14,7 +14,7 @@ import 'package:para_job/features/employer/employer_screen.dart';
 import 'package:para_job/features/employer/reviews/employer_reviews_screen.dart';
 import 'package:para_job/features/home/jobs/jobs_screen.dart';
 import 'package:para_job/features/home/search_job/search_job_screen.dart';
-import 'package:para_job/features/interview/interview_screen.dart';
+import 'package:para_job/features/my_notifications/interview/interview_screen.dart';
 import 'package:para_job/features/job_details/apply_job/apply_job_screen.dart';
 import 'package:para_job/features/job_details/complaint/company_complaint/company_complaint_screen.dart';
 import 'package:para_job/features/job_details/complaint/job_complaint/job_complaint_screen.dart';

@@ -848,7 +848,7 @@ to connect with you.
   "job_interview": "Job Interview",
   "meeting_link": "Meeting Link",
   "interview_mode": "Interview Mode",
-  "interviewer_name": "Interviewer Name",
+  "date": "Date",
   "job_title": "Job Title",
   "reject_interview": "Reject Interview",
   "accept_interview": "Accept Interview",

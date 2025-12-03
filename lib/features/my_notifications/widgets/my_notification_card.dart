@@ -17,8 +17,8 @@ class MyNotificationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final d = myNotification.details;
-    final logoUrl = d.companyLogo;
+    final details = myNotification.details;
+    final logoUrl = details.companyLogo;
     DateTime? createdAt;
 
     try {
@@ -30,19 +30,22 @@ class MyNotificationCard extends StatelessWidget {
         : '';
 
     final messageSpans = buildMessageSpans(
-      d,
+      details,
       context.theme.textTheme.headlineLarge!,
     );
 
     // Wrap the container with InkWell to make it tappable with visual feedback
     return InkWell(
       onTap: () {
-        if (d.jobId?.isNotEmpty == true) {
+        if (details.jobId?.isNotEmpty == true) {
           final type = myNotification.type;
 
           switch (type) {
             case 'interview':
-              Get.toNamed('${Routes.mainNavigator}${Routes.interview}');
+              Get.toNamed(
+                '${Routes.mainNavigator}${Routes.interview}',
+                arguments: {'id': 123},
+              );
               break;
             case 'strike':
               Get.toNamed(

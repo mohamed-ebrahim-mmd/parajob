@@ -833,7 +833,7 @@ const Map<String, String> arSA = {
   "job_interview": "مقابلة وظيفية",
   "meeting_link": "رابط الاجتماع",
   "interview_mode": "وضع المقابلة",
-  "interviewer_name": "اسم المحاور",
+  "date": "التاريخ",
   "job_title": "عنوان الوظيفة",
   "reject_interview": "رفض المقابلة",
   "accept_interview": "قبول المقابلة",

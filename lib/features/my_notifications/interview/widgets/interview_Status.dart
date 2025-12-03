@@ -2,18 +2,19 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
+import 'package:para_job/packages/api_client/src/enums/interview_status_enum.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
 class InterviewStatus extends StatelessWidget {
   const InterviewStatus({super.key, required this.status});
 
-  final String status; // accepted / rejected / not_determined
+  final InterviewStatusEnum status; // accepted / rejected / not_determined
 
   @override
   Widget build(BuildContext context) {
     switch (status) {
-      case 'accepted':
+      case InterviewStatusEnum.accepted:
         return Column(
           children: [
             Icon(
@@ -33,7 +34,7 @@ class InterviewStatus extends StatelessWidget {
           ],
         );
 
-      case 'rejected':
+      case InterviewStatusEnum.rejected:
         return Column(
           children: [
             Icon(
@@ -53,7 +54,7 @@ class InterviewStatus extends StatelessWidget {
           ],
         );
 
-      default:
+      case InterviewStatusEnum.pending:
         return Column(
           children: [
             FilledButton(onPressed: () {}, child: Text('accept_interview'.tr)),
@@ -70,6 +71,9 @@ class InterviewStatus extends StatelessWidget {
             ),
           ],
         );
+
+      default:
+        return Container(child: Text("error"));
     }
   }
 }

@@ -246,4 +246,17 @@ abstract class ApiClient {
     @Query('page') int? page,
     @Header("Authorization") required String token,
   });
+
+  @PUT("/api/interview/{id}/response")
+  Future<InterviewStatusResponse> updateInterviewStatus(
+    @Path("id") int id,
+    @Body() InterviewStatusRequest request,
+    @Header("Authorization") String token,
+  );
+
+  @GET("/api/interview/{id}")
+  Future<InterviewDetailsResponse> getInterviewDetails({
+    @Path("id") required int jobId,
+    @Header("Authorization") required String token,
+  });
 }
