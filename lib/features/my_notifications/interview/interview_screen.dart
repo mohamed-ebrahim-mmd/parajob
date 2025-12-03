@@ -12,13 +12,16 @@ import 'package:para_job/packages/ui_components/app_network_image.dart';
 import 'package:para_job/packages/ui_components/error_screen.dart';
 
 class InterviewScreen extends StatelessWidget {
-  const InterviewScreen({super.key});
+  InterviewScreen({super.key});
+  late InterviewController controller;
 
   @override
   Widget build(BuildContext context) {
     final args = Get.arguments as Map<String, dynamic>;
-    final id = args['id'];
-    final controller = Get.put(InterviewController(id: id));
+    final String idJob = args['id'];
+    int id = int.tryParse(idJob) ?? 0;
+
+    controller = Get.put(InterviewController(id: id));
     return Scaffold(
       backgroundColor: AppColors.backg,
       appBar: AppBar(
@@ -187,6 +190,7 @@ class InterviewScreen extends StatelessWidget {
                       status:
                           interviewData.userResponse ??
                           InterviewStatusEnum.pending,
+                      id: id,
                     ),
                     context.hBox(4),
                   ],

@@ -29,10 +29,9 @@ class InterviewController extends GetxController {
 
   Future<void> fetchInterviewData(int id) async {
     interviewCallState.value = ApiCallState.loading;
-    log("🔴   $id");
     try {
       final response = await apiClient.getInterviewDetails(
-        jobId: 39,
+        jobId: id,
         token: token!,
       );
 
@@ -41,11 +40,9 @@ class InterviewController extends GetxController {
         interviewCallState.value = ApiCallState.success;
       } else {
         interviewCallState.value = ApiCallState.failure;
-        log("🔴   ${response.details.message}");
       }
     } catch (e) {
       interviewCallState.value = ApiCallState.failure;
-      log("🔴${e.toString()}");
     }
   }
 
@@ -69,6 +66,7 @@ class InterviewController extends GetxController {
           "success_title".tr,
           response.details.message ?? "interview_status_sent_successfully".tr,
         );
+        fetchInterviewData(id);
       } else {
         showSnackBarError(
           "failed_title".tr,

@@ -1,13 +1,19 @@
 //Mary Mark ||  mary.mark@moselaymd.com || Wed Dec 03 2025 11:58:47
 
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
+import 'package:para_job/features/my_notifications/interview/interview_controller.dart';
 import 'package:para_job/packages/api_client/src/enums/interview_status_enum.dart';
+import 'package:para_job/packages/api_client/src/models/requests/interview_status_request.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
 class InterviewStatus extends StatelessWidget {
-  const InterviewStatus({super.key, required this.status});
+  InterviewStatus({super.key, required this.status, required this.id});
+  final controller = Get.find<InterviewController>();
+  final int id;
 
   final InterviewStatusEnum status; // accepted / rejected / not_determined
 
@@ -57,10 +63,27 @@ class InterviewStatus extends StatelessWidget {
       case InterviewStatusEnum.pending:
         return Column(
           children: [
-            FilledButton(onPressed: () {}, child: Text('accept_interview'.tr)),
+            FilledButton(
+              onPressed: () => controller.sendInterviewStatus(
+                context,
+
+                InterviewStatusRequest(
+                  userResponse: InterviewStatusEnum.accepted,
+                ),
+                id,
+              ),
+              child: Text('accept_interview'.tr),
+            ),
             context.hBox(3),
             OutlinedButton(
-              onPressed: () {},
+              onPressed: () => controller.sendInterviewStatus(
+                context,
+
+                InterviewStatusRequest(
+                  userResponse: InterviewStatusEnum.rejected,
+                ),
+                id,
+              ),
               style: OutlinedButton.styleFrom(
                 side: const BorderSide(color: AppColors.rejected),
               ),

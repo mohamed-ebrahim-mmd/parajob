@@ -44,7 +44,7 @@ class MyNotificationCard extends StatelessWidget {
             case 'interview':
               Get.toNamed(
                 '${Routes.mainNavigator}${Routes.interview}',
-                arguments: {'id': 123},
+                arguments: {'id': details.modelId},
               );
               break;
             case 'strike':

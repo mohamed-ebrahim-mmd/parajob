@@ -1,6 +1,5 @@
 //Mary Mark ||  mary.mark@moselaymd.com || Wed Dec 03 2025 14:21:34
 
-import 'package:para_job/packages/api_client/src/models/responses/company.dart';
 import 'package:para_job/packages/api_client/src/models/responses/job_interview_data.dart';
 import 'package:para_job/packages/api_client/src/models/responses/response_details.dart';
 
@@ -23,7 +22,3 @@ class InterviewDetailsResponse {
     );
   }
 }
-
-
-
-
