@@ -10,7 +10,7 @@ import 'package:para_job/packages/api_client/api_client.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
 
 class InterviewController extends GetxController {
-  final user = Get.find<UserController>().user!;
+  final token = Get.find<UserController>().user!.token;
   var interviewCallState = ApiCallState.loading.obs;
 
   @override
