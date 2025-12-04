@@ -14,6 +14,7 @@ import 'package:para_job/features/employer/employer_screen.dart';
 import 'package:para_job/features/employer/reviews/employer_reviews_screen.dart';
 import 'package:para_job/features/home/jobs/jobs_screen.dart';
 import 'package:para_job/features/home/search_job/search_job_screen.dart';
+import 'package:para_job/features/my_notifications/interview/interview_screen.dart';
 import 'package:para_job/features/job_details/apply_job/apply_job_screen.dart';
 import 'package:para_job/features/job_details/complaint/company_complaint/company_complaint_screen.dart';
 import 'package:para_job/features/job_details/complaint/job_complaint/job_complaint_screen.dart';
@@ -117,6 +118,8 @@ class Routes {
 
   static const String checkInOut = "/check-in-out";
   static const String checkInOutHistory = "/check-in-out-history";
+
+  static const String interview = "/interview";
 }
 
 class AppPages {
@@ -352,6 +355,14 @@ class AppPages {
 
       /// screens that's under the home tab
       children: [
+        //interview
+        GetPage(
+          name: Routes.interview,
+          page: () => LoaderOverlay(
+            child: InterviewScreen(),
+            overlayWidgetBuilder: (_) => AppLoader(),
+          ),
+        ),
         // home
         GetPage(
           name: Routes.jobs,
