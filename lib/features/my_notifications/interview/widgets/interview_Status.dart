@@ -6,16 +6,15 @@ import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:para_job/features/my_notifications/interview/interview_controller.dart';
 import 'package:para_job/packages/api_client/src/enums/interview_status_enum.dart';
-import 'package:para_job/packages/api_client/src/models/requests/interview_status_request.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
 class InterviewStatus extends StatelessWidget {
-  InterviewStatus({super.key, required this.status, required this.id});
+  InterviewStatus({super.key, required this.status});
   final controller = Get.find<InterviewController>();
-  final int id;
 
-  final InterviewStatusEnum status; // accepted / rejected / not_determined
+  final InterviewStatusEnum
+  status; // accepted / rejected / not_determined/pending
 
   @override
   Widget build(BuildContext context) {
@@ -64,26 +63,12 @@ class InterviewStatus extends StatelessWidget {
         return Column(
           children: [
             FilledButton(
-              onPressed: () => controller.sendInterviewStatus(
-                context,
-
-                InterviewStatusRequest(
-                  userResponse: InterviewStatusEnum.accepted,
-                ),
-                id,
-              ),
+              onPressed: () => controller.sendAcceptedStatus(context),
               child: Text('accept_interview'.tr),
             ),
             context.hBox(3),
             OutlinedButton(
-              onPressed: () => controller.sendInterviewStatus(
-                context,
-
-                InterviewStatusRequest(
-                  userResponse: InterviewStatusEnum.rejected,
-                ),
-                id,
-              ),
+              onPressed: () => controller.sendRejectedStatus(context),
               style: OutlinedButton.styleFrom(
                 side: const BorderSide(color: AppColors.rejected),
               ),
@@ -96,7 +81,7 @@ class InterviewStatus extends StatelessWidget {
         );
 
       default:
-        return Container(child: Text("error"));
+        return Text("snackbar_something_went_wrong".tr);
     }
   }
 }

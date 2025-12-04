@@ -13,15 +13,15 @@ import 'package:para_job/packages/ui_components/error_screen.dart';
 
 class InterviewScreen extends StatelessWidget {
   InterviewScreen({super.key});
-  late InterviewController controller;
+  //late InterviewController controller;
+  final args = Get.arguments as Map<String, dynamic>;
+  late final String idJob = args['id'];
+  late final int id = int.tryParse(idJob) ?? 0;
+
+  late final controller = Get.put(InterviewController(id: id));
 
   @override
   Widget build(BuildContext context) {
-    final args = Get.arguments as Map<String, dynamic>;
-    final String idJob = args['id'];
-    int id = int.tryParse(idJob) ?? 0;
-
-    controller = Get.put(InterviewController(id: id));
     return Scaffold(
       backgroundColor: AppColors.backg,
       appBar: AppBar(
@@ -38,12 +38,7 @@ class InterviewScreen extends StatelessWidget {
           var interviewData = controller.interviewData;
           switch (controller.interviewCallState.value) {
             case ApiCallState.loading:
-              return Center(
-                child: SizedBox(
-                  height: context.hPct(15),
-                  child: Center(child: const CircularProgressIndicator()),
-                ),
-              );
+              return Center(child: const CircularProgressIndicator());
 
             case ApiCallState.success:
               return SingleChildScrollView(
@@ -189,8 +184,8 @@ class InterviewScreen extends StatelessWidget {
                     InterviewStatus(
                       status:
                           interviewData.userResponse ??
-                          InterviewStatusEnum.pending,
-                      id: id,
+                          InterviewStatusEnum.notDeterminded,
+                     
                     ),
                     context.hBox(4),
                   ],
@@ -201,7 +196,7 @@ class InterviewScreen extends StatelessWidget {
               return Center(
                 child: ErrorScreen(
                   onPressed: () {
-                    controller.fetchInterviewData(id);
+                    controller.fetchInterviewData();
                   },
                 ),
               );

@@ -1,16 +1,10 @@
 //Mary Mark ||  mary.mark@moselaymd.com || Tue Dec 02 2025 17:10:28
 
-/*
- Mohamed Ebrahim | mohamed7ebrahim7@gmail.com | 2024-12-24 4:15 PM
- ==================================================================
-*/
-
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
+import 'package:para_job/packages/api_client/src/enums/interview_status_enum.dart';
 import 'package:para_job/packages/api_client/src/models/responses/job_interview_data.dart';
 import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
@@ -24,10 +18,10 @@ class InterviewController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    fetchInterviewData(id);
+    fetchInterviewData();
   }
 
-  Future<void> fetchInterviewData(int id) async {
+  Future<void> fetchInterviewData() async {
     interviewCallState.value = ApiCallState.loading;
     try {
       final response = await apiClient.getInterviewDetails(
@@ -53,7 +47,6 @@ class InterviewController extends GetxController {
   ) async {
     try {
       context.loaderOverlay.show();
-      Future.delayed(const Duration(seconds: 2));
 
       final response = await apiClient.updateInterviewStatus(
         id,
@@ -66,7 +59,7 @@ class InterviewController extends GetxController {
           "success_title".tr,
           response.details.message ?? "interview_status_sent_successfully".tr,
         );
-        fetchInterviewData(id);
+        fetchInterviewData();
       } else {
         showSnackBarError(
           "failed_title".tr,
@@ -78,5 +71,19 @@ class InterviewController extends GetxController {
     } finally {
       context.loaderOverlay.hide();
     }
+  }
+
+  void sendAcceptedStatus(BuildContext context) {
+    InterviewStatusRequest status = InterviewStatusRequest(
+      userResponse: InterviewStatusEnum.accepted,
+    );
+    sendInterviewStatus(context, status, id);
+  }
+
+    void sendRejectedStatus(BuildContext context) {
+    InterviewStatusRequest status = InterviewStatusRequest(
+      userResponse: InterviewStatusEnum.rejected,
+    );
+    sendInterviewStatus(context, status, id);
   }
 }
