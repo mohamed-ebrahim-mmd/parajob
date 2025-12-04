@@ -43,7 +43,7 @@ class InterviewController extends GetxController {
   Future<void> sendInterviewStatus(
     BuildContext context,
     InterviewStatusRequest status,
-    int id,
+   
   ) async {
     try {
       context.loaderOverlay.show();
@@ -77,13 +77,13 @@ class InterviewController extends GetxController {
     InterviewStatusRequest status = InterviewStatusRequest(
       userResponse: InterviewStatusEnum.accepted,
     );
-    sendInterviewStatus(context, status, id);
+    sendInterviewStatus(context, status);
   }
 
     void sendRejectedStatus(BuildContext context) {
     InterviewStatusRequest status = InterviewStatusRequest(
       userResponse: InterviewStatusEnum.rejected,
     );
-    sendInterviewStatus(context, status, id);
+    sendInterviewStatus(context, status );
   }
 }

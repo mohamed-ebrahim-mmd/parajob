@@ -13,11 +13,9 @@ import 'package:para_job/packages/ui_components/error_screen.dart';
 
 class InterviewScreen extends StatelessWidget {
   InterviewScreen({super.key});
-  //late InterviewController controller;
   final args = Get.arguments as Map<String, dynamic>;
   late final String idJob = args['id'];
   late final int id = int.tryParse(idJob) ?? 0;
-
   late final controller = Get.put(InterviewController(id: id));
 
   @override
@@ -185,7 +183,6 @@ class InterviewScreen extends StatelessWidget {
                       status:
                           interviewData.userResponse ??
                           InterviewStatusEnum.notDeterminded,
-                     
                     ),
                     context.hBox(4),
                   ],
@@ -195,9 +192,7 @@ class InterviewScreen extends StatelessWidget {
             case ApiCallState.failure:
               return Center(
                 child: ErrorScreen(
-                  onPressed: () {
-                    controller.fetchInterviewData();
-                  },
+                  onPressed: () => controller.fetchInterviewData(),
                 ),
               );
           }
