@@ -13,6 +13,7 @@ import 'package:para_job/packages/ui_components/error_screen.dart';
 
 class InterviewScreen extends StatelessWidget {
   InterviewScreen({super.key});
+
   final args = Get.arguments as Map<String, dynamic>;
   late final String idJob = args['id'];
   late final int id = int.tryParse(idJob) ?? 0;
@@ -191,9 +192,7 @@ class InterviewScreen extends StatelessWidget {
 
             case ApiCallState.failure:
               return Center(
-                child: ErrorScreen(
-                  onPressed: () => controller.fetchInterviewData(),
-                ),
+                child: ErrorScreen(onPressed: controller.fetchInterviewData),
               );
           }
         }),
