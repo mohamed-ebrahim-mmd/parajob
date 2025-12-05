@@ -15,7 +15,6 @@ import 'package:loader_overlay/loader_overlay.dart';
 import 'package:para_job/features/profile/user_profile/profile_controller.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
-
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/ui_components/auth_required_dialog.dart';
 import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
@@ -31,8 +30,10 @@ class HomeController extends GetxController {
   var homeCallState = ApiCallState.loading.obs;
   HomeResponse? homeData;
   final box = GetStorage();
+  final Map<String, dynamic>? argumentsMap =
+      Get.arguments as Map<String, dynamic>?;
+  late final bool isDeepLink = argumentsMap?['isDeepLink'] ?? false;
 
-  final bool isDeepLink = Get.arguments ?? false;
   bool get hasSeenShowcase => box.read('hasSeenShowcase') ?? false;
 
   final firstKey = GlobalKey();
@@ -48,6 +49,7 @@ class HomeController extends GetxController {
 
     fetchHomeJobs();
 
+    Get.snackbar("is Deep Link", isDeepLink.toString());
     if (isDeepLink) {
       _handleDeepLink();
     }

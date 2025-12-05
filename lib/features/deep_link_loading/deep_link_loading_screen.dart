@@ -1,7 +1,6 @@
 // Karim Toson || kareemtoson1@gmail.com || 23/11/2025 9:41AM
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
@@ -21,7 +20,8 @@ class _DeepLinkLoadingScreenState extends State<DeepLinkLoadingScreen> {
 
     // Schedule navigation right after the first frame is built
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Get.offAllNamed(Routes.mainNavigator, arguments: true);
+      final argumentsToSend = {'isDeepLink': true};
+      Get.offAllNamed(Routes.mainNavigator, arguments: argumentsToSend);
     });
   }
 
