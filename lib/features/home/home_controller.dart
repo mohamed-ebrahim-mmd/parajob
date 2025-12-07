@@ -49,7 +49,6 @@ class HomeController extends GetxController {
 
     fetchHomeJobs();
 
-    Get.snackbar("is Deep Link", isDeepLink.toString());
     if (isDeepLink) {
       _handleDeepLink();
     }

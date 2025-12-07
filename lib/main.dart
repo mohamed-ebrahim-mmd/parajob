@@ -6,6 +6,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:para_job/features/deep_link_loading/deep_link_loading_screen.dart';
 import 'package:para_job/packages/functional_components/request_notification_permission.dart';
+import 'package:para_job/packages/functional_components/subscribe_to_general_topic_notification.dart';
 import 'package:para_job/packages/localization_manger/localization_manger.dart';
 import 'package:para_job/packages/themeing/theme.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
@@ -23,6 +24,7 @@ void main() async {
   await initializeDateFormatting('ar', null);
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await subscribeToGeneralTopic();
   runApp(ParaJobApp());
 }
 
