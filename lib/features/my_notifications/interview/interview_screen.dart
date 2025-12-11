@@ -164,15 +164,17 @@ class InterviewScreen extends StatelessWidget {
                             ),
                           ),
                           context.hBox(1),
-                          Text(
-                            interviewData.meetingLink ?? "_",
-                            style: TextStyle(
-                              color: AppColors.pureWhite,
-                              fontSize: context.wPct(4.2),
-                              fontWeight: FontWeight.w600,
+                          GestureDetector(
+                            onTap: controller.openMeetingLink,
+                            child: Text(
+                              interviewData.meetingLink ?? "_",
+                              style: TextStyle(
+                                color: AppColors.pureWhite,
+                                fontSize: context.wPct(4.2),
+                                fontWeight: FontWeight.w600,
+                                decoration: TextDecoration.underline,
+                              ),
                             ),
-                            maxLines: 2,
-                            overflow: TextOverflow.ellipsis,
                           ),
                           context.hBox(2),
                         ],

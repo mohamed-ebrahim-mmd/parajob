@@ -859,4 +859,6 @@ to connect with you.
   // ============================================================
   "interview_status_sent_successfully": "Interview Status Sent Successfully",
   "failed_to_send_interview_status": "Failed to send interview status",
+  "invalid_link_title": "Unable to open link",
+  "invalid_meeting_link": "The meeting link is invalid or unavailable.",
 };

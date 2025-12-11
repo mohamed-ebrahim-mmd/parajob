@@ -842,6 +842,8 @@ const Map<String, String> arSA = {
   // ============================================================
   // job interview controller
   // ============================================================
-  "interview_status_sent_successfully":"تم ارسال حالة المقابلة بنجاح",
-  "failed_to_send_interview_status":"فشل في ارسال حالة المقابلة"
+  "interview_status_sent_successfully": "تم ارسال حالة المقابلة بنجاح",
+  "failed_to_send_interview_status": "فشل في ارسال حالة المقابلة",
+  "invalid_link_title": "تعذّر فتح الرابط",
+  "invalid_meeting_link": "رابط الاجتماع غير صالح أو غير متاح.",
 };

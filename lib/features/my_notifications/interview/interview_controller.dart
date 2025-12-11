@@ -8,13 +8,16 @@ import 'package:para_job/packages/api_client/src/enums/interview_status_enum.dar
 import 'package:para_job/packages/api_client/src/models/responses/job_interview_data.dart';
 import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class InterviewController extends GetxController {
   final token = Get.find<UserController>().token;
   InterviewData? interviewData;
   var interviewCallState = ApiCallState.loading.obs;
   final int id;
+
   InterviewController({required this.id});
+
   @override
   void onInit() {
     super.onInit();
@@ -43,7 +46,6 @@ class InterviewController extends GetxController {
   Future<void> sendInterviewStatus(
     BuildContext context,
     InterviewStatusRequest status,
-   
   ) async {
     try {
       context.loaderOverlay.show();
@@ -80,10 +82,19 @@ class InterviewController extends GetxController {
     sendInterviewStatus(context, status);
   }
 
-    void sendRejectedStatus(BuildContext context) {
+  void sendRejectedStatus(BuildContext context) {
     InterviewStatusRequest status = InterviewStatusRequest(
       userResponse: InterviewStatusEnum.rejected,
     );
-    sendInterviewStatus(context, status );
+    sendInterviewStatus(context, status);
+  }
+
+  Future<void> openMeetingLink() async {
+    try {
+      final uri = Uri.parse(interviewData?.meetingLink ?? "");
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
+    } catch (e) {
+      showSnackBarError("invalid_link_title".tr, "invalid_meeting_link".tr);
+    }
   }
 }
