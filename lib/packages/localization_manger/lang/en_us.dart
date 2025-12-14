@@ -846,7 +846,6 @@ to connect with you.
   // job interview
   // ============================================================
   "job_interview": "Job Interview",
-  "meeting_link": "Meeting Link",
   "interview_mode": "Interview Mode",
   "date": "Date",
   "job_title": "Job Title",
@@ -861,4 +860,8 @@ to connect with you.
   "failed_to_send_interview_status": "Failed to send interview status",
   "invalid_link_title": "Unable to open link",
   "invalid_meeting_link": "The meeting link is invalid or unavailable.",
+  "online": "Online",
+  "onsite": "Onsite",
+  "meeting_link": "Meeting Link",
+  "meeting_location": "Location Link",
 };

@@ -89,6 +89,66 @@ class InterviewController extends GetxController {
     sendInterviewStatus(context, status);
   }
 
+  String getModeText() {
+    final mode = interviewData?.mode;
+    if (mode == null) return "-";
+    final modeMap = {
+      'online': 'online'.tr,
+      // In case 'offline' is returned from the backend, we handle it locally so it becomes Onsite
+      'offline': 'onsite'.tr,
+    };
+
+    return modeMap[mode.toLowerCase()] ?? mode;
+  }
+
+  String getLinkOrLocationLabel() {
+    final mode = interviewData?.mode?.toLowerCase();
+
+    // Check if mode is explicitly offline
+    if (mode == 'offline') {
+      return "meeting_location".tr;
+    }
+    // Default to meeting link for online or null
+    return "meeting_link".tr;
+  }
+
+  String getLinkOrLocationText() {
+    final mode = interviewData?.mode?.toLowerCase();
+
+    if (mode == 'offline') {
+      return interviewData?.location ?? "-";
+    }
+    return interviewData?.meetingLink ?? "-";
+  }
+
+  void onLinkOrLocationTap() {
+    final mode = interviewData?.mode?.toLowerCase();
+
+    if (mode == 'offline') {
+      // Logic to open Maps or handle location tap
+      openLocation();
+    } else {
+      // Existing logic for online meeting
+      openMeetingLink();
+    }
+  }
+
+  Future<void> openLocation() async {
+    final locationLink = interviewData?.location;
+    try {
+      final uri = Uri.parse(locationLink ?? "");
+      final launched = await launchUrl(
+        uri,
+        mode: LaunchMode.externalApplication,
+      );
+      if (!launched) {
+        Get.snackbar('location_error'.tr, 'location_failed_to_open'.tr);
+      }
+    } catch (e) {
+      Get.snackbar('location_error'.tr, 'location_failed_to_open'.tr);
+    }
+  }
+
   Future<void> openMeetingLink() async {
     try {
       final uri = Uri.parse(interviewData?.meetingLink ?? "");

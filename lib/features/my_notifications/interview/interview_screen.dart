@@ -144,7 +144,7 @@ class InterviewScreen extends StatelessWidget {
                           ),
                           context.hBox(1),
                           Text(
-                            interviewData.mode ?? "_",
+                            controller.getModeText(),
                             style: TextStyle(
                               color: AppColors.pureWhite,
                               fontSize: context.wPct(4.2),
@@ -156,7 +156,7 @@ class InterviewScreen extends StatelessWidget {
                           context.hBox(2),
                           //link
                           Text(
-                            "meeting_link".tr,
+                            controller.getLinkOrLocationLabel(),
                             style: TextStyle(
                               color: AppColors.softWhite70,
                               fontSize: context.wPct(3.5),
@@ -165,9 +165,9 @@ class InterviewScreen extends StatelessWidget {
                           ),
                           context.hBox(1),
                           GestureDetector(
-                            onTap: controller.openMeetingLink,
+                            onTap: controller.onLinkOrLocationTap,
                             child: Text(
-                              interviewData.meetingLink ?? "_",
+                              controller.getLinkOrLocationText(),
                               style: TextStyle(
                                 color: AppColors.pureWhite,
                                 fontSize: context.wPct(4.2),

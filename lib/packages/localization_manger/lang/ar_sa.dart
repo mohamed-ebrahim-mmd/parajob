@@ -831,7 +831,6 @@ const Map<String, String> arSA = {
   // job interview
   // ============================================================
   "job_interview": "مقابلة وظيفية",
-  "meeting_link": "رابط الاجتماع",
   "interview_mode": "وضع المقابلة",
   "date": "التاريخ",
   "job_title": "عنوان الوظيفة",
@@ -846,4 +845,8 @@ const Map<String, String> arSA = {
   "failed_to_send_interview_status": "فشل في ارسال حالة المقابلة",
   "invalid_link_title": "تعذّر فتح الرابط",
   "invalid_meeting_link": "رابط الاجتماع غير صالح أو غير متاح.",
+  "online": "أونلاين",
+  "onsite": "في الموقع",
+  "meeting_link": "رابط المقابلة",
+  "meeting_location": "رابط الموقع",
 };
