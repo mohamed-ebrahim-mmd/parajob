@@ -40,9 +40,9 @@ class MyJobCard extends StatelessWidget {
               ? [
                   BoxShadow(
                     color: AppColors.aquaTealShadow,
-                    blurRadius: context.wPct(5),
-                    spreadRadius: 0,
-                    offset: const Offset(0, 0),
+                    blurRadius: context.wPct(2),
+                    spreadRadius: -2,
+                    offset: Offset(0, context.wPct(2)),
                   ),
                 ]
               : [],
