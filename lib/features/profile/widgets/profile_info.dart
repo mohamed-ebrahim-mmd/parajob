@@ -85,7 +85,7 @@ class UserProfileInfo extends StatelessWidget {
                           "${(profileData.level ?? 0)}",
                           style: TextStyle(
                             color: AppColors.pureWhite,
-                            fontSize: context.wPct(4.5),
+                            fontSize: context.wPct(4.2),
                             fontWeight: FontWeight.w700,
                           ),
                         ),
@@ -154,7 +154,7 @@ class UserProfileInfo extends StatelessWidget {
                           "${(profileData.level ?? 0) + 1}",
                           style: TextStyle(
                             color: AppColors.pureWhite,
-                            fontSize: context.wPct(4),
+                            fontSize: context.wPct(3.5),
                             fontWeight: FontWeight.w700,
                           ),
                         ),
