@@ -68,10 +68,11 @@ abstract final class AppAssetPaths {
   static const complaint = "assets/icons/complaint.svg";
   static const arab = "assets/icons/arab_emirates.svg";
   static const english = "assets/icons/united_kingdom.svg";
+  static const levelBadge2 = "assets/icons/levelBadge2.svg";
+  static const levelBadge = "assets/icons/levelBadge.svg";
 
   static const barcode = "assets/icons/barcode.png";
   static const barcodeScan = "assets/icons/barcode_scan.png";
   static const barcodeScanIcon = "assets/icons/barcode_scan_icon.png";
   static const checkIcon2 = "assets/icons/check_icon.png";
-
 }

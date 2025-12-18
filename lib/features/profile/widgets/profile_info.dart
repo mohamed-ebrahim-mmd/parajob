@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/profile/user_profile/profile_controller.dart'
     show ProfileController;
@@ -8,6 +9,7 @@ import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/packages/ui_components/company_detail_container.dart';
 import 'package:para_job/packages/ui_components/gradient_progress_bar.dart';
+import 'package:para_job/res/app_asset_paths.dart';
 
 class UserProfileInfo extends StatelessWidget {
   const UserProfileInfo({
@@ -27,47 +29,67 @@ class UserProfileInfo extends StatelessWidget {
           onTap: () async {
             await showEditPhotoBottomSheet(context, controller);
           },
-          child:
-          
-           CircleAvatar(
-            radius: context.wPct(15),
-            backgroundColor:
-                (profileData.profilePicture != null &&
-                    profileData.profilePicture != "")
-                ? AppColors.aquaTeal
-                : AppColors.lightGray2,
-            child: ClipOval(
-              child: Image.network(
-                profileData.profilePicture ?? '',
-                fit: BoxFit.cover,
-                width: context.wPct(28),
-                height: context.wPct(28),
+          child: Stack(
+            alignment: Alignment.center,
+            clipBehavior: Clip.none,
+            children: [
+              /// Avatar
+              CircleAvatar(
+                radius: context.wPct(15),
+                backgroundColor:
+                    (profileData.profilePicture != null &&
+                        profileData.profilePicture != "")
+                    ? AppColors.aquaTeal
+                    : AppColors.lightGray2,
+                child: ClipOval(
+                  child: Image.network(
+                    profileData.profilePicture ?? '',
+                    fit: BoxFit.cover,
+                    width: context.wPct(28),
+                    height: context.wPct(28),
+                    loadingBuilder: (context, child, loadingProgress) {
+                      if (loadingProgress == null) return child;
+                      return Center(
+                        child: CircularProgressIndicator(
+                          strokeWidth: context.wPct(1),
+                          color: AppColors.lightGrey,
+                        ),
+                      );
+                    },
+                    errorBuilder: (_, __, ___) => Icon(
+                      Icons.image_not_supported_rounded,
+                      size: context.wPct(15),
+                      color: AppColors.lightGrey,
+                    ),
+                  ),
+                ),
+              ),
 
-                loadingBuilder: (context, child, loadingProgress) {
-                  if (loadingProgress == null) return child;
-                  return Container(
-                    color: AppColors.lightGray2,
-                    child: Center(
-                      child: CircularProgressIndicator(
-                        strokeWidth: context.wPct(1),
-                        color: AppColors.lightGrey,
+              /// Level Badge
+              Positioned(
+                bottom: -context.wPct(4),
+
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    SvgPicture.asset(
+                      AppAssetPaths.levelBadge,
+                      width: context.wPct(10),
+                      height: context.wPct(10),
+                    ),
+                    Text(
+                      "${profileData.level ?? 0}",
+                      style: TextStyle(
+                        color: AppColors.pureWhite,
+                        fontSize: context.wPct(4.5),
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
-                  );
-                },
-
-                errorBuilder: (context, error, stackTrace) {
-                  return Icon(
-                    Icons.image_not_supported_rounded,
-                    size: context.wPct(15),
-                    color: AppColors.lightGrey,
-                  );
-                },
+                  ],
+                ),
               ),
-            ),
+            ],
           ),
-       
-       
         ),
 
         ///
@@ -82,21 +104,53 @@ class UserProfileInfo extends StatelessWidget {
           ),
         ),
         context.hBox(3),
-        //progress par
+        // XP and Level display
         Padding(
           padding: EdgeInsetsGeometry.symmetric(horizontal: context.wPct(10)),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "${profileData.name} ",
+                " ${profileData.xp ?? 0}",
                 style: TextStyle(
                   color: AppColors.aquaTeal,
                   fontSize: context.wPct(4),
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              context.wBox(3),
-              Flexible(child: GradientProgressBar(percentage: 100)),
+              context.wBox(2),
+              // Progress Bar usnig xp for 3000
+              Flexible(
+                child: GradientProgressBar(
+                  percentage: ((profileData.xp ?? 0) / 3000) * 100,
+                ),
+              ),
+
+              context.wBox(2),
+              Stack(
+                alignment: Alignment.center,
+                children: [
+                  SvgPicture.asset(
+                    AppAssetPaths.levelBadge2,
+                    width: context.wPct(15),
+                    height: context.wPct(15),
+                  ),
+                  Positioned(
+                    //media query
+                    top: context.hPct(0.5),
+                    right: context.wPct(5.8),
+                    //level +1
+                    child: Text(
+                      "9",
+                      style: TextStyle(
+                        color: AppColors.pureWhite,
+                        fontSize: context.wPct(4.5),
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
         ),
