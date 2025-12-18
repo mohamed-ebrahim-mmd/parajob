@@ -77,12 +77,18 @@ class UserProfileInfo extends StatelessWidget {
                       width: context.wPct(10),
                       height: context.wPct(10),
                     ),
-                    Text(
-                      "${profileData.level ?? 0}",
-                      style: TextStyle(
-                        color: AppColors.pureWhite,
-                        fontSize: context.wPct(4.5),
-                        fontWeight: FontWeight.w700,
+                    SizedBox(
+                      width: context.wPct(6),
+                      child: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          "${(profileData.level ?? 0)}",
+                          style: TextStyle(
+                            color: AppColors.pureWhite,
+                            fontSize: context.wPct(4.5),
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
                       ),
                     ),
                   ],
@@ -135,17 +141,23 @@ class UserProfileInfo extends StatelessWidget {
                     width: context.wPct(15),
                     height: context.wPct(15),
                   ),
-                  Positioned(
-                    //media query
-                    top: context.hPct(0.5),
-                    right: context.wPct(5.8),
-                    //level +1
-                    child: Text(
-                      "9",
-                      style: TextStyle(
-                        color: AppColors.pureWhite,
-                        fontSize: context.wPct(4.5),
-                        fontWeight: FontWeight.w700,
+                  Padding(
+                    padding: EdgeInsets.only(
+                      bottom: context.wPct(5),
+                      right: context.wPct(0.5),
+                    ),
+                    child: SizedBox(
+                      width: context.wPct(8),
+                      child: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          "${(profileData.level ?? 0) + 1}",
+                          style: TextStyle(
+                            color: AppColors.pureWhite,
+                            fontSize: context.wPct(4),
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
                       ),
                     ),
                   ),
