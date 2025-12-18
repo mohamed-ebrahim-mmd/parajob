@@ -1,4 +1,5 @@
 import 'package:para_job/packages/api_client/src/enums/job_application_status.dart';
+import 'package:para_job/packages/api_client/src/models/responses/interview.dart';
 
 import 'company.dart';
 
@@ -10,6 +11,7 @@ class MyJob {
   final int isSignedContract;
   final String applicationDate;
   final bool jobApplicationVerification;
+  final Interview? interview;
 
   MyJob({
     required this.id,
@@ -19,6 +21,7 @@ class MyJob {
     required this.isSignedContract,
     required this.applicationDate,
     required this.jobApplicationVerification,
+    this.interview,
   });
 
   factory MyJob.fromJson(Map<String, dynamic> json) {
@@ -33,6 +36,9 @@ class MyJob {
       applicationDate: json['application_date'] ?? '',
       jobApplicationVerification:
           (json['job_application_verification'] ?? 0) == 1,
+      interview: json['interview'] != null
+          ? Interview.fromJson(json['interview'])
+          : null,
     );
   }
 }

@@ -6,6 +6,8 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:intl/intl.dart';
 import 'package:para_job/features/my_jobs/my_job_controller.dart';
 import 'package:para_job/features/my_jobs/widgets/my_job_card.dart';
+import 'package:para_job/packages/api_client/src/enums/job_application_status.dart';
+import 'package:para_job/packages/route_manager/controller/routes.dart';
 
 import '../../../packages/api_client/src/models/responses/my_job.dart';
 import '../../../packages/themeing/app_colors.dart';
@@ -78,7 +80,26 @@ class AppliedJobList extends StatelessWidget {
               children.add(
                 Padding(
                   padding: EdgeInsets.only(bottom: context.hPct(2)),
-                  child: MyJobCard(job: item),
+                  child: MyJobCard(
+                    job: item,
+                    onTap: () {
+                      if (item.applicationStatus ==
+                          JobApplicationStatus.pending) {
+                        // Navigate to job details screen
+                        Get.toNamed(
+                          Routes.jobDetails,
+                          arguments: {'jobId': item.id},
+                        );
+                      } else if (item.applicationStatus ==
+                          JobApplicationStatus.interviewScheduled) {
+                        // Navigate to interview details screen
+                        Get.toNamed(
+                          '${Routes.mainNavigator}${Routes.interview}',
+                          arguments: {'id': item.interview?.id.toString()},
+                        );
+                      }
+                    },
+                  ),
                 ),
               );
               return Column(
