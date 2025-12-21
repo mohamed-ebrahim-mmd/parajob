@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
 import 'package:para_job/packages/api_client/src/enums/job_application_status.dart';
+import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
 
 class MyJobsController extends GetxController {
@@ -22,6 +23,25 @@ class MyJobsController extends GetxController {
     pagingApprovedController = initPagingController(
       JobApplicationStatus.accepted,
     );
+  }
+
+  void navigateOnJobTap(MyJob job) {
+    final status = job.applicationStatus;
+
+    if (status == JobApplicationStatus.pending ||
+        status == JobApplicationStatus.rejected ||
+        status == JobApplicationStatus.shortlisted) {
+      // Navigate to job details screen
+      Get.toNamed(Routes.jobDetails, arguments: {'jobId': job.id});
+    } else if (status == JobApplicationStatus.interviewScheduled) {
+      // Navigate to interview details screen
+      if (job.interview?.id != null) {
+        Get.toNamed(
+          '${Routes.mainNavigator}${Routes.interview}',
+          arguments: {'id': job.interview!.id.toString()},
+        );
+      }
+    }
   }
 
   Future<List<MyJob>> fetchMyJobsPage({

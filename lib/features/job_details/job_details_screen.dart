@@ -215,7 +215,7 @@ class JobDetailsScreen extends StatelessWidget {
                                 onPressed: controller.handleApplyJobPressed,
                                 child: Text('apply_for_job'.tr),
                               ),
-                        context.hBox(4),
+                        SafeArea(child: context.hBox(4)),
                       ],
                     ),
                   ),
@@ -248,9 +248,7 @@ class JobDetailsScreen extends StatelessWidget {
             onPressed: () {
               Get.toNamed(
                 "${Routes.jobDetails}${Routes.checkInOut}",
-                arguments: {
-                  'jobId': jobDetails.id
-                },
+                arguments: {'jobId': jobDetails.id},
               );
             },
             child: Row(
