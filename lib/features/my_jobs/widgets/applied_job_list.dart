@@ -7,7 +7,9 @@ import 'package:intl/intl.dart';
 import 'package:para_job/features/my_jobs/my_job_controller.dart';
 import 'package:para_job/features/my_jobs/widgets/my_job_card.dart';
 
+import '../../../packages/api_client/src/enums/job_application_status.dart';
 import '../../../packages/api_client/src/models/responses/my_job.dart';
+import '../../../packages/route_manager/controller/routes.dart';
 import '../../../packages/themeing/app_colors.dart';
 import '../../../packages/themeing/media_query_values.dart';
 
@@ -78,7 +80,19 @@ class AppliedJobList extends StatelessWidget {
               children.add(
                 Padding(
                   padding: EdgeInsets.only(bottom: context.hPct(2)),
-                  child: MyJobCard(job: item),
+                  child: MyJobCard(
+                    job: item,
+                    onTap: () {
+                      if (item.applicationStatus ==
+                          JobApplicationStatus.pending) {
+                        // Navigate to job details screen
+                        Get.toNamed(
+                          Routes.jobDetails,
+                          arguments: {'jobId': item.id},
+                        );
+                      }
+                    },
+                  ),
                 ),
               );
               return Column(
