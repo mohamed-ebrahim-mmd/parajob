@@ -1,7 +1,5 @@
 import 'package:para_job/packages/api_client/src/models/models.dart';
 
-
-
 class UserProfileData {
   final int? id;
   final String? name;
@@ -37,6 +35,8 @@ class UserProfileData {
   final String? cv;
   final String? accountStatus;
   final bool? isVerified;
+  final int? xp;
+  final int? level;
 
   UserProfileData({
     this.id,
@@ -72,6 +72,8 @@ class UserProfileData {
     this.cv,
     this.accountStatus,
     this.isVerified,
+    this.xp,
+    this.level,
   });
 
   /// Factory constructor to parse JSON from API
@@ -87,7 +89,7 @@ class UserProfileData {
     }
 
     List<Skill> safeSkillList(dynamic data) {
-     if (data is List) {
+      if (data is List) {
         return data
             .whereType<Map<String, dynamic>>()
             .map((e) => Skill.fromJson(e))
@@ -135,6 +137,8 @@ class UserProfileData {
       cv: json['cv'],
       accountStatus: json['account_status'],
       isVerified: json['is_verified'],
+      xp: json['xp'],
+      level: json['level'],
     );
   }
 }
