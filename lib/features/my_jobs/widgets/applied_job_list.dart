@@ -6,10 +6,10 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:intl/intl.dart';
 import 'package:para_job/features/my_jobs/my_job_controller.dart';
 import 'package:para_job/features/my_jobs/widgets/my_job_card.dart';
+import 'package:para_job/packages/api_client/src/enums/job_application_status.dart';
+import 'package:para_job/packages/route_manager/controller/routes.dart';
 
-import '../../../packages/api_client/src/enums/job_application_status.dart';
 import '../../../packages/api_client/src/models/responses/my_job.dart';
-import '../../../packages/route_manager/controller/routes.dart';
 import '../../../packages/themeing/app_colors.dart';
 import '../../../packages/themeing/media_query_values.dart';
 
@@ -89,6 +89,13 @@ class AppliedJobList extends StatelessWidget {
                         Get.toNamed(
                           Routes.jobDetails,
                           arguments: {'jobId': item.id},
+                        );
+                      } else if (item.applicationStatus ==
+                          JobApplicationStatus.interviewScheduled) {
+                        // Navigate to interview details screen
+                        Get.toNamed(
+                          '${Routes.mainNavigator}${Routes.interview}',
+                          arguments: {'id': item.interview?.id.toString()},
                         );
                       }
                     },
