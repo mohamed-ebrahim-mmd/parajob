@@ -55,6 +55,7 @@ abstract final class AppAssetPaths {
   static const money = "assets/icons/money.svg";
   static const calender = "assets/icons/calendar.svg";
   static const company = "assets/icons/company.svg";
+
   //////
   /// Profile
   static const logoutIcon = "assets/icons/logout.svg";
@@ -68,8 +69,8 @@ abstract final class AppAssetPaths {
   static const complaint = "assets/icons/complaint.svg";
   static const arab = "assets/icons/arab_emirates.svg";
   static const english = "assets/icons/united_kingdom.svg";
-  static const levelBadge2 = "assets/icons/levelBadge2.svg";
-  static const levelBadge = "assets/icons/levelBadge.svg";
+  static const icLevelBadgeNext = "assets/icons/ic_badge_milestone.svg";
+  static const icLevelBadgeCurrent = "assets/icons/ic_badge_level.svg";
 
   static const barcode = "assets/icons/barcode.png";
   static const barcodeScan = "assets/icons/barcode_scan.png";
