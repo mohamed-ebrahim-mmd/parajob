@@ -61,19 +61,15 @@ class EmployerHeroSection extends StatelessWidget {
             icon: const Icon(Icons.more_vert, color: AppColors.pureWhite),
           ),
         ),
-
         Positioned(
+          top: context.hPct(3),
           left: context.wPct(4),
-          top: 0,
-          bottom: 0,
-          child: Center(
-            child: IconButton(
-              icon: const Icon(
-                Icons.arrow_back_ios_new,
-                color: AppColors.pureWhite,
-              ),
-              onPressed: () => Get.back(),
+          child: IconButton(
+            icon: const Icon(
+              Icons.arrow_back_ios_new,
+              color: AppColors.pureWhite,
             ),
+            onPressed: () => Get.back(),
           ),
         ),
       ],

@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/profile/user_profile/profile_controller.dart'
     show ProfileController;
 import 'package:para_job/features/profile/widgets/show_edit_photo_buttom_sheet.dart';
+import 'package:para_job/features/profile/widgets/xp_level_indicator.dart';
 import 'package:para_job/packages/api_client/src/models/responses/user_profile_data.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/packages/ui_components/company_detail_container.dart';
-import 'package:para_job/packages/ui_components/gradient_progress_bar.dart';
+import 'package:para_job/res/app_asset_paths.dart';
 
 class UserProfileInfo extends StatelessWidget {
   const UserProfileInfo({
@@ -27,47 +29,73 @@ class UserProfileInfo extends StatelessWidget {
           onTap: () async {
             await showEditPhotoBottomSheet(context, controller);
           },
-          child:
-          
-           CircleAvatar(
-            radius: context.wPct(15),
-            backgroundColor:
-                (profileData.profilePicture != null &&
-                    profileData.profilePicture != "")
-                ? AppColors.aquaTeal
-                : AppColors.lightGray2,
-            child: ClipOval(
-              child: Image.network(
-                profileData.profilePicture ?? '',
-                fit: BoxFit.cover,
-                width: context.wPct(28),
-                height: context.wPct(28),
+          child: Stack(
+            alignment: Alignment.center,
+            clipBehavior: Clip.none,
+            children: [
+              /// Avatar
+              CircleAvatar(
+                radius: context.wPct(15),
+                backgroundColor:
+                    (profileData.profilePicture != null &&
+                        profileData.profilePicture != "")
+                    ? AppColors.aquaTeal
+                    : AppColors.lightGray2,
+                child: ClipOval(
+                  child: Image.network(
+                    profileData.profilePicture ?? '',
+                    fit: BoxFit.cover,
+                    width: context.wPct(28),
+                    height: context.wPct(28),
+                    loadingBuilder: (context, child, loadingProgress) {
+                      if (loadingProgress == null) return child;
+                      return Center(
+                        child: CircularProgressIndicator(
+                          strokeWidth: context.wPct(1),
+                          color: AppColors.lightGrey,
+                        ),
+                      );
+                    },
+                    errorBuilder: (_, __, ___) => Icon(
+                      Icons.image_not_supported_rounded,
+                      size: context.wPct(15),
+                      color: AppColors.lightGrey,
+                    ),
+                  ),
+                ),
+              ),
 
-                loadingBuilder: (context, child, loadingProgress) {
-                  if (loadingProgress == null) return child;
-                  return Container(
-                    color: AppColors.lightGray2,
-                    child: Center(
-                      child: CircularProgressIndicator(
-                        strokeWidth: context.wPct(1),
-                        color: AppColors.lightGrey,
+              /// Level Badge
+              Positioned(
+                bottom: -context.wPct(4),
+
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    SvgPicture.asset(
+                      AppAssetPaths.icLevelBadgeCurrent,
+                      width: context.wPct(10),
+                      height: context.wPct(10),
+                    ),
+                    SizedBox(
+                      width: context.wPct(6),
+                      child: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          "${(profileData.level ?? 0)}",
+                          style: TextStyle(
+                            color: AppColors.pureWhite,
+                            fontSize: context.wPct(4.2),
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
                       ),
                     ),
-                  );
-                },
-
-                errorBuilder: (context, error, stackTrace) {
-                  return Icon(
-                    Icons.image_not_supported_rounded,
-                    size: context.wPct(15),
-                    color: AppColors.lightGrey,
-                  );
-                },
+                  ],
+                ),
               ),
-            ),
+            ],
           ),
-       
-       
         ),
 
         ///
@@ -82,23 +110,10 @@ class UserProfileInfo extends StatelessWidget {
           ),
         ),
         context.hBox(3),
-        //progress par
-        Padding(
-          padding: EdgeInsetsGeometry.symmetric(horizontal: context.wPct(10)),
-          child: Row(
-            children: [
-              Text(
-                "${profileData.name} ",
-                style: TextStyle(
-                  color: AppColors.aquaTeal,
-                  fontSize: context.wPct(4),
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              context.wBox(3),
-              Flexible(child: GradientProgressBar(percentage: 100)),
-            ],
-          ),
+        // XP and Level display
+        XpLevelIndicator(
+          xp: profileData.xp ?? 1,
+          level: profileData.level ?? 1,
         ),
         context.hBox(3),
         // Stats
