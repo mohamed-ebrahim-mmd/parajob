@@ -93,7 +93,34 @@ class AuthChoiceScreen extends StatelessWidget {
                     ],
                   ),
                 ),
+                context.hBox(2.5),
 
+                //  button to sign in with apple store
+                OutlinedButton(
+                  onPressed: () {
+                    signInAndLogUserData(context);
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      //svg
+                      Icon(
+                        Icons.apple_outlined,
+                        size: context.wPct(6),
+                        color: AppColors.pureWhite,
+                      ),
+                      context.wBox(3),
+                      Text(
+                        'auth_choice_continue_with_google'.tr,
+                        style: TextStyle(
+                          color: AppColors.pureWhite,
+                          fontSize: context.wPct(4),
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
                 context.hBox(2.5),
                 // button to sign in with gmail
                 OutlinedButton(
