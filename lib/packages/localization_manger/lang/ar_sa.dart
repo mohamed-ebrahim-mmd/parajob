@@ -579,8 +579,8 @@ const Map<String, String> arSA = {
   "success_title": "نجاح",
   "failed_title": "فشل",
   "unknown_error": "حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى.",
-  'google_login_canceled_title': 'تم إلغاء تسجيل الدخول',
-  'google_login_canceled_message': 'لقد قمت بإلغاء عملية تسجيل الدخول.',
+  'login_canceled_title': 'تم إلغاء تسجيل الدخول',
+  'login_canceled_message': 'لقد قمت بإلغاء عملية تسجيل الدخول.',
   'google_login_config_error_title': 'خطأ في الإعدادات',
   'google_login_config_error_message':
       '  يرجى مراجعة إعدادات خدمه تسجيل الدخول عبر جوجل',

@@ -228,6 +228,9 @@ abstract class ApiClient {
     @Body() GoogleAuthRequest request,
   );
 
+  @POST("/api/auth/social/apple")
+  Future<AppleAuthResponse> signInWithApple(@Body() AppleAuthRequest request);
+
   @POST("/api/attendance/scan")
   Future<BaseResponse> scanCheckInOut({
     @Body() required CheckInOutRequest request,

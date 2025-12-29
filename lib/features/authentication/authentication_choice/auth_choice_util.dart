@@ -21,13 +21,13 @@ import 'package:para_job/packages/route_manager/controller/routing_controller.da
 import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
-Future<void> signInAndLogUserData(BuildContext context) async {
+Future<void> signInAndLogUserDataGoogle(BuildContext context) async {
   context.loaderOverlay.show(); // Show loader overlay
 
   try {
     // Initialize GoogleSignIn with serverClientId
     final GoogleSignIn _googleSignIn = GoogleSignIn.instance;
-    await _googleSignIn.initialize(clientId: getGoogleClientId());
+    await _googleSignIn.initialize(clientId: _getGoogleClientId());
 
     // Attempt interactive sign-in
     final GoogleSignInAccount? account = await _googleSignIn.authenticate();
@@ -111,8 +111,8 @@ Future<void> signInAndLogUserData(BuildContext context) async {
     switch (e.code) {
       case GoogleSignInExceptionCode.canceled:
         showSnackBarError(
-          "google_login_canceled_title".tr,
-          "google_login_canceled_message".tr,
+          "login_canceled_title".tr,
+          "login_canceled_message".tr,
         );
         break;
       case GoogleSignInExceptionCode.clientConfigurationError:
@@ -143,7 +143,93 @@ Future<void> signInAndLogUserData(BuildContext context) async {
   }
 }
 
-String getGoogleClientId() {
+Future<void> signInAndLogUserDataApple(BuildContext context) async {
+  context.loaderOverlay.show(); // Show loader overlay
+
+  try {
+    final rawNonce = _generateNonce();
+    final nonce = _sha256ofString(rawNonce);
+
+    final appleCredential = await SignInWithApple.getAppleIDCredential(
+      scopes: [AppleIDAuthorizationScopes.email],
+      nonce: nonce,
+    );
+
+    // Call API
+    final response = await apiClient.signInWithApple(
+      AppleAuthRequest(
+        identityToken:
+            appleCredential.identityToken ??
+            "empty token from the mobile side ",
+      ),
+    );
+
+    if (response.isSuccess) {
+      final user = response.authData?.user;
+      // 1️⃣ Not verified
+      if (!(user?.isVerified ?? false)) {
+        showSnackBarError("not_verified_title".tr, "not_verified_message".tr);
+      }
+      // 2️⃣ Verified but profile not completed
+      else if (!(user?.isCompleted ?? false)) {
+        showSnackBarError(
+          "incomplete_profile".tr,
+          "please_complete_registration".tr,
+        );
+
+        Get.toNamed(
+          "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}",
+          arguments: {"tempToken": response.authData?.accessToken ?? "-"},
+        );
+      }
+      // 3️⃣ Completed but not approved
+      else if (!(user?.isApproved ?? false)) {
+        showSnackBarError(
+          "pending_approval_title".tr,
+          "pending_approval_message".tr,
+        );
+      }
+      // 4️⃣ Verified + completed + approved → go home
+      else {
+        final tokenSuccess = await _sendDeviceTokenToBackend(
+          "Bearer ${response.authData?.accessToken ?? "-"}",
+        );
+
+        if (tokenSuccess) {
+          Get.find<RoutingController>().goHomeAsUser(
+            user!,
+            "Bearer ${response.authData?.accessToken ?? "-"}",
+          );
+        }
+      }
+    } else {
+      Get.toNamed(Routes.createAccount);
+      showSnackBarError("failed_title".tr, 'Please_create_account_first'.tr);
+    }
+  } on SignInWithAppleAuthorizationException catch (e) {
+    log("🔴 AppleSignInException ${e.code}: ${e.message}");
+
+    switch (e.code) {
+      case AuthorizationErrorCode.canceled:
+        showSnackBarError(
+          "login_canceled_title".tr,
+          "login_canceled_message".tr,
+        );
+        break;
+
+      default:
+        log("🔴apple_login_unexpected_error ${e.toString()}");
+        break;
+    }
+  } catch (e) {
+    log("🔴 catch ${e.toString()}");
+    showSnackBarApiError();
+  } finally {
+    context.loaderOverlay.hide(); // Hide loader overlay
+  }
+}
+
+String _getGoogleClientId() {
   // ---- iOS Client ID ----
   const iosClientId =
       "587982285191-0eqnatdtp8grom3g71ph1fphs9dad6o7.apps.googleusercontent.com";
@@ -207,30 +293,4 @@ String _sha256ofString(String input) {
   final bytes = utf8.encode(input);
   final digest = sha256.convert(bytes);
   return digest.toString();
-}
-
-Future<void> signInWithApple(BuildContext context) async {
-  // To prevent replay attacks with the credential returned from Apple, we
-  // include a nonce in the credential request. When signing in with
-  // Firebase, the nonce in the id token returned by Apple, is expected to
-  // match the sha256 hash of `rawNonce`.
-  final rawNonce = _generateNonce();
-  final nonce = _sha256ofString(rawNonce);
-
-  // Request credential for the currently signed in Apple account.
-  try {
-    context.loaderOverlay.show(); // Show loader overlay
-
-    final appleCredential = await SignInWithApple.getAppleIDCredential(
-      scopes: [AppleIDAuthorizationScopes.email],
-      nonce: nonce,
-    );
-    log("🟢appleCredential.email: ${appleCredential.email}");
-    log("🟢appleCredential.identityToken: ${appleCredential.identityToken}");
-    log("🟢appleCredential.userIdentifier: ${appleCredential.userIdentifier}");
-  } on Exception catch (e) {
-    log("🔴 ${e.toString()}");
-  } finally {
-    context.loaderOverlay.hide();
-  }
 }

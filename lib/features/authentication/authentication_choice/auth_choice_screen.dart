@@ -98,7 +98,7 @@ class AuthChoiceScreen extends StatelessWidget {
                 //  button to sign in with apple store
                 OutlinedButton(
                   onPressed: () {
-                    signInAndLogUserData(context);
+                    signInAndLogUserDataApple(context);
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -125,7 +125,7 @@ class AuthChoiceScreen extends StatelessWidget {
                 // button to sign in with gmail
                 OutlinedButton(
                   onPressed: () {
-                    signInAndLogUserData(context);
+                    signInAndLogUserDataGoogle(context);
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,

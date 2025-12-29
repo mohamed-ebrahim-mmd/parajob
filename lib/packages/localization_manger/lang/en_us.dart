@@ -593,8 +593,8 @@ to connect with you.
   "success_title": "Success",
   "failed_title": "Failed",
   "unknown_error": "An unexpected error occurred. Please try again.",
-  'google_login_canceled_title': 'Login canceled',
-  'google_login_canceled_message': 'You canceled the login.',
+  'login_canceled_title': 'Login canceled',
+  'login_canceled_message': 'You canceled the login.',
   'google_login_config_error_title': 'Configuration Error',
   'google_login_config_error_message':
       'Google Sign-In is not set up correctly. Check OAuth settings.',
