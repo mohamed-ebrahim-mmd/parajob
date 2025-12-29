@@ -572,6 +572,7 @@ to connect with you.
   'auth_choice_or': 'Or',
   'auth_choice_continue_as_guest': 'Continue as Guest User',
   'auth_choice_need_help': 'Need help ?',
+  'auth_choice_continue_with_apple': 'Continue with Apple',
   'auth_choice_continue_with_google': 'Continue with Google',
 
   // ============================================================
