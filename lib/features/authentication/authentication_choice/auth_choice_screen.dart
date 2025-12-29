@@ -111,7 +111,7 @@ class AuthChoiceScreen extends StatelessWidget {
                       ),
                       context.wBox(3),
                       Text(
-                        'auth_choice_continue_with_google'.tr,
+                        'auth_choice_continue_with_apple'.tr,
                         style: TextStyle(
                           color: AppColors.pureWhite,
                           fontSize: context.wPct(4),
