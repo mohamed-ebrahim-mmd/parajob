@@ -3,9 +3,12 @@
  ==================================================================
 */
 
+import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
+import 'dart:math' hide log;
 
+import 'package:crypto/crypto.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' show BuildContext;
@@ -16,6 +19,7 @@ import 'package:para_job/packages/api_client/api_client.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/route_manager/controller/routing_controller.dart';
 import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 Future<void> signInAndLogUserData(BuildContext context) async {
   context.loaderOverlay.show(); // Show loader overlay
@@ -183,5 +187,50 @@ Future<bool> _sendDeviceTokenToBackend(String userToken) async {
     log("🔴 ${e.toString()}");
     showSnackBarApiError();
     return false;
+  }
+}
+
+/// Generates a cryptographically secure random nonce, to be included in a
+/// credential request.
+String _generateNonce([int length = 32]) {
+  final charset =
+      '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._';
+  final random = Random.secure();
+  return List.generate(
+    length,
+    (_) => charset[random.nextInt(charset.length)],
+  ).join();
+}
+
+/// Returns the sha256 hash of [input] in hex notation.
+String _sha256ofString(String input) {
+  final bytes = utf8.encode(input);
+  final digest = sha256.convert(bytes);
+  return digest.toString();
+}
+
+Future<void> signInWithApple(BuildContext context) async {
+  // To prevent replay attacks with the credential returned from Apple, we
+  // include a nonce in the credential request. When signing in with
+  // Firebase, the nonce in the id token returned by Apple, is expected to
+  // match the sha256 hash of `rawNonce`.
+  final rawNonce = _generateNonce();
+  final nonce = _sha256ofString(rawNonce);
+
+  // Request credential for the currently signed in Apple account.
+  try {
+    context.loaderOverlay.show(); // Show loader overlay
+
+    final appleCredential = await SignInWithApple.getAppleIDCredential(
+      scopes: [AppleIDAuthorizationScopes.email],
+      nonce: nonce,
+    );
+    log("🟢appleCredential.email: ${appleCredential.email}");
+    log("🟢appleCredential.identityToken: ${appleCredential.identityToken}");
+    log("🟢appleCredential.userIdentifier: ${appleCredential.userIdentifier}");
+  } on Exception catch (e) {
+    log("🔴 ${e.toString()}");
+  } finally {
+    context.loaderOverlay.hide();
   }
 }
