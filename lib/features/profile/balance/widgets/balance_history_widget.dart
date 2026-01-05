@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 
 class BalanceHistorySection extends StatelessWidget {
@@ -15,7 +16,7 @@ class BalanceHistorySection extends StatelessWidget {
             logo: Icons.music_note,
             company: 'Spotify',
             title: 'Supervisor',
-            amount: '+ EGP 1500.00',
+            amount: 1500.00,
             date: '9 March',
             isPositive: true,
           ),
@@ -23,24 +24,24 @@ class BalanceHistorySection extends StatelessWidget {
             logo: Icons.music_note,
             company: 'Spotify',
             title: 'Supervisor',
-            amount: '- EGP 150.00',
+            amount: 150.00,
             date: '9 March',
             isPositive: false,
           ),
           _TransactionItem(
             logo: Icons.album,
-            company: 'Anghami',
+            company: 'Andasdsadsadsasdaghami',
             title: 'Usher',
-            amount: '+ EGP 500.00',
+            amount: 500.00,
             date: '9 March',
             isPositive: true,
           ),
-
           _TransactionItem(
             logo: Icons.work,
             company: 'Red Bull',
-            title: 'Intern',
-            amount: '+ EGP 600000000000.00',
+            title: 'Intedsadsadssfafsafasrn',
+            amount:
+                6000000000000000000000000000000000000000000000000000000000.00,
             date: '9 March',
             isPositive: true,
           ),
@@ -54,7 +55,7 @@ class _TransactionItem extends StatelessWidget {
   final IconData logo;
   final String title;
   final String company;
-  final String amount;
+  final double amount;
   final String date;
   final bool isPositive;
 
@@ -67,10 +68,19 @@ class _TransactionItem extends StatelessWidget {
     required this.isPositive,
   });
 
+  /// Format amount with commas
+  String get formattedAmount {
+    final formatter = NumberFormat.currency(
+      locale: 'en',
+      symbol: 'EGP ',
+      decimalDigits: 2,
+    );
+    return formatter.format(amount);
+  }
+
   @override
   Widget build(BuildContext context) {
     final borderColor = isPositive ? AppColors.silverGray : Colors.redAccent;
-
     final amountColor = isPositive ? AppColors.silverGray : Colors.redAccent;
 
     return Container(
@@ -101,74 +111,80 @@ class _TransactionItem extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  children: [
-                    Text(
-                      '$title ',
-                      style: TextStyle(
-                        color: isPositive
-                            ? AppColors.silverGray
-                            : Colors.redAccent,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
+                Tooltip(
+                  message: '$title at $company',
+                  child: Text(
+                    '$title at',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      color: isPositive
+                          ? AppColors.silverGray
+                          : Colors.redAccent,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
                     ),
-                    Text(
-                      'at',
-                      style: TextStyle(
-                        color: isPositive
-                            ? AppColors.silverGray
-                            : Colors.redAccent,
-                        fontWeight: FontWeight.w300,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
                 const SizedBox(height: 4),
-                Text(
-                  company,
-                  style: const TextStyle(
-                    color: AppColors.silverGray,
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
+                Tooltip(
+                  message: company,
+                  child: Text(
+                    company,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      color: AppColors.silverGray,
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ],
             ),
           ),
 
-          /// Amount & Date
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Text(
-                amount,
-                style: TextStyle(
-                  color: amountColor,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 17,
-                ),
-              ),
-              const SizedBox(height: 6),
-              Row(
-                children: [
-                  const Icon(
-                    Icons.calendar_today,
-                    size: 14,
-                    color: AppColors.silverGray,
-                  ),
-                  const SizedBox(width: 4),
-                  Text(
-                    date,
-                    style: const TextStyle(
-                      color: AppColors.silverGray,
-                      fontSize: 14,
+          /// Amount & Date (Fixed width)
+          SizedBox(
+            width: 130,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Tooltip(
+                  message: '${isPositive ? '+' : '-'} $formattedAmount',
+                  child: Text(
+                    '${isPositive ? '+' : '-'} $formattedAmount',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    softWrap: false,
+                    style: TextStyle(
+                      color: amountColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 17,
                     ),
                   ),
-                ],
-              ),
-            ],
+                ),
+                const SizedBox(height: 6),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    const Icon(
+                      Icons.calendar_today,
+                      size: 14,
+                      color: AppColors.silverGray,
+                    ),
+                    const SizedBox(width: 4),
+                    Text(
+                      date,
+                      style: const TextStyle(
+                        color: AppColors.silverGray,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ],
       ),
