@@ -27,110 +27,109 @@ class BalanceScreen extends StatelessWidget {
         ),
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.all(context.wPct(1.25)),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Center(
-                  child: SvgPicture.asset(
-                    AppAssetPaths.balanceCoinIconwithStars,
-                    height: context.hPct(12.5),
-                  ),
+        child: Padding(
+          padding: EdgeInsets.all(context.wPct(1.25)),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Center(
+                child: SvgPicture.asset(
+                  AppAssetPaths.balanceCoinIconwithStars,
+                  height: context.hPct(12.5),
                 ),
-                SizedBox(height: context.hPct(2.5)),
-                Text(
-                  'Your balance',
-                  style: TextStyle(
-                    color: AppColors.silverGray,
-                    fontSize: context.wPct(4.5),
-                  ),
+              ),
+              SizedBox(height: context.hPct(2.5)),
+              Text(
+                'Your balance',
+                style: TextStyle(
+                  color: AppColors.silverGray,
+                  fontSize: context.wPct(4.5),
                 ),
-                RichText(
-                  text: TextSpan(
-                    children: [
-                      TextSpan(
-                        text: 'EGP ',
-                        style: TextStyle(
-                          color: AppColors.silverGray,
-                          fontSize: context.wPct(5),
-                        ),
-                      ),
-                      TextSpan(
-                        text: '12,000',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: context.wPct(7.5),
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(height: context.hPct(2.5)),
-
-                // Tab Row wrapped in Obx
-                Obx(
-                  () => Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      TabItem(
-                        title: 'Week',
-                        isSelected: _balanceController.selectedTab == 'Week',
-                        onTap: () =>
-                            _balanceController.updateSelectedTab('Week'),
-                      ),
-                      TabItem(
-                        title: 'Month',
-                        isSelected: _balanceController.selectedTab == 'Month',
-                        onTap: () =>
-                            _balanceController.updateSelectedTab('Month'),
-                      ),
-                      TabItem(
-                        title: 'Year',
-                        isSelected: _balanceController.selectedTab == 'Year',
-                        onTap: () =>
-                            _balanceController.updateSelectedTab('Year'),
-                      ),
-                    ],
-                  ),
-                ),
-
-                SizedBox(height: context.hPct(2.5)),
-
-                // Dynamic Colored Container wrapped in Obx
-                Obx(
-                  () => Container(
-                    width: double.infinity,
-                    height: context.hPct(25),
-                    decoration: BoxDecoration(
-                      color: _balanceController.getContainerColor(),
-                      borderRadius: BorderRadius.circular(context.wPct(4)),
-                    ),
-                    alignment: Alignment.center,
-                    child: Text(
-                      "Showing ${_balanceController.selectedTab} Data",
+              ),
+              RichText(
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: 'EGP ',
                       style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: context.wPct(4.5),
+                        color: AppColors.silverGray,
+                        fontSize: context.wPct(5),
                       ),
+                    ),
+                    TextSpan(
+                      text: '12,000',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: context.wPct(7.5),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: context.hPct(2.5)),
+
+              // Tab Row wrapped in Obx
+              Obx(
+                () => Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TabItem(
+                      title: 'Week',
+                      isSelected: _balanceController.selectedTab == 'Week',
+                      onTap: () => _balanceController.updateSelectedTab('Week'),
+                    ),
+                    TabItem(
+                      title: 'Month',
+                      isSelected: _balanceController.selectedTab == 'Month',
+                      onTap: () =>
+                          _balanceController.updateSelectedTab('Month'),
+                    ),
+                    TabItem(
+                      title: 'Year',
+                      isSelected: _balanceController.selectedTab == 'Year',
+                      onTap: () => _balanceController.updateSelectedTab('Year'),
+                    ),
+                  ],
+                ),
+              ),
+
+              SizedBox(height: context.hPct(2.5)),
+
+              // Dynamic Colored Container wrapped in Obx
+              Obx(
+                () => Container(
+                  width: double.infinity,
+                  height: context.hPct(25),
+                  decoration: BoxDecoration(
+                    color: _balanceController.getContainerColor(),
+                    borderRadius: BorderRadius.circular(context.wPct(4)),
+                  ),
+                  alignment: Alignment.center,
+                  child: Text(
+                    "Showing ${_balanceController.selectedTab} Data",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: context.wPct(4.5),
                     ),
                   ),
                 ),
+              ),
 
-                SizedBox(height: context.hPct(2.5)),
+              SizedBox(height: context.hPct(2.5)),
 
-                // History Section
-                GestureDetector(
+              // History Section
+              // History Section
+              Expanded(
+                child: GestureDetector(
                   onTap: () {
                     showDeductionDialog(context);
                   },
                   child: BalanceHistorySection(),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

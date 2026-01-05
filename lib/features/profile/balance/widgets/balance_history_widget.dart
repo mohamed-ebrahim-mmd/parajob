@@ -10,7 +10,7 @@ class BalanceHistorySection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: EdgeInsets.only(bottom: context.hPct(3)),
+      padding: EdgeInsets.all(context.wPct(3)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
