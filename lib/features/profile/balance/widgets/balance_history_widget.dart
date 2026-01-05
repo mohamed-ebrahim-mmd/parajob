@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 
 class BalanceHistorySection extends StatelessWidget {
-  const BalanceHistorySection({super.key});
+  final String period;
+
+  const BalanceHistorySection({super.key, this.period = 'Month'});
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +12,7 @@ class BalanceHistorySection extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
+        children: [
           _TransactionItem(
             logo: Icons.music_note,
             company: 'Spotify',

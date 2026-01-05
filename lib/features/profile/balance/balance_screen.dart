@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:para_job/features/profile/balance/balance_controller.dart';
 import 'package:para_job/features/profile/balance/widgets/balance_history_widget.dart';
 import 'package:para_job/features/profile/balance/widgets/item_tap.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
@@ -12,6 +14,8 @@ class BalanceScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(BalanceController());
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -21,7 +25,7 @@ class BalanceScreen extends StatelessWidget {
       ),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsetsGeometry.all(5),
+          padding: EdgeInsets.all(5),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -57,16 +61,34 @@ class BalanceScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  TabItem(title: 'Week', isSelected: false),
-                  TabItem(title: 'Month', isSelected: true),
-                  TabItem(title: 'Year', isSelected: false),
-                ],
+              Obx(
+                () => Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    TabItem(
+                      title: 'Week',
+                      isSelected: controller.selectedPeriod.value == 'Week',
+                      onTap: () => controller.selectPeriod('Week'),
+                    ),
+                    TabItem(
+                      title: 'Month',
+                      isSelected: controller.selectedPeriod.value == 'Month',
+                      onTap: () => controller.selectPeriod('Month'),
+                    ),
+                    TabItem(
+                      title: 'Year',
+                      isSelected: controller.selectedPeriod.value == 'Year',
+                      onTap: () => controller.selectPeriod('Year'),
+                    ),
+                  ],
+                ),
               ),
               SizedBox(height: 20),
-              BalanceHistorySection(),
+              Obx(
+                () => BalanceHistorySection(
+                  period: controller.selectedPeriod.value,
+                ),
+              ),
             ],
           ),
         ),
