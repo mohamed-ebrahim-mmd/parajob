@@ -29,6 +29,8 @@ class ProfileScreen extends StatelessWidget {
         leading: GestureDetector(
           onTap: () {
             //navigate to balance screen
+
+            Get.toNamed(Routes.balance);
           },
           child: Padding(
             padding: const EdgeInsets.only(left: 10.0),

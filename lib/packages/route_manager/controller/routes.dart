@@ -26,6 +26,7 @@ import 'package:para_job/features/my_notifications/strike/notification_strike_sc
 import 'package:para_job/features/onboarding/onboarding_screen.dart';
 import 'package:para_job/features/profile/about_app/about_app_screen.dart';
 import 'package:para_job/features/profile/about_us/about_us_screen.dart';
+import 'package:para_job/features/profile/balance/balance_screen.dart';
 import 'package:para_job/features/profile/bookmarked_jobs.dart/book_marked_jobs_screen.dart';
 import 'package:para_job/features/profile/change_pass/change_pass_otp/change_pass_otp_screen.dart';
 import 'package:para_job/features/profile/change_pass/change_password/change_password_screen.dart';
@@ -107,6 +108,7 @@ class Routes {
 
   static const String changePassOtp = '/change-pass-otp';
   static const String changePassword = '/change-password';
+  static const String balance = '/balance';
 
   static const String languageScreen = '/language-screen';
   static const String notificationStrikeScreen = '/notification-strike-screen';
@@ -489,5 +491,6 @@ class AppPages {
         ),
       ],
     ),
+    GetPage(name: Routes.balance, page: () => BalanceScreen()),
   ];
 }
