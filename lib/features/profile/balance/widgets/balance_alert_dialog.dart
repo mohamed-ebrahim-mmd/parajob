@@ -17,7 +17,7 @@ Future<void> showDeductionDialog(BuildContext context) {
           borderRadius: BorderRadius.circular(context.wPct(5)),
         ),
         child: Padding(
-          padding: EdgeInsets.all(basePadding),
+          padding: EdgeInsets.all(basePadding * 2),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -30,7 +30,7 @@ Future<void> showDeductionDialog(BuildContext context) {
                     'deduction_title'.tr,
                     style: TextStyle(
                       color: AppColors.pureWhite,
-                      fontSize: context.wPct(4.5),
+                      fontSize: context.wPct(5),
                       fontWeight: FontWeight.bold,
                       letterSpacing: context.wPct(0.3),
                     ),
@@ -48,8 +48,8 @@ Future<void> showDeductionDialog(BuildContext context) {
                 textAlign: TextAlign.center,
                 text: TextSpan(
                   style: TextStyle(
-                    color: AppColors.slateGray,
-                    fontSize: context.wPct(3.5),
+                    color: AppColors.lightSilverGray,
+                    fontSize: context.wPct(4.5),
                   ), // Responsive font size
                   children: [
                     TextSpan(text: 'EGP '),
@@ -117,7 +117,7 @@ Future<void> showDeductionDialog(BuildContext context) {
                           Text(
                             'company_name'.tr, // Localized text
                             style: TextStyle(
-                              color: AppColors.slateGray,
+                              color: AppColors.coralRed,
                               fontSize: context.wPct(3.2),
                             ),
                           ),
@@ -142,13 +142,13 @@ Future<void> showDeductionDialog(BuildContext context) {
                             Icon(
                               Icons.calendar_today,
                               size: context.wPct(2.5),
-                              color: AppColors.slateGray,
+                              color: AppColors.coralRed,
                             ),
                             SizedBox(width: context.wPct(1)),
                             Text(
                               'date_placeholder'.tr,
                               style: TextStyle(
-                                color: AppColors.slateGray,
+                                color: AppColors.coralRed,
                                 fontSize: context.wPct(2.5),
                               ),
                             ),
