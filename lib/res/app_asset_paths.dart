@@ -77,4 +77,6 @@ abstract final class AppAssetPaths {
   static const barcodeScanIcon = "assets/icons/barcode_scan_icon.png";
   static const checkIcon2 = "assets/icons/check_icon.png";
   static const balanceCoinIcon = "assets/icons/balance_coin.svg";
+  static const balanceCoinIconwithStars =
+      "assets/icons/Balance_coin_with_stars.svg";
 }
