@@ -12,6 +12,7 @@ Future<void> showDeductionDialog(BuildContext context) {
       double basePadding = context.defaultPadding;
 
       return Dialog(
+        insetPadding: EdgeInsets.symmetric(horizontal: context.wPct(5)),
         backgroundColor: AppColors.midnightBlue,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(context.wPct(5)),
@@ -30,7 +31,7 @@ Future<void> showDeductionDialog(BuildContext context) {
                     'deduction_title'.tr,
                     style: TextStyle(
                       color: AppColors.pureWhite,
-                      fontSize: context.wPct(5),
+                      fontSize: context.wPct(6.4),
                       fontWeight: FontWeight.bold,
                       letterSpacing: context.wPct(0.3),
                     ),
@@ -42,14 +43,14 @@ Future<void> showDeductionDialog(BuildContext context) {
                 ],
               ),
 
-              SizedBox(height: context.hPct(2)), // Responsive height
+              SizedBox(height: context.hPct(2.5)), // Responsive height
               /// Message
               RichText(
                 textAlign: TextAlign.center,
                 text: TextSpan(
                   style: TextStyle(
                     color: AppColors.lightSilverGray,
-                    fontSize: context.wPct(4.5),
+                    fontSize: context.wPct(5),
                   ), // Responsive font size
                   children: [
                     TextSpan(text: 'EGP '),
