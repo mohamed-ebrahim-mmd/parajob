@@ -11,7 +11,6 @@ class BalanceHistorySection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: const [
-          _SectionTitle(title: 'From 1 to 7 Sep'),
           _TransactionItem(
             logo: Icons.music_note,
             company: 'Spotify',
@@ -36,8 +35,7 @@ class BalanceHistorySection extends StatelessWidget {
             date: '9 March',
             isPositive: true,
           ),
-          SizedBox(height: 24),
-          _SectionTitle(title: 'From 16 to 22 Sep'),
+
           _TransactionItem(
             logo: Icons.work,
             company: 'Red Bull',
@@ -173,27 +171,6 @@ class _TransactionItem extends StatelessWidget {
             ],
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _SectionTitle extends StatelessWidget {
-  final String title;
-
-  const _SectionTitle({required this.title});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 11),
-      child: Text(
-        title,
-        style: const TextStyle(
-          color: AppColors.silverGray,
-          fontSize: 16,
-          fontWeight: FontWeight.w600,
-        ),
       ),
     );
   }

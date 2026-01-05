@@ -49,7 +49,7 @@ class BalanceScreen extends StatelessWidget {
                       text: '12,000',
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 34,
+                        fontSize: 30,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
