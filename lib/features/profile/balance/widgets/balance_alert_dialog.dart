@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
+import 'package:para_job/packages/themeing/media_query_values.dart';
 
 Future<void> showDeductionDialog(BuildContext context) {
   return showDialog(
     context: context,
     barrierDismissible: true,
     builder: (context) {
+      // Using context extension for responsive values
+      double basePadding = context.defaultPadding;
+
       return Dialog(
         backgroundColor: AppColors.midnightBlue,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(context.wPct(5)),
+        ),
         child: Padding(
-          padding: const EdgeInsets.all(20),
+          padding: EdgeInsets.all(basePadding),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -18,47 +25,52 @@ Future<void> showDeductionDialog(BuildContext context) {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const SizedBox(width: 24),
-                  const Text(
-                    'DEDUCTION!',
+                  SizedBox(
+                    width: context.wPct(6),
+                  ), // Replaced 24 with responsive value
+                  Text(
+                    'deduction_title'.tr, // Localized text
                     style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
+                      color: AppColors.pureWhite,
+                      fontSize: context.wPct(4.5), // Responsive font size
                       fontWeight: FontWeight.bold,
-                      letterSpacing: 1,
+                      letterSpacing: context.wPct(
+                        0.3,
+                      ), // Responsive letter spacing
                     ),
                   ),
                   IconButton(
-                    icon: const Icon(Icons.close, color: Colors.grey),
+                    icon: Icon(Icons.close, color: AppColors.slateGray),
                     onPressed: () => Navigator.pop(context),
                   ),
                 ],
               ),
 
-              const SizedBox(height: 16),
-
+              SizedBox(height: context.hPct(2)), // Responsive height
               /// Message
               RichText(
                 textAlign: TextAlign.center,
-                text: const TextSpan(
-                  style: TextStyle(color: Colors.grey, fontSize: 14),
+                text: TextSpan(
+                  style: TextStyle(
+                    color: AppColors.slateGray,
+                    fontSize: context.wPct(3.5),
+                  ), // Responsive font size
                   children: [
                     TextSpan(text: 'EGP '),
                     TextSpan(
                       text: '150.00',
                       style: TextStyle(
-                        color: Colors.white,
+                        color: AppColors.pureWhite,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     TextSpan(
-                      text:
-                          ' has been deducted from your paycheck as a result for ',
+                      text: ' ${'deduction_description'.tr} ', // Localized text
                     ),
                     TextSpan(
-                      text: 'being late.',
+                      text: 'being_late'.tr, // Localized text
                       style: TextStyle(
-                        color: Colors.white,
+                        color: AppColors.pureWhite,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -66,48 +78,55 @@ Future<void> showDeductionDialog(BuildContext context) {
                 ),
               ),
 
-              const SizedBox(height: 20),
-
+              SizedBox(height: context.hPct(2.5)), // Responsive height
               /// Transaction Card
               Container(
-                padding: const EdgeInsets.all(14),
+                padding: EdgeInsets.all(
+                  context.wPct(3.5),
+                ), // Responsive padding
                 decoration: BoxDecoration(
-                  color: const Color(0xFF14181F),
-                  borderRadius: BorderRadius.circular(14),
-                  border: Border.all(color: Colors.redAccent, width: 1.4),
+                  color: AppColors
+                      .darkCharcoal, // Using AppColors instead of hardcoded value
+                  borderRadius: BorderRadius.circular(context.wPct(3.5)),
+                  border: Border.all(
+                    color: AppColors.coralRed,
+                    width: context.wPct(0.4),
+                  ),
                 ),
                 child: Row(
                   children: [
                     /// Logo
                     Container(
-                      width: 44,
-                      height: 44,
+                      width: context.wPct(11), // Responsive width
+                      height: context.wPct(11), // Responsive height
                       decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(12),
+                        color: AppColors.pureWhite,
+                        borderRadius: BorderRadius.circular(context.wPct(3)),
                       ),
-                      child: const Icon(Icons.music_note, color: Colors.green),
+                      child: Icon(Icons.music_note, color: AppColors.greenLeaf),
                     ),
 
-                    const SizedBox(width: 12),
-
+                    SizedBox(width: context.wPct(3)), // Responsive width
                     /// Job Info
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
+                        children: [
                           Text(
-                            'Supervisor at',
+                            'supervisor_at'.tr, // Localized text
                             style: TextStyle(
-                              color: Colors.redAccent,
+                              color: AppColors.coralRed,
                               fontWeight: FontWeight.bold,
-                              fontSize: 15,
+                              fontSize: context.wPct(3.8),
                             ),
                           ),
-                          SizedBox(height: 4),
+                          SizedBox(height: context.hPct(1)),
                           Text(
-                            'Spotify',
-                            style: TextStyle(color: Colors.grey, fontSize: 13),
+                            'company_name'.tr, // Localized text
+                            style: TextStyle(
+                              color: AppColors.slateGray,
+                              fontSize: context.wPct(3.2),
+                            ),
                           ),
                         ],
                       ),
@@ -116,28 +135,28 @@ Future<void> showDeductionDialog(BuildContext context) {
                     /// Amount & Date
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
-                      children: const [
+                      children: [
                         Text(
                           '- EGP 150.00',
                           style: TextStyle(
-                            color: Colors.redAccent,
+                            color: AppColors.coralRed,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(height: 6),
+                        SizedBox(height: context.hPct(1.5)),
                         Row(
                           children: [
                             Icon(
                               Icons.calendar_today,
-                              size: 12,
-                              color: Colors.grey,
+                              size: context.wPct(2.5),
+                              color: AppColors.slateGray,
                             ),
-                            SizedBox(width: 4),
+                            SizedBox(width: context.wPct(1)),
                             Text(
-                              '9 March',
+                              'date_placeholder'.tr,
                               style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 12,
+                                color: AppColors.slateGray,
+                                fontSize: context.wPct(2.5),
                               ),
                             ),
                           ],

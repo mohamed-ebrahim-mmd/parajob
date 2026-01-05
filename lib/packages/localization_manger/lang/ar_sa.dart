@@ -850,4 +850,14 @@ const Map<String, String> arSA = {
   "onsite": "في الموقع",
   "meeting_link": "رابط المقابلة",
   "meeting_location": "رابط الموقع",
+
+  // ============================================================
+  // 💰 Balance Alert Dialog
+  // ============================================================
+  "deduction_title": "خصم!",
+  "deduction_description": "تم خصمه من راتبك نتيجة",
+  "being_late": "التأخير.",
+  "supervisor_at": "مشرف في",
+  "company_name": "سبوتيفاي",
+  "date_placeholder": "9 مارس",
 };

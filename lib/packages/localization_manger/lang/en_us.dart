@@ -865,4 +865,15 @@ to connect with you.
   "onsite": "Onsite",
   "meeting_link": "Meeting Link",
   "meeting_location": "Location Link",
+
+  // ============================================================
+  // 💰 Balance Alert Dialog
+  // ============================================================
+  "deduction_title": "DEDUCTION!",
+  "deduction_description":
+      "has been deducted from your paycheck as a result for",
+  "being_late": "being late.",
+  "supervisor_at": "Supervisor at",
+  "company_name": "Spotify",
+  "date_placeholder": "9 March",
 };
