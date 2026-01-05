@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+
 import 'package:intl/intl.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
+import 'package:para_job/packages/themeing/media_query_values.dart';
 
 class BalanceHistorySection extends StatelessWidget {
   const BalanceHistorySection({super.key});
@@ -8,10 +10,10 @@ class BalanceHistorySection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: const EdgeInsets.only(bottom: 24),
+      padding: EdgeInsets.only(bottom: context.hPct(3)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
+        children: [
           _TransactionItem(
             logo: Icons.music_note,
             company: 'Spotify',
@@ -84,27 +86,30 @@ class _TransactionItem extends StatelessWidget {
     final amountColor = isPositive ? AppColors.silverGray : Colors.redAccent;
 
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
-      padding: const EdgeInsets.all(14),
+      margin: EdgeInsets.symmetric(
+        vertical: context.hPct(1),
+        horizontal: context.wPct(1),
+      ),
+      padding: EdgeInsets.all(context.wPct(3.5)),
       decoration: BoxDecoration(
-        color: const Color(0xFF14181F),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: borderColor, width: 1.5),
+        color: AppColors.darkCharcoal,
+        borderRadius: BorderRadius.circular(context.wPct(4)),
+        border: Border.all(color: borderColor, width: context.wPct(0.4)),
       ),
       child: Row(
         children: [
           /// Logo
           Container(
-            width: 44,
-            height: 44,
+            width: context.wPct(11),
+            height: context.wPct(11),
             decoration: BoxDecoration(
-              color: Colors.black,
-              borderRadius: BorderRadius.circular(12),
+              color: AppColors.darkBackground,
+              borderRadius: BorderRadius.circular(context.wPct(3)),
             ),
-            child: Icon(logo, color: Colors.white),
+            child: Icon(logo, color: AppColors.pureWhite),
           ),
 
-          const SizedBox(width: 12),
+          SizedBox(width: context.wPct(3)),
 
           /// Job Info
           Expanded(
@@ -122,20 +127,20 @@ class _TransactionItem extends StatelessWidget {
                           ? AppColors.silverGray
                           : Colors.redAccent,
                       fontWeight: FontWeight.bold,
-                      fontSize: 16,
+                      fontSize: context.wPct(4),
                     ),
                   ),
                 ),
-                const SizedBox(height: 4),
+                SizedBox(height: context.hPct(0.5)),
                 Tooltip(
                   message: company,
                   child: Text(
                     company,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
+                    style: TextStyle(
                       color: AppColors.silverGray,
-                      fontSize: 14,
+                      fontSize: context.wPct(3.5),
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -146,7 +151,7 @@ class _TransactionItem extends StatelessWidget {
 
           /// Amount & Date (Fixed width)
           SizedBox(
-            width: 130,
+            width: context.wPct(32.5),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
@@ -160,25 +165,25 @@ class _TransactionItem extends StatelessWidget {
                     style: TextStyle(
                       color: amountColor,
                       fontWeight: FontWeight.bold,
-                      fontSize: 17,
+                      fontSize: context.wPct(4.25),
                     ),
                   ),
                 ),
-                const SizedBox(height: 6),
+                SizedBox(height: context.hPct(0.75)),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    const Icon(
+                    Icon(
                       Icons.calendar_today,
-                      size: 14,
+                      size: context.wPct(3.5),
                       color: AppColors.silverGray,
                     ),
-                    const SizedBox(width: 4),
+                    SizedBox(width: context.wPct(1)),
                     Text(
                       date,
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: AppColors.silverGray,
-                        fontSize: 14,
+                        fontSize: context.wPct(3.5),
                       ),
                     ),
                   ],

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:para_job/packages/themeing/media_query_values.dart';
 
 import 'package:para_job/features/profile/balance/balance_controller.dart';
 import 'package:para_job/features/profile/balance/widgets/balance_alert_dialog.dart';
@@ -28,43 +29,46 @@ class BalanceScreen extends StatelessWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(5),
+            padding: EdgeInsets.all(context.wPct(1.25)),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Center(
                   child: SvgPicture.asset(
                     AppAssetPaths.balanceCoinIconwithStars,
-                    height: 100,
+                    height: context.hPct(12.5),
                   ),
                 ),
-                const SizedBox(height: 20),
-                const Text(
+                SizedBox(height: context.hPct(2.5)),
+                Text(
                   'Your balance',
-                  style: TextStyle(color: AppColors.silverGray, fontSize: 18),
+                  style: TextStyle(
+                    color: AppColors.silverGray,
+                    fontSize: context.wPct(4.5),
+                  ),
                 ),
                 RichText(
-                  text: const TextSpan(
+                  text: TextSpan(
                     children: [
                       TextSpan(
                         text: 'EGP ',
                         style: TextStyle(
                           color: AppColors.silverGray,
-                          fontSize: 20,
+                          fontSize: context.wPct(5),
                         ),
                       ),
                       TextSpan(
                         text: '12,000',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 30,
+                          fontSize: context.wPct(7.5),
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                     ],
                   ),
                 ),
-                const SizedBox(height: 20),
+                SizedBox(height: context.hPct(2.5)),
 
                 // Tab Row wrapped in Obx
                 Obx(
@@ -93,37 +97,37 @@ class BalanceScreen extends StatelessWidget {
                   ),
                 ),
 
-                const SizedBox(height: 20),
+                SizedBox(height: context.hPct(2.5)),
 
                 // Dynamic Colored Container wrapped in Obx
                 Obx(
                   () => Container(
                     width: double.infinity,
-                    height: 200,
+                    height: context.hPct(25),
                     decoration: BoxDecoration(
                       color: _balanceController.getContainerColor(),
-                      borderRadius: BorderRadius.circular(16),
+                      borderRadius: BorderRadius.circular(context.wPct(4)),
                     ),
                     alignment: Alignment.center,
                     child: Text(
                       "Showing ${_balanceController.selectedTab} Data",
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
-                        fontSize: 18,
+                        fontSize: context.wPct(4.5),
                       ),
                     ),
                   ),
                 ),
 
-                const SizedBox(height: 20),
+                SizedBox(height: context.hPct(2.5)),
 
                 // History Section
                 GestureDetector(
                   onTap: () {
                     showDeductionDialog(context);
                   },
-                  child: const BalanceHistorySection(),
+                  child: BalanceHistorySection(),
                 ),
               ],
             ),

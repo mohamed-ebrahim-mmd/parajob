@@ -25,18 +25,14 @@ Future<void> showDeductionDialog(BuildContext context) {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SizedBox(
-                    width: context.wPct(6),
-                  ), // Replaced 24 with responsive value
+                  SizedBox(width: context.wPct(6)),
                   Text(
-                    'deduction_title'.tr, // Localized text
+                    'deduction_title'.tr,
                     style: TextStyle(
                       color: AppColors.pureWhite,
-                      fontSize: context.wPct(4.5), // Responsive font size
+                      fontSize: context.wPct(4.5),
                       fontWeight: FontWeight.bold,
-                      letterSpacing: context.wPct(
-                        0.3,
-                      ), // Responsive letter spacing
+                      letterSpacing: context.wPct(0.3),
                     ),
                   ),
                   IconButton(
@@ -64,11 +60,9 @@ Future<void> showDeductionDialog(BuildContext context) {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
+                    TextSpan(text: ' ${'deduction_description'.tr} '),
                     TextSpan(
-                      text: ' ${'deduction_description'.tr} ', // Localized text
-                    ),
-                    TextSpan(
-                      text: 'being_late'.tr, // Localized text
+                      text: 'being_late'.tr,
                       style: TextStyle(
                         color: AppColors.pureWhite,
                         fontWeight: FontWeight.bold,
@@ -78,15 +72,14 @@ Future<void> showDeductionDialog(BuildContext context) {
                 ),
               ),
 
-              SizedBox(height: context.hPct(2.5)), // Responsive height
-              /// Transaction Card
+              SizedBox(height: context.hPct(2.5)),
+
               Container(
                 padding: EdgeInsets.all(
                   context.wPct(3.5),
                 ), // Responsive padding
                 decoration: BoxDecoration(
-                  color: AppColors
-                      .darkCharcoal, // Using AppColors instead of hardcoded value
+                  color: AppColors.darkCharcoal,
                   borderRadius: BorderRadius.circular(context.wPct(3.5)),
                   border: Border.all(
                     color: AppColors.coralRed,
