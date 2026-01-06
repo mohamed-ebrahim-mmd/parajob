@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/profile/balance/balance_controller.dart';
-import 'package:para_job/features/profile/balance/balance_tab_enum.dart';
 import 'package:para_job/features/profile/balance/widgets/balance_history_widget.dart';
 import 'package:para_job/features/profile/balance/widgets/item_tap.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
@@ -27,7 +26,7 @@ class BalanceScreen extends StatelessWidget {
       ),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.all(context.wPct(1.25)),
+          padding: EdgeInsets.all(context.defaultPadding),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [

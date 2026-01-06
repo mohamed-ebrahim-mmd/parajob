@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
-import 'package:para_job/features/profile/balance/widgets/balance_history_widget.dart';
+import 'package:para_job/features/profile/balance/widgets/balance_history_item.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
@@ -77,7 +77,7 @@ Future<void> showDeductionDialog(BuildContext context) {
               context.hBox(2.5),
 
               /// Deduction card
-              TransactionItem(
+              BalanceHistoryItem(
                 logo: Icons.work,
                 title: 'Late Submission Penalty',
                 company: 'Company XYZ',
