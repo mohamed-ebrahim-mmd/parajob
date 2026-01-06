@@ -1,27 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'balance_tab_enum.dart';
 
 class BalanceController extends GetxController {
   // Variable to track the currently selected tab
-  final _selectedTab = 'Month'.obs;
-  String get selectedTab => _selectedTab.value;
+  final _selectedTab = BalanceTab.Month.obs;
+  BalanceTab get selectedTab => _selectedTab.value;
 
   // Function to update the selected tab
-  void updateSelectedTab(String tab) {
+  void updateSelectedTab(BalanceTab tab) {
     _selectedTab.value = tab;
   }
 
   // Helper function to get color based on selection
   Color getContainerColor() {
     switch (selectedTab) {
-      case 'Week':
+      case BalanceTab.Week:
         return Colors.yellow;
-      case 'Month':
+      case BalanceTab.Month:
         return Colors.green;
-      case 'Year':
+      case BalanceTab.Year:
         return Colors.red;
-      default:
-        return Colors.transparent;
     }
   }
 }

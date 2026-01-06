@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/profile/balance/balance_controller.dart';
+import 'package:para_job/features/profile/balance/balance_tab_enum.dart';
 import 'package:para_job/features/profile/balance/widgets/balance_alert_dialog.dart';
 import 'package:para_job/features/profile/balance/widgets/balance_history_widget.dart';
 import 'package:para_job/features/profile/balance/widgets/item_tap.dart';
@@ -72,24 +73,15 @@ class BalanceScreen extends StatelessWidget {
               Obx(
                 () => Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    TabItem(
-                      title: 'balance_tab_week'.tr,
-                      isSelected: _balanceController.selectedTab == 'Week',
-                      onTap: () => _balanceController.updateSelectedTab('Week'),
-                    ),
-                    TabItem(
-                      title: 'balance_tab_month'.tr,
-                      isSelected: _balanceController.selectedTab == 'Month',
-                      onTap: () =>
-                          _balanceController.updateSelectedTab('Month'),
-                    ),
-                    TabItem(
-                      title: 'balance_tab_year'.tr,
-                      isSelected: _balanceController.selectedTab == 'Year',
-                      onTap: () => _balanceController.updateSelectedTab('Year'),
-                    ),
-                  ],
+                  children: BalanceTab.values.map(
+                    (tab) {
+                      return TabItem(
+                        title: tab.displayName,
+                        isSelected: _balanceController.selectedTab == tab,
+                        onTap: () => _balanceController.updateSelectedTab(tab),
+                      );
+                    },
+                  ).toList(), // .map returns an Iterable, so convert it to a List
                 ),
               ),
 
