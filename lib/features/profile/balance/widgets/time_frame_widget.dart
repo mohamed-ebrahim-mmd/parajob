@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
-class TabItem extends StatelessWidget {
+class TimeFrameWidget extends StatelessWidget {
   final String title;
   final bool isSelected;
   final VoidCallback onTap;
 
-  const TabItem({
+  const TimeFrameWidget({
     super.key,
     required this.title,
     required this.isSelected,
