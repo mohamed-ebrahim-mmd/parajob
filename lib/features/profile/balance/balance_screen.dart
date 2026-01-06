@@ -3,7 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/profile/balance/balance_controller.dart';
 import 'package:para_job/features/profile/balance/balance_tab_enum.dart';
-import 'package:para_job/features/profile/balance/widgets/balance_alert_dialog.dart';
 import 'package:para_job/features/profile/balance/widgets/balance_history_widget.dart';
 import 'package:para_job/features/profile/balance/widgets/item_tap.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
@@ -111,15 +110,7 @@ class BalanceScreen extends StatelessWidget {
               context.hBox(2.5),
 
               // History Section
-              // History Section
-              Expanded(
-                child: GestureDetector(
-                  onTap: () {
-                    showDeductionDialog(context);
-                  },
-                  child: BalanceHistorySection(),
-                ),
-              ),
+              BalanceHistorySection(),
             ],
           ),
         ),

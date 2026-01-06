@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
+import 'package:para_job/features/profile/balance/widgets/balance_history_widget.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
@@ -76,90 +77,13 @@ Future<void> showDeductionDialog(BuildContext context) {
               context.hBox(2.5),
 
               /// Deduction card
-              Container(
-                padding: EdgeInsets.all(context.wPct(3.5)),
-                decoration: BoxDecoration(
-                  color: AppColors.darkCharcoal,
-                  borderRadius: BorderRadius.circular(context.wPct(3.5)),
-                  border: Border.all(
-                    color: AppColors.coralRed,
-                    width: context.wPct(0.4),
-                  ),
-                ),
-                child: Row(
-                  children: [
-                    /// Logo
-                    Container(
-                      width: context.wPct(11),
-                      height: context.wPct(11),
-                      decoration: BoxDecoration(
-                        color: AppColors.pureWhite,
-                        borderRadius: BorderRadius.circular(context.wPct(3)),
-                      ),
-                      child: Icon(Icons.music_note, color: AppColors.greenLeaf),
-                    ),
-
-                    context.wBox(3),
-
-                    /// Job Info
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Supervisor',
-                            style: TextStyle(
-                              color: AppColors.coralRed,
-                              fontWeight: FontWeight.bold,
-                              fontSize: context.wPct(3.8),
-                            ),
-                          ),
-                          context.hBox(1),
-                          Text(
-                            'Company Name',
-                            style: TextStyle(
-                              color: AppColors.coralRed,
-                              fontSize: context.wPct(3.2),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-
-                    /// Amount & Date
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        const Text(
-                          '- EGP 15000.00',
-                          style: TextStyle(
-                            color: AppColors.coralRed,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-
-                        context.hBox(1.5),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.calendar_today,
-                              size: context.wPct(2.5),
-                              color: AppColors.coralRed,
-                            ),
-                            context.wBox(1),
-                            Text(
-                              '20 Sep 2025',
-                              style: TextStyle(
-                                color: AppColors.coralRed,
-                                fontSize: context.wPct(2.5),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+              TransactionItem(
+                logo: Icons.work,
+                title: 'Late Submission Penalty',
+                company: 'Company XYZ',
+                amount: 150.00,
+                date: '12 June 2024',
+                isPositive: false,
               ),
             ],
           ),
