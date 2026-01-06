@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
@@ -69,21 +68,20 @@ class _TransactionItem extends StatelessWidget {
     required this.isPositive,
   });
 
-  /// Format amount with commas
-  String get formattedAmount {
-    final formatter = NumberFormat.currency(
-      locale: 'en',
-      symbol: 'EGP ',
-      decimalDigits: 2,
-    );
-    return formatter.format(amount);
-  }
+  /// Get border color based on transaction type
+  Color get borderColor =>
+      isPositive ? AppColors.silverGray : AppColors.coralRed;
+
+  /// Get amount text color based on transaction type
+  Color get amountColor =>
+      isPositive ? AppColors.silverGray : AppColors.coralRed;
+
+  /// Get title text color based on transaction type
+  Color get titleColor =>
+      isPositive ? AppColors.silverGray : AppColors.coralRed;
 
   @override
   Widget build(BuildContext context) {
-    final borderColor = isPositive ? AppColors.silverGray : Colors.redAccent;
-    final amountColor = isPositive ? AppColors.silverGray : Colors.redAccent;
-
     return Container(
       margin: EdgeInsets.symmetric(
         vertical: context.hPct(1),
@@ -115,33 +113,25 @@ class _TransactionItem extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Tooltip(
-                  message: '$title at $company',
-                  child: Text(
-                    '$title at',
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      color: isPositive
-                          ? AppColors.silverGray
-                          : Colors.redAccent,
-                      fontWeight: FontWeight.bold,
-                      fontSize: context.wPct(4),
-                    ),
+                Text(
+                  '$title at',
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: titleColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: context.wPct(4),
                   ),
                 ),
                 context.hBox(0.5),
-                Tooltip(
-                  message: company,
-                  child: Text(
-                    company,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      color: AppColors.silverGray,
-                      fontSize: context.wPct(3.5),
-                      fontWeight: FontWeight.bold,
-                    ),
+                Text(
+                  company,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: AppColors.silverGray,
+                    fontSize: context.wPct(3.5),
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ],
@@ -154,18 +144,15 @@ class _TransactionItem extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Tooltip(
-                  message: '${isPositive ? '+' : '-'} $formattedAmount',
-                  child: Text(
-                    '${isPositive ? '+' : '-'} $formattedAmount',
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    softWrap: false,
-                    style: TextStyle(
-                      color: amountColor,
-                      fontWeight: FontWeight.bold,
-                      fontSize: context.wPct(4.25),
-                    ),
+                Text(
+                  '${isPositive ? '+' : '-'} EGP $amount',
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  softWrap: false,
+                  style: TextStyle(
+                    color: amountColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: context.wPct(4.25),
                   ),
                 ),
                 context.hBox(0.75),
