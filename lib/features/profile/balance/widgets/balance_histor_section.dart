@@ -7,15 +7,14 @@ import 'package:para_job/features/profile/balance/widgets/balance_history_item.d
 /// Dummy data model for transaction items
 
 class BalanceHistorySection extends StatelessWidget {
-  const BalanceHistorySection({super.key});
+  final controller = Get.find<BalanceController>();
+
+   BalanceHistorySection({super.key});
 
   @override
   Widget build(BuildContext context) {
     //get put
-    final controller = Get.find<BalanceController>();
-
     final transactions = controller.dummyTransactions(context);
-
     return Expanded(
       child: ListView.builder(
         itemCount: transactions.length,
