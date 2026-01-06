@@ -108,7 +108,7 @@ class _TransactionItem extends StatelessWidget {
             child: Icon(logo, color: AppColors.pureWhite),
           ),
 
-          SizedBox(width: context.wPct(3)),
+          context.wBox(3),
 
           /// Job Info
           Expanded(
@@ -130,7 +130,7 @@ class _TransactionItem extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: context.hPct(0.5)),
+                context.hBox(0.5),
                 Tooltip(
                   message: company,
                   child: Text(
@@ -168,7 +168,7 @@ class _TransactionItem extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: context.hPct(0.75)),
+                context.hBox(0.75),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [

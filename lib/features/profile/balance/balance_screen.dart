@@ -38,7 +38,7 @@ class BalanceScreen extends StatelessWidget {
                   height: context.hPct(12.5),
                 ),
               ),
-              SizedBox(height: context.hPct(2.5)),
+              context.hBox(2.5),
               Text(
                 'balance_your_balance'.tr,
                 style: TextStyle(
@@ -67,7 +67,7 @@ class BalanceScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: context.hPct(2.5)),
+              context.hBox(2.5),
 
               // Tab Row wrapped in Obx
               Obx(
@@ -85,7 +85,7 @@ class BalanceScreen extends StatelessWidget {
                 ),
               ),
 
-              SizedBox(height: context.hPct(2.5)),
+              context.hBox(2.5),
 
               // Dynamic Colored Container wrapped in Obx
               Obx(
@@ -108,7 +108,7 @@ class BalanceScreen extends StatelessWidget {
                 ),
               ),
 
-              SizedBox(height: context.hPct(2.5)),
+              context.hBox(2.5),
 
               // History Section
               // History Section

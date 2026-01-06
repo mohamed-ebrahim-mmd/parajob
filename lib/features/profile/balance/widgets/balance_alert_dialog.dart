@@ -25,7 +25,7 @@ Future<void> showDeductionDialog(BuildContext context) {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SizedBox(width: context.wPct(6)),
+                  context.wBox(6),
                   Text(
                     'Deduction'.tr,
                     style: TextStyle(
@@ -42,7 +42,7 @@ Future<void> showDeductionDialog(BuildContext context) {
                 ],
               ),
 
-              SizedBox(height: context.hPct(2.5)),
+              context.hBox(2.5),
 
               /// Message
               RichText(
@@ -73,7 +73,7 @@ Future<void> showDeductionDialog(BuildContext context) {
                 ),
               ),
 
-              SizedBox(height: context.hPct(2.5)),
+              context.hBox(2.5),
 
               /// Deduction card
               Container(
@@ -99,7 +99,7 @@ Future<void> showDeductionDialog(BuildContext context) {
                       child: Icon(Icons.music_note, color: AppColors.greenLeaf),
                     ),
 
-                    SizedBox(width: context.wPct(3)),
+                    context.wBox(3),
 
                     /// Job Info
                     Expanded(
@@ -114,7 +114,7 @@ Future<void> showDeductionDialog(BuildContext context) {
                               fontSize: context.wPct(3.8),
                             ),
                           ),
-                          SizedBox(height: context.hPct(1)),
+                          context.hBox(1),
                           Text(
                             'Company Name',
                             style: TextStyle(
@@ -137,7 +137,8 @@ Future<void> showDeductionDialog(BuildContext context) {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(height: context.hPct(1.5)),
+
+                        context.hBox(1.5),
                         Row(
                           children: [
                             Icon(
@@ -145,7 +146,7 @@ Future<void> showDeductionDialog(BuildContext context) {
                               size: context.wPct(2.5),
                               color: AppColors.coralRed,
                             ),
-                            SizedBox(width: context.wPct(1)),
+                            context.wBox(1),
                             Text(
                               '20 Sep 2025',
                               style: TextStyle(
