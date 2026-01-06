@@ -865,15 +865,13 @@ to connect with you.
   "onsite": "Onsite",
   "meeting_link": "Meeting Link",
   "meeting_location": "Location Link",
-
   // ============================================================
-  // 💰 Balance Alert Dialog
+  //  balance screen
   // ============================================================
-  "deduction_title": "DEDUCTION!",
-  "deduction_description":
-      "has been deducted from your paycheck as a result for",
-  "being_late": "being late.",
-  "supervisor_at": "Supervisor at",
-  "company_name": "Spotify",
-  "date_placeholder": "9 March",
+  "balance_your_balance": "Your balance",
+  "balance_currency": "EGP ",
+  "balance_tab_week": "Week",
+  "balance_tab_month": "Month",
+  "balance_tab_year": "Year",
+  "Deduction": "Deduction",
 };

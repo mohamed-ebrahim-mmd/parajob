@@ -60,7 +60,10 @@ class ProfileController extends GetxController {
     }
   }
 
-  Future<void> uploadFile(BuildContext context,{bool fromCamera = false}) async {
+  Future<void> uploadFile(
+    BuildContext context, {
+    bool fromCamera = false,
+  }) async {
     var file = await pickImageFile(fromCamera: fromCamera);
 
     // if no file is selected return
@@ -109,7 +112,6 @@ class ProfileController extends GetxController {
 
       if (response.isSuccess) {
         fetchProfileDetails();
-       
       } else {
         showSnackBarError(
           "failed_title".tr,
@@ -196,5 +198,10 @@ class ProfileController extends GetxController {
   bool jobIsInSavedJobs(int id) {
     final savedJobs = profileData?.savedJobs ?? [];
     return savedJobs.any((job) => job.id == id);
+  }
+
+  //navigate to balance screen
+  void navigateToBalanceScreen() {
+    Get.toNamed('${Routes.mainNavigator}${Routes.balance}');
   }
 }

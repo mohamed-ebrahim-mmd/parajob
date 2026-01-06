@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
+import 'package:para_job/packages/themeing/media_query_values.dart';
 
 class TabItem extends StatelessWidget {
   final String title;
   final bool isSelected;
-  final VoidCallback onTap; // Add callback to handle clicks
+  final VoidCallback onTap;
 
   const TabItem({
     super.key,
@@ -16,21 +17,23 @@ class TabItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap, // Handle the tap here
+      onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12),
+        padding: EdgeInsets.symmetric(horizontal: context.wPct(3)),
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          padding: EdgeInsets.symmetric(
+            horizontal: context.wPct(4),
+            vertical: context.hPct(1),
+          ),
           decoration: BoxDecoration(
-            // Use the dark color if selected, otherwise transparent
-            color: isSelected ? const Color(0xFF2A2F36) : Colors.transparent,
-            borderRadius: BorderRadius.circular(20),
+            color: isSelected ? AppColors.darkGray : Colors.transparent,
+            borderRadius: BorderRadius.circular(context.wPct(5)),
           ),
           child: Text(
             title,
             style: TextStyle(
               color: isSelected ? Colors.white : AppColors.silverGray,
-              fontSize: 16,
+              fontSize: context.wPct(4),
               fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
             ),
           ),

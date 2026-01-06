@@ -850,14 +850,13 @@ const Map<String, String> arSA = {
   "onsite": "في الموقع",
   "meeting_link": "رابط المقابلة",
   "meeting_location": "رابط الموقع",
-
   // ============================================================
-  // 💰 Balance Alert Dialog
+  // balance screen
   // ============================================================
-  "deduction_title": "خصم!",
-  "deduction_description": "تم خصمه من راتبك نتيجة",
-  "being_late": "التأخير.",
-  "supervisor_at": "مشرف في",
-  "company_name": "سبوتيفاي",
-  "date_placeholder": "9 مارس",
+  "balance_your_balance": "رصيدك",
+  "balance_currency": "جنيه ",
+  "balance_tab_week": "أسبوع",
+  "balance_tab_month": "شهر",
+  "balance_tab_year": "سنة",
+  "Deduction": "خصم",
 };

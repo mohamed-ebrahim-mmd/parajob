@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
@@ -8,7 +8,6 @@ Future<void> showDeductionDialog(BuildContext context) {
     context: context,
     barrierDismissible: true,
     builder: (context) {
-      // Using context extension for responsive values
       double basePadding = context.defaultPadding;
 
       return Dialog(
@@ -28,7 +27,7 @@ Future<void> showDeductionDialog(BuildContext context) {
                 children: [
                   SizedBox(width: context.wPct(6)),
                   Text(
-                    'deduction_title'.tr,
+                    'Deduction'.tr,
                     style: TextStyle(
                       color: AppColors.pureWhite,
                       fontSize: context.wPct(6.4),
@@ -43,7 +42,8 @@ Future<void> showDeductionDialog(BuildContext context) {
                 ],
               ),
 
-              SizedBox(height: context.hPct(2.5)), // Responsive height
+              SizedBox(height: context.hPct(2.5)),
+
               /// Message
               RichText(
                 textAlign: TextAlign.center,
@@ -51,8 +51,8 @@ Future<void> showDeductionDialog(BuildContext context) {
                   style: TextStyle(
                     color: AppColors.lightSilverGray,
                     fontSize: context.wPct(5),
-                  ), // Responsive font size
-                  children: [
+                  ),
+                  children: const [
                     TextSpan(text: 'EGP '),
                     TextSpan(
                       text: '150.00',
@@ -61,9 +61,9 @@ Future<void> showDeductionDialog(BuildContext context) {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    TextSpan(text: ' ${'deduction_description'.tr} '),
+                    TextSpan(text: ' will be deducted due to '),
                     TextSpan(
-                      text: 'being_late'.tr,
+                      text: 'being late',
                       style: TextStyle(
                         color: AppColors.pureWhite,
                         fontWeight: FontWeight.bold,
@@ -75,10 +75,9 @@ Future<void> showDeductionDialog(BuildContext context) {
 
               SizedBox(height: context.hPct(2.5)),
 
+              /// Deduction card
               Container(
-                padding: EdgeInsets.all(
-                  context.wPct(3.5),
-                ), // Responsive padding
+                padding: EdgeInsets.all(context.wPct(3.5)),
                 decoration: BoxDecoration(
                   color: AppColors.darkCharcoal,
                   borderRadius: BorderRadius.circular(context.wPct(3.5)),
@@ -91,8 +90,8 @@ Future<void> showDeductionDialog(BuildContext context) {
                   children: [
                     /// Logo
                     Container(
-                      width: context.wPct(11), // Responsive width
-                      height: context.wPct(11), // Responsive height
+                      width: context.wPct(11),
+                      height: context.wPct(11),
                       decoration: BoxDecoration(
                         color: AppColors.pureWhite,
                         borderRadius: BorderRadius.circular(context.wPct(3)),
@@ -100,14 +99,15 @@ Future<void> showDeductionDialog(BuildContext context) {
                       child: Icon(Icons.music_note, color: AppColors.greenLeaf),
                     ),
 
-                    SizedBox(width: context.wPct(3)), // Responsive width
+                    SizedBox(width: context.wPct(3)),
+
                     /// Job Info
                     Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'supervisor_at'.tr, // Localized text
+                            'Supervisor',
                             style: TextStyle(
                               color: AppColors.coralRed,
                               fontWeight: FontWeight.bold,
@@ -116,7 +116,7 @@ Future<void> showDeductionDialog(BuildContext context) {
                           ),
                           SizedBox(height: context.hPct(1)),
                           Text(
-                            'company_name'.tr, // Localized text
+                            'Company Name',
                             style: TextStyle(
                               color: AppColors.coralRed,
                               fontSize: context.wPct(3.2),
@@ -130,8 +130,8 @@ Future<void> showDeductionDialog(BuildContext context) {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        Text(
-                          '- EGP 150.00',
+                        const Text(
+                          '- EGP 15000.00',
                           style: TextStyle(
                             color: AppColors.coralRed,
                             fontWeight: FontWeight.bold,
@@ -147,7 +147,7 @@ Future<void> showDeductionDialog(BuildContext context) {
                             ),
                             SizedBox(width: context.wPct(1)),
                             Text(
-                              'date_placeholder'.tr,
+                              '20 Sep 2025',
                               style: TextStyle(
                                 color: AppColors.coralRed,
                                 fontSize: context.wPct(2.5),

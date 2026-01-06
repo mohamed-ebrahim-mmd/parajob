@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:para_job/packages/themeing/media_query_values.dart';
-
 import 'package:para_job/features/profile/balance/balance_controller.dart';
 import 'package:para_job/features/profile/balance/widgets/balance_alert_dialog.dart';
 import 'package:para_job/features/profile/balance/widgets/balance_history_widget.dart';
 import 'package:para_job/features/profile/balance/widgets/item_tap.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
+import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/res/app_asset_paths.dart';
 
 class BalanceScreen extends StatelessWidget {
@@ -40,7 +39,7 @@ class BalanceScreen extends StatelessWidget {
               ),
               SizedBox(height: context.hPct(2.5)),
               Text(
-                'Your balance',
+                'balance_your_balance'.tr,
                 style: TextStyle(
                   color: AppColors.silverGray,
                   fontSize: context.wPct(4.5),
@@ -50,7 +49,7 @@ class BalanceScreen extends StatelessWidget {
                 text: TextSpan(
                   children: [
                     TextSpan(
-                      text: 'EGP ',
+                      text: 'balance_currency'.tr,
                       style: TextStyle(
                         color: AppColors.silverGray,
                         fontSize: context.wPct(5),
@@ -75,18 +74,18 @@ class BalanceScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     TabItem(
-                      title: 'Week',
+                      title: 'balance_tab_week'.tr,
                       isSelected: _balanceController.selectedTab == 'Week',
                       onTap: () => _balanceController.updateSelectedTab('Week'),
                     ),
                     TabItem(
-                      title: 'Month',
+                      title: 'balance_tab_month'.tr,
                       isSelected: _balanceController.selectedTab == 'Month',
                       onTap: () =>
                           _balanceController.updateSelectedTab('Month'),
                     ),
                     TabItem(
-                      title: 'Year',
+                      title: 'balance_tab_year'.tr,
                       isSelected: _balanceController.selectedTab == 'Year',
                       onTap: () => _balanceController.updateSelectedTab('Year'),
                     ),

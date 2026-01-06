@@ -25,18 +25,18 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leadingWidth: 40,
-        leading: GestureDetector(
-          onTap: () {
-            //navigate to balance screen
-
-            Get.toNamed(Routes.balance);
-          },
-          child: Padding(
-            padding: const EdgeInsets.only(left: 10.0),
+        leadingWidth: context.wPct(12),
+        leading: Padding(
+          padding: EdgeInsets.only(left: context.wPct(4)),
+          child: GestureDetector(
+            onTap: () {
+              // Navigate to balance screen
+              controller.navigateToBalanceScreen();
+            },
             child: SvgPicture.asset(AppAssetPaths.balanceCoinIcon),
           ),
         ),
+
         surfaceTintColor: AppColors.charcoalBlack,
         actions: [
           Obx(() {
