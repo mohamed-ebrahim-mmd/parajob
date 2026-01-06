@@ -41,9 +41,7 @@ class BalanceHistoryItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      behavior: onTap != null
-          ? HitTestBehavior.opaque
-          : HitTestBehavior.deferToChild,
+
       child: Container(
         margin: EdgeInsets.symmetric(vertical: context.hPct(1)),
         padding: EdgeInsets.all(context.wPct(3.5)),
