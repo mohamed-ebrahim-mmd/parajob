@@ -3,7 +3,6 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:para_job/features/profile/balance/balance_controller.dart';
 import 'package:para_job/features/profile/balance/widgets/balance_history_item.dart';
-import 'package:para_job/packages/themeing/media_query_values.dart';
 
 /// Dummy data model for transaction items
 
@@ -19,7 +18,6 @@ class BalanceHistorySection extends StatelessWidget {
 
     return Expanded(
       child: ListView.builder(
-        padding: EdgeInsets.all(context.wPct(3)),
         itemCount: transactions.length,
         itemBuilder: (context, index) {
           final item = transactions[index];

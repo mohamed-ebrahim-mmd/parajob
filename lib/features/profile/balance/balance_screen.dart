@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/profile/balance/balance_controller.dart';
-import 'package:para_job/features/profile/balance/widgets/balance_history_widget.dart';
-import 'package:para_job/features/profile/balance/widgets/time_frame_widget.dart';
+import 'package:para_job/features/profile/balance/widgets/balance_histor_section.dart';
+import 'package:para_job/features/profile/balance/widgets/time_frame.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/res/app_asset_paths.dart';
@@ -73,7 +73,7 @@ class BalanceScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: BalanceTab.values.map(
                     (tab) {
-                      return TimeFrameWidget(
+                      return TimeFrame(
                         title: tab.displayName,
                         isSelected: _balanceController.selectedTab == tab,
                         onTap: () => _balanceController.updateSelectedTab(tab),

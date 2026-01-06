@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
-class TimeFrameWidget extends StatelessWidget {
+class TimeFrame extends StatelessWidget {
   final String title;
   final bool isSelected;
   final VoidCallback onTap;
 
-  const TimeFrameWidget({
+  const TimeFrame({
     super.key,
     required this.title,
     required this.isSelected,
@@ -32,7 +32,7 @@ class TimeFrameWidget extends StatelessWidget {
           child: Text(
             title,
             style: TextStyle(
-              color: isSelected ? Colors.white : AppColors.silverGray,
+              color: isSelected ? AppColors.pureWhite : AppColors.silverGray,
               fontSize: context.wPct(4),
               fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
             ),
