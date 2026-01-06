@@ -3,6 +3,7 @@
  ==================================================================
 */
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/profile/user_profile/profile_controller.dart';
 import 'package:para_job/features/profile/widgets/job_history_list.dart';
@@ -13,6 +14,7 @@ import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/packages/ui_components/error_screen.dart';
+import 'package:para_job/res/app_asset_paths.dart';
 
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({super.key});
@@ -23,6 +25,18 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leadingWidth: context.wPct(12),
+        leading: Padding(
+          padding: EdgeInsets.only(left: context.wPct(4)),
+          child: GestureDetector(
+            onTap: () {
+              // Navigate to balance screen
+              controller.navigateToBalanceScreen();
+            },
+            child: SvgPicture.asset(AppAssetPaths.balanceCoinIcon),
+          ),
+        ),
+
         surfaceTintColor: AppColors.charcoalBlack,
         actions: [
           Obx(() {

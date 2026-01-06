@@ -865,4 +865,13 @@ to connect with you.
   "onsite": "Onsite",
   "meeting_link": "Meeting Link",
   "meeting_location": "Location Link",
+  // ============================================================
+  //  balance screen
+  // ============================================================
+  "balance_your_balance": "Your balance",
+  "balance_currency": "EGP ",
+  "balance_tab_week": "Week",
+  "balance_tab_month": "Month",
+  "balance_tab_year": "Year",
+  "Deduction": "Deduction",
 };

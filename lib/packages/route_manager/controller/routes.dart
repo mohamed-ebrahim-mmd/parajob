@@ -14,7 +14,6 @@ import 'package:para_job/features/employer/employer_screen.dart';
 import 'package:para_job/features/employer/reviews/employer_reviews_screen.dart';
 import 'package:para_job/features/home/jobs/jobs_screen.dart';
 import 'package:para_job/features/home/search_job/search_job_screen.dart';
-import 'package:para_job/features/my_notifications/interview/interview_screen.dart';
 import 'package:para_job/features/job_details/apply_job/apply_job_screen.dart';
 import 'package:para_job/features/job_details/complaint/company_complaint/company_complaint_screen.dart';
 import 'package:para_job/features/job_details/complaint/job_complaint/job_complaint_screen.dart';
@@ -22,10 +21,12 @@ import 'package:para_job/features/job_details/job_details_screen.dart';
 import 'package:para_job/features/main_navigator/main_navigator_screen.dart';
 import 'package:para_job/features/my_jobs/application_verification_otp/application_verification_otp_screen.dart';
 import 'package:para_job/features/my_jobs/contract/contract_screen.dart';
+import 'package:para_job/features/my_notifications/interview/interview_screen.dart';
 import 'package:para_job/features/my_notifications/strike/notification_strike_screen.dart';
 import 'package:para_job/features/onboarding/onboarding_screen.dart';
 import 'package:para_job/features/profile/about_app/about_app_screen.dart';
 import 'package:para_job/features/profile/about_us/about_us_screen.dart';
+import 'package:para_job/features/profile/balance/balance_screen.dart';
 import 'package:para_job/features/profile/bookmarked_jobs.dart/book_marked_jobs_screen.dart';
 import 'package:para_job/features/profile/change_pass/change_pass_otp/change_pass_otp_screen.dart';
 import 'package:para_job/features/profile/change_pass/change_password/change_password_screen.dart';
@@ -107,6 +108,7 @@ class Routes {
 
   static const String changePassOtp = '/change-pass-otp';
   static const String changePassword = '/change-password';
+  static const String balance = '/balance';
 
   static const String languageScreen = '/language-screen';
   static const String notificationStrikeScreen = '/notification-strike-screen';
@@ -414,6 +416,7 @@ class AppPages {
           ),
         ),
         GetPage(name: Routes.historyJobs, page: () => HistoryJobsScreen()),
+        GetPage(name: Routes.balance, page: () => BalanceScreen()),
 
         GetPage(
           name: Routes.more,

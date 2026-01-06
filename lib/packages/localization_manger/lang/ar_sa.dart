@@ -850,4 +850,13 @@ const Map<String, String> arSA = {
   "onsite": "في الموقع",
   "meeting_link": "رابط المقابلة",
   "meeting_location": "رابط الموقع",
+  // ============================================================
+  // balance screen
+  // ============================================================
+  "balance_your_balance": "رصيدك",
+  "balance_currency": "جنيه ",
+  "balance_tab_week": "أسبوع",
+  "balance_tab_month": "شهر",
+  "balance_tab_year": "سنة",
+  "Deduction": "خصم",
 };
