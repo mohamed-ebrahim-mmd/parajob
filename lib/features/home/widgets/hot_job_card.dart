@@ -25,10 +25,23 @@ class HotJobCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: context.wPct(65),
+      margin: EdgeInsets.only(
+        left: context.wPct(1),
+        bottom: context.hPct(1),
+        top: context.hPct(1),
+      ),
 
       decoration: BoxDecoration(
         color: const Color(0xFF122A2B),
         borderRadius: BorderRadius.circular(context.wPct(4)),
+
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.aquaTeal, // shadow color
+            spreadRadius: 1.5,
+            blurRadius: 2,
+          ),
+        ],
       ),
 
       child: Column(
