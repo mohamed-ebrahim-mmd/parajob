@@ -35,19 +35,25 @@ class AuthChoiceScreen extends StatelessWidget {
         child: SafeArea(
           child: SingleChildScrollView(
             child: Column(
-              // mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
+                context.hBox(3),
                 Row(
                   textDirection: TextDirection.ltr,
+
                   children: [
                     TextButton(
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                        minimumSize: Size.zero,
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      ),
                       onPressed: () {
                         localizationController.changeLanguageForAuth(
                           const Locale('en'),
                         );
                       },
                       child: Text(
-                        'en',
+                        'EN',
                         style: TextStyle(
                           color: localizationController.isEnglish
                               ? AppColors.aquaTeal
@@ -56,15 +62,21 @@ class AuthChoiceScreen extends StatelessWidget {
                         ),
                       ),
                     ),
+                    context.wBox(4),
 
                     TextButton(
+                      style: TextButton.styleFrom(
+                        padding: EdgeInsets.zero,
+                        minimumSize: Size.zero,
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      ),
                       onPressed: () {
                         localizationController.changeLanguageForAuth(
                           const Locale('ar'),
                         );
                       },
                       child: Text(
-                        'ar',
+                        'AR',
                         style: TextStyle(
                           color: !localizationController.isEnglish
                               ? AppColors.aquaTeal
@@ -82,7 +94,7 @@ class AuthChoiceScreen extends StatelessWidget {
                   child: RichText(
                     textAlign: TextAlign.center,
                     text: TextSpan(
-                      text: 'PARA\t',
+                      text: 'PARA',
                       style: TextStyle(
                         color: AppColors.pureWhite,
                         fontSize: context.wPct(10),
@@ -91,7 +103,7 @@ class AuthChoiceScreen extends StatelessWidget {
                       children: [
                         TextSpan(
                           text: 'JOB',
-                          style: TextStyle(fontWeight: FontWeight.w700),
+                          style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
