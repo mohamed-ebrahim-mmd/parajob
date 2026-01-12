@@ -212,7 +212,7 @@ class CreateAccountScreen extends StatelessWidget {
                       enableSearch: true,
                       expandedInsets: EdgeInsets.zero,
                       menuHeight: context.hPct(30),
-                      hintText: 'create_account_city_hint'.tr,
+                      hintText: 'create_account_area_hint'.tr,
                       errorText: controller.areaError.value,
                       initialSelection: controller.selectedAreaId,
                       onSelected: (value) {
