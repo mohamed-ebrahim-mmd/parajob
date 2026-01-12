@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/home/home_screen.dart';
@@ -28,13 +29,26 @@ class MainNavigatorController extends GetxController {
   late final List<Widget> pages;
 
   @override
-  void onInit() {
+  Future<void> onInit() async {
     super.onInit();
     if (userController.isGuest) {
       isBlockedCallState.value = ApiCallState.success;
       initPages();
     } else {
       fetchBlockStatus();
+    }
+    await checkInitialMessage();
+  }
+
+  Future<void> checkInitialMessage() async {
+    // Get the message that caused the app to open from a terminated state
+    RemoteMessage? initialMessage = await FirebaseMessaging.instance
+        .getInitialMessage();
+
+    if (initialMessage != null && !userController.isGuest) {
+      // If the user is a guest, they  not be allowed to see notifications tab
+      // So we check authentication status before switching
+      tab.value = 2;
     }
   }
 

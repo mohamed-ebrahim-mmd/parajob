@@ -100,6 +100,7 @@ class EmailLoginController extends GetxController {
   Future<bool> _sendDeviceTokenToBackend(String userToken) async {
     try {
       String? deviceToken = await FirebaseMessaging.instance.getToken();
+      log("🟢 firebase token  ${deviceToken}");
 
       final request = NotificationTokenRequest(deviceToken: deviceToken ?? "-");
 
