@@ -84,7 +84,7 @@ class HotJobsMiniList extends StatelessWidget {
             children: jobs.map((job) {
               return Padding(
                 padding: EdgeInsets.only(
-                  right: context.wPct(2),
+                  right: context.wPct(4),
                 ), // spacing between items
                 child: HotJobCard(
                   job: job,
