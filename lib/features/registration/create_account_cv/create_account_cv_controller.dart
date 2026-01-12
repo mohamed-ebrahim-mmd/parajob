@@ -60,7 +60,7 @@ class CreateAccountCvController extends GetxController {
 
       // --- Convert each to MultipartFile ---
       final files = await Future.wait([
-        _toMultipart(frontFile),
+        _toMultipart(frontFile.value!),
         _toMultipart(backFile),
         _toMultipart(idWithPicFile),
         _toMultipart(graduationFile),
@@ -81,7 +81,7 @@ class CreateAccountCvController extends GetxController {
         );
       } else {
         showSnackBarError(
-           "upload_failed".tr,
+          "upload_failed".tr,
           filesResponse.details?.message ?? "upload_error".tr,
         );
       }
@@ -127,14 +127,13 @@ class CreateAccountCvController extends GetxController {
 
       if (response.isSuccess) {
         showSnackBarSuccess(
-           "profile_updated".tr,
-          response.details.message ??
-              "upload_success".tr,
+          "profile_updated".tr,
+          response.details.message ?? "upload_success".tr,
         );
         Get.until((route) => Get.currentRoute == Routes.authChoice);
       } else {
         showSnackBarError(
-           "update_failed".tr,
+          "update_failed".tr,
           response.details.message ?? "update_error".tr,
         );
       }
