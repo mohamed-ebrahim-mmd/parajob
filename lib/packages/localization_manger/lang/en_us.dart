@@ -346,6 +346,7 @@ const Map<String, String> enUS = {
   // ============================================================
   'edit_main_info_loading_cities': 'Loading cities...',
   'edit_main_info_city_hint': 'Choose your city',
+  'edit_main_info_area_hint': 'Choose your area',
   'edit_main_info_failed_load_cities': 'Failed to load, tap to retry',
   'edit_main_info_loading_areas': 'Loading areas...',
   'edit_main_info_failed_load_areas': 'Failed to load areas, tap to retry',

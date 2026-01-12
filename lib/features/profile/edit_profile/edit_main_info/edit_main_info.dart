@@ -138,7 +138,7 @@ class EditMainInfo extends StatelessWidget {
                       enableSearch: true,
                       expandedInsets: EdgeInsets.zero,
                       menuHeight: context.hPct(30),
-                      hintText: 'edit_main_info_city_hint'.tr,
+                      hintText: 'edit_main_info_area_hint'.tr,
                       initialSelection: controller.selectedAreaId,
                       onSelected: (value) {
                         if (value != null) {
