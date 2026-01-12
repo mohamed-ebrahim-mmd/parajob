@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -24,7 +25,7 @@ void main() async {
   await initializeDateFormatting('ar', null);
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  await subscribeToGeneralTopic();
+  FirebaseMessaging.instance.getInitialMessage();
   runApp(ParaJobApp());
 }
 
@@ -42,8 +43,9 @@ class _ParaJobAppState extends State<ParaJobApp> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      requestNotificationPermission(); // runs after first frame
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await requestNotificationPermission(); // runs after first frame
+      await subscribeToGeneralTopic();
     });
   }
 
