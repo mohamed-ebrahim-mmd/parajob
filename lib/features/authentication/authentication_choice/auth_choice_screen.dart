@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/authentication/authentication_choice/auth_choice_util.dart';
+import 'package:para_job/packages/localization_manger/controller/localization_controller.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/route_manager/controller/routing_controller.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
@@ -15,8 +16,10 @@ import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/res/app_asset_paths.dart';
 
 class AuthChoiceScreen extends StatelessWidget {
-  const AuthChoiceScreen({super.key});
+  AuthChoiceScreen({super.key});
 
+  final LocalizationController localizationController =
+      Get.find<LocalizationController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,6 +37,44 @@ class AuthChoiceScreen extends StatelessWidget {
             child: Column(
               // mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
+                Row(
+                  textDirection: TextDirection.ltr,
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        localizationController.changeLanguageForAuth(
+                          const Locale('en'),
+                        );
+                      },
+                      child: Text(
+                        'en',
+                        style: TextStyle(
+                          color: localizationController.isEnglish
+                              ? AppColors.aquaTeal
+                              : AppColors.lightGray,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+
+                    TextButton(
+                      onPressed: () {
+                        localizationController.changeLanguageForAuth(
+                          const Locale('ar'),
+                        );
+                      },
+                      child: Text(
+                        'ar',
+                        style: TextStyle(
+                          color: !localizationController.isEnglish
+                              ? AppColors.aquaTeal
+                              : AppColors.lightGray,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
                 context.hBox(25),
 
                 Directionality(

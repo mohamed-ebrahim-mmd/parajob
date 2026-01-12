@@ -46,4 +46,13 @@ class LocalizationController extends GetxController {
     jobController.pagingAppliedController.refresh();
     jobController.pagingApprovedController.refresh();
   }
+
+  void changeLanguageForAuth(Locale? locale) {
+    if (locale == null) return;
+
+    _storedLanguage.val = locale.languageCode; // save language
+    dio.options.headers['Locale'] = locale.languageCode; // update dio header
+
+    Get.updateLocale(locale); // apply locale only
+  }
 }
