@@ -7,8 +7,6 @@ import 'package:para_job/packages/api_client/api_client.dart';
 import 'package:para_job/packages/functional_components/validation_utils.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart'
     show Routes;
-import 'package:para_job/packages/ui_components/show_snack_bar_message.dart'
-    show showSnackBarError;
 
 class CreateAccountController extends GetxController {
   final citiesCallState = ApiCallState.loading.obs;
@@ -18,12 +16,22 @@ class CreateAccountController extends GetxController {
   final nationalIdController = TextEditingController();
   final phoneController = TextEditingController();
   final emailController = TextEditingController();
+
+  var emailError = RxnString(null);
+  var nameError = RxnString(null);
+  var nationalIdError = RxnString(null);
+  var phoneError = RxnString(null);
+  var dateError = RxnString(null);
+  var areaError = RxnString(null);
+  var genderError = RxnString(null);
+  var cityError = RxnString(null);
+
   int? selectedAreaId;
   String? selectedGender;
   final selectedCityId = Rx<int?>(null);
   List<DropdownMenuEntry<int>> cityMenuEntries = [];
   List<DropdownMenuEntry<int>> areaMenuEntries = [];
-  final List<DropdownMenuEntry<String>> genderMenuEntries =  [
+  final List<DropdownMenuEntry<String>> genderMenuEntries = [
     DropdownMenuEntry(value: 'male', label: "male".tr),
     DropdownMenuEntry(value: 'female', label: 'female'.tr),
   ];
@@ -59,10 +67,8 @@ class CreateAccountController extends GetxController {
                   city.id != null && city.name != null && city.name!.isNotEmpty,
             )
             .map(
-              (city) => DropdownMenuEntry<int>(
-                value: city.id!,
-                label: city.name!,
-              ),
+              (city) =>
+                  DropdownMenuEntry<int>(value: city.id!, label: city.name!),
             )
             .toList();
 
@@ -95,8 +101,8 @@ class CreateAccountController extends GetxController {
       if (response.isSuccess) {
         areaMenuEntries = response.data
             .map(
-              (area) => DropdownMenuEntry<int>(
-                  value: area.id, label: area.name),
+              (area) =>
+                  DropdownMenuEntry<int>(value: area.id, label: area.name),
             )
             .toList();
         areasCallState.value = DataFetchState.success;
@@ -114,52 +120,30 @@ class CreateAccountController extends GetxController {
     final email = emailController.text.trim();
     final nationalId = nationalIdController.text.trim();
 
-    final nameError = validateName(name);
-    if (nameError != null) {
-      showSnackBarError("failed".tr, nameError);
-      return;
-    }
+    nameError.value = validateName(name);
 
-    if (selectedDate.value.isEmpty) {
-      showSnackBarError("failed".tr, "birth_date_required".tr);
-      return;
-    }
+    phoneError.value = validateEgyptianPhone(phone);
 
-    final phoneError = validateEgyptianPhone(phone);
-    if (phoneError != null) {
-      showSnackBarError("failed".tr, phoneError);
-      return;
-    }
+    emailError.value = validateEmail(email);
+    dateError.value = selectedDate.value.isEmpty
+        ? "birth_date_required".tr
+        : null;
+    nationalIdError.value = validateEgyptianNationalId(nationalId);
+    genderError.value = selectedGender == null ? "gender_required".tr : null;
+    cityError.value = selectedCityId.value == null ? "city_required".tr : null;
+    areaError.value = selectedAreaId == null ? "area_required".tr : null;
 
-    final emailError = validateEmail(email);
-    if (emailError != null) {
-      showSnackBarError("failed".tr, emailError);
-      return;
+    if (nameError.value == null &&
+        phoneError.value == null &&
+        emailError.value == null &&
+        nationalIdError.value == null &&
+        dateError.value == null &&
+        genderError.value == null &&
+        cityError.value == null &&
+        areaError.value == null) {
+      Get.put(CreateAccountOtpController(phone.trim()));
+      Get.toNamed("${Routes.createAccount}${Routes.createAccountOTP}");
     }
-
-    final idError = validateEgyptianNationalId(nationalId);
-    if (idError != null) {
-      showSnackBarError("failed".tr, idError);
-      return;
-    }
-
-    if (selectedGender == null) {
-      showSnackBarError("failed".tr, 'gender_required'.tr);
-      return;
-    }
-
-    if (selectedCityId.value == null) {
-      showSnackBarError("failed".tr, 'city_required'.tr);
-      return;
-    }
-
-    if (selectedAreaId == null) {
-      showSnackBarError("failed".tr, 'area_required'.tr);
-      return;
-    }
-
-    Get.put(CreateAccountOtpController(phone.trim()));
-    Get.toNamed("${Routes.createAccount}${Routes.createAccountOTP}");
   }
 
   @override

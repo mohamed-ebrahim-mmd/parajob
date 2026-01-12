@@ -56,14 +56,17 @@ class CreateAccountScreen extends StatelessWidget {
                 ),
               ),
               context.hBox(2.5),
-              TextField(
-                controller: controller.nameController,
-                decoration: InputDecoration(
-                  hintText: 'create_account_name_hint'.tr,
-                ),
-                keyboardType: TextInputType.name,
-                textInputAction: TextInputAction.next,
-              ),
+              Obx(() {
+                return TextField(
+                  controller: controller.nameController,
+                  decoration: InputDecoration(
+                    errorText: controller.nameError.value,
+                    hintText: 'create_account_name_hint'.tr,
+                  ),
+                  keyboardType: TextInputType.name,
+                  textInputAction: TextInputAction.next,
+                );
+              }),
               context.hBox(1.5),
               // Date of Birth TF
               Obx(() {
@@ -72,6 +75,7 @@ class CreateAccountScreen extends StatelessWidget {
                   readOnly: true,
                   controller: TextEditingController(text: textValue),
                   decoration: InputDecoration(
+                    errorText: controller.dateError.value,
                     hintText: textValue.isEmpty
                         ? 'create_account_dob_hint'.tr
                         : textValue,
@@ -81,43 +85,59 @@ class CreateAccountScreen extends StatelessWidget {
               }),
               context.hBox(1.5),
 
-              TextField(
-                controller: controller.phoneController,
-                decoration: InputDecoration(
-                  hintText: 'create_account_phone_hint'.tr,
-                ),
-                keyboardType: TextInputType.phone,
-                textInputAction: TextInputAction.next,
-              ),
+              Obx(() {
+                return TextField(
+                  controller: controller.phoneController,
+                  decoration: InputDecoration(
+                    errorText: controller.phoneError.value,
+
+                    hintText: 'create_account_phone_hint'.tr,
+                  ),
+                  keyboardType: TextInputType.phone,
+                  textInputAction: TextInputAction.next,
+                );
+              }),
               context.hBox(1.5),
               // Email Address TF
-              TextField(
-                controller: controller.emailController,
-                decoration: InputDecoration(
-                  hintText: 'create_account_email_hint'.tr,
-                ),
-                keyboardType: TextInputType.emailAddress,
-                textInputAction: TextInputAction.next,
-              ),
+              Obx(() {
+                return TextField(
+                  controller: controller.emailController,
+                  decoration: InputDecoration(
+                    errorText: controller.emailError.value,
+
+                    hintText: 'create_account_email_hint'.tr,
+                  ),
+                  keyboardType: TextInputType.emailAddress,
+                  textInputAction: TextInputAction.next,
+                );
+              }),
               context.hBox(1.5),
 
-              TextField(
-                controller: controller.nationalIdController,
-                decoration: InputDecoration(
-                  hintText: 'create_account_id_hint'.tr,
-                ),
-                keyboardType: TextInputType.number,
-                textInputAction: TextInputAction.next,
-              ),
+              Obx(() {
+                return TextField(
+                  controller: controller.nationalIdController,
+                  decoration: InputDecoration(
+                    errorText: controller.nationalIdError.value,
+
+                    hintText: 'create_account_id_hint'.tr,
+                  ),
+                  keyboardType: TextInputType.number,
+                  textInputAction: TextInputAction.next,
+                );
+              }),
               context.hBox(1.5),
-              DropdownMenu<String>(
-                enableSearch: true,
-                expandedInsets: EdgeInsets.zero,
-                hintText: 'create_account_gender_hint'.tr,
-                initialSelection: controller.selectedGender,
-                onSelected: controller.onGenderSelected,
-                dropdownMenuEntries: controller.genderMenuEntries,
-              ),
+              Obx(() {
+                return DropdownMenu<String>(
+                  enableSearch: true,
+                  expandedInsets: EdgeInsets.zero,
+                  errorText: controller.genderError.value,
+
+                  hintText: 'create_account_gender_hint'.tr,
+                  initialSelection: controller.selectedGender,
+                  onSelected: controller.onGenderSelected,
+                  dropdownMenuEntries: controller.genderMenuEntries,
+                );
+              }),
               context.hBox(2.5),
 
               Text(
@@ -149,6 +169,7 @@ class CreateAccountScreen extends StatelessWidget {
                       enableSearch: true,
                       expandedInsets: EdgeInsets.zero,
                       menuHeight: context.hPct(30),
+                      errorText: controller.cityError.value,
                       hintText: 'create_account_city_hint'.tr,
                       initialSelection: controller.selectedCityId.value,
                       onSelected: controller.onCitySelected,
@@ -192,6 +213,7 @@ class CreateAccountScreen extends StatelessWidget {
                       expandedInsets: EdgeInsets.zero,
                       menuHeight: context.hPct(30),
                       hintText: 'create_account_city_hint'.tr,
+                      errorText: controller.areaError.value,
                       initialSelection: controller.selectedAreaId,
                       onSelected: (value) {
                         if (value != null) {
