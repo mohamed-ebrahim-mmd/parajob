@@ -149,4 +149,38 @@ String? validateConfirmPassword(String password, String confirmPassword) {
   }
 
   return null; // No error, confirm password is valid
+
+
+
+  
 }
+
+
+String? validateBirthDate(String date) {
+  if (date.isEmpty) {
+    return "birth_date_required".tr;
+  }
+  return null;
+}
+
+String? validateGender(dynamic gender) {
+  if (gender == null) {
+    return "gender_required".tr;
+  }
+  return null;
+}
+
+String? validateCity(int? cityId) {
+  if (cityId == null) {
+    return "city_required".tr;
+  }
+  return null;
+}
+
+String? validateArea(int? areaId) {
+  if (areaId == null) {
+    return "area_required".tr;
+  }
+  return null;
+}
+
