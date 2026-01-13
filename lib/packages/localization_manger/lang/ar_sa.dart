@@ -507,7 +507,9 @@ const Map<String, String> arSA = {
   'validation_message_min_length': 'الرسالة يجب أن تكون 10 أحرف على الأقل',
   'validation_message_max_length': 'الرسالة طويلة جدًا. الحد الأقصى 100 حرف',
   'validation_password_empty': 'كلمة المرور لا يمكن أن تكون فارغة',
-  'validation_password_min_length': 'كلمة المرور يجب أن تكون 6 أحرف على الأقل',
+  'validation_password_min_length': 'كلمة المرور يجب أن تكون 8 أحرف على الأقل',
+  "validation_password_format":
+      "يجب أن تحتوي كلمة المرور على حرف كبير، وحرف صغير، ورمز خاص (#,@,!,%,&,*).",
   'validation_confirm_password_empty':
       'تأكيد كلمة المرور لا يمكن أن يكون فارغًا',
   'validation_confirm_password_mismatch': 'كلمات المرور غير متطابقة',
