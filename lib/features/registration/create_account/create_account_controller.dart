@@ -121,17 +121,13 @@ class CreateAccountController extends GetxController {
     final nationalId = nationalIdController.text.trim();
 
     nameError.value = validateName(name);
-
     phoneError.value = validateEgyptianPhone(phone);
-
     emailError.value = validateEmail(email);
-    dateError.value = selectedDate.value.isEmpty
-        ? "birth_date_required".tr
-        : null;
+    dateError.value = validateBirthDate(selectedDate.value);
     nationalIdError.value = validateEgyptianNationalId(nationalId);
-    genderError.value = selectedGender == null ? "gender_required".tr : null;
-    cityError.value = selectedCityId.value == null ? "city_required".tr : null;
-    areaError.value = selectedAreaId == null ? "area_required".tr : null;
+    genderError.value = validateGender(selectedGender);
+    cityError.value = validateCity(selectedCityId.value);
+    areaError.value = validateArea(selectedAreaId);
 
     if (nameError.value == null &&
         phoneError.value == null &&
