@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/authentication/authentication_choice/auth_choice_util.dart';
+import 'package:para_job/features/authentication/authentication_choice/widgets/language_switcher.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/route_manager/controller/routing_controller.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
@@ -32,8 +33,10 @@ class AuthChoiceScreen extends StatelessWidget {
         child: SafeArea(
           child: SingleChildScrollView(
             child: Column(
-              // mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
+                context.hBox(3),
+                LanguageSwitcher(),
+
                 context.hBox(25),
 
                 Directionality(
@@ -41,7 +44,7 @@ class AuthChoiceScreen extends StatelessWidget {
                   child: RichText(
                     textAlign: TextAlign.center,
                     text: TextSpan(
-                      text: 'PARA\t',
+                      text: 'PARA',
                       style: TextStyle(
                         color: AppColors.pureWhite,
                         fontSize: context.wPct(10),
@@ -50,7 +53,7 @@ class AuthChoiceScreen extends StatelessWidget {
                       children: [
                         TextSpan(
                           text: 'JOB',
-                          style: TextStyle(fontWeight: FontWeight.w700),
+                          style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
