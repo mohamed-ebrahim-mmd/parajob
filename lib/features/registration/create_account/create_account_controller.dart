@@ -137,9 +137,13 @@ class CreateAccountController extends GetxController {
         genderError.value == null &&
         cityError.value == null &&
         areaError.value == null) {
-      Get.put(CreateAccountOtpController(phone.trim()));
-      Get.toNamed("${Routes.createAccount}${Routes.createAccountOTP}");
+      proceedToOtpVerification(phone);
     }
+  }
+
+  void proceedToOtpVerification(String phone) {
+    Get.put(CreateAccountOtpController(phone.trim()));
+    Get.toNamed("${Routes.createAccount}${Routes.createAccountOTP}");
   }
 
   @override
