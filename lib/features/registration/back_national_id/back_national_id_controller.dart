@@ -9,18 +9,18 @@ import 'package:get/get.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 
 class BackNationalIdController extends GetxController {
-  File? backIdImage;
+  final Rx<File?> backIdImage = Rx<File?>(null);
 
   // Error message to show under the picker (nullable)
   var idError = RxnString(null);
 
   void setBackIdImage(File? value) {
-    backIdImage = value;
+    backIdImage.value = value;
   }
 
   /// Validate and navigate if file exists; otherwise show error text
   void validateAndContinue() {
-    if (backIdImage == null) {
+    if (backIdImage.value == null) {
       idError.value = "back_id_required".tr;
       return;
     }
@@ -31,4 +31,6 @@ class BackNationalIdController extends GetxController {
       "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}${Routes.createAccountBackID}${Routes.createAccountPicWithID}",
     );
   }
+
+  bool get isBackIdValid => backIdImage.value != null;
 }
