@@ -9,18 +9,18 @@ import 'package:get/get.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 
 class PictureWithIdController extends GetxController {
-  File? picWithIdImage;
+  Rx<File?> picWithIdImage = Rx<File?>(null);
 
   // error message to show under the picker (nullable)
   var picIdError = RxnString(null);
 
   void sePictureWithIdImage(File? value) {
-    picWithIdImage = value;
+    picWithIdImage.value = value;
   }
 
   /// Validate and navigate if file exists; otherwise show error text
   void validateAndContinue() {
-    if (picWithIdImage == null) {
+    if (picWithIdImage.value == null) {
       picIdError.value = "pic_with_id_required".tr;
       return;
     }
@@ -31,4 +31,6 @@ class PictureWithIdController extends GetxController {
       "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}${Routes.createAccountBackID}${Routes.createAccountPicWithID}${Routes.educationInfo}",
     );
   }
+
+  bool get isPictureWithIdValid => picWithIdImage.value != null;
 }

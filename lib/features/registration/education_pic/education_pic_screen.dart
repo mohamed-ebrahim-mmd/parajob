@@ -100,10 +100,14 @@ class EducationPicScreen extends StatelessWidget {
           horizontal: context.wPct(5),
           vertical: context.hPct(5),
         ),
-        child: FilledButton(
-          onPressed: controller.validateAndContinue,
-          child: Text('education_pic_confirm_button'.tr),
-        ),
+        child: Obx(() {
+          return FilledButton(
+            onPressed: controller.isEducationImageValid
+                ? controller.validateAndContinue
+                : null,
+            child: Text('education_pic_confirm_button'.tr),
+          );
+        }),
       ),
     );
   }

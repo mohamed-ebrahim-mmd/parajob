@@ -20,23 +20,25 @@ import 'package:para_job/packages/route_manager/controller/routes.dart'
 import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
 
 class CreateAccountCvController extends GetxController {
-  File? cvFile;
+  Rx<File?> cvFile = Rx<File?>(null);
 
   // error message to show under the picker (nullable)
   var cvFileError = RxnString(null);
 
   void setCvFile(File? value) {
-    cvFile = value;
+    cvFile.value = value;
   }
 
   void validateAndUpload() {
-    if (cvFile == null) {
+    if (cvFile.value == null) {
       cvFileError.value = "Please provide your CV to Confirm";
       return;
     }
     cvFileError.value = null;
     uploadAllFiles();
   }
+
+  bool get isCvFileValid => cvFile.value != null;
 
   Future<void> uploadAllFiles() async {
     try {
@@ -52,19 +54,19 @@ class CreateAccountCvController extends GetxController {
       );
 
       // --- Collect files from controllers ---
-      final frontFile = frontNationalIdController.frontIdImage!;
-      final backFile = Get.find<BackNationalIdController>().backIdImage!;
-      final idWithPicFile = Get.find<PictureWithIdController>().picWithIdImage!;
-      final graduationFile = Get.find<EducationPicController>().educationImage!;
-      final cvFileLocal = cvFile!;
+      final frontFile = frontNationalIdController.frontIdImage;
+      final backFile = Get.find<BackNationalIdController>().backIdImage;
+      final idWithPicFile = Get.find<PictureWithIdController>().picWithIdImage;
+      final graduationFile = Get.find<EducationPicController>().educationImage;
+      final cvFileLocal = cvFile;
 
       // --- Convert each to MultipartFile ---
       final files = await Future.wait([
-        _toMultipart(frontFile),
-        _toMultipart(backFile),
-        _toMultipart(idWithPicFile),
-        _toMultipart(graduationFile),
-        _toMultipart(cvFileLocal),
+        _toMultipart(frontFile.value!),
+        _toMultipart(backFile.value!),
+        _toMultipart(idWithPicFile.value!),
+        _toMultipart(graduationFile.value!),
+        _toMultipart(cvFileLocal.value!),
       ]);
 
       // --- Upload all at once ---
@@ -81,7 +83,7 @@ class CreateAccountCvController extends GetxController {
         );
       } else {
         showSnackBarError(
-           "upload_failed".tr,
+          "upload_failed".tr,
           filesResponse.details?.message ?? "upload_error".tr,
         );
       }
@@ -127,14 +129,13 @@ class CreateAccountCvController extends GetxController {
 
       if (response.isSuccess) {
         showSnackBarSuccess(
-           "profile_updated".tr,
-          response.details.message ??
-              "upload_success".tr,
+          "profile_updated".tr,
+          response.details.message ?? "upload_success".tr,
         );
         Get.until((route) => Get.currentRoute == Routes.authChoice);
       } else {
         showSnackBarError(
-           "update_failed".tr,
+          "update_failed".tr,
           response.details.message ?? "update_error".tr,
         );
       }

@@ -106,10 +106,14 @@ class BackNationalIdScreen extends StatelessWidget {
           horizontal: context.wPct(5),
           vertical: context.hPct(5),
         ),
-        child: FilledButton(
-          onPressed: controller.validateAndContinue,
-          child: Text('back_national_id_confirm_button'.tr),
-        ),
+        child: Obx(() {
+          return FilledButton(
+            onPressed: controller.isBackIdValid
+                ? controller.validateAndContinue
+                : null,
+            child: Text('back_national_id_confirm_button'.tr),
+          );
+        }),
       ),
     );
   }

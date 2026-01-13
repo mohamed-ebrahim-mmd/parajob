@@ -1,6 +1,3 @@
-
-
-
 /*
  Mohamed Ebrahim | mohamed7ebrahim7@gmail.com | 2025-10-29 2:15 PM
  ==================================================================
@@ -13,7 +10,7 @@ import 'package:para_job/packages/route_manager/controller/routes.dart';
 class FrontNationalIdController extends GetxController {
   final String tempToken;
 
-  File? frontIdImage;
+  Rx<File?> frontIdImage = Rx<File?>(null);
 
   // error message to show under the picker (nullable)
   var idError = RxnString(null);
@@ -21,22 +18,21 @@ class FrontNationalIdController extends GetxController {
   FrontNationalIdController({required this.tempToken});
 
   void setFrontIdImage(File? value) {
-    frontIdImage = value;
+    frontIdImage.value = value;
   }
 
   /// Validate and navigate if file exists; otherwise show error text
   void validateAndContinue() {
-    if (frontIdImage == null) {
+    if (frontIdImage.value == null) {
       idError.value = 'front_id_required'.tr;
       return;
     }
 
-    idError.value = null;
-
     // navigate to next screen
     Get.toNamed(
-            "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}${Routes.createAccountBackID}",
-
+      "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}${Routes.createAccountBackID}",
     );
   }
+
+  bool get isFrontIdValid => frontIdImage.value != null;
 }

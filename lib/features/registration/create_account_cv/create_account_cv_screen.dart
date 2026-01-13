@@ -80,10 +80,14 @@ class CreateAccountCvScreen extends StatelessWidget {
           horizontal: context.wPct(5),
           vertical: context.hPct(5),
         ),
-        child: FilledButton(
-          onPressed: controller.validateAndUpload,
-          child: Text('create_account_cv_confirm_button'.tr),
-        ),
+        child: Obx(() {
+          return FilledButton(
+            onPressed: controller.isCvFileValid
+                ? controller.validateAndUpload
+                : null,
+            child: Text('create_account_cv_confirm_button'.tr),
+          );
+        }),
       ),
     );
   }

@@ -110,10 +110,14 @@ class FrontNationalIdScreen extends StatelessWidget {
           horizontal: context.wPct(5),
           vertical: context.hPct(5),
         ),
-        child: FilledButton(
-          onPressed: controller.validateAndContinue,
-          child: Text('front_national_id_confirm_button'.tr),
-        ),
+        child: Obx(() {
+          return FilledButton(
+            onPressed: controller.isFrontIdValid
+                ? controller.validateAndContinue
+                : null,
+            child: Text('front_national_id_confirm_button'.tr),
+          );
+        }),
       ),
     );
   }
