@@ -9,7 +9,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/authentication/authentication_choice/auth_choice_util.dart';
 import 'package:para_job/features/authentication/authentication_choice/widgets/language_switcher.dart';
-import 'package:para_job/packages/localization_manger/controller/localization_controller.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/route_manager/controller/routing_controller.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
@@ -17,10 +16,8 @@ import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/res/app_asset_paths.dart';
 
 class AuthChoiceScreen extends StatelessWidget {
-  AuthChoiceScreen({super.key});
+  const AuthChoiceScreen({super.key});
 
-  final LocalizationController localizationController =
-      Get.find<LocalizationController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,9 +35,7 @@ class AuthChoiceScreen extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 context.hBox(3),
-                LanguageSwitcher(
-                  localizationController: localizationController,
-                ),
+                LanguageSwitcher(),
 
                 context.hBox(25),
 
