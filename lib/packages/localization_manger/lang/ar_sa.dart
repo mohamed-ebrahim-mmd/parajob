@@ -339,6 +339,7 @@ const Map<String, String> arSA = {
   // ============================================================
   'edit_main_info_loading_cities': 'تحميل المدن...',
   'edit_main_info_city_hint': 'اختر مدينتك',
+  'edit_main_info_area_hint': 'اختر منطقتك',
   'edit_main_info_failed_load_cities': 'فشل التحميل، انقر لإعادة المحاولة',
   'edit_main_info_loading_areas': 'تحميل المناطق...',
   'edit_main_info_failed_load_areas': 'فشل تحميل المناطق، انقر لإعادة المحاولة',
