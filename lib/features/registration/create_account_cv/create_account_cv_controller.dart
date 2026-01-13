@@ -20,23 +20,25 @@ import 'package:para_job/packages/route_manager/controller/routes.dart'
 import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
 
 class CreateAccountCvController extends GetxController {
-  File? cvFile;
+  Rx<File?> cvFile = Rx<File?>(null);
 
   // error message to show under the picker (nullable)
   var cvFileError = RxnString(null);
 
   void setCvFile(File? value) {
-    cvFile = value;
+    cvFile.value = value;
   }
 
   void validateAndUpload() {
-    if (cvFile == null) {
+    if (cvFile.value == null) {
       cvFileError.value = "Please provide your CV to Confirm";
       return;
     }
     cvFileError.value = null;
     uploadAllFiles();
   }
+
+  bool get isCvFileValid => cvFile.value != null;
 
   Future<void> uploadAllFiles() async {
     try {
@@ -52,11 +54,11 @@ class CreateAccountCvController extends GetxController {
       );
 
       // --- Collect files from controllers ---
-      final frontFile = frontNationalIdController.frontIdImage!;
-      final backFile = Get.find<BackNationalIdController>().backIdImage!;
-      final idWithPicFile = Get.find<PictureWithIdController>().picWithIdImage!;
-      final graduationFile = Get.find<EducationPicController>().educationImage!;
-      final cvFileLocal = cvFile!;
+      final frontFile = frontNationalIdController.frontIdImage;
+      final backFile = Get.find<BackNationalIdController>().backIdImage;
+      final idWithPicFile = Get.find<PictureWithIdController>().picWithIdImage;
+      final graduationFile = Get.find<EducationPicController>().educationImage;
+      final cvFileLocal = cvFile;
 
       // --- Convert each to MultipartFile ---
       final files = await Future.wait([
@@ -64,7 +66,7 @@ class CreateAccountCvController extends GetxController {
         _toMultipart(backFile.value!),
         _toMultipart(idWithPicFile.value!),
         _toMultipart(graduationFile.value!),
-        _toMultipart(cvFileLocal),
+        _toMultipart(cvFileLocal.value!),
       ]);
 
       // --- Upload all at once ---
