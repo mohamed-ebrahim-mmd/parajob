@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/authentication/authentication_choice/auth_choice_util.dart';
+import 'package:para_job/features/authentication/authentication_choice/widgets/language_switcher.dart';
 import 'package:para_job/packages/localization_manger/controller/localization_controller.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/route_manager/controller/routing_controller.dart';
@@ -37,56 +38,10 @@ class AuthChoiceScreen extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 context.hBox(3),
-                Row(
-                  textDirection: TextDirection.ltr,
-
-                  children: [
-                    TextButton(
-                      style: TextButton.styleFrom(
-                        padding: EdgeInsets.zero,
-                        minimumSize: Size.zero,
-                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      ),
-                      onPressed: () {
-                        localizationController.changeLanguageForAuth(
-                          const Locale('en'),
-                        );
-                      },
-                      child: Text(
-                        'EN',
-                        style: TextStyle(
-                          color: localizationController.isEnglish
-                              ? AppColors.aquaTeal
-                              : AppColors.lightGray,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    context.wBox(4),
-
-                    TextButton(
-                      style: TextButton.styleFrom(
-                        padding: EdgeInsets.zero,
-                        minimumSize: Size.zero,
-                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      ),
-                      onPressed: () {
-                        localizationController.changeLanguageForAuth(
-                          const Locale('ar'),
-                        );
-                      },
-                      child: Text(
-                        'AR',
-                        style: TextStyle(
-                          color: !localizationController.isEnglish
-                              ? AppColors.aquaTeal
-                              : AppColors.lightGray,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
+                LanguageSwitcher(
+                  localizationController: localizationController,
                 ),
+
                 context.hBox(25),
 
                 Directionality(
