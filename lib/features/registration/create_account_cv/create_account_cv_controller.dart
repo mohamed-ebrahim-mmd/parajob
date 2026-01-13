@@ -62,7 +62,7 @@ class CreateAccountCvController extends GetxController {
       final files = await Future.wait([
         _toMultipart(frontFile.value!),
         _toMultipart(backFile.value!),
-        _toMultipart(idWithPicFile),
+        _toMultipart(idWithPicFile.value!),
         _toMultipart(graduationFile),
         _toMultipart(cvFileLocal),
       ]);

@@ -97,10 +97,14 @@ class PictureWithIdScreen extends StatelessWidget {
           horizontal: context.wPct(5),
           vertical: context.hPct(5),
         ),
-        child: FilledButton(
-          onPressed: controller.validateAndContinue,
-          child: Text('picture_with_id_confirm_button'.tr),
-        ),
+        child: Obx(() {
+          return FilledButton(
+            onPressed: controller.isPictureWithIdValid
+                ? controller.validateAndContinue
+                : null,
+            child: Text('picture_with_id_confirm_button'.tr),
+          );
+        }),
       ),
     );
   }
