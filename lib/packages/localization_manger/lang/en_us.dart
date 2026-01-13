@@ -517,7 +517,9 @@ const Map<String, String> enUS = {
   'validation_message_max_length':
       'Message is too long. Maximum 100 characters allowed',
   'validation_password_empty': 'Password cannot be empty',
-  'validation_password_min_length': 'Password must be at least 6 characters',
+  'validation_password_min_length': 'Password must be at least 8 characters',
+ "validation_password_format": "Password must have uppercase, lowercase, and a special char (#,@,!,%,&,*)."
+,
   'validation_confirm_password_empty': 'Confirm Password cannot be empty',
   'validation_confirm_password_mismatch': 'Passwords do not match',
 

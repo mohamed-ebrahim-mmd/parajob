@@ -120,13 +120,22 @@ String? validatePassword(String password) {
   final trimmedPassword = password.trim();
 
   if (trimmedPassword.isEmpty) {
-    return 'validation_password_empty'.tr; // Password cannot be empty
-  } else if (trimmedPassword.length < 6) {
-    return 'validation_password_min_length'
-        .tr; // Password must be at least 6 characters
+    return 'validation_password_empty'.tr;
   }
 
-  return null; // No error, password is valid
+  if (trimmedPassword.length < 8) {
+    return 'validation_password_min_length'.tr; // should say 8 chars minimum
+  }
+
+  final passwordRegex = RegExp(
+    r'^(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*#?&])[A-Za-z0-9@$!%*#?&]{8,}$',
+  );
+
+  if (!passwordRegex.hasMatch(trimmedPassword)) {
+    return 'validation_password_format'.tr;
+  }
+
+  return null; // Valid
 }
 
 String? validateConfirmPassword(String password, String confirmPassword) {
