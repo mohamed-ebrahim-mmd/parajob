@@ -10,7 +10,7 @@ import 'package:para_job/packages/route_manager/controller/routes.dart';
 class FrontNationalIdController extends GetxController {
   final String tempToken;
 
-  var frontIdImage = Rx<File?>(null);
+  Rx<File?> frontIdImage = Rx<File?>(null);
 
   // error message to show under the picker (nullable)
   var idError = RxnString(null);
@@ -19,9 +19,6 @@ class FrontNationalIdController extends GetxController {
 
   void setFrontIdImage(File? value) {
     frontIdImage.value = value;
-    if (value != null) {
-      idError.value = null;
-    }
   }
 
   /// Validate and navigate if file exists; otherwise show error text
@@ -36,4 +33,6 @@ class FrontNationalIdController extends GetxController {
       "${Routes.createAccount}${Routes.createAccountOTP}${Routes.createAccountSetPass}${Routes.createAccountFrontID}${Routes.createAccountBackID}",
     );
   }
+
+  bool get isFrontIdValid => frontIdImage.value != null;
 }
