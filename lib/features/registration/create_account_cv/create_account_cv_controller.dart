@@ -63,7 +63,7 @@ class CreateAccountCvController extends GetxController {
         _toMultipart(frontFile.value!),
         _toMultipart(backFile.value!),
         _toMultipart(idWithPicFile.value!),
-        _toMultipart(graduationFile),
+        _toMultipart(graduationFile.value!),
         _toMultipart(cvFileLocal),
       ]);
 
