@@ -125,14 +125,10 @@ class CreateAccountScreen extends StatelessWidget {
                   },
                   decoration: InputDecoration(
                     errorText: controller.nationalIdError.value,
-
                     hintText: 'create_account_id_hint'.tr,
                   ),
-                  keyboardType: TextInputType.numberWithOptions(
-                    decimal: true,
-                    signed: false,
-                  ),
-                  textInputAction: TextInputAction.done,
+                  keyboardType: TextInputType.number,
+                  textInputAction: TextInputAction.next,
                 );
               }),
               context.hBox(1.5),
