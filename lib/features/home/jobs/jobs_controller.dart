@@ -18,17 +18,21 @@ class JobsController extends GetxController {
       ? null
       : Get.find<ProfileController>();
   var departmentCallState = ApiCallState.loading.obs;
-  var selectedDepartmentId = (-1).obs; 
+  //var selectedDepartmentId = (-1).obs;
+  late final selectedDepartmentId = depId.obs;
+
   List<Department>? departments;
   final String jobCategory;
   late final PagingController<int, Job> pagingController;
+  final int depId;
 
-  JobsController({required this.jobCategory});
+  JobsController({required this.jobCategory, required this.depId});
 
   @override
   void onInit() {
     super.onInit();
     fetchDepartments();
+    //  selectedDepartmentId.value = depId;
   }
 
   void selectDepartment(int id) {
