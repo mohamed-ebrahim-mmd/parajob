@@ -5,6 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/home/home_controller.dart';
+import 'package:para_job/features/home/widgets/home_department_chips.dart';
 import 'package:para_job/features/home/widgets/hot_jobs_mini_list.dart';
 import 'package:para_job/features/home/widgets/jobs_mini_list.dart';
 import 'package:para_job/packages/api_client/src/enums/api_call_state_enum.dart'
@@ -111,6 +112,17 @@ class HomeScreen extends StatelessWidget {
                               );
                             },
                           ),
+
+                          context.hBox(2),
+                          HomeDepartmentChips(
+                            onSelected: (id) {
+                              controller.openJobsScreen(
+                                category: JobCategory.flexible.value,
+                                title: 'flexible_jobs'.tr,
+                                id: id,
+                              );
+                            },
+                          ),
                           context.hBox(2),
 
                           JobsMiniList(
@@ -123,6 +135,17 @@ class HomeScreen extends StatelessWidget {
                                   "title": 'flexible_jobs'.tr,
                                   "category": JobCategory.flexible.value,
                                 },
+                              );
+                            },
+                          ),
+
+                          context.hBox(2),
+                          HomeDepartmentChips(
+                            onSelected: (id) {
+                              controller.openJobsScreen(
+                                category: JobCategory.nonFlexible.value,
+                                title: 'non_flexible_jobs'.tr,
+                                id: id,
                               );
                             },
                           ),

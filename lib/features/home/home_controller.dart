@@ -55,6 +55,17 @@ class HomeController extends GetxController {
     }
   }
 
+  void openJobsScreen({
+    required String title,
+    required String category,
+    required int id,
+  }) {
+    Get.toNamed(
+      "${Routes.mainNavigator}${Routes.jobs}",
+      arguments: {"title": title, "category": category, "departmentId": id},
+    );
+  }
+
   void _handleDeepLink() async {
     log("handleDeepLink called");
 

@@ -18,7 +18,10 @@ class JobsScreen extends StatelessWidget {
   final args = Get.arguments as Map<String, dynamic>?;
   late final title = args?['title'] ?? '-';
   late final category = args?['category'];
-  late final controller = Get.put(JobsController(jobCategory: category));
+  late final depId = args?['departmentId'] ?? -1;
+  late final controller = Get.put(
+    JobsController(jobCategory: category, depId: depId),
+  );
 
   @override
   Widget build(BuildContext context) {

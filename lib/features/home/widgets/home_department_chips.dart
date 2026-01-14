@@ -7,9 +7,10 @@ import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
 class HomeDepartmentChips extends StatelessWidget {
-  HomeDepartmentChips({super.key});
+  HomeDepartmentChips({super.key, required this.onSelected});
   final controller = Get.find<HomeController>();
   late final departments = controller.departmentsData;
+  final void Function(int id) onSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -27,17 +28,23 @@ class HomeDepartmentChips extends StatelessWidget {
               label: Text(dept.name),
               selected: isAllDepartments,
               showCheckmark: false,
-              onSelected: (_) {},
+              onSelected: (_) {
+                onSelected.call(dept.id ?? -1);
+              },
               selectedColor: Colors.white,
               backgroundColor: Colors.transparent,
               side: BorderSide(
-                color: isAllDepartments ? AppColors.pureWhite : AppColors.softWhite70,
+                color: isAllDepartments
+                    ? AppColors.pureWhite
+                    : AppColors.softWhite70,
               ),
               labelStyle: TextStyle(
                 color: isAllDepartments
                     ? AppColors.charcoalBlack
                     : AppColors.softWhite70,
-                fontWeight: isAllDepartments ? FontWeight.bold : FontWeight.normal,
+                fontWeight: isAllDepartments
+                    ? FontWeight.bold
+                    : FontWeight.normal,
               ),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(context.wPct(4)),
