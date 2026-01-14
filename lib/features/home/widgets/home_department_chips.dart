@@ -7,37 +7,37 @@ import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
 class HomeDepartmentChips extends StatelessWidget {
-  const HomeDepartmentChips({super.key});
+  HomeDepartmentChips({super.key});
+  final controller = Get.find<HomeController>();
+  late final departments = controller.departmentsData;
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<HomeController>();
-    final departments = controller.departmentsData;
-    if (departments == null || departments.isEmpty) {
+    if (departments == null || departments!.isEmpty) {
       return const SizedBox.shrink();
     }
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
-        children: departments.map((dept) {
-          final isFirst = dept.id == -1;
+        children: departments!.map((dept) {
+          final isAllDepartments = dept.id == -1;
           return Padding(
             padding: EdgeInsets.symmetric(horizontal: context.wPct(1)),
             child: ChoiceChip(
               label: Text(dept.name),
-              selected: isFirst,
+              selected: isAllDepartments,
               showCheckmark: false,
               onSelected: (_) {},
               selectedColor: Colors.white,
               backgroundColor: Colors.transparent,
               side: BorderSide(
-                color: isFirst ? AppColors.pureWhite : AppColors.softWhite70,
+                color: isAllDepartments ? AppColors.pureWhite : AppColors.softWhite70,
               ),
               labelStyle: TextStyle(
-                color: isFirst
+                color: isAllDepartments
                     ? AppColors.charcoalBlack
                     : AppColors.softWhite70,
-                fontWeight: isFirst ? FontWeight.bold : FontWeight.normal,
+                fontWeight: isAllDepartments ? FontWeight.bold : FontWeight.normal,
               ),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(context.wPct(4)),

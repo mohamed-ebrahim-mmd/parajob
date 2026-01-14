@@ -187,7 +187,8 @@ class HomeController extends GetxController {
 
       final homeResponse = results[0] as HomeResponse; // fetchHomeJobs result
       final departmentsResponse = results[1] as DepartmentResponse;
-      if (homeResponse.isSuccess && departmentsResponse.isSuccess!) {
+
+      if (homeResponse.isSuccess && (departmentsResponse.isSuccess ?? false)) {
         log("🟢 fetchHomeJobs success");
         homeData = homeResponse;
         departmentsData = departmentsResponse.data;
