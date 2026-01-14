@@ -189,7 +189,7 @@ Job ID: ${job.id}
       Get.snackbar(
         'share_error'.tr,
         'failed_to_share_job'.tr,
-        backgroundColor: AppColors.dialogBackgroundDark,
+        backgroundColor: AppColors.coralRed,
         colorText: AppColors.pureWhite,
         snackPosition: SnackPosition.BOTTOM,
       );
