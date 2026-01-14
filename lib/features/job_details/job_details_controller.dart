@@ -6,7 +6,6 @@ import 'package:intl/intl.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
-import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/ui_components/auth_required_dialog.dart';
 import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
@@ -127,6 +126,7 @@ class JobDetailsController extends GetxController {
 
     return formatter.format(date);
   }
+
   //change TimeFormate
 
   String formatLocalizedTime(String? time) {
@@ -184,15 +184,7 @@ Job ID: ${job.id}
       // Share the job info including the link
       await Share.share(message, subject: 'Share Job: $jobTitle');
     } catch (e) {
-      log('Error sharing job: $e');
-      // Show error snackbar if sharing fails
-      Get.snackbar(
-        'share_error'.tr,
-        'failed_to_share_job'.tr,
-        backgroundColor: AppColors.coralRed,
-        colorText: AppColors.pureWhite,
-        snackPosition: SnackPosition.BOTTOM,
-      );
+      showSnackBarError('share_error'.tr, 'failed_to_share_job'.tr);
     }
   }
 }
