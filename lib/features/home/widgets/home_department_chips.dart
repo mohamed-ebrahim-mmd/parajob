@@ -20,24 +20,24 @@ class HomeDepartmentChips extends StatelessWidget {
       scrollDirection: Axis.horizontal,
       child: Row(
         children: departments.map((dept) {
-          final isSelected = dept.id == -1;
+          final isFirst = dept.id == -1;
           return Padding(
             padding: EdgeInsets.symmetric(horizontal: context.wPct(1)),
             child: ChoiceChip(
               label: Text(dept.name),
-              selected: isSelected,
+              selected: isFirst,
               showCheckmark: false,
               onSelected: (_) {},
               selectedColor: Colors.white,
               backgroundColor: Colors.transparent,
               side: BorderSide(
-                color: isSelected ? AppColors.pureWhite : AppColors.softWhite70,
+                color: isFirst ? AppColors.pureWhite : AppColors.softWhite70,
               ),
               labelStyle: TextStyle(
-                color: isSelected
+                color: isFirst
                     ? AppColors.charcoalBlack
                     : AppColors.softWhite70,
-                fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                fontWeight: isFirst ? FontWeight.bold : FontWeight.normal,
               ),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(context.wPct(4)),
