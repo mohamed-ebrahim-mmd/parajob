@@ -12,7 +12,7 @@ void showAuthRequiredDialog() {
   final context = Get.context!;
   Get.dialog(
     Dialog(
-      backgroundColor: AppColors.midnightBlue, // dark background
+      backgroundColor: AppColors.dialogBackgroundDark, // dark background
       insetPadding: EdgeInsets.symmetric(
         horizontal: context.wPct(4),
         vertical: 0,

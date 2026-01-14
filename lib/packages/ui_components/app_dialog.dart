@@ -14,7 +14,7 @@ Future<void> showApplicationDialog({
     barrierDismissible: true,
     builder: (context) {
       return AlertDialog(
-        backgroundColor: AppColors.midnightBlue,
+        backgroundColor: AppColors.dialogBackgroundDark,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(context.wPct(3)),
         ),
