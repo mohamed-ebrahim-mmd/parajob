@@ -98,7 +98,7 @@ class CreateAccountScreen extends StatelessWidget {
                     FocusScope.of(context).unfocus();
                   },
                   keyboardType: TextInputType.phone,
-                  textInputAction: TextInputAction.done,
+                  textInputAction: TextInputAction.next,
                 );
               }),
               context.hBox(1.5),
