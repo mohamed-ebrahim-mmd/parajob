@@ -29,6 +29,7 @@ class HomeController extends GetxController {
 
   var homeCallState = ApiCallState.loading.obs;
   HomeResponse? homeData;
+  List<Department>? departmentsData;
   final box = GetStorage();
   final Map<String, dynamic>? argumentsMap =
       Get.arguments as Map<String, dynamic>?;
@@ -177,13 +178,22 @@ class HomeController extends GetxController {
     homeCallState.value = ApiCallState.loading;
 
     try {
-      final response = await apiClient.fetchHomeJobs(
-        _userController.isGuest ? null : _userController.token!,
-      );
+      final results = await Future.wait([
+        apiClient.fetchHomeJobs(
+          _userController.isGuest ? null : _userController.token!,
+        ),
+        apiClient.getDepartments(),
+      ]);
 
-      if (response.isSuccess) {
+      final homeResponse = results[0] as HomeResponse; // fetchHomeJobs result
+      final departmentsResponse = results[1] as DepartmentResponse;
+
+      if (homeResponse.isSuccess && (departmentsResponse.isSuccess ?? false)) {
         log("🟢 fetchHomeJobs success");
-        homeData = response;
+        homeData = homeResponse;
+        departmentsData = departmentsResponse.data;
+        departmentsData?.insert(0, Department(id: -1, name: "all".tr));
+
         homeCallState.value = ApiCallState.success;
 
         startShowcase();
