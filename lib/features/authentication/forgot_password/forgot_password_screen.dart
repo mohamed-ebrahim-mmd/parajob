@@ -59,6 +59,9 @@ class ForgotPasswordScreen extends StatelessWidget {
                     hintText: 'forgot_password_phone_hint'.tr,
                   ),
                   keyboardType: TextInputType.phone,
+                  onTapOutside: (event) {
+                    FocusScope.of(context).unfocus();
+                  },
                 );
               }),
             ],
