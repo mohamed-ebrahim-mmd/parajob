@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/home/home_controller.dart';
+import 'package:para_job/features/home/widgets/home_department_chips.dart';
 import 'package:para_job/features/home/widgets/reactive_job_card.dart';
 import 'package:para_job/packages/api_client/src/models/responses/job.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
@@ -65,6 +66,8 @@ class JobsMiniList extends StatelessWidget {
             ),
           ],
         ),
+        context.hBox(2),
+        HomeDepartmentChips(),
         context.hBox(2),
         // Vertical List of Job Cards
         ListView.separated(
