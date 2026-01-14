@@ -14,6 +14,7 @@ import 'package:para_job/packages/themeing/media_query_values.dart';
 
 class CreateAccountScreen extends StatelessWidget {
   final controller = Get.put(CreateAccountController());
+
   CreateAccountScreen({super.key});
 
   @override
@@ -93,10 +94,10 @@ class CreateAccountScreen extends StatelessWidget {
 
                     hintText: 'create_account_phone_hint'.tr,
                   ),
-                  keyboardType: TextInputType.numberWithOptions(
-                    decimal: true,
-                    signed: false,
-                  ),
+                  onTapOutside: (event) {
+                    FocusScope.of(context).unfocus();
+                  },
+                  keyboardType: TextInputType.phone,
                   textInputAction: TextInputAction.done,
                 );
               }),
@@ -119,6 +120,9 @@ class CreateAccountScreen extends StatelessWidget {
               Obx(() {
                 return TextField(
                   controller: controller.nationalIdController,
+                  onTapOutside: (event) {
+                    FocusScope.of(context).unfocus();
+                  },
                   decoration: InputDecoration(
                     errorText: controller.nationalIdError.value,
 

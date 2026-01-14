@@ -58,8 +58,10 @@ class ForgotPasswordScreen extends StatelessWidget {
                     errorText: controller.phoneError.value,
                     hintText: 'forgot_password_phone_hint'.tr,
                   ),
-                  keyboardType: TextInputType.numberWithOptions(decimal: true, signed: false),
-                  textInputAction: TextInputAction.done,
+                  keyboardType: TextInputType.phone,
+                  onTapOutside: (event) {
+                    FocusScope.of(context).unfocus();
+                  },
                 );
               }),
             ],
