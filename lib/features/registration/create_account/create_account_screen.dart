@@ -93,8 +93,11 @@ class CreateAccountScreen extends StatelessWidget {
 
                     hintText: 'create_account_phone_hint'.tr,
                   ),
-                  keyboardType: TextInputType.phone,
-                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.numberWithOptions(
+                    decimal: true,
+                    signed: false,
+                  ),
+                  textInputAction: TextInputAction.done,
                 );
               }),
               context.hBox(1.5),
@@ -121,8 +124,11 @@ class CreateAccountScreen extends StatelessWidget {
 
                     hintText: 'create_account_id_hint'.tr,
                   ),
-                  keyboardType: TextInputType.number,
-                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.numberWithOptions(
+                    decimal: true,
+                    signed: false,
+                  ),
+                  textInputAction: TextInputAction.done,
                 );
               }),
               context.hBox(1.5),
