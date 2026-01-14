@@ -18,7 +18,8 @@ class JobsController extends GetxController {
       ? null
       : Get.find<ProfileController>();
   var departmentCallState = ApiCallState.loading.obs;
-  var selectedDepartmentId = (-1).obs;
+  //var selectedDepartmentId = (-1).obs;
+  late final selectedDepartmentId = depId.obs;
 
   List<Department>? departments;
   final String jobCategory;
@@ -31,7 +32,7 @@ class JobsController extends GetxController {
   void onInit() {
     super.onInit();
     fetchDepartments();
-    selectedDepartmentId.value = depId;
+    //  selectedDepartmentId.value = depId;
   }
 
   void selectDepartment(int id) {

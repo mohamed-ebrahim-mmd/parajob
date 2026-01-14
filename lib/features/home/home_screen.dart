@@ -102,15 +102,10 @@ class HomeScreen extends StatelessWidget {
                         children: [
                           HotJobsMiniList(
                             jobs: hotJobsList,
-                            onSeeAll: () {
-                              Get.toNamed(
-                                "${Routes.mainNavigator}${Routes.jobs}",
-                                arguments: {
-                                  "title": 'hot_jobs'.tr,
-                                  "category": JobCategory.hotJob.value,
-                                },
-                              );
-                            },
+                            onSeeAll: () => controller.openJobsScreen(
+                              category: JobCategory.hotJob.value,
+                              title: 'hot_jobs'.tr,
+                            ),
                           ),
 
                           context.hBox(2),
@@ -128,15 +123,10 @@ class HomeScreen extends StatelessWidget {
                           JobsMiniList(
                             jobs: flexibleJobsList,
                             title: 'flexible_jobs'.tr,
-                            onSeeAll: () {
-                              Get.toNamed(
-                                "${Routes.mainNavigator}${Routes.jobs}",
-                                arguments: {
-                                  "title": 'flexible_jobs'.tr,
-                                  "category": JobCategory.flexible.value,
-                                },
-                              );
-                            },
+                            onSeeAll: () => controller.openJobsScreen(
+                              category: JobCategory.flexible.value,
+                              title: 'flexible_jobs'.tr,
+                            ),
                           ),
 
                           context.hBox(2),
@@ -153,15 +143,10 @@ class HomeScreen extends StatelessWidget {
                           JobsMiniList(
                             jobs: nonFlexibleJobs,
                             title: 'non_flexible_jobs'.tr,
-                            onSeeAll: () {
-                              Get.toNamed(
-                                "${Routes.mainNavigator}${Routes.jobs}",
-                                arguments: {
-                                  "title": 'non_flexible_jobs'.tr,
-                                  "category": JobCategory.nonFlexible.value,
-                                },
-                              );
-                            },
+                            onSeeAll: () => controller.openJobsScreen(
+                              category: JobCategory.nonFlexible.value,
+                              title: 'non_flexible_jobs'.tr,
+                            ),
                           ),
                           context.hBox(2),
                         ],

@@ -58,7 +58,7 @@ class HomeController extends GetxController {
   void openJobsScreen({
     required String title,
     required String category,
-    required int id,
+     int? id,
   }) {
     Get.toNamed(
       "${Routes.mainNavigator}${Routes.jobs}",
