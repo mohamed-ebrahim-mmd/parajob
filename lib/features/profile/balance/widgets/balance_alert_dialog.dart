@@ -13,7 +13,7 @@ Future<void> showDeductionDialog(BuildContext context) {
 
       return Dialog(
         insetPadding: EdgeInsets.symmetric(horizontal: context.wPct(5)),
-        backgroundColor: AppColors.midnightBlue,
+        backgroundColor: AppColors.dialogBackgroundDark,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(context.wPct(5)),
         ),

@@ -13,7 +13,7 @@ void deleteJobApplicationDialog({
   final context = Get.context!;
   Get.dialog(
     Dialog(
-      backgroundColor: AppColors.midnightBlue,
+      backgroundColor: AppColors.dialogBackgroundDark,
       insetPadding: EdgeInsets.symmetric(
         horizontal: context.wPct(4),
         vertical: 0,
