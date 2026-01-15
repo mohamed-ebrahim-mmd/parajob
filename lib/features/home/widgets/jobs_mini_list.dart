@@ -2,24 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/home/home_controller.dart';
 import 'package:para_job/features/home/widgets/reactive_job_card.dart';
+import 'package:para_job/packages/api_client/src/enums/job_category_enum.dart'
+    show JobCategory;
 import 'package:para_job/packages/api_client/src/models/responses/job.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:showcaseview/showcaseview.dart';
 
+import 'home_department_chips.dart';
+
 class JobsMiniList extends StatelessWidget {
   final List<Job> jobs;
-  final VoidCallback? onSeeAll;
   final String title;
   final controller = Get.find<HomeController>();
 
-  JobsMiniList({
-    super.key,
-    required this.jobs,
-    this.onSeeAll,
-    required this.title,
-  });
+  bool get isFlexible => title == 'flexible_jobs'.tr;
+
+  JobsMiniList({super.key, required this.jobs, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +32,7 @@ class JobsMiniList extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Showcase(
-              key: title == 'flexible_jobs'.tr
-                  ? controller.thirdKey
-                  : controller.lastKey,
+              key: isFlexible ? controller.thirdKey : controller.lastKey,
               description: title == 'flexible_jobs'.tr
                   ? "Work on your schedule—choose hours and locations that suit you."
                   : "Structured roles with fixed hours and responsibilities—perfect for steady routines.",
@@ -54,7 +52,12 @@ class JobsMiniList extends StatelessWidget {
               ),
             ),
             GestureDetector(
-              onTap: onSeeAll,
+              onTap: () => controller.openJobsScreen(
+                category: isFlexible
+                    ? JobCategory.flexible.value
+                    : JobCategory.nonFlexible.value,
+                title: title,
+              ),
               child: Text(
                 "see_all".tr,
                 style: TextStyle(
@@ -65,7 +68,18 @@ class JobsMiniList extends StatelessWidget {
             ),
           ],
         ),
-
+        context.hBox(1),
+        HomeDepartmentChips(
+          onSelected: (id) {
+            controller.openJobsScreen(
+              category: isFlexible
+                  ? JobCategory.flexible.value
+                  : JobCategory.nonFlexible.value,
+              title: title,
+              id: id,
+            );
+          },
+        ),
         context.hBox(2),
         // Vertical List of Job Cards
         ListView.separated(
@@ -74,7 +88,7 @@ class JobsMiniList extends StatelessWidget {
           primary: false,
           physics: const NeverScrollableScrollPhysics(),
           itemCount: jobs.length,
-          separatorBuilder: (_, __) => context.hBox(3),
+          separatorBuilder: (_, __) => context.hBox(2),
           itemBuilder: (context, index) {
             final job = jobs[index];
             return ReactiveJobCard(

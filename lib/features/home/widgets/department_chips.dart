@@ -27,10 +27,10 @@ class DepartmentChips extends StatelessWidget {
         child: Row(
           children: departments.map((dept) {
             final isSelected = controller.selectedDepartmentId.value == dept.id;
-
             return Padding(
               padding: EdgeInsets.symmetric(horizontal: context.wPct(1)),
               child: ChoiceChip(
+                key: controller.getDepartmentKey(dept.id ?? -1),
                 label: Text(dept.name),
                 selected: isSelected,
                 showCheckmark: false,

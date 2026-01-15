@@ -1,6 +1,7 @@
 import 'dart:developer';
 
-import 'package:flutter/material.dart' show BuildContext;
+import 'package:flutter/material.dart'
+    show BuildContext, GlobalKey, WidgetsBinding, Scrollable;
 import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:loader_overlay/loader_overlay.dart';
@@ -18,13 +19,13 @@ class JobsController extends GetxController {
       ? null
       : Get.find<ProfileController>();
   var departmentCallState = ApiCallState.loading.obs;
-  //var selectedDepartmentId = (-1).obs;
   late final selectedDepartmentId = depId.obs;
 
   List<Department>? departments;
   final String jobCategory;
   late final PagingController<int, Job> pagingController;
   final int depId;
+  final Map<int, GlobalKey> departmentKeys = {};
 
   JobsController({required this.jobCategory, required this.depId});
 
@@ -32,7 +33,12 @@ class JobsController extends GetxController {
   void onInit() {
     super.onInit();
     fetchDepartments();
-    //  selectedDepartmentId.value = depId;
+  }
+
+  //Give me the same GlobalKey every time for this department ID.
+  // If it doesn’t exist yet, create it once.
+  GlobalKey getDepartmentKey(int id) {
+    return departmentKeys.putIfAbsent(id, () => GlobalKey());
   }
 
   void selectDepartment(int id) {
@@ -51,8 +57,10 @@ class JobsController extends GetxController {
       if (response.isSuccess ?? false) {
         departments = response.data;
         departments?.insert(0, Department(id: -1, name: "all".tr));
+
         _initPagingController();
         departmentCallState.value = ApiCallState.success;
+        _scrollToSelectedDepartment();
       } else {
         departmentCallState.value = ApiCallState.failure;
       }
@@ -60,6 +68,20 @@ class JobsController extends GetxController {
       log("🔴 ${e.toString()}");
       departmentCallState.value = ApiCallState.failure;
     }
+  }
+
+  /// Scrolls the selected department into view
+  void _scrollToSelectedDepartment() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final key = departmentKeys[selectedDepartmentId.value];
+      if (key?.currentContext == null) return;
+
+      Scrollable.ensureVisible(
+        key!.currentContext!,
+        duration: const Duration(milliseconds: 300),
+        alignment: 0.5, // centers the chip
+      );
+    });
   }
 
   void _initPagingController() {
