@@ -52,11 +52,6 @@ class BalanceController extends GetxController {
     }
   }
 
-  // Refresh balance data
-  Future<void> refreshBalance(BuildContext context) async {
-    await fetchBalanceTransactions();
-  }
-
   // Helper function to get color based on selection
   Color getContainerColor() {
     switch (selectedTab) {

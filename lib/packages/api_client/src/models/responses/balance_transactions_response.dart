@@ -1,5 +1,4 @@
 import 'package:para_job/packages/api_client/src/models/responses/base_response.dart';
-import 'package:para_job/packages/api_client/src/models/responses/meta.dart';
 import 'package:para_job/packages/api_client/src/models/responses/response_details.dart';
 
 class BalanceTransactionsResponse extends BaseResponse {
@@ -30,13 +29,11 @@ class BalanceTransactionsData {
   final BalanceSummary summary;
   final List<BalanceChartItem> chart;
   final Map<String, List<BalanceTransaction>> transactions;
-  final Meta meta;
 
   BalanceTransactionsData({
     required this.summary,
     required this.chart,
     required this.transactions,
-    required this.meta,
   });
 
   factory BalanceTransactionsData.fromJson(Map<String, dynamic> json) {
@@ -57,7 +54,6 @@ class BalanceTransactionsData {
               .toList() ??
           [],
       transactions: transactionsMap,
-      meta: Meta.fromJson(json['meta']),
     );
   }
 }
