@@ -1,15 +1,60 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/profile/balance/widgets/balance_alert_dialog.dart';
+import 'package:para_job/packages/api_client/api_client.dart';
+import 'package:para_job/packages/user_manager/user_controller.dart';
 
 class BalanceController extends GetxController {
   // Variable to track the currently selected tab
   final _selectedTab = BalanceTab.Month.obs;
   BalanceTab get selectedTab => _selectedTab.value;
 
+  // API call state and data
+  var balanceCallState = ApiCallState.loading.obs;
+  BalanceTransactionsData? balanceData;
+  final user = Get.find<UserController>();
+
+  @override
+  void onInit() {
+    super.onInit();
+    fetchBalanceTransactions();
+  }
+
   // Function to update the selected tab
   void updateSelectedTab(BalanceTab tab) {
     _selectedTab.value = tab;
+    fetchBalanceTransactions();
+  }
+
+  // Fetch balance transactions from API
+  Future<void> fetchBalanceTransactions() async {
+    balanceCallState.value = ApiCallState.loading;
+
+    try {
+      final response = await apiClient.getBalanceTransactions(
+        token: user.token!,
+        range: 'week' /* selectedTab.value.toLowerCase() */,
+      );
+
+      if (response.isSuccess && response.data != null) {
+        log("🟢 fetchBalanceTransactions isSuccess");
+        balanceData = response.data!;
+        balanceCallState.value = ApiCallState.success;
+      } else {
+        log("🔴 fetchBalanceTransactions failed: ${response.details?.message}");
+        balanceCallState.value = ApiCallState.failure;
+      }
+    } catch (e) {
+      log("🔴 fetchBalanceTransactions error: $e");
+      balanceCallState.value = ApiCallState.failure;
+    }
+  }
+
+  // Refresh balance data
+  Future<void> refreshBalance(BuildContext context) async {
+    await fetchBalanceTransactions();
   }
 
   // Helper function to get color based on selection

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:para_job/features/profile/balance/balance_controller.dart';
 import 'package:para_job/features/profile/balance/widgets/balance_histor_section.dart';
 import 'package:para_job/features/profile/balance/widgets/time_frame.dart';
+import 'package:para_job/packages/api_client/api_client.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/res/app_asset_paths.dart';
@@ -94,15 +95,71 @@ class BalanceScreen extends StatelessWidget {
                     color: _balanceController.getContainerColor(),
                     borderRadius: BorderRadius.circular(context.wPct(4)),
                   ),
-                  alignment: Alignment.center,
-                  child: Text(
-                    "Showing ${_balanceController.selectedTab} Data",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: context.wPct(4.5),
-                    ),
-                  ),
+                  padding: EdgeInsets.all(context.wPct(3)),
+                  child:
+                      _balanceController.balanceCallState ==
+                          ApiCallState.loading
+                      ? Center(
+                          child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(
+                              Colors.black,
+                            ),
+                          ),
+                        )
+                      : _balanceController.balanceData != null
+                      ? Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            // Balance Summary
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [],
+                            ),
+                            context.hBox(1),
+                            // Chart Data Summary
+                            Expanded(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  context.hBox(0.5),
+                                  // Show chart items
+                                  ..._balanceController.balanceData!.chart
+                                      .map(
+                                        (item) => Padding(
+                                          padding: EdgeInsets.symmetric(
+                                            vertical: context.hPct(0.5),
+                                          ),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                item.label,
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontSize: context.wPct(3),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      )
+                                      .toList(),
+                                ],
+                              ),
+                            ),
+                          ],
+                        )
+                      : Center(
+                          child: Text(
+                            'No data available',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: context.wPct(4.5),
+                            ),
+                          ),
+                        ),
                 ),
               ),
 
