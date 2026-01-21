@@ -35,7 +35,7 @@ class BalanceController extends GetxController {
     try {
       final response = await apiClient.getBalanceTransactions(
         token: user.token!,
-        range: 'week' /* selectedTab.value.toLowerCase() */,
+        range: selectedTab.value.toLowerCase(),
       );
 
       if (response.isSuccess && response.data != null) {

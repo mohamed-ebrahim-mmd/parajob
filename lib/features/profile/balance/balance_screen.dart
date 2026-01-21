@@ -101,63 +101,60 @@ class BalanceScreen extends StatelessWidget {
 
                     context.hBox(2.5),
 
-                    Obx(
-                      () => Container(
-                        width: double.infinity,
-                        height: context.hPct(25),
-                        decoration: BoxDecoration(
-                          color: _balanceController.getContainerColor(),
-                          borderRadius: BorderRadius.circular(context.wPct(4)),
-                        ),
-                        padding: EdgeInsets.all(context.wPct(3)),
-                        child: _balanceController.balanceData != null
-                            ? Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Expanded(
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: _balanceController
-                                          .balanceData!
-                                          .chart
-                                          .map(
-                                            (item) => Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                vertical: context.hPct(0.5),
-                                              ),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Text(
-                                                    item.label,
-                                                    style: TextStyle(
-                                                      color: Colors.black,
-                                                      fontSize: context.wPct(3),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
+                    Container(
+                      width: double.infinity,
+                      height: context.hPct(25),
+                      decoration: BoxDecoration(
+                        color: _balanceController.getContainerColor(),
+                        borderRadius: BorderRadius.circular(context.wPct(4)),
+                      ),
+                      padding: EdgeInsets.all(context.wPct(3)),
+                      child: _balanceController.balanceData != null
+                          ? Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Expanded(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: _balanceController
+                                        .balanceData!
+                                        .chart
+                                        .map(
+                                          (item) => Padding(
+                                            padding: EdgeInsets.symmetric(
+                                              vertical: context.hPct(0.5),
                                             ),
-                                          )
-                                          .toList(),
-                                    ),
-                                  ),
-                                ],
-                              )
-                            : Center(
-                                child: Text(
-                                  'No data available',
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: context.wPct(4.5),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  item.label,
+                                                  style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontSize: context.wPct(3),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        )
+                                        .toList(),
                                   ),
                                 ),
+                              ],
+                            )
+                          : Center(
+                              child: Text(
+                                'No data available',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: context.wPct(4.5),
+                                ),
                               ),
-                      ),
+                            ),
                     ),
 
                     context.hBox(2.5),
