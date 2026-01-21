@@ -78,7 +78,7 @@ Future<void> showDeductionDialog(BuildContext context) {
 
               /// Deduction card
               BalanceHistoryItem(
-                logo: Icons.work,
+                logoUrl: '',
                 title: 'Late Submission Penalty',
                 company: 'Company XYZ',
                 amount: 150.00,

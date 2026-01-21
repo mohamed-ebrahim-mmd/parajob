@@ -64,6 +64,13 @@ class BalanceController extends GetxController {
     }
   }
 
+  // Get all transactions as a flat list from the Map<String, List<BalanceTransaction>>
+  List<BalanceTransaction> get allTransactions {
+    if (balanceData == null) return [];
+
+    return balanceData!.transactions.values.expand((list) => list).toList();
+  }
+
   /// Get dummy transactions data
   List<TransactionDummy> dummyTransactions(BuildContext context) => [
     TransactionDummy(

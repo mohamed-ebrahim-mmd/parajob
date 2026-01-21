@@ -5,7 +5,7 @@ import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
 class BalanceHistoryItem extends StatelessWidget {
-  final IconData logo;
+  final String logoUrl;
   final String title;
   final String company;
   final double amount;
@@ -15,7 +15,7 @@ class BalanceHistoryItem extends StatelessWidget {
 
   const BalanceHistoryItem({
     super.key,
-    required this.logo,
+    required this.logoUrl,
     required this.title,
     required this.company,
     required this.amount,
@@ -59,7 +59,15 @@ class BalanceHistoryItem extends StatelessWidget {
                 color: AppColors.darkBackground,
                 borderRadius: BorderRadius.circular(context.wPct(3)),
               ),
-              child: Icon(logo, color: AppColors.pureWhite),
+              child: logoUrl.isNotEmpty
+                  ? Image.network(
+                      logoUrl,
+                      width: context.wPct(11),
+                      height: context.wPct(11),
+                      errorBuilder: (_, __, ___) =>
+                          Icon(Icons.work, color: AppColors.pureWhite),
+                    )
+                  : Icon(Icons.work, color: AppColors.pureWhite),
             ),
 
             context.wBox(3),
