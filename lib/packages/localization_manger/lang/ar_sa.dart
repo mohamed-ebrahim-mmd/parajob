@@ -864,4 +864,5 @@ const Map<String, String> arSA = {
   "balance_tab_year": "سنة",
   "Deduction": "خصم",
   "No_transactions_found": "لا يوجد معاملات",
+  "will_be_deducted_due_to": "سيتم خصمها بسبب",
 };

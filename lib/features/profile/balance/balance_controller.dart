@@ -1,7 +1,5 @@
 import 'dart:developer';
-import 'dart:math' as math;
 
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -247,6 +245,43 @@ class BalanceController extends GetxController {
       case BalanceTab.year:
         return 'Q${((date.month - 1) ~/ 3) + 1}';
     }
+  }
+
+  // Fetch balance transactions from API
+  Future<void> fetchBalanceTransactions() async {
+    balanceCallState.value = ApiCallState.loading;
+
+    try {
+      final response = await apiClient.getBalanceTransactions(
+        token: user.token!,
+        range: selectedTab.value.toLowerCase(),
+      );
+
+      if (response.isSuccess && response.data != null) {
+        log("🟢 fetchBalanceTransactions isSuccess");
+        balanceData = response.data!;
+        balanceCallState.value = ApiCallState.success;
+      } else {
+        log("🔴 fetchBalanceTransactions failed: ${response.details?.message}");
+        balanceCallState.value = ApiCallState.failure;
+      }
+    } catch (e) {
+      log("🔴 fetchBalanceTransactions error: $e");
+      balanceCallState.value = ApiCallState.failure;
+    }
+  }
+
+  // Get all transactions as a flat list from the Map<String, List<BalanceTransaction>>
+  List<BalanceTransaction> get allTransactions {
+    return balanceData!.transactions.values.expand((list) => list).toList();
+  }
+}
+
+enum BalanceTab { week, month, year }
+
+extension BalanceTabExtension on BalanceTab {
+  String get value {
+    return name;
   }
 
   double niceStep(double range) {

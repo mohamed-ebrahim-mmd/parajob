@@ -62,7 +62,6 @@ Future<void> showDeductionDialog(
                     fontSize: context.wPct(5),
                   ),
                   children: [
-                    const TextSpan(text: 'EGP '),
                     TextSpan(
                       text: amount.abs().toStringAsFixed(2),
                       style: const TextStyle(
@@ -70,7 +69,10 @@ Future<void> showDeductionDialog(
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const TextSpan(text: ' will be deducted due to '),
+                    TextSpan(text: ' ${'balance_currency'.tr}'),
+
+                    TextSpan(text: ' ${'will_be_deducted_due_to'.tr} '),
+
                     TextSpan(
                       text: reason,
                       style: const TextStyle(
