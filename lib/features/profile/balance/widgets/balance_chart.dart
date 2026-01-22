@@ -150,23 +150,26 @@ class BalanceChart extends StatelessWidget {
       bottomTitles: AxisTitles(
         sideTitles: SideTitles(
           showTitles: true,
+          interval: _xInterval(labels.length, selectedTab),
           getTitlesWidget: (value, _) {
+            if (value % 1 != 0) return const SizedBox();
+
             final index = value.toInt();
             if (index < 0 || index >= labels.length) {
               return const SizedBox();
             }
 
-            if (selectedTab != BalanceTab.week &&
-                index % step != 0 &&
-                index != labels.length - 1) {
-              return const SizedBox();
-            }
-
             return Padding(
               padding: const EdgeInsets.only(top: 8),
-              child: Text(
-                labels[index],
-                style: const TextStyle(color: Colors.white54, fontSize: 11),
+              child: SizedBox(
+                width: 40, // 🔥 يمنع overflow
+                child: Text(
+                  labels[index],
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(color: Colors.white54, fontSize: 11),
+                ),
               ),
             );
           },
@@ -176,6 +179,16 @@ class BalanceChart extends StatelessWidget {
   }
 
   // -------------------- Helpers --------------------
+  double _xInterval(int length, BalanceTab tab) {
+    switch (tab) {
+      case BalanceTab.week:
+        return 1;
+      case BalanceTab.month:
+        return (length / 4).ceilToDouble();
+      case BalanceTab.year:
+        return (length / 5).ceilToDouble();
+    }
+  }
 
   FlGridData _gridData() => FlGridData(
     show: true,
