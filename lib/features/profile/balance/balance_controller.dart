@@ -69,11 +69,6 @@ class BalanceController extends GetxController {
       balanceCallState.value = ApiCallState.failure;
     }
   }
-
-  // Get all transactions as a flat list from the Map<String, List<BalanceTransaction>>
-  List<BalanceTransaction> get allTransactions {
-    return balanceData!.transactions.values.expand((list) => list).toList();
-  }
 }
 
 enum BalanceTab { week, month, year }

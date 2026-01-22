@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/profile/balance/balance_controller.dart';
+import 'package:para_job/features/profile/balance/widgets/balance_chart.dart';
 import 'package:para_job/features/profile/balance/widgets/balance_header.dart';
 import 'package:para_job/features/profile/balance/widgets/balance_histor_section.dart';
 import 'package:para_job/features/profile/balance/widgets/balance_time_frame_tabs.dart';
@@ -50,18 +51,9 @@ class BalanceScreen extends StatelessWidget {
 
                     context.hBox(2.5),
 
-                    Container(
-                      width: double.infinity,
-                      height: context.hPct(25),
-                      decoration: BoxDecoration(
-                        color: Colors.amberAccent,
-                        borderRadius: BorderRadius.circular(context.wPct(4)),
-                      ),
-                    ),
-
-                    context.hBox(2.5),
-
+                    BalanceChart(),
                     BalanceHistorySection(),
+                    context.hBox(2.5),
                   ],
                 ),
               );
