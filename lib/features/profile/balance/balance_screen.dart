@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/profile/balance/balance_controller.dart';
-import 'package:para_job/features/profile/balance/widgets/balance_chart.dart';
 import 'package:para_job/features/profile/balance/widgets/balance_header.dart';
 import 'package:para_job/features/profile/balance/widgets/balance_histor_section.dart';
 import 'package:para_job/features/profile/balance/widgets/balance_time_frame_tabs.dart';
@@ -52,6 +51,38 @@ class BalanceScreen extends StatelessWidget {
                     context.hBox(2.5),
 
                     BalanceChart(),
+                    context.hBox(2.5),
+
+
+            case ApiCallState.failure:
+              return Center(
+                child: ErrorScreen(
+                  onPressed: _balanceController.fetchBalanceTransactions,
+                ),
+              );
+
+            case ApiCallState.success:
+              return Padding(
+                padding: EdgeInsets.all(context.defaultPadding),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    BalanceHeader(),
+                    context.hBox(2.5),
+
+                    BalanceTimeFrameTabs(),
+
+                    context.hBox(2.5),
+
+                    Container(
+                      width: double.infinity,
+                      height: context.hPct(25),
+                      decoration: BoxDecoration(
+                        color: Colors.amberAccent,
+                        borderRadius: BorderRadius.circular(context.wPct(4)),
+                      ),
+                    ),
+
                     context.hBox(2.5),
 
                     BalanceHistorySection(),

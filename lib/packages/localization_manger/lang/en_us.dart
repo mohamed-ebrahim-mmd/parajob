@@ -879,4 +879,5 @@ to connect with you.
   "balance_tab_year": "Year",
   "Deduction": "Deduction",
   'No_transactions_found': 'No transactions found',
+  'will_be_deducted_due_to': 'will be deducted due to',
 };
