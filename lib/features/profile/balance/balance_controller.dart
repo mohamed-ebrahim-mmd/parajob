@@ -3,13 +3,12 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:para_job/features/profile/balance/widgets/balance_alert_dialog.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
 
 class BalanceController extends GetxController {
   // Variable to track the currently selected tab
-  final _selectedTab = BalanceTab.Month.obs;
+  final _selectedTab = BalanceTab.month.obs;
   BalanceTab get selectedTab => _selectedTab.value;
 
   // API call state and data
@@ -56,11 +55,11 @@ class BalanceController extends GetxController {
   // Helper function to get color based on selection
   Color getContainerColor() {
     switch (selectedTab) {
-      case BalanceTab.Week:
+      case BalanceTab.week:
         return Colors.yellow;
-      case BalanceTab.Month:
+      case BalanceTab.month:
         return Colors.green;
-      case BalanceTab.Year:
+      case BalanceTab.year:
         return Colors.red;
     }
   }
@@ -73,40 +72,20 @@ class BalanceController extends GetxController {
   }
 }
 
-enum BalanceTab { Week, Month, Year }
+enum BalanceTab { week, month, year }
 
 extension BalanceTabExtension on BalanceTab {
   String get value {
-    switch (this) {
-      case BalanceTab.Week:
-        return 'Week';
-      case BalanceTab.Month:
-        return 'Month';
-      case BalanceTab.Year:
-        return 'Year';
-    }
-  }
-
-  static BalanceTab fromString(String value) {
-    switch (value.toLowerCase()) {
-      case 'week':
-        return BalanceTab.Week;
-      case 'month':
-        return BalanceTab.Month;
-      case 'year':
-        return BalanceTab.Year;
-      default:
-        return BalanceTab.Month;
-    }
+    return name;
   }
 
   String get displayName {
     switch (this) {
-      case BalanceTab.Week:
+      case BalanceTab.week:
         return 'balance_tab_week'.tr;
-      case BalanceTab.Month:
+      case BalanceTab.month:
         return 'balance_tab_month'.tr;
-      case BalanceTab.Year:
+      case BalanceTab.year:
         return 'balance_tab_year'.tr;
     }
   }
