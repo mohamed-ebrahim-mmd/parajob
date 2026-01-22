@@ -9,8 +9,7 @@ import 'package:para_job/packages/user_manager/user_controller.dart';
 
 class BalanceController extends GetxController {
   // Variable to track the currently selected tab
-  final _selectedTab = BalanceTab.month.obs;
-  BalanceTab get selectedTab => _selectedTab.value;
+  BalanceTab selectedTab = BalanceTab.month;
 
   // API call state and data
   var balanceCallState = ApiCallState.loading.obs;
@@ -26,7 +25,7 @@ class BalanceController extends GetxController {
 
   // Function to update the selected tab
   void updateSelectedTab(BalanceTab tab) {
-    _selectedTab.value = tab;
+    selectedTab = tab;
     fetchBalanceTransactions();
   }
 

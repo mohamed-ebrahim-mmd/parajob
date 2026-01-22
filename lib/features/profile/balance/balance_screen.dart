@@ -52,7 +52,6 @@ class BalanceScreen extends StatelessWidget {
                     context.hBox(2.5),
 
                     BalanceChart(),
-
                     context.hBox(2.5),
 
                     BalanceHistorySection(),
