@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:para_job/features/profile/balance/widgets/balance_alert_dialog.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
@@ -13,7 +14,7 @@ class BalanceController extends GetxController {
 
   // API call state and data
   var balanceCallState = ApiCallState.loading.obs;
-  BalanceTransactionsData? balanceData;
+  final balanceData = Rxn<BalanceTransactionsData>();
   final user = Get.find<UserController>();
 
   @override
@@ -40,7 +41,7 @@ class BalanceController extends GetxController {
 
       if (response.isSuccess && response.data != null) {
         log("🟢 fetchBalanceTransactions isSuccess");
-        balanceData = response.data!;
+        balanceData.value = response.data!;
         balanceCallState.value = ApiCallState.success;
       } else {
         log("🔴 fetchBalanceTransactions failed: ${response.details?.message}");
@@ -66,9 +67,9 @@ class BalanceController extends GetxController {
 
   // Get all transactions as a flat list from the Map<String, List<BalanceTransaction>>
   List<BalanceTransaction> get allTransactions {
-    if (balanceData == null) return [];
-
-    return balanceData!.transactions.values.expand((list) => list).toList();
+    return balanceData.value!.transactions.values
+        .expand((list) => list)
+        .toList();
   }
 
   /// Get dummy transactions data
@@ -81,7 +82,15 @@ class BalanceController extends GetxController {
       date: '9 March',
       isPositive: true,
       onTap: () {
-        showDeductionDialog(context);
+        showDeductionDialog(
+          context,
+          amount: 1500.00,
+          reason: 'Bonus adjustment',
+          title: 'Supervisor',
+          company: 'Spotify',
+          date: '9 March',
+          logoUrl: '',
+        );
       },
     ),
     TransactionDummy(
@@ -92,7 +101,15 @@ class BalanceController extends GetxController {
       date: '9 March',
       isPositive: false,
       onTap: () {
-        showDeductionDialog(context);
+        showDeductionDialog(
+          context,
+          amount: 150.00,
+          reason: 'Late submission',
+          title: 'Supervisor',
+          company: 'Spotify',
+          date: '9 March',
+          logoUrl: '',
+        );
       },
     ),
     TransactionDummy(
@@ -103,7 +120,15 @@ class BalanceController extends GetxController {
       date: '9 March',
       isPositive: true,
       onTap: () {
-        showDeductionDialog(context);
+        showDeductionDialog(
+          context,
+          amount: 500.00,
+          reason: 'Performance adjustment',
+          title: 'Usher',
+          company: 'Andasdsadsadsadsaghami',
+          date: '9 March',
+          logoUrl: '',
+        );
       },
     ),
     TransactionDummy(
@@ -114,7 +139,15 @@ class BalanceController extends GetxController {
       date: '9 March',
       isPositive: true,
       onTap: () {
-        showDeductionDialog(context);
+        showDeductionDialog(
+          context,
+          amount: 600.00,
+          reason: 'Adjustment',
+          title: 'Intern',
+          company: 'Red Bull',
+          date: '9 March',
+          logoUrl: '',
+        );
       },
     ),
   ];
@@ -176,5 +209,11 @@ extension BalanceTabExtension on BalanceTab {
       case BalanceTab.Year:
         return 'balance_tab_year'.tr;
     }
+  }
+
+  String formatDate(String isoDate) {
+    final date = DateTime.tryParse(isoDate);
+    if (date == null) return '';
+    return DateFormat('d MMMM').format(date);
   }
 }
