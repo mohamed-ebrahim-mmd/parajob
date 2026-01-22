@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:para_job/features/profile/balance/widgets/balance_alert_dialog.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
+import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
 
 class BalanceController extends GetxController {
@@ -115,18 +116,12 @@ class BalanceController extends GetxController {
       isCurved: true,
       preventCurveOverShooting: true,
       barWidth: 2.5,
-      color: const Color(0xFF2FE3C2),
+      color: AppColors.aquaTeal,
+
       dotData: const FlDotData(show: false),
       belowBarData: BarAreaData(
         show: true,
-        gradient: LinearGradient(
-          colors: [
-            const Color(0xFF2FE3C2).withOpacity(0.25),
-            Colors.transparent,
-          ],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-        ),
+        color: AppColors.aquaTeal.withValues(alpha: 0.1),
       ),
     );
   }
@@ -150,10 +145,7 @@ class BalanceController extends GetxController {
 
   XAxis calculateXAxis(int length) {
     final maxX = length > 1 ? length - 1.0 : 1.0;
-    return XAxis(
-      min: -0.5,
-      max: maxX + 0.5,
-    ); // Using the constant _xPadding = 0.5
+    return XAxis(min: 0, max: maxX + 0.5);
   }
 
   FlTitlesData titlesData({
