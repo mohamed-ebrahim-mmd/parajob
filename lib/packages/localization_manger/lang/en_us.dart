@@ -519,8 +519,8 @@ const Map<String, String> enUS = {
       'Message is too long. Maximum 100 characters allowed',
   'validation_password_empty': 'Password cannot be empty',
   'validation_password_min_length': 'Password must be at least 8 characters',
- "validation_password_format": "Password must have uppercase, lowercase, and a special char (#,@,!,%,&,*)."
-,
+  "validation_password_format":
+      "Password must have uppercase, lowercase, and a special char (#,@,!,%,&,*).",
   'validation_confirm_password_empty': 'Confirm Password cannot be empty',
   'validation_confirm_password_mismatch': 'Passwords do not match',
 
@@ -878,4 +878,6 @@ to connect with you.
   "balance_tab_month": "Month",
   "balance_tab_year": "Year",
   "Deduction": "Deduction",
+  'No_transactions_found': 'No transactions found',
+  'will_be_deducted_due_to': 'will be deducted due to',
 };

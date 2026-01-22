@@ -4,7 +4,15 @@ import 'package:para_job/features/profile/balance/widgets/balance_history_item.d
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
-Future<void> showDeductionDialog(BuildContext context) {
+Future<void> showDeductionDialog(
+  BuildContext context, {
+  required double amount,
+  required String reason,
+  required String title,
+  required String company,
+  required String date,
+  String logoUrl = '',
+}) {
   return showDialog(
     context: context,
     barrierDismissible: true,
@@ -53,19 +61,21 @@ Future<void> showDeductionDialog(BuildContext context) {
                     color: AppColors.lightSilverGray,
                     fontSize: context.wPct(5),
                   ),
-                  children: const [
-                    TextSpan(text: 'EGP '),
+                  children: [
                     TextSpan(
-                      text: '150.00',
-                      style: TextStyle(
+                      text: amount.abs().toStringAsFixed(2),
+                      style: const TextStyle(
                         color: AppColors.pureWhite,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    TextSpan(text: ' will be deducted due to '),
+                    TextSpan(text: ' ${'balance_currency'.tr}'),
+
+                    TextSpan(text: ' ${'will_be_deducted_due_to'.tr} '),
+
                     TextSpan(
-                      text: 'being late',
-                      style: TextStyle(
+                      text: reason,
+                      style: const TextStyle(
                         color: AppColors.pureWhite,
                         fontWeight: FontWeight.bold,
                       ),
@@ -78,11 +88,11 @@ Future<void> showDeductionDialog(BuildContext context) {
 
               /// Deduction card
               BalanceHistoryItem(
-                logo: Icons.work,
-                title: 'Late Submission Penalty',
-                company: 'Company XYZ',
-                amount: 150.00,
-                date: '12 June 2024',
+                logoUrl: logoUrl,
+                title: title,
+                company: company,
+                amount: amount.abs(),
+                date: date,
                 isPositive: false,
               ),
             ],

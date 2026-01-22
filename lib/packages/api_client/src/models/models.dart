@@ -79,3 +79,4 @@ export 'responses/submit_review_response.dart';
 export 'responses/university_response.dart';
 export 'responses/update_user_photo_response.dart';
 export 'responses/upload_file_response.dart';
+export 'responses/balance_transactions_response.dart';

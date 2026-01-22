@@ -262,4 +262,10 @@ abstract class ApiClient {
     @Path("id") required int jobId,
     @Header("Authorization") required String token,
   });
+
+  @GET("/api/user/balance/transactions")
+  Future<BalanceTransactionsResponse> getBalanceTransactions({
+    @Header("Authorization") required String token,
+    @Query("range") String? range,
+  });
 }
