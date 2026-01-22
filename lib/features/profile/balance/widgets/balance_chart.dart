@@ -13,8 +13,7 @@ class BalanceChart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: double.infinity,
-      height: MediaQuery.of(context).size.height * _chartHeightFactor,
+      height: context.height * _chartHeightFactor,
       child: Container(
         padding: const EdgeInsets.fromLTRB(
           _leftPadding,
@@ -22,15 +21,9 @@ class BalanceChart extends StatelessWidget {
           _defaultPadding,
           _defaultPadding,
         ),
-        decoration: BoxDecoration(
-          color: const Color(0xFF0E141B),
-          borderRadius: BorderRadius.circular(16),
-        ),
+
         child: LineChart(
-          controller.chartData(
-            chart: controller.balanceData!.chart,
-            selectedTab: controller.selectedTab,
-          ),
+          controller.chartData(chart: controller.balanceData!.chart),
         ),
       ),
     );

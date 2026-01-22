@@ -78,10 +78,7 @@ class BalanceController extends GetxController {
   }
 
   // Helper methods moved from BalanceChart widget
-  LineChartData chartData({
-    required List<BalanceChartItem> chart,
-    required BalanceTab selectedTab,
-  }) {
+  LineChartData chartData({required List<BalanceChartItem> chart}) {
     if (chart.isEmpty) return emptyChart();
 
     final spots = buildSpots(chart);
@@ -170,8 +167,7 @@ class BalanceController extends GetxController {
       leftTitles: AxisTitles(
         sideTitles: SideTitles(
           showTitles: true,
-          interval: yInterval,
-          reservedSize: 64, // Using the constant _yAxisReservedSize = 64
+          reservedSize: 64,
           getTitlesWidget: (value, _) => Text(
             'EGP ${value.toInt()}',
             style: const TextStyle(color: Colors.white54, fontSize: 12),
@@ -181,14 +177,11 @@ class BalanceController extends GetxController {
       bottomTitles: AxisTitles(
         sideTitles: SideTitles(
           showTitles: true,
-          interval: xInterval(labels.length, selectedTab),
+
           getTitlesWidget: (value, _) {
             if (value % 1 != 0) return const SizedBox();
 
             final index = value.toInt();
-            if (index < 0 || index >= labels.length) {
-              return const SizedBox();
-            }
 
             return Padding(
               padding: const EdgeInsets.only(top: 8),
@@ -207,17 +200,6 @@ class BalanceController extends GetxController {
         ),
       ),
     );
-  }
-
-  double xInterval(int length, BalanceTab tab) {
-    switch (tab) {
-      case BalanceTab.week:
-        return 1;
-      case BalanceTab.month:
-        return (length / 4).ceilToDouble();
-      case BalanceTab.year:
-        return (length / 5).ceilToDouble();
-    }
   }
 
   FlGridData gridData() => FlGridData(
