@@ -51,17 +51,7 @@ class BalanceScreen extends StatelessWidget {
 
                     context.hBox(2.5),
 
-                    SizedBox(
-                      width: double.infinity,
-                      height: context.hPct(25),
-                      child: BalanceChart(
-                        chart:
-                            _balanceController.balanceData?.chart ?? const [],
-                        currency:
-                            _balanceController.balanceData?.summary.currency ??
-                            '',
-                      ),
-                    ),
+                    BalanceChart(),
 
                     context.hBox(2.5),
 
