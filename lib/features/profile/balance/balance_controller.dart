@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:para_job/features/profile/balance/widgets/balance_alert_dialog.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
 
@@ -13,7 +14,8 @@ class BalanceController extends GetxController {
 
   // API call state and data
   var balanceCallState = ApiCallState.loading.obs;
-  final balanceData = Rxn<BalanceTransactionsData>();
+
+  BalanceTransactionsData? balanceData;
   final user = Get.find<UserController>();
 
   @override
@@ -28,6 +30,23 @@ class BalanceController extends GetxController {
     fetchBalanceTransactions();
   }
 
+  // Handle transaction tap
+  void onTransactionTap(BuildContext context, BalanceTransaction item) {
+    final isPositive = item.amount >= 0;
+
+    if (isPositive) return;
+
+    showDeductionDialog(
+      context,
+      amount: item.amount,
+      reason: item.reason,
+      title: item.jobTitle,
+      company: item.company.name,
+      date: selectedTab.formatDate(item.occurredAt),
+      logoUrl: item.company.logo,
+    );
+  }
+
   // Fetch balance transactions from API
   Future<void> fetchBalanceTransactions() async {
     balanceCallState.value = ApiCallState.loading;
@@ -40,7 +59,7 @@ class BalanceController extends GetxController {
 
       if (response.isSuccess && response.data != null) {
         log("🟢 fetchBalanceTransactions isSuccess");
-        balanceData.value = response.data!;
+        balanceData = response.data!;
         balanceCallState.value = ApiCallState.success;
       } else {
         log("🔴 fetchBalanceTransactions failed: ${response.details?.message}");
@@ -52,23 +71,9 @@ class BalanceController extends GetxController {
     }
   }
 
-  // Helper function to get color based on selection
-  Color getContainerColor() {
-    switch (selectedTab) {
-      case BalanceTab.week:
-        return Colors.yellow;
-      case BalanceTab.month:
-        return Colors.green;
-      case BalanceTab.year:
-        return Colors.red;
-    }
-  }
-
   // Get all transactions as a flat list from the Map<String, List<BalanceTransaction>>
   List<BalanceTransaction> get allTransactions {
-    return balanceData.value!.transactions.values
-        .expand((list) => list)
-        .toList();
+    return balanceData!.transactions.values.expand((list) => list).toList();
   }
 }
 

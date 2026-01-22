@@ -54,7 +54,7 @@ class BalanceScreen extends StatelessWidget {
                       width: double.infinity,
                       height: context.hPct(25),
                       decoration: BoxDecoration(
-                        color: _balanceController.getContainerColor(),
+                        color: Colors.amberAccent,
                         borderRadius: BorderRadius.circular(context.wPct(4)),
                       ),
                     ),
