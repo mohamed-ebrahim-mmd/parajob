@@ -52,14 +52,15 @@ LineChartData chartData({required List<BalanceChartItem> chart}) {
             }
 
             return Padding(
-              padding: const EdgeInsets.only(top: 8),
-              child: SizedBox(
-                width: 40,
-                child: Text(
-                  chart[index].label,
+              padding: const EdgeInsets.only(top: 8, right: 8),
+              child: Text(
+                chart[index].label,
 
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(color: Colors.white54, fontSize: 8.3),
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  color: Colors.white54,
+                  fontSize: 9,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             );
