@@ -17,7 +17,7 @@ class StartTutorialDialog extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(context.wPct(6)),
       decoration: BoxDecoration(
-        color: AppColors.midnightBlue,
+        color: AppColors.dialogBackgroundDark,
         borderRadius: BorderRadius.circular(context.wPct(3)),
       ),
       child: Column(
