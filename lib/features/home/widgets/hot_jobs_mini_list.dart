@@ -34,7 +34,7 @@ class HotJobsMiniList extends StatelessWidget {
               description:
                   "Premium jobs from major companies or special events. These roles are limited and competitive—apply fast and stand out.",
               onBarrierClick: () => controller.goDismiss(),
-              tooltipBackgroundColor: AppColors.midnightBlue,
+              tooltipBackgroundColor: AppColors.dialogBackgroundDark,
               textColor: AppColors.pureWhite,
               tooltipPadding: EdgeInsets.all(context.wPct(6)),
               descriptionTextAlign: TextAlign.center,
