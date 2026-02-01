@@ -55,10 +55,31 @@ class HomeController extends GetxController {
     }
   }
 
+  /// Updates the application status of a job if it exists in the hot jobs list
+  void updateJobApplicationStatus(int jobId, bool isApplied) {
+    // 1. Check if homeData exists and has content
+    if (homeData == null || homeData!.data.isEmpty) return;
+
+    final hotJobsList = homeData!.data.first.hotJobs;
+
+    // 2. Find the job with the matching ID in the hotJobsList
+    // We use cast to check since firstWhere throws if not found
+    try {
+      final job = hotJobsList.firstWhere((element) => element.id == jobId);
+
+      // 3. Update the reactive value
+      job.isAppliedReactive.value = isApplied;
+
+      // log("🟢 Updated Hot Job $jobId applied status to: $isApplied");
+    } catch (e) {
+      // log("ℹ️ Job $jobId not found in Hot Jobs list, skipping update.");
+    }
+  }
+
   void openJobsScreen({
     required String title,
     required String category,
-     int? id,
+    int? id,
   }) {
     Get.toNamed(
       "${Routes.mainNavigator}${Routes.jobs}",

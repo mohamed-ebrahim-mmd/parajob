@@ -16,6 +16,7 @@ class Job {
   final String? monthlySalary;
   final Company? company;
   final bool? isApplied;
+  final RxBool isAppliedReactive;
   final bool? isBookmark; // backend value
   final RxBool isBookmarkedReactive; // reactive copy
   final String? category;
@@ -45,7 +46,8 @@ class Job {
     this.isSignedContract,
     this.applicationDate,
     this.jobApplicationVerification,
-  }) : isBookmarkedReactive = RxBool(isBookmark ?? false);
+  }) : isBookmarkedReactive = RxBool(isBookmark ?? false),
+       isAppliedReactive = RxBool(isApplied ?? false);
 
   factory Job.fromJson(Map<String, dynamic>? json) {
     if (json == null) return Job();

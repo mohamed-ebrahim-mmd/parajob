@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:loader_overlay/loader_overlay.dart';
+import 'package:para_job/features/home/home_controller.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/ui_components/auth_required_dialog.dart';
@@ -71,6 +72,7 @@ class JobDetailsController extends GetxController {
       );
 
       if (response.isSuccess == true) {
+        Get.find<HomeController>().updateJobApplicationStatus(jobId, true);
         showSnackBarJobApplicationCongrats();
         fetchJobDetails(jobId);
         Get.until((route) => Get.currentRoute == Routes.jobDetails);
@@ -98,6 +100,7 @@ class JobDetailsController extends GetxController {
       );
 
       if (response.isSuccess) {
+        Get.find<HomeController>().updateJobApplicationStatus(jobId, false);
         fetchJobDetails(jobId);
       } else {
         showSnackBarError(

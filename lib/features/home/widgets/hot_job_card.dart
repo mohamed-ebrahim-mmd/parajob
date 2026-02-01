@@ -21,6 +21,7 @@ class HotJobCard extends StatelessWidget {
     this.onTap,
     this.onBookmarkTap,
   });
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -214,24 +215,31 @@ class HotJobCard extends StatelessWidget {
             child: Row(
               children: [
                 Expanded(
-                  child: ElevatedButton(
-                    onPressed: onTap,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.pureWhite,
-                      foregroundColor: const Color(0xFF122A2B),
-                      minimumSize: Size(double.infinity, context.hPct(5)),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(context.wPct(3)),
+                  child: Obx(() {
+                    final isApplied = job.isAppliedReactive.value;
+                    return ElevatedButton(
+                      onPressed: onTap,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: isApplied
+                            ? AppColors.softWhite70.withValues(alpha: 0.2)
+                            : AppColors.pureWhite,
+                        foregroundColor: isApplied
+                            ? AppColors.softWhite70
+                            : const Color(0xFF122A2B),
+                        minimumSize: Size(double.infinity, context.hPct(5)),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(context.wPct(3)),
+                        ),
                       ),
-                    ),
-                    child: Text(
-                      "apply_now".tr,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 14,
+                      child: Text(
+                        isApplied ? "applied".tr : "apply_now".tr,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14,
+                        ),
                       ),
-                    ),
-                  ),
+                    );
+                  }),
                 ),
                 context.wBox(2),
                 Obx(() {

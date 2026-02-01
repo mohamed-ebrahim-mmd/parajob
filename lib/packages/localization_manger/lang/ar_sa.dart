@@ -201,6 +201,7 @@ const Map<String, String> arSA = {
   'apply_filter': 'تطبيق التصفية',
   'see_all': 'عرض الكل',
   'apply_now': 'قدّم الآن',
+  'applied': 'تم التقديم',
   'egp': 'جنيه',
   'per_month': '/شهري',
 

@@ -203,6 +203,7 @@ const Map<String, String> enUS = {
   'apply_filter': 'Apply Filter',
   'see_all': 'See all',
   'apply_now': 'Apply now',
+  'applied': 'Applied',
   'egp': 'EGP',
   'per_month': '/mo',
 
