@@ -38,7 +38,7 @@ class JobsMiniList extends StatelessWidget {
                   : "Structured roles with fixed hours and responsibilities—perfect for steady routines.",
               onBarrierClick: () => controller.goDismiss(),
 
-              tooltipBackgroundColor: AppColors.midnightBlue,
+              tooltipBackgroundColor: AppColors.dialogBackgroundDark,
               textColor: AppColors.pureWhite,
               descriptionTextAlign: TextAlign.center,
               tooltipPadding: EdgeInsets.all(context.wPct(6)),
