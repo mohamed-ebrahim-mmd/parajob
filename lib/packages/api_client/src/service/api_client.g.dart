@@ -305,6 +305,7 @@ class _ApiClient implements ApiClient {
     String? type,
     int? companyId,
     int? skillId,
+    int? cityId,
     int? departmentId,
     int? page,
     String? token,
@@ -316,6 +317,7 @@ class _ApiClient implements ApiClient {
       r'filter[type]': type,
       r'filter[company_id]': companyId,
       r'filter[skills]': skillId,
+      r'filter[city_id]': cityId,
       r'filter[department_id]': departmentId,
       r'page': page,
     };

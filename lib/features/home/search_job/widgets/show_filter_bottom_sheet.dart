@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:para_job/features/home/search_job/search_job_controller.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
+
 Future<void> showFilterBottomSheet(
   BuildContext context,
   SearchJobController controller,
@@ -71,6 +72,19 @@ Future<void> showFilterBottomSheet(
               if (value != null) controller.selectedJobType = value;
             },
             dropdownMenuEntries: controller.jobTypeMenuEntries,
+          ),
+          context.hBox(2),
+
+          DropdownMenu<int>(
+            enableSearch: true,
+            width: context.wPct(90),
+            menuHeight: context.hPct(30),
+            initialSelection: controller.selectedCityId,
+            hintText: 'city'.tr,
+            onSelected: (value) {
+              if (value != null) controller.selectedCityId = value;
+            },
+            dropdownMenuEntries: controller.cities,
           ),
           context.hBox(2),
 

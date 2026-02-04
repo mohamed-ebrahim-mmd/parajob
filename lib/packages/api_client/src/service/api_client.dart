@@ -55,6 +55,7 @@ abstract class ApiClient {
     @Query("filter[type]") String? type,
     @Query("filter[company_id]") int? companyId,
     @Query("filter[skills]") int? skillId,
+    @Query("filter[city_id]") int? cityId,
     @Query("filter[department_id]") int? departmentId,
     @Query("page") int? page,
     @Header("Authorization") String? token,

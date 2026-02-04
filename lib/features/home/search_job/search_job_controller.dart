@@ -25,12 +25,14 @@ class SearchJobController extends GetxController {
 
   int? selectedSkillId;
   int? selectedCompanyId;
+  int? selectedCityId;
   String? selectedJobType;
   String? selectedJobCategory;
 
   // Data
   List<DropdownMenuEntry<int>> skills = [];
   List<DropdownMenuEntry<int>> companies = [];
+  List<DropdownMenuEntry<int>> cities = [];
 
   final jobTypeMenuEntries = [
     DropdownMenuEntry<String>(value: 'part_time', label: 'part_time'.tr),
@@ -39,7 +41,10 @@ class SearchJobController extends GetxController {
 
   final jobCategoriesEntries = [
     DropdownMenuEntry<String>(value: 'flexible', label: 'flexible_job'.tr),
-    DropdownMenuEntry<String>(value: 'non_flexible', label: 'non_flexible_job'.tr),
+    DropdownMenuEntry<String>(
+      value: 'non_flexible',
+      label: 'non_flexible_job'.tr,
+    ),
     DropdownMenuEntry<String>(value: 'hot_job', label: 'hot_job'.tr),
   ];
 
@@ -61,6 +66,7 @@ class SearchJobController extends GetxController {
               ? titleController.text.trim()
               : null,
           companyId: selectedCompanyId,
+          cityId: selectedCityId,
           skillId: selectedSkillId,
           type: selectedJobType,
           category: selectedJobCategory,
@@ -81,13 +87,17 @@ class SearchJobController extends GetxController {
       final results = await Future.wait([
         apiClient.getSkills(),
         apiClient.getCompanies(),
+        apiClient.getCities(),
         _initPagingController(),
       ]);
 
       final skillsResponse = results[0] as SkillResponse;
       final companiesResponse = results[1] as CompanyListResponse;
+      final citiesResponse = results[2] as CityResponse;
 
-      if (skillsResponse.isSuccess && companiesResponse.isSuccess) {
+      if (skillsResponse.isSuccess &&
+          companiesResponse.isSuccess &&
+          citiesResponse.isSuccess) {
         skills = skillsResponse.data
             .map(
               (skill) =>
@@ -103,6 +113,16 @@ class SearchJobController extends GetxController {
               ),
             )
             .toList();
+
+        cities = citiesResponse.data
+            .map(
+              (city) => DropdownMenuEntry<int>(
+                value: city.id ?? 0,
+                label: city.name ?? '-',
+              ),
+            )
+            .toList();
+
         searchDataCallState.value = ApiCallState.success;
       } else {
         searchDataCallState.value = ApiCallState.failure;
