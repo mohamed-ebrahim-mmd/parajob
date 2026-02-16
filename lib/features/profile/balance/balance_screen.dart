@@ -41,20 +41,22 @@ class BalanceScreen extends StatelessWidget {
             case ApiCallState.success:
               return Padding(
                 padding: EdgeInsets.all(context.defaultPadding),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    BalanceHeader(),
-                    context.hBox(2.5),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      BalanceHeader(),
+                      context.hBox(2.5),
 
-                    BalanceTimeFrameTabs(),
+                      BalanceTimeFrameTabs(),
 
-                    context.hBox(2.5),
+                      context.hBox(2.5),
 
-                    BalanceChart(),
-                    BalanceHistorySection(),
-                    context.hBox(2.5),
-                  ],
+                      BalanceChart(),
+                      BalanceHistorySection(),
+                      context.hBox(2.5),
+                    ],
+                  ),
                 ),
               );
           }
