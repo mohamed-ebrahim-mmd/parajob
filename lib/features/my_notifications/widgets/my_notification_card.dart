@@ -66,14 +66,13 @@ class MyNotificationCard extends StatelessWidget {
                     width: context.wPct(12),
                     height: context.wPct(12),
                     decoration: BoxDecoration(
-                      color: AppColors.pureWhite,
                       borderRadius: BorderRadius.circular(context.wPct(2)),
                     ),
                     child: Center(
                       child: Icon(
                         Icons.warning_amber_rounded,
                         color: AppColors.rejected,
-                        size: context.wPct(8),
+                        size: context.wPct(9.5),
                       ),
                     ),
                   )
