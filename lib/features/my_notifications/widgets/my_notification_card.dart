@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/my_notifications/widgets/message_spans.dart'
     show buildMessageSpans;
-import 'package:para_job/features/my_notifications/widgets/notification_warning_icon.dart';
+import 'package:para_job/features/my_notifications/widgets/notification_image.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 import '../../../packages/api_client/src/models/responses/my_notification.dart';
 import '../../../packages/themeing/app_colors.dart';
 import '../../../packages/themeing/media_query_values.dart';
-import '../../../packages/ui_components/app_network_image.dart';
 
 class MyNotificationCard extends StatelessWidget {
   final MyNotification myNotification;
@@ -61,15 +60,10 @@ class MyNotificationCard extends StatelessWidget {
         color: myNotification.readAt == null ? AppColors.darkGrey : null,
         child: Row(
           children: [
-            //    if (logoUrl != null && logoUrl.isNotEmpty) ...[
-            notificationType == 'strike'
-                ? NotificationWarningIcon()
-                : AppNetworkImage(
-                    url: logoUrl,
-                    width: context.wPct(12),
-                    height: context.wPct(12),
-                    borderRadius: BorderRadius.circular(context.wPct(2)),
-                  ),
+            NotificationImage(
+              notificationType: notificationType,
+              logoUrl: logoUrl,
+            ),
             context.wBox(4),
 
             //],
