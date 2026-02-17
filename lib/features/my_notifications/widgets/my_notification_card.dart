@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/my_notifications/widgets/message_spans.dart'
     show buildMessageSpans;
+import 'package:para_job/features/my_notifications/widgets/notification_warning_icon.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
@@ -21,7 +22,7 @@ class MyNotificationCard extends StatelessWidget {
     final logoUrl = details.companyLogo;
     DateTime? createdAt;
 
-    final type = myNotification.type;
+    final notificationType = myNotification.type;
 
     try {
       createdAt = DateTime.parse(myNotification.createdAt);
@@ -40,7 +41,7 @@ class MyNotificationCard extends StatelessWidget {
     return InkWell(
       onTap: () {
         if (details.jobId?.isNotEmpty == true) {
-          switch (type) {
+          switch (notificationType) {
             case 'interview':
               Get.toNamed(
                 '${Routes.mainNavigator}${Routes.interview}',
@@ -61,21 +62,8 @@ class MyNotificationCard extends StatelessWidget {
         child: Row(
           children: [
             //    if (logoUrl != null && logoUrl.isNotEmpty) ...[
-            type == 'strike'
-                ? Container(
-                    width: context.wPct(12),
-                    height: context.wPct(12),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(context.wPct(2)),
-                    ),
-                    child: Center(
-                      child: Icon(
-                        Icons.warning_amber_rounded,
-                        color: AppColors.rejected,
-                        size: context.wPct(9.5),
-                      ),
-                    ),
-                  )
+            notificationType == 'strike'
+                ? NotificationWarningIcon()
                 : AppNetworkImage(
                     url: logoUrl,
                     width: context.wPct(12),
