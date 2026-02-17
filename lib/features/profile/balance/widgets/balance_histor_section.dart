@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'package:para_job/features/profile/balance/balance_controller.dart';
 import 'package:para_job/features/profile/balance/widgets/balance_history_item.dart';
 import 'package:para_job/features/profile/balance/widgets/no_transactions.dart';
@@ -19,59 +18,59 @@ class BalanceHistorySection extends StatelessWidget {
       <String, List<BalanceTransaction>>{};
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.builder(
-        itemCount: transactionsByDate.length,
-        itemBuilder: (context, index) {
-          final entry = transactionsByDate.entries.elementAt(index);
-          final transactions = entry.value;
+    return ListView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: transactionsByDate.length,
+      itemBuilder: (context, index) {
+        final entry = transactionsByDate.entries.elementAt(index);
+        final transactions = entry.value;
 
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: context.defaultPadding),
-                child: Text(
-                  entry.key,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600,
-                  ),
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: context.defaultPadding),
+              child: Text(
+                entry.key,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
+            ),
 
-              if (transactions.isEmpty)
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: context.defaultPadding,
-                    vertical: context.defaultPadding,
-                  ),
-                  child: const NoTransactionsWidget(),
-                )
-              else
-                ListView.builder(
-                  itemCount: transactions.length,
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemBuilder: (context, itemIndex) {
-                    final item = transactions[itemIndex];
-                    final isPositive = item.amount >= 0;
-
-                    return BalanceHistoryItem(
-                      logoUrl: item.company.logo,
-                      title: item.jobTitle,
-                      company: item.company.name,
-                      amount: item.amount.abs(),
-                      date: controller.selectedTab.formatDate(item.occurredAt),
-                      isPositive: isPositive,
-                      onTap: () => controller.onTransactionTap(context, item),
-                    );
-                  },
+            if (transactions.isEmpty)
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: context.defaultPadding,
+                  vertical: context.defaultPadding,
                 ),
-            ],
-          );
-        },
-      ),
+                child: const NoTransactionsWidget(),
+              )
+            else
+              ListView.builder(
+                itemCount: transactions.length,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (context, itemIndex) {
+                  final item = transactions[itemIndex];
+                  final isPositive = item.amount >= 0;
+
+                  return BalanceHistoryItem(
+                    logoUrl: item.company.logo,
+                    title: item.jobTitle,
+                    company: item.company.name,
+                    amount: item.amount.abs(),
+                    date: controller.selectedTab.formatDate(item.occurredAt),
+                    isPositive: isPositive,
+                    onTap: () => controller.onTransactionTap(context, item),
+                  );
+                },
+              ),
+          ],
+        );
+      },
     );
   }
 }
