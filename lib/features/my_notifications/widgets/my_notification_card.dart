@@ -21,6 +21,8 @@ class MyNotificationCard extends StatelessWidget {
     final logoUrl = details.companyLogo;
     DateTime? createdAt;
 
+    final type = myNotification.type;
+
     try {
       createdAt = DateTime.parse(myNotification.createdAt);
     } catch (_) {}
@@ -38,8 +40,6 @@ class MyNotificationCard extends StatelessWidget {
     return InkWell(
       onTap: () {
         if (details.jobId?.isNotEmpty == true) {
-          final type = myNotification.type;
-
           switch (type) {
             case 'interview':
               Get.toNamed(
@@ -61,12 +61,28 @@ class MyNotificationCard extends StatelessWidget {
         child: Row(
           children: [
             //    if (logoUrl != null && logoUrl.isNotEmpty) ...[
-            AppNetworkImage(
-              url: logoUrl,
-              width: context.wPct(12),
-              height: context.wPct(12),
-              borderRadius: BorderRadius.circular(context.wPct(2)),
-            ),
+            type == 'strike'
+                ? Container(
+                    width: context.wPct(12),
+                    height: context.wPct(12),
+                    decoration: BoxDecoration(
+                      color: AppColors.pureWhite,
+                      borderRadius: BorderRadius.circular(context.wPct(2)),
+                    ),
+                    child: Center(
+                      child: Icon(
+                        Icons.warning_amber_rounded,
+                        color: AppColors.rejected,
+                        size: context.wPct(8),
+                      ),
+                    ),
+                  )
+                : AppNetworkImage(
+                    url: logoUrl,
+                    width: context.wPct(12),
+                    height: context.wPct(12),
+                    borderRadius: BorderRadius.circular(context.wPct(2)),
+                  ),
             context.wBox(4),
 
             //],
