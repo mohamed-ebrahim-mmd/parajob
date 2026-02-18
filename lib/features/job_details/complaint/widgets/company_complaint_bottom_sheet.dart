@@ -23,7 +23,7 @@ void showCompanyComplaintBottomSheet({
     Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        color: AppColors.midnightBlue,
+        color: AppColors.dialogBackgroundDark,
         borderRadius: BorderRadius.vertical(
           top: Radius.circular(context.wPct(6)),
         ),

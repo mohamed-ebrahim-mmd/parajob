@@ -17,7 +17,7 @@ Future<void> showFilterBottomSheet(
     Container(
       padding: EdgeInsets.all(context.wPct(5)),
       decoration: BoxDecoration(
-        color: AppColors.midnightBlue,
+        color: AppColors.dialogBackgroundDark,
         borderRadius: BorderRadius.vertical(
           top: Radius.circular(context.wPct(6)),
         ),
