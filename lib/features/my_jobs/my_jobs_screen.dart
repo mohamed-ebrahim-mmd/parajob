@@ -28,12 +28,34 @@ class MyJobsScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     TabBar(
+                      // Gives the shadow room to breathe only at the bottom
+                      indicatorPadding: EdgeInsets.only(top: context.hPct(5.2)),
+                      indicator: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: AppColors.aquaTeal,
+                        boxShadow: [
+                          BoxShadow(
+                            color: AppColors.aquaTeal.withValues(alpha: 0.4),
+                            blurRadius: 6, // Small blur for a tight glow
+                            spreadRadius: 0, // No spread to keep it contained
+                            offset: const Offset(0, 1), // Slight downward shift
+                          ),
+                        ],
+                      ),
                       dividerHeight: 0,
+                      indicatorSize: TabBarIndicatorSize.label,
+                      // Makes the line width match the text
                       labelStyle: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: context.wPct(3.5),
+                        fontWeight: FontWeight.bold,
+                        fontSize: context.wPct(5),
                         color: AppColors.pureWhite,
                       ),
+                      unselectedLabelStyle: TextStyle(
+                        fontWeight: FontWeight.w800,
+                        fontSize: context.wPct(4.5),
+                        color: AppColors.pureWhite.withValues(alpha: .7),
+                      ),
+                      // 👈 your color here
                       tabs: [
                         Tab(text: 'my_jobs_tab_applied'.tr),
                         Tab(text: 'my_jobs_tab_approved'.tr),
