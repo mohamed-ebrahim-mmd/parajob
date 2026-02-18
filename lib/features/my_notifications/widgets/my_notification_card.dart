@@ -7,7 +7,6 @@ import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 import '../../../packages/api_client/src/models/responses/my_notification.dart';
-import '../../../packages/themeing/app_colors.dart';
 import '../../../packages/themeing/media_query_values.dart';
 import '../../../packages/ui_components/app_network_image.dart';
 
@@ -58,7 +57,9 @@ class MyNotificationCard extends StatelessWidget {
       },
       child: Container(
         padding: EdgeInsets.all(context.wPct(5)),
-        color: myNotification.readAt == null ? AppColors.darkGrey : null,
+        color: myNotification.readAt == null
+            ? Colors.white.withValues(alpha: .05)
+            : null,
         child: Row(
           children: [
             //    if (logoUrl != null && logoUrl.isNotEmpty) ...[
