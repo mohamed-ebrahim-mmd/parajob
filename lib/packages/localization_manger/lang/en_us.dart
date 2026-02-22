@@ -881,4 +881,19 @@ to connect with you.
   "Deduction": "Deduction",
   'No_transactions_found': 'No transactions found',
   'will_be_deducted_due_to': 'will be deducted due to',
+
+  // ============================================================
+  // 🔔 Notification Messages
+  // ============================================================
+  'notification_interview_prefix': 'Your interview for ',
+  'notification_at': ' at ',
+  'notification_interview_cancelled': ' was cancelled.',
+  'notification_interview_rescheduled': ' has been rescheduled.',
+  'notification_interview_scheduled': ' has been scheduled.',
+  'notification_rated_you': ' rated you ',
+  'notification_stars': ' stars.',
+  'notification_please_rate': 'Please rate your experience for ',
+  'notification_new_job': 'New job available: ',
+  'notification_strike_warning': 'Warning! You have received a strike.',
+  'notification_new_generic': 'You have a new notification.',
 };

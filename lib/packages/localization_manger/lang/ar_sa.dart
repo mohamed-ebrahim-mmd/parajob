@@ -866,4 +866,19 @@ const Map<String, String> arSA = {
   "Deduction": "خصم",
   "No_transactions_found": "لا يوجد معاملات",
   "will_be_deducted_due_to": "سيتم خصمها بسبب",
+
+  // ============================================================
+  // 🔔 Notification Messages
+  // ============================================================
+  'notification_interview_prefix': 'مقابلتك لـ ',
+  'notification_at': ' في ',
+  'notification_interview_cancelled': ' تم إلغاؤها.',
+  'notification_interview_rescheduled': ' تم إعادة جدولتها.',
+  'notification_interview_scheduled': ' تم جدولتها.',
+  'notification_rated_you': ' قيّمك بـ ',
+  'notification_stars': ' نجوم.',
+  'notification_please_rate': 'يرجى تقييم تجربتك لـ ',
+  'notification_new_job': 'وظيفة جديدة متاحة: ',
+  'notification_strike_warning': 'تحذير! لقد تلقيت مخالفة.',
+  'notification_new_generic': 'لديك إشعار جديد.',
 };
