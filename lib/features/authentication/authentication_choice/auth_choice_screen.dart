@@ -34,9 +34,8 @@ class AuthChoiceScreen extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                context.hBox(3),
+                context.hBox(1.5),
                 LanguageSwitcher(),
-
                 context.hBox(25),
 
                 Directionality(
