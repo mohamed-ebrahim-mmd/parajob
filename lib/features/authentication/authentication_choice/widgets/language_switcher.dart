@@ -12,26 +12,25 @@ class LanguageSwitcher extends StatelessWidget {
   static final LocalizationController _localizationController =
       Get.find<LocalizationController>();
 
+  //  style for the buttons
+  ButtonStyle languageTextButtonStyle(bool isSelected, BuildContext context) =>
+      TextButton.styleFrom(
+        padding: EdgeInsets.symmetric(
+          horizontal: context.wPct(2.3),
+          vertical: context.hPct(0.5),
+        ),
+        minimumSize: Size.zero,
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        // ✅ THIS is what controls text color
+        foregroundColor: isSelected ? AppColors.aquaTeal : AppColors.lightGray,
+        textStyle: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: context.wPct(3.4),
+        ),
+      );
+
   @override
   Widget build(BuildContext context) {
-    //  style for the buttons
-    ButtonStyle languageTextButtonStyle(bool isSelected) =>
-        TextButton.styleFrom(
-          padding: EdgeInsets.symmetric(
-            horizontal: context.wPct(2.3),
-            vertical: context.hPct(0.5),
-          ),
-          minimumSize: Size.zero,
-          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        );
-
-    // TextStyle for the text
-    TextStyle textStyle(bool isSelected) => TextStyle(
-      color: isSelected ? AppColors.aquaTeal : AppColors.lightGray,
-      fontWeight: FontWeight.bold,
-      fontSize: context.wPct(3.4),
-    );
-
     return Align(
       alignment: Alignment.topRight,
       child: ClipRRect(
@@ -57,16 +56,14 @@ class LanguageSwitcher extends StatelessWidget {
                 TextButton(
                   style: languageTextButtonStyle(
                     _localizationController.isEnglish,
+                    context,
                   ),
                   onPressed: () {
                     _localizationController.changeLanguageForAuth(
                       const Locale('en'),
                     );
                   },
-                  child: Text(
-                    'EN',
-                    style: textStyle(_localizationController.isEnglish),
-                  ),
+                  child: Text('EN'),
                 ),
 
                 // Divider in the middle
@@ -81,16 +78,14 @@ class LanguageSwitcher extends StatelessWidget {
                 TextButton(
                   style: languageTextButtonStyle(
                     !_localizationController.isEnglish,
+                    context,
                   ),
                   onPressed: () {
                     _localizationController.changeLanguageForAuth(
                       const Locale('ar'),
                     );
                   },
-                  child: Text(
-                    'AR',
-                    style: textStyle(!_localizationController.isEnglish),
-                  ),
+                  child: Text('AR'),
                 ),
               ],
             ),
