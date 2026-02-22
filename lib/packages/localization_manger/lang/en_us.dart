@@ -206,7 +206,19 @@ const Map<String, String> enUS = {
   'applied': 'Applied',
   'egp': 'EGP',
   'per_month': '/mo',
-
+  "hot_job_show_case":
+      "Premium jobs from major companies or special events. These roles are limited and competitive—apply fast and stand out.",
+  "flexible_job_show_case":
+      "Work on your schedule—choose hours and locations that suit you.",
+  "non_flexible_job_show_case":
+      "Structured roles with fixed hours and responsibilities—perfect for steady routines.",
+  "start_parajob": "Start Smart with ParaJob",
+  "start_parajob_desc":
+      "Learn and understand each job type with simple, clear guidance.",
+  "start_now": "Start now",
+  "back": "Back",
+  "next": "Next",
+  "done": "Done",
   // ============================================================
   // 🏡 job details Screen
   // ============================================================
