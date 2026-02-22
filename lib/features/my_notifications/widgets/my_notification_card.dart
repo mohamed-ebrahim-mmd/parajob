@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:para_job/features/my_notifications/widgets/message_spans.dart'
     show buildMessageSpans;
 import 'package:para_job/features/my_notifications/widgets/notification_image.dart';
+import 'package:para_job/packages/localization_manger/controller/localization_controller.dart'
+    show LocalizationController;
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
@@ -10,9 +12,10 @@ import '../../../packages/api_client/src/models/responses/my_notification.dart';
 import '../../../packages/themeing/media_query_values.dart';
 
 class MyNotificationCard extends StatelessWidget {
+  final localizationController = Get.find<LocalizationController>();
   final MyNotification myNotification;
 
-  const MyNotificationCard({super.key, required this.myNotification});
+  MyNotificationCard({super.key, required this.myNotification});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +30,10 @@ class MyNotificationCard extends StatelessWidget {
     } catch (_) {}
 
     final timeAgo = createdAt != null
-        ? timeago.format(createdAt, locale: 'en_short')
+        ? timeago.format(
+            createdAt,
+            locale: localizationController.isEnglish ? 'en_short' : 'ar_short',
+          )
         : '';
 
     final messageSpans = buildMessageSpans(
@@ -61,10 +67,7 @@ class MyNotificationCard extends StatelessWidget {
             : null,
         child: Row(
           children: [
-            NotificationImage(
-              notificationType: notificationType,
-              logoUrl: logoUrl,
-            ),
+            NotificationImage(notificationDetails: details, logoUrl: logoUrl),
             context.wBox(4),
 
             //],

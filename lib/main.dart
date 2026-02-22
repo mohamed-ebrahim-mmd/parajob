@@ -12,6 +12,9 @@ import 'package:para_job/packages/localization_manger/localization_manger.dart';
 import 'package:para_job/packages/themeing/theme.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
 import 'package:para_job/res/firebase_options.dart';
+import 'package:timeago/timeago.dart'
+    as timeago
+    show setLocaleMessages, ArShortMessages;
 
 import 'packages/route_manager/route_manager.dart';
 
@@ -23,6 +26,7 @@ void main() async {
   Get.put(LocalizationController());
   // Load Arabic & English date formatting
   await initializeDateFormatting('ar', null);
+  timeago.setLocaleMessages('ar_short', timeago.ArShortMessages());
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   FirebaseMessaging.instance.getInitialMessage();

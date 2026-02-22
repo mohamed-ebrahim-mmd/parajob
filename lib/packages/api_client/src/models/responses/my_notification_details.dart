@@ -8,6 +8,7 @@ class MyNotificationDetails {
   final String? companyLogo;
   final String? companyName;
   final String? rate;
+  final String? level;
 
   MyNotificationDetails({
     this.type,
@@ -19,6 +20,7 @@ class MyNotificationDetails {
     this.companyLogo,
     this.companyName,
     this.rate,
+    this.level,
   });
 
   factory MyNotificationDetails.fromJson(Map<String, dynamic> json) {
@@ -32,6 +34,7 @@ class MyNotificationDetails {
       companyLogo: json['company_logo'],
       companyName: json['company_name'],
       rate: json['rate'],
+      level: json['level'],
     );
   }
 }
