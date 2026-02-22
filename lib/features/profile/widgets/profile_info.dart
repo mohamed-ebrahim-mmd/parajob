@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/profile/user_profile/profile_controller.dart'
     show ProfileController;
@@ -9,7 +8,7 @@ import 'package:para_job/packages/api_client/src/models/responses/user_profile_d
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/packages/ui_components/company_detail_container.dart';
-import 'package:para_job/res/app_asset_paths.dart';
+import 'package:para_job/packages/ui_components/user_level_badge.dart';
 
 class UserProfileInfo extends StatelessWidget {
   const UserProfileInfo({
@@ -69,30 +68,7 @@ class UserProfileInfo extends StatelessWidget {
               Positioned(
                 bottom: -context.wPct(4),
 
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    SvgPicture.asset(
-                      AppAssetPaths.icLevelBadgeCurrent,
-                      width: context.wPct(10),
-                      height: context.wPct(10),
-                    ),
-                    SizedBox(
-                      width: context.wPct(6),
-                      child: FittedBox(
-                        fit: BoxFit.scaleDown,
-                        child: Text(
-                          "${(profileData.level ?? 0)}",
-                          style: TextStyle(
-                            color: AppColors.pureWhite,
-                            fontSize: context.wPct(4.2),
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                child: UserLevelBadge(level: profileData.level),
               ),
             ],
           ),
