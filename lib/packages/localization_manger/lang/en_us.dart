@@ -896,4 +896,6 @@ to connect with you.
   'notification_new_job': 'New job available: ',
   'notification_strike_warning': 'Warning! You have received a strike.',
   'notification_new_generic': 'You have a new notification.',
+  'notification_new_level': 'New level',
+  'notification_level_unlocked': ' has been unlocked!',
 };

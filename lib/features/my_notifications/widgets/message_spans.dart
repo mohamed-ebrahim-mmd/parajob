@@ -53,6 +53,12 @@ List<TextSpan> buildMessageSpans(
     case 'strike':
       return [TextSpan(text: 'notification_strike_warning'.tr)];
 
+    case 'level_up':
+      return [
+        TextSpan(text: 'notification_new_level'.tr, style: highlightTextStyle),
+        TextSpan(text: 'notification_level_unlocked'.tr),
+      ];
+
     default:
       return [TextSpan(text: 'notification_new_generic'.tr)];
   }

@@ -881,4 +881,6 @@ const Map<String, String> arSA = {
   'notification_new_job': 'وظيفة جديدة متاحة: ',
   'notification_strike_warning': 'تحذير! لقد تلقيت مخالفة.',
   'notification_new_generic': 'لديك إشعار جديد.',
+  'notification_new_level': 'مستوى جديد',
+  'notification_level_unlocked': ' تم فتحه!',
 };
