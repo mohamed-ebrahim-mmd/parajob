@@ -131,7 +131,7 @@ class HomeController extends GetxController {
       ),
       globalTooltipActions: [
         TooltipActionButton(
-          name: "Back",
+          name: "back".tr,
           backgroundColor: Colors.transparent,
           type: TooltipDefaultActionType.previous,
           textStyle: const TextStyle(color: AppColors.pureWhite),
@@ -148,7 +148,7 @@ class HomeController extends GetxController {
         ),
 
         TooltipActionButton(
-          name: "Done",
+          name: "done".tr,
           backgroundColor: Colors.transparent,
           type: TooltipDefaultActionType.next,
           textStyle: const TextStyle(color: AppColors.pureWhite),
@@ -157,7 +157,7 @@ class HomeController extends GetxController {
         // Here we don't need next action for the last showcase widget so we
         // hide this action for the last showcase widget
         TooltipActionButton(
-          name: "Next",
+          name: "next".tr,
           backgroundColor: Colors.transparent,
           type: TooltipDefaultActionType.next,
           textStyle: const TextStyle(color: AppColors.pureWhite),
