@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:para_job/features/my_notifications/my_notifications_controller.dart';
 import 'package:para_job/features/my_notifications/widgets/message_spans.dart'
     show buildMessageSpans;
 import 'package:para_job/features/my_notifications/widgets/notification_image.dart';
 import 'package:para_job/packages/localization_manger/controller/localization_controller.dart'
     show LocalizationController;
-import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 import '../../../packages/api_client/src/models/responses/my_notification.dart';
@@ -19,11 +19,10 @@ class MyNotificationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<MyNotificationsController>();
     final details = myNotification.details;
     final logoUrl = details.companyLogo;
     DateTime? createdAt;
-
-    final notificationType = myNotification.type;
 
     try {
       createdAt = DateTime.parse(myNotification.createdAt);
@@ -41,25 +40,9 @@ class MyNotificationCard extends StatelessWidget {
       context.theme.textTheme.headlineLarge!,
     );
 
-    // Wrap the container with InkWell to make it tappable with visual feedback
     return InkWell(
-      onTap: () {
-        if (details.jobId?.isNotEmpty == true) {
-          switch (notificationType) {
-            case 'interview':
-              Get.toNamed(
-                '${Routes.mainNavigator}${Routes.interview}',
-                arguments: {'id': details.modelId},
-              );
-              break;
-            case 'strike':
-              Get.toNamed(
-                '${Routes.mainNavigator}${Routes.notificationStrikeScreen}',
-              );
-              break;
-          }
-        }
-      },
+      onTap: () =>
+          controller.handleNotificationTap(myNotification: myNotification),
       child: Container(
         padding: EdgeInsets.all(context.wPct(5)),
         color: myNotification.readAt == null
@@ -69,8 +52,6 @@ class MyNotificationCard extends StatelessWidget {
           children: [
             NotificationImage(notificationDetails: details, logoUrl: logoUrl),
             context.wBox(4),
-
-            //],
             Expanded(
               child: RichText(
                 text: TextSpan(
