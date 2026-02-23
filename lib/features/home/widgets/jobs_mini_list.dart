@@ -34,8 +34,8 @@ class JobsMiniList extends StatelessWidget {
             Showcase(
               key: isFlexible ? controller.thirdKey : controller.lastKey,
               description: title == 'flexible_jobs'.tr
-                  ? "Work on your schedule—choose hours and locations that suit you."
-                  : "Structured roles with fixed hours and responsibilities—perfect for steady routines.",
+                  ? "flexible_job_show_case".tr
+                  : "non_flexible_job_show_case".tr,
               onBarrierClick: () => controller.goDismiss(),
 
               tooltipBackgroundColor: AppColors.dialogBackgroundDark,

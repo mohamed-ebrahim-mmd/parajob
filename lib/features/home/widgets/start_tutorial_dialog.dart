@@ -43,7 +43,7 @@ class StartTutorialDialog extends StatelessWidget {
 
           /// --- TITLE ---
           Text(
-            "Start Smart with ParaJob",
+            "start_parajob".tr,
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: context.wPct(5),
@@ -56,7 +56,7 @@ class StartTutorialDialog extends StatelessWidget {
 
           /// --- DESCRIPTION ---
           Text(
-            "Learn and understand each job type with simple, clear guidance.",
+            "start_parajob_desc".tr,
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: context.wPct(3.5),
@@ -70,7 +70,7 @@ class StartTutorialDialog extends StatelessWidget {
           FilledButton(
             onPressed: () => controller.goNext(),
             child: Text(
-              "Start Now",
+              "start_now".tr,
               style: TextStyle(
                 fontSize: context.wPct(5),
                 fontWeight: FontWeight.w400,
