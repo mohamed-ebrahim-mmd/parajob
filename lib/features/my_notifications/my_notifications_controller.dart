@@ -43,6 +43,32 @@ class MyNotificationsController extends GetxController {
     return response.data;
   }
 
+  Future<bool> markAsRead(int id) async {
+    // OPTIMISTIC UPDATE: Update the local list immediately
+    pagingController.mapItems((notification) {
+      if (notification.id == id) {
+        return notification.copyWith(readAt: "now");
+      }
+      return notification;
+    });
+
+    try {
+      final token = Get.find<UserController>().token;
+      final response = await apiClient.markNotificationAsRead(
+        token: token ?? "",
+        id: id,
+      );
+
+      return response.isSuccess;
+      // Note: We don't need to call pagingController.mapItems here anymore
+      // because we already did it above!
+    } catch (e) {
+      // Optional: If the API fails, you could revert the read state here
+      // by mapping the items again, but for 'read' status, users rarely notice.
+      return false;
+    }
+  }
+
   String getSectionLabel(DateTime date) {
     final now = DateTime.now();
     final diff = now.difference(date).inDays;
@@ -58,6 +84,11 @@ class MyNotificationsController extends GetxController {
 
     switch (myNotification.type) {
       case 'interview':
+        // 1. Mark as read in the background (fire and forget)
+        if (myNotification.readAt == null) {
+          markAsRead(myNotification.id);
+          // We don't 'await' here because we want the navigation below to happen INSTANTLY
+        }
         Get.toNamed(
           '${Routes.mainNavigator}${Routes.interview}',
           arguments: {'id': details.modelId},
@@ -65,6 +96,11 @@ class MyNotificationsController extends GetxController {
         break;
 
       case 'strike':
+        // 1. Mark as read in the background (fire and forget)
+        if (myNotification.readAt == null) {
+          markAsRead(myNotification.id);
+          // We don't 'await' here because we want the navigation below to happen INSTANTLY
+        }
         Get.toNamed(
           '${Routes.mainNavigator}${Routes.notificationStrikeScreen}',
         );

@@ -24,4 +24,20 @@ class MyNotification {
       createdAt: json['created_at'] ?? '',
     );
   }
+
+  MyNotification copyWith({
+    int? id,
+    MyNotificationDetails? details,
+    String? readAt,
+    String? type,
+    String? createdAt,
+  }) {
+    return MyNotification(
+      id: id ?? this.id,
+      details: details ?? this.details,
+      readAt: readAt ?? this.readAt,
+      type: type ?? this.type,
+      createdAt: createdAt ?? this.createdAt,
+    );
+  }
 }

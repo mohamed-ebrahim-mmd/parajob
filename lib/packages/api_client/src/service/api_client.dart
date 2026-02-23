@@ -141,6 +141,12 @@ abstract class ApiClient {
     @Query('page') int? page,
   });
 
+  @PUT("/api/notification/{id}")
+  Future<BaseResponse> markNotificationAsRead({
+    @Header('Authorization') required String token,
+    @Path("id") required int id,
+  });
+
   @POST("/api/contactus/store")
   Future<ContactUsResponse> contactUs(@Body() ContactUsRequest request);
 
