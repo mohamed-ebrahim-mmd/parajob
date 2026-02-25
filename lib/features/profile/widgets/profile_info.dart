@@ -90,6 +90,10 @@ class UserProfileInfo extends StatelessWidget {
         XpLevelIndicator(
           xp: profileData.xp ?? 1,
           level: profileData.level ?? 1,
+          xpProgress: controller.getXpProgressForLevel(
+            profileData.xp ?? 1,
+            profileData.level ?? 1,
+          ),
         ),
         context.hBox(3),
         // Stats

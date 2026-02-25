@@ -9,7 +9,6 @@ class GradientProgressBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final progress = (percentage.clamp(0, 100)) / 100; // ensure between 0–1
     return Container(
       height: context.hPct(1),
       decoration: BoxDecoration(
@@ -29,7 +28,7 @@ class GradientProgressBar extends StatelessWidget {
             end: Alignment.centerRight,
           ).createShader(Rect.fromLTWH(0, 0, bounds.width, bounds.height)),
           child: LinearProgressIndicator(
-            value: progress,
+            value: percentage,
             backgroundColor: Colors.transparent,
             valueColor: const AlwaysStoppedAnimation<Color>(Colors.white),
           ),

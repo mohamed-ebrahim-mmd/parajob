@@ -204,4 +204,33 @@ class ProfileController extends GetxController {
   void navigateToBalanceScreen() {
     Get.toNamed('${Routes.mainNavigator}${Routes.balance}');
   }
+
+  double getXpProgressForLevel(int xp, int level) {
+    int xpForCurrentLevel;
+
+    if (level < 5) {
+      xpForCurrentLevel = 100;
+    } else if (level < 10) {
+      xpForCurrentLevel = 150;
+    } else {
+      xpForCurrentLevel = 225;
+    }
+
+    // Calculate total XP required to reach this level
+    int xpUsed = 0;
+
+    for (int i = 1; i < level; i++) {
+      if (i < 5) {
+        xpUsed += 100;
+      } else if (i < 10) {
+        xpUsed += 150;
+      } else {
+        xpUsed += 225;
+      }
+    }
+
+    int xpIntoLevel = xp - xpUsed;
+
+    return (xpIntoLevel / xpForCurrentLevel).clamp(0.0, 1.0);
+  }
 }

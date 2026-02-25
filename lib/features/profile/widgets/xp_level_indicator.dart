@@ -10,18 +10,20 @@ import 'package:para_job/packages/ui_components/gradient_progress_bar.dart';
 import 'package:para_job/res/app_asset_paths.dart';
 
 class XpLevelIndicator extends StatelessWidget {
-  const XpLevelIndicator({super.key, required this.xp, required this.level});
+  const XpLevelIndicator({
+    super.key,
+    required this.xp,
+    required this.level,
+    required this.xpProgress,
+  });
+
+  final double xpProgress;
 
   final int xp;
   final int level;
 
   @override
   Widget build(BuildContext context) {
-    // A constant defining the XP required to level up.
-    // This makes it easier to change later if needed.
-    const double xpForNextLevel = 3000.0;
-    final double percentage = (xp / xpForNextLevel) * 100;
-
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: context.wPct(10)),
       child: Row(
@@ -37,7 +39,7 @@ class XpLevelIndicator extends StatelessWidget {
           ),
           context.wBox(2),
           // Progress Bar using xp for the next level
-          Flexible(child: GradientProgressBar(percentage: percentage)),
+          Flexible(child: GradientProgressBar(percentage: xpProgress)),
           context.wBox(2),
           Stack(
             alignment: Alignment.center,
