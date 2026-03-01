@@ -42,7 +42,7 @@ class OnboardingView1State extends State<OnboardingView1>
 
   void playBounce() {
     if (!_controller.isAnimating) {
-      _controller.reset(); 
+      _controller.reset();
       _controller.forward().then((_) => _controller.reverse());
     }
   }
@@ -70,14 +70,12 @@ class OnboardingView1State extends State<OnboardingView1>
               child: child,
             );
           },
-          child: ClipRRect(
-            child: Align(
-              alignment: Alignment.topRight,
-              child: Image.asset(
-                AppAssetPaths.onboardingScreenBackground1,
-                width: MediaQuery.of(context).size.width,
-                fit: BoxFit.cover,
-              ),
+          child: Align(
+            alignment: Alignment.topRight,
+            child: Image.asset(
+              AppAssetPaths.onboardingScreenBackground1,
+              height: MediaQuery.of(context).size.height,
+              fit: BoxFit.cover,
             ),
           ),
         ),

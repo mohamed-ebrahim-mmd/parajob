@@ -74,7 +74,7 @@ class OnboardingView3State extends State<OnboardingView3>
             alignment: Alignment.topLeft,
             child: Image.asset(
               AppAssetPaths.onboardingScreenBackground3,
-              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
               fit: BoxFit.cover,
             ),
           ),

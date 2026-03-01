@@ -25,6 +25,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   final RoutingController routingController = Get.find();
   final PageController _pageController = PageController();
   int _currentIndex = 0;
+  int _previousIndex = 0;
   double _scrollOffset = 0.0;
   final GlobalKey<OnboardingView3State> _view3Key = GlobalKey();
   final GlobalKey<OnboardingView1State> _view1Key = GlobalKey();
@@ -42,9 +43,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    double sidePreview = 40.0;
+    double sidePreview = context.wPct(15);
 
-    // الشفافية المتغيرة للزرقاء والحواف فقط
     double dynamicOpacity = (1 - (_scrollOffset - 1).abs()).clamp(0.0, 1.0);
     return Scaffold(
       body: Stack(
@@ -72,7 +72,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ),
               child: Container(
                 decoration: BoxDecoration(
-                  color: Color(0xB214181B), // #14181BB2,
+                  color: Color(0xB214181B), 
                   borderRadius: BorderRadius.circular(context.wPct(8)),
                 ),
               ),
@@ -84,10 +84,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             key: _view1Key,
             opacity: _scrollOffset <= 1.0 ? 1.0 : dynamicOpacity,
 
-            offset: (40.0 - (_scrollOffset * (screenWidth + 40.0))).clamp(
-              -screenWidth + 40.0,
-              40.0,
-            ),
+            offset:
+                (sidePreview - (_scrollOffset * (screenWidth + sidePreview)))
+                    .clamp(-screenWidth + sidePreview, sidePreview),
           ),
 
           OnboardingView3(
@@ -105,9 +104,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             itemCount: 3,
             onPageChanged: (index) {
               setState(() {
-                _currentIndex = index;
                 if (index == 2) _view3Key.currentState?.playBounce();
-                if (index == 1) _view1Key.currentState?.playBounce();
+                if (index == 1 && _previousIndex == 0)
+                  _view1Key.currentState?.playBounce();
+                _previousIndex = index;
+                _currentIndex = index;
               });
             },
 
