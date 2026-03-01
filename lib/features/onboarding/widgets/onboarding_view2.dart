@@ -3,91 +3,36 @@
  ==================================================================
 */
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:para_job/packages/route_manager/controller/routing_controller.dart';
-import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/res/app_asset_paths.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnboardingView2 extends StatelessWidget {
-  const OnboardingView2({super.key});
+  final double offset;
+  final double opacity;
+
+  const OnboardingView2({
+    super.key,
+
+    required this.offset,
+    required this.opacity,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       fit: StackFit.expand,
       children: [
-        Image.asset(
-          AppAssetPaths.onboardingScreenBackground2,
-          fit: BoxFit.cover,
-        ),
-        Positioned(
-          bottom: context.hPct(10),
-          left: 0,
-          right: 0,
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: context.wPct(8)),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                // --- Onboarding Text ---
-                RichText(
-                  textAlign: TextAlign.center,
-                  text: TextSpan(
-                    text: 'Finad all the ',
-                    style: TextStyle(
-                      color: AppColors.pureWhite,
-                      fontSize: context.wPct(4.5),
-                      fontWeight: FontWeight.w600,
-                    ),
-                    children: [
-                      TextSpan(
-                        text: 'job details',
-                        style: TextStyle(color: AppColors.aquaTeal),
-                      ),
-                      TextSpan(text: ' you might \n need.'),
-                    ],
-                  ),
-                ),
-
-                context.hBox(4),
-
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    AnimatedSmoothIndicator(
-                      activeIndex: 1,
-                      count: 3,
-                      effect: ExpandingDotsEffect(
-                        dotHeight: 8,
-                        dotWidth: 8,
-                        activeDotColor: AppColors.aquaTeal,
-                        dotColor: Colors.white,
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Get.find<RoutingController>().goAuthChoiceScreen();
-                      },
-                      child: Row(
-                        children: [
-                          Text(
-                            "skip",
-                            style: TextStyle(fontSize: context.wPct(4)),
-                          ),
-                          context.wBox(1),
-                          Icon(
-                            Icons.double_arrow_rounded,
-                            size: context.wPct(4),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+        Transform.translate(
+          offset: Offset(offset, 0),
+          child: Opacity(
+            opacity: opacity,
+            child: Align(
+              alignment: Alignment.center,
+              child: Image.asset(
+                AppAssetPaths.centerOnboardingScreen,
+                height: context.hPct(60),
+                fit: BoxFit.cover,
+              ),
             ),
           ),
         ),

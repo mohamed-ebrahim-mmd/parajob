@@ -20,9 +20,11 @@ abstract final class AppAssetPaths {
       "assets/icons/unselected_notifications_icon.svg";
 
   static const splashBackground = "assets/images/splash_screen.png";
-  static const onboardingScreenBackground1 = "assets/images/onboarding1.png";
-  static const onboardingScreenBackground2 = "assets/images/onboarding2.png";
-  static const onboardingScreenBackground3 = "assets/images/onboarding3.png";
+  static const leftOnboardingScreen = "assets/images/left_onboarding.png";
+
+  static const centerOnboardingScreen = "assets/images/center_onboarding.png";
+
+  static const rightOnboardingScreen = "assets/images/right_onboarding.png";
   static const lottie = "assets/lottie/para_job_lottie.json";
   static const getStartedBackground =
       "assets/images/get_started_background.png";
