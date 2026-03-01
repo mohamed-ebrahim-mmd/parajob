@@ -25,9 +25,27 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   final RoutingController routingController = Get.find();
   final PageController _pageController = PageController();
   int _currentIndex = 0;
+  double _scrollOffset = 0.0;
+  final GlobalKey<OnboardingView3State> _view3Key = GlobalKey();
+  final GlobalKey<OnboardingView1State> _view1Key = GlobalKey();
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController.addListener(() {
+      setState(() {
+        _scrollOffset = _pageController.page ?? 0;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double sidePreview = 40.0;
+
+    // الشفافية المتغيرة للزرقاء والحواف فقط
+    double dynamicOpacity = (1 - (_scrollOffset - 1).abs()).clamp(0.0, 1.0);
     return Scaffold(
       body: Stack(
         fit: StackFit.expand,
@@ -54,7 +72,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ),
               child: Container(
                 decoration: BoxDecoration(
-                  //  border: Border.all(),
                   color: Color(0xB214181B), // #14181BB2,
                   borderRadius: BorderRadius.circular(context.wPct(8)),
                 ),
@@ -62,18 +79,39 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             ),
           ),
 
-          PageView(
+          OnboardingView2(offset: 0, opacity: dynamicOpacity),
+          OnboardingView1(
+            key: _view1Key,
+            opacity: _scrollOffset <= 1.0 ? 1.0 : dynamicOpacity,
+
+            offset: (40.0 - (_scrollOffset * (screenWidth + 40.0))).clamp(
+              -screenWidth + 40.0,
+              40.0,
+            ),
+          ),
+
+          OnboardingView3(
+            key: _view3Key,
+
+            opacity: _scrollOffset >= 1.0 ? 1.0 : dynamicOpacity,
+            offset:
+                (((2.0 - _scrollOffset) * (screenWidth + sidePreview)) -
+                        sidePreview)
+                    .clamp(-sidePreview, screenWidth - sidePreview),
+          ),
+
+          PageView.builder(
             controller: _pageController,
+            itemCount: 3,
             onPageChanged: (index) {
               setState(() {
                 _currentIndex = index;
+                if (index == 2) _view3Key.currentState?.playBounce();
+                if (index == 1) _view1Key.currentState?.playBounce();
               });
             },
-            children: [
-              OnboardingView1(),
-              OnboardingView2(pageController: _pageController, pageIndex: 1),
-              OnboardingView3(pageController: _pageController, pageIndex: 2),
-            ],
+
+            itemBuilder: (context, index) => const SizedBox.expand(),
           ),
 
           // Text at the bottom
