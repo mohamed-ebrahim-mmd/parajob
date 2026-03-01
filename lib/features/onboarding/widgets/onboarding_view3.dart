@@ -72,7 +72,7 @@ class OnboardingView3State extends State<OnboardingView3>
           child: Align(
             alignment: Alignment.centerLeft,
             child: Image.asset(
-              AppAssetPaths.rightOnboardingScreenBackground,
+              AppAssetPaths.rightOnboardingScreen,
               height: context.hPct(96),
               fit: BoxFit.cover,
             ),

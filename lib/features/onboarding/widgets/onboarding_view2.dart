@@ -9,6 +9,7 @@ import 'package:para_job/res/app_asset_paths.dart';
 class OnboardingView2 extends StatelessWidget {
   final double offset;
   final double opacity;
+
   const OnboardingView2({
     super.key,
 
@@ -28,7 +29,7 @@ class OnboardingView2 extends StatelessWidget {
             child: Align(
               alignment: Alignment.center,
               child: Image.asset(
-                AppAssetPaths.centerOnboardingScreenBackground,
+                AppAssetPaths.centerOnboardingScreen,
                 height: context.hPct(60),
                 fit: BoxFit.cover,
               ),

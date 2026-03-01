@@ -72,7 +72,7 @@ class OnboardingView1State extends State<OnboardingView1>
           child: Align(
             alignment: Alignment.centerRight,
             child: Image.asset(
-              AppAssetPaths.leftOnboardingScreenBackground,
+              AppAssetPaths.leftOnboardingScreen,
               height: context.hPct(96),
               fit: BoxFit.cover,
             ),
