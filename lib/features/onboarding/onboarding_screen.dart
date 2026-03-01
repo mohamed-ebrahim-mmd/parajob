@@ -42,7 +42,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
+    double screenWidth = context.width;
     double sidePreview = context.wPct(15);
 
     double dynamicOpacity = (1 - (_scrollOffset - 1).abs()).clamp(0.0, 1.0);
@@ -72,7 +72,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ),
               child: Container(
                 decoration: BoxDecoration(
-                  color: Color(0xB214181B), 
+                  color: Color(0xB214181B),
                   borderRadius: BorderRadius.circular(context.wPct(8)),
                 ),
               ),

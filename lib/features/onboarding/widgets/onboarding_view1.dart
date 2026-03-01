@@ -3,6 +3,8 @@
  ==================================================================
 */
 import 'package:flutter/material.dart';
+import 'package:get/get_utils/src/extensions/context_extensions.dart';
+import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/res/app_asset_paths.dart';
 
 class OnboardingView1 extends StatefulWidget {
@@ -63,18 +65,15 @@ class OnboardingView1State extends State<OnboardingView1>
           animation: _animation,
           builder: (context, child) {
             return Transform.translate(
-              offset: Offset(
-                _animation.value * MediaQuery.of(context).size.width,
-                0,
-              ),
+              offset: Offset(_animation.value * context.width, 0),
               child: child,
             );
           },
           child: Align(
-            alignment: Alignment.topRight,
+            alignment: Alignment.centerRight,
             child: Image.asset(
-              AppAssetPaths.onboardingScreenBackground1,
-              height: MediaQuery.of(context).size.height,
+              AppAssetPaths.leftOnboardingScreenBackground,
+              height: context.hPct(96),
               fit: BoxFit.cover,
             ),
           ),

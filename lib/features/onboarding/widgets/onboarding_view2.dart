@@ -3,10 +3,10 @@
  ==================================================================
 */
 import 'package:flutter/material.dart';
+import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/res/app_asset_paths.dart';
 
 class OnboardingView2 extends StatelessWidget {
-
   final double offset;
   final double opacity;
   const OnboardingView2({
@@ -21,7 +21,6 @@ class OnboardingView2 extends StatelessWidget {
     return Stack(
       fit: StackFit.expand,
       children: [
-
         Transform.translate(
           offset: Offset(offset, 0),
           child: Opacity(
@@ -29,14 +28,13 @@ class OnboardingView2 extends StatelessWidget {
             child: Align(
               alignment: Alignment.center,
               child: Image.asset(
-                AppAssetPaths.onboardingScreenBackgroundCenter,
+                AppAssetPaths.centerOnboardingScreenBackground,
+                height: context.hPct(60),
                 fit: BoxFit.cover,
               ),
             ),
           ),
         ),
-
-     
       ],
     );
   }
