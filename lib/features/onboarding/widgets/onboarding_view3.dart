@@ -3,96 +3,83 @@
  ==================================================================
 */
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:para_job/packages/route_manager/controller/routing_controller.dart';
-import 'package:para_job/packages/themeing/app_colors.dart';
-import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/res/app_asset_paths.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class OnboardingView3 extends StatelessWidget {
-  const OnboardingView3({super.key});
+class OnboardingView3 extends StatefulWidget {
+  final PageController pageController;
+  final int pageIndex;
+  const OnboardingView3({
+    super.key,
+    required this.pageIndex,
+    required this.pageController,
+  });
+
+  @override
+  State<OnboardingView3> createState() => _OnboardingView3State();
+}
+
+class _OnboardingView3State extends State<OnboardingView3>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _animation;
+  bool animationStarted = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 210),
+    );
+
+    _animation = Tween<double>(
+      begin: 0,
+      end: -0.02,
+    ).chain(CurveTween(curve: Curves.easeOut)).animate(_controller);
+
+    widget.pageController.addListener(_checkPage);
+  }
+
+  void _checkPage() {
+    if (animationStarted) return;
+
+    final page = widget.pageController.page ?? 2;
+
+   
+    if ((page - widget.pageIndex).abs() < 0.01) {
+      animationStarted = true;
+      _controller.forward().then((_) => _controller.reverse());
+    }
+  }
+
+  @override
+  void dispose() {
+    widget.pageController.removeListener(_checkPage);
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      fit: StackFit.expand,
-      children: [
-        Image.asset(
+    return AnimatedBuilder(
+      animation: _animation,
+      builder: (context, child) {
+        return Transform.translate(
+          offset: Offset(
+            _animation.value * MediaQuery.of(context).size.width,
+            0,
+          ),
+          child: child,
+        );
+      },
+      child: Align(
+        alignment: Alignment.topLeft,
+        child: Image.asset(
           AppAssetPaths.onboardingScreenBackground3,
           fit: BoxFit.cover,
         ),
-
-        Positioned(
-          bottom: context.hPct(10),
-          left: 0,
-          right: 0,
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: context.wPct(8)),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                // --- Onboarding Text ---
-                RichText(
-                  textAlign: TextAlign.center,
-                  text: TextSpan(
-                    text: 'View your approved jobs and sign \n the ',
-                    style: TextStyle(
-                      color: AppColors.pureWhite,
-                      fontSize: context.wPct(4.5),
-                      fontWeight: FontWeight.w600,
-                    ),
-                    children: [
-                      TextSpan(
-                        text: 'job contract',
-                        style: TextStyle(color: AppColors.aquaTeal),
-                      ),
-                      TextSpan(text: "."),
-                    ],
-                  ),
-                ),
-
-                context.hBox(4),
-
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    AnimatedSmoothIndicator(
-                      activeIndex: 2,
-                      count: 3,
-                      effect: ExpandingDotsEffect(
-                        dotHeight: 8,
-                        dotWidth: 8,
-                        activeDotColor: AppColors.aquaTeal,
-                        dotColor: Colors.white,
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Get.find<RoutingController>().goAuthChoiceScreen();
-                      },
-                      child: Row(
-                        children: [
-                          Text(
-                            "skip",
-                            style: TextStyle(fontSize: context.wPct(4)),
-                          ),
-                          context.wBox(1),
-                          Icon(
-                            Icons.double_arrow_rounded,
-                            size: context.wPct(4),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ),
-      ],
+      ),
     );
   }
 }

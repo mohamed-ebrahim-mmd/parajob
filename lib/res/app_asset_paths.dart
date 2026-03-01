@@ -21,7 +21,13 @@ abstract final class AppAssetPaths {
 
   static const splashBackground = "assets/images/splash_screen.png";
   static const onboardingScreenBackground1 = "assets/images/onboarding1.png";
-  static const onboardingScreenBackground2 = "assets/images/onboarding2.png";
+  static const onboardingScreenBackgroundLeft =
+      "assets/images/left_onboarding2.png";
+  static const onboardingScreenBackgroundRight =
+      "assets/images/right_onboarding2.png";
+  static const onboardingScreenBackgroundCenter =
+      "assets/images/center_onboarding2.png";
+
   static const onboardingScreenBackground3 = "assets/images/onboarding3.png";
   static const lottie = "assets/lottie/para_job_lottie.json";
   static const getStartedBackground =

@@ -3,92 +3,113 @@
  ==================================================================
 */
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:para_job/packages/route_manager/controller/routing_controller.dart';
-import 'package:para_job/packages/themeing/app_colors.dart';
-import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/res/app_asset_paths.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class OnboardingView2 extends StatelessWidget {
-  const OnboardingView2({super.key});
+class OnboardingView2 extends StatefulWidget {
+  final PageController pageController;
+  final int pageIndex;
+  const OnboardingView2({
+    super.key,
+    required this.pageIndex,
+    required this.pageController,
+  });
+
+  @override
+  State<OnboardingView2> createState() => _OnboardingView2State();
+}
+
+class _OnboardingView2State extends State<OnboardingView2>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _animation;
+  bool animationStarted = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 210),
+    );
+
+    _animation = Tween<double>(
+      begin: 0,
+      end: -0.02,
+    ).chain(CurveTween(curve: Curves.easeOut)).animate(_controller);
+
+    widget.pageController.addListener(_checkPage);
+  }
+
+  void _checkPage() {
+    if (animationStarted) return;
+
+    final page = widget.pageController.page ?? 0;
+
+    // Check if the page is close to the current page
+    if ((page - widget.pageIndex).abs() < 0.01) {
+      animationStarted = true;
+      _controller.forward().then((_) => _controller.reverse());
+    }
+  }
+
+  @override
+  void dispose() {
+    widget.pageController.removeListener(_checkPage);
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       fit: StackFit.expand,
       children: [
-        Image.asset(
-          AppAssetPaths.onboardingScreenBackground2,
-          fit: BoxFit.cover,
+        AnimatedBuilder(
+          animation: widget.pageController,
+          builder: (context, child) {
+            double page = widget.pageController.hasClients
+                ? widget.pageController.page ?? widget.pageIndex.toDouble()
+                : widget.pageIndex.toDouble();
+
+            // Calculate opacity based on distance from center
+            double opacity = (1 - (page - widget.pageIndex).abs()).clamp(
+              0.0,
+              1.0,
+            );
+
+            return Opacity(opacity: opacity, child: child);
+          },
+          child: Image.asset(
+            AppAssetPaths.onboardingScreenBackgroundCenter,
+            fit: BoxFit.cover,
+          ),
         ),
-        Positioned(
-          bottom: context.hPct(10),
-          left: 0,
-          right: 0,
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: context.wPct(8)),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                // --- Onboarding Text ---
-                RichText(
-                  textAlign: TextAlign.center,
-                  text: TextSpan(
-                    text: 'Finad all the ',
-                    style: TextStyle(
-                      color: AppColors.pureWhite,
-                      fontSize: context.wPct(4.5),
-                      fontWeight: FontWeight.w600,
-                    ),
-                    children: [
-                      TextSpan(
-                        text: 'job details',
-                        style: TextStyle(color: AppColors.aquaTeal),
-                      ),
-                      TextSpan(text: ' you might \n need.'),
-                    ],
-                  ),
-                ),
-
-                context.hBox(4),
-
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    AnimatedSmoothIndicator(
-                      activeIndex: 1,
-                      count: 3,
-                      effect: ExpandingDotsEffect(
-                        dotHeight: 8,
-                        dotWidth: 8,
-                        activeDotColor: AppColors.aquaTeal,
-                        dotColor: Colors.white,
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Get.find<RoutingController>().goAuthChoiceScreen();
-                      },
-                      child: Row(
-                        children: [
-                          Text(
-                            "skip",
-                            style: TextStyle(fontSize: context.wPct(4)),
-                          ),
-                          context.wBox(1),
-                          Icon(
-                            Icons.double_arrow_rounded,
-                            size: context.wPct(4),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+        AnimatedBuilder(
+          animation: _animation,
+          builder: (context, child) {
+            return Transform.translate(
+              offset: Offset(
+                _animation.value * MediaQuery.of(context).size.width,
+                0,
+              ),
+              child: child,
+            );
+          },
+          child: Align(
+            alignment: Alignment.topLeft,
+            child: Image.asset(
+              AppAssetPaths.onboardingScreenBackgroundLeft,
+              fit: BoxFit.cover,
             ),
+          ),
+        ),
+
+        Align(
+          alignment: Alignment.topRight,
+          child: Image.asset(
+            AppAssetPaths.onboardingScreenBackgroundRight,
+            // height: double.infinity,
           ),
         ),
       ],
