@@ -656,7 +656,8 @@ to connect with you.
   "flexible_job": "Flexible",
   "non_flexible_job": "Non Flexible",
   "hot_job": "Hot Job",
-
+  'city': 'City',
+  'no_jobs_found': 'No jobs found',
   // ============================================================
   //complaintController
   // ============================================================

@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:para_job/features/home/search_job/search_job_controller.dart';
 import 'package:para_job/features/home/search_job/widgets/show_filter_bottom_sheet.dart';
+import 'package:para_job/features/home/widgets/empty_jobs.dart';
 import 'package:para_job/packages/api_client/src/enums/api_call_state_enum.dart'
     show ApiCallState;
 import 'package:para_job/packages/api_client/src/models/responses/job.dart'
@@ -97,6 +98,9 @@ class SearchJobScreen extends StatelessWidget {
                                   },
                                 ),
                               ),
+
+                              noItemsFoundIndicatorBuilder: (context) =>
+                                  EmptyJobs(),
                             ),
                           ),
                     ),

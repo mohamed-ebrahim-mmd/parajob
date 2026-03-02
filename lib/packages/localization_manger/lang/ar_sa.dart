@@ -644,6 +644,8 @@ const Map<String, String> arSA = {
   "flexible_job": "وظيفة مرنة",
   "non_flexible_job": "وظيفة غير مرنة",
   "hot_job": "وظيفة شائعة",
+  'city': 'المدينه',
+  'no_jobs_found': 'لا يوجد وظائف',
 
   // ============================================================
   //complaintController

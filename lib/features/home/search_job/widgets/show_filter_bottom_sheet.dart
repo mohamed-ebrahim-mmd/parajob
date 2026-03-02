@@ -5,6 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/home/search_job/search_job_controller.dart';
+import 'package:para_job/packages/api_client/src/enums/api_call_state_enum.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
@@ -81,13 +82,70 @@ Future<void> showFilterBottomSheet(
             menuHeight: context.hPct(30),
             initialSelection: controller.selectedCityId,
             hintText: 'city'.tr,
-            onSelected: (value) {
-              if (value != null) controller.selectedCityId = value;
-            },
+            onSelected: controller.onCitySelected,
             dropdownMenuEntries: controller.cities,
           ),
           context.hBox(2),
 
+          Obx(() {
+            switch (controller.areasCallState.value) {
+              case DataFetchState.loading:
+                return TextField(
+                  enabled: false,
+                  decoration: InputDecoration(
+                    labelText: 'create_account_loading_areas'.tr,
+                    suffixIcon: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: const CircularProgressIndicator(),
+                    ),
+                  ),
+                );
+
+              case DataFetchState.success:
+                return DropdownMenu<String>(
+                  enableSearch: true,
+                  expandedInsets: EdgeInsets.zero,
+                  menuHeight: context.hPct(30),
+                  hintText: 'create_account_area_hint'.tr,
+
+                  initialSelection: controller.selectedArea,
+                  onSelected: (value) {
+                    if (value != null) {
+                      controller.selectedArea = value;
+                    }
+                  },
+                  dropdownMenuEntries: controller.areaMenuEntries,
+                );
+
+              case DataFetchState.failure:
+                return GestureDetector(
+                  onTap: () {
+                    if (controller.selectedCityId != null) {
+                      controller.fetchAreas(controller.selectedCityId!);
+                    }
+                  },
+                  child: AbsorbPointer(
+                    child: TextField(
+                      readOnly: true,
+                      decoration: InputDecoration(
+                        labelText: 'create_account_failed_load_areas'.tr,
+                        suffixIcon: Icon(Icons.refresh),
+                      ),
+                    ),
+                  ),
+                );
+
+              case DataFetchState.initial:
+                return TextField(
+                  enabled: false,
+                  decoration: InputDecoration(
+                    labelText: 'create_account_select_city_first'.tr,
+                  ),
+                );
+            }
+          }),
+
+          context.hBox(2),
           DropdownMenu<int>(
             enableSearch: true,
             width: context.wPct(90),

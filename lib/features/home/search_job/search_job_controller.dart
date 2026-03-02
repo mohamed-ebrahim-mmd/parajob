@@ -26,6 +26,9 @@ class SearchJobController extends GetxController {
   int? selectedSkillId;
   int? selectedCompanyId;
   int? selectedCityId;
+  String? selectedArea;
+  final areasCallState = DataFetchState.initial.obs;
+
   String? selectedJobType;
   String? selectedJobCategory;
 
@@ -33,6 +36,7 @@ class SearchJobController extends GetxController {
   List<DropdownMenuEntry<int>> skills = [];
   List<DropdownMenuEntry<int>> companies = [];
   List<DropdownMenuEntry<int>> cities = [];
+  List<DropdownMenuEntry<String>> areaMenuEntries = [];
 
   final jobTypeMenuEntries = [
     DropdownMenuEntry<String>(value: 'part_time', label: 'part_time'.tr),
@@ -67,6 +71,7 @@ class SearchJobController extends GetxController {
               : null,
           companyId: selectedCompanyId,
           cityId: selectedCityId,
+          area: selectedArea,
           skillId: selectedSkillId,
           type: selectedJobType,
           category: selectedJobCategory,
@@ -78,6 +83,35 @@ class SearchJobController extends GetxController {
         }
       },
     );
+  }
+
+  void onCitySelected(int? value) {
+    if (value != null && value != selectedCityId) {
+      selectedCityId = value;
+      selectedArea = null;
+      fetchAreas(value);
+    }
+  }
+
+  Future<void> fetchAreas(int cityId) async {
+    areasCallState.value = DataFetchState.loading;
+
+    try {
+      final response = await apiClient.getAreasByCity(cityId);
+      if (response.isSuccess) {
+        areaMenuEntries = response.data
+            .map(
+              (area) =>
+                  DropdownMenuEntry<String>(value: area.name, label: area.name),
+            )
+            .toList();
+        areasCallState.value = DataFetchState.success;
+      } else {
+        areasCallState.value = DataFetchState.failure;
+      }
+    } catch (e) {
+      areasCallState.value = DataFetchState.failure;
+    }
   }
 
   Future<void> initializeSearchData() async {
