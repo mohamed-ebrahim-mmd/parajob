@@ -74,7 +74,7 @@ class ReactiveJobCard extends StatelessWidget {
                         maxLines: 1,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: context.wPct(4),
+                          fontSize: context.wPct(4.5),
                         ),
                       ),
                       Text(
@@ -83,7 +83,7 @@ class ReactiveJobCard extends StatelessWidget {
 
                         style: TextStyle(
                           color: AppColors.softWhite70,
-                          fontSize: context.wPct(3),
+                          fontSize: context.wPct(3.5),
                         ),
                       ),
                     ],
@@ -190,7 +190,7 @@ class ReactiveJobCard extends StatelessWidget {
                         alignment: PlaceholderAlignment.middle,
                         child: Icon(
                           Icons.date_range_rounded,
-                          size: context.wPct(3),
+                          size: context.wPct(5),
                           color: Colors.grey,
                         ),
                       ),
