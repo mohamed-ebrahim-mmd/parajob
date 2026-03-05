@@ -194,7 +194,7 @@ const Map<String, String> enUS = {
   'hot_jobs': 'Hot Jobs',
   'flexible_jobs': 'Flexible Jobs',
   'non_flexible_jobs': 'Non-Flexible Jobs',
-  'search_job_hint': 'Search by job title',
+  'search_job_hint': 'Search jobs, companies..',
   'filter': 'Filter',
   'job_type': 'Job type',
   'skills': 'Skills',
