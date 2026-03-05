@@ -864,7 +864,7 @@ to connect with you.
   // ============================================================
   // job interview
   // ============================================================
-  "job_interview": "Job Interview",
+  "job_interview": "Job interview",
   "interview_mode": "Interview Mode",
   "date": "Date",
   "job_title": "Job Title",
