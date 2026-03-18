@@ -906,7 +906,7 @@ to connect with you.
   'notification_rated_you': ' rated you ',
   'notification_stars': ' stars.',
   'notification_please_rate': 'Please rate your experience for ',
-  'notification_new_job': 'New job available: ',
+  'notification_new_job': 'You have been shortlisted: ',
   'notification_strike_warning': 'Warning! You have received a strike.',
   'notification_new_generic': 'You have a new notification.',
   'notification_new_level': 'New level',
