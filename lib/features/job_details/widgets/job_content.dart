@@ -9,7 +9,7 @@ import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
 class JobContent extends StatelessWidget {
-  JobContent({
+  const JobContent({
     super.key,
     required this.jobDetails,
     this.onCompanyTap,
@@ -96,6 +96,8 @@ class JobContent extends StatelessWidget {
               Text(
                 jobDetails.company.name ?? "",
                 style: TextStyle(
+                  decoration: TextDecoration.underline,
+
                   color: AppColors.pureWhite,
                   fontSize: context.wPct(4),
                   fontWeight: FontWeight.w500,

@@ -85,11 +85,6 @@ class ContactUsScreen extends StatelessWidget {
                           title: 'contact_us_email_title'.tr,
                           subtitle: contact!.email,
                         ),
-                        context.hBox(1),
-                        ContactUsListTile(
-                          title: 'contact_us_phone_title'.tr,
-                          subtitle: contact.phoneNumber,
-                        ),
                       ],
                     );
                   case ApiCallState.failure:
