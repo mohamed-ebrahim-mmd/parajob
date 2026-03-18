@@ -40,7 +40,11 @@ class BalanceScreen extends StatelessWidget {
 
             case ApiCallState.success:
               return Padding(
-                padding: EdgeInsets.all(context.defaultPadding),
+                padding: EdgeInsets.only(
+                  left: context.defaultPadding,
+                  right: context.defaultPadding,
+                  top: context.defaultPadding,
+                ),
                 child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
