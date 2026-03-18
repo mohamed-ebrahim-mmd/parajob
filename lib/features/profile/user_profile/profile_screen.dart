@@ -33,7 +33,10 @@ class ProfileScreen extends StatelessWidget {
               // Navigate to balance screen
               controller.navigateToBalanceScreen();
             },
-            child: SvgPicture.asset(AppAssetPaths.balanceCoinIcon),
+            child: SvgPicture.asset(
+              AppAssetPaths.balanceCoinIcon,
+              height: context.hPct(4.1),
+            ),
           ),
         ),
 
@@ -45,7 +48,7 @@ class ProfileScreen extends StatelessWidget {
                 onPressed: () {
                   Get.toNamed("${Routes.mainNavigator}${Routes.more}");
                 },
-                icon: const Icon(Icons.menu),
+                icon: Icon(Icons.menu, size: context.hPct(4.1)),
               );
             } else {
               return const SizedBox.shrink(); // empty widget
@@ -84,7 +87,7 @@ class ProfileScreen extends StatelessWidget {
                         showBookmarkIcon: false,
                       ),
                       //saved jobs list
-                      context.hBox(4),
+                      context.hBox(2.5),
                       JobHistoryList(
                         emptyMessage: 'profile_no_saved_jobs'.tr,
                         jobHistory: profileData.savedJobs ?? [],

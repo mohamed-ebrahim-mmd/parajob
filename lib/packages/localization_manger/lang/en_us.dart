@@ -292,9 +292,9 @@ const Map<String, String> enUS = {
   // 👤 Profile Screen
   // ============================================================
   'profile_no_job_history': 'No job history found',
-  'profile_job_history_title': 'Your job history',
+  'profile_job_history_title': 'Job history',
   'profile_no_saved_jobs': 'No saved jobs found',
-  'profile_saved_jobs_title': 'Saved Jobs',
+  'profile_saved_jobs_title': 'Saved jobs',
 
   // ============================================================
   // 👤 Profile Info Widget

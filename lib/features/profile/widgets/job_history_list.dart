@@ -61,6 +61,7 @@ class JobHistoryList extends StatelessWidget {
             },
           ),
         ),
+        context.hBox(1),
         Visibility(
           visible: jobHistory.isNotEmpty,
 
