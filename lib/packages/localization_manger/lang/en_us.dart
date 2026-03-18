@@ -902,7 +902,7 @@ to connect with you.
   'notification_at': ' at ',
   'notification_interview_cancelled': ' was cancelled.',
   'notification_interview_rescheduled': ' has been rescheduled.',
-  'notification_interview_scheduled': ' has been scheduled.',
+  'notification_interview_scheduled': ' has been scheduled, click to review',
   'notification_rated_you': ' rated you ',
   'notification_stars': ' stars.',
   'notification_please_rate': 'Please rate your experience for ',
