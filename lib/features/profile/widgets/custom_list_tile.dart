@@ -8,6 +8,8 @@ class CustomListTile extends StatelessWidget {
   final String title;
   final VoidCallback? onTap;
   final bool isRedTitle;
+  final double? iconHeight;
+  final double? iconWidth;
 
   const CustomListTile({
     super.key,
@@ -15,6 +17,8 @@ class CustomListTile extends StatelessWidget {
     required this.title,
     this.onTap,
     this.isRedTitle = false,
+    this.iconHeight,
+    this.iconWidth,
   });
 
   @override
@@ -27,8 +31,8 @@ class CustomListTile extends StatelessWidget {
       ),
       leading: SvgPicture.asset(
         icon,
-        width: context.wPct(4),
-        height: context.hPct(2),
+        width: iconWidth ?? context.wPct(4),
+        height: iconHeight ?? context.hPct(2),
       ),
       title: Text(
         title,

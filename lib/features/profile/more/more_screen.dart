@@ -43,6 +43,8 @@ class MoreScreen extends StatelessWidget {
               CustomListTile(
                 icon: AppAssetPaths.lan,
                 title: 'more_language'.tr,
+                iconHeight: context.hPct(2.5),
+                iconWidth: context.wPct(4),
 
                 onTap: () => controller.navigateTo(Routes.languageScreen),
               ),
