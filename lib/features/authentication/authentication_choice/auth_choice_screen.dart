@@ -56,7 +56,7 @@ class AuthChoiceScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              context.hBox(5),
+              context.hBox(10),
               Text(
                 'auth_choice_title'.tr,
                 style: TextStyle(
@@ -65,7 +65,7 @@ class AuthChoiceScreen extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              context.hBox(2),
+              context.hBox(4),
 
               // button to sign in with email
               OutlinedButton(
@@ -185,7 +185,7 @@ class AuthChoiceScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              context.hBox(2),
+              context.hBox(4),
               //divider
               Row(
                 children: [
@@ -215,7 +215,7 @@ class AuthChoiceScreen extends StatelessWidget {
                 ],
               ),
 
-              context.hBox(3),
+              context.hBox(4),
 
               // continue as guest
               GestureDetector(
@@ -235,14 +235,14 @@ class AuthChoiceScreen extends StatelessWidget {
                       'auth_choice_continue_as_guest'.tr,
                       style: TextStyle(
                         color: AppColors.lightGray,
-                        fontSize: context.wPct(5),
+                        fontSize: context.wPct(4.2),
                         fontWeight: FontWeight.w600,
                       ),
                     ),
                   ],
                 ),
               ),
-              context.hBox(3),
+              context.hBox(8),
               Align(
                 alignment: AlignmentGeometry.bottomLeft,
                 child: GestureDetector(
@@ -254,7 +254,7 @@ class AuthChoiceScreen extends StatelessWidget {
                     'auth_choice_need_help'.tr,
                     style: TextStyle(
                       color: AppColors.aquaTeal,
-                      fontSize: context.wPct(5),
+                      fontSize: context.wPct(4),
                       fontWeight: FontWeight.w400,
                     ),
                   ),
