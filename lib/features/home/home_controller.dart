@@ -4,10 +4,7 @@ import 'package:app_links/app_links.dart';
 import 'package:flutter/material.dart'
     show
         BuildContext,
-        Colors,
         GlobalKey,
-        MainAxisAlignment,
-        TextStyle,
         WidgetsBinding;
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -15,7 +12,6 @@ import 'package:loader_overlay/loader_overlay.dart';
 import 'package:para_job/features/profile/user_profile/profile_controller.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
-import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/ui_components/auth_required_dialog.dart';
 import 'package:para_job/packages/ui_components/show_snack_bar_message.dart';
 import 'package:para_job/packages/user_manager/user_controller.dart';
@@ -124,46 +120,6 @@ class HomeController extends GetxController {
         await box.write('hasSeenShowcase', true);
       },
       blurValue: 1,
-      globalTooltipActionConfig: const TooltipActionConfig(
-        position: TooltipActionPosition.inside,
-        alignment: MainAxisAlignment.spaceBetween,
-        actionGap: 20,
-      ),
-      globalTooltipActions: [
-        TooltipActionButton(
-          name: "back".tr,
-          backgroundColor: Colors.transparent,
-          type: TooltipDefaultActionType.previous,
-          textStyle: const TextStyle(color: AppColors.pureWhite),
-          hideActionWidgetForShowcase: [firstKey, secondKey],
-        ),
-        // for presrntation ui only
-        TooltipActionButton(
-          name: "",
-          onTap: () {},
-          backgroundColor: Colors.transparent,
-          type: TooltipDefaultActionType.previous,
-          textStyle: const TextStyle(color: AppColors.pureWhite),
-          hideActionWidgetForShowcase: [firstKey, thirdKey, lastKey],
-        ),
-
-        TooltipActionButton(
-          name: "done".tr,
-          backgroundColor: Colors.transparent,
-          type: TooltipDefaultActionType.next,
-          textStyle: const TextStyle(color: AppColors.pureWhite),
-          hideActionWidgetForShowcase: [firstKey, secondKey, thirdKey],
-        ),
-        // Here we don't need next action for the last showcase widget so we
-        // hide this action for the last showcase widget
-        TooltipActionButton(
-          name: "next".tr,
-          backgroundColor: Colors.transparent,
-          type: TooltipDefaultActionType.next,
-          textStyle: const TextStyle(color: AppColors.pureWhite),
-          hideActionWidgetForShowcase: [firstKey, lastKey],
-        ),
-      ],
     );
     if (!hasSeenShowcase && !isDeepLink) {
       _goStart();
@@ -183,6 +139,10 @@ class HomeController extends GetxController {
 
   goNext() {
     ShowcaseView.get().next();
+  }
+
+  goBack() {
+    ShowcaseView.get().previous();
   }
 
   goDismiss() {

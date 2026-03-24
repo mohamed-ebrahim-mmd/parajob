@@ -5,6 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/home/home_controller.dart';
+import 'package:para_job/features/home/widgets/common_showcase_tooltip.dart';
 import 'package:para_job/features/home/widgets/start_tutorial_dialog.dart';
 import 'package:para_job/packages/api_client/src/models/responses/job.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
@@ -28,16 +29,13 @@ class HotJobsMiniList extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Showcase(
+            Showcase.withWidget(
               key: controller.secondKey,
-              description:
-                 "hot_job_show_case".tr,
               onBarrierClick: () => controller.goDismiss(),
-              tooltipBackgroundColor: AppColors.dialogBackgroundDark,
-              textColor: AppColors.pureWhite,
-              tooltipPadding: EdgeInsets.all(context.wPct(6)),
-              descriptionTextAlign: TextAlign.center,
-              tooltipBorderRadius: BorderRadius.circular(context.wPct(3)),
+              container: CommonShowcaseTooltip(
+                description: "hot_job_show_case".tr,
+                currentStep: 0,
+              ),
               child: Row(
                 children: [
                   Icon(

@@ -9,6 +9,7 @@ import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:showcaseview/showcaseview.dart';
+import 'package:para_job/features/home/widgets/common_showcase_tooltip.dart';
 
 import 'home_department_chips.dart';
 
@@ -31,18 +32,16 @@ class JobsMiniList extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Showcase(
+            Showcase.withWidget(
               key: isFlexible ? controller.thirdKey : controller.lastKey,
-              description: title == 'flexible_jobs'.tr
-                  ? "flexible_job_show_case".tr
-                  : "non_flexible_job_show_case".tr,
               onBarrierClick: () => controller.goDismiss(),
-
-              tooltipBackgroundColor: AppColors.dialogBackgroundDark,
-              textColor: AppColors.pureWhite,
-              descriptionTextAlign: TextAlign.center,
-              tooltipPadding: EdgeInsets.all(context.wPct(6)),
-              tooltipBorderRadius: BorderRadius.circular(context.wPct(3)),
+              container: CommonShowcaseTooltip(
+                description: isFlexible
+                    ? "flexible_job_show_case".tr
+                    : "non_flexible_job_show_case".tr,
+                isLast: !isFlexible,
+                currentStep: isFlexible ? 1 : 2,
+              ),
               child: Text(
                 title,
                 style: TextStyle(

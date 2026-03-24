@@ -29,9 +29,17 @@ class StartTutorialDialog extends StatelessWidget {
             alignment: AlignmentDirectional.topEnd,
             child: GestureDetector(
               onTap: () => controller.goDismiss(),
-              child: const Icon(
-                Icons.cancel_outlined,
-                color: Color(0xFF636B73),
+              child: Container(
+                padding: const EdgeInsets.all(2.0),
+                decoration: const BoxDecoration(
+                  color: AppColors.darkSlate,
+                  shape: BoxShape.circle,
+                ),
+                child: const Icon(
+                  Icons.close_rounded,
+                  color: AppColors.mediumSlateGrey,
+                  size: 18.0,
+                ),
               ),
             ),
           ),
