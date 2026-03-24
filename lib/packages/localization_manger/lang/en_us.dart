@@ -800,6 +800,21 @@ to connect with you.
   "account_disabled": "YOUR ACCOUNT HAS BEEN DISABLED!",
 
   // ============================================================
+  // 🏆 Level Up Dialog
+  // ============================================================
+  'level_up_you_are_now_on': 'You are now on level',
+  'level_up_how_to': 'How to level up?',
+  'level_up_why_to': 'Why to level up?',
+  'level_up_how_1': 'Apply for jobs to earn XP',
+  'level_up_how_2': 'Get accepted and complete your jobs',
+  'level_up_how_3': 'Earn positive reviews from employers',
+  'level_up_how_4': 'Maintain high attendance rates',
+  'level_up_how_5': 'Refer friends to join ParaJob',
+  'level_up_why_1': 'Get a higher chance of being accepted into jobs',
+  'level_up_why_2': 'Unlock bonuses and gifts',
+  'level_up_why_3': 'Get priority consideration for hot jobs',
+
+  // ============================================================
   // Privacy Policy Screen
   // ============================================================
   "privacy_policy": "Privacy policy",

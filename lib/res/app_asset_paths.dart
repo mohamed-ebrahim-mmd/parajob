@@ -81,4 +81,5 @@ abstract final class AppAssetPaths {
   static const balanceCoinIcon = "assets/icons/balance_coin.svg";
   static const balanceCoinIconwithStars =
       "assets/icons/Balance_coin_with_stars.svg";
+  static const levelUpTrophy = "assets/icons/level_cup.svg";
 }
