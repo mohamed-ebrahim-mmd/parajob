@@ -60,6 +60,12 @@ class _ParaJobAppState extends State<ParaJobApp> {
       theme: AppTheme.getTheme(context),
       themeMode: ThemeMode.dark,
       title: 'Para Job',
+      builder: (context, child) {
+        return GestureDetector(
+          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+          child: child,
+        );
+      },
       initialRoute: routingController.getInitialRoute(),
       getPages: AppPages.pages,
       locale: localizationController.currentLocale,
