@@ -86,28 +86,26 @@ Future<void> showLevelUpDialog(
                       ),
                     ),
                     context.wBox(2),
-                    Positioned(
-                      child: Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          SvgPicture.asset(
-                            AppAssetPaths.icLevelBadgeNext,
-                            width: context.wPct(11),
-                            height: context.wPct(11),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(bottom: context.wPct(4)),
-                            child: Text(
-                              "${level + 1}",
-                              style: TextStyle(
-                                color: AppColors.pureWhite,
-                                fontSize: context.wPct(3),
-                                fontWeight: FontWeight.bold,
-                              ),
+                    Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        SvgPicture.asset(
+                          AppAssetPaths.icLevelBadgeNext,
+                          width: context.wPct(11),
+                          height: context.wPct(11),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(bottom: context.wPct(4)),
+                          child: Text(
+                            "${level + 1}",
+                            style: TextStyle(
+                              color: AppColors.pureWhite,
+                              fontSize: context.wPct(3),
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
