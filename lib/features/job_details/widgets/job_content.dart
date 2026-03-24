@@ -70,7 +70,7 @@ class JobContent extends StatelessWidget {
             ],
           ],
         ),
-        context.hBox(2),
+        context.hBox(4),
         Text(
           jobDetails.title,
           maxLines: 1,

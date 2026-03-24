@@ -59,10 +59,7 @@ class CurvedHeaderWithGlow extends StatelessWidget {
         // --- Top icons (back + menu) ---
         SafeArea(
           child: Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: context.wPct(2),
-              vertical: context.hPct(2),
-            ),
+            padding: EdgeInsets.symmetric(horizontal: context.wPct(2)),
             child: child,
           ),
         ),

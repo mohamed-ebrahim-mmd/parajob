@@ -22,7 +22,7 @@ class EmployerHeroSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final height = context.hPct(30);
+    final height = context.hPct(40);
     return Stack(
       children: [
         CustomPaint(
