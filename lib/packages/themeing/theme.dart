@@ -17,6 +17,7 @@ class AppTheme {
     return ThemeData(
       useMaterial3: true,
       scaffoldBackgroundColor: AppColors.charcoalBlack,
+      fontFamily: 'Poppins',
       colorScheme: ColorScheme(
         brightness: Brightness.dark,
         primary: AppColors.aquaTeal,
