@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/home/home_screen.dart';
 import 'package:para_job/features/my_jobs/my_jobs_screen.dart';
+import 'package:para_job/features/my_notifications/my_notifications_controller.dart';
 import 'package:para_job/features/profile/user_profile/profile_screen.dart';
 import 'package:para_job/packages/api_client/src/enums/api_call_state_enum.dart';
 import 'package:para_job/packages/api_client/src/models/responses/strike.dart';
@@ -38,6 +39,7 @@ class MainNavigatorController extends GetxController {
       fetchBlockStatus();
     }
     await checkInitialMessage();
+    listenToForegroundMessages();
   }
 
   Future<void> checkInitialMessage() async {
@@ -102,5 +104,18 @@ class MainNavigatorController extends GetxController {
         }
         break;
     }
+  }
+
+  void listenToForegroundMessages() {
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      log('Got a message whilst in the foreground!');
+      log('Message data: ${message.data}');
+
+      // Refresh notifications if the controller is available
+      if (Get.isRegistered<MyNotificationsController>()) {
+        final notificationsController = Get.find<MyNotificationsController>();
+        notificationsController.pagingController.refresh();
+      }
+    });
   }
 }
