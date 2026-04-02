@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
+import 'app_network_image.dart';
+
 class CurvedHeaderWithGlow extends StatelessWidget {
   final String imageUrl;
   final Widget? child;
@@ -12,7 +14,6 @@ class CurvedHeaderWithGlow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        // --- Curved shadow layer (green glow) ---
         PhysicalShape(
           clipper: BottomCurveClipper(),
           color: Colors.transparent,
@@ -35,18 +36,16 @@ class CurvedHeaderWithGlow extends StatelessWidget {
                   end: Alignment.bottomCenter,
                 ).createShader(bounds);
               },
-              child: Image.network(
-                imageUrl,
+              child: AppNetworkImage(
+                url: imageUrl,
                 fit: BoxFit.cover,
-                height: context.hPct(40),
                 width: double.infinity,
-                loadingBuilder: (context, child, loadingProgress) {
-                  if (loadingProgress == null) return child;
-                  return Center(child: CircularProgressIndicator());
-                },
-                errorBuilder: (context, error, stackTrace) => Container(
+                height: context.hPct(40),
+                errorWidget: Container(
+                  width: double.infinity,
                   height: context.hPct(40),
                   color: AppColors.aquaTealShadow,
+                  alignment: Alignment.center,
                 ),
               ),
             ),

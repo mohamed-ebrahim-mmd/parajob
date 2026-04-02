@@ -40,6 +40,7 @@ class JobHistoryList extends StatelessWidget {
         Visibility(
           visible: jobHistory.isNotEmpty,
           child: ListView.separated(
+            padding: EdgeInsets.zero,
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
             primary: false,

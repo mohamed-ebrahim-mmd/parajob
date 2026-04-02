@@ -41,29 +41,23 @@ class ProfileScreen extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.only(top: context.hPct(4.1)),
                         child: Row(
-                          //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            GestureDetector(
-                              onTap: () {
-                                // Navigate to balance screen
+                            IconButton(
+                              onPressed: () {
                                 controller.navigateToBalanceScreen();
                               },
-
-                              child: SvgPicture.asset(
+                              icon: SvgPicture.asset(
                                 AppAssetPaths.balanceCoinIcon,
-                                height: context.hPct(4.1),
                               ),
                             ),
-
-                            Spacer(),
-
                             IconButton(
                               onPressed: () {
                                 Get.toNamed(
                                   "${Routes.mainNavigator}${Routes.more}",
                                 );
                               },
-                              icon: Icon(Icons.menu, size: context.hPct(4.1)),
+                              icon: Icon(Icons.menu),
                             ),
                           ],
                         ),

@@ -56,7 +56,7 @@ class UserProfileInfo extends StatelessWidget {
                       );
                     },
                     errorBuilder: (_, __, ___) => Icon(
-                      Icons.image_not_supported_rounded,
+                      Icons.person_outline_rounded,
                       size: context.wPct(15),
                       color: AppColors.lightGrey,
                     ),
