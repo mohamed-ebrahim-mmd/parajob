@@ -19,8 +19,7 @@ class EditMainInfo extends StatelessWidget {
   Widget build(context) {
     return CustomScrollView(
       slivers: [
-        SliverFillRemaining(
-          hasScrollBody: false,
+        SliverToBoxAdapter(
           child: Column(
             children: [
               context.hBox(2),
@@ -177,14 +176,25 @@ class EditMainInfo extends StatelessWidget {
                     );
                 }
               }),
-
-              Spacer(),
-              FilledButton(
-                onPressed: controller.editUser,
-                child: Text('edit_main_info_save_button'.tr),
-              ),
-              context.hBox(2.5),
             ],
+          ),
+        ),
+        SliverFillRemaining(
+          hasScrollBody: false,
+          fillOverscroll: true,
+          child: Align(
+            alignment: Alignment.bottomCenter,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                context.hBox(2),
+                FilledButton(
+                  onPressed: controller.editUser,
+                  child: Text('edit_main_info_save_button'.tr),
+                ),
+                context.hBox(2.5),
+              ],
+            ),
           ),
         ),
       ],
