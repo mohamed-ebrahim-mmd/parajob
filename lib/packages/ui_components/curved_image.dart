@@ -44,13 +44,8 @@ class CurvedHeaderWithGlow extends StatelessWidget {
                   if (loadingProgress == null) return child;
                   return Center(child: CircularProgressIndicator());
                 },
-                errorBuilder: (context, error, stackTrace) => Center(
-                  child: Icon(
-                    Icons.image_not_supported_outlined,
-                    color: AppColors.softWhite70,
-                    size: context.hPct(10),
-                  ),
-                ),
+                errorBuilder: (context, error, stackTrace) =>
+                    const ColoredBox(color: AppColors.darkBackground),
               ),
             ),
           ),
