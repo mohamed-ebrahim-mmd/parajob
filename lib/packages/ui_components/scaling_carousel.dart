@@ -12,6 +12,7 @@ import 'package:para_job/packages/themeing/media_query_values.dart';
 
 class ScalingCarousel extends StatefulWidget {
   final List<Job> jobs;
+
   const ScalingCarousel({super.key, required this.jobs});
 
   @override
@@ -52,7 +53,7 @@ class _ScalingCarouselState extends State<ScalingCarousel> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: context.hPct(43.5),
+      height: context.hPct(42),
       child: Center(
         child: PageView.builder(
           controller: _pageController,

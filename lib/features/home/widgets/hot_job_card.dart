@@ -61,12 +61,13 @@ class HotJobCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(context.wPct(2)),
                   child: Image.network(
                     job.company?.logo ?? "",
-                    width: context.wPct(12),
-                    height: context.wPct(12),
+
+                    width: context.hPct(6),
+                    height: context.hPct(6),
                     fit: BoxFit.cover,
                     errorBuilder: (c, e, s) => Container(
-                      width: context.wPct(12),
-                      height: context.wPct(12),
+                      width: context.hPct(6),
+                      height: context.hPct(6),
                       color: Colors.grey.shade300,
                       child: const Icon(
                         Icons.image_not_supported,
@@ -85,7 +86,7 @@ class HotJobCard extends StatelessWidget {
                         maxLines: 1,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: context.wPct(4),
+                          fontSize: context.hPct(2),
                         ),
                       ),
                       Text(
@@ -93,7 +94,7 @@ class HotJobCard extends StatelessWidget {
                         maxLines: 1,
                         style: TextStyle(
                           color: AppColors.softWhite70,
-                          fontSize: context.wPct(3),
+                          fontSize: context.hPct(1.5),
                         ),
                       ),
                     ],
@@ -105,7 +106,7 @@ class HotJobCard extends StatelessWidget {
 
           // 👉 Skills  Padding
           SizedBox(
-            height: context.hPct(5),
+            height: context.hPct(4),
             child: ListView.separated(
               padding: EdgeInsets.symmetric(horizontal: context.wPct(2.5)),
               scrollDirection: Axis.horizontal,
@@ -137,7 +138,7 @@ class HotJobCard extends StatelessWidget {
               vertical: context.hPct(1),
             ),
             child: SizedBox(
-              height: context.wPct(3.5) * 1.2 * 5,
+              height: context.hPct(2) * 4,
               child: Text(
                 job.description?.trim().isEmpty ?? true
                     ? " "
@@ -164,14 +165,14 @@ class HotJobCard extends StatelessWidget {
                     text: "${job.monthlySalary ?? "-"} ${'egp'.tr}",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: context.wPct(5),
+                      fontSize: context.hPct(2.5),
                     ),
                   ),
                   TextSpan(
                     text: "per_month".tr,
                     style: TextStyle(
                       color: AppColors.softWhite70,
-                      fontSize: context.wPct(3),
+                      fontSize: context.hPct(2),
                     ),
                   ),
                 ],
@@ -211,7 +212,10 @@ class HotJobCard extends StatelessWidget {
 
           // 👉 Buttons
           Padding(
-            padding: EdgeInsets.all(context.wPct(2.5)),
+            padding: EdgeInsets.symmetric(
+              horizontal: context.wPct(2.5),
+              vertical: context.hPct(2),
+            ),
             child: Row(
               children: [
                 Expanded(
