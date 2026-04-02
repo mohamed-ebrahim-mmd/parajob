@@ -47,7 +47,7 @@ class MyJobsScreen extends StatelessWidget {
                       // Makes the line width match the text
                       labelStyle: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: context.wPct(5),
+                        fontSize: context.wPct(4.7),
                         color: AppColors.pureWhite,
                       ),
                       unselectedLabelStyle: TextStyle(
