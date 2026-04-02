@@ -114,7 +114,7 @@ const Map<String, String> enUS = {
   // ============================================================
   // 📸 Picture With ID Screen
   // ============================================================
-  'picture_with_id_title': 'National ID Scan',
+  'picture_with_id_title': 'Picture with ID',
   'picture_with_id_subtitle': 'Time to verify your identity',
   'picture_with_id_instruction': 'Take a picture of yourself holding the ID.',
   'picture_with_id_note_1':

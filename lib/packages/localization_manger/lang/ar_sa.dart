@@ -113,7 +113,7 @@ const Map<String, String> arSA = {
   // ============================================================
   // 📸  Picture With ID Screen
   // ============================================================
-  'picture_with_id_title': 'مسح البطاقة الوطنية',
+  'picture_with_id_title': 'صورة بالرقم التعريفي',
   'picture_with_id_subtitle': 'حان وقت التحقق من هويتك',
   'picture_with_id_instruction': 'التقط صورة لنفسك وأنت تحمل البطاقة.',
   'picture_with_id_note_1': 'تأكد من أنك تنظر إلى الكاميرا\nمواجهاً للضوء.',
