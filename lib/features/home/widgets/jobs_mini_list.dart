@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/home/home_controller.dart';
+import 'package:para_job/features/home/widgets/common_showcase_tooltip.dart';
 import 'package:para_job/features/home/widgets/reactive_job_card.dart';
 import 'package:para_job/packages/api_client/src/enums/job_category_enum.dart'
     show JobCategory;
@@ -9,7 +10,6 @@ import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:showcaseview/showcaseview.dart';
-import 'package:para_job/features/home/widgets/common_showcase_tooltip.dart';
 
 import 'home_department_chips.dart';
 
@@ -35,12 +35,18 @@ class JobsMiniList extends StatelessWidget {
             Showcase.withWidget(
               key: isFlexible ? controller.thirdKey : controller.lastKey,
               onBarrierClick: () => controller.goDismiss(),
-              container: CommonShowcaseTooltip(
-                description: isFlexible
-                    ? "flexible_job_show_case".tr
-                    : "non_flexible_job_show_case".tr,
-                isLast: !isFlexible,
-                currentStep: isFlexible ? 1 : 2,
+              tooltipPosition: TooltipPosition.bottom,
+              container: SizedBox(
+                width: context.w,
+                child: Center(
+                  child: CommonShowcaseTooltip(
+                    description: isFlexible
+                        ? "flexible_job_show_case".tr
+                        : "non_flexible_job_show_case".tr,
+                    isLast: !isFlexible,
+                    currentStep: isFlexible ? 1 : 2,
+                  ),
+                ),
               ),
               child: Text(
                 title,

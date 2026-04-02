@@ -32,9 +32,15 @@ class HotJobsMiniList extends StatelessWidget {
             Showcase.withWidget(
               key: controller.secondKey,
               onBarrierClick: () => controller.goDismiss(),
-              container: CommonShowcaseTooltip(
-                description: "hot_job_show_case".tr,
-                currentStep: 0,
+              tooltipPosition: TooltipPosition.bottom,
+              container: SizedBox(
+                width: context.w,
+                child: Center(
+                  child: CommonShowcaseTooltip(
+                    description: "hot_job_show_case".tr,
+                    currentStep: 0,
+                  ),
+                ),
               ),
               child: Row(
                 children: [
@@ -69,7 +75,11 @@ class HotJobsMiniList extends StatelessWidget {
         Showcase.withWidget(
           key: controller.firstKey,
           disableBarrierInteraction: true,
-          container: StartTutorialDialog(),
+          tooltipPosition: TooltipPosition.bottom,
+          container: SizedBox(
+            width: MediaQuery.of(context).size.width,
+            child: Center(child: StartTutorialDialog()),
+          ),
           child: context.hBox(2),
         ),
 
