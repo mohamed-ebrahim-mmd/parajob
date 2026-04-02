@@ -20,7 +20,6 @@ class BookMarkedJobsScreen extends StatelessWidget {
   Widget build(BuildContext screenContext) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('saved_jobs_title'.tr),
         surfaceTintColor: AppColors.charcoalBlack,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new),
@@ -31,26 +30,49 @@ class BookMarkedJobsScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: screenContext.defaultPadding),
-        child: PagingListener<int, Job>(
-          controller: controller.pagingController,
-          builder: (context, state, fetchNextPage) => PagedListView<int, Job>(
-            state: state,
-            fetchNextPage: fetchNextPage,
-            builderDelegate: PagedChildBuilderDelegate(
-              itemBuilder: (context, item, index) => Padding(
-                padding: EdgeInsets.symmetric(vertical: context.hPct(1)),
-                child: JobCard(
-                  onBookmarkTap: () {
-                    controller.removeBookmark(item.id ?? 0, screenContext);
-                  },
-                  job: item,
-                  onTap: () {
-                    Get.toNamed(Routes.jobDetails, arguments: item.id);
-                  },
-                ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'saved_jobs_title'.tr,
+              style: TextStyle(
+                fontSize: screenContext.wPct(4.5),
+                fontWeight: FontWeight.bold,
               ),
             ),
-          ),
+            Expanded(
+              child: PagingListener<int, Job>(
+                controller: controller.pagingController,
+                builder: (context, state, fetchNextPage) =>
+                    PagedListView<int, Job>(
+                      state: state,
+                      fetchNextPage: fetchNextPage,
+                      builderDelegate: PagedChildBuilderDelegate(
+                        itemBuilder: (context, item, index) => Padding(
+                          padding: EdgeInsets.symmetric(
+                            vertical: context.hPct(1),
+                          ),
+                          child: JobCard(
+                            onBookmarkTap: () {
+                              controller.removeBookmark(
+                                item.id ?? 0,
+                                screenContext,
+                              );
+                            },
+                            job: item,
+                            onTap: () {
+                              Get.toNamed(
+                                Routes.jobDetails,
+                                arguments: item.id,
+                              );
+                            },
+                          ),
+                        ),
+                      ),
+                    ),
+              ),
+            ),
+          ],
         ),
       ),
     );

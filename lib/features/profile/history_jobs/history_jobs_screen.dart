@@ -21,7 +21,6 @@ class HistoryJobsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('profile_job_history_title'.tr),
         surfaceTintColor: AppColors.charcoalBlack,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new),
@@ -32,18 +31,35 @@ class HistoryJobsScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: context.defaultPadding),
-        child: PagingListener<int, MyJob>(
-          controller: controller.pagingController,
-          builder: (context, state, fetchNextPage) => PagedListView<int, MyJob>(
-            state: state,
-            fetchNextPage: fetchNextPage,
-            builderDelegate: PagedChildBuilderDelegate(
-              itemBuilder: (context, item, index) => Padding(
-                padding: EdgeInsets.symmetric(vertical: context.hPct(1)),
-                child: MyJobCard(job: item, isHistoryJobs: true),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'profile_job_history_title'.tr,
+              style: TextStyle(
+                fontSize: context.wPct(4.5),
+                fontWeight: FontWeight.bold,
               ),
             ),
-          ),
+            Expanded(
+              child: PagingListener<int, MyJob>(
+                controller: controller.pagingController,
+                builder: (context, state, fetchNextPage) =>
+                    PagedListView<int, MyJob>(
+                      state: state,
+                      fetchNextPage: fetchNextPage,
+                      builderDelegate: PagedChildBuilderDelegate(
+                        itemBuilder: (context, item, index) => Padding(
+                          padding: EdgeInsets.symmetric(
+                            vertical: context.hPct(1),
+                          ),
+                          child: MyJobCard(job: item, isHistoryJobs: true),
+                        ),
+                      ),
+                    ),
+              ),
+            ),
+          ],
         ),
       ),
     );
