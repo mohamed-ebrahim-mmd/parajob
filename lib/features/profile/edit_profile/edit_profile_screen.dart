@@ -41,7 +41,7 @@ class EditProfileScreen extends StatelessWidget {
                       'edit_profile_title'.tr,
                       style: TextStyle(
                         color: AppColors.pureWhite,
-                        fontSize: context.wPct(4),
+                        fontSize: context.wPct(4.5),
                         fontWeight: FontWeight.bold,
                       ),
                     ),
