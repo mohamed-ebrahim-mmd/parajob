@@ -11,7 +11,6 @@ import 'package:para_job/features/profile/widgets/profile_info.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
 import 'package:para_job/packages/api_client/src/enums/api_call_state_enum.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
-import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/packages/ui_components/error_screen.dart';
 import 'package:para_job/res/app_asset_paths.dart';
@@ -24,38 +23,6 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leadingWidth: context.wPct(12),
-        leading: Padding(
-          padding: EdgeInsetsDirectional.only(start: context.wPct(4)),
-          child: GestureDetector(
-            onTap: () {
-              // Navigate to balance screen
-              controller.navigateToBalanceScreen();
-            },
-            child: SvgPicture.asset(
-              AppAssetPaths.balanceCoinIcon,
-              height: context.hPct(4.1),
-            ),
-          ),
-        ),
-
-        surfaceTintColor: AppColors.charcoalBlack,
-        actions: [
-          Obx(() {
-            if (controller.profileCallState.value == ApiCallState.success) {
-              return IconButton(
-                onPressed: () {
-                  Get.toNamed("${Routes.mainNavigator}${Routes.more}");
-                },
-                icon: Icon(Icons.menu, size: context.hPct(4.1)),
-              );
-            } else {
-              return const SizedBox.shrink(); // empty widget
-            }
-          }),
-        ],
-      ),
       body: Center(
         child: Obx(() {
           switch (controller.profileCallState.value) {
@@ -71,6 +38,37 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   child: Column(
                     children: [
+                      Padding(
+                        padding: EdgeInsets.only(top: context.hPct(4.1)),
+                        child: Row(
+                          //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                // Navigate to balance screen
+                                controller.navigateToBalanceScreen();
+                              },
+
+                              child: SvgPicture.asset(
+                                AppAssetPaths.balanceCoinIcon,
+                                height: context.hPct(4.1),
+                              ),
+                            ),
+
+                            Spacer(),
+
+                            IconButton(
+                              onPressed: () {
+                                Get.toNamed(
+                                  "${Routes.mainNavigator}${Routes.more}",
+                                );
+                              },
+                              icon: Icon(Icons.menu, size: context.hPct(4.1)),
+                            ),
+                          ],
+                        ),
+                      ),
+
                       //user info
                       UserProfileInfo(
                         profileData: profileData,
