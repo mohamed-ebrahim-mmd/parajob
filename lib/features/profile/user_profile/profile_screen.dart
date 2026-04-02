@@ -27,7 +27,7 @@ class ProfileScreen extends StatelessWidget {
       appBar: AppBar(
         leadingWidth: context.wPct(12),
         leading: Padding(
-          padding: EdgeInsets.only(left: context.wPct(4)),
+          padding: EdgeInsetsDirectional.only(start: context.wPct(4)),
           child: GestureDetector(
             onTap: () {
               // Navigate to balance screen
