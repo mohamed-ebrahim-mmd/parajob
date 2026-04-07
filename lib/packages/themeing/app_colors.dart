@@ -9,7 +9,6 @@ class AppColors {
   static const Color darkGrey = Color(0xFF1E2428);
   static const Color darkNavy = Color(0xFF31373B);
   static const Color lightGrey = Color(0xff2C353A);
-  static const Color darkBlueGray = Color(0xFF23303D);
   static const Color dialogBackgroundDark = Color(0xFF14181B);
 
   static const Color darkBackground = Color(0xFF14181B);
