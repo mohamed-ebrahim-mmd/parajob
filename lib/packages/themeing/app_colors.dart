@@ -6,8 +6,6 @@ class AppColors {
   // Primary tones
   static const Color midnightPurple = Color(0xFF240F47);
   static const Color charcoalBlack = Color(0xFF14181B);
-  static const Color deepNavy = Color(0xFF0C1E3B);
-  static const Color midnightBlue = Color(0xFF18222C);
   static const Color darkGrey = Color(0xFF1E2428);
   static const Color darkNavy = Color(0xFF31373B);
   static const Color lightGrey = Color(0xff2C353A);

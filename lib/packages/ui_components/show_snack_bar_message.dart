@@ -102,7 +102,7 @@ void showSnackBarJobApplicationCongrats() {
       height: Get.context!.hPct(15),
       padding: EdgeInsets.all(context.wPct(4)),
       decoration: BoxDecoration(
-        color: AppColors.midnightBlue, // dark background
+        color: AppColors.dialogBackgroundDark, // dark background
         borderRadius: BorderRadius.circular(context.wPct(4)),
       ),
       child: Text(
@@ -163,7 +163,7 @@ void showSnackBarComplaintSuccess() {
       height: Get.context!.hPct(20),
       padding: EdgeInsets.all(context.wPct(4)),
       decoration: BoxDecoration(
-        color: AppColors.midnightBlue, // dark background
+        color: AppColors.dialogBackgroundDark, // dark background
         borderRadius: BorderRadius.circular(context.wPct(4)),
       ),
       child: Text(
