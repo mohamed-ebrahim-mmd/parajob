@@ -56,7 +56,8 @@ class AuthChoiceScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              if (!Platform.isIOS) ...[context.hBox(10)],
+              Platform.isIOS ? context.hBox(5) : context.hBox(10),
+             
               Text(
                 'auth_choice_title'.tr,
                 style: TextStyle(
