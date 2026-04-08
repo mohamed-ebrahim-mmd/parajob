@@ -123,27 +123,34 @@ class JobCard extends StatelessWidget {
             context.hBox(1.5),
             //     // Skills tags
             SizedBox(
-              height: context.hPct(5), // small fixed height for chips
+              height: context.hPct(2.5), // smaller fixed height for chips
               child: ListView.separated(
                 scrollDirection: Axis.horizontal,
                 itemCount: job.skills!.length,
-                separatorBuilder: (_, __) => context.wBox(2),
+                separatorBuilder: (_, __) => context.wBox(1.5),
                 itemBuilder: (context, index) {
                   final skill = job.skills?[index];
                   return Chip(
+                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    visualDensity: const VisualDensity(
+                      horizontal: -4,
+                      vertical: -4,
+                    ),
+                    padding: EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+                    labelPadding: EdgeInsets.symmetric(horizontal: 6),
                     label: Text(
                       skill!,
-                      style: TextStyle(color: const Color(0xff859097)),
+                      style: TextStyle(
+                        color: const Color(0xff859097),
+                        fontSize: 11,
+                        height: 1,
+                      ),
                     ),
                     shape: RoundedRectangleBorder(
                       side: const BorderSide(color: AppColors.lightGrey),
-                      borderRadius: BorderRadius.circular(
-                        context.w,
-                      ), // makes it nicely rounded
+                      borderRadius: BorderRadius.circular(context.w),
                     ),
                     backgroundColor: AppColors.lightGrey,
-
-                    padding: EdgeInsets.all(context.wPct(1)),
                   );
                 },
               ),
