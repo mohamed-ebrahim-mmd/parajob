@@ -118,7 +118,7 @@ class AppTheme {
           side: WidgetStateProperty.all(BorderSide(color: AppColors.pureWhite)),
           shape: WidgetStateProperty.all(
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(context.wPct(4)),
+              borderRadius: BorderRadius.circular(context.wPct(3)),
             ),
           ),
           minimumSize: WidgetStateProperty.all(

@@ -57,7 +57,7 @@ class AuthChoiceScreen extends StatelessWidget {
                 ),
               ),
               Platform.isIOS ? context.hBox(5) : context.hBox(10),
-             
+
               Text(
                 'auth_choice_title'.tr,
                 style: TextStyle(
@@ -78,7 +78,7 @@ class AuthChoiceScreen extends StatelessWidget {
                   children: [
                     Icon(
                       Icons.email_outlined,
-                      size: context.wPct(5),
+                      size: context.hPct(3.2),
 
                       color: AppColors.pureWhite,
                     ),
@@ -108,7 +108,7 @@ class AuthChoiceScreen extends StatelessWidget {
                       //svg
                       Icon(
                         Icons.apple_outlined,
-                        size: context.wPct(6),
+                        size: context.hPct(3.5),
                         color: AppColors.pureWhite,
                       ),
                       context.wBox(3),
@@ -137,8 +137,7 @@ class AuthChoiceScreen extends StatelessWidget {
                     //svg
                     SvgPicture.asset(
                       AppAssetPaths.googleIcon,
-                      height: context.hPct(2.2),
-                      width: context.wPct(2),
+                      width: context.wPct(5.2),
                     ),
                     context.wBox(3),
                     Text(
@@ -184,6 +183,7 @@ class AuthChoiceScreen extends StatelessWidget {
                       ),
                     ),
                   ),
+                  context.wBox(5),
                 ],
               ),
               context.hBox(4),
