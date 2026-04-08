@@ -43,7 +43,7 @@ class ForgotPasswordOtpScreen extends StatelessWidget {
                   'forgot_password_otp_title'.tr,
                   style: TextStyle(
                     color: AppColors.pureWhite,
-                    fontSize: context.wPct(8.5),
+                    fontSize: context.wPct(7),
                     fontWeight: FontWeight.w600,
                   ),
                 ),
