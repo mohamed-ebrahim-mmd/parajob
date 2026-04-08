@@ -37,16 +37,15 @@ class CreateAccountScreen extends StatelessWidget {
             children: [
               StepperRow(currentStep: 0, stepPercentage: "0%"),
 
-              context.hBox(4),
               Text(
                 'create_account_title'.tr,
                 style: TextStyle(
                   color: AppColors.pureWhite,
-                  fontSize: context.wPct(8.5),
+                  fontSize: context.wPct(7),
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              context.hBox(6),
+              context.hBox(3.5),
               Text(
                 'create_account_main_info'.tr,
 
