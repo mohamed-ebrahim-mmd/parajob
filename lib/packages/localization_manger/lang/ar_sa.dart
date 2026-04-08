@@ -408,7 +408,7 @@ const Map<String, String> arSA = {
   // ============================================================
   // 🔐 Change Password Screen
   // ============================================================
-  'change_password_title': 'عين كلمة المرور',
+  'change_password_title': ' عين كلمة مرور جديده',
   'change_password_new_hint': 'أدخل كلمة المرور الجديدة',
   'change_password_confirm_hint': 'أعد إدخال كلمة المرور الجديدة',
   'change_password_confirm_button': 'تأكيد',

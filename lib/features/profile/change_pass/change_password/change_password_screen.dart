@@ -34,7 +34,7 @@ class ChangePasswordScreen extends StatelessWidget {
                 'change_password_title'.tr,
                 style: TextStyle(
                   color: AppColors.pureWhite,
-                  fontSize: context.wPct(8.5),
+                  fontSize: context.wPct(7),
                   fontWeight: FontWeight.w600,
                 ),
               ),

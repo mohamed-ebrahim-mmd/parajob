@@ -415,7 +415,7 @@ const Map<String, String> enUS = {
   // ============================================================
   // 🔐 Change Password Screen
   // ============================================================
-  'change_password_title': 'Set password',
+  'change_password_title': 'Set a new password',
   'change_password_new_hint': 'Enter your new password',
   'change_password_confirm_hint': 'Confirm your new Password',
   'change_password_confirm_button': 'Confirm',
