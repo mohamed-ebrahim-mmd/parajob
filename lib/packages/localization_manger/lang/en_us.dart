@@ -63,7 +63,6 @@ const Map<String, String> enUS = {
   'create_account_failed_load_retry': 'Failed to load, tap to retry',
   'create_account_loading_areas': 'Loading areas...',
   'create_account_failed_load_areas': 'Failed to load areas, tap to retry',
-  'create_account_select_city_first': 'Select a city first',
   'create_account_continue_button': 'Continue',
   'create_account_contact_us': 'Contact us',
 

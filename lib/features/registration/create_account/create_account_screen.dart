@@ -41,16 +41,16 @@ class CreateAccountScreen extends StatelessWidget {
                 'create_account_title'.tr,
                 style: TextStyle(
                   color: AppColors.pureWhite,
-                  fontSize: context.wPct(7),
+                  fontSize: context.wPct(6),
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              context.hBox(3.5),
+              context.hBox(4),
               Text(
                 'create_account_main_info'.tr,
 
                 style: TextStyle(
-                  color: AppColors.softWhite70,
+                  color: AppColors.pureWhite,
                   fontSize: context.wPct(5),
                   fontWeight: FontWeight.w500,
                 ),
@@ -149,7 +149,7 @@ class CreateAccountScreen extends StatelessWidget {
                 'create_account_location_info'.tr,
 
                 style: TextStyle(
-                  color: AppColors.softWhite70,
+                  color: AppColors.pureWhite,
                   fontSize: context.wPct(5),
                   fontWeight: FontWeight.w500,
                 ),
@@ -252,7 +252,7 @@ class CreateAccountScreen extends StatelessWidget {
                     return TextField(
                       enabled: false,
                       decoration: InputDecoration(
-                        labelText: 'create_account_select_city_first'.tr,
+                        labelText: 'create_account_area_hint'.tr,
                       ),
                     );
                 }

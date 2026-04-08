@@ -62,7 +62,6 @@ const Map<String, String> arSA = {
   'create_account_failed_load_retry': 'فشل التحميل، انقر لإعادة المحاولة',
   'create_account_loading_areas': 'تحميل المناطق...',
   'create_account_failed_load_areas': 'فشل تحميل المناطق، انقر لإعادة المحاولة',
-  'create_account_select_city_first': 'اختر مدينة أولاً',
   'create_account_continue_button': 'متابعة',
   'create_account_contact_us': 'اتصل بنا',
 
