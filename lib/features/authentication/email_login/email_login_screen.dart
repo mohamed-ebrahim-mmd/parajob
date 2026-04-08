@@ -36,11 +36,11 @@ class EmailLoginScreen extends StatelessWidget {
                 'login_title'.tr,
                 style: TextStyle(
                   color: AppColors.pureWhite,
-                  fontSize: context.wPct(8.5),
+                  fontSize: context.wPct(6),
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              context.hBox(6),
+              context.hBox(5),
               Obx(() {
                 return TextField(
                   controller: controller.emailController,
@@ -101,7 +101,7 @@ class EmailLoginScreen extends StatelessWidget {
               },
               child: Text('login_button'.tr),
             ),
-            context.hBox(4),
+            context.hBox(2),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -109,7 +109,7 @@ class EmailLoginScreen extends StatelessWidget {
                   'login_no_account'.tr,
                   style: TextStyle(
                     color: AppColors.pureWhite,
-                    fontSize: context.wPct(4.2),
+                    fontSize: context.wPct(3.8),
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -123,7 +123,7 @@ class EmailLoginScreen extends StatelessWidget {
                     style: TextStyle(
                       decoration: TextDecoration.underline,
                       color: AppColors.pureWhite,
-                      fontSize: context.wPct(4.2),
+                      fontSize: context.wPct(3.8),
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -133,9 +133,6 @@ class EmailLoginScreen extends StatelessWidget {
           ],
         ),
       ),
-   
-   
-   
     );
   }
 }

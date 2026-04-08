@@ -63,7 +63,7 @@ class AppTheme {
             color: AppColors.pureWhite,
             // width:context.wPct(4),
           ),
-          borderRadius: BorderRadius.circular(context.wPct(4)),
+          borderRadius: BorderRadius.circular(context.wPct(3)),
         ),
 
         disabledBorder: OutlineInputBorder(
@@ -71,21 +71,21 @@ class AppTheme {
             color: AppColors.lightGrey,
             // width:context.wPct(4),
           ),
-          borderRadius: BorderRadius.circular(context.wPct(4)),
+          borderRadius: BorderRadius.circular(context.wPct(3)),
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
             color: AppColors.aquaTeal,
             // width: 1.5,
           ),
-          borderRadius: BorderRadius.circular(context.wPct(4)),
+          borderRadius: BorderRadius.circular(context.wPct(3)),
         ),
         errorBorder: OutlineInputBorder(
           borderSide: BorderSide(
             color: AppColors.coralRed,
             // width: 1.5
           ),
-          borderRadius: BorderRadius.circular(context.wPct(4)),
+          borderRadius: BorderRadius.circular(context.wPct(3)),
         ),
         errorMaxLines: 2,
         focusedErrorBorder: OutlineInputBorder(
@@ -93,7 +93,7 @@ class AppTheme {
             color: AppColors.coralRed,
             // width: 1.5
           ),
-          borderRadius: BorderRadius.circular(context.wPct(4)),
+          borderRadius: BorderRadius.circular(context.wPct(3)),
         ),
         // Padding inside the field
         contentPadding: EdgeInsets.symmetric(
@@ -104,7 +104,7 @@ class AppTheme {
         // Text style inside the input
         hintStyle: TextStyle(
           color: AppColors.softWhite70, // Hint text
-          fontSize: context.wPct(4.8),
+          fontSize: context.wPct(3.8),
           fontWeight: FontWeight.w500,
         ),
         errorStyle: TextStyle(
@@ -141,7 +141,7 @@ class AppTheme {
           elevation: WidgetStateProperty.all(0),
           shape: WidgetStateProperty.all(
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(context.wPct(2.5)),
+              borderRadius: BorderRadius.circular(context.wPct(3)),
             ),
           ),
           minimumSize: WidgetStateProperty.all(
@@ -164,16 +164,17 @@ class AppTheme {
 
   static PinTheme pinTheme(BuildContext context) {
     return PinTheme(
-      width: context.wPct(16),
+      width: context.wPct(13),
       height: context.hPct(8),
+      margin: EdgeInsets.symmetric(horizontal: context.wPct(1.5)),
       textStyle: TextStyle(
-        fontSize: context.wPct(6),
+        fontSize: context.wPct(7),
         color: AppColors.pureWhite,
         fontWeight: FontWeight.bold,
       ),
       decoration: BoxDecoration(
         border: Border(
-          bottom: BorderSide(color: AppColors.pureWhite, width: 2),
+          bottom: BorderSide(color: AppColors.pureWhite, width: 3),
         ),
       ),
     );

@@ -36,7 +36,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                 'forgot_password_title'.tr,
                 style: TextStyle(
                   color: AppColors.pureWhite,
-                  fontSize: context.wPct(8.5),
+                  fontSize: context.wPct(6),
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -44,7 +44,7 @@ class ForgotPasswordScreen extends StatelessWidget {
               Text(
                 'forgot_password_subtitle'.tr,
                 style: TextStyle(
-                  color: AppColors.pureWhite,
+                  color: AppColors.softWhite70,
                   fontSize: context.wPct(3.5),
                   fontWeight: FontWeight.w500,
                 ),

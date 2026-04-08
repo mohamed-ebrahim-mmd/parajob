@@ -39,7 +39,7 @@ const Map<String, String> arSA = {
   // ============================================================
   // 🔐 Set New Password Screen
   // ============================================================
-  'set_new_password_title': 'تعيين كلمة المرور',
+  'set_new_password_title': 'تعيين كلمة مرور جديدة',
   'set_new_password_hint': 'أدخل كلمة المرور الجديدة',
   'set_new_password_confirm_hint': 'أكد كلمة المرور الجديدة',
   'set_new_password_confirm_button': 'تأكيد',

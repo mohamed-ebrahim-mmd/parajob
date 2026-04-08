@@ -13,6 +13,7 @@ import 'package:timer_button/timer_button.dart';
 
 class ForgotPasswordOtpScreen extends StatelessWidget {
   ForgotPasswordOtpScreen({super.key});
+
   final controller = Get.find<ForgotPasswordOtpController>();
 
   @override
@@ -43,7 +44,7 @@ class ForgotPasswordOtpScreen extends StatelessWidget {
                   'forgot_password_otp_title'.tr,
                   style: TextStyle(
                     color: AppColors.pureWhite,
-                    fontSize: context.wPct(7),
+                    fontSize: context.wPct(6),
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -57,7 +58,7 @@ class ForgotPasswordOtpScreen extends StatelessWidget {
                   ),
                 ),
 
-                context.hBox(5),
+                context.hBox(2),
                 Center(
                   child: Pinput(
                     controller: controller.pinController,
@@ -68,7 +69,7 @@ class ForgotPasswordOtpScreen extends StatelessWidget {
                         border: Border(
                           bottom: BorderSide(
                             color: AppColors.aquaTeal,
-                            width: context.wPct(0.5),
+                            width: 3,
                           ),
                         ),
                       ),
@@ -109,7 +110,7 @@ class ForgotPasswordOtpScreen extends StatelessWidget {
                 },
                 child: Text('forgot_password_otp_verify_button'.tr),
               ),
-              context.hBox(4),
+              context.hBox(2),
               TimerButton(
                 label: 'forgot_password_otp_resend_button'.tr,
                 timeOutInSeconds: 59,

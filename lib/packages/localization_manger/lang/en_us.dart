@@ -39,7 +39,7 @@ const Map<String, String> enUS = {
   // ============================================================
   // 🔐 Set New Password Screen
   // ============================================================
-  'set_new_password_title': 'Set password',
+  'set_new_password_title': 'Set new password',
   'set_new_password_hint': 'Enter your new password',
   'set_new_password_confirm_hint': 'Confirm your new Password',
   'set_new_password_confirm_button': 'Confirm',
@@ -201,7 +201,7 @@ const Map<String, String> enUS = {
   'company': 'Company',
   'categories': 'Categories',
   'apply_filter': 'Apply Filter',
-  'reset_filters':'Reset filters',
+  'reset_filters': 'Reset filters',
   'see_all': 'See all',
   'apply_now': 'Apply now',
   'applied': 'Applied',

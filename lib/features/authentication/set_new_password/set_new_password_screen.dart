@@ -41,11 +41,11 @@ class SetNewPasswordScreen extends StatelessWidget {
                   'set_new_password_title'.tr,
                   style: TextStyle(
                     color: AppColors.pureWhite,
-                    fontSize: context.wPct(8.5),
+                    fontSize: context.wPct(6),
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                context.hBox(6),
+                context.hBox(5),
                 Obx(() {
                   return TextField(
                     controller: controller.passwordController,
