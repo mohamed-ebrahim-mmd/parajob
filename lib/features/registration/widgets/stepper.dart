@@ -3,9 +3,9 @@ import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
 class Stepper extends StatelessWidget {
-  const Stepper({super.key, required this.stepColor});
+  const Stepper({super.key, required this.isActive});
 
-  final Color stepColor;
+  final bool isActive;
 
   @override
   Widget build(BuildContext context) {
@@ -13,8 +13,21 @@ class Stepper extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: context.wPct(1.2)),
       height: context.hPct(0.5),
       decoration: BoxDecoration(
-        color: stepColor,
+        color: isActive
+            ? AppColors
+                  .aquaTeal // active step
+            : AppColors.pureWhite,
         borderRadius: BorderRadius.circular(context.wPct(3)),
+        boxShadow: isActive
+            ? [
+                BoxShadow(
+                  color: AppColors.aquaTeal.withOpacity(1.0),
+                  offset: const Offset(0, 0),
+                  blurRadius: 17,
+                  spreadRadius: 0,
+                ),
+              ]
+            : null,
       ),
     );
   }
@@ -41,10 +54,8 @@ class StepperRow extends StatelessWidget {
             5,
             (index) => Expanded(
               child: Stepper(
-                stepColor: index + 1 <= currentStep
-                    ? AppColors
-                          .aquaTeal // active step
-                    : AppColors.pureWhite, // inactive step
+                isActive: index + 1 <= currentStep,
+                // inactive step
               ),
             ),
           ),
