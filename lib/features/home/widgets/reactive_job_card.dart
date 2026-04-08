@@ -35,7 +35,7 @@ class ReactiveJobCard extends StatelessWidget {
           color: AppColors.darkGrey,
           borderRadius: BorderRadius.circular(context.wPct(4)),
         ),
-        padding: EdgeInsets.all(context.wPct(4)),
+        padding: EdgeInsets.all(context.wPct(3)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -74,7 +74,7 @@ class ReactiveJobCard extends StatelessWidget {
                         maxLines: 1,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: context.wPct(4.5),
+                          fontSize: context.wPct(4),
                         ),
                       ),
                       Text(
@@ -97,7 +97,7 @@ class ReactiveJobCard extends StatelessWidget {
                   return GestureDetector(
                     onTap: onBookmarkTap,
                     child: Container(
-                      height: context.hPct(5),
+                      height: context.hPct(4.2),
                       padding: EdgeInsets.all(context.hPct(1)),
                       decoration: BoxDecoration(
                         color: isBookmarked
@@ -107,7 +107,7 @@ class ReactiveJobCard extends StatelessWidget {
                         border: Border.all(
                           color: isBookmarked
                               ? AppColors.aquaTeal8
-                              : AppColors.softWhite80,
+                              : AppColors.gray8D,
                           width: 1.2,
                         ),
                       ),
@@ -115,38 +115,45 @@ class ReactiveJobCard extends StatelessWidget {
                         isBookmarked ? Icons.bookmark : Icons.bookmark_border,
                         color: isBookmarked
                             ? AppColors.aquaTeal
-                            : AppColors.softWhite80,
-                        size: context.hPct(2.5),
+                            : AppColors.gray8D,
+                        size: context.hPct(2),
                       ),
                     ),
                   );
                 }),
               ],
             ),
-            context.hBox(1.5),
+            context.hBox(1),
             //     // Skills tags
             SizedBox(
-              height: context.hPct(5), // small fixed height for chips
+              height: context.hPct(2.5), // smaller fixed height for chips
               child: ListView.separated(
                 scrollDirection: Axis.horizontal,
                 itemCount: job.skills!.length,
-                separatorBuilder: (_, __) => context.wBox(2),
+                separatorBuilder: (_, __) => context.wBox(1.5),
                 itemBuilder: (context, index) {
                   final skill = job.skills?[index];
                   return Chip(
+                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    visualDensity: const VisualDensity(
+                      horizontal: -4,
+                      vertical: -4,
+                    ),
+                    padding: EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+                    labelPadding: EdgeInsets.symmetric(horizontal: 6),
                     label: Text(
                       skill!,
-                      style: TextStyle(color: const Color(0xff859097)),
+                      style: TextStyle(
+                        color: const Color(0xff859097),
+                        fontSize: 11,
+                        height: 1,
+                      ),
                     ),
                     shape: RoundedRectangleBorder(
                       side: const BorderSide(color: AppColors.lightGrey),
-                      borderRadius: BorderRadius.circular(
-                        context.w,
-                      ), // makes it nicely rounded
+                      borderRadius: BorderRadius.circular(context.w),
                     ),
                     backgroundColor: AppColors.lightGrey,
-
-                    padding: EdgeInsets.all(context.wPct(1)),
                   );
                 },
               ),
@@ -190,7 +197,7 @@ class ReactiveJobCard extends StatelessWidget {
                         alignment: PlaceholderAlignment.middle,
                         child: Icon(
                           Icons.date_range_rounded,
-                          size: context.wPct(5),
+                          size: context.wPct(3.7),
                           color: Colors.grey,
                         ),
                       ),
