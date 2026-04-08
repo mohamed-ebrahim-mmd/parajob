@@ -141,7 +141,7 @@ class AppTheme {
           elevation: WidgetStateProperty.all(0),
           shape: WidgetStateProperty.all(
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(context.wPct(4)),
+              borderRadius: BorderRadius.circular(context.wPct(2.5)),
             ),
           ),
           minimumSize: WidgetStateProperty.all(
