@@ -35,7 +35,10 @@ class ReactiveJobCard extends StatelessWidget {
           color: AppColors.darkGrey,
           borderRadius: BorderRadius.circular(context.wPct(4)),
         ),
-        padding: EdgeInsets.all(context.wPct(3)),
+        padding: EdgeInsets.symmetric(
+          horizontal: context.wPct(3),
+          vertical: context.hPct(1.5),
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -83,7 +86,7 @@ class ReactiveJobCard extends StatelessWidget {
 
                         style: TextStyle(
                           color: AppColors.softWhite70,
-                          fontSize: context.wPct(3.5),
+                          fontSize: context.wPct(3),
                         ),
                       ),
                     ],
@@ -136,8 +139,8 @@ class ReactiveJobCard extends StatelessWidget {
                     ),
                     child: Container(
                       padding: EdgeInsets.symmetric(
-                        horizontal: context.wPct(2), // horizontal spacing
-                        vertical: context.hPct(0.5), // vertical padding
+                        horizontal: context.wPct(2.2), // horizontal spacing
+                        vertical: context.hPct(0.3), // vertical padding
                       ),
                       decoration: BoxDecoration(
                         color: AppColors.lightGrey,
@@ -197,7 +200,7 @@ class ReactiveJobCard extends StatelessWidget {
                         alignment: PlaceholderAlignment.middle,
                         child: Icon(
                           Icons.date_range_rounded,
-                          size: context.wPct(3.7),
+                          size: context.wPct(3.3),
                           color: Colors.grey,
                         ),
                       ),

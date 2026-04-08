@@ -33,7 +33,10 @@ class JobCard extends StatelessWidget {
           color: AppColors.darkGrey,
           borderRadius: BorderRadius.circular(context.wPct(4)),
         ),
-        padding: EdgeInsets.all(context.wPct(4)),
+        padding: EdgeInsets.symmetric(
+          horizontal: context.wPct(3),
+          vertical: context.hPct(1.5),
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -94,26 +97,26 @@ class JobCard extends StatelessWidget {
                   child: GestureDetector(
                     onTap: onBookmarkTap,
                     child: Container(
-                      height: context.hPct(5),
+                      height: context.hPct(4.2),
                       padding: EdgeInsets.all(context.hPct(1)),
                       decoration: BoxDecoration(
                         color: isBookmarked
                             ? AppColors.aquaTeal8
-                            : Colors.transparent, // transparent background
+                            : Colors.transparent,
                         borderRadius: BorderRadius.circular(context.wPct(3)),
                         border: Border.all(
                           color: isBookmarked
                               ? AppColors.aquaTeal8
-                              : AppColors.softWhite80, // your border color
-                          width: 1.2, // adjust thickness
+                              : AppColors.gray8D,
+                          width: 1.2,
                         ),
                       ),
                       child: Icon(
-                        Icons.bookmark_border,
+                        isBookmarked ? Icons.bookmark : Icons.bookmark_border,
                         color: isBookmarked
                             ? AppColors.aquaTeal
-                            : AppColors.softWhite80,
-                        size: context.hPct(2.5),
+                            : AppColors.gray8D,
+                        size: context.hPct(2),
                       ),
                     ),
                   ),
@@ -122,37 +125,36 @@ class JobCard extends StatelessWidget {
             ),
             context.hBox(1.5),
             //     // Skills tags
-            SizedBox(
-              height: context.hPct(2.5), // smaller fixed height for chips
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                itemCount: job.skills!.length,
-                separatorBuilder: (_, __) => context.wBox(1.5),
-                itemBuilder: (context, index) {
-                  final skill = job.skills?[index];
-                  return Chip(
-                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    visualDensity: const VisualDensity(
-                      horizontal: -4,
-                      vertical: -4,
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: job.skills!.map((skill) {
+                  return Padding(
+                    padding: EdgeInsetsGeometry.directional(
+                      end: context.wPct(1.5),
                     ),
-                    padding: EdgeInsets.symmetric(horizontal: 4, vertical: 2),
-                    labelPadding: EdgeInsets.symmetric(horizontal: 6),
-                    label: Text(
-                      skill!,
-                      style: TextStyle(
-                        color: const Color(0xff859097),
-                        fontSize: 11,
-                        height: 1,
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: context.wPct(2.2), // horizontal spacing
+                        vertical: context.hPct(0.3), // vertical padding
+                      ),
+                      decoration: BoxDecoration(
+                        color: AppColors.lightGrey,
+                        border: Border.all(color: AppColors.lightGrey),
+                        borderRadius: BorderRadius.circular(context.w),
+                      ),
+                      child: Center(
+                        child: Text(
+                          skill,
+                          style: TextStyle(
+                            color: const Color(0xff859097),
+                            fontSize: context.wPct(3),
+                          ),
+                        ),
                       ),
                     ),
-                    shape: RoundedRectangleBorder(
-                      side: const BorderSide(color: AppColors.lightGrey),
-                      borderRadius: BorderRadius.circular(context.w),
-                    ),
-                    backgroundColor: AppColors.lightGrey,
                   );
-                },
+                }).toList(),
               ),
             ),
             context.hBox(1),
@@ -194,7 +196,7 @@ class JobCard extends StatelessWidget {
                         alignment: PlaceholderAlignment.middle,
                         child: Icon(
                           Icons.date_range_rounded,
-                          size: context.wPct(3),
+                          size: context.wPct(3.3),
                           color: Colors.grey,
                         ),
                       ),
