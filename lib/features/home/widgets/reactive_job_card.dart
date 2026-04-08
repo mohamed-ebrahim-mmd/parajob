@@ -125,37 +125,37 @@ class ReactiveJobCard extends StatelessWidget {
             ),
             context.hBox(1),
             //     // Skills tags
-            SizedBox(
-              height: context.hPct(2.5), // smaller fixed height for chips
-              child: ListView.separated(
-                scrollDirection: Axis.horizontal,
-                itemCount: job.skills!.length,
-                separatorBuilder: (_, __) => context.wBox(1.5),
-                itemBuilder: (context, index) {
-                  final skill = job.skills?[index];
-                  return Chip(
-                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    visualDensity: const VisualDensity(
-                      horizontal: -4,
-                      vertical: -4,
+            // Skills tags
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: job.skills!.map((skill) {
+                  return Padding(
+                    padding: EdgeInsetsGeometry.directional(
+                      end: context.wPct(1.5),
                     ),
-                    padding: EdgeInsets.symmetric(horizontal: 4, vertical: 2),
-                    labelPadding: EdgeInsets.symmetric(horizontal: 6),
-                    label: Text(
-                      skill!,
-                      style: TextStyle(
-                        color: const Color(0xff859097),
-                        fontSize: 11,
-                        height: 1,
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: context.wPct(2), // horizontal spacing
+                        vertical: context.hPct(0.5), // vertical padding
+                      ),
+                      decoration: BoxDecoration(
+                        color: AppColors.lightGrey,
+                        border: Border.all(color: AppColors.lightGrey),
+                        borderRadius: BorderRadius.circular(context.w),
+                      ),
+                      child: Center(
+                        child: Text(
+                          skill,
+                          style: TextStyle(
+                            color: const Color(0xff859097),
+                            fontSize: context.wPct(3),
+                          ),
+                        ),
                       ),
                     ),
-                    shape: RoundedRectangleBorder(
-                      side: const BorderSide(color: AppColors.lightGrey),
-                      borderRadius: BorderRadius.circular(context.w),
-                    ),
-                    backgroundColor: AppColors.lightGrey,
                   );
-                },
+                }).toList(),
               ),
             ),
             context.hBox(1),

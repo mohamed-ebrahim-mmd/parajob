@@ -107,7 +107,7 @@ Future<void> showFilterBottomSheet(
                     enableSearch: true,
                     expandedInsets: EdgeInsets.zero,
                     menuHeight: context.hPct(30),
-                    hintText: 'create_account_area_hint'.tr,
+                    hintText: 'area'.tr,
 
                     initialSelection: controller.selectedArea,
                     onSelected: (value) {
@@ -139,9 +139,7 @@ Future<void> showFilterBottomSheet(
                 case DataFetchState.initial:
                   return TextField(
                     enabled: false,
-                    decoration: InputDecoration(
-                      labelText: 'create_account_select_city_first'.tr,
-                    ),
+                    decoration: InputDecoration(labelText: 'area'.tr),
                   );
               }
             }),
@@ -184,11 +182,11 @@ Future<void> showFilterBottomSheet(
               },
               dropdownMenuEntries: controller.jobCategoriesEntries,
             ),
-            context.hBox(2),
+            context.hBox(.5),
 
             //reset filters
             Align(
-            alignment: AlignmentDirectional.centerEnd,
+              alignment: AlignmentDirectional.centerEnd,
               child: TextButton.icon(
                 label: Text(
                   'reset_filters'.tr,
@@ -199,7 +197,7 @@ Future<void> showFilterBottomSheet(
                 onPressed: controller.resetFilters,
               ),
             ),
-            context.hBox(2),
+            context.hBox(.5),
             // button
             FilledButton(
               onPressed: controller.applyFilters,

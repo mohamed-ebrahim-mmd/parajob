@@ -52,7 +52,7 @@ class HomeScreen extends StatelessWidget {
                 Text(
                   'discover_jobs'.tr,
                   style: TextStyle(
-                    fontSize: context.wPct(7),
+                    fontSize: context.wPct(6),
                     fontWeight: FontWeight.w600,
                   ),
                 ),

@@ -30,6 +30,10 @@ class DepartmentChips extends StatelessWidget {
             return Padding(
               padding: EdgeInsets.symmetric(horizontal: context.wPct(1)),
               child: ChoiceChip(
+                padding: EdgeInsets.symmetric(
+                  horizontal: context.wPct(1),
+                  vertical: context.hPct(1),
+                ),
                 key: controller.getDepartmentKey(dept.id ?? -1),
                 label: Text(dept.name),
                 selected: isSelected,
@@ -49,7 +53,7 @@ class DepartmentChips extends StatelessWidget {
                   fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
                 ),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(context.wPct(4)),
+                  borderRadius: BorderRadius.circular(context.wPct(3)),
                 ),
               ),
             );

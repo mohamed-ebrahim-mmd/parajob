@@ -8,6 +8,7 @@ import 'package:para_job/packages/themeing/media_query_values.dart';
 
 class HomeDepartmentChips extends StatelessWidget {
   HomeDepartmentChips({super.key, required this.onSelected});
+
   final controller = Get.find<HomeController>();
   late final departments = controller.departmentsData;
   final void Function(int id) onSelected;
@@ -25,6 +26,10 @@ class HomeDepartmentChips extends StatelessWidget {
           return Padding(
             padding: EdgeInsets.symmetric(horizontal: context.wPct(1)),
             child: ChoiceChip(
+              padding: EdgeInsets.symmetric(
+                horizontal: context.wPct(1),
+                vertical: context.hPct(1),
+              ),
               label: Text(dept.name),
               selected: isAllDepartments,
               showCheckmark: false,
@@ -47,7 +52,7 @@ class HomeDepartmentChips extends StatelessWidget {
                     : FontWeight.normal,
               ),
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(context.wPct(4)),
+                borderRadius: BorderRadius.circular(context.wPct(3)),
               ),
             ),
           );
