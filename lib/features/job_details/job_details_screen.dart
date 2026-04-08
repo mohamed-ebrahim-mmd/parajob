@@ -132,7 +132,7 @@ class JobDetailsScreen extends StatelessWidget {
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                        context.hBox(3),
+                        context.hBox(1),
                         Text(
                           jobDetails.description,
                           style: TextStyle(
@@ -151,7 +151,7 @@ class JobDetailsScreen extends StatelessWidget {
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                        context.hBox(3),
+                        context.hBox(1),
                         Text(
                           jobDetails.requirements,
                           style: TextStyle(
@@ -170,7 +170,7 @@ class JobDetailsScreen extends StatelessWidget {
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                        context.hBox(3),
+                        context.hBox(1),
                         Wrap(
                           spacing: context.wPct(3),
                           runSpacing: context.wPct(3),

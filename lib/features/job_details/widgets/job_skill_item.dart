@@ -10,10 +10,9 @@ class JobSkillItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: context.hPct(5),
-
       padding: EdgeInsets.symmetric(
-        horizontal: context.wPct(2),vertical: context.hPct(1),
+        horizontal: context.wPct(2.5),
+        vertical: context.hPct(0.9),
       ),
       decoration: BoxDecoration(
         color: AppColors.aquaTeal8,
@@ -21,7 +20,8 @@ class JobSkillItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(context.wPct(3)),
       ),
       child: Text(
-        skill,textAlign: TextAlign.center,
+        skill,
+        textAlign: TextAlign.center,
         style: TextStyle(
           color: AppColors.aquaTeal,
           fontSize: context.wPct(3.4),
