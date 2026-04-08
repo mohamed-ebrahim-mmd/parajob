@@ -88,13 +88,26 @@ class CVContent extends StatelessWidget {
           );
 
     final textWidget = selectedFile != null
-        ? Text(
-            fileName ?? "File selected",
-            style: TextStyle(
-              color: AppColors.pureWhite,
-              fontSize: context.wPct(3.8),
-            ),
-            overflow: TextOverflow.ellipsis,
+        ? Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                fileName ?? "File selected",
+                style: TextStyle(
+                  color: AppColors.pureWhite,
+                  fontSize: context.wPct(3.8),
+                ),
+                overflow: TextOverflow.ellipsis,
+              ),
+              Text(
+                "Click here to upload CV",
+                style: TextStyle(
+                  color: AppColors.pureWhite,
+                  fontWeight: FontWeight.w600,
+                  fontSize: context.wPct(4),
+                ),
+              ),
+            ],
           )
         : Text(
             "Click here to upload CV",
