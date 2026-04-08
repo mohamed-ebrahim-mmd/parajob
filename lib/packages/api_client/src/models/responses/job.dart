@@ -13,7 +13,7 @@ class Job {
   final String? description;
   final String? applicationDeadline;
   final List<String>? skills;
-  final String? monthlySalary;
+  final int? monthlySalary;
   final Company? company;
   final bool? isApplied;
   final RxBool isAppliedReactive;
@@ -58,7 +58,7 @@ class Job {
       description: json['description'],
       applicationDeadline: json['application_deadline'],
       skills: json['skills'] != null ? List<String>.from(json['skills']) : null,
-      monthlySalary: json['monthly_salary'],
+      monthlySalary: _parseSalary(json['monthly_salary']),
       company: json['company'] != null
           ? Company.fromJson(json['company'])
           : null,
@@ -75,6 +75,18 @@ class Job {
       applicationDate: json['application_date'],
       jobApplicationVerification: json['job_application_verification'],
     );
+  }
+
+  static int? _parseSalary(dynamic value) {
+    if (value == null) return null;
+
+    String salaryStr = value.toString();
+
+    // Try parsing as double and convert to int
+    double? doubleValue = double.tryParse(salaryStr);
+    if (doubleValue != null) return doubleValue.toInt();
+
+    return null;
   }
 
   Job copyWith({bool? isBookmark}) {
