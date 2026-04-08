@@ -8,7 +8,6 @@ import 'package:para_job/features/home/home_controller.dart';
 import 'package:para_job/features/home/widgets/hot_job_card.dart';
 import 'package:para_job/packages/api_client/src/models/responses/job.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
-import 'package:para_job/packages/themeing/media_query_values.dart';
 
 class ScalingCarousel extends StatefulWidget {
   final List<Job> jobs;
@@ -52,8 +51,9 @@ class _ScalingCarouselState extends State<ScalingCarousel> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: context.hPct(42),
+    return AspectRatio(
+      aspectRatio: 4 / 3.44,
+
       child: Center(
         child: PageView.builder(
           controller: _pageController,
