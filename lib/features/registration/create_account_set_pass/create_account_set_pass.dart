@@ -31,17 +31,15 @@ class CreateAccountSetPass extends StatelessWidget {
             children: [
               context.hBox(2),
               StepperRow(currentStep: 1, stepPercentage: "20%"),
-
-              context.hBox(2),
               Text(
                 'create_account_set_pass_title'.tr,
                 style: TextStyle(
                   color: AppColors.pureWhite,
-                  fontSize: context.wPct(8.5),
+                  fontSize: context.wPct(6),
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              context.hBox(6),
+              context.hBox(4),
               Obx(() {
                 return TextField(
                   controller: controller.passwordController,
@@ -89,7 +87,7 @@ class CreateAccountSetPass extends StatelessWidget {
 
             context.hBox(5),
             GestureDetector(
-              onTap: () =>Get.toNamed(Routes.contactUsAuth),
+              onTap: () => Get.toNamed(Routes.contactUsAuth),
 
               child: Text(
                 'create_account_set_pass_contact_us'.tr,

@@ -30,14 +30,12 @@ class CreateAccountCvScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              context.hBox(2),
               StepperRow(currentStep: 4, stepPercentage: "80%"),
-              context.hBox(2),
               Text(
                 'create_account_cv_title'.tr,
                 style: TextStyle(
                   color: AppColors.pureWhite,
-                  fontSize: context.wPct(8.5),
+                  fontSize: context.wPct(6),
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -46,11 +44,11 @@ class CreateAccountCvScreen extends StatelessWidget {
                 'create_account_cv_subtitle'.tr,
                 style: TextStyle(
                   color: AppColors.softWhite70,
-                  fontSize: context.wPct(3.5),
-                  fontWeight: FontWeight.w500,
+                  fontSize: context.wPct(2.8),
+                  fontWeight: FontWeight.w600,
                 ),
               ),
-              context.hBox(6),
+              context.hBox(4),
               CVUploader(onFileSelected: controller.setCvFile),
               Obx(() {
                 return Visibility(

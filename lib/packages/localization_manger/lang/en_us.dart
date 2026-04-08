@@ -80,7 +80,7 @@ const Map<String, String> enUS = {
   // ============================================================
   'create_account_set_pass_title': 'Set password',
   'create_account_set_pass_password_hint': 'Enter password',
-  'create_account_set_pass_confirm_hint': 'Re-enter',
+  'create_account_set_pass_confirm_hint': 'Renter password',
   'create_account_set_pass_continue_button': 'Continue',
   'create_account_set_pass_contact_us': 'Contact us',
 
@@ -133,7 +133,6 @@ const Map<String, String> enUS = {
   'education_info_faculty_hint': 'Choose your faculty',
   'education_info_failed_load_faculties':
       'Failed to load faculties, tap to retry',
-  'education_info_select_university_first': 'Select a university first',
   'education_info_graduation_year_hint': 'Choose your graduation year',
   'education_info_status_hint': 'Status',
   'education_info_continue_button': 'Continue',

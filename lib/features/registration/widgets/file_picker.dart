@@ -99,8 +99,8 @@ class CVContent extends StatelessWidget {
         : Text(
             "Click here to upload CV",
             style: TextStyle(
-              color: AppColors.pureWhite,
-              fontWeight: FontWeight.w600,
+              color: AppColors.softWhite70,
+              fontWeight: FontWeight.w500,
               fontSize: context.wPct(4),
             ),
           );

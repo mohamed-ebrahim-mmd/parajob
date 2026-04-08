@@ -131,7 +131,6 @@ const Map<String, String> arSA = {
   'education_info_faculty_hint': 'اختر كليتك',
   'education_info_failed_load_faculties':
       'فشل تحميل الكليات، انقر لإعادة المحاولة',
-  'education_info_select_university_first': 'اختر جامعة أولاً',
   'education_info_graduation_year_hint': 'اختر سنة التخرج',
   'education_info_status_hint': 'الحالة',
   'education_info_continue_button': 'متابعة',

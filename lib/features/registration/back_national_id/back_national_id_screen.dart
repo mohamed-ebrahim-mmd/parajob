@@ -30,14 +30,12 @@ class BackNationalIdScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              context.hBox(2),
               StepperRow(currentStep: 2, stepPercentage: "40%"),
-              context.hBox(2),
               Text(
                 'back_national_id_title'.tr,
                 style: TextStyle(
                   color: AppColors.pureWhite,
-                  fontSize: context.wPct(8.5),
+                  fontSize: context.wPct(6),
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -46,8 +44,8 @@ class BackNationalIdScreen extends StatelessWidget {
                 'back_national_id_subtitle'.tr,
                 style: TextStyle(
                   color: AppColors.softWhite70,
-                  fontSize: context.wPct(3.5),
-                  fontWeight: FontWeight.w500,
+                  fontSize: context.wPct(2.8),
+                  fontWeight: FontWeight.w600,
                 ),
               ),
 

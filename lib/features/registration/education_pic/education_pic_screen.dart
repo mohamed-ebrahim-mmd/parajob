@@ -31,15 +31,12 @@ class EducationPicScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              context.hBox(2),
               StepperRow(currentStep: 3, stepPercentage: "60%"),
-              //  Align(alignment: AlignmentGeometry.bottomRight, child: Text("20%")),
-              context.hBox(2),
               Text(
                 'education_pic_title'.tr,
                 style: TextStyle(
                   color: AppColors.pureWhite,
-                  fontSize: context.wPct(8.5),
+                  fontSize: context.wPct(6),
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -48,8 +45,8 @@ class EducationPicScreen extends StatelessWidget {
                 'education_pic_subtitle'.tr,
                 style: TextStyle(
                   color: AppColors.softWhite70,
-                  fontSize: context.wPct(3.5),
-                  fontWeight: FontWeight.w500,
+                  fontSize: context.wPct(2.8),
+                  fontWeight: FontWeight.w600,
                 ),
               ),
 
@@ -61,7 +58,7 @@ class EducationPicScreen extends StatelessWidget {
                   'education_pic_note'.tr,
                   style: TextStyle(
                     color: AppColors.softWhite70,
-                    fontSize: context.wPct(4),
+                    fontSize: context.wPct(3.8),
                     fontWeight: FontWeight.w500,
                   ),
                   textAlign: TextAlign.center,

@@ -31,16 +31,15 @@ class EducationInfoScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               StepperRow(currentStep: 3, stepPercentage: "60%"),
-              context.hBox(4),
               Text(
                 'education_info_title'.tr,
                 style: TextStyle(
                   color: AppColors.pureWhite,
-                  fontSize: context.wPct(8.5),
+                  fontSize: context.wPct(6),
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              context.hBox(2.5),
+              context.hBox(4),
               Obx(() {
                 switch (controller.universitiesCallState.value) {
                   case ApiCallState.loading:
@@ -137,7 +136,7 @@ class EducationInfoScreen extends StatelessWidget {
                     return TextField(
                       enabled: false,
                       decoration: InputDecoration(
-                        labelText: 'education_info_select_university_first'.tr,
+                        labelText: 'education_info_faculty_hint'.tr,
                       ),
                     );
                 }

@@ -34,18 +34,16 @@ class CreateAccountSkillsScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              context.hBox(2),
               StepperRow(currentStep: 4, stepPercentage: "80%"),
-              context.hBox(2),
               Text(
                 'create_account_skills_title'.tr,
                 style: TextStyle(
                   color: AppColors.pureWhite,
-                  fontSize: context.wPct(8.5),
+                  fontSize: context.wPct(6),
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              context.hBox(2),
+              context.hBox(4),
               Obx(() {
                 switch (controller.skillsCallState.value) {
                   case ApiCallState.loading:
@@ -72,7 +70,7 @@ class CreateAccountSkillsScreen extends StatelessWidget {
                           onSelected: controller.onSkillSelected,
                           dropdownMenuEntries: controller.skillsMenu,
                         ),
-                        context.hBox(1.5),
+                        context.hBox(2),
                         Wrap(
                           spacing: context.wPct(3),
                           runSpacing: context.wPct(3),

@@ -11,7 +11,9 @@ import 'package:timer_button/timer_button.dart';
 
 class CreateAccountOtpScreen extends StatelessWidget {
   CreateAccountOtpScreen({super.key});
+
   final controller = Get.find<CreateAccountOtpController>();
+
   @override
   Widget build(BuildContext context) {
     return PopScope(
@@ -37,13 +39,11 @@ class CreateAccountOtpScreen extends StatelessWidget {
                 context.hBox(2),
                 StepperRow(currentStep: 0, stepPercentage: "0%"),
 
-                context.hBox(2),
-
                 Text(
                   'create_account_otp_title'.tr,
                   style: TextStyle(
                     color: AppColors.pureWhite,
-                    fontSize: context.wPct(8.5),
+                    fontSize: context.wPct(6),
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -57,7 +57,7 @@ class CreateAccountOtpScreen extends StatelessWidget {
                   ),
                 ),
 
-                context.hBox(5),
+                context.hBox(4),
                 Pinput(
                   controller: controller.pinController,
                   length: 5,
@@ -108,7 +108,7 @@ class CreateAccountOtpScreen extends StatelessWidget {
                 },
                 child: Text('create_account_otp_verify_button'.tr),
               ),
-              context.hBox(4),
+              context.hBox(2),
               TimerButton(
                 label: 'create_account_otp_resend_button'.tr,
                 timeOutInSeconds: 59,
@@ -130,7 +130,7 @@ class CreateAccountOtpScreen extends StatelessWidget {
               ),
               context.hBox(5),
               GestureDetector(
-              onTap: () =>Get.toNamed(Routes.contactUsAuth),
+                onTap: () => Get.toNamed(Routes.contactUsAuth),
                 child: Text(
                   'create_account_otp_contact_us'.tr,
                   style: TextStyle(
