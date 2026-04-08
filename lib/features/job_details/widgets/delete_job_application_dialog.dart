@@ -46,6 +46,12 @@ void deleteJobApplicationDialog({
             padding: EdgeInsets.all(context.wPct(4)),
             child: Column(
               children: [
+                Icon(
+                  Icons.info_outline_rounded,
+                  color: Colors.white,
+                  size: context.hPct(6),
+                ),
+                context.hBox(1),
                 Text(
                   'delete_application_confirmation'.tr,
                   textAlign: TextAlign.center,
@@ -76,7 +82,7 @@ void deleteJobApplicationDialog({
                   'delete_application_warning'.tr,
                   style: TextStyle(
                     color: AppColors.white60,
-                    fontSize: context.wPct(3.5),
+                    fontSize: context.wPct(3),
                     fontWeight: FontWeight.w400,
                   ),
                 ),

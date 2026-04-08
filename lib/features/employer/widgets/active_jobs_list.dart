@@ -19,7 +19,7 @@ class ActiveJobsList extends StatelessWidget {
   Widget build(BuildContext context) {
     if (company.activeJobs != null && company.activeJobs!.isNotEmpty) {
       return SizedBox(
-        height: context.hPct(22),
+        height: context.hPct(17),
         child: ListView.separated(
           scrollDirection: Axis.horizontal,
           shrinkWrap: true,

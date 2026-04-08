@@ -25,7 +25,7 @@ class EmployerListHeader extends StatelessWidget {
         Text(
           title.tr, // make title itself localized
           style: TextStyle(
-            fontSize: context.wPct(4.5),
+            fontSize: context.wPct(5),
             fontWeight: FontWeight.w600,
             color: AppColors.pureWhite,
           ),

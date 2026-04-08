@@ -6,11 +6,7 @@ class EmployerStatBox extends StatelessWidget {
   final String title;
   final String value;
 
-  const EmployerStatBox({
-    super.key,
-    required this.title,
-    required this.value,
-  });
+  const EmployerStatBox({super.key, required this.title, required this.value});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +16,7 @@ class EmployerStatBox extends StatelessWidget {
         padding: EdgeInsets.symmetric(vertical: context.hPct(2)),
         decoration: BoxDecoration(
           color: AppColors.white5,
-          borderRadius: BorderRadius.circular(context.wPct(2.5)),
+          borderRadius: BorderRadius.circular(context.wPct(3)),
         ),
         child: Column(
           children: [

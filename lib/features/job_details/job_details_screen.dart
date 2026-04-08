@@ -61,7 +61,7 @@ class JobDetailsScreen extends StatelessWidget {
                       },
                     ),
                   ),
-                  context.hBox(4),
+                  context.hBox(2),
                   Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: context.defaultPadding,
@@ -88,7 +88,7 @@ class JobDetailsScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        context.hBox(3),
+                        context.hBox(2),
                         // Dates Row
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -111,7 +111,7 @@ class JobDetailsScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        context.hBox(3),
+                        context.hBox(2),
 
                         // Location
                         GestureDetector(

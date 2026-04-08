@@ -17,8 +17,8 @@ class JobDetailContainer extends StatelessWidget {
     return Container(
       // width: context.w,
       padding: EdgeInsets.symmetric(
-        horizontal: context.wPct(3),
-        vertical: context.hPct(2),
+        horizontal: context.wPct(2),
+        vertical: context.hPct(1.5),
       ),
       decoration: BoxDecoration(
         color: Color(0x0DFFFFFF),
@@ -41,7 +41,6 @@ class JobDetailContainer extends StatelessWidget {
                 overflow: TextOverflow.visible,
               ),
             ),
-
           ],
         ),
       ),

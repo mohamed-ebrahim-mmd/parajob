@@ -25,7 +25,7 @@ Future<void> showApplicationDialog({
             Icon(
               Icons.info_outline_rounded,
               color: Colors.white,
-              size: context.wPct(10),
+              size: context.hPct(6),
             ),
             context.hBox(2),
 

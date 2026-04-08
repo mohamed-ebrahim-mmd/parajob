@@ -39,7 +39,7 @@ class AppColors {
   static const Color darkCharcoal = Color(0xFF1E2428);
 
   // Alert / Error
-  static const Color coralRed = Color(0xFFFF0000);
+  static const Color coralRed = Color(0xFFFF4D4D);
 
   // Job Application Status Colors
   static const Color shortlisted = Color(0xFF0080FF);

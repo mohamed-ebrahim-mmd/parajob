@@ -37,7 +37,7 @@ class EmployerSubmitReview extends StatelessWidget {
 
         TextField(
           controller: controller.reviewController,
-          maxLines: 4,
+          maxLines: 5,
           decoration: InputDecoration(
             hintText: "share_opinion".tr, // localized hint
           ),

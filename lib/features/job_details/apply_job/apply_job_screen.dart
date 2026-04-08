@@ -41,9 +41,9 @@ class ApplyJobScreen extends StatelessWidget {
                 },
               ),
             ),
-            context.hBox(context.wPct(0.5)),
+            context.hBox(2),
             Container(
-              padding: EdgeInsets.all(context.wPct(5)),
+              padding: EdgeInsets.symmetric(horizontal: context.defaultPadding),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -51,17 +51,17 @@ class ApplyJobScreen extends StatelessWidget {
                     'review_application'.tr,
                     style: TextStyle(
                       color: AppColors.pureWhite,
-                      fontSize: context.wPct(6),
+                      fontSize: context.wPct(5.5),
                       fontWeight: FontWeight.w600,
                     ),
                   ),
                   context.hBox(2),
                   Container(
                     width: double.infinity,
-                    padding: EdgeInsets.all(context.defaultPadding),
+                    padding: EdgeInsets.all(context.defaultPadding * 1.5),
                     decoration: BoxDecoration(
                       color: AppColors.charcoalBlack,
-                      borderRadius: BorderRadius.circular(context.wPct(2)),
+                      borderRadius: BorderRadius.circular(context.wPct(3)),
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -87,7 +87,9 @@ class ApplyJobScreen extends StatelessWidget {
                           label: 'national_id'.tr,
                           value: user.user!.nationalId.toString(),
                         ),
+                        context.hBox(1),
                         Divider(color: AppColors.line, height: context.hPct(1)),
+                        context.hBox(1),
                         Text(
                           'skills'.tr,
                           style: TextStyle(
@@ -96,7 +98,7 @@ class ApplyJobScreen extends StatelessWidget {
                             fontWeight: FontWeight.w400,
                           ),
                         ),
-                        context.hBox(0.5),
+                        context.hBox(1),
                         Wrap(
                           spacing: 8,
                           runSpacing: 8,
@@ -104,7 +106,7 @@ class ApplyJobScreen extends StatelessWidget {
                               .map((skill) => JobSkillItem(skill: skill))
                               .toList(),
                         ),
-                        context.hBox(2),
+                        context.hBox(1),
                         if (user.user?.cv != null &&
                             user.user?.cvUploadedDate != null) ...[
                           const Divider(color: AppColors.line),
@@ -174,12 +176,17 @@ class ApplyJobScreen extends StatelessWidget {
                               ],
                             ),
                           ),
+                          context.hBox(.5),
                         ],
                       ],
                     ),
                   ),
                   context.hBox(2),
                   FilledButton(
+                    style: FilledButton.styleFrom(
+                      minimumSize: Size(context.w, context.hPct(6.5)),
+                      // width, height
+                    ),
                     onPressed: () async {
                       controller.applyJob(context, jobDetails.id);
                     },

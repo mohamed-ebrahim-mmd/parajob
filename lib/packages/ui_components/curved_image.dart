@@ -17,9 +17,9 @@ class CurvedHeaderWithGlow extends StatelessWidget {
         PhysicalShape(
           clipper: BottomCurveClipper(),
           color: Colors.transparent,
-          elevation: 20,
+          elevation: 8,
           // intensity of shadow
-          shadowColor: Colors.tealAccent.withValues(alpha: 0.6),
+          shadowColor: AppColors.aquaTeal.withValues(alpha: 0.9),
           clipBehavior: Clip.antiAlias,
           child: SizedBox(
             height: context.hPct(40),

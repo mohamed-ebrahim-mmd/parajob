@@ -78,10 +78,13 @@ class EmployerScreen extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.all(context.defaultPadding),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: context.defaultPadding,
+                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        context.hBox(.5),
                         Text(
                           company.name ?? "",
                           style: TextStyle(
@@ -90,7 +93,7 @@ class EmployerScreen extends StatelessWidget {
                             color: AppColors.pureWhite,
                           ),
                         ),
-                        context.hBox(1),
+                        context.hBox(.5),
                         Text(
                           company.industry ?? "",
                           style: TextStyle(
@@ -99,7 +102,7 @@ class EmployerScreen extends StatelessWidget {
                             color: AppColors.white50,
                           ),
                         ),
-                        context.hBox(1),
+                        context.hBox(.5),
 
                         Row(
                           children: [
@@ -129,17 +132,19 @@ class EmployerScreen extends StatelessWidget {
                               title: 'jobs'.tr,
                               value: "${company.jobPostsCount ?? 0}+",
                             ),
+                            context.wBox(1),
                             EmployerStatBox(
                               title: 'employees'.tr,
                               value: "${company.employeesCount ?? 0}+",
                             ),
+                            context.wBox(1),
                             EmployerStatBox(
                               title: 'reviews'.tr,
                               value: "${company.reviewsCount ?? 0}+",
                             ),
                           ],
                         ),
-                        context.hBox(3),
+                        context.hBox(2),
 
                         Center(
                           child: Wrap(
@@ -183,7 +188,7 @@ class EmployerScreen extends StatelessWidget {
                           ),
                         ),
 
-                        context.hBox(4),
+                        context.hBox(3),
                         EmployerListHeader(
                           title: 'active_jobs'.tr,
                           onViewAll: controller.goToActiveJobs,
@@ -194,7 +199,7 @@ class EmployerScreen extends StatelessWidget {
                         context.hBox(2),
                         ActiveJobsList(company: company),
 
-                        context.hBox(4),
+                        context.hBox(2),
                         EmployerListHeader(
                           title: 'reviews'.tr,
                           onViewAll: controller.goToEmployerReviews,
