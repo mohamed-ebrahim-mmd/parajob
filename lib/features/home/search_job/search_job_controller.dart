@@ -262,6 +262,20 @@ class SearchJobController extends GetxController {
     }
   }
 
+  void resetFilters() {
+    selectedCityId = null;
+    selectedArea = null;
+    selectedCompanyId = null;
+    selectedSkillId = null;
+    selectedJobType = null;
+    selectedJobCategory = null;
+
+    pagingController.refresh();
+    if (Get.isBottomSheetOpen ?? false) {
+      Get.back();
+    }
+  }
+
   @override
   void onClose() {
     titleController.dispose();

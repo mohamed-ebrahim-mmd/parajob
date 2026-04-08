@@ -201,6 +201,7 @@ const Map<String, String> enUS = {
   'company': 'Company',
   'categories': 'Categories',
   'apply_filter': 'Apply Filter',
+  'reset_filters':'Reset filters',
   'see_all': 'See all',
   'apply_now': 'Apply now',
   'applied': 'Applied',

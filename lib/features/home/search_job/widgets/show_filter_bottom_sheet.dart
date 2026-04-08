@@ -23,175 +23,191 @@ Future<void> showFilterBottomSheet(
           top: Radius.circular(context.wPct(6)),
         ),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          // drag handle
-          Row(
-            children: [
-              Spacer(flex: 5),
-              Container(
-                alignment: Alignment.center,
-                width: context.wPct(20),
-                height: context.hPct(.5),
-                decoration: BoxDecoration(
-                  color: AppColors.lightGray2,
-                  borderRadius: BorderRadius.circular(context.wPct(2)),
-                ),
-              ),
-              Spacer(flex: 4),
-              GestureDetector(
-                onTap: () => Get.back(),
-                child: Icon(
-                  Icons.close,
-                  color: AppColors.lightGray,
-                  size: context.hPct(3),
-                ),
-              ),
-            ],
-          ),
-          context.hBox(3),
-
-          // title
-          Text(
-            'filter'.tr,
-            style: TextStyle(
-              fontSize: context.wPct(4),
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          context.hBox(2),
-
-          DropdownMenu<String>(
-            enableSearch: true,
-            width: context.wPct(90),
-            menuHeight: context.hPct(30),
-            initialSelection: controller.selectedJobType,
-            hintText: 'job_type'.tr,
-            onSelected: (value) {
-              if (value != null) controller.selectedJobType = value;
-            },
-            dropdownMenuEntries: controller.jobTypeMenuEntries,
-          ),
-          context.hBox(2),
-
-          DropdownMenu<int>(
-            enableSearch: true,
-            width: context.wPct(90),
-            menuHeight: context.hPct(30),
-            initialSelection: controller.selectedCityId,
-            hintText: 'city'.tr,
-            onSelected: controller.onCitySelected,
-            dropdownMenuEntries: controller.cities,
-          ),
-          context.hBox(2),
-
-          Obx(() {
-            switch (controller.areasCallState.value) {
-              case DataFetchState.loading:
-                return TextField(
-                  enabled: false,
-                  decoration: InputDecoration(
-                    labelText: 'create_account_loading_areas'.tr,
-                    suffixIcon: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: const CircularProgressIndicator(),
-                    ),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            // drag handle
+            Row(
+              children: [
+                Spacer(flex: 5),
+                Container(
+                  alignment: Alignment.center,
+                  width: context.wPct(20),
+                  height: context.hPct(.5),
+                  decoration: BoxDecoration(
+                    color: AppColors.lightGray2,
+                    borderRadius: BorderRadius.circular(context.wPct(2)),
                   ),
-                );
+                ),
+                Spacer(flex: 4),
+                GestureDetector(
+                  onTap: () => Get.back(),
+                  child: Icon(
+                    Icons.close,
+                    color: AppColors.lightGray,
+                    size: context.hPct(3),
+                  ),
+                ),
+              ],
+            ),
+            context.hBox(3),
 
-              case DataFetchState.success:
-                return DropdownMenu<String>(
-                  enableSearch: true,
-                  expandedInsets: EdgeInsets.zero,
-                  menuHeight: context.hPct(30),
-                  hintText: 'create_account_area_hint'.tr,
+            // title
+            Text(
+              'filter'.tr,
+              style: TextStyle(
+                fontSize: context.wPct(4),
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            context.hBox(2),
 
-                  initialSelection: controller.selectedArea,
-                  onSelected: (value) {
-                    if (value != null) {
-                      controller.selectedArea = value;
-                    }
-                  },
-                  dropdownMenuEntries: controller.areaMenuEntries,
-                );
+            DropdownMenu<String>(
+              enableSearch: true,
+              width: context.wPct(90),
+              menuHeight: context.hPct(30),
+              initialSelection: controller.selectedJobType,
+              hintText: 'job_type'.tr,
+              onSelected: (value) {
+                if (value != null) controller.selectedJobType = value;
+              },
+              dropdownMenuEntries: controller.jobTypeMenuEntries,
+            ),
+            context.hBox(2),
 
-              case DataFetchState.failure:
-                return GestureDetector(
-                  onTap: () {
-                    if (controller.selectedCityId != null) {
-                      controller.fetchAreas(controller.selectedCityId!);
-                    }
-                  },
-                  child: AbsorbPointer(
-                    child: TextField(
-                      readOnly: true,
-                      decoration: InputDecoration(
-                        labelText: 'create_account_failed_load_areas'.tr,
-                        suffixIcon: Icon(Icons.refresh),
+            DropdownMenu<int>(
+              enableSearch: true,
+              width: context.wPct(90),
+              menuHeight: context.hPct(30),
+              initialSelection: controller.selectedCityId,
+              hintText: 'city'.tr,
+              onSelected: controller.onCitySelected,
+              dropdownMenuEntries: controller.cities,
+            ),
+            context.hBox(2),
+
+            Obx(() {
+              switch (controller.areasCallState.value) {
+                case DataFetchState.loading:
+                  return TextField(
+                    enabled: false,
+                    decoration: InputDecoration(
+                      labelText: 'create_account_loading_areas'.tr,
+                      suffixIcon: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: const CircularProgressIndicator(),
                       ),
                     ),
-                  ),
-                );
+                  );
 
-              case DataFetchState.initial:
-                return TextField(
-                  enabled: false,
-                  decoration: InputDecoration(
-                    labelText: 'create_account_select_city_first'.tr,
-                  ),
-                );
-            }
-          }),
+                case DataFetchState.success:
+                  return DropdownMenu<String>(
+                    enableSearch: true,
+                    expandedInsets: EdgeInsets.zero,
+                    menuHeight: context.hPct(30),
+                    hintText: 'create_account_area_hint'.tr,
 
-          context.hBox(2),
-          DropdownMenu<int>(
-            enableSearch: true,
-            width: context.wPct(90),
-            menuHeight: context.hPct(30),
-            initialSelection: controller.selectedSkillId,
-            hintText: 'skills'.tr,
-            onSelected: (value) {
-              if (value != null) controller.selectedSkillId = value;
-            },
-            dropdownMenuEntries: controller.skills,
-          ),
-          context.hBox(2),
+                    initialSelection: controller.selectedArea,
+                    onSelected: (value) {
+                      if (value != null) {
+                        controller.selectedArea = value;
+                      }
+                    },
+                    dropdownMenuEntries: controller.areaMenuEntries,
+                  );
 
-          DropdownMenu<int>(
-            enableSearch: true,
-            menuHeight: context.hPct(30),
-            width: context.wPct(90),
-            initialSelection: controller.selectedCompanyId,
-            hintText: 'company'.tr,
-            onSelected: (value) {
-              if (value != null) controller.selectedCompanyId = value;
-            },
-            dropdownMenuEntries: controller.companies,
-          ),
-          context.hBox(2),
+                case DataFetchState.failure:
+                  return GestureDetector(
+                    onTap: () {
+                      if (controller.selectedCityId != null) {
+                        controller.fetchAreas(controller.selectedCityId!);
+                      }
+                    },
+                    child: AbsorbPointer(
+                      child: TextField(
+                        readOnly: true,
+                        decoration: InputDecoration(
+                          labelText: 'create_account_failed_load_areas'.tr,
+                          suffixIcon: Icon(Icons.refresh),
+                        ),
+                      ),
+                    ),
+                  );
 
-          DropdownMenu<String>(
-            enableSearch: true,
-            menuHeight: context.hPct(30),
-            width: context.wPct(90),
-            initialSelection: controller.selectedJobCategory,
-            hintText: 'categories'.tr,
-            onSelected: (value) {
-              if (value != null) controller.selectedJobCategory = value;
-            },
-            dropdownMenuEntries: controller.jobCategoriesEntries,
-          ),
-          context.hBox(2),
+                case DataFetchState.initial:
+                  return TextField(
+                    enabled: false,
+                    decoration: InputDecoration(
+                      labelText: 'create_account_select_city_first'.tr,
+                    ),
+                  );
+              }
+            }),
 
-          // button
-          FilledButton(
-            onPressed: controller.applyFilters,
-            child: Text('apply_filter'.tr),
-          ),
-          context.hBox(2),
-        ],
+            context.hBox(2),
+            DropdownMenu<int>(
+              enableSearch: true,
+              width: context.wPct(90),
+              menuHeight: context.hPct(30),
+              initialSelection: controller.selectedSkillId,
+              hintText: 'skills'.tr,
+              onSelected: (value) {
+                if (value != null) controller.selectedSkillId = value;
+              },
+              dropdownMenuEntries: controller.skills,
+            ),
+            context.hBox(2),
+
+            DropdownMenu<int>(
+              enableSearch: true,
+              menuHeight: context.hPct(30),
+              width: context.wPct(90),
+              initialSelection: controller.selectedCompanyId,
+              hintText: 'company'.tr,
+              onSelected: (value) {
+                if (value != null) controller.selectedCompanyId = value;
+              },
+              dropdownMenuEntries: controller.companies,
+            ),
+            context.hBox(2),
+
+            DropdownMenu<String>(
+              enableSearch: true,
+              menuHeight: context.hPct(30),
+              width: context.wPct(90),
+              initialSelection: controller.selectedJobCategory,
+              hintText: 'categories'.tr,
+              onSelected: (value) {
+                if (value != null) controller.selectedJobCategory = value;
+              },
+              dropdownMenuEntries: controller.jobCategoriesEntries,
+            ),
+            context.hBox(2),
+
+            //reset filters
+            Align(
+            alignment: AlignmentDirectional.centerEnd,
+              child: TextButton.icon(
+                label: Text(
+                  'reset_filters'.tr,
+                  style: TextStyle(color: AppColors.gray8D),
+                ),
+                icon: Icon(Icons.refresh, color: AppColors.gray8D),
+
+                onPressed: controller.resetFilters,
+              ),
+            ),
+            context.hBox(2),
+            // button
+            FilledButton(
+              onPressed: controller.applyFilters,
+              child: Text('apply_filter'.tr),
+            ),
+            context.hBox(2),
+          ],
+        ),
       ),
     ),
     isScrollControlled: true,

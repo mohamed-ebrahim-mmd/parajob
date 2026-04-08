@@ -199,6 +199,7 @@ const Map<String, String> arSA = {
   'company': 'الشركة',
   'categories': 'الفئات',
   'apply_filter': 'تطبيق التصفية',
+  'reset_filters': 'حذف التصفية',
   'see_all': 'عرض الكل',
   'apply_now': 'قدّم الآن',
   'applied': 'تم التقديم',
