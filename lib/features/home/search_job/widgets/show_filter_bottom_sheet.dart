@@ -29,19 +29,23 @@ Future<void> showFilterBottomSheet(
           mainAxisSize: MainAxisSize.min,
           children: [
             // drag handle
-            Row(
-              children: [
-                Spacer(flex: 5),
-                Container(
-                  alignment: Alignment.center,
-                  width: context.wPct(20),
-                  height: context.hPct(.5),
-                  decoration: BoxDecoration(
-                    color: AppColors.lightGray2,
-                    borderRadius: BorderRadius.circular(context.wPct(2)),
-                  ),
+            Center(
+              child: Container(
+                alignment: Alignment.center,
+                width: context.wPct(20),
+                height: context.hPct(.5),
+                decoration: BoxDecoration(
+                  color: AppColors.lightGray2,
+                  borderRadius: BorderRadius.circular(context.wPct(2)),
                 ),
-                Spacer(flex: 4),
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              // pushes content to the end
+              crossAxisAlignment: CrossAxisAlignment.center,
+              // vertically center
+              children: [
                 GestureDetector(
                   onTap: () => Get.back(),
                   child: Icon(
