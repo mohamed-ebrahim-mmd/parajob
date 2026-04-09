@@ -113,7 +113,7 @@ class EmployerScreen extends StatelessWidget {
                               style: TextStyle(
                                 fontSize: context.wPct(5),
                                 fontWeight: FontWeight.w800,
-                                color: Colors.teal,
+                                color: AppColors.aquaTeal,
                               ),
                             ),
                             context.wBox(1.5),
@@ -207,8 +207,9 @@ class EmployerScreen extends StatelessWidget {
                               company.latestReviews != null &&
                               company.latestReviews!.isNotEmpty,
                         ),
+                        context.hBox(2),
                         LatestReviewsList(company: company),
-
+                        context.hBox(2),
                         if (company.isSubmitReview == true)
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,

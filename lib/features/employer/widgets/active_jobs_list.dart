@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:para_job/packages/api_client/src/models/responses/company.dart';
@@ -18,29 +16,26 @@ class ActiveJobsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (company.activeJobs != null && company.activeJobs!.isNotEmpty) {
-      return SizedBox(
-        height: context.hPct(17),
-        child: ListView.separated(
-          scrollDirection: Axis.horizontal,
-          shrinkWrap: true,
-          itemCount: company.activeJobs!.length,
-          separatorBuilder: (_, __) => context.wBox(2),
-          itemBuilder: (context, index) {
-            final job = company.activeJobs![index];
-            return JobCard(
-              showBookmarkIcon: false,
-              job: job,
-              width: context.wPct(80),
-              onTap: () {
-                log("🟢🟢 ${job.id}");
-                Get.toNamed(
-                  Routes.jobDetails,
-                  arguments: job.id,
-                  preventDuplicates: false,
-                );
-              },
+      return SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: company.activeJobs!.map((job) {
+            return Padding(
+              padding: EdgeInsetsDirectional.only(end: context.wPct(2)),
+              child: JobCard(
+                showBookmarkIcon: false,
+                job: job,
+                width: context.wPct(80),
+                onTap: () {
+                  Get.toNamed(
+                    Routes.jobDetails,
+                    arguments: job.id,
+                    preventDuplicates: false,
+                  );
+                },
+              ),
             );
-          },
+          }).toList(),
         ),
       );
     } else {

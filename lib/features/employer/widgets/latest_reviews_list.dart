@@ -15,6 +15,7 @@ class LatestReviewsList extends StatelessWidget {
   Widget build(BuildContext context) {
     if (company.latestReviews != null && company.latestReviews!.isNotEmpty) {
       return ListView.separated(
+        padding: EdgeInsets.zero,
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         itemCount: company.latestReviews!.length,
@@ -26,10 +27,7 @@ class LatestReviewsList extends StatelessWidget {
       );
     } else {
       return Padding(
-        padding: EdgeInsets.symmetric(
-          vertical: context.hPct(2),
-          horizontal: context.wPct(2),
-        ),
+        padding: EdgeInsets.symmetric(horizontal: context.wPct(2)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -40,7 +38,7 @@ class LatestReviewsList extends StatelessWidget {
             ),
             context.wBox(2),
             Text(
-              "no_recent_reviews".tr, 
+              "no_recent_reviews".tr,
               style: TextStyle(
                 fontSize: context.wPct(4),
                 color: AppColors.white40,
