@@ -20,7 +20,7 @@ class ContractController extends GetxController {
   final user = Get.find<UserController>();
   final signatureController = SignatureController(
     penStrokeWidth: 2,
-    penColor: AppColors.aquaTeal,
+    penColor: AppColors.softWhite70,
   );
   var contractCallState = ApiCallState.loading.obs;
   var isAgreed = false.obs;
@@ -91,13 +91,15 @@ class ContractController extends GetxController {
         ),
       );
 
-      showSnackBarSuccess(
-        "success_title".tr,
-        response.details?.message ?? "contract_signed".tr,
-      );
+      if (response.isSuccess) {
+        showJobContractSuccessSnackBar();
 
-      Get.until((route) => Get.currentRoute == Routes.mainNavigator);
-      approvedJobController.refresh();
+        Get.until((route) => Get.currentRoute == Routes.mainNavigator);
+        approvedJobController.refresh();
+        return;
+      } else {
+        showSnackBarApiError();
+      }
     } catch (e, s) {
       log("Error verifying contract: $e", stackTrace: s);
       showSnackBarApiError();

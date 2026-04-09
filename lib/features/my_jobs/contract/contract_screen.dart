@@ -125,8 +125,8 @@ class ContractScreen extends StatelessWidget {
                           'contract_sign_instruction'.tr,
                           style: TextStyle(
                             color: AppColors.pureWhite,
-                            fontWeight: FontWeight.w400,
-                            fontSize: context.wPct(3),
+                            fontWeight: FontWeight.w800,
+                            fontSize: context.wPct(3.6),
                           ),
                         ),
                         context.hBox(1),

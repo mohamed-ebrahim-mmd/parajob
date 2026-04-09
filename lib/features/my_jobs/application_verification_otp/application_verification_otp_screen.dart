@@ -36,12 +36,12 @@ class ApplicationVerificationOtpScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                context.hBox(2),
+                context.hBox(1),
                 Text(
                   'app_verify_otp_title'.tr,
                   style: TextStyle(
                     color: AppColors.pureWhite,
-                    fontSize: context.wPct(7),
+                    fontSize: context.wPct(6),
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -55,7 +55,7 @@ class ApplicationVerificationOtpScreen extends StatelessWidget {
                   ),
                 ),
 
-                context.hBox(5),
+                context.hBox(2),
                 Center(
                   child: Pinput(
                     controller: controller.pinController,
@@ -107,7 +107,7 @@ class ApplicationVerificationOtpScreen extends StatelessWidget {
                 },
                 child: Text('app_verify_otp_verify_button'.tr),
               ),
-              context.hBox(4),
+              context.hBox(2),
               TimerButton(
                 label: 'app_verify_otp_resend_button'.tr,
                 timeOutInSeconds: 59,

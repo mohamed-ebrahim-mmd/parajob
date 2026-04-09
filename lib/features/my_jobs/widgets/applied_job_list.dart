@@ -41,7 +41,7 @@ class AppliedJobList extends StatelessWidget {
                 if (index == 0) {
                   children.add(
                     Padding(
-                      padding: EdgeInsets.symmetric(vertical: context.hPct(3)),
+                      padding: EdgeInsets.symmetric(vertical: context.hPct(2)),
                       child: Text(
                         'my_jobs_applied_description'.tr,
                         style: TextStyle(

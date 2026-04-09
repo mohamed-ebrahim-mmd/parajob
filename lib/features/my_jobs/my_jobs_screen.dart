@@ -29,7 +29,7 @@ class MyJobsScreen extends StatelessWidget {
                   children: [
                     TabBar(
                       // Gives the shadow room to breathe only at the bottom
-                      indicatorPadding: EdgeInsets.only(top: context.hPct(5.2)),
+                      indicatorPadding: EdgeInsets.only(top: context.hPct(5.3)),
                       indicator: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: AppColors.aquaTeal,

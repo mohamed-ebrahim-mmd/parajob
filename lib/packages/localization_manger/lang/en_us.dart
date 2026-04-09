@@ -561,6 +561,8 @@ Your complaint has been
 submitted wait for our team
 to connect with you.
 ''',
+  'snackbar_job_contract_signed':
+      'Your contract for this job is signed successfully 🎉',
 
   // ============================================================
   // 📍 Location Messages
