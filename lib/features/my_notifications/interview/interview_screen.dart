@@ -43,8 +43,7 @@ class InterviewScreen extends StatelessWidget {
               return SingleChildScrollView(
                 child: Column(
                   children: [
-                    context.hBox(2),
-
+                    context.hBox(1),
                     Row(
                       children: [
                         Column(
@@ -58,7 +57,7 @@ class InterviewScreen extends StatelessWidget {
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
-                            context.hBox(2),
+                            context.hBox(1),
                             Text(
                               interviewData!.company?.name ?? "_",
                               style: TextStyle(
@@ -82,11 +81,14 @@ class InterviewScreen extends StatelessWidget {
                     context.hBox(3),
 
                     Container(
-                      padding: EdgeInsets.all(context.defaultPadding),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: context.wPct(5),
+                        vertical: context.hPct(2),
+                      ),
                       width: context.width,
                       decoration: BoxDecoration(
                         color: AppColors.darkBackground,
-                        borderRadius: BorderRadius.circular(context.wPct(2.5)),
+                        borderRadius: BorderRadius.circular(context.wPct(3)),
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,

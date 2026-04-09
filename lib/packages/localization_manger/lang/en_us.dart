@@ -914,7 +914,7 @@ to connect with you.
   "balance_tab_week": "Week",
   "balance_tab_month": "Month",
   "balance_tab_year": "Year",
-  "Deduction": "Deduction",
+  "Deduction": "DEDUCTION!",
   'No_transactions_found': 'No transactions found',
   'will_be_deducted_due_to': 'will be deducted due to',
 

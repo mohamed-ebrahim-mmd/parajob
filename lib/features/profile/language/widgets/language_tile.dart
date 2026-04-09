@@ -28,10 +28,9 @@ class LanguageTile extends StatelessWidget {
     return GestureDetector(
       onTap: () => onChanged(value),
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: context.hPct(2)),
         padding: EdgeInsets.symmetric(
           horizontal: context.wPct(4),
-          vertical: context.hPct(2.5),
+          vertical: context.hPct(2),
         ),
         decoration: BoxDecoration(
           border: Border.all(
@@ -48,7 +47,13 @@ class LanguageTile extends StatelessWidget {
               children: [
                 SvgPicture.asset(flagAsset, height: context.hPct(3)),
                 context.wBox(3),
-                Text(title, style: TextStyle(fontSize: context.wPct(5),color: AppColors.grayButton)),
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: context.wPct(4.5),
+                    color: AppColors.grayButton,
+                  ),
+                ),
               ],
             ),
 
@@ -60,7 +65,7 @@ class LanguageTile extends StatelessWidget {
                 shape: BoxShape.circle,
                 border: Border.all(
                   color: isSelected ? AppColors.aquaTeal : AppColors.grayButton,
-                  width: context.wPct(0.5),
+                  width: isSelected ? context.wPct(2) : context.wPct(0.5),
                 ),
               ),
               child: isSelected

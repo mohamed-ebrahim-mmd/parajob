@@ -31,18 +31,18 @@ class LanguageScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            context.hBox(3),
+            context.hBox(1),
 
             Text(
               'language'.tr,
               style: TextStyle(
-                fontSize: context.wPct(6),
-                fontWeight: FontWeight.bold,
+                fontSize: context.wPct(4.7),
+                fontWeight: FontWeight.w700,
                 color: AppColors.softWhite70,
               ),
             ),
 
-            context.hBox(3),
+            context.hBox(2),
             // Radio button for English
             LanguageTile(
               title: "English",
@@ -51,6 +51,7 @@ class LanguageScreen extends StatelessWidget {
               groupValue: localizationController.currentLocale,
               onChanged: localizationController.changeLanguage,
             ),
+            context.hBox(2),
 
             // Radio button for Arabic
             LanguageTile(

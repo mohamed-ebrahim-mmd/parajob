@@ -38,28 +38,31 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   child: Column(
                     children: [
-                      Padding(
-                        padding: EdgeInsets.only(top: context.hPct(4.1)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            IconButton(
-                              onPressed: () {
-                                controller.navigateToBalanceScreen();
-                              },
-                              icon: SvgPicture.asset(
-                                AppAssetPaths.balanceCoinIcon,
+                      Transform.translate(
+                        offset: Offset(0, context.hPct(3)),
+                        child: Padding(
+                          padding: EdgeInsets.only(top: context.hPct(2)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              IconButton(
+                                onPressed: () {
+                                  controller.navigateToBalanceScreen();
+                                },
+                                icon: SvgPicture.asset(
+                                  AppAssetPaths.balanceCoinIcon,
+                                ),
                               ),
-                            ),
-                            IconButton(
-                              onPressed: () {
-                                Get.toNamed(
-                                  "${Routes.mainNavigator}${Routes.more}",
-                                );
-                              },
-                              icon: Icon(Icons.menu),
-                            ),
-                          ],
+                              IconButton(
+                                onPressed: () {
+                                  Get.toNamed(
+                                    "${Routes.mainNavigator}${Routes.more}",
+                                  );
+                                },
+                                icon: Icon(Icons.menu),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
 

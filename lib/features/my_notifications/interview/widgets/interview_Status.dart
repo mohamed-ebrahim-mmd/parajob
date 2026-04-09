@@ -11,6 +11,7 @@ import 'package:para_job/packages/themeing/media_query_values.dart';
 
 class InterviewStatus extends StatelessWidget {
   InterviewStatus({super.key, required this.status});
+
   final controller = Get.find<InterviewController>();
 
   final InterviewStatusEnum
@@ -66,7 +67,7 @@ class InterviewStatus extends StatelessWidget {
               onPressed: () => controller.sendAcceptedStatus(context),
               child: Text('accept_interview'.tr),
             ),
-            context.hBox(3),
+            context.hBox(2),
             OutlinedButton(
               onPressed: () => controller.sendRejectedStatus(context),
               style: OutlinedButton.styleFrom(

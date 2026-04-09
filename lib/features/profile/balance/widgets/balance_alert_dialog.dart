@@ -17,40 +17,40 @@ Future<void> showDeductionDialog(
     context: context,
     barrierDismissible: true,
     builder: (context) {
-      double basePadding = context.defaultPadding;
-
       return Dialog(
-        insetPadding: EdgeInsets.symmetric(horizontal: context.wPct(5)),
+        insetPadding: EdgeInsets.symmetric(horizontal: context.wPct(3)),
         backgroundColor: AppColors.dialogBackgroundDark,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(context.wPct(5)),
+          borderRadius: BorderRadius.circular(context.wPct(3)),
         ),
         child: Padding(
-          padding: EdgeInsets.all(basePadding * 2),
+          padding: EdgeInsets.symmetric(
+            horizontal: context.defaultPadding,
+
+            vertical: context.hPct(2),
+          ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               /// Header
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  context.wBox(6),
-                  Text(
-                    'Deduction'.tr,
-                    style: TextStyle(
-                      color: AppColors.pureWhite,
-                      fontSize: context.wPct(6.4),
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: context.wPct(0.3),
-                    ),
-                  ),
                   IconButton(
                     icon: Icon(Icons.close, color: AppColors.slateGray),
                     onPressed: () => Navigator.pop(context),
                   ),
                 ],
               ),
-
+              Text(
+                'Deduction'.tr,
+                style: TextStyle(
+                  color: AppColors.pureWhite,
+                  fontSize: context.wPct(6.4),
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: context.wPct(0.3),
+                ),
+              ),
               context.hBox(2.5),
 
               /// Message

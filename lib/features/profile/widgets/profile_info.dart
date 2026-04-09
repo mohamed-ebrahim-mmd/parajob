@@ -23,6 +23,7 @@ class UserProfileInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         GestureDetector(
           onTap: () async {
@@ -34,7 +35,7 @@ class UserProfileInfo extends StatelessWidget {
             children: [
               /// Avatar
               CircleAvatar(
-                radius: context.wPct(15),
+                radius: context.wPct(14.8),
                 backgroundColor:
                     (profileData.profilePicture != null &&
                         profileData.profilePicture != "")
@@ -76,7 +77,7 @@ class UserProfileInfo extends StatelessWidget {
 
         ///
         ///name
-        context.hBox(3),
+        context.hBox(2),
         Text(
           profileData.name ?? "",
           style: TextStyle(
@@ -85,7 +86,6 @@ class UserProfileInfo extends StatelessWidget {
             fontWeight: FontWeight.w600,
           ),
         ),
-        context.hBox(3),
         // XP and Level display
         XpLevelIndicator(
           xp: profileData.xp ?? 1,
@@ -98,6 +98,7 @@ class UserProfileInfo extends StatelessWidget {
         context.hBox(3),
         // Stats
         Row(
+          mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Expanded(
