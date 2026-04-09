@@ -786,16 +786,22 @@ to connect with you.
   // ============================================================
   // notification strikee screen
   // ============================================================
-  "warning_label": "Warning",
+  "warning_label": "WARNING!",
   "violation_rules": "Violation of the application rules",
   "warning_info_title": "Why you don’t want to get a warning?",
   "warning_info_tips": "How to avoid getting a warning?",
   "violations_count": "@current out of @total violations",
-  "warning_tips_list":
-      "Arrive on time\nMaintain professional behavior\nMeet performance expectations\nFollow workplace policies",
-  "warning_consequences_list":
-      "It goes into your employment record\nIt impacts your chances for getting accepted in another job\nAfter 3 strikes your account will be blocked",
-
+  "warning_tips_list": """
+• Arrive on time
+• Maintain professional behavior
+• Meet performance expectations
+• Follow workplace policies
+""",
+  "warning_consequences_list": """
+• It goes into your employment record
+• It impacts your chances for getting accepted in another job
+• After 3 strikes your account will be blocked
+""",
   // ============================================================
   // block screen
   // ============================================================

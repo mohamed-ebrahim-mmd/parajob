@@ -3,14 +3,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/my_notifications/strike/notification_strike_controller.dart';
-import 'package:para_job/packages/ui_components/strikes_details.dart';
 import 'package:para_job/packages/api_client/src/enums/api_call_state_enum.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/packages/ui_components/error_screen.dart';
+import 'package:para_job/packages/ui_components/strikes_details.dart';
 
 class NotificationStrikeScreen extends StatelessWidget {
   NotificationStrikeScreen({super.key});
+
   final NotificationStrikeController controller = Get.put(
     NotificationStrikeController(),
   );
@@ -48,19 +49,18 @@ class NotificationStrikeScreen extends StatelessWidget {
                             fontWeight: FontWeight.w600,
                           ),
                         ),
-                        context.hBox(1),
-
+                        context.hBox(.5),
                         Text(
                           "violation_rules".tr,
                           style: TextStyle(
                             color: AppColors.pureWhite,
-                            fontSize: context.wPct(5),
-                            fontWeight: FontWeight.w500,
+                            fontSize: context.wPct(4),
+                            fontWeight: FontWeight.w600,
                           ),
                         ),
 
-                        context.hBox(1),
-                        StrikesDetails(strikes: controller.strikesData,),
+                        context.hBox(.5),
+                        StrikesDetails(strikes: controller.strikesData),
 
                         context.hBox(4),
 
@@ -74,11 +74,12 @@ class NotificationStrikeScreen extends StatelessWidget {
                             "warning_info_title".tr,
                             style: TextStyle(
                               color: AppColors.pureWhite,
-                              fontSize: context.wPct(5),
-                              fontWeight: FontWeight.w500,
+                              fontSize: context.wPct(4.3),
+                              fontWeight: FontWeight.w700,
                             ),
                           ),
                         ),
+                        context.hBox(1),
                         Align(
                           alignment:
                               Directionality.of(context) == TextDirection.rtl
@@ -93,7 +94,6 @@ class NotificationStrikeScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        context.hBox(3),
 
                         Align(
                           alignment:
@@ -104,11 +104,12 @@ class NotificationStrikeScreen extends StatelessWidget {
                             "warning_info_tips".tr,
                             style: TextStyle(
                               color: AppColors.pureWhite,
-                              fontSize: context.wPct(5),
-                              fontWeight: FontWeight.w500,
+                              fontSize: context.wPct(4.3),
+                              fontWeight: FontWeight.w700,
                             ),
                           ),
                         ),
+                        context.hBox(1),
                         Align(
                           alignment:
                               Directionality.of(context) == TextDirection.rtl

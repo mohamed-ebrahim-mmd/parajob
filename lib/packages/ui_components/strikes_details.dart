@@ -4,15 +4,17 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:para_job/packages/ui_components/strike_card.dart';
 import 'package:para_job/packages/api_client/src/models/responses/strike.dart';
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
+import 'package:para_job/packages/ui_components/strike_card.dart';
 
 class StrikesDetails extends StatelessWidget {
   StrikesDetails({super.key, required this.strikes});
+
   final List<Strike> strikes;
   final int totaAvailableStrikes = 3;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -43,11 +45,11 @@ class StrikesDetails extends StatelessWidget {
           }),
           style: TextStyle(
             color: AppColors.pureWhite,
-            fontSize: context.wPct(4),
-            fontWeight: FontWeight.w400,
+            fontSize: context.wPct(3.5),
+            fontWeight: FontWeight.w500,
           ),
         ),
-        context.hBox(2),
+        context.hBox(3),
 
         ListView.separated(
           separatorBuilder: (context, index) => context.hBox(3),
