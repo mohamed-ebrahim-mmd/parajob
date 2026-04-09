@@ -6,6 +6,7 @@ import 'package:para_job/packages/themeing/media_query_values.dart';
 
 class EditNationalIdScreen extends StatelessWidget {
   EditNationalIdScreen({super.key, required this.screenContext});
+
   final BuildContext screenContext;
   late final controller = Get.put(
     EditNationalIdController(screenContext: screenContext),
@@ -20,7 +21,7 @@ class EditNationalIdScreen extends StatelessWidget {
             hasScrollBody: false,
             child: Column(
               children: [
-                context.hBox(5),
+                context.hBox(2),
                 Obx(
                   () => NationalIdImg(
                     img: controller.user?.nationalIdFront ?? "",
@@ -29,7 +30,7 @@ class EditNationalIdScreen extends StatelessWidget {
                   ),
                 ),
 
-                context.hBox(5),
+                context.hBox(1.5),
 
                 Obx(
                   () => NationalIdImg(
@@ -38,7 +39,7 @@ class EditNationalIdScreen extends StatelessWidget {
                     onEdit: () => controller.pickImg(controller.backFile),
                   ),
                 ),
-                context.hBox(5),
+                context.hBox(1.5),
 
                 Obx(
                   () => NationalIdImg(
@@ -47,13 +48,13 @@ class EditNationalIdScreen extends StatelessWidget {
                     onEdit: () => controller.pickImg(controller.profileFile),
                   ),
                 ),
-                context.hBox(5),
+                context.hBox(1.5),
                 Spacer(),
                 FilledButton(
                   onPressed: controller.uploadFile,
                   child: Text('edit_national_id_save_button'.tr),
                 ),
-                context.hBox(2.5),
+                context.hBox(2),
               ],
             ),
           ),

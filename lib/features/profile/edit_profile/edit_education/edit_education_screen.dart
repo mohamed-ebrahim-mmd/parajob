@@ -15,14 +15,14 @@ class EditEducation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        context.hBox(2.5),
+        context.hBox(2),
         TextField(
           readOnly: true,
           controller: controller.graduationYearController,
           onTap: controller.pickGraduationYear,
         ),
 
-        context.hBox(2.5),
+        context.hBox(1.5),
 
         Obx(() {
           switch (controller.facultiesCallState.value) {

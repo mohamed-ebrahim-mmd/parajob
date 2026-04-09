@@ -29,16 +29,15 @@ class ChangePasswordScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              context.hBox(2),
               Text(
                 'change_password_title'.tr,
                 style: TextStyle(
                   color: AppColors.pureWhite,
-                  fontSize: context.wPct(7),
+                  fontSize: context.wPct(6),
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              context.hBox(6),
+              context.hBox(4),
               Obx(() {
                 return TextField(
                   controller: controller.passwordController,

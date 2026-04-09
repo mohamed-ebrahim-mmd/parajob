@@ -6,6 +6,7 @@ import 'package:para_job/packages/themeing/media_query_values.dart';
 
 class EditCvScreen extends StatelessWidget {
   EditCvScreen({super.key, required this.screenContext});
+
   final BuildContext screenContext;
   late final controller = Get.put(
     EditCvController(screenContext: screenContext),
@@ -15,7 +16,7 @@ class EditCvScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        context.hBox(5),
+        context.hBox(2),
         Obx(
           () => EditCvContainer(
             text: controller.selectedCvName.value ?? "-",

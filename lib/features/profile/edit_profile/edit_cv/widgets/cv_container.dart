@@ -9,9 +9,11 @@ class EditCvContainer extends StatelessWidget {
     this.onEdit,
     this.onShowPdf,
   });
+
   final String text;
   final VoidCallback? onEdit;
   final VoidCallback? onShowPdf;
+
   @override
   Widget build(BuildContext context) {
     final type = text.contains(".") ? text.split(".").last : "unknown";
@@ -19,18 +21,24 @@ class EditCvContainer extends StatelessWidget {
       onTap: onEdit,
       child: Center(
         child: Container(
-          padding: EdgeInsets.all(context.wPct(5)),
-          color: AppColors.white5,
+          decoration: BoxDecoration(
+            color: AppColors.white5,
+            borderRadius: BorderRadius.circular(context.wPct(3)),
+          ),
+          padding: EdgeInsets.symmetric(
+            horizontal: context.wPct(2),
+            vertical: context.hPct(1),
+          ),
           child: Column(
             children: [
               Row(
                 children: [
                   Container(
-                    padding: EdgeInsets.all(context.wPct(3)),
+                    padding: EdgeInsets.all(context.wPct(2)),
 
                     decoration: BoxDecoration(
                       color: AppColors.darkNavy,
-                      borderRadius: BorderRadius.circular(context.wPct(2)),
+                      borderRadius: BorderRadius.circular(context.wPct(3)),
                     ),
                     child: CvIcon(type: type),
                   ),
@@ -66,7 +74,9 @@ class EditCvContainer extends StatelessWidget {
 
 class CvIcon extends StatelessWidget {
   const CvIcon({super.key, this.type});
+
   final String? type;
+
   @override
   Widget build(BuildContext context) {
     return Stack(

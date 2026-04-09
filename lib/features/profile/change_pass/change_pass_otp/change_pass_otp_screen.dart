@@ -11,6 +11,7 @@ import 'package:timer_button/timer_button.dart';
 
 class ChangePassOtpScreen extends StatelessWidget {
   ChangePassOtpScreen({super.key});
+
   final controller = Get.put(ChangePassOtpController());
 
   @override
@@ -29,12 +30,11 @@ class ChangePassOtpScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              context.hBox(2),
               Text(
                 'change_pass_otp_title'.tr,
                 style: TextStyle(
                   color: AppColors.pureWhite,
-                  fontSize: context.wPct(8.5),
+                  fontSize: context.wPct(6),
                   fontWeight: FontWeight.w600,
                 ),
               ),
@@ -43,12 +43,12 @@ class ChangePassOtpScreen extends StatelessWidget {
                 'change_pass_otp_subtitle'.tr,
                 style: TextStyle(
                   color: AppColors.softWhite70,
-                  fontSize: context.wPct(3.5),
+                  fontSize: context.wPct(3.4),
                   fontWeight: FontWeight.w500,
                 ),
               ),
 
-              context.hBox(5),
+              context.hBox(4),
               Center(
                 child: Pinput(
                   controller: controller.pinController,
@@ -100,7 +100,7 @@ class ChangePassOtpScreen extends StatelessWidget {
               },
               child: Text('change_pass_otp_verify_button'.tr),
             ),
-            context.hBox(4),
+            context.hBox(2),
             TimerButton(
               label: 'change_pass_otp_resend_button'.tr,
               timeOutInSeconds: 59,
