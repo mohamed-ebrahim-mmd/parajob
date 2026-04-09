@@ -19,66 +19,63 @@ class EmployerReviewsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.charcoalBlack,
+      appBar: AppBar(
+        surfaceTintColor: AppColors.charcoalBlack,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+      ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          padding: EdgeInsets.only(bottom: context.hPct(7)),
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: context.defaultPadding),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                context.hBox(2),
-                GestureDetector(
-                  onTap: () => Navigator.pop(context),
-                  child: Icon(
-                    Icons.arrow_back_ios_new,
-                    color: AppColors.pureWhite,
-                    size: context.wPct(5),
-                  ),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: context.defaultPadding),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'reviews'.tr,
+                style: TextStyle(
+                  fontSize: context.wPct(6),
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.pureWhite,
                 ),
-                context.hBox(1),
-                Text(
-                  'reviews'.tr,
-                  style: TextStyle(
-                    fontSize: context.wPct(6),
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.pureWhite,
-                  ),
-                ),
-                context.hBox(2),
-                Obx(
-                  () => Visibility(
-                    visible:
-                        controller.pagingController.status !=
-                        PagingStatus.loadingFirstPage,
-                    child: Row(
-                      children: [
-                        Text(
-                          controller.averageRating.value.toStringAsFixed(1),
-                          style: TextStyle(
-                            fontSize: context.wPct(5),
-                            fontWeight: FontWeight.w800,
-                            color: Colors.teal,
-                          ),
+              ),
+              context.hBox(1),
+              Obx(
+                () => Visibility(
+                  visible:
+                      controller.pagingController.status !=
+                      PagingStatus.loadingFirstPage,
+                  child: Row(
+                    children: [
+                      Text(
+                        controller.averageRating.value.toStringAsFixed(1),
+                        style: TextStyle(
+                          fontSize: context.wPct(5),
+                          fontWeight: FontWeight.w800,
+                          color: AppColors.aquaTeal,
                         ),
-                        context.wBox(1.5),
-                        AppStarRating(
-                          rating: controller.averageRating.value,
-                          size: context.wPct(1),
-                        ),
-                      ],
-                    ),
+                      ),
+                      context.wBox(1.5),
+                      AppStarRating(
+                        rating: controller.averageRating.value,
+                        size: context.wPct(1),
+                      ),
+                    ],
                   ),
                 ),
-                context.hBox(2),
-                PagingListener(
+              ),
+              context.hBox(1),
+              Expanded(
+                child: PagingListener(
                   controller: controller.pagingController,
                   builder: (context, state, fetchNextPage) {
                     return PagedListView<int, Review>(
                       state: state,
                       fetchNextPage: fetchNextPage,
                       shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
                       builderDelegate: PagedChildBuilderDelegate<Review>(
                         noItemsFoundIndicatorBuilder: (_) => Center(
                           child: Text(
@@ -94,8 +91,8 @@ class EmployerReviewsScreen extends StatelessWidget {
                     );
                   },
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

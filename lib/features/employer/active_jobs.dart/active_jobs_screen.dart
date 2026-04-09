@@ -23,7 +23,6 @@ class ActiveJobsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('active_jobs'.tr),
         surfaceTintColor: AppColors.charcoalBlack,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new),
@@ -34,18 +33,37 @@ class ActiveJobsScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: context.defaultPadding),
-        child: PagingListener<int, Job>(
-          controller: controller.pagingController,
-          builder: (context, state, fetchNextPage) => PagedListView<int, Job>(
-            state: state,
-            fetchNextPage: fetchNextPage,
-            builderDelegate: PagedChildBuilderDelegate(
-              itemBuilder: (context, item, index) => Padding(
-                padding: EdgeInsets.symmetric(vertical: context.hPct(1)),
-                child: JobCard(showBookmarkIcon: false, job: item),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'active_jobs'.tr,
+              style: TextStyle(
+                fontSize: context.wPct(6),
+                fontWeight: FontWeight.w600,
+                color: AppColors.pureWhite,
               ),
             ),
-          ),
+            context.hBox(1),
+            Expanded(
+              child: PagingListener<int, Job>(
+                controller: controller.pagingController,
+                builder: (context, state, fetchNextPage) =>
+                    PagedListView<int, Job>(
+                      state: state,
+                      fetchNextPage: fetchNextPage,
+                      builderDelegate: PagedChildBuilderDelegate(
+                        itemBuilder: (context, item, index) => Padding(
+                          padding: EdgeInsets.symmetric(
+                            vertical: context.hPct(1),
+                          ),
+                          child: JobCard(showBookmarkIcon: false, job: item),
+                        ),
+                      ),
+                    ),
+              ),
+            ),
+          ],
         ),
       ),
     );
