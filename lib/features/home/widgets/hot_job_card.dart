@@ -104,36 +104,38 @@ class HotJobCard extends StatelessWidget {
           ),
 
           // 👉 Skills  Padding
-          SizedBox(
-            height: context.hPct(4),
-            child: ListView.separated(
-              padding: EdgeInsets.symmetric(horizontal: context.wPct(2.5)),
-              scrollDirection: Axis.horizontal,
-              itemCount: job.skills!.length,
-              separatorBuilder: (_, __) => context.wBox(2),
-              itemBuilder: (context, index) {
-                final skill = job.skills?[index];
-                return Container(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: context.wPct(3),
-                    vertical: context.hPct(0.5),
-                  ),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF80E5DB),
-
-                    borderRadius: BorderRadius.circular(context.w),
-                  ),
-                  alignment: Alignment.center,
-                  child: Text(
-                    skill!,
-                    style: TextStyle(
-                      color: Color(0xFF122A2B),
-                      fontSize: context.wPct(3.5),
-                      fontWeight: FontWeight.w500,
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: context.wPct(2.5)),
+            child: SizedBox(
+              height: context.hPct(4),
+              child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                itemCount: job.skills!.length,
+                separatorBuilder: (_, __) => context.wBox(2),
+                itemBuilder: (context, index) {
+                  final skill = job.skills?[index];
+                  return Container(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: context.wPct(3),
+                      vertical: context.hPct(0.5),
                     ),
-                  ),
-                );
-              },
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF80E5DB),
+
+                      borderRadius: BorderRadius.circular(context.w),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      skill!,
+                      style: TextStyle(
+                        color: Color(0xFF122A2B),
+                        fontSize: context.wPct(3.5),
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  );
+                },
+              ),
             ),
           ),
 
