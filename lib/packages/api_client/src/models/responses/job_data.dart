@@ -6,7 +6,7 @@ class JobData {
   final Company company;
   final String type;
   final String paymentOption;
-  final String monthlySalary;
+  final int? monthlySalary;
   final String location;
   final String? area;
   final String locationLink;
@@ -28,8 +28,6 @@ class JobData {
   final String? shareableLink;
   final bool canLogAttendance;
   final bool hasAttendance;
-
-
 
   JobData({
     required this.id,
@@ -59,7 +57,6 @@ class JobData {
     required this.shareableLink,
     required this.canLogAttendance,
     required this.hasAttendance,
-
   });
 
   factory JobData.fromJson(Map<String, dynamic> json) {
@@ -70,7 +67,7 @@ class JobData {
       company: Company.fromJson(json['company']),
       type: json['type'] ?? '',
       paymentOption: json['payment_option'] ?? '',
-      monthlySalary: json['monthly_salary'] ?? '',
+      monthlySalary: _parseSalary(json['monthly_salary']),
       location: json['location'] ?? '',
       area: json['area'],
       locationLink: json['location_link'] ?? '',
@@ -92,7 +89,19 @@ class JobData {
       applicationId: json['application_id'],
       isSubmitComplaint: json['is_submit_complaint'],
       canLogAttendance: json['can_log_attendance'] ?? false,
-      hasAttendance: json['has_attendance']?? false,
+      hasAttendance: json['has_attendance'] ?? false,
     );
+  }
+
+  static int? _parseSalary(dynamic value) {
+    if (value == null) return null;
+
+    String salaryStr = value.toString();
+
+    // Try parsing as double and convert to int
+    double? doubleValue = double.tryParse(salaryStr);
+    if (doubleValue != null) return doubleValue.toInt();
+
+    return null;
   }
 }
