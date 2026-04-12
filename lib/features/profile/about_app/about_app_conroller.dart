@@ -6,6 +6,7 @@ import 'package:para_job/packages/api_client/api_client.dart';
 class AboutAppController extends GetxController {
   var aboutUsCallState = ApiCallState.loading.obs;
   AboutUsData? aboutUsData;
+
   AboutAppController();
 
   @override

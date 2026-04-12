@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:para_job/features/profile/about_us/about_us_util.dart';
 import 'package:para_job/features/profile/widgets/about_us_list_tile.dart';
 import 'package:para_job/packages/route_manager/controller/routes.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
 class AboutUsScreen extends StatelessWidget {
-  const AboutUsScreen({super.key});
+  AboutUsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -37,31 +38,20 @@ class AboutUsScreen extends StatelessWidget {
 
               AboutUsListTile(
                 title: 'about_us_rate_app'.tr,
-                onTap: () {
-                  // navigate to Change Password Screen
-                },
+                onTap: openAppStore,
               ),
               context.hBox(1.5),
 
               AboutUsListTile(
                 title: 'about_us_instagram'.tr,
-                onTap: () {
-                  // open Change Number flow
-                },
+                onTap: openInstagram,
               ),
               context.hBox(1.5),
-              AboutUsListTile(
-                title: 'about_us_twitter'.tr,
-                onTap: () {
-                  // open Change Number flow
-                },
-              ),
+              AboutUsListTile(title: 'about_us_twitter'.tr, onTap: openX),
               context.hBox(1.5),
               AboutUsListTile(
                 title: 'about_us_facebook'.tr,
-                onTap: () {
-                  // open Change Number flow
-                },
+                onTap: openFacebook,
               ),
               context.hBox(2),
             ],
