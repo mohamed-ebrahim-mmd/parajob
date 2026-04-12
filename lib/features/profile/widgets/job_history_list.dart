@@ -76,6 +76,8 @@ class JobHistoryList extends StatelessWidget {
             child: TextButton(
               onPressed: onSeeAll,
               child: Row(
+                textDirection: TextDirection.ltr,
+
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
@@ -86,8 +88,11 @@ class JobHistoryList extends StatelessWidget {
                       color: AppColors.pureWhite,
                     ),
                   ),
-
-                  Icon(Icons.fast_forward_rounded, color: AppColors.pureWhite),
+                  context.wBox(.5),
+                  Icon(
+                    Icons.keyboard_double_arrow_right_rounded,
+                    color: AppColors.pureWhite,
+                  ),
                 ],
               ),
             ),
