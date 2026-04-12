@@ -9,6 +9,8 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:para_job/features/my_jobs/widgets/my_job_card.dart';
 import 'package:para_job/features/profile/history_jobs/history_jobs_controller.dart';
 import 'package:para_job/packages/api_client/api_client.dart';
+import 'package:para_job/packages/route_manager/controller/routes.dart'
+    show Routes;
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
@@ -53,7 +55,16 @@ class HistoryJobsScreen extends StatelessWidget {
                           padding: EdgeInsets.symmetric(
                             vertical: context.hPct(1),
                           ),
-                          child: MyJobCard(job: item, isHistoryJobs: true),
+                          child: MyJobCard(
+                            job: item,
+                            isHistoryJobs: true,
+                            onTap: () {
+                              Get.toNamed(
+                                Routes.jobDetails,
+                                arguments: item.id,
+                              );
+                            },
+                          ),
                         ),
                       ),
                     ),
