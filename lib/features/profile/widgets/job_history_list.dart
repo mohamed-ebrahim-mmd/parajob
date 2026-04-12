@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:para_job/features/profile/user_profile/profile_controller.dart';
 import 'package:para_job/packages/api_client/src/models/models.dart';
+import 'package:para_job/packages/route_manager/controller/routes.dart'
+    show Routes;
 import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 import 'package:para_job/packages/ui_components/job_card.dart';
@@ -55,6 +57,9 @@ class JobHistoryList extends StatelessWidget {
                     job.id ?? 0,
                     context,
                   );
+                },
+                onTap: () {
+                  Get.toNamed(Routes.jobDetails, arguments: job.id);
                 },
                 job: job,
                 showBookmarkIcon: showBookmarkIcon,
