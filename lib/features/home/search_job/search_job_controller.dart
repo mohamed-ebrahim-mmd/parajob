@@ -23,6 +23,13 @@ class SearchJobController extends GetxController {
       : Get.find<ProfileController>();
   final _userController = Get.find<UserController>();
 
+  final jobTypeController = TextEditingController();
+  final cityController = TextEditingController();
+  final areaController = TextEditingController();
+  final skillController = TextEditingController();
+  final companyController = TextEditingController();
+  final categoryController = TextEditingController();
+
   int? selectedSkillId;
   int? selectedCompanyId;
   int? selectedCityId;
@@ -89,6 +96,7 @@ class SearchJobController extends GetxController {
     if (value != null && value != selectedCityId) {
       selectedCityId = value;
       selectedArea = null;
+      areaController.clear();
       fetchAreas(value);
     }
   }
@@ -269,15 +277,22 @@ class SearchJobController extends GetxController {
     selectedSkillId = null;
     selectedJobType = null;
     selectedJobCategory = null;
-
-    pagingController.refresh();
-    if (Get.isBottomSheetOpen ?? false) {
-      Get.back();
-    }
+    jobTypeController.clear();
+    cityController.clear();
+    areaController.clear();
+    skillController.clear();
+    companyController.clear();
+    categoryController.clear();
   }
 
   @override
   void onClose() {
+    jobTypeController.dispose();
+    cityController.dispose();
+    areaController.dispose();
+    skillController.dispose();
+    companyController.dispose();
+    categoryController.dispose();
     titleController.dispose();
     pagingController.dispose();
     super.onClose();

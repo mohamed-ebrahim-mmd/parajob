@@ -68,58 +68,113 @@ Future<void> showFilterBottomSheet(
             ),
             context.hBox(2),
 
-            DropdownMenu<String>(
-              enableSearch: true,
-              width: context.wPct(90),
-              menuHeight: context.hPct(30),
-              initialSelection: controller.selectedJobType,
-              hintText: 'job_type'.tr,
-              onSelected: (value) {
-                if (value != null) controller.selectedJobType = value;
-              },
-              dropdownMenuEntries: controller.jobTypeMenuEntries,
+            Row(
+              children: [
+                Expanded(
+                  child: DropdownMenu<String>(
+                    enableSearch: true,
+                    width: context.wPct(90),
+                    menuHeight: context.hPct(30),
+                    controller: controller.jobTypeController,
+                    hintText: 'job_type'.tr,
+                    onSelected: (value) {
+                      if (value != null) {
+                        controller.selectedJobType = value;
+                      }
+                    },
+                    dropdownMenuEntries: controller.jobTypeMenuEntries,
+                  ),
+                ),
+                IconButton(
+                  icon: const Icon(Icons.delete_outline),
+                  onPressed: () {
+                    controller.selectedJobType = null;
+                    controller.jobTypeController.clear();
+                  },
+                ),
+              ],
             ),
             context.hBox(2),
 
-            DropdownMenu<int>(
-              enableSearch: true,
-              width: context.wPct(90),
-              menuHeight: context.hPct(30),
-              initialSelection: controller.selectedCityId,
-              hintText: 'city'.tr,
-              onSelected: controller.onCitySelected,
-              dropdownMenuEntries: controller.cities,
+            Row(
+              children: [
+                Expanded(
+                  child: DropdownMenu<int>(
+                    enableSearch: true,
+                    width: context.wPct(90),
+                    menuHeight: context.hPct(30),
+                    controller: controller.cityController,
+                    hintText: 'city'.tr,
+                    onSelected: controller.onCitySelected,
+                    dropdownMenuEntries: controller.cities,
+                  ),
+                ),
+                IconButton(
+                  icon: const Icon(Icons.delete_outline),
+                  onPressed: () {
+                    controller.selectedCityId = null;
+                    controller.cityController.clear();
+                    controller.areaController.clear();
+                    controller.selectedArea = null;
+                  },
+                ),
+              ],
             ),
             context.hBox(2),
 
             Obx(() {
               switch (controller.areasCallState.value) {
                 case DataFetchState.loading:
-                  return TextField(
-                    enabled: false,
-                    decoration: InputDecoration(
-                      labelText: 'create_account_loading_areas'.tr,
-                      suffixIcon: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: const CircularProgressIndicator(),
+                  return Row(
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          enabled: false,
+                          decoration: InputDecoration(
+                            labelText: 'create_account_loading_areas'.tr,
+                            suffixIcon: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: const CircularProgressIndicator(),
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
+                      IconButton(
+                        icon: const Icon(
+                          Icons.delete_outline,
+                          color: Colors.transparent,
+                        ),
+                        onPressed: null,
+                      ),
+                    ],
                   );
 
                 case DataFetchState.success:
-                  return DropdownMenu<String>(
-                    enableSearch: true,
-                    expandedInsets: EdgeInsets.zero,
-                    menuHeight: context.hPct(30),
-                    hintText: 'area'.tr,
-
-                    initialSelection: controller.selectedArea,
-                    onSelected: (value) {
-                      if (value != null) {
-                        controller.selectedArea = value;
-                      }
-                    },
-                    dropdownMenuEntries: controller.areaMenuEntries,
+                  return Row(
+                    children: [
+                      Expanded(
+                        child: DropdownMenu<String>(
+                          enableSearch: true,
+                          expandedInsets: EdgeInsets.zero,
+                          menuHeight: context.hPct(30),
+                          hintText: 'area'.tr,
+                          controller: controller.areaController,
+                          onSelected: (value) {
+                            if (value != null) {
+                              controller.selectedArea = value;
+                            }
+                          },
+                          dropdownMenuEntries: controller.areaMenuEntries,
+                        ),
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.delete_outline),
+                        onPressed: () {
+                          controller.selectedArea = null;
+                          controller.areaController.clear();
+                        },
+                      ),
+                    ],
                   );
 
                 case DataFetchState.failure:
@@ -141,50 +196,102 @@ Future<void> showFilterBottomSheet(
                   );
 
                 case DataFetchState.initial:
-                  return TextField(
-                    enabled: false,
-                    decoration: InputDecoration(labelText: 'area'.tr),
+                  return Row(
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          enabled: false,
+                          decoration: InputDecoration(labelText: 'area'.tr),
+                        ),
+                      ),
+                      IconButton(
+                        icon: const Icon(
+                          Icons.delete_outline,
+                          color: Colors.transparent,
+                        ),
+                        onPressed: null,
+                      ),
+                    ],
                   );
               }
             }),
 
             context.hBox(2),
-            DropdownMenu<int>(
-              enableSearch: true,
-              width: context.wPct(90),
-              menuHeight: context.hPct(30),
-              initialSelection: controller.selectedSkillId,
-              hintText: 'skills'.tr,
-              onSelected: (value) {
-                if (value != null) controller.selectedSkillId = value;
-              },
-              dropdownMenuEntries: controller.skills,
+            Row(
+              children: [
+                Expanded(
+                  child: DropdownMenu<int>(
+                    enableSearch: true,
+                    width: context.wPct(90),
+                    menuHeight: context.hPct(30),
+                    controller: controller.skillController,
+                    hintText: 'skills'.tr,
+                    onSelected: (value) {
+                      if (value != null) controller.selectedSkillId = value;
+                    },
+                    dropdownMenuEntries: controller.skills,
+                  ),
+                ),
+                IconButton(
+                  icon: const Icon(Icons.delete_outline),
+                  onPressed: () {
+                    controller.selectedSkillId = null;
+                    controller.skillController.clear();
+                  },
+                ),
+              ],
             ),
             context.hBox(2),
 
-            DropdownMenu<int>(
-              enableSearch: true,
-              menuHeight: context.hPct(30),
-              width: context.wPct(90),
-              initialSelection: controller.selectedCompanyId,
-              hintText: 'company'.tr,
-              onSelected: (value) {
-                if (value != null) controller.selectedCompanyId = value;
-              },
-              dropdownMenuEntries: controller.companies,
+            Row(
+              children: [
+                Expanded(
+                  child: DropdownMenu<int>(
+                    enableSearch: true,
+                    menuHeight: context.hPct(30),
+                    width: context.wPct(90),
+                    controller: controller.companyController,
+                    hintText: 'company'.tr,
+                    onSelected: (value) {
+                      if (value != null) controller.selectedCompanyId = value;
+                    },
+                    dropdownMenuEntries: controller.companies,
+                  ),
+                ),
+                IconButton(
+                  icon: const Icon(Icons.delete_outline),
+                  onPressed: () {
+                    controller.selectedCompanyId = null;
+                    controller.companyController.clear();
+                  },
+                ),
+              ],
             ),
             context.hBox(2),
 
-            DropdownMenu<String>(
-              enableSearch: true,
-              menuHeight: context.hPct(30),
-              width: context.wPct(90),
-              initialSelection: controller.selectedJobCategory,
-              hintText: 'categories'.tr,
-              onSelected: (value) {
-                if (value != null) controller.selectedJobCategory = value;
-              },
-              dropdownMenuEntries: controller.jobCategoriesEntries,
+            Row(
+              children: [
+                Expanded(
+                  child: DropdownMenu<String>(
+                    enableSearch: true,
+                    menuHeight: context.hPct(30),
+                    width: context.wPct(90),
+                    controller: controller.categoryController,
+                    hintText: 'categories'.tr,
+                    onSelected: (value) {
+                      if (value != null) controller.selectedJobCategory = value;
+                    },
+                    dropdownMenuEntries: controller.jobCategoriesEntries,
+                  ),
+                ),
+                IconButton(
+                  icon: const Icon(Icons.delete_outline),
+                  onPressed: () {
+                    controller.selectedJobCategory = null;
+                    controller.categoryController.clear();
+                  },
+                ),
+              ],
             ),
             context.hBox(.5),
 
