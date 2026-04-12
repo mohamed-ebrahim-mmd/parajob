@@ -919,4 +919,11 @@ const Map<String, String> arSA = {
   'notification_new_generic': 'لديك إشعار جديد.',
   'notification_new_level': 'مستوى جديد',
   'notification_level_unlocked': ' تم فتحه!',
+
+  // ============================================================
+  // 📄 CV Container
+  // ============================================================
+  'cv_view_details': 'عرض التفاصيل',
+  'upload': 'ارفع',
+  'last_uploaded': 'اخر نحديث',
 };
