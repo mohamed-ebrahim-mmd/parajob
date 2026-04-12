@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:para_job/packages/themeing/app_colors.dart';
 import 'package:para_job/packages/themeing/media_query_values.dart';
 
 class CompanyDetailContainer extends StatelessWidget {
@@ -30,8 +31,9 @@ class CompanyDetailContainer extends StatelessWidget {
             Text(
               title,
               style: TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: context.wPct(4),
+                color: AppColors.pureWhite,
+                fontWeight: FontWeight.bold,
+                fontSize: context.wPct(4.1),
               ),
               softWrap: true,
               overflow: TextOverflow.visible,
@@ -41,8 +43,10 @@ class CompanyDetailContainer extends StatelessWidget {
               fit: BoxFit.scaleDown,
 
               child: Text(
-                "$value +",
+                "$value+",
                 style: TextStyle(
+                  color: AppColors.pureWhite,
+
                   fontWeight: FontWeight.w500,
                   fontSize: context.wPct(9),
                 ),

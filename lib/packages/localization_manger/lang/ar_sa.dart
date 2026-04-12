@@ -202,7 +202,7 @@ const Map<String, String> arSA = {
   'apply_now': 'قدّم الآن',
   'applied': 'تم التقديم',
   'egp': 'جنيه',
-  'per_month': '/شهري',
+  'per_month': ' / شهري',
   "hot_job_show_case":
       "وظائف مميزة من شركات كبرى أو فعاليات خاصة. هذه الوظائف محدودة وتنافسية — قدّم بسرعة وابرز بين المتقدمين.",
   "flexible_job_show_case":

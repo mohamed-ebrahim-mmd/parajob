@@ -204,7 +204,7 @@ const Map<String, String> enUS = {
   'apply_now': 'Apply now',
   'applied': 'Applied',
   'egp': 'EGP',
-  'per_month': '/mo',
+  'per_month': ' / mo',
   "hot_job_show_case":
       "Premium jobs from major companies or special events. These roles are limited and competitive—apply fast and stand out.",
   "flexible_job_show_case":
