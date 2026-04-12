@@ -52,7 +52,7 @@ class _ScalingCarouselState extends State<ScalingCarousel> {
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
-      aspectRatio: 4 / 3.44,
+      aspectRatio: 4 / 3.69,
 
       child: Center(
         child: PageView.builder(

@@ -32,6 +32,10 @@ class HotJobCard extends StatelessWidget {
           bottom: context.hPct(1),
           top: context.hPct(1),
         ),
+        padding: EdgeInsets.symmetric(
+          horizontal: context.wPct(.2),
+          vertical: context.hPct(1),
+        ),
 
         decoration: BoxDecoration(
           color: const Color(0xFF122A2B),
@@ -194,28 +198,27 @@ class HotJobCard extends StatelessWidget {
             // 👉 Deadline
             Padding(
               padding: EdgeInsets.symmetric(horizontal: context.wPct(3)),
-              child: RichText(
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                text: TextSpan(
-                  children: [
-                    WidgetSpan(
-                      child: Icon(
-                        Icons.date_range_rounded,
-                        size: context.wPct(4.5),
-                        color: Colors.grey,
-                      ),
-                    ),
-                    WidgetSpan(child: context.wBox(1)),
-                    TextSpan(
-                      text: job.applicationDeadline ?? "-",
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    Icons.date_range_rounded,
+                    size: context.wPct(4.5),
+                    color: Colors.grey,
+                  ),
+                  context.wBox(1),
+                  Expanded(
+                    child: Text(
+                      job.applicationDeadline ?? "-",
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         color: AppColors.softWhite70,
                         fontSize: context.wPct(3),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
 

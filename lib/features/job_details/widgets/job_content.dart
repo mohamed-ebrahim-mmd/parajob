@@ -93,14 +93,24 @@ class JobContent extends StatelessWidget {
                 backgroundImage: NetworkImage(jobDetails.company.logo ?? ""),
               ),
               context.wBox(2),
-              Text(
-                jobDetails.company.name ?? "",
-                style: TextStyle(
-                  decoration: TextDecoration.underline,
-
-                  color: AppColors.pureWhite,
-                  fontSize: context.wPct(4),
-                  fontWeight: FontWeight.w500,
+              Container(
+                padding: const EdgeInsets.only(bottom: 3),
+                // Adjust gap between text and line
+                decoration: const BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                      color: AppColors.pureWhite,
+                      width: 1.3, // Thickness of the underline
+                    ),
+                  ),
+                ),
+                child: Text(
+                  jobDetails.company.name ?? "",
+                  style: TextStyle(
+                    color: AppColors.pureWhite,
+                    fontSize: context.wPct(4),
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ),
             ],

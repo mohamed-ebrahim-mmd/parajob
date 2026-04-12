@@ -37,14 +37,18 @@ class CompanyDetailContainer extends StatelessWidget {
               overflow: TextOverflow.visible,
             ),
             context.hBox(0.5),
-            Text(
-              "$value +",
-              style: TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: context.wPct(9),
+            FittedBox(
+              fit: BoxFit.scaleDown,
+
+              child: Text(
+                "$value +",
+                style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: context.wPct(9),
+                ),
+                softWrap: true,
+                overflow: TextOverflow.visible,
               ),
-              softWrap: true,
-              overflow: TextOverflow.visible,
             ),
           ],
         ),
