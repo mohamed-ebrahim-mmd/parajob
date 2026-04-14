@@ -33,23 +33,35 @@ class EmployerListHeader extends StatelessWidget {
         if (showViewAllButton)
           GestureDetector(
             onTap: onViewAll,
-            child: Row(
-              children: [
-                Text(
-                  (viewAllText ?? 'view_all'.tr),
-                  style: TextStyle(
-                    fontSize: context.wPct(3.5),
-                    fontWeight: FontWeight.w500,
-                    color: AppColors.pureWhite,
+            child: RichText(
+              textDirection: TextDirection.ltr,
+
+              text: TextSpan(
+                children: [
+                  TextSpan(
+                    text: (viewAllText ?? 'view_all'.tr),
+                    style: TextStyle(
+                      fontSize: context.wPct(3.5),
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.pureWhite,
+                    ),
                   ),
-                ),
-                context.wBox(1),
-                const Icon(
-                  Icons.double_arrow,
-                  size: 10,
-                  color: AppColors.pureWhite,
-                ),
-              ],
+                  WidgetSpan(
+                    alignment: PlaceholderAlignment.middle,
+                    baseline: TextBaseline.alphabetic,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: context.wPct(.5),
+                      ),
+                      child: Icon(
+                        Icons.double_arrow,
+                        size: context.wPct(3),
+                        color: AppColors.pureWhite,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
       ],
