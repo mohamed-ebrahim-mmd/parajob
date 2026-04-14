@@ -193,8 +193,6 @@ class HotJobCard extends StatelessWidget {
               ),
             ),
 
-            context.hBox(1),
-
             // 👉 Deadline
             Padding(
               padding: EdgeInsets.symmetric(horizontal: context.wPct(3)),
@@ -222,7 +220,7 @@ class HotJobCard extends StatelessWidget {
                 ),
               ),
             ),
-
+            context.hBox(.3),
             // 👉 Buttons
             Padding(
               padding: EdgeInsets.symmetric(
