@@ -2,10 +2,7 @@ import 'dart:developer';
 
 import 'package:app_links/app_links.dart';
 import 'package:flutter/material.dart'
-    show
-        BuildContext,
-        GlobalKey,
-        WidgetsBinding;
+    show BuildContext, GlobalKey, WidgetsBinding;
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:loader_overlay/loader_overlay.dart';
@@ -87,7 +84,7 @@ class HomeController extends GetxController {
     log("handleDeepLink called");
 
     // 1) Get the initial deep link
-    final Uri? uri = await _appLinks.getInitialLink();
+    final Uri? uri = await _appLinks.getLatestLink();
     if (uri == null) return;
 
     // 2) Extract jobId from /share/{id}
