@@ -21,9 +21,9 @@ import 'packages/route_manager/route_manager.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init(); // Initialize GetStorage
-  Get.put(RoutingController());
-  Get.put(UserController());
-  Get.put(LocalizationController());
+  // Setup Async Dependencies
+  // This blocks the app from starting until UserController.init() finishes
+  await Get.putAsync<UserController>(() => UserController().init());
   // Load Arabic & English date formatting
   await initializeDateFormatting('ar', null);
   timeago.setLocaleMessages('ar_short', timeago.ArShortMessages());
@@ -41,8 +41,10 @@ class ParaJobApp extends StatefulWidget {
 }
 
 class _ParaJobAppState extends State<ParaJobApp> {
-  final RoutingController routingController = Get.find();
-  final LocalizationController localizationController = Get.find();
+  final RoutingController routingController = Get.put(RoutingController());
+  final LocalizationController localizationController = Get.put(
+    LocalizationController(),
+  );
 
   @override
   void initState() {
